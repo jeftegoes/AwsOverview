@@ -45,30 +45,31 @@
   - [8.3. NoSQL Databases](#83-nosql-databases)
     - [8.3.1. NoSQL data example: JSON](#831-nosql-data-example-json)
   - [8.4. Databases and Shared Responsibility on AWS](#84-databases-and-shared-responsibility-on-aws)
-  - [8.5. RDS](#85-rds)
+  - [8.5. RDS - Relational Database Service](#85-rds---relational-database-service)
   - [8.6. DynamoDB](#86-dynamodb)
-  - [8.7. Redshift Overview](#87-redshift-overview)
-  - [8.8. Amazon EMR](#88-amazon-emr)
-  - [8.9. Amazon Athena](#89-amazon-athena)
-  - [8.10. Amazon QuickSight](#810-amazon-quicksight)
-  - [8.11. DocumentDB](#811-documentdb)
-  - [8.12. Amazon Neptune](#812-amazon-neptune)
-  - [8.13. Amazon QLDB](#813-amazon-qldb)
-  - [8.14. Amazon Managed Blockchain](#814-amazon-managed-blockchain)
-  - [8.15. AWS Glue](#815-aws-glue)
-  - [8.16. DMS - Database Migration Service](#816-dms---database-migration-service)
-  - [8.17. Databases \& Analytics Summary in AWS](#817-databases--analytics-summary-in-aws)
+  - [8.7. ElastiCache](#87-elasticache)
+  - [8.8. Redshift Overview](#88-redshift-overview)
+  - [8.9. Amazon EMR](#89-amazon-emr)
+  - [8.10. Amazon Athena](#810-amazon-athena)
+  - [8.11. Amazon QuickSight](#811-amazon-quicksight)
+  - [8.12. DocumentDB](#812-documentdb)
+  - [8.13. Amazon Neptune](#813-amazon-neptune)
+  - [8.14. Amazon QLDB](#814-amazon-qldb)
+  - [8.15. Amazon Managed Blockchain](#815-amazon-managed-blockchain)
+  - [8.16. AWS Glue](#816-aws-glue)
+  - [8.17. DMS - Database Migration Service](#817-dms---database-migration-service)
+  - [8.18. Databases \& Analytics Summary in AWS](#818-databases--analytics-summary-in-aws)
 - [9. Other Compute Services: ECS, Lambda, Batch, Lightsail](#9-other-compute-services-ecs-lambda-batch-lightsail)
   - [9.1. ECS](#91-ecs)
   - [9.2. Fargate](#92-fargate)
   - [9.3. ECR](#93-ecr)
   - [9.4. Lambda](#94-lambda)
+    - [9.4.1. Lambda Summary](#941-lambda-summary)
   - [9.5. Amazon API Gateway](#95-amazon-api-gateway)
   - [9.6. AWS Batch](#96-aws-batch)
   - [9.7. Batch vs Lambda](#97-batch-vs-lambda)
   - [9.8. Amazon Lightsail](#98-amazon-lightsail)
   - [9.9. Other Compute - Summary](#99-other-compute---summary)
-  - [9.10. Lambda Summary](#910-lambda-summary)
 - [10. Deploying and Managing Infrastructure at Scale](#10-deploying-and-managing-infrastructure-at-scale)
   - [10.1. What is CloudFormation?](#101-what-is-cloudformation)
     - [10.1.1. Benefits of AWS CloudFormation](#1011-benefits-of-aws-cloudformation)
@@ -92,8 +93,6 @@
   - [10.15. AWS Amplify](#1015-aws-amplify)
   - [10.16. Deployment - Summary](#1016-deployment---summary)
 - [11. Route 53](#11-route-53)
-  - [11.1. What is DNS?](#111-what-is-dns)
-    - [11.1.1. DNS Terminologies](#1111-dns-terminologies)
 - [12. Global Infrastructure](#12-global-infrastructure)
   - [12.1. Why make a global application?](#121-why-make-a-global-application)
   - [12.2. Global AWS Infrastructure](#122-global-aws-infrastructure)
@@ -281,6 +280,7 @@
   - [23.21. W](#2321-w)
 - [24. Commands](#24-commands)
   - [24.1. DynamoDB](#241-dynamodb)
+- [25. Credits](#25-credits)
 
 ## 1. Traditionally, how to build infrastructure
 
@@ -655,8 +655,7 @@
   - Monitoring, alerting.
 - Note: many databases technologies could be run on EC2, but you must handle yourself the resiliency, backup, patching, high availability, fault tolerance, scaling...
 
-
-### 8.5. RDS
+### 8.5. RDS - Relational Database Service
 
 [AWS RDS](AWS%20RDS.md)
 
@@ -664,7 +663,11 @@
 
 [AWS DynamoDB](AWS%20DynamoDB.md)
 
-### 8.7. Redshift Overview
+### 8.7. ElastiCache
+
+[AWS ElastiCache](AWS%20ElastiCache.md)
+
+### 8.8. Redshift Overview
 
 - **Amazon Redshift is a fully managed, petabyte-scale data warehouse service in the cloud.**
 - Redshift is based on PostgreSQL, but it's not used for OLTP.
@@ -678,7 +681,7 @@
 - BI tools such as AWS Quicksight or Tableau integrate with it.
 - **Manage their data warehouse.**
 
-### 8.8. Amazon EMR
+### 8.9. Amazon EMR
 
 - EMR stands for "Elastic MapReduce"
 - **Amazon EMR is a web service that enables businesses, researchers, data analysts, and developers to easily and cost-effectively process vast amounts of data. EMR helps creating Apache Hadoop clusters (Big Data) to analyze and process vast amount of data.**
@@ -688,7 +691,7 @@
 - Auto-scaling and integrated with Spot instances
 - Use cases: data processing, machine learning, web indexing, big data...
 
-### 8.9. Amazon Athena
+### 8.10. Amazon Athena
 
 - **Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is no infrastructure to manage, and you pay only for the queries that you run.**
 - Serverless query service to analyze data stored in Amazon S3.
@@ -699,7 +702,7 @@
 - Use cases: Business intelligence / analytics / reporting, analyze & query VPC Flow Logs, ELB Logs, CloudTrail trails, etc...
 - Tip: analyze data in S3 using serverless SQL, use Athena.
 
-### 8.10. Amazon QuickSight
+### 8.11. Amazon QuickSight
 
 - **Amazon QuickSight is a fast, cloud-powered business intelligence (BI) service that makes it easy for you to deliver insights to everyone in your organization. You can create and publish interactive dashboards.**
 - Serverless machine learning-powered business intelligence service to create interactive dashboards.
@@ -711,7 +714,7 @@
   - Get business insights using data
 - Integrated with RDS, Aurora, Athena, Redshift, S3...
 
-### 8.11. DocumentDB
+### 8.12. DocumentDB
 
 - **Amazon DocumentDB (with MongoDB compatibility) is a fast, calable, highly available, and fully managed document database service that supports MongoDB workloads.**
 - Aurora is an "AWS-implementation" of PostgreSQL / MySQL...
@@ -722,7 +725,7 @@
 - Aurora storage automatically grows in increments of 10GB, up to 64 TB.
 - Automatically scales to workloads with millions of requests per seconds.
 
-### 8.12. Amazon Neptune
+### 8.13. Amazon Neptune
 
 - **Amazon Neptune is a fast, reliable, fully-managed graph database service that makes it easy to build and run applications that work with highly connected datasets. It can be used for knowledge graphs, fraud detection, recommendations engines, social networking, etc.**
 - Fully managed graph database.
@@ -736,7 +739,7 @@
 - Can store up to billions of relations and query the graph with milliseconds latency.
 - Highly available with replications across multiple AZs.
 
-### 8.13. Amazon QLDB
+### 8.14. Amazon QLDB
 
 - QLDB stands for "Quantum Ledger Database".
 - **Amazon QLDB is a fully managed ledger database that provides a transparent, immutable, and cryptographically verifiable transaction log owned by a central trusted authority. Amazon QLDB tracks each and every application data change and maintains a complete and verifiable history of changes over time.**
@@ -747,7 +750,7 @@
 - 2-3x better performance than common ledger blockchain frameworks, manipulate data using SQL.
 - Difference with Amazon Managed Blockchain: no decentralization component, in accordance with financial regulation rules.
 
-### 8.14. Amazon Managed Blockchain
+### 8.15. Amazon Managed Blockchain
 
 - **Amazon Managed Blockchain is a fully managed service that makes it easy to create and manage scalable blockchain networks using the popular open source frameworks Hyperledger Fabric and Ethereum. It allows multiple parties to execute transactions without the need of a trusted, central authority.**
 - Blockchain makes it possible to build applications where multiple parties can execute transactions without the need for a trusted, central authority.
@@ -756,7 +759,7 @@
   - Or create your own scalable private network
 - Compatible with the frameworks Hyperledger Fabric & Ethereum
 
-### 8.15. AWS Glue
+### 8.16. AWS Glue
 
 - **AWS Glue is a fully managed extract, transform, and load (ETL) service that makes it easy for customers to prepare and load their data for analytics.**
 - Managed extract, transform, and load (ETL) service.
@@ -766,7 +769,7 @@
   - **The AWS Glue Data Catalog is a central repository to store structural and operational metadata for all your data assets. For a given data set, you can store its table definition, physical location, add business relevant attributes, as well as track how this data has changed over time.**
   - Can be used by Athena, Redshift, EMR.
 
-### 8.16. DMS - Database Migration Service
+### 8.17. DMS - Database Migration Service
 
 - **AWS Database Migration Service helps you migrate databases to AWS quickly and securely. The source database remains fully operational during the migration, minimizing downtime to applications that rely on the database.**
 - Quickly and securely migrate databases to AWS, resilient, self healing
@@ -775,7 +778,7 @@
   - Homogeneous migrations: ex Oracle to Oracle
   - Heterogeneous migrations: ex Microsoft SQL Server to Aurora
 
-### 8.17. Databases & Analytics Summary in AWS
+### 8.18. Databases & Analytics Summary in AWS
 
 - Relational Databases: OLTP, RDS and Aurora (SQL).
 - Differences between Multi-AZ, Read Replicas, Multi-Region.
@@ -818,6 +821,19 @@
 ### 9.4. Lambda
 
 [Lambda](/AWS%20Lambda.md)
+
+#### 9.4.1. Lambda Summary
+
+- Lambda is Serverless, Function as a Service, seamless scaling, reactive.
+- Lambda Billing:
+  - By the time run x by the RAM provisioned.
+  - By the number of invocations.
+- Language Support: many programming languages except (arbitrary) Docker.
+- Invocation time: up to 15 minutes.
+- Use cases:
+  - Create Thumbnails for images uploaded onto S3.
+  - Run a Serverless cron job.
+- API Gateway: expose Lambda functions as HTTP API.
 
 ### 9.5. Amazon API Gateway
 
@@ -877,19 +893,6 @@
 - ECR: Private Docker Images Repository.
 - Batch: run batch jobs on AWS across managed EC2 instances.
 - Lightsail: predictable & low pricing for simple application & DB stacks.
-
-### 9.10. Lambda Summary
-
-- Lambda is Serverless, Function as a Service, seamless scaling, reactive.
-- Lambda Billing:
-  - By the time run x by the RAM provisioned.
-  - By the number of invocations.
-- Language Support: many programming languages except (arbitrary) Docker.
-- Invocation time: up to 15 minutes.
-- Use cases:
-  - Create Thumbnails for images uploaded onto S3.
-  - Run a Serverless cron job.
-- API Gateway: expose Lambda functions as HTTP API.
 
 ## 10. Deploying and Managing Infrastructure at Scale
 
@@ -1120,25 +1123,7 @@
 
 ## 11. Route 53
 
-### 11.1. What is DNS?
-
-- Domain Name System which translates the human friendly hostnames into the machine IP addresses
-  - www.google.com => 172.217.18.36
-  - DNS is the backbone of the Internet
-  - DNS uses hierarchical naming structure
-- example.com
-- .com
-- api.example.com
-- www.example.com
-
-#### 11.1.1. DNS Terminologies
-
-- Domain Registrar: Amazon Route 53, GoDaddy, ...
-- DNS Records: A, AAAA, CNAME, NS, ...
-- Zone File: contains DNS records.
-- Name Server: resolves DNS queries (Authoritative or Non-Authoritative).
-- Top Level Domain (TLD): .com, .us, .in, .gov, .org, ...
-- Second Level Domain (SLD): amazon.com, google.com, ...
+[AWS Route 53](AWS%20Route%2053.md)
 
 ## 12. Global Infrastructure
 
@@ -3074,3 +3059,7 @@
   - aws dynamodb scan --table-name `<table_name>` --projection-expression "`<attribute_fields_or_columns>`" # Filter attributes
 - List all content of table (F ilter expression)
   - aws dynamodb scan --table-name DemoTTL --filter-expression "`<attribute_fields_or_columns>` = :u" --expression-attribute-values '{":u": {"S":"`<content>`"}}'
+
+## 25. Credits
+
+- Much of this content extracted from Stephane Maarek's courses, **for personal study**, at several points has personal considerations and comments.
