@@ -11,6 +11,9 @@
   - [2.3. Hosted Zones](#23-hosted-zones)
   - [2.4. Public vs. Private Hosted Zones](#24-public-vs-private-hosted-zones)
   - [2.5. Records TTL (Time To Live)](#25-records-ttl-time-to-live)
+  - [2.6. CNAME vs Alias](#26-cname-vs-alias)
+  - [2.7. Route 53 – Alias Records](#27-route-53--alias-records)
+  - [2.8. Route 53 – Alias Records Targets](#28-route-53--alias-records-targets)
 
 # 1. What is DNS?
 
@@ -66,8 +69,8 @@
 - **AAAA:** maps a hostname to IPv6
 - **CNAME:** maps a hostname to another hostname
   - The target is a domain name which must have an A or AAAA record
-  - Can’t create a CNAME record for the top node of a DNS namespace (Zone Apex)
-  - Example: you can’t create for example.com, but you can create for www.example.com
+  - Can't create a CNAME record for the top node of a DNS namespace (Zone Apex)
+  - Example: you can't create for example.com, but you can create for www.example.com
 - **NS:** Name Servers for the Hosted Zone
   - Control how traffic is routed for a domain
 
@@ -92,3 +95,37 @@
   - Records are outdated for less time.
   - Easy to change records.
 - **Except for Alias records, TTL is mandatory for each DNS record.**
+
+## 2.6. CNAME vs Alias
+
+- AWS Resources (Load Balancer, CloudFront...) expose an AWS hostname:
+  - **lb1-1234.us-east-2.elb.amazonaws.com** and you **want myapp.mydomain.com**
+- CNAME:
+  - Points a hostname to any other hostname. (app.mydomain.com => blabla.anything.com).
+  - ONLY FOR NON ROOT DOMAIN (aka. something.mydomain.com).
+- Alias:
+  - Points a hostname to an AWS Resource (app.mydomain.com => blabla.amazonaws.com).
+  - **Works for ROOT DOMAIN and NON ROOT DOMAIN (aka mydomain.com).**
+  - Free of charge.
+  - Native health check.
+
+## 2.7. Route 53 – Alias Records
+
+- Maps a hostname to an AWS resource.
+- An extension to DNS functionality.
+- Automatically recognizes changes in the resource's IP addresses.
+- Unlike CNAME, it can be used for the top node of a DNS namespace (Zone Apex), e.g.: example.com
+- Alias Record is always of type A/AAAA for AWS resources (IPv4 / IPv6).
+- **You can't set the TTL.**
+
+## 2.8. Route 53 – Alias Records Targets
+
+- Elastic Load Balancers.
+- CloudFront Distributions.
+- API Gateway.
+- Elastic Beanstalk environments.
+- S3 Websites.
+- VPC Interface Endpoints.
+- Global Accelerator accelerator.
+- Route 53 record in the same hosted zone.
+- **You cannot set an ALIAS record for an EC2 DNS name.**
