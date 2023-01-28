@@ -97,20 +97,18 @@
   - [12.1. Why make a global application?](#121-why-make-a-global-application)
   - [12.2. Global AWS Infrastructure](#122-global-aws-infrastructure)
   - [12.3. Global Applications in AWS](#123-global-applications-in-aws)
-  - [12.4. Amazon Route 53 Overview](#124-amazon-route-53-overview)
-    - [12.4.1. Route 53 policies](#1241-route-53-policies)
-  - [12.5. AWS CloudFront](#125-aws-cloudfront)
-  - [12.6. CloudFront - Origins](#126-cloudfront---origins)
-  - [12.7. CloudFront vs S3 Cross Region Replication](#127-cloudfront-vs-s3-cross-region-replication)
-  - [12.8. S3 Transfer Acceleration](#128-s3-transfer-acceleration)
-  - [12.9. AWS Global Accelerator](#129-aws-global-accelerator)
-  - [12.10. AWS Global Accelerator vs CloudFront](#1210-aws-global-accelerator-vs-cloudfront)
-  - [12.11. AWS Outposts](#1211-aws-outposts)
-  - [12.12. AWS WaveLength](#1212-aws-wavelength)
-  - [12.13. AWS Local Zones](#1213-aws-local-zones)
-  - [12.14. Global Applications Architecture](#1214-global-applications-architecture)
+  - [12.4. AWS CloudFront](#124-aws-cloudfront)
+  - [12.5. CloudFront - Origins](#125-cloudfront---origins)
+  - [12.6. CloudFront vs S3 Cross Region Replication](#126-cloudfront-vs-s3-cross-region-replication)
+  - [12.7. S3 Transfer Acceleration](#127-s3-transfer-acceleration)
+  - [12.8. AWS Global Accelerator](#128-aws-global-accelerator)
+  - [12.9. AWS Global Accelerator vs CloudFront](#129-aws-global-accelerator-vs-cloudfront)
+  - [12.10. AWS Outposts](#1210-aws-outposts)
+  - [12.11. AWS WaveLength](#1211-aws-wavelength)
+  - [12.12. AWS Local Zones](#1212-aws-local-zones)
+  - [12.13. Global Applications Architecture](#1213-global-applications-architecture)
+  - [12.14. Global Applications in AWS - Summary](#1214-global-applications-in-aws---summary)
   - [12.15. Global Applications in AWS - Summary](#1215-global-applications-in-aws---summary)
-  - [12.16. Global Applications in AWS - Summary](#1216-global-applications-in-aws---summary)
 - [13. Cloud Integration](#13-cloud-integration)
   - [13.1. Amazon SQS - Standard Queue](#131-amazon-sqs---standard-queue)
   - [13.2. Amazon Kinesis](#132-amazon-kinesis)
@@ -1160,22 +1158,7 @@
 - **AWS Global Accelerator:**
   - Improve global application availability and performance using the AWS global network
 
-### 12.4. Amazon Route 53 Overview
-
-- **Route 53 features are (non exhaustive list): Domain Registration, DNS, Health Checks, Routing Policy**
-- Route53 is a Managed DNS (Domain Name System)
-- DNS is a collection of rules and records which helps clients understand how to reach a server through URLs.
-- In AWS, the most common records are:
-  - www.google.com => 12.34.56.78 == A record (IPv4)
-  - www.google.com => 2001:0db8:85a3:0000:0000:8a2e:0370:7334 == AAAA IPv6
-  - search.google.com => www.google.com == CNAME: hostname to hostname
-  - example.com => AWS resource == Alias (ex: ELB, CloudFront, S3, RDS, etc...)
-
-#### 12.4.1. Route 53 policies
-
-- **Weighted Routing Policy is used to route traffic to multiple resources in proportions that you specify.**
-
-### 12.5. AWS CloudFront
+### 12.4. AWS CloudFront
 
 - **CloudFront uses Edge Location to cache content, and therefore bring more of your content closer to your viewers to improve read performance.**
 - **You can use AWS WAF web access control lists (web ACLs) to help minimize the effects of a distributed denial of service (DDoS) attack. For additional protection against DDoS attacks, AWS also provides AWS Shield Standard and AWS Shield Advanced.**
@@ -1185,7 +1168,7 @@
 - 216 Point of Presence globally (edge locations)
 - DDoS protection (because worldwide), integration with Shield, AWS Web Application Firewall
 
-### 12.6. CloudFront - Origins
+### 12.5. CloudFront - Origins
 
 - S3 bucket
   - For distributing files and caching them at the edge
@@ -1197,7 +1180,7 @@
   - S3 website (must first enable the bucket as a static S3 website)
   - Any HTTP backend you want
 
-### 12.7. CloudFront vs S3 Cross Region Replication
+### 12.6. CloudFront vs S3 Cross Region Replication
 
 - CloudFront:
   - Global Edge network.
@@ -1209,19 +1192,19 @@
   - Read only.
   - Great for dynamic content that needs to be available at low-latency in few regions.
 
-### 12.8. S3 Transfer Acceleration
+### 12.7. S3 Transfer Acceleration
 
 - **Amazon S3 Transfer Acceleration enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket. Transfer Acceleration takes advantage of Amazon CloudFront's globally distributed edge locations. As the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.**
 - Increase transfer speed by transferring file to an AWS edge location which will forward the data to the S3 bucket in the target region.
 
-### 12.9. AWS Global Accelerator
+### 12.8. AWS Global Accelerator
 
 - Improve global application availability and performance using the AWS global network.
 - Leverage the AWS internal network to optimize the route to your application (60% improvement).
 - 2 Anycast IP are created for your application and traffic is sent through Edge Locations.
 - The Edge locations send the traffic to your application.
 
-### 12.10. AWS Global Accelerator vs CloudFront
+### 12.9. AWS Global Accelerator vs CloudFront
 
 - They both use the AWS global network and its edge locations around the world.
 - Both services integrate with AWS Shield for DDoS protection.
@@ -1234,7 +1217,7 @@
   - Good for HTTP use cases that require static IP addresses.
   - Good for HTTP use cases that required deterministic, fast regional failover.
 
-### 12.11. AWS Outposts
+### 12.10. AWS Outposts
 
 - Hybrid Cloud: businesses that keep an on-premises infrastructure alongside a cloud infrastructure.
 - Therefore, two ways of dealing with IT systems:
@@ -1258,7 +1241,7 @@
   - Amazon RDS
   - Amazon EMR
 
-### 12.12. AWS WaveLength
+### 12.11. AWS WaveLength
 
 - **AWS Wavelength is an AWS Infrastructure offering optimized for mobile edge computing applications. Wavelength combines the high bandwidth and ultra-low latency of 5G networks with AWS compute and storage services to enable developers to innovate and build a whole new class of applications.**
 - WaveLength Zones are infrastructure deployments embedded within the telecommunications providers datacenters at the edge of the 5G networks.
@@ -1270,7 +1253,7 @@
 - No additional charges or service agreements.
 - Use cases: Smart Cities, ML-assisted diagnostics, Connected Vehicles, Interactive Live Video Streams, AR/VR, Real-time Gaming, ...
 
-### 12.13. AWS Local Zones
+### 12.12. AWS Local Zones
 
 - Places AWS compute, storage, database, and other selected AWS services closer to end users to run latency-sensitive applications
 - Extend your VPC to more locations - "Extension of an AWS Region"
@@ -1279,14 +1262,14 @@
   - AWS Region: N. Virginia (us-east-1)
   - AWS Local Zones: Boston, Chicago, Dallas, Houston, Miami, ...
 
-### 12.14. Global Applications Architecture
+### 12.13. Global Applications Architecture
 
 - Single Region, Single AZ.
 - Single Region, Multi AZ.
 - Multi Region, Active-Passive.
 - Multi Region, Active-Active.
 
-### 12.15. Global Applications in AWS - Summary
+### 12.14. Global Applications in AWS - Summary
 
 - Global DNS: Route 53
   - Great to route users to the closest deployment with least latency.
@@ -1299,7 +1282,7 @@
 - AWS Global Accelerator
   - Improve global application availability and performance using the AWS global network.
 
-### 12.16. Global Applications in AWS - Summary
+### 12.15. Global Applications in AWS - Summary
 
 - AWS Outposts
   - Deploy Outposts Racks in your own Data Centers to extend AWS services

@@ -12,8 +12,22 @@
   - [2.4. Public vs. Private Hosted Zones](#24-public-vs-private-hosted-zones)
   - [2.5. Records TTL (Time To Live)](#25-records-ttl-time-to-live)
   - [2.6. CNAME vs Alias](#26-cname-vs-alias)
-  - [2.7. Route 53 – Alias Records](#27-route-53--alias-records)
-  - [2.8. Route 53 – Alias Records Targets](#28-route-53--alias-records-targets)
+    - [2.6.1. Alias Records](#261-alias-records)
+    - [2.6.2. Alias Records Targets](#262-alias-records-targets)
+  - [2.7. Health Checks](#27-health-checks)
+    - [2.7.1. Monitor an Endpoint](#271-monitor-an-endpoint)
+    - [2.7.2. Calculated Health Checks](#272-calculated-health-checks)
+    - [2.7.3. Private Hosted Zones](#273-private-hosted-zones)
+  - [2.8. Routing Policies](#28-routing-policies)
+    - [2.8.1. Simple](#281-simple)
+    - [2.8.2. Weighted](#282-weighted)
+    - [2.8.3. Latency-based](#283-latency-based)
+    - [2.8.4. Geolocation](#284-geolocation)
+    - [2.8.5. Geoproximity](#285-geoproximity)
+    - [2.8.6. Multi-Value](#286-multi-value)
+  - [2.9. Traffic flow](#29-traffic-flow)
+  - [2.10. Domain Registar vs DNS Service](#210-domain-registar-vs-dns-service)
+    - [2.10.1. 3rd Party Registrar with Amazon Route 53](#2101-3rd-party-registrar-with-amazon-route-53)
 
 # 1. What is DNS?
 
@@ -109,7 +123,7 @@
   - Free of charge.
   - Native health check.
 
-## 2.7. Route 53 – Alias Records
+### 2.6.1. Alias Records
 
 - Maps a hostname to an AWS resource.
 - An extension to DNS functionality.
@@ -118,7 +132,7 @@
 - Alias Record is always of type A/AAAA for AWS resources (IPv4 / IPv6).
 - **You can't set the TTL.**
 
-## 2.8. Route 53 – Alias Records Targets
+### 2.6.2. Alias Records Targets
 
 - Elastic Load Balancers.
 - CloudFront Distributions.
@@ -129,3 +143,136 @@
 - Global Accelerator accelerator.
 - Route 53 record in the same hosted zone.
 - **You cannot set an ALIAS record for an EC2 DNS name.**
+
+## 2.7. Health Checks
+
+- HTTP Health Checks are only for **public resources**.
+- Health Check => Automated DNS Failover:
+
+  1. Health checks that monitor an endpoint (application, server, other AWS resource).
+  2. Health checks that monitor other health checks (Calculated Health Checks).
+  3. Health checks that monitor CloudWatch Alarms (full control !!) – e.g., throttles of DynamoDB, alarms on RDS, custom metrics, ... (helpful for private resources).
+
+- Health Checks are integrated with CW (CloudWatch) metrics.
+
+### 2.7.1. Monitor an Endpoint
+
+- **About 15 global health checkers will check the endpoint health:**
+  - Healthy/Unhealthy Threshold – 3 (default).
+  - Interval – 30 sec (can set to 10 sec – higher cost).
+  - Supported protocol: HTTP, HTTPS and TCP.
+  - If > 18% of health checkers report the endpoint is healthy, Route 53 considers it.**Healthy**. Otherwise, it's **Unhealthy**.
+  - Ability to choose which locations you want Route 53 to use.
+- Health Checks pass only when the endpoint responds with the 2xx and 3xx status codes.
+- Health Checks can be setup to pass / fail based on the text in the first 5120 bytes of the response.
+- Configure you router/firewall to allow incoming requests from Route 53 Health Checkers..HTTP request
+
+### 2.7.2. Calculated Health Checks
+
+- Combine the results of multiple Health Checks into a single Health Check.
+- You can use **OR, AND, or NOT**.
+- Can monitor up to 256 Child Health Checks.
+- Specify how many of the health checks need to pass to make the parent pass.
+- Usage: perform maintenance to your website without causing all health checks to fail..
+
+### 2.7.3. Private Hosted Zones
+
+- Route 53 health checkers are outside the VPC.
+- They can't access private endpoints (private VPC or on-premises resource)
+- You can create a CloudWatch Metric and associate a CloudWatch Alarm, then create a Health Check that checks the alarm itself.
+
+## 2.8. Routing Policies
+
+- Define how Route 53 responds to DNS queries.
+- Don't get confused by the word "Routing":
+  - It's not the same as Load balancer routing which routes the traffic.
+  - DNS does not route any traffic, it only responds to the DNS queries.
+- Route 53 Supports the following Routing Policies:
+  - Simple.
+  - Weighted.
+  - Failover.
+  - Latency based.
+  - Geolocation.
+  - Multi-Value Answer.
+  - Geoproximity (using Route 53 Traffic Flow feature).
+
+### 2.8.1. Simple
+
+- Typically, route traffic to a single resource.
+- Can specify multiple values in the same record.
+- If multiple values are returned, a random one is chosen by the client.
+- When Alias enabled, specify only one AWS resource.
+- Can't be associated with Health Checks.
+
+### 2.8.2. Weighted
+
+- Control the % of the requests that go to each specific resource.
+- Assign each record a relative weight.
+  - Weights don't need to sum up to 100.
+- DNS records must have the same name and type.
+- Can be associated with Health Checks.
+- Use cases: load balancing between regions, testing new application versions...
+- **Assign a weight of 0 to a record to stop sending traffic to a resource.**
+- **If all records have weight of 0, then all records will be returned equally.**
+
+### 2.8.3. Latency-based
+
+- Redirect to the resource that has the least latency close to us.
+- Super helpful when latency for users is a priority.
+- **Latency is based on traffic between users and AWS Regions.**
+- Germany users may be directed to the US (if that's the lowest latency).
+- Can be associated with Health Checks (has a failover capability).
+
+### 2.8.4. Geolocation
+
+- Different from Latency-based!
+- **This routing is based on user location.**
+- Specify location by Continent, Country or by US State (if there's overlapping, most precise location selected).
+- Should create a **"Default"** record (in case there's no match on location).
+- Use cases: website localization, restrict content distribution, load balancing, ...
+- Can be associated with Health Checks.
+
+### 2.8.5. Geoproximity
+
+- Route traffic to your resources based on the geographic location of users and resources.
+- Ability **to shift more traffic to resources based** on the defined bias.
+- To change the size of the geographic region, specify bias values:
+  - To expand (1 to 99) – more traffic to the resource.
+  - To shrink (-1 to -99) – less traffic to the resource.
+- Resources can be:
+  - AWS resources (specify AWS region).
+  - Non-AWS resources (specify Latitude and Longitude).
+- You must use Route 53 **Traffic Flow** to use this feature
+
+### 2.8.6. Multi-Value
+
+- Use when routing traffic to multiple resources.
+- Route 53 return multiple values/resources.
+- Can be associated with Health Checks (return only values for healthy resources).
+- Up to 8 healthy records are returned for each Multi-Value query.
+- **Multi-Value is not a substitute for having an ELB.**
+
+## 2.9. Traffic flow
+
+- Simplify the process of creating and maintaining records in large and complex configurations.
+- Visual editor to manage complex routing decision trees.
+- Configurations can be saved as Traffic Flow Policy:
+  - Can be applied to different Route 53 Hosted Zones (different domain names).
+  - Supports versioning.
+
+## 2.10. Domain Registar vs DNS Service
+
+- You buy or register your domain name with a Domain Registrar typically by paying annual charges (e.g., GoDaddy, Amazon Registrar Inc., ...).
+- The Domain Registrar usually provides you with a DNS service to manage your DNS records.
+- But you can use another DNS service to manage your DNS records.
+- Example: purchase the domain from GoDaddy and use Route 53 to manage your DNS records.
+
+### 2.10.1. 3rd Party Registrar with Amazon Route 53
+
+- If you buy your domain on a 3rd party registrar, you can still use Route 53 as the DNS Service provider.
+
+1. Create a Hosted Zone in Route 53.
+2. Update NS Records on 3rd party website to use Route 53 Name Servers.
+
+- **Domain Registrar != DNS Service**
+- But every Domain Registrar usually comes with some DNS features.
