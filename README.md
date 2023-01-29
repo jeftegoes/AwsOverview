@@ -98,8 +98,6 @@
   - [12.2. Global AWS Infrastructure](#122-global-aws-infrastructure)
   - [12.3. Global Applications in AWS](#123-global-applications-in-aws)
   - [12.4. AWS CloudFront](#124-aws-cloudfront)
-  - [12.5. CloudFront - Origins](#125-cloudfront---origins)
-  - [12.6. CloudFront vs S3 Cross Region Replication](#126-cloudfront-vs-s3-cross-region-replication)
   - [12.7. S3 Transfer Acceleration](#127-s3-transfer-acceleration)
   - [12.8. AWS Global Accelerator](#128-aws-global-accelerator)
   - [12.9. AWS Global Accelerator vs CloudFront](#129-aws-global-accelerator-vs-cloudfront)
@@ -175,7 +173,7 @@
     - [18.1.3. AWS Organization - Consolidated Billing](#1813-aws-organization---consolidated-billing)
   - [18.2. AWS Control Tower](#182-aws-control-tower)
   - [18.3. Pricing Models in AWS](#183-pricing-models-in-aws)
-    - [18.3.1. Free services \& free tier in AWS](#1831-free-services--free-tier-in-aws)
+    - [18.3.1. Free services and free tier in AWS](#1831-free-services-and-free-tier-in-aws)
     - [18.3.2. Compute Pricing - EC2](#1832-compute-pricing---ec2)
     - [18.3.3. Compute Pricing - Lambda \& ECS](#1833-compute-pricing---lambda--ecs)
     - [18.3.4. Storage Pricing - S3](#1834-storage-pricing---s3)
@@ -1160,37 +1158,7 @@
 
 ### 12.4. AWS CloudFront
 
-- **CloudFront uses Edge Location to cache content, and therefore bring more of your content closer to your viewers to improve read performance.**
-- **You can use AWS WAF web access control lists (web ACLs) to help minimize the effects of a distributed denial of service (DDoS) attack. For additional protection against DDoS attacks, AWS also provides AWS Shield Standard and AWS Shield Advanced.**
-- Content Delivery Network (CDN)
-- Improves read performance, content is cached at the edge
-- Improves users experience
-- 216 Point of Presence globally (edge locations)
-- DDoS protection (because worldwide), integration with Shield, AWS Web Application Firewall
-
-### 12.5. CloudFront - Origins
-
-- S3 bucket
-  - For distributing files and caching them at the edge
-  - Enhanced security with CloudFront Origin Access Identity (OAI)
-  - CloudFront can be used as an ingress (to upload files to S3)
-- Custom Origin (HTTP)
-  - Application Load Balancer
-  - EC2 instance
-  - S3 website (must first enable the bucket as a static S3 website)
-  - Any HTTP backend you want
-
-### 12.6. CloudFront vs S3 Cross Region Replication
-
-- CloudFront:
-  - Global Edge network.
-  - Files are cached for a TTL (maybe a day).
-  - Great for static content that must be available everywhere.
-- S3 Cross Region Replication:
-  - Must be setup for each region you want replication to happen.
-  - Files are updated in near real-time.
-  - Read only.
-  - Great for dynamic content that needs to be available at low-latency in few regions.
+[AWS CloudFront](AWS%20CloudFront.md)
 
 ### 12.7. S3 Transfer Acceleration
 
@@ -1978,7 +1946,7 @@
   - **Pay less by using more:** volume-based discounts
   - **Pay less as AWS grows**
 
-#### 18.3.1. Free services & free tier in AWS
+#### 18.3.1. Free services and free tier in AWS
 
 - IAM.
 - VPC.

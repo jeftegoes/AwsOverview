@@ -58,7 +58,7 @@
 # 2. Amazon Route 53
 
 - A highly available, scalable, fully managed and Authoritative DNS.
-  - Authoritative = the customer (you) can update the DNS records.
+  - Authoritative = The customer (you) can update the DNS records.
 - **Route 53 is also a Domain Registrar**.
 - Ability to check the health of your resources.
 - The only AWS service which provides 100% availability SLA.
@@ -79,14 +79,14 @@
 
 ## 2.2. Record Types
 
-- **A:** maps a hostname to IPv4
-- **AAAA:** maps a hostname to IPv6
-- **CNAME:** maps a hostname to another hostname
-  - The target is a domain name which must have an A or AAAA record
-  - Can't create a CNAME record for the top node of a DNS namespace (Zone Apex)
+- **A:** maps a hostname to IPv4.
+- **AAAA:** maps a hostname to IPv6.
+- **CNAME:** maps a hostname to another hostname:
+  - The target is a domain name which must have an A or AAAA record.
+  - Can't create a CNAME record for the top node of a DNS namespace (Zone Apex).
   - Example: you can't create for example.com, but you can create for www.example.com
-- **NS:** Name Servers for the Hosted Zone
-  - Control how traffic is routed for a domain
+- **NS:** Name Servers for the Hosted Zone.
+  - Control how traffic is routed for a domain.
 
 ## 2.3. Hosted Zones
 
@@ -118,7 +118,7 @@
   - Points a hostname to any other hostname. (app.mydomain.com => blabla.anything.com).
   - ONLY FOR NON ROOT DOMAIN (aka. something.mydomain.com).
 - Alias:
-  - Points a hostname to an AWS Resource (app.mydomain.com => blabla.amazonaws.com).
+  - Points a hostname to an AWS Resource (app.mydomain.com => blabla.**amazonaws**.com).
   - **Works for ROOT DOMAIN and NON ROOT DOMAIN (aka mydomain.com).**
   - Free of charge.
   - Native health check.
@@ -165,7 +165,7 @@
   - Ability to choose which locations you want Route 53 to use.
 - Health Checks pass only when the endpoint responds with the 2xx and 3xx status codes.
 - Health Checks can be setup to pass / fail based on the text in the first 5120 bytes of the response.
-- Configure you router/firewall to allow incoming requests from Route 53 Health Checkers..HTTP request
+- Configure you router/firewall to allow incoming requests from Route 53 Health Checkers.
 
 ### 2.7.2. Calculated Health Checks
 
@@ -173,13 +173,13 @@
 - You can use **OR, AND, or NOT**.
 - Can monitor up to 256 Child Health Checks.
 - Specify how many of the health checks need to pass to make the parent pass.
-- Usage: perform maintenance to your website without causing all health checks to fail..
+- Usage: Perform maintenance to your website without causing all health checks to fail.
 
 ### 2.7.3. Private Hosted Zones
 
 - Route 53 health checkers are outside the VPC.
-- They can't access private endpoints (private VPC or on-premises resource)
-- You can create a CloudWatch Metric and associate a CloudWatch Alarm, then create a Health Check that checks the alarm itself.
+- They can't access private endpoints (private VPC or on-premises resource).
+- You can create a **CloudWatch Metric** and associate a **CloudWatch Alarm**, then create a Health Check that checks the alarm itself.
 
 ## 2.8. Routing Policies
 
@@ -200,7 +200,7 @@
 
 - Typically, route traffic to a single resource.
 - Can specify multiple values in the same record.
-- If multiple values are returned, a random one is chosen by the client.
+- **If multiple values are returned, a random one is chosen by the client.**
 - When Alias enabled, specify only one AWS resource.
 - Can't be associated with Health Checks.
 
@@ -211,7 +211,7 @@
   - Weights don't need to sum up to 100.
 - DNS records must have the same name and type.
 - Can be associated with Health Checks.
-- Use cases: load balancing between regions, testing new application versions...
+- Use cases: Load balancing between regions, testing new application versions...
 - **Assign a weight of 0 to a record to stop sending traffic to a resource.**
 - **If all records have weight of 0, then all records will be returned equally.**
 
@@ -242,7 +242,7 @@
 - Resources can be:
   - AWS resources (specify AWS region).
   - Non-AWS resources (specify Latitude and Longitude).
-- You must use Route 53 **Traffic Flow** to use this feature
+- You must use Route 53 **Traffic Flow** to use this feature.
 
 ### 2.8.6. Multi-Value
 
