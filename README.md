@@ -60,9 +60,7 @@
   - [8.17. DMS - Database Migration Service](#817-dms---database-migration-service)
   - [8.18. Databases \& Analytics Summary in AWS](#818-databases--analytics-summary-in-aws)
 - [9. Other Compute Services: ECS, Lambda, Batch, Lightsail](#9-other-compute-services-ecs-lambda-batch-lightsail)
-  - [9.1. ECS](#91-ecs)
-  - [9.2. Fargate](#92-fargate)
-  - [9.3. ECR](#93-ecr)
+  - [9.1. ECS - Elastic Container Service, Fargate and ECR - Elastic Container Registry](#91-ecs---elastic-container-service-fargate-and-ecr---elastic-container-registry)
   - [9.4. Lambda](#94-lambda)
     - [9.4.1. Lambda Summary](#941-lambda-summary)
   - [9.5. Amazon API Gateway](#95-amazon-api-gateway)
@@ -793,26 +791,9 @@
 
 ## 9. Other Compute Services: ECS, Lambda, Batch, Lightsail
 
-### 9.1. ECS
+### 9.1. ECS - Elastic Container Service, Fargate and ECR - Elastic Container Registry
 
-- ECS = Elastic Container Service.
-- Launch Docker containers on AWS.
-- **You must provision & maintain the infrastructure (the EC2 instances)**.
-- AWS takes care of starting / stopping containers.
-- Has integrations with the Application Load Balancer.
-
-### 9.2. Fargate
-
-- Launch Docker containers on AWS.
-- **You do not provision the infrastructure (no EC2 instances to manage)**.
-- Serverless offering.
-- AWS just runs containers for you based on the CPU / RAM you need.
-
-### 9.3. ECR
-
-- Elastic Container Registry.
-- Private Docker Registry on AWS.
-- This is where you store your Docker images so they can be run by ECS or Fargate.
+[AWS ECS, Fargate and ECR](AWS%20ECS.md)
 
 ### 9.4. Lambda
 

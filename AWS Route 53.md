@@ -101,10 +101,10 @@
 
 ## 2.5. Records TTL (Time To Live)
 
-- **High TTL – e.g., 24 hr.**
+- **High TTL - e.g., 24 hr.**
   - Less traffic on Route 53.
   - Possibly outdated records.
-- **Low TTL – e.g., 60 sec.**
+- **Low TTL - e.g., 60 sec.**
   - More traffic on Route 53 ($$).
   - Records are outdated for less time.
   - Easy to change records.
@@ -151,15 +151,15 @@
 
   1. Health checks that monitor an endpoint (application, server, other AWS resource).
   2. Health checks that monitor other health checks (Calculated Health Checks).
-  3. Health checks that monitor CloudWatch Alarms (full control !!) – e.g., throttles of DynamoDB, alarms on RDS, custom metrics, ... (helpful for private resources).
+  3. Health checks that monitor CloudWatch Alarms (full control !!) - e.g., throttles of DynamoDB, alarms on RDS, custom metrics, ... (helpful for private resources).
 
 - Health Checks are integrated with CW (CloudWatch) metrics.
 
 ### 2.7.1. Monitor an Endpoint
 
 - **About 15 global health checkers will check the endpoint health:**
-  - Healthy/Unhealthy Threshold – 3 (default).
-  - Interval – 30 sec (can set to 10 sec – higher cost).
+  - Healthy/Unhealthy Threshold - 3 (default).
+  - Interval - 30 sec (can set to 10 sec - higher cost).
   - Supported protocol: HTTP, HTTPS and TCP.
   - If > 18% of health checkers report the endpoint is healthy, Route 53 considers it.**Healthy**. Otherwise, it's **Unhealthy**.
   - Ability to choose which locations you want Route 53 to use.
@@ -237,8 +237,8 @@
 - Route traffic to your resources based on the geographic location of users and resources.
 - Ability **to shift more traffic to resources based** on the defined bias.
 - To change the size of the geographic region, specify bias values:
-  - To expand (1 to 99) – more traffic to the resource.
-  - To shrink (-1 to -99) – less traffic to the resource.
+  - To expand (1 to 99) - more traffic to the resource.
+  - To shrink (-1 to -99) - less traffic to the resource.
 - Resources can be:
   - AWS resources (specify AWS region).
   - Non-AWS resources (specify Latitude and Longitude).

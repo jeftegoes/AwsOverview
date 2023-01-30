@@ -118,7 +118,7 @@
 - You can reduce the number of edge locations for cost reduction.
 - Three price classes:
 
-1. Price Class All: all regions – best performance.
+1. Price Class All: all regions - best performance.
 2. Price Class 200: most regions, but excludes the most expensive regions.
 3. Price Class 100: only the least expensive regions.
 
