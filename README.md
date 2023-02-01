@@ -61,13 +61,13 @@
   - [8.18. Databases \& Analytics Summary in AWS](#818-databases--analytics-summary-in-aws)
 - [9. Other Compute Services: ECS, Lambda, Batch, Lightsail](#9-other-compute-services-ecs-lambda-batch-lightsail)
   - [9.1. ECS - Elastic Container Service, Fargate and ECR - Elastic Container Registry](#91-ecs---elastic-container-service-fargate-and-ecr---elastic-container-registry)
-  - [9.4. Lambda](#94-lambda)
-    - [9.4.1. Lambda Summary](#941-lambda-summary)
-  - [9.5. Amazon API Gateway](#95-amazon-api-gateway)
-  - [9.6. AWS Batch](#96-aws-batch)
-  - [9.7. Batch vs Lambda](#97-batch-vs-lambda)
-  - [9.8. Amazon Lightsail](#98-amazon-lightsail)
-  - [9.9. Other Compute - Summary](#99-other-compute---summary)
+  - [9.2. Lambda](#92-lambda)
+    - [9.2.1. Lambda Summary](#921-lambda-summary)
+  - [9.3. Amazon API Gateway](#93-amazon-api-gateway)
+  - [9.4. AWS Batch](#94-aws-batch)
+  - [9.5. Batch vs Lambda](#95-batch-vs-lambda)
+  - [9.6. Amazon Lightsail](#96-amazon-lightsail)
+  - [9.7. Other Compute - Summary](#97-other-compute---summary)
 - [10. Deploying and Managing Infrastructure at Scale](#10-deploying-and-managing-infrastructure-at-scale)
   - [10.1. What is CloudFormation?](#101-what-is-cloudformation)
     - [10.1.1. Benefits of AWS CloudFormation](#1011-benefits-of-aws-cloudformation)
@@ -96,15 +96,15 @@
   - [12.2. Global AWS Infrastructure](#122-global-aws-infrastructure)
   - [12.3. Global Applications in AWS](#123-global-applications-in-aws)
   - [12.4. AWS CloudFront](#124-aws-cloudfront)
-  - [12.7. S3 Transfer Acceleration](#127-s3-transfer-acceleration)
-  - [12.8. AWS Global Accelerator](#128-aws-global-accelerator)
-  - [12.9. AWS Global Accelerator vs CloudFront](#129-aws-global-accelerator-vs-cloudfront)
-  - [12.10. AWS Outposts](#1210-aws-outposts)
-  - [12.11. AWS WaveLength](#1211-aws-wavelength)
-  - [12.12. AWS Local Zones](#1212-aws-local-zones)
-  - [12.13. Global Applications Architecture](#1213-global-applications-architecture)
-  - [12.14. Global Applications in AWS - Summary](#1214-global-applications-in-aws---summary)
-  - [12.15. Global Applications in AWS - Summary](#1215-global-applications-in-aws---summary)
+  - [12.5. S3 Transfer Acceleration](#125-s3-transfer-acceleration)
+  - [12.6. AWS Global Accelerator](#126-aws-global-accelerator)
+  - [12.7. AWS Global Accelerator vs CloudFront](#127-aws-global-accelerator-vs-cloudfront)
+  - [12.8. AWS Outposts](#128-aws-outposts)
+  - [12.9. AWS WaveLength](#129-aws-wavelength)
+  - [12.10. AWS Local Zones](#1210-aws-local-zones)
+  - [12.11. Global Applications Architecture](#1211-global-applications-architecture)
+  - [12.12. Global Applications in AWS - Summary](#1212-global-applications-in-aws---summary)
+  - [12.13. Global Applications in AWS - Summary](#1213-global-applications-in-aws---summary)
 - [13. Cloud Integration](#13-cloud-integration)
   - [13.1. Amazon SQS - Standard Queue](#131-amazon-sqs---standard-queue)
   - [13.2. Amazon Kinesis](#132-amazon-kinesis)
@@ -200,81 +200,80 @@
     - [18.12.5. AWS Enterprise Support Plan (24/7)](#18125-aws-enterprise-support-plan-247)
   - [18.13. Account Best Practices - Summary](#1813-account-best-practices---summary)
   - [18.14. Billing and Costing Tools - Summary](#1814-billing-and-costing-tools---summary)
-- [19. Advanced Identity](#19-advanced-identity)
-  - [19.1. AWS STS (SecurityToken Service)](#191-aws-sts-securitytoken-service)
-  - [19.2. Amazon Cognito](#192-amazon-cognito)
-  - [19.3. What is Microsoft Active Directory (AD)?](#193-what-is-microsoft-active-directory-ad)
-    - [19.3.1. AWS Directory Services](#1931-aws-directory-services)
-  - [19.4. AWS Organizations](#194-aws-organizations)
-  - [19.5. AWS Single Sign-On (SSO)](#195-aws-single-sign-on-sso)
-  - [19.6. Advanced Identity - Summary](#196-advanced-identity---summary)
-- [20. Other AWS Services](#20-other-aws-services)
-  - [20.1. Amazon WorkSpaces](#201-amazon-workspaces)
-  - [20.2. Amazon AppStream 2.0](#202-amazon-appstream-20)
-    - [20.2.1. Amazon AppStream 2.0 vs WorkSpaces](#2021-amazon-appstream-20-vs-workspaces)
-  - [20.3. Amazon Sumerian](#203-amazon-sumerian)
-  - [20.4. AWS IoT Core](#204-aws-iot-core)
-  - [20.5. Amazon Elastic Transcoder](#205-amazon-elastic-transcoder)
-  - [20.6. AWS Device Farm](#206-aws-device-farm)
-  - [20.7. AWS Backup](#207-aws-backup)
-    - [20.7.1. Disaster Recovery Strategies](#2071-disaster-recovery-strategies)
-  - [20.8. AWS Elastic Disaster Recovery (DRS)](#208-aws-elastic-disaster-recovery-drs)
-  - [20.9. AWS DataSync](#209-aws-datasync)
-  - [20.10. AWS Fault Injection Simulator (FIS)](#2010-aws-fault-injection-simulator-fis)
-  - [20.11. AWS Step Functions](#2011-aws-step-functions)
-  - [20.12. Amazon AppFlow](#2012-amazon-appflow)
-  - [20.13. AWS CloudSearch](#2013-aws-cloudsearch)
-  - [20.14. Aws Service Catalog](#2014-aws-service-catalog)
-  - [20.15. Amazon AWS SES - Simple Email Service](#2015-amazon-aws-ses---simple-email-service)
-- [21. AWS Architecting \& Ecosystem](#21-aws-architecting--ecosystem)
-  - [21.1. Well Architected Framework General - Guiding Principles](#211-well-architected-framework-general---guiding-principles)
-  - [21.2. AWS Cloud Best Practices - Design Principles](#212-aws-cloud-best-practices---design-principles)
-  - [21.3. Well Architected Framework 6 Pillars](#213-well-architected-framework-6-pillars)
-    - [21.3.1. Operational Excellence](#2131-operational-excellence)
-      - [21.3.1.1. Operational Excellence AWS Services](#21311-operational-excellence-aws-services)
-    - [21.3.2. Security](#2132-security)
-      - [21.3.2.1. Security AWS Services](#21321-security-aws-services)
-    - [21.3.3. Reliability](#2133-reliability)
-      - [21.3.3.1. Reliability AWS Services](#21331-reliability-aws-services)
-    - [21.3.4. Performance Efficiency](#2134-performance-efficiency)
-      - [21.3.4.1. Performance Efficiency AWS Services](#21341-performance-efficiency-aws-services)
-    - [21.3.5. Cost Optimization](#2135-cost-optimization)
-      - [21.3.5.1. Cost Optimization AWS Services](#21351-cost-optimization-aws-services)
-    - [21.3.6. Sustainability](#2136-sustainability)
-      - [21.3.6.1. Sustainability AWS Services](#21361-sustainability-aws-services)
-  - [21.4. AWS Well-Architected Tool](#214-aws-well-architected-tool)
-  - [21.5. AWS Right Sizing](#215-aws-right-sizing)
-  - [21.6. AWS Ecosystem - Free resources](#216-aws-ecosystem---free-resources)
-  - [21.7. AWS Marketplace](#217-aws-marketplace)
-  - [21.8. AWS Training](#218-aws-training)
-  - [21.9. AWS Professional Services \& Partner Network](#219-aws-professional-services--partner-network)
-  - [21.10. AWS Knowledge Center](#2110-aws-knowledge-center)
-- [22. AWS Cloud Map](#22-aws-cloud-map)
-- [23. AWS related Abbreviations \& Acronyms](#23-aws-related-abbreviations--acronyms)
-  - [23.1. A](#231-a)
-  - [23.2. B](#232-b)
-  - [23.3. C](#233-c)
-  - [23.4. D](#234-d)
-  - [23.5. E](#235-e)
-  - [23.6. F](#236-f)
-  - [23.7. H](#237-h)
-  - [23.8. I](#238-i)
-  - [23.9. J](#239-j)
-  - [23.10. K](#2310-k)
-  - [23.11. L](#2311-l)
-  - [23.12. M](#2312-m)
-  - [23.13. N](#2313-n)
-  - [23.14. O](#2314-o)
-  - [23.15. P](#2315-p)
-  - [23.16. Q](#2316-q)
-  - [23.17. R](#2317-r)
-  - [23.18. S](#2318-s)
-  - [23.19. T](#2319-t)
-  - [23.20. V](#2320-v)
-  - [23.21. W](#2321-w)
-- [24. Commands](#24-commands)
-  - [24.1. DynamoDB](#241-dynamodb)
-- [25. Credits](#25-credits)
+- [19. AWS STS - Security Token Service](#19-aws-sts---security-token-service)
+- [20. AWS Directory Services](#20-aws-directory-services)
+- [21. Advanced Identity](#21-advanced-identity)
+  - [21.1. Amazon Cognito](#211-amazon-cognito)
+  - [21.2. AWS Organizations](#212-aws-organizations)
+  - [21.3. AWS Single Sign-On (SSO)](#213-aws-single-sign-on-sso)
+  - [21.4. Advanced Identity - Summary](#214-advanced-identity---summary)
+- [22. Other AWS Services](#22-other-aws-services)
+  - [22.1. Amazon WorkSpaces](#221-amazon-workspaces)
+  - [22.2. Amazon AppStream 2.0](#222-amazon-appstream-20)
+    - [22.2.1. Amazon AppStream 2.0 vs WorkSpaces](#2221-amazon-appstream-20-vs-workspaces)
+  - [22.3. Amazon Sumerian](#223-amazon-sumerian)
+  - [22.4. AWS IoT Core](#224-aws-iot-core)
+  - [22.5. Amazon Elastic Transcoder](#225-amazon-elastic-transcoder)
+  - [22.6. AWS Device Farm](#226-aws-device-farm)
+  - [22.7. AWS Backup](#227-aws-backup)
+    - [22.7.1. Disaster Recovery Strategies](#2271-disaster-recovery-strategies)
+  - [22.8. AWS Elastic Disaster Recovery (DRS)](#228-aws-elastic-disaster-recovery-drs)
+  - [22.9. AWS DataSync](#229-aws-datasync)
+  - [22.10. AWS Fault Injection Simulator (FIS)](#2210-aws-fault-injection-simulator-fis)
+  - [22.11. AWS Step Functions](#2211-aws-step-functions)
+  - [22.12. Amazon AppFlow](#2212-amazon-appflow)
+  - [22.13. AWS CloudSearch](#2213-aws-cloudsearch)
+  - [22.14. Aws Service Catalog](#2214-aws-service-catalog)
+  - [22.15. Amazon AWS SES - Simple Email Service](#2215-amazon-aws-ses---simple-email-service)
+- [23. AWS Architecting \& Ecosystem](#23-aws-architecting--ecosystem)
+  - [23.1. Well Architected Framework General - Guiding Principles](#231-well-architected-framework-general---guiding-principles)
+  - [23.2. AWS Cloud Best Practices - Design Principles](#232-aws-cloud-best-practices---design-principles)
+  - [23.3. Well Architected Framework 6 Pillars](#233-well-architected-framework-6-pillars)
+    - [23.3.1. Operational Excellence](#2331-operational-excellence)
+      - [23.3.1.1. Operational Excellence AWS Services](#23311-operational-excellence-aws-services)
+    - [23.3.2. Security](#2332-security)
+      - [23.3.2.1. Security AWS Services](#23321-security-aws-services)
+    - [23.3.3. Reliability](#2333-reliability)
+      - [23.3.3.1. Reliability AWS Services](#23331-reliability-aws-services)
+    - [23.3.4. Performance Efficiency](#2334-performance-efficiency)
+      - [23.3.4.1. Performance Efficiency AWS Services](#23341-performance-efficiency-aws-services)
+    - [23.3.5. Cost Optimization](#2335-cost-optimization)
+      - [23.3.5.1. Cost Optimization AWS Services](#23351-cost-optimization-aws-services)
+    - [23.3.6. Sustainability](#2336-sustainability)
+      - [23.3.6.1. Sustainability AWS Services](#23361-sustainability-aws-services)
+  - [23.4. AWS Well-Architected Tool](#234-aws-well-architected-tool)
+  - [23.5. AWS Right Sizing](#235-aws-right-sizing)
+  - [23.6. AWS Ecosystem - Free resources](#236-aws-ecosystem---free-resources)
+  - [23.7. AWS Marketplace](#237-aws-marketplace)
+  - [23.8. AWS Training](#238-aws-training)
+  - [23.9. AWS Professional Services \& Partner Network](#239-aws-professional-services--partner-network)
+  - [23.10. AWS Knowledge Center](#2310-aws-knowledge-center)
+- [24. AWS Cloud Map](#24-aws-cloud-map)
+- [25. AWS related Abbreviations \& Acronyms](#25-aws-related-abbreviations--acronyms)
+  - [25.1. A](#251-a)
+  - [25.2. B](#252-b)
+  - [25.3. C](#253-c)
+  - [25.4. D](#254-d)
+  - [25.5. E](#255-e)
+  - [25.6. F](#256-f)
+  - [25.7. H](#257-h)
+  - [25.8. I](#258-i)
+  - [25.9. J](#259-j)
+  - [25.10. K](#2510-k)
+  - [25.11. L](#2511-l)
+  - [25.12. M](#2512-m)
+  - [25.13. N](#2513-n)
+  - [25.14. O](#2514-o)
+  - [25.15. P](#2515-p)
+  - [25.16. Q](#2516-q)
+  - [25.17. R](#2517-r)
+  - [25.18. S](#2518-s)
+  - [25.19. T](#2519-t)
+  - [25.20. V](#2520-v)
+  - [25.21. W](#2521-w)
+- [26. Commands](#26-commands)
+  - [26.1. DynamoDB](#261-dynamodb)
+- [27. Credits](#27-credits)
 
 ## 1. Traditionally, how to build infrastructure
 
@@ -795,11 +794,11 @@
 
 [AWS ECS, Fargate and ECR](AWS%20ECS.md)
 
-### 9.4. Lambda
+### 9.2. Lambda
 
 [Lambda](/AWS%20Lambda.md)
 
-#### 9.4.1. Lambda Summary
+#### 9.2.1. Lambda Summary
 
 - Lambda is Serverless, Function as a Service, seamless scaling, reactive.
 - Lambda Billing:
@@ -812,7 +811,7 @@
   - Run a Serverless cron job.
 - API Gateway: expose Lambda functions as HTTP API.
 
-### 9.5. Amazon API Gateway
+### 9.3. Amazon API Gateway
 
 - Example: building a serverless API.
 - Fully managed service for developers to easily create, publish, maintain, monitor, and secure APIs.
@@ -822,7 +821,7 @@
 
 [AWS API Gateway](/AWS%20API%20Gateway.md)
 
-### 9.6. AWS Batch
+### 9.4. AWS Batch
 
 - **Fully managed** batch processing at **any scale**.
 - Efficiently run 100,000s of computing batch jobs on AWS.
@@ -833,7 +832,7 @@
 - Batch jobs are defined as **Docker images** and **run on ECS**.
 - Helpful for cost optimizations and focusing less on the infrastructure.
 
-### 9.7. Batch vs Lambda
+### 9.5. Batch vs Lambda
 
 - Lambda:
   - Time limit.
@@ -846,7 +845,7 @@
   - Rely on EBS / instance store for disk space.
   - Relies on EC2 (can be managed by AWS).
 
-### 9.8. Amazon Lightsail
+### 9.6. Amazon Lightsail
 
 - **Amazon Lightsail is designed to be the easiest way to launch and manage a virtual private server with AWS. Lightsail plans include everything you need to jumpstart your project - a virtual machine, SSD- based storage, data transfer, DNS management, and a static IP address - for a low, predictable price. It can be used to create a simple web application, a website or a dev/test environment.**
 - Virtual servers, storage, databases, and networking.
@@ -860,7 +859,7 @@
   - Dev / Test environment.
 - Has high availability but no auto-scaling, limited AWS integrations.
 
-### 9.9. Other Compute - Summary
+### 9.7. Other Compute - Summary
 
 - Docker: container technology to run applications.
 - ECS: run Docker containers on EC2 instances.
@@ -1141,19 +1140,19 @@
 
 [AWS CloudFront](AWS%20CloudFront.md)
 
-### 12.7. S3 Transfer Acceleration
+### 12.5. S3 Transfer Acceleration
 
 - **Amazon S3 Transfer Acceleration enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket. Transfer Acceleration takes advantage of Amazon CloudFront's globally distributed edge locations. As the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.**
 - Increase transfer speed by transferring file to an AWS edge location which will forward the data to the S3 bucket in the target region.
 
-### 12.8. AWS Global Accelerator
+### 12.6. AWS Global Accelerator
 
 - Improve global application availability and performance using the AWS global network.
 - Leverage the AWS internal network to optimize the route to your application (60% improvement).
 - 2 Anycast IP are created for your application and traffic is sent through Edge Locations.
 - The Edge locations send the traffic to your application.
 
-### 12.9. AWS Global Accelerator vs CloudFront
+### 12.7. AWS Global Accelerator vs CloudFront
 
 - They both use the AWS global network and its edge locations around the world.
 - Both services integrate with AWS Shield for DDoS protection.
@@ -1166,7 +1165,7 @@
   - Good for HTTP use cases that require static IP addresses.
   - Good for HTTP use cases that required deterministic, fast regional failover.
 
-### 12.10. AWS Outposts
+### 12.8. AWS Outposts
 
 - Hybrid Cloud: businesses that keep an on-premises infrastructure alongside a cloud infrastructure.
 - Therefore, two ways of dealing with IT systems:
@@ -1190,7 +1189,7 @@
   - Amazon RDS
   - Amazon EMR
 
-### 12.11. AWS WaveLength
+### 12.9. AWS WaveLength
 
 - **AWS Wavelength is an AWS Infrastructure offering optimized for mobile edge computing applications. Wavelength combines the high bandwidth and ultra-low latency of 5G networks with AWS compute and storage services to enable developers to innovate and build a whole new class of applications.**
 - WaveLength Zones are infrastructure deployments embedded within the telecommunications providers datacenters at the edge of the 5G networks.
@@ -1202,7 +1201,7 @@
 - No additional charges or service agreements.
 - Use cases: Smart Cities, ML-assisted diagnostics, Connected Vehicles, Interactive Live Video Streams, AR/VR, Real-time Gaming, ...
 
-### 12.12. AWS Local Zones
+### 12.10. AWS Local Zones
 
 - Places AWS compute, storage, database, and other selected AWS services closer to end users to run latency-sensitive applications
 - Extend your VPC to more locations - "Extension of an AWS Region"
@@ -1211,14 +1210,14 @@
   - AWS Region: N. Virginia (us-east-1)
   - AWS Local Zones: Boston, Chicago, Dallas, Houston, Miami, ...
 
-### 12.13. Global Applications Architecture
+### 12.11. Global Applications Architecture
 
 - Single Region, Single AZ.
 - Single Region, Multi AZ.
 - Multi Region, Active-Passive.
 - Multi Region, Active-Active.
 
-### 12.14. Global Applications in AWS - Summary
+### 12.12. Global Applications in AWS - Summary
 
 - Global DNS: Route 53
   - Great to route users to the closest deployment with least latency.
@@ -1231,7 +1230,7 @@
 - AWS Global Accelerator
   - Improve global application availability and performance using the AWS global network.
 
-### 12.15. Global Applications in AWS - Summary
+### 12.13. Global Applications in AWS - Summary
 
 - AWS Outposts
   - Deploy Outposts Racks in your own Data Centers to extend AWS services
@@ -2247,55 +2246,34 @@
 - **Budgets:** more advanced - track usage, costs, RI, and get alerts.
 - **Savings Plans:** easy way to save based on long-term usage of AWS.
 
-## 19. Advanced Identity
+## 19. AWS STS - Security Token Service
 
-### 19.1. AWS STS (SecurityToken Service)
+[AWS STS](AWS%20STS.md)
 
-- **AWS Security Token Service (AWS STS) is a web service that enables you to request temporary, limited-privilege credentials for AWS Identity and Access Management (IAM) users or for users that you authenticate (federated users).**
-- Enables you to create temporary, limited- privileges credentials to access your AWS resources.
-- Short-term credentials: you configure expiration period.
-- Use cases:
-  - Identity federation: manage user identities in external systems, and provide them with STS tokens to access AWS resources.
-  - IAM Roles for cross/same account access.
-  - IAM Roles for Amazon EC2: provide temporary credentials for EC2 instances to access AWS resources.
+## 20. AWS Directory Services
 
-### 19.2. Amazon Cognito
+[AWS Directory Services](AWS%20Directory%20Services.md)
+
+## 21. Advanced Identity
+
+### 21.1. Amazon Cognito
 
 - **Amazon Cognito lets you add user sign-up, sign-in, and access control to your web and mobile apps quickly and easily.**
 - Identity for your Web and Mobile applications users (potentially millions).
 - Instead of creating them an IAM user, you create a user in Cognito.
 
-### 19.3. What is Microsoft Active Directory (AD)?
-
-- Found on any Windows Server with AD Domain Services.
-- Database of objects: User Accounts, Computers, Printers, File Shares, Security Groups.
-- Centralized security management, create account, assign permissions.
-
-#### 19.3.1. AWS Directory Services
-
-- **AWS Directory Service makes it easy for you to setup and run directories in the AWS cloud, or connect your AWS resources with an existing on-premises Microsoft Active Directory.**
-- **AWS Managed Microsoft AD:**
-  - Create your own AD in AWS, manage users locally, supports MFA.
-  - Establish "trust" connections with your on- premise AD.
-- **AD Connector:**
-  - Directory Gateway (proxy) to redirect to on- premise AD, supports MFA.
-  - Users are managed on the on-premise AD.
-- **Simple AD:**
-  - AD-compatible managed directory on AWS.
-  - Cannot be joined with on-premise AD.
-
-### 19.4. AWS Organizations
+### 21.2. AWS Organizations
 
 - Organizations helps you to centrally manage billing; control access, compliance, and security; and share resources across your AWS accounts.
 
-### 19.5. AWS Single Sign-On (SSO)
+### 21.3. AWS Single Sign-On (SSO)
 
 - Centrally manage Single Sign-On to access multiple accounts and 3rd-party business applications.
 - Integrated with AWS Organizations.
 - Supports SAML 2.0 markup.
 - Integration with on-premise Active Directory.
 
-### 19.6. Advanced Identity - Summary
+### 21.4. Advanced Identity - Summary
 
 - IAM:
   - Identity and Access Management inside your AWS account.
@@ -2307,9 +2285,9 @@
 - Directory Services: integrate Microsoft Active Directory in AWS.
 - Single Sign-On (SSO): one login for multiple AWS accounts & applications.
 
-## 20. Other AWS Services
+## 22. Other AWS Services
 
-### 20.1. Amazon WorkSpaces
+### 22.1. Amazon WorkSpaces
 
 - **Amazon WorkSpaces is a fully managed, secure cloud desktop service. You can use Amazon WorkSpaces to provision either Windows or Linux desktops in just a few minutes and quickly scale to provide thousands of desktops to workers across the globe.**
 - Managed Desktop as a Service (DaaS) solution to easily provision Windows or Linux desktops.
@@ -2318,14 +2296,14 @@
 - Secured data - integrates with KMS.
 - Pay-as-you-go service with monthly or hourly rates.
 
-### 20.2. Amazon AppStream 2.0
+### 22.2. Amazon AppStream 2.0
 
 - **Amazon AppStream 2.0 is a fully managed non-persistent application and desktop streaming service that provides users instant access to their desktop applications from anywhere.**
 - Desktop Application Streaming Service.
 - Deliver to any computer, without acquiring, provisioning infrastructure.
 - The application is delivered from within a web browser.
 
-#### 20.2.1. Amazon AppStream 2.0 vs WorkSpaces
+#### 22.2.1. Amazon AppStream 2.0 vs WorkSpaces
 
 - **Workspaces:**
   - Fully managed VDI and desktop available.
@@ -2336,7 +2314,7 @@
   - Works with any device (that has a web browser).
   - Allow to configure an instance type per application type (CPU, RAM, GPU).
 
-### 20.3. Amazon Sumerian
+### 22.3. Amazon Sumerian
 
 - **Amazon Sumerian is a managed service that lets you create and run 3D, Augmented Reality (AR) and Virtual Reality (VR) applications. You can build immersive and interactive scenes that run on AR and VR, mobile devices, and your web browser.**
 - Create and run virtual reality (VR), augmented reality (AR), and 3D applications.
@@ -2344,7 +2322,7 @@
 - Ready-to-use templates and assets - no programming or 3D expertise required.
 - Accessible via a web-browser URLs or on popular hardware for AR/VR.
 
-### 20.4. AWS IoT Core
+### 22.4. AWS IoT Core
 
 - **AWS IoT Core, is serverless and lets you connect billions of devices to the AWS Cloud, lets you securely connect IoT devices to the AWS Cloud and other devices without the need to provision or manage servers.**
 - IoT stands for "Internet of Things" - the network of internet-connected devices that are able to collect and transfer data.
@@ -2354,7 +2332,7 @@
 - Integrates with a lot of AWS services (Lambda, S3, SageMaker, etc.).
 - Build IoT applications that gather, process, analyze, and act on data.
 
-### 20.5. Amazon Elastic Transcoder
+### 22.5. Amazon Elastic Transcoder
 
 - **Amazon Elastic Transcoder is media transcoding in the cloud. It is used to convert media files from their source format into versions that will play back on devices like smartphones, tablets, and PCs.**
 - Elastic Transcoder is used to convert media files stored in S3 into media files in the formats required by consumer playback devices (phones etc..)
@@ -2364,14 +2342,14 @@
   - Cost effective - duration-based pricing model.
   - Fully managed & secure, pay for what you use.
 
-### 20.6. AWS Device Farm
+### 22.6. AWS Device Farm
 
 - **AWS Device Farm is an application testing service that lets you improve the quality of your web and mobile apps by testing them across an extensive range of desktop browsers and real mobile devices; without having to provision and manage any testing infrastructure.**
 - Fully-managed service that tests your web and mobile apps against desktop browsers, real mobile devices, and tablets.
 - Run tests concurrently on multiple devices (speed up execution).
 - Ability to configure device settings (GPS, language, Wi-Fi, Bluetooth, ...).
 
-### 20.7. AWS Backup
+### 22.7. AWS Backup
 
 - **AWS Backup is a centralized backup service that makes it easy and cost-effective for you to backup your application data across AWS services in the AWS Cloud**
 - **CloudEndure Disaster Recovery minimizes downtime and data loss by providing fast, reliable recovery into AWS of your physical, virtual, and cloud-based servers.**
@@ -2382,21 +2360,21 @@
 - Cross-Region Backup.
 - Cross-Account Backup (using AWS Organizations).
 
-#### 20.7.1. Disaster Recovery Strategies
+#### 22.7.1. Disaster Recovery Strategies
 
 - Backup and Restore (Cheapest)
 - Pilot Light
 - Multi-Site / Hot-Site
 - Warm Standby
 
-### 20.8. AWS Elastic Disaster Recovery (DRS)
+### 22.8. AWS Elastic Disaster Recovery (DRS)
 
 - Used to be named "CloudEndure Disaster Recovery".
 - Quickly and easily recover your physical, virtual, and cloud-based servers into AWS.
 - Example: protect your most critical databases (including Oracle, MySQL, and SQL Server), enterprise apps (SAP), protect your data from ransomware attacks, ...
 - Continuous block-level replication for your servers.
 
-### 20.9. AWS DataSync
+### 22.9. AWS DataSync
 
 - Move large amount of data from on-premises to AWS.
   - On-premises / other cloud to AWS (NFS, SMB, HDFS, S3 API) - needs agent.
@@ -2412,7 +2390,7 @@
 
 ![AWS DataSync](/Images/AwsDataSyncDiagram.png)
 
-### 20.10. AWS Fault Injection Simulator (FIS)
+### 22.10. AWS Fault Injection Simulator (FIS)
 
 - A fully managed service for running fault injection experiments on AWS workloads.
 - Based on **Chaos Engineering** - stressing an application by creating disruptive events (e.g., sudden increase in CPU or memory), observing how the system responds, and implementing improvements.
@@ -2420,7 +2398,7 @@
 - Supports the following AWS services: EC2, ECS, EKS, RDS...
 - Use pre-built templates that generate the desired disruptions.
 
-### 20.11. AWS Step Functions
+### 22.11. AWS Step Functions
 
 - AWS Step Functions is a low-code, visual workflow service that developers use to build distributed applications, automate IT and business processes, and build data and machine learning pipelines using AWS services.
 - Workflows manage failures, retries, parallelization, service integrations, and observability so developers can focus on higher-value business logic.
@@ -2434,7 +2412,7 @@
   - Designed for reliability and scale
     Step Functions offers two workflow types - Standard or Express - that can be used depending on your specific use case. Standard Workflows are used to manage long-running workloads. Express Workflows support high-volume event processing workloads.
 
-### 20.12. Amazon AppFlow
+### 22.12. Amazon AppFlow
 
 - Amazon AppFlow is a fully managed integration service that enables you to securely transfer data between Software-as-a-Service (SaaS) applications like Salesforce, SAP, Zendesk, Slack, and ServiceNow, and AWS services like Amazon S3 and Amazon Redshift, in just a few clicks.
 - With AppFlow, you can run data flows at enterprise scale at the frequency you choose - on a schedule, in response to a business event, or on demand.
@@ -2453,12 +2431,12 @@
     - With AppFlow, you can use your existing Identity and Access Management (IAM) policies to enforce fine-grained permissions, rather than creating new policies.
     - For SaaS integrations with AWS PrivateLink enabled, data is secured from the public internet by default.
 
-### 20.13. AWS CloudSearch
+### 22.13. AWS CloudSearch
 
 - Amazon CloudSearch is a managed service in the AWS Cloud that makes it simple and cost-effective to set up, manage, and scale a search solution for your website or application.
 - Amazon CloudSearch supports 34 languages and popular search features such as highlighting, autocomplete, and geospatial search.
 
-### 20.14. Aws Service Catalog
+### 22.14. Aws Service Catalog
 
 - AWS Service Catalog allows organizations to create and manage catalogs of IT services that are approved for use on AWS.
 - These IT services can include everything from virtual machine images, servers, software, and databases to complete multi-tier application architectures.
@@ -2466,7 +2444,7 @@
 - This helps you achieve consistent governance and meet your compliance requirements, while enabling users to quickly deploy only the approved IT services they need. With AWS Service Catalog AppRegistry, organizations can understand the application context of their AWS resources.
 - You can define and manage your applications and their metadata, to keep track of cost, performance, security, compliance and operational status at the application level.
 
-### 20.15. Amazon AWS SES - Simple Email Service
+### 22.15. Amazon AWS SES - Simple Email Service
 
 - Amazon Simple Email Service (SES) is a cost-effective, flexible, and scalable email service that enables developers to send mail from within any application.
 - You can configure Amazon SES quickly to support several email use cases, including transactional, marketing, or mass email communications.
@@ -2481,9 +2459,9 @@
   - Lambda.
 - Integrated with IAM for allowing to send email.
 
-## 21. AWS Architecting & Ecosystem
+## 23. AWS Architecting & Ecosystem
 
-### 21.1. Well Architected Framework General - Guiding Principles
+### 23.1. Well Architected Framework General - Guiding Principles
 
 - Stop guessing your capacity needs.
 - Test systems at production scale.
@@ -2494,7 +2472,7 @@
 - Improve through game days.
   - Simulate applications for flash sale days.
 
-### 21.2. AWS Cloud Best Practices - Design Principles
+### 23.2. AWS Cloud Best Practices - Design Principles
 
 - **Scalability:** vertical & horizontal.
 - **Disposable Resources:** servers should be disposable & easily configured.
@@ -2507,7 +2485,7 @@
   - Don't use just EC2.
   - Use managed services, databases, serverless, etc!
 
-### 21.3. Well Architected Framework 6 Pillars
+### 23.3. Well Architected Framework 6 Pillars
 
 1. Operational Excellence.
 2. Security.
@@ -2518,7 +2496,7 @@
 
 - They are not something to balance, or trade-offs, they're a synergy.
 
-#### 21.3.1. Operational Excellence
+#### 23.3.1. Operational Excellence
 
 - Includes the ability to run and monitor systems to deliver business value and to continually improve supporting processes and procedures.
 - Design Principles:
@@ -2529,7 +2507,7 @@
   - **Anticipate failure**.
   - **Learn from all operational failures**.
 
-##### 21.3.1.1. Operational Excellence AWS Services
+##### 23.3.1.1. Operational Excellence AWS Services
 
 - Prepare:
   - AWS CloudFormation
@@ -2547,7 +2525,7 @@
   - AWS CodeDeploy
   - AWS CodePipeline
 
-#### 21.3.2. Security
+#### 23.3.2. Security
 
 - Includes the ability to protect information, systems, and assets while delivering business value through risk assessments and mitigation strategies.
 - Design Principles:
@@ -2560,7 +2538,7 @@
   - **Prepare for security events** - Run incident response simulations and use tools with automation to increase your speed for detection, investigation, and recovery.
   - **Shared Responsibility Model**.
 
-##### 21.3.2.1. Security AWS Services
+##### 23.3.2.1. Security AWS Services
 
 - Identity and Access Management:
   - IAM
@@ -2588,7 +2566,7 @@
   - AWS CloudFormation
   - Amazon CloudWatch Events
 
-#### 21.3.3. Reliability
+#### 23.3.3. Reliability
 
 - Ability of a system to recover from infrastructure or service disruptions, dynamically acquire computing resources to meet demand, and mitigate disruptions such as misconfigurations or transient network issues.
 - Design Principles:
@@ -2598,7 +2576,7 @@
   - **Stop guessing capacity** - Maintain the optimal level to satisfy demand without over or under provisioning - Use Auto Scaling.
   - **Manage change in automation** - Use automation to make changes to infrastructure.
 
-##### 21.3.3.1. Reliability AWS Services
+##### 23.3.3.1. Reliability AWS Services
 
 - Foundations:
   - IAM
@@ -2617,7 +2595,7 @@
   - Amazon S3 Glacier
   - Amazon Route 53
 
-#### 21.3.4. Performance Efficiency
+#### 23.3.4. Performance Efficiency
 
 - Includes the ability to use computing resources efficiently to meet system requirements, and to maintain that efficiency as demand changes and technologies evolve.
 - Design Principles:
@@ -2627,7 +2605,7 @@
   - **Experiment more often** - Easy to carry out comparative testing.
   - **Mechanical sympathy** - Be aware of all AWS services.
 
-##### 21.3.4.1. Performance Efficiency AWS Services
+##### 23.3.4.1. Performance Efficiency AWS Services
 
 - Selection:
   - AWS Auto Scaling
@@ -2646,7 +2624,7 @@
   - AWS Snowball
   - Amazon CloudFront
 
-#### 21.3.5. Cost Optimization
+#### 23.3.5. Cost Optimization
 
 - Includes the ability to run systems to deliver business value at the lowest price point.
 - Design Principles:
@@ -2656,7 +2634,7 @@
   - **Analyze and attribute expenditure** - Accurate identification of system usage and costs, helps measure return on investment (ROI)- Make sure to use tags.
   - **Use managed and application level services to reduce cost of ownership** - As managed services operate at cloud scale, they can offer a lower cost per transaction or service.
 
-##### 21.3.5.1. Cost Optimization AWS Services
+##### 23.3.5.1. Cost Optimization AWS Services
 
 - Expenditure Awareness:
   - AWS Budgets
@@ -2674,7 +2652,7 @@
   - AWS Trusted Advisor
   - AWS Cost and Usage Report
 
-#### 21.3.6. Sustainability
+#### 23.3.6. Sustainability
 
 - The sustainability pillar focuses on minimizing the environmental impacts of running cloud workloads.
 - Design Principles:
@@ -2685,7 +2663,7 @@
   - **Use managed services** - Shared services reduce the amount of infrastructure; Managed services help automate sustainability best practices as moving infrequent accessed data to cold storage and adjusting compute capacity.
   - **Reduce the downstream impact of your cloud workloads** - Reduce the amount of energy or resources required to use your services and reduce the need for your customers to upgrade their devices.
 
-##### 21.3.6.1. Sustainability AWS Services
+##### 23.3.6.1. Sustainability AWS Services
 
 - EC2 Auto Scaling, Serverless Offering (Lambda, Fargate).
 - Cost Explorer, AWS Graviton 2, EC2 T instances, @Spot Instances.
@@ -2694,7 +2672,7 @@
 - Amazon Data Lifecycle Manager.
 - Read Local, Write Global: RDS Read Replicas, Aurora Global DB, DynamoDB Global Table, CloudFront.
 
-### 21.4. AWS Well-Architected Tool
+### 23.4. AWS Well-Architected Tool
 
 - Free tool to **review your architectures** against the 6 pillars Well-Architected Framework and **adopt architectural best practices**.
 - How does it work?
@@ -2704,7 +2682,7 @@
 - Let's have a look: https://console.aws.amazon.com/wellarchitected
   - https://aws.amazon.com/blogs/aws/new-aws-well-architected-tool-review-workloads-against-best-practices/
 
-### 21.5. AWS Right Sizing
+### 23.5. AWS Right Sizing
 
 - EC2 has many instance types, but choosing the most powerful instance type isn't the best choice, because the cloud is **elastic**.
 - Right sizing is the process of matching instance types and sizes to your workload performance and capacity requirements **at the lowest possible cost**.
@@ -2715,7 +2693,7 @@
   - **Continuously after the cloud onboarding process (requirements change over time)**.
 - CloudWatch, Cost Explorer, Trusted Advisor, 3rd party tools can help.
 
-### 21.6. AWS Ecosystem - Free resources
+### 23.6. AWS Ecosystem - Free resources
 
 - **AWS Blogs:** https://aws.amazon.com/blogs/aws/
 - **AWS Forums (community):** https://forums.aws.amazon.com/index.jspa
@@ -2731,7 +2709,7 @@
     - https://aws.amazon.com/solutions/implementations/aws-landing-zone/
     - "Replaced" by AWS Control Tower
 
-### 21.7. AWS Marketplace
+### 23.7. AWS Marketplace
 
 - Digital catalog with thousands of software listings from **independent software vendors** (3rd party).
 - Example:
@@ -2742,7 +2720,7 @@
 - If you buy through the AWS Marketplace, it goes into your AWS bill.
 - You can **sell your own solutions** on the AWS Marketplace.
 
-### 21.8. AWS Training
+### 23.8. AWS Training
 
 - AWS Digital (online) and Classroom Training (in-person or virtual).
 - AWS Private Training (for your organization).
@@ -2750,7 +2728,7 @@
 - Training and Certification for the Enterprise.
 - AWS Academy: helps universities teach AWS.
 
-### 21.9. AWS Professional Services & Partner Network
+### 23.9. AWS Professional Services & Partner Network
 
 - The AWS Professional Services organization is a global team of experts
 - They work alongside your team and a chosen member of the APN
@@ -2762,12 +2740,12 @@
   customer success in specialized solution areas.
 - AWS Navigate Program: help Partners become better Partners
 
-### 21.10. AWS Knowledge Center
+### 23.10. AWS Knowledge Center
 
 - Contains the most frequent & common questions and requests
   - https://aws.amazon.com/premiumsupport/knowledge-center/
 
-## 22. AWS Cloud Map
+## 24. AWS Cloud Map
 
 - A fully managed resource discovery service.
 - Creates a map of the backend services/resources that your applications depend on
@@ -2775,9 +2753,9 @@
 - Integrated health checking (stop sending traffic to unhealthy endpoints).
 - Your applications can query AWS Cloud Map using AWS SDK, API, or DNS.
 
-## 23. AWS related Abbreviations & Acronyms
+## 25. AWS related Abbreviations & Acronyms
 
-### 23.1. A
+### 25.1. A
 
 - AWS Amazon Web Services
 - Amazon ES Amazon Elasticsearch Service
@@ -2794,11 +2772,11 @@
 - ADFS Active Directory Federation Service
 - AVX Advanced Vector Extensions
 
-### 23.2. B
+### 25.2. B
 
 - BYOL Bring Your Own License
 
-### 23.3. C
+### 25.3. C
 
 - CDN Content Delivery Network
 - CRC Cyclic Redundancy Check
@@ -2808,7 +2786,7 @@
 - CRR Cross Region Replication
 - CI/CD Continuous Integration/Continuous Deployment
 
-### 23.4. D
+### 25.4. D
 
 - DMS Database Migration Service
 - DNS Domain Name System
@@ -2816,7 +2794,7 @@
 - DoS Denial of Service
 - DaaS Desktop as-a-Service
 
-### 23.5. E
+### 25.5. E
 
 - EC2 Elastic Compute Cloud
 - ECS EC2 Container Service
@@ -2834,12 +2812,12 @@
 - ENI Elastic Network Interface
 - ECU EC2 Compute Unit
 
-### 23.6. F
+### 25.6. F
 
 - FIFO First In First Out
 - FaaS Function as-a-Service
 
-### 23.7. H
+### 25.7. H
 
 - HPC High-Performance Compute
 - HVM Hardware Virtual Machine
@@ -2847,7 +2825,7 @@
 - HTTPS HTTP Secure
 - HDK Hardware Development Kit
 
-### 23.8. I
+### 25.8. I
 
 - IAM Identity & Access Management
 - iOT Internet Of Things
@@ -2860,21 +2838,21 @@
 - IPSec Internet Protocol Security
 - IaaS Infrastructure-as-a-Service
 
-### 23.9. J
+### 25.9. J
 
 - JSON JavaScript Object Notation
 
-### 23.10. K
+### 25.10. K
 
 - KMS Key Management Service
 - KVM Kernel-based Virtual Machine
 
-### 23.11. L
+### 25.11. L
 
 - LB Load Balancer
 - LCU Load Balancer Capacity Unit
 
-### 23.12. M
+### 25.12. M
 
 - MFA Multi-Factor Authentication
 - MSTSC Microsoft Terminal Service Client
@@ -2883,7 +2861,7 @@
 - ML Machine Learning
 - MPLS Multi Protocol Label Switching
 
-### 23.13. N
+### 25.13. N
 
 - NACL Network Access Control List
 - NLP Natural Language Processing
@@ -2892,24 +2870,24 @@
 - NAT Network Address Translation
 - NVMe Non-Volatile Memory Express
 
-### 23.14. O
+### 25.14. O
 
 - OLTP Online Transaction Processing
 - OLAP Online Analytics Processing
 - OCI Open Container Initiative
 
-### 23.15. P
+### 25.15. P
 
 - PCI DSS Payment Card Industry Data Security Standard
 - PVM Para Virtual Machine
 - PV ParaVirtual
 - PaaS Platform as a Service
 
-### 23.16. Q
+### 25.16. Q
 
 - QLDB Quantum Ledger Database
 
-### 23.17. R
+### 25.17. R
 
 - RAIDRedundant Array of Independent Disk
 - RDS Relational Database Service
@@ -2919,7 +2897,7 @@
 - RIE Runtime Interface Emulator
 - RCU Read Capacity Units
 
-### 23.18. S
+### 25.18. S
 
 - SSEServer Side Encryption
 - S3 Simple Storage Service
@@ -2947,7 +2925,7 @@
 - STS Security Token Service
 - SNI Server Name Indication
 
-### 23.19. T
+### 25.19. T
 
 - TAM Technical Account Managers
 - TTL Time To Live
@@ -2958,7 +2936,7 @@
 - TPS Transaction Per Second
 - TCP Transmission Control Protocol
 
-### 23.20. V
+### 25.20. V
 
 - VPC Virtual Private Cloud
 - VM Virtual Machine
@@ -2968,13 +2946,17 @@
 - VDI Virtual Desktop Infrastructure
 - VPG Virtual Private Gateway
 
-### 23.21. W
+### 25.21. W
 
 - WAFWeb Application Firewall
 - WCU Write Capacity Units
 
-## 24. Commands
+## 26. Commands
 
+- List of all profiles
+  - aws configure list-profiles
+- See specific profile
+  - aws sts get-caller-identity --profile `<name_profile>`# name of the profile you want to view
 - List of AWS Regions
   - aws ec2 describe-regions
 - Find AWS availability zones using AWS CLI
@@ -2982,7 +2964,7 @@
 - List all funcions
   - aws lambda list-functions
 
-### 24.1. DynamoDB
+### 26.1. DynamoDB
 
 - List all itens of table (Projection expression)
   - aws dynamodb scan --table-name `<table_name>`
@@ -2992,6 +2974,6 @@
 - List all content of table (F ilter expression)
   - aws dynamodb scan --table-name DemoTTL --filter-expression "`<attribute_fields_or_columns>` = :u" --expression-attribute-values '{":u": {"S":"`<content>`"}}'
 
-## 25. Credits
+## 27. Credits
 
 - Much of this content extracted from Stephane Maarek's courses, **for personal study**, at several points has personal considerations and comments.

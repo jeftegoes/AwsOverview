@@ -1,4 +1,4 @@
-# AWS ECS - Elastic Container Service, Fargate and ECR - Elastic Container Registry <!-- omit in toc -->
+# AWS ECS - Elastic Container Service, Fargate and ECR - Elastic Container Registry<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -80,7 +80,7 @@
   - Reference sensitive data in Secrets Manager or SSM Parameter Store.
 - **ECS Task Role:**
   - Allows each task to have a specific role.
-  - Use different roles for the different ECS Services you run
+  - Use different roles for the different ECS Services you run.
   - Task Role is defined in the **task definition**.
 
 ## 3.3. Load Balancer Integrations
@@ -149,6 +149,7 @@
 - We get a **Dynamic Host Port Mapping if you define only the container port in the task definition**.
 - The ALB finds the right port on your EC2 Instances.
 - **You must allow on the EC2 instance's Security Group any port from the ALB's Security Group.**
+- **To enable random host port, set host port = 0 (or empty), which allows multiple containers of the same type to launch on the same EC2 container instance.**
 
 ### 3.8.2. Fargate
 
