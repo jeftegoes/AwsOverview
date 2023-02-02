@@ -2960,9 +2960,11 @@
 - List of AWS Regions
   - aws ec2 describe-regions
 - Find AWS availability zones using AWS CLI
-  - aws ec2 describe-availability-zones --region `region`
+  - aws ec2 describe-availability-zones --region `<region>`
 - List all funcions
   - aws lambda list-functions
+- See encoded errors using STS command line:
+  - aws sts decode-authorization-message --encoded-message `<code_encoded>`
 
 ### 26.1. DynamoDB
 
