@@ -36,7 +36,8 @@
   - [10.4. Predictive Scaling](#104-predictive-scaling)
   - [10.5. Good metrics to scale on](#105-good-metrics-to-scale-on)
   - [10.6. Scaling Cooldowns](#106-scaling-cooldowns)
-  - [10.7. Scaling Strategies (Resume)](#107-scaling-strategies-resume)
+  - [10.7. Auto Scaling - Instance Refresh](#107-auto-scaling--instance-refresh)
+  - [10.8. Scaling Strategies (Resume)](#108-scaling-strategies-resume)
 
 # 1. Scalability and High Availability
 
@@ -369,7 +370,14 @@
 - During the cooldown period, the ASG will not launch or terminate additional instances (to allow for metrics to stabilize).
 - Advice: Use a ready-to-use AMI to reduce configuration time in order to be serving request fasters and reduce the cooldown period.
 
-## 10.7. Scaling Strategies (Resume)
+## 10.7. Auto Scaling - Instance Refresh
+
+- Goal: update launch template and then re-creating all EC2 instances.
+- For this we can use the native feature of Instance Refresh.
+- Setting of minimum healthy percentage.
+- Specify warm-up time (how long until the instance is ready to use).
+
+## 10.8. Scaling Strategies (Resume)
 
 - Manual Scaling: Update the size of an ASG manually
 - Dynamic Scaling: Respond to changing demand

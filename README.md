@@ -249,31 +249,32 @@
   - [23.9. AWS Professional Services \& Partner Network](#239-aws-professional-services--partner-network)
   - [23.10. AWS Knowledge Center](#2310-aws-knowledge-center)
 - [24. AWS Cloud Map](#24-aws-cloud-map)
-- [25. AWS related Abbreviations \& Acronyms](#25-aws-related-abbreviations--acronyms)
-  - [25.1. A](#251-a)
-  - [25.2. B](#252-b)
-  - [25.3. C](#253-c)
-  - [25.4. D](#254-d)
-  - [25.5. E](#255-e)
-  - [25.6. F](#256-f)
-  - [25.7. H](#257-h)
-  - [25.8. I](#258-i)
-  - [25.9. J](#259-j)
-  - [25.10. K](#2510-k)
-  - [25.11. L](#2511-l)
-  - [25.12. M](#2512-m)
-  - [25.13. N](#2513-n)
-  - [25.14. O](#2514-o)
-  - [25.15. P](#2515-p)
-  - [25.16. Q](#2516-q)
-  - [25.17. R](#2517-r)
-  - [25.18. S](#2518-s)
-  - [25.19. T](#2519-t)
-  - [25.20. V](#2520-v)
-  - [25.21. W](#2521-w)
-- [26. Commands](#26-commands)
-  - [26.1. DynamoDB](#261-dynamodb)
-- [27. Credits](#27-credits)
+- [25. AWS Limits (Quotas)](#25-aws-limits-quotas)
+- [26. AWS related Abbreviations \& Acronyms](#26-aws-related-abbreviations--acronyms)
+  - [26.1. A](#261-a)
+  - [26.2. B](#262-b)
+  - [26.3. C](#263-c)
+  - [26.4. D](#264-d)
+  - [26.5. E](#265-e)
+  - [26.6. F](#266-f)
+  - [26.7. H](#267-h)
+  - [26.8. I](#268-i)
+  - [26.9. J](#269-j)
+  - [26.10. K](#2610-k)
+  - [26.11. L](#2611-l)
+  - [26.12. M](#2612-m)
+  - [26.13. N](#2613-n)
+  - [26.14. O](#2614-o)
+  - [26.15. P](#2615-p)
+  - [26.16. Q](#2616-q)
+  - [26.17. R](#2617-r)
+  - [26.18. S](#2618-s)
+  - [26.19. T](#2619-t)
+  - [26.20. V](#2620-v)
+  - [26.21. W](#2621-w)
+- [27. Commands](#27-commands)
+  - [27.1. DynamoDB](#271-dynamodb)
+- [28. Credits](#28-credits)
 
 ## 1. Traditionally, how to build infrastructure
 
@@ -2753,9 +2754,13 @@
 - Integrated health checking (stop sending traffic to unhealthy endpoints).
 - Your applications can query AWS Cloud Map using AWS SDK, API, or DNS.
 
-## 25. AWS related Abbreviations & Acronyms
+## 25. AWS Limits (Quotas)
 
-### 25.1. A
+[AWS Limits](AWS%20Limits.md)
+
+## 26. AWS related Abbreviations & Acronyms
+
+### 26.1. A
 
 - AWS Amazon Web Services
 - Amazon ES Amazon Elasticsearch Service
@@ -2772,11 +2777,11 @@
 - ADFS Active Directory Federation Service
 - AVX Advanced Vector Extensions
 
-### 25.2. B
+### 26.2. B
 
 - BYOL Bring Your Own License
 
-### 25.3. C
+### 26.3. C
 
 - CDN Content Delivery Network
 - CRC Cyclic Redundancy Check
@@ -2786,7 +2791,7 @@
 - CRR Cross Region Replication
 - CI/CD Continuous Integration/Continuous Deployment
 
-### 25.4. D
+### 26.4. D
 
 - DMS Database Migration Service
 - DNS Domain Name System
@@ -2794,7 +2799,7 @@
 - DoS Denial of Service
 - DaaS Desktop as-a-Service
 
-### 25.5. E
+### 26.5. E
 
 - EC2 Elastic Compute Cloud
 - ECS EC2 Container Service
@@ -2812,12 +2817,12 @@
 - ENI Elastic Network Interface
 - ECU EC2 Compute Unit
 
-### 25.6. F
+### 26.6. F
 
 - FIFO First In First Out
 - FaaS Function as-a-Service
 
-### 25.7. H
+### 26.7. H
 
 - HPC High-Performance Compute
 - HVM Hardware Virtual Machine
@@ -2825,7 +2830,7 @@
 - HTTPS HTTP Secure
 - HDK Hardware Development Kit
 
-### 25.8. I
+### 26.8. I
 
 - IAM Identity & Access Management
 - iOT Internet Of Things
@@ -2838,21 +2843,21 @@
 - IPSec Internet Protocol Security
 - IaaS Infrastructure-as-a-Service
 
-### 25.9. J
+### 26.9. J
 
 - JSON JavaScript Object Notation
 
-### 25.10. K
+### 26.10. K
 
 - KMS Key Management Service
 - KVM Kernel-based Virtual Machine
 
-### 25.11. L
+### 26.11. L
 
 - LB Load Balancer
 - LCU Load Balancer Capacity Unit
 
-### 25.12. M
+### 26.12. M
 
 - MFA Multi-Factor Authentication
 - MSTSC Microsoft Terminal Service Client
@@ -2861,7 +2866,7 @@
 - ML Machine Learning
 - MPLS Multi Protocol Label Switching
 
-### 25.13. N
+### 26.13. N
 
 - NACL Network Access Control List
 - NLP Natural Language Processing
@@ -2870,24 +2875,24 @@
 - NAT Network Address Translation
 - NVMe Non-Volatile Memory Express
 
-### 25.14. O
+### 26.14. O
 
 - OLTP Online Transaction Processing
 - OLAP Online Analytics Processing
 - OCI Open Container Initiative
 
-### 25.15. P
+### 26.15. P
 
 - PCI DSS Payment Card Industry Data Security Standard
 - PVM Para Virtual Machine
 - PV ParaVirtual
 - PaaS Platform as a Service
 
-### 25.16. Q
+### 26.16. Q
 
 - QLDB Quantum Ledger Database
 
-### 25.17. R
+### 26.17. R
 
 - RAIDRedundant Array of Independent Disk
 - RDS Relational Database Service
@@ -2897,7 +2902,7 @@
 - RIE Runtime Interface Emulator
 - RCU Read Capacity Units
 
-### 25.18. S
+### 26.18. S
 
 - SSEServer Side Encryption
 - S3 Simple Storage Service
@@ -2925,7 +2930,7 @@
 - STS Security Token Service
 - SNI Server Name Indication
 
-### 25.19. T
+### 26.19. T
 
 - TAM Technical Account Managers
 - TTL Time To Live
@@ -2936,7 +2941,7 @@
 - TPS Transaction Per Second
 - TCP Transmission Control Protocol
 
-### 25.20. V
+### 26.20. V
 
 - VPC Virtual Private Cloud
 - VM Virtual Machine
@@ -2946,12 +2951,12 @@
 - VDI Virtual Desktop Infrastructure
 - VPG Virtual Private Gateway
 
-### 25.21. W
+### 26.21. W
 
 - WAFWeb Application Firewall
 - WCU Write Capacity Units
 
-## 26. Commands
+## 27. Commands
 
 - List of all profiles
   - aws configure list-profiles
@@ -2966,7 +2971,7 @@
 - See encoded errors using STS command line:
   - aws sts decode-authorization-message --encoded-message `<code_encoded>`
 
-### 26.1. DynamoDB
+### 27.1. DynamoDB
 
 - List all itens of table (Projection expression)
   - aws dynamodb scan --table-name `<table_name>`
@@ -2976,6 +2981,6 @@
 - List all content of table (F ilter expression)
   - aws dynamodb scan --table-name DemoTTL --filter-expression "`<attribute_fields_or_columns>` = :u" --expression-attribute-values '{":u": {"S":"`<content>`"}}'
 
-## 27. Credits
+## 28. Credits
 
 - Much of this content extracted from Stephane Maarek's courses, **for personal study**, at several points has personal considerations and comments.

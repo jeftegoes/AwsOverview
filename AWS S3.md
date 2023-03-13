@@ -34,6 +34,7 @@
   - [16.2. S3 Transfer Acceleration](#162-s3-transfer-acceleration)
 - [17. Byte-Range Fetches](#17-byte-range-fetches)
 - [18. S3 Select \& Glacier Select](#18-s3-select--glacier-select)
+- [S3 User-Defined Object Metadata \& S3 Object Tags](#s3-user-defined-object-metadata--s3-object-tags)
 - [19. Object Encryption](#19-object-encryption)
   - [19.1. SSE-S3](#191-sse-s3)
   - [19.2. SSE-KMS](#192-sse-kms)
@@ -375,6 +376,21 @@
 - Retrieve less data using SQL by performing server-side filtering.
 - Can filter by rows & columns (simple SQL statements).
 - Less network transfer, less CPU cost client-side.
+
+# S3 User-Defined Object Metadata & S3 Object Tags
+
+- **S3 User-Defined Object Metadata**
+  - When uploading an object, you can also assign metadata.
+  - Name-value (key-value) pairs.
+  - User-defined metadata names must begin with "x-amz-meta-".
+  - Amazon S3 stores user-defined metadata keys in lowercase.
+  - Metadata can be retrieved while retrieving the object.
+- **S3 Object Tags**
+  - Key-value pairs for objects in Amazon S3.
+  - Useful for fine-grained permissions (only access specific objects with specific tags).
+  - Useful for analytics purposes (using S3 Analytics to group by tags).
+- **You cannot search the object metadata or object tags.**
+- Instead, you must use an external DB as a search index such as DynamoDB.
 
 # 19. Object Encryption
 

@@ -16,6 +16,7 @@
   - [6.2. Write Through - Add or Update cache when database is updated](#62-write-through---add-or-update-cache-when-database-is-updated)
 - [7. Cache Evictions and Time-to-live (TTL)](#7-cache-evictions-and-time-to-live-ttl)
 - [8. Final words of wisdom](#8-final-words-of-wisdom)
+- [9. Amazon MemoryDB for Redis](#9-amazon-memorydb-for-redis)
 
 # 1. Amazon ElastiCache Overview
 
@@ -149,3 +150,11 @@
 - Setting a TTL is usually not a bad idea, except when you're using Write- through. Set it to a sensible value for your application.
 - Only cache the data that makes sense (user profiles, blogs, etc...).
 - Quote: There are only two hard things in Computer Science: cache invalidation and naming things.
+
+# 9. Amazon MemoryDB for Redis
+
+- Redis-compatible, durable, in-memory database service.
+- Ultra-fast performance with over 160 millions requests/second.
+- Durable in-memory data storage with Multi-AZ transactional log.
+- Scale seamlessly from 10s GBs to 100s TBs of storage.
+- Use cases: web and mobile apps, online gaming, media streaming, ...

@@ -20,6 +20,7 @@
   - [2.1. Aurora High Availability and Read Scaling](#21-aurora-high-availability-and-read-scaling)
   - [2.2. Features of Aurora](#22-features-of-aurora)
   - [2.3. Aurora Security](#23-aurora-security)
+  - [2.4. Amazon RDS Proxy](#24-amazon-rds-proxy)
 
 # 1. AWS RDS Overview
 
@@ -219,3 +220,15 @@
 - Possibility to authenticate using IAM token (same method as RDS).
 - You are responsible for protecting the instance with security groups.
 - You can't SSH.
+
+## 2.4. Amazon RDS Proxy
+
+- Fully managed database proxy for RDS.
+- Allows apps to pool and share DB connections established with the database.
+- Improving database efficiency by reducing the stress on database resources (e.g., CPU, RAM) and minimize open connections (and timeouts).
+- Serverless, autoscaling, highly available (multi-AZ).
+- Reduced RDS & Aurora failover time by up 66%.
+- Supports RDS (MySQL, PostgreSQL, MariaDB) and Aurora (MySQL, PostgreSQL).
+- No code changes required for most apps.
+- Enforce IAM Authentication for DB, and securely store credentials in AWS Secrets Manager.
+- RDS Proxy is never publicly accessible (must be accessed from VPC).

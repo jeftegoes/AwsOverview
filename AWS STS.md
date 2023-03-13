@@ -2,12 +2,12 @@
 
 ## Contents <!-- omit in toc -->
 
-- [1. STS – Security Token Service](#1-sts--security-token-service)
+- [1. STS - Security Token Service](#1-sts--security-token-service)
 - [2. Using STS to Assume a Role](#2-using-sts-to-assume-a-role)
 - [3. Cross account access with STS](#3-cross-account-access-with-sts)
 - [4. STS with MFA](#4-sts-with-mfa)
 
-# 1. STS – Security Token Service
+# 1. STS - Security Token Service
 
 - Allows to grant limited and temporary access to AWS resources (up to 1 hour).
 - **AssumeRole:** Assume roles within your account or cross account.
