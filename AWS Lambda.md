@@ -138,7 +138,7 @@
   - API Gateway.
   - Application Load Balancer.
 - Results is returned right away.
-- Error handling must happen client side (retries, exponential backoff, etc...).
+- Error handling must happen client side (retries, [exponential backoff](AWS%20Limits.md), etc...).
 
 ![Lambda Synchronous Invocations](/Images/LambdaSynchronousInvocations.png)
 

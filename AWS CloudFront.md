@@ -6,6 +6,13 @@
   - [1.1. Origins](#11-origins)
 - [2. CloudFront vs S3 Cross Region Replication](#2-cloudfront-vs-s3-cross-region-replication)
 - [3. Caching](#3-caching)
+  - [3.1. Cache Key](#31-cache-key)
+  - [3.2. Cache Policy](#32-cache-policy)
+    - [3.2.1. HTTP Headers](#321-http-headers)
+    - [3.2.2. Cache Policy Query Strings](#322-cache-policy-query-strings)
+  - [3.3. Origin Request Policy](#33-origin-request-policy)
+  - [3.4. Cache Invalidations](#34-cache-invalidations)
+  - [3.5. Cache Behaviors](#35-cache-behaviors)
 - [4. Geo Restriction](#4-geo-restriction)
 - [5. Signed URL / Signed Cookies](#5-signed-url--signed-cookies)
   - [5.1. Signed URL vs S3 Pre-Signed URL](#51-signed-url-vs-s3-pre-signed-url)
@@ -15,6 +22,7 @@
 - [7. Multiple Origin](#7-multiple-origin)
   - [7.1. Origin Groups](#71-origin-groups)
 - [8. Field Level Encryption](#8-field-level-encryption)
+- [9. Real Time Logs](#9-real-time-logs)
 
 # 1. Introduction
 
@@ -54,14 +62,91 @@
 
 # 3. Caching
 
-- Cache based on:
-  - Headers.
-  - Session Cookies.
-  - Query String Parameters.
 - The cache lives at each CloudFront **Edge Location**.
+- CloudFront identifies each object in the cache using the **Cache Key** (See next section).
 - You want to maximize the cache hit rate to minimize requests on the origin.
-- Control the TTL (0 seconds to 1 year), can be set by the origin using the Cache-Control header, Expires header...
 - You can invalidate part of the cache using the **CreateInvalidation** API.
+
+## 3.1. Cache Key
+
+- A unique identifier for every object in the cache.
+- By default, consists of **hostname + resource portion of the URL**.
+- If you have an application that serves up content that varies based on user, device, language, location...
+- You can add other elements (HTTP headers, cookies, query strings) to the Cache Key using **CloudFront Cache Policies**.
+
+## 3.2. Cache Policy
+
+- Cache based on:
+  - **HTTP Headers:** None - Whitelist.
+  - **Cookies:** None - Whitelist - Include All-Except - All.
+  - **Query Strings:** None - Whitelist - Include All-Except - All.
+- Control the TTL (0 seconds to 1 year), can be set by the origin using the **Cache-Control** header, **Expires** header...
+- Create your own policy or use Predefined Managed Policies.
+- *All HTTP headers, cookies, and query strings that you include in the Cache Key are automatically included in origin requests.*
+
+### 3.2.1. HTTP Headers
+
+- None:
+  - Don't include any headers in the Cache Key (except default).
+  - Headers are not forwarded (except default).
+  - Best caching performance.
+- Whitelist:
+  - *Only specified headers* included in the Cache Key.
+  - Specified headers are also forwarded to Origin.
+- Example:
+
+  ```
+  GET /blogs/myblog.html HTTP/1.1
+  Host: mywebsite.com
+  User-Agent: Mozilla/5.0 (Mac OS X 10_15_2....)
+  Date: Tue, 28 Jan 2021 17:01:57 GMT
+  Authorization: SAPISIDHASH fdd00ecee39fe....
+  Keep-Alive: 300
+  Language: fr-fr
+  ```
+
+### 3.2.2. Cache Policy Query Strings
+
+- **None**
+  - Don't include any query strings in the Cache Key.
+  - Query strings are not forwarded.
+- **Whitelist**
+  - Only specified query strings included in the Cache Key.
+  - Only specified query strings are forwarded.
+- **Include All-Except**
+  - Include all query strings in the Cache Key except the specified list.
+  - All query strings are forwarded except the specified list.
+- **All**
+  - Include all query strings in the Cache Key.
+  - All query strings are forwarded.
+  - Worst caching performance.
+- Example: ``GET /image/cat.jpg?border=red&size=large HTTP/1.1``
+
+## 3.3. Origin Request Policy
+
+- Specify values that you want to include in origin requests **without including them in the Cache Key (no duplicated cached content)**.
+- You can include:
+  - **HTTP headers:** None - Whitelist - All viewer headers options.
+  - **Cookies:** None - Whitelist - All.
+  - **Query Strings:** None - Whitelist - All.
+- Ability to add CloudFront HTTP headers and Custom Headers to an origin request that were not included in the viewer request.
+- Create your own policy or use Predefined Managed Policies.
+
+## 3.4. Cache Invalidations
+
+- In case you update the back-end origin, CloudFront doesn't know about it and will only get the refreshed content after the TTL has expired.
+- However, you can force an entire or partial cache refresh (thus bypassing the TTL) by performing a **CloudFront Invalidation**.
+- You can invalidate all files (*) or a special path (/images/\*).
+
+## 3.5. Cache Behaviors
+
+- Configure different settings for a given URL path pattern.
+- Example: one specific cache behavior to **images/*.jpg** files on your origin web server.
+- Route to different kind of origins/origin groups based on the content type or path pattern:
+  - /images/*
+  - /api/*
+  - /* (default cache behavior)
+- When adding additional Cache Behaviors, the Default Cache Behavior is always the last to be processed **and is always /\***
 
 # 4. Geo Restriction
 
@@ -145,3 +230,11 @@
 - Usage:
   - Specify set of fields in POST requests that you want to be encrypted (up to 10 fields).
   - Specify the public key to encrypt them.
+
+# 9. Real Time Logs
+
+- Get real-time requests received by CloudFront sent to Kinesis Data Streams.
+- Monitor, analyze, and take actions based on content delivery performance.
+- Allows you to choose:
+  - Sampling Rate - percentage of requests for which you want to receive.
+  - Specific fields and specific Cache Behaviors (path patterns).

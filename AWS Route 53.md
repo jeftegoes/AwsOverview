@@ -24,7 +24,8 @@
     - [2.8.3. Latency-based](#283-latency-based)
     - [2.8.4. Geolocation](#284-geolocation)
     - [2.8.5. Geoproximity](#285-geoproximity)
-    - [2.8.6. Multi-Value](#286-multi-value)
+    - [2.8.6. IP-based Routing](#286-ip-based-routing)
+    - [2.8.7. Multi-Value](#287-multi-value)
   - [2.9. Traffic flow](#29-traffic-flow)
   - [2.10. Domain Registar vs DNS Service](#210-domain-registar-vs-dns-service)
     - [2.10.1. 3rd Party Registrar with Amazon Route 53](#2101-3rd-party-registrar-with-amazon-route-53)
@@ -244,7 +245,14 @@
   - Non-AWS resources (specify Latitude and Longitude).
 - You must use Route 53 **Traffic Flow** to use this feature.
 
-### 2.8.6. Multi-Value
+### 2.8.6. IP-based Routing
+
+- Routing is based on clients' IP addresses.
+- You provide a list of CIDRs for your clients and the corresponding endpoints/locations (user-IP-to-endpoint mappings).
+- Use cases: Optimize performance, reduce network costs...
+- Example: route end users from a particular ISP to a specific endpoint.
+
+### 2.8.7. Multi-Value
 
 - Use when routing traffic to multiple resources.
 - Route 53 return multiple values/resources.

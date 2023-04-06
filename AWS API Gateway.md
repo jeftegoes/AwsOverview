@@ -13,13 +13,15 @@
 - [7. Canary Deployment](#7-canary-deployment)
 - [8. Integration Types (Methods)](#8-integration-types-methods)
   - [8.1. MOCK](#81-mock)
-  - [8.2. HTTP / AWS (Lambda \& AWS Services):](#82-http--aws-lambda--aws-services)
-  - [8.3. AWS\_PROXY (Lambda Proxy):](#83-aws_proxy-lambda-proxy)
+  - [8.2. HTTP / AWS (Lambda \& AWS Services)](#82-http--aws-lambda--aws-services)
+  - [8.3. AWS\_PROXY (Lambda Proxy)](#83-aws_proxy-lambda-proxy)
   - [8.4. HTTP\_PROXY](#84-http_proxy)
 - [9. Mapping Templates (AWS \& HTTP Integration)](#9-mapping-templates-aws--http-integration)
   - [9.1. Mapping Example: JSON to XML with SOAP](#91-mapping-example-json-to-xml-with-soap)
   - [9.2. Mapping Example: Query String parameters](#92-mapping-example-query-string-parameters)
-- [10. Swagger / Open API spec](#10-swagger--open-api-spec)
+- [10. Open API spec](#10-open-api-spec)
+  - [10.1. Request Validation](#101-request-validation)
+  - [10.2. RequestValidation - OpenAPI](#102-requestvalidation---openapi)
 - [11. Caching API responses](#11-caching-api-responses)
   - [11.1. Cache Invalidation](#111-cache-invalidation)
 - [12. Usage Plans \& API Keys](#12-usage-plans--api-keys)
@@ -144,12 +146,12 @@
 
 - API Gateway returns a response without sending the request to the backend.
 
-## 8.2. HTTP / AWS (Lambda & AWS Services):
+## 8.2. HTTP / AWS (Lambda & AWS Services)
 
 - You must configure both the integration request and integration response.
 - Setup data mapping using mapping templates for the request & response.
 
-## 8.3. AWS_PROXY (Lambda Proxy):
+## 8.3. AWS_PROXY (Lambda Proxy)
 
 - Incoming request from the client is the input to Lambda.
 - The function is responsible for the logic of request / response.
@@ -181,23 +183,37 @@
 
 ## 9.2. Mapping Example: Query String parameters
 
-# 10. Swagger / Open API spec
+# 10. Open API spec
 
 - Common way of defining REST APIs, using API definition as code.
-- Import existing Swagger / OpenAPI 3.0 spec to API Gateway:
-  - Method.
-  - Method Request.
-  - Integration Request.
-  - Method Response.
-  - AWS extensions for API gateway and setup every single option.
-- Can export current API as Swagger / OpenAPI spec.
-- Swagger can be written in YAML or JSON.
-- Using Swagger we can generate SDK for our applications.
+- Import existing OpenAPI 3.0 spec to API Gateway:
+  - Method
+  - Method Request
+  - Integration Request
+  - Method Response
+  - +AWS extensions for API gateway and setup every single option
+- Can export current API as OpenAPI spec.
+- OpenAPI specs can be written in YAML or JSON.
+- Using OpenAPI we can generate SDK for our applications.
+
+## 10.1. Request Validation
+
+- You can configure API Gateway to perform basic validation of an API request before proceeding with the integration request.
+- When the validation fails, API Gateway immediately fails the request.
+- Returns a 400-error response to the caller.
+- This reduces unnecessary calls to the backend.
+- Checks:
+  - The required request parameters in the URI, query string, and headers of an incoming request are included and non-blank.
+  - The applicable request payload adheres to the configured JSON Schema request model of the method.
+
+## 10.2. RequestValidation - OpenAPI
+
+- Setup request validation by importing OpenAPI definitions file.
 
 # 11. Caching API responses
 
 - Caching reduces the number of calls made to the backend.
-- Default TTL (time to live) is 300 seconds (min: 0s, max: 3600s).
+- Default **TTL** (time to live) is 300 seconds (min: 0s, max: 3600s).
 - **Caches are defined per stage.**
   - Possible to override cache settings **per method**.
 - Cache encryption option.

@@ -20,11 +20,13 @@
   - [13.2. Composite Alarms](#132-composite-alarms)
   - [13.3. EC2 Instance Recovery](#133-ec2-instance-recovery)
   - [13.4. CloudWatch Alarm: good to know](#134-cloudwatch-alarm-good-to-know)
-- [14. CloudWatch Events (Will be replaced with EventBridge)](#14-cloudwatch-events-will-be-replaced-with-eventbridge)
-- [15. Amazon EventBridge](#15-amazon-eventbridge)
-  - [15.1. Schema Registry](#151-schema-registry)
-  - [15.2. Resource-based Policy](#152-resource-based-policy)
-- [16. Amazon EventBridge vs CloudWatch Events](#16-amazon-eventbridge-vs-cloudwatch-events)
+- [14. Synthetics Canary](#14-synthetics-canary)
+  - [14.1. Canary Blueprints](#141-canary-blueprints)
+- [15. CloudWatch Events (Will be replaced with EventBridge)](#15-cloudwatch-events-will-be-replaced-with-eventbridge)
+- [16. Amazon EventBridge](#16-amazon-eventbridge)
+  - [16.1. Schema Registry](#161-schema-registry)
+  - [16.2. Resource-based Policy](#162-resource-based-policy)
+- [17. Amazon EventBridge vs CloudWatch Events](#17-amazon-eventbridge-vs-cloudwatch-events)
 
 # 1. Why Monitoring is Important
 
@@ -201,7 +203,26 @@
 - Alarms can be created based on CloudWatch Logs Metrics Filters.
 - To test alarms and notifications, set the alarm state to Alarm using CLI: `aws cloudwatch set-alarm-state --alarm-name "myalarm" --state-value ALARM --state-reason "testing purposes"`
 
-# 14. CloudWatch Events (Will be replaced with EventBridge)
+# 14. Synthetics Canary
+
+- Configurable script that monitor your APIs, URLs, Websites, ...
+- Reproduce what your customers do programmatically to find issues before customers are impacted.
+- Checks the availability and latency of your endpoints and can store load time data and screenshots of the UI.
+- Integration with CloudWatch Alarms.
+- Scripts written in Node.js or Python.
+- Programmatic access to a headless Google Chrome browser.
+- Can run once or on a regular schedule.
+
+## 14.1. Canary Blueprints
+
+- **Heartbeat Monitor:** Load URL, store screenshot and an HTTP archive file.
+- **API Canary:** Test basic read and write functions of REST APIs.
+- **Broken Link Checker:** Check all links inside the URL that you are testing.
+- **Visual Monitoring":** Compare a screenshot taken during a canary run with a baseline screenshot.
+- **Canary Recorder:** Used with CloudWatch Synthetics Recorder (record your actions on a website and automatically generates a script for that).
+- **GUI Workflow Builder:** Verifies that actions can be taken on your webpage (e.g., test a webpage with a login form).
+
+# 15. CloudWatch Events (Will be replaced with EventBridge)
 
 - Event Pattern: Intercept events from AWS services (Sources):
   - Example sources: EC2 Instance Start, CodeBuild Failure, S3, Trusted Advisor.
@@ -213,7 +234,7 @@
   - Orchestration: Step Functions, CodePipeline, CodeBuild.
   - Maintenance: SSM, EC2 Actions.
 
-# 15. Amazon EventBridge
+# 16. Amazon EventBridge
 
 - Is a serverless event bus that makes it easier to build event-driven applications at scale using events generated from your applications, integrated Software-as-a-Service (SaaS) applications, and AWS services.
 - Delivers a stream of real-time data from event sources such as Zendesk or Shopify to targets like AWS Lambda and other SaaS applications.
@@ -229,19 +250,19 @@
 - Rules: how to process the events (like CloudWatch Events).
 - EventBridge has a different name to mark the new capabilities.
 
-## 15.1. Schema Registry
+## 16.1. Schema Registry
 
 - EventBridge can analyze the events in your bus and infer the schema.
 - The Schema Registry allows you to generate code for your application, that will know in advance how data is structured in the event bus.
 - Schema can be versioned.
 
-## 15.2. Resource-based Policy
+## 16.2. Resource-based Policy
 
 - Manage permissions for a specific Event Bus.
 - Example: allow/deny events from another AWS account or AWS region.
 - Use case: aggregate all events from your AWS Organization in a single AWS account or AWS region.
 
-# 16. Amazon EventBridge vs CloudWatch Events
+# 17. Amazon EventBridge vs CloudWatch Events
 
 - Amazon EventBridge builds upon and extends CloudWatch Events.
 - It uses the same service API and endpoint, and the same underlying service infrastructure.

@@ -29,9 +29,10 @@
       - [3.11.2.4. Distinct Instance (distinctInstance)](#31124-distinct-instance-distinctinstance)
       - [3.11.2.5. memberOf](#31125-memberof)
 - [4. Amazon ECR](#4-amazon-ecr)
-- [5. Amazon EKS Overview](#5-amazon-eks-overview)
-  - [5.1. Node Types](#51-node-types)
-  - [5.2. Data Volumes](#52-data-volumes)
+- [5. AWS Copilot](#5-aws-copilot)
+- [6. Amazon EKS Overview](#6-amazon-eks-overview)
+  - [6.1. Node Types](#61-node-types)
+  - [6.2. Data Volumes](#62-data-volumes)
 
 # 1. What is Docker?
 
@@ -232,12 +233,22 @@
 
 - ECR = Elastic Container Registry.
 - Store and manage Docker images on AWS.
-- Private and Public repository (Amazon ECR Public Gallery https://gallery.ecr.aws).
+- Private and Public repository (Amazon ECR Public Gallery <https://gallery.ecr.aws>).
 - Fully integrated with ECS, backed by Amazon S3.
 - Access is controlled through IAM (permission errors => policy).
 - Supports image vulnerability scanning, versioning, image tags, image lifecycle, ...
 
-# 5. Amazon EKS Overview
+# 5. AWS Copilot
+
+- CLI tool to build, release, and operate production-ready containerized apps.
+- Run your apps on **AppRunner, ECS, and Fargate**.
+- Helps you focus on building apps rather than setting up infrastructure.
+- Provisions all required infrastructure for containerized apps (ECS, VPC, ELB, ECR...).
+- Automated deployments with one command using CodePipeline.
+- Deploy to multiple environments.
+- Troubleshooting, logs, health status...
+
+# 6. Amazon EKS Overview
 
 - Amazon EKS = Amazon Elastic **Kubernetes** Service.
 - It is a way to launch **managed Kubernetes clusters on AWS**.
@@ -249,7 +260,7 @@
 - For multiple regions, deploy one EKS cluster per region.
 - Collect logs and metrics using **CloudWatch Container Insights**.
 
-## 5.1. Node Types
+## 6.1. Node Types
 
 - **Managed Node Groups:**
   - Creates and manages Nodes (EC2 instances) for you.
@@ -262,7 +273,7 @@
 - **AWS Fargate:**
   - No maintenance required: no nodes managed.
 
-## 5.2. Data Volumes
+## 6.2. Data Volumes
 
 - Need to specify **StorageClass** manifest on your EKS cluster.
 - Leverages a **Container Storage Interface (CSI)** compliant driver.

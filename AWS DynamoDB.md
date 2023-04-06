@@ -27,21 +27,25 @@
   - [8.2. Global Secondary Index (GSI)](#82-global-secondary-index-gsi)
   - [8.3. Indexes and Throttling](#83-indexes-and-throttling)
 - [9. PartiQL](#9-partiql)
-- [10. Optimistic Locking](#10-optimistic-locking)
-- [11. Accelerator - DAX](#11-accelerator---dax)
-- [12. DynamoDB Streams](#12-dynamodb-streams)
-  - [12.1. DynamoDB Streams and AWS Lambda](#121-dynamodb-streams-and-aws-lambda)
-- [13. Time To Live (TTL)](#13-time-to-live-ttl)
-- [14. DynamoDB CLI - Good to Know](#14-dynamodb-cli---good-to-know)
-- [15. Transactions](#15-transactions)
-  - [15.1. Capacity Computations](#151-capacity-computations)
-- [16. Session State Cache](#16-session-state-cache)
-- [17. Write Sharding](#17-write-sharding)
-- [18. Write Types](#18-write-types)
-- [19. Operations](#19-operations)
-- [20. Security \& Other Features](#20-security--other-features)
-  - [20.1. Fine-Grained Access Control](#201-fine-grained-access-control)
-- [21. Global Tables](#21-global-tables)
+- [10. Conditional Writes](#10-conditional-writes)
+  - [10.1. Example on Delete Item](#101-example-on-delete-item)
+  - [10.2. Do Not Overwrite Elements](#102-do-not-overwrite-elements)
+  - [10.3. Example of String Comparisons](#103-example-of-string-comparisons)
+- [11. Optimistic Locking](#11-optimistic-locking)
+- [12. Accelerator - DAX](#12-accelerator---dax)
+- [13. DynamoDB Streams](#13-dynamodb-streams)
+  - [13.1. DynamoDB Streams and AWS Lambda](#131-dynamodb-streams-and-aws-lambda)
+- [14. Time To Live (TTL)](#14-time-to-live-ttl)
+- [15. DynamoDB CLI - Good to Know](#15-dynamodb-cli---good-to-know)
+- [16. Transactions](#16-transactions)
+  - [16.1. Capacity Computations](#161-capacity-computations)
+- [17. Session State Cache](#17-session-state-cache)
+- [18. Write Sharding](#18-write-sharding)
+- [19. Write Types](#19-write-types)
+- [20. Operations](#20-operations)
+- [21. Security \& Other Features](#21-security--other-features)
+  - [21.1. Fine-Grained Access Control](#211-fine-grained-access-control)
+- [22. Global Tables](#22-global-tables)
 
 # 1. Traditional Architecture
 
@@ -253,10 +257,12 @@
   - Up to 25 **PutItem** and/or **DeleteItem** in one call.
   - Up to 16 MB of data written, up to 400 KB of data per item.
   - Can't update items (use **UpdateItem**).
+  - **UnprocessedItems** for failed write operations (exponential backoff or add WCU).
 - **BatchGetItem**
   - Return items from one or more tables.
   - Up to 100 items, up to 16 MB of data.
   - Items are retrieved in parallel to minimize latency.
+  - **UnprocessedKeys** for failed read operations (exponential backoff or add RCU).
 
 # 8. Indexes
 
@@ -290,21 +296,58 @@
 
 # 9. PartiQL
 
-- Use a SQL-like syntax to manipulate DynamoDB tables.
-- Supports some (but not all) statements:
-  - INSERT
-  - UPDATE
-  - SELECT
-  - DELETE
+- SQL-compatible query language for DynamoDB.
+- Allows you to select, insert, update, and delete (but not all) data in DynamoDB using SQL.
+- Run queries across multiple DynamoDB tables
+- Run PartiQL queries from:
+  - AWS Management Console
+  - NoSQL Workbench for DynamoDB
+  - DynamoDB APIs
+  - AWS CLI
+  - AWS SDK
 - It supports Batch operations.
 
-# 10. Optimistic Locking
+# 10. Conditional Writes
+
+- For PutItem, UpdateItem, DeleteItem, and BatchWriteItem.
+- You can specify a Condition expression to determine which items should be modified:
+  - **attribute_exists**
+  - **attribute_not_exists**
+  - **attribute_type**
+  - **contains** (for string)
+  - **begins_with** (for string)
+  - ProductCategory **IN** (:cat1, :cat2) **and** Price **between** :low and :high
+  - **size** (string length)
+- **Note: Filter Expression filters the results of read queries, while Condition Expressions are for write operations.**
+
+## 10.1. Example on Delete Item
+
+- **attribute_not_exists**
+  - Only succeeds if the attribute doesn't exist yet (no value).
+- **attribute_exists**
+  - Opposite of attribute_not_exists.
+
+## 10.2. Do Not Overwrite Elements
+
+- **attribute_not_exists** (partition_key)
+  - Make sure the item isn't overwritten.
+- **attribute_not_exists** (partition_key) and **attribute_not_exists** (sort_key)
+  - Make sure the partition / sort key combination is not overwritten.
+
+## 10.3. Example of String Comparisons
+
+- **begins_with**
+  - check if prefix matches.
+- **contains**
+  - check if string is contained in another string.
+
+# 11. Optimistic Locking
 
 - A strategy to ensure an item hasn't changed before you update/delete it.
 - DynamoDB has a feature called **"Conditional Writes"**.
 - Each item has an attribute that acts as a version number.
 
-# 11. Accelerator - DAX
+# 12. Accelerator - DAX
 
 - **DynamoDB that delivers up to 10x performance improvement.**
 - **It caches the most frequently used data, thus offloading the heavy reads on hot keys of your DynamoDB table, hence preventing the "ProvisionedThroughputExceededException" exception.**
@@ -317,7 +360,7 @@
 - Multi-AZ (3 nodes minimum recommended for production).
 - Secure (Encryption at rest with KMS, VPC, IAM, CloudTrail, ...)
 
-# 12. DynamoDB Streams
+# 13. DynamoDB Streams
 
 - Ordered stream of item-level modifications (create/update/delete) in a table.
 - Stream records can be:
@@ -340,7 +383,7 @@
 - You don't provision shards, this is automated by AWS.
 - **Records are not retroactively populated in a stream after enabling it.**
 
-## 12.1. DynamoDB Streams and AWS Lambda
+## 13.1. DynamoDB Streams and AWS Lambda
 
 - **DynamoDB Streams allows you to capture a time-ordered sequence of item-level modifications in a DynamoDB table.**
 - **It's integrated with AWS Lambda so that you create triggers that automatically respond to events in real-time.**
@@ -350,7 +393,7 @@
 
   [AWS Lambda](AWS%20Lambda.md)
 
-# 13. Time To Live (TTL)
+# 14. Time To Live (TTL)
 
 - Automatically delete items after an expiry timestamp.
 - Doesn't consume any WCUs (i.e., no extra cost).
@@ -361,7 +404,7 @@
 - A delete operation for each expired item enters the DynamoDB Streams (can help recover expired items).
 - Use cases: reduce stored data by keeping only current items, adhere to regulatory obligations, ...
 
-# 14. DynamoDB CLI - Good to Know
+# 15. DynamoDB CLI - Good to Know
 
 - **--projection-expression:** one or more attributes to retrieve.
 - **--filter-expression:** filter items before returned to you.
@@ -373,7 +416,7 @@
 
   [Commands section](README.md)
 
-# 15. Transactions
+# 16. Transactions
 
 - Coordinated, all-or-nothing operations (add/update/delete) to multiple items across one or more tables.
 - Provides Atomicity, Consistency, Isolation, and Durability (ACID).
@@ -386,15 +429,15 @@
   - **TransactWriteItems** - one or more **PutItem**, **UpdateItem**, and **DeleteItem** operations.
 - Use cases: financial transactions, managing orders, multiplayer games, ...
 
-## 15.1. Capacity Computations
+## 16.1. Capacity Computations
 
 - **Example 1:** 3 Transactional writes per second, with item size 5 KB:
-  - We need 3 _ (5kb / 1kb) _ 2 (transactional cost) = 30 WCUs.
+  - We need 3 _(5kb / 1kb)_ 2 (transactional cost) = 30 WCUs.
 - **Example 2:** 5 Transaction reads per second , with item size 5 KB:
-  - We need 5 _ (8gb / 4kb) _ 2 (transactional cost) = 20 RCUs.
+  - We need 5 _(8gb / 4kb)_ 2 (transactional cost) = 20 RCUs.
   - (5 gets rounded to the upper 4 KB).
 
-# 16. Session State Cache
+# 17. Session State Cache
 
 - It's common to use DynamoDB to store session states.
 - **vs. ElastiCache**
@@ -407,7 +450,7 @@
 - **vs. S3**
   - S3 is higher latency, and not meant for small objects.
 
-# 17. Write Sharding
+# 18. Write Sharding
 
 - Imagine we have a voting application with two candidates, **candidate A** and **candidate B**.
 - If **Partition Key** is **"Candidate_ID"**, this results into two partitions, which will generate issues (e.g., Hot Partition).
@@ -417,14 +460,14 @@
   - Sharding Using Random Suffix.
   - Sharding Using Calculated Suffix.
 
-# 18. Write Types
+# 19. Write Types
 
 - Concurrent Writes
 - Atomic Writes
 - Conditional Writes
 - Batch Write
 
-# 19. Operations
+# 20. Operations
 
 - **Table Cleanup:**
   - **Option 1:** Scan + DeleteItem
@@ -438,7 +481,7 @@
   - **Option 3:** Scan + PutItem or BatchWriteItem
     - Write your own code
 
-# 20. Security & Other Features
+# 21. Security & Other Features
 
 - **Security:**
   - VPC Endpoints available to access DynamoDB without using the Internet.
@@ -453,14 +496,14 @@
   - Develop and test apps locally without accessing the DynamoDB web service (without Internet).
 - AWS Database Migration Service (AWS DMS) can be used to migrate to DynamoDB (from MongoDB, Oracle, MySQL, S3, ...).
 
-## 20.1. Fine-Grained Access Control
+## 21.1. Fine-Grained Access Control
 
 - Using Web Identity Federation or Cognito Identity Pools, each user gets AWS credentials.
 - You can assign an IAM Role to these users with a Condition to limit their API access to DynamoDB.
 - LeadingKeys - limit row-level access for users on the Primary Key.
 - Attributes - limit specific attributes the user can see.
 
-# 21. Global Tables
+# 22. Global Tables
 
 - Make a DynamoDB table accessible with low latency in multiple-regions.
 - Active-Active replication (read/write to any AWS Region).

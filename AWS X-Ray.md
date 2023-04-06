@@ -17,7 +17,8 @@
 - [13. X-Ray Write and Read APIs](#13-x-ray-write-and-read-apis)
   - [13.1. Write APIs (used by the X-Ray daemon)](#131-write-apis-used-by-the-x-ray-daemon)
   - [13.2. Read APIs](#132-read-apis)
-- [X-Ray with Elastic Beanstalk](#x-ray-with-elastic-beanstalk)
+- [14. X-Ray with Elastic Beanstalk](#14-x-ray-with-elastic-beanstalk)
+- [15. AWS Distro for OpenTelemetry](#15-aws-distro-for-opentelemetry)
 
 # 1. Introduction
 
@@ -150,10 +151,22 @@
 - **GetTraceSummaries:** Retrieves IDs and annotations for traces available for a specified time frame using an optional filter. To get the full traces, pass the trace IDs to BatchGetTraces.
 - **GetTraceGraph:** Retrieves a service graph for one or more specific trace IDs.
 
-# X-Ray with Elastic Beanstalk
+# 14. X-Ray with Elastic Beanstalk
 
 - AWS Elastic Beanstalk platforms include the X-Ray daemon.
 - You can run the daemon by setting an option in the Elastic Beanstalk console or with a configuration file (in .ebextensions/xray-daemon.config).
 - Make sure to give your instance profile the correct IAM permissions so that the X-Ray daemon can function correctly.
 - Then make sure your application code is instrumented with the X-Ray SDK.
 - Note: The X-Ray daemon is not provided for Multicontainer Docker.
+
+# 15. AWS Distro for OpenTelemetry
+
+- Secure, production-ready AWS-supported distribution of the open-source project OpenTelemetry project.
+- Provides a single set of APIs, libraries, agents, and collector services.
+- Collects distributed traces and metrics from your apps.
+- Collects metadata from your AWS resources and services.
+- Auto-instrumentation Agents to collect traces without changing your code.
+- Send traces and metrics to multiple AWS services and partner solutions.
+- X-Ray, CloudWatch, Prometheus...
+- Instrument your apps running on AWS (e.g., [ECS](AWS%20EC2.md), [ECS](AWS%20ECS.md), EKS, Fargate, [Lambda](AWS%20Lambda.md)) as well as on-premises.
+- Migrate from X-Ray to AWS Distro for Temeletry if you want to standardize with open-source APIs from Telemetry or send traces to multiple destinations simultaneously.
