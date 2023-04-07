@@ -97,12 +97,12 @@
 - **Log groups:** arbitrary name, usually representing an application.
 - **Log stream:** instances within application / log files / containers.
 - Can define log expiration policies (never expire, 30 days, etc..).
-- CloudWatch Logs can send logs to:
+- **CloudWatch Logs can send logs to:**
   - Amazon S3 (exports).
   - Kinesis Data Streams.
   - Kinesis Data Firehose.
   - AWS Lambda.
-  - ElasticSearch.
+  - OpenSearch.
 
 ## 6.1. Sources
 

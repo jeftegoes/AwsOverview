@@ -688,13 +688,7 @@
 ### 8.10. Amazon Athena
 
 - **Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is no infrastructure to manage, and you pay only for the queries that you run.**
-- Serverless query service to analyze data stored in Amazon S3.
-- Uses standard SQL language to query the files.
-- Supports CSV, JSON, ORC, Avro, and Parquet (built on Presto).
-- Pricing: $9.00 per TB of data scanned (2022).
-- Use compressed or columnar data for cost-savings (less scan).
-- Use cases: Business intelligence / analytics / reporting, analyze & query VPC Flow Logs, ELB Logs, CloudTrail trails, etc...
-- Tip: analyze data in S3 using serverless SQL, use Athena.
+[AWS Athena](AWS%20Athena.md)
 
 ### 8.11. Amazon QuickSight
 
@@ -1585,17 +1579,7 @@
 ### 16.10. AWS Certificate Manager (ACM)
 
 - **AWS Certificate Manager is a service that lets you easily provision, manage, and deploy public and private Secure Sockets Layer/Transport Layer Security (SSL/TLS) certificates for use with AWS services and your internal connected resources.**
-- Let's you easily provision, manage,and deploy SSL/TLS Certificates.
-- Used to provide in-flight encryption for websites (HTTPS).
-- Supports both public and private TLS certificates.
-- Free of charge for public TLS certificates.
-- Automatic TLS certificate renewal.
-- Integrations with (load TLS certificates on):
-  - Elastic Load Balancers.
-  - CloudFront Distributions.
-  - APIs on API Gateway Auto Scaling group.
-
-![AWS Certificate Manager](Images/AWSCertificateManager.png)
+[AWS ACM](AWS%20ACM.md)
 
 ### 16.11. AWS Secrets Manager
 
