@@ -688,7 +688,7 @@
 ### 8.10. Amazon Athena
 
 - **Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is no infrastructure to manage, and you pay only for the queries that you run.**
-[AWS Athena](AWS%20Athena.md)
+  [AWS Athena](AWS%20Athena.md)
 
 ### 8.11. Amazon QuickSight
 
@@ -1252,26 +1252,15 @@
 
 ### 13.1. Amazon SQS - Standard Queue
 
-[AWS SQS](AWS%20SQS.md)
+- **Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications. It uses a pull-based system.** [AWS SQS](AWS%20SQS.md)
 
 ### 13.2. Amazon Kinesis
 
-- **Amazon Kinesis makes it easy to collect, process, and analyze real-time, streaming data so you can get timely insights and react quickly to new information. Kinesis offers four services: Data Firehose, Data Analytics, Data Streams, Video Streams.**
-- Kinesis = real-time big data streaming.
-- Managed service to collect, process, and analyze real-time streaming data at any scale.
-- Kinesis Data Streams: low latency streaming to ingest data at scale from hundreds of thousands of sources.
-- Kinesis Data Firehose: load streams into S3, Redshift, ElasticSearch, etc...
-- Kinesis Data Analytics: perform real-time analytics on streams using SQL.
-- Kinesis Video Streams: monitor real-time video streams for analytics or ML.
+- **Amazon Kinesis makes it easy to collect, process, and analyze real-time, streaming data so you can get timely insights and react quickly to new information. Kinesis offers four services: Data Firehose, Data Analytics, Data Streams, Video Streams.** [AWS Kinesis](AWS%20Kinesis.md)
 
 ### 13.3. Amazon SNS
 
-- **Is a highly available, durable, secure, fully managed pub/sub messaging service that enables you to decouple microservices, distributed systems, and serverless applications. It uses a push-based system.**
-- **Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications. It uses a pull-based system.**
-- The "event publishers" only sends message to one SNS topic.
-- As many "event subscribers" as we want to listen to the SNS topic notifications.
-- Each subscriber to the topic will get all the messages.
-- Up to 12,500,000 subscriptions per topic, 100,000 topics limit.
+- **Is a highly available, durable, secure, fully managed pub/sub messaging service that enables you to decouple microservices, distributed systems, and serverless applications. It uses a push-based system.** [AWS SNS](AWS%20SNS.md)
 
 ### 13.4. Amazon MQ
 
@@ -1572,7 +1561,7 @@
 ### 16.10. AWS Certificate Manager (ACM)
 
 - **AWS Certificate Manager is a service that lets you easily provision, manage, and deploy public and private Secure Sockets Layer/Transport Layer Security (SSL/TLS) certificates for use with AWS services and your internal connected resources.**
-[AWS ACM](AWS%20ACM.md)
+  [AWS ACM](AWS%20ACM.md)
 
 ### 16.11. AWS Secrets Manager
 

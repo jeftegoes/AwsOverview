@@ -112,7 +112,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 
 - If a consumer fails to process a message within the Visibility Timeout... the message goes back to the queue!
 - We can set a threshold of how many times a message can go back to the queue.
-- After the **MaximumReceives** threshold is exceeded, the message goes into a Dead Letter Queue (DLQ).
+- After the `MaximumReceives` threshold is exceeded, the message goes into a Dead Letter Queue (DLQ).
 - Useful for debugging!
 - **DLQ of a FIFO queue must also be a FIFO queue.**
 - **DLQ of a Standard queue must also be a Standard queue.**
@@ -129,7 +129,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - Delay a message (consumers don't see it immediately) up to 15 minutes.
 - Default is 0 seconds (message is available right away).
 - Can set a default at queue level.
-- Can override the default on send using the DelaySeconds parameter.
+- Can override the default on send using the `DelaySeconds` parameter.
 
 # 11. Long Polling
 
