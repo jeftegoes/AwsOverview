@@ -77,19 +77,13 @@
   - [10.4. AWS Elastic Beanstalk Overview](#104-aws-elastic-beanstalk-overview)
   - [10.5. Elastic Beanstalk](#105-elastic-beanstalk)
     - [10.5.1. Health Monitoring](#1051-health-monitoring)
-  - [10.6. AWS CodeDeploy](#106-aws-codedeploy)
-  - [10.7. AWS CodeCommit](#107-aws-codecommit)
-  - [10.8. AWS CodeBuild](#108-aws-codebuild)
-  - [10.9. AWS CodePipeline](#109-aws-codepipeline)
-  - [10.10. AWS CodeArtifact](#1010-aws-codeartifact)
-  - [10.11. AWS CodeStar](#1011-aws-codestar)
-  - [10.12. AWS Cloud9](#1012-aws-cloud9)
-  - [10.13. AWS Systems Manager (SSM)](#1013-aws-systems-manager-ssm)
-    - [10.13.1. How Systems Manager works?](#10131-how-systems-manager-works)
-    - [10.13.2. Systems Manager - SSM Session Manager](#10132-systems-manager---ssm-session-manager)
-  - [10.14. AWS OpsWorks](#1014-aws-opsworks)
-  - [10.15. AWS Amplify](#1015-aws-amplify)
-  - [10.16. Deployment - Summary](#1016-deployment---summary)
+  - [10.6. AWS CI/CD](#106-aws-cicd)
+  - [10.7. AWS Systems Manager (SSM)](#107-aws-systems-manager-ssm)
+    - [10.7.1. How Systems Manager works?](#1071-how-systems-manager-works)
+    - [10.7.2. Systems Manager - SSM Session Manager](#1072-systems-manager---ssm-session-manager)
+  - [10.8. AWS OpsWorks](#108-aws-opsworks)
+  - [10.9. AWS Amplify](#109-aws-amplify)
+  - [10.10. Deployment - Summary](#1010-deployment---summary)
 - [11. Route 53](#11-route-53)
 - [12. Global Infrastructure](#12-global-infrastructure)
   - [12.1. Why make a global application?](#121-why-make-a-global-application)
@@ -962,73 +956,11 @@
 - Health agent pushes metrics to CloudWatch.
 - Checks for app health, publishes health events.
 
-### 10.6. AWS CodeDeploy
+### 10.6. AWS CI/CD
 
-- **AWS CodeDeploy is a service that automates code deployments to any instance, including Amazon EC2 instances and instances running on-premises.**
-- We want to deploy our application automatically.
-- Hybrid service.
-- Servers / Instances must be provisioned and configured ahead of time with the CodeDeploy Agent.
+[AWS CI/CD](AWS%20CICD.md)
 
-### 10.7. AWS CodeCommit
-
-- **AWS CodeCommit is a secure, highly scalable, managed source control service that makes it easier for teams to collaborate on code. It also provides software version control.**
-- Before pushing the application code to servers, it needs to be stored somewhere.
-- Developers usually store code in a repository, using the Git technology.
-- A famous public offering is GitHub, AWS competing product is CodeCommit.
-- CodeCommit:
-  - Source-control service that hosts Git-based repositories.
-  - Makes it easy to collaborate with others on code.
-  - The code changes are automatically versioned.
-- Benefits:
-  - Fully managed.
-  - Scalable & highly available.
-  - Private, Secured, Integrated with AWS.
-
-### 10.8. AWS CodeBuild
-
-- **AWS CodeBuild is a fully managed continuous integration service that compiles source code, runs tests, and produces software packages that are ready to deploy. With CodeBuild, you don't need to provision, manage, and scale your own build servers, it is serverless.**
-- Code building service in the cloud (name is obvious)
-- Compiles source code, run tests, and produces packages that are ready to be deployed (by CodeDeploy for example)
-- Benefits:
-  - Fully managed, serverless.
-  - Continuously scalable & highly available.
-  - Secure.
-  - Pay-as-you-go pricing - only pay for the build time.
-
-### 10.9. AWS CodePipeline
-
-- Orchestrate the different steps to have the code automatically pushed to production.
-  - Code => Build => Test => Provision => Deploy.
-  - Basis for CI/CD (Continuous Integration & Continuous Delivery).
-- Benefits:
-  - Fully managed, compatible with CodeCommit, CodeBuild, CodeDeploy, Elastic Beanstalk, CloudFormation, GitHub, 3rd-party services (GitHub...) & custom plugins...
-- Fast delivery & rapid updates.
-
-### 10.10. AWS CodeArtifact
-
-- **AWS CodeArtifact is a fully managed artifact repository (also called code dependencies) service that makes it easy for organizations of any size to securely store, publish, and share software packages used in their software development process.**
-- Software packages depend on each other to be built (also called code dependencies), and new ones are created.
-- Storing and retrieving these dependencies is called artifact management.
-- Traditionally you need to setup your own artifact management system.
-- CodeArtifact is a secure, scalable, and cost-effective artifact management for software development.
-- Works with common dependency management tools such as Maven, Gradle, npm, yarn, twine, pip, and NuGet.
-- Developers and CodeBuild can then retrieve dependencies straight from CodeArtifact.
-
-### 10.11. AWS CodeStar
-
-- **CodeStar is used to quickly develop, build, and deploy applications on AWS. Elastic Beanstalk can be used to monitor and to check the health of an environment.**
-- Unified UI to easily manage software development activities in one place.
-- "Quick way" to get started to correctly set-up CodeCommit, CodePipeline, CodeBuild, CodeDeploy, Elastic Beanstalk, EC2, etc...
-- Can edit the code "in-the-cloud" using AWS Cloud9.
-
-### 10.12. AWS Cloud9
-
-- AWS Cloud9 is a cloud IDE (Integrated Development Environment) for writing, running and debugging code.
-- "Classic" IDE (like IntelliJ, Visual Studio Code...) are downloaded on a computer before being used.
-- A cloud IDE can be used within a web browser, meaning you can work on your projects from your office, home, or anywhere with internet with no setup necessary.
-- AWS Cloud9 also allows for code collaboration in real-time (pair programming).
-
-### 10.13. AWS Systems Manager (SSM)
+### 10.7. AWS Systems Manager (SSM)
 
 - **AWS Systems Manager gives you visibility and control of your infrastructure on AWS. It is used for patching systems at scale.**
 - Helps you manage your EC2 and On-Premises systems at scale.
@@ -1041,14 +973,14 @@
   - Store parameter configuration with the SSM Parameter Store.
 - Works for both Windows and Linux OS.
 
-#### 10.13.1. How Systems Manager works?
+#### 10.7.1. How Systems Manager works?
 
 - We need to install the SSM agent onto the systems we control.
 - Installed by default on Amazon Linux AMI & some Ubuntu AMI.
 - If an instance can't be controlled with SSM, it's probably an issue with the SSM agent!
 - Thanks to the SSM agent, we can run commands, patch & configure our servers.
 
-#### 10.13.2. Systems Manager - SSM Session Manager
+#### 10.7.2. Systems Manager - SSM Session Manager
 
 - Allows you to start a secure shell on your EC2 and on-premises servers.
 - No SSH access, bastion hosts, or SSH keys needed.
@@ -1056,7 +988,7 @@
 - Supports Linux, macOS, and Windows.
 - Send session log data to S3 or CloudWatch Logs.
 
-### 10.14. AWS OpsWorks
+### 10.8. AWS OpsWorks
 
 - Chef & Puppet help you perform server configuration automatically, or repetitive actions.
 - They work great with EC2 & On-Premises VM.
@@ -1066,13 +998,13 @@
   - EC2 Instances, Databases, Load Balancers, EBS volumes...
 - Tip: Chef or Puppet needed => AWS OpsWorks.
 
-### 10.15. AWS Amplify
+### 10.9. AWS Amplify
 
 - AWS Amplify is a set of purpose-built tools and features that lets frontend web and mobile developers quickly and easily build full-stack applications on AWS, with the flexibility to leverage the breadth of AWS services as your use cases evolve.
 - With Amplify, you can configure a web or mobile app backend, connect your app in minutes, visually build a web frontend UI, and easily manage app content outside the AWS console.
-- Ship faster and scale effortlessly—with no cloud expertise needed.
+- Ship faster and scale effortlessly-with no cloud expertise needed.
 
-### 10.16. Deployment - Summary
+### 10.10. Deployment - Summary
 
 - CloudFormation: (AWS only):
   - Infrastructure as Code, works with almost all of AWS resources.
@@ -1287,7 +1219,7 @@
   - No message retention.
 - Kinesis: real-time data streaming, persistence and analysis.
 - Amazon MQ: managed Apache MQ in the cloud (MQTT, AMQP protocols).
-- **When using SQS or SNS, you apply the "decouple your applications" principle. This means that IT systems should be designed in a way that reduces interdependencies—a change or a failure in one component should not cascade to other components.**
+- **When using SQS or SNS, you apply the "decouple your applications" principle. This means that IT systems should be designed in a way that reduces interdependencies-a change or a failure in one component should not cascade to other components.**
 
 ## 14. Cloud Monitoring
 

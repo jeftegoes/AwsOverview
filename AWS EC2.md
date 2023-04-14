@@ -255,7 +255,7 @@
 
 - **An Amazon EC2 Dedicated Host is a physical server with EC2 instance capacity fully dedicated to your use. Dedicated Hosts can help you address compliance requirements and reduce costs by allowing you to use your existing server-bound software licenses.**
 - A physical server with EC2 instance capacity fully dedicated to your use.
-- Allows you address **compliance requirements** and **use your existing server - bound software licenses** (per-socket, per-core, pe—VM software licenses).
+- Allows you address **compliance requirements** and **use your existing server - bound software licenses** (per-socket, per-core, pe-VM software licenses).
 - Purchasing Options:
   - **On-demand:** pay per second for active Dedicated Host.
   - **Reserved:** 1 or 3 years (No Upfront, Partial Upfront, All Upfront).
