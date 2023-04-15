@@ -75,8 +75,6 @@
   - [10.2. AWS Cloud Development Kit (CDK)](#102-aws-cloud-development-kit-cdk)
   - [10.3. Developer problems on AWS](#103-developer-problems-on-aws)
   - [10.4. AWS Elastic Beanstalk Overview](#104-aws-elastic-beanstalk-overview)
-  - [10.5. Elastic Beanstalk](#105-elastic-beanstalk)
-    - [10.5.1. Health Monitoring](#1051-health-monitoring)
   - [10.6. AWS CI/CD](#106-aws-cicd)
   - [10.7. AWS Systems Manager (SSM)](#107-aws-systems-manager-ssm)
     - [10.7.1. How Systems Manager works?](#1071-how-systems-manager-works)
@@ -918,43 +916,7 @@
 - **Elastic Beanstalk is a Platform as a Service (PaaS).**
 - **You only manage data and applications.**
 - **AWS Elastic Beanstalk makes it even easier for developers to quickly deploy and manage applications in the AWS Cloud.**
-- Elastic Beanstalk is a developer centric view of deploying an application on AWS.
-- It uses all the component's we've seen before: EC2, ASG, ELB, RDS, etc...
-- But it's all in one view that's easy to make sense of!
-- We still have full control over the configuration.
-- **Elastic Beanstalk are free of use, but you do pay for the resources created..**
-
-### 10.5. Elastic Beanstalk
-
-- Managed service
-  - Instance configuration / OS is handled by Beanstalk.
-  - Deployment strategy is configurable but performed by Elastic Beanstalk.
-  - Capacity provisioning.
-  - Load balancing & auto-scaling.
-  - Application health-monitoring & responsiveness.
-- Just the application code is the responsibility of the developer.
-- Three architecture models:
-  - Single Instance deployment: good for dev.
-  - LB + ASG: great for production or pre-production web applications.
-  - ASG only: great for non-web apps in production (workers, etc..).
-- Support for many platforms:
-  - Go
-  - Java SE
-  - Java with Tomcat
-  - .NET on Windows Server with IIS
-  - Node.js
-  - PHP
-  - Python
-  - Ruby
-  - Packer Builder
-- Single Container Docker.
-- Multi-Container Docker.
-- Preconfigured Docker.
-
-#### 10.5.1. Health Monitoring
-
-- Health agent pushes metrics to CloudWatch.
-- Checks for app health, publishes health events.
+- [AWS Elastic Beanstalk](AWS%20Elastic%20Beanstalk.md)
 
 ### 10.6. AWS CI/CD
 

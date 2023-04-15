@@ -1,4 +1,4 @@
-# AWS CI/CD CodeCommit, CodePipeline, CodeBuild, CodeDeploy, CodeStar, CodeArtifact, CodeGuru, Cloud9<!-- omit in toc -->
+# AWS CI/CD - CodeCommit, CodePipeline, CodeBuild, CodeDeploy, CodeStar, CodeArtifact, CodeGuru, Cloud9<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

@@ -1,4 +1,4 @@
-# AWS SNS<!-- omit in toc -->
+# AWS SNS - Simple Notification Service<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
