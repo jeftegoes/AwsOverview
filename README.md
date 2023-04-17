@@ -2117,9 +2117,7 @@
 
 ### 21.1. Amazon Cognito
 
-- **Amazon Cognito lets you add user sign-up, sign-in, and access control to your web and mobile apps quickly and easily.**
-- Identity for your Web and Mobile applications users (potentially millions).
-- Instead of creating them an IAM user, you create a user in Cognito.
+- **Amazon Cognito lets you add user sign-up, sign-in, and access control to your web and mobile apps quickly and easily.** [AWS Cognito](AWS%20Cognito.md)
 
 ### 21.2. AWS Organizations
 
