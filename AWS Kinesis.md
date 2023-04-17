@@ -231,7 +231,7 @@
 
 | SQS                                             | SNS                                                   | Kinesis                                                   |
 | ----------------------------------------------- | ----------------------------------------------------- | --------------------------------------------------------- |
-| Consumer “pull data”                            | Push data to many subscribers                         | Standard: pull data - 2 MB per shard                      |
+| Consumer "pull data"                            | Push data to many subscribers                         | Standard: pull data - 2 MB per shard                      |
 | Data is deleted after being consumed            | Up to 12,500,000 subscribers                          | Enhanced-fan out: push data - 2 MB per shard per consumer |
 | Can have as many workers (consumers) as we want | Data is not persisted (lost if not delivered)         | Possibility to replay data                                |
 | No need to provision throughput                 | Pub/Sub                                               | Meant for real-time big data, analytics and ETL           |

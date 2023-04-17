@@ -23,7 +23,7 @@
 
 # 2. Recipe
 
-- Transform Header indicates it’s SAM template:
+- Transform Header indicates it's SAM template:
   - Transform: 'AWS::Serverless-2016-10-31'
 - Write Code
   - AWS::Serverless::Function
