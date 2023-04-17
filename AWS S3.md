@@ -471,7 +471,6 @@
 ## 20.1. Amazon S3 - CORS
 
 - If a client makes a cross-origin request on our S3 bucket, we need to enable the correct CORS headers.
-- It's a popular exam question.
 - You can allow for a specific origin or for \* (all origins).
 
 # 21. MFA Delete

@@ -2261,17 +2261,7 @@
 
 ### 22.11. AWS Step Functions
 
-- AWS Step Functions is a low-code, visual workflow service that developers use to build distributed applications, automate IT and business processes, and build data and machine learning pipelines using AWS services.
-- Workflows manage failures, retries, parallelization, service integrations, and observability so developers can focus on higher-value business logic.
-  - Benefits:
-  - Build and deploy rapidly
-    - Get started quickly with Workflow Studio, a simple drag-and-drop interface. With Step Functions, you can express complex business logic as low-code, event-driven workflows that connect services, systems or people within minutes.
-  - Write less integration code
-    - Compose AWS resources from over 200 services including Lambda, ECS, Fargate, Batch, DynamoDB, SNS, SQS, SageMaker, EventBridge, or EMR into resilient business workflows, data pipelines, or applications.
-  - Build fault-tolerant and stateful workflows
-    - Step Functions manages state, checkpoints, and restarts for you to make sure that your workflows run in order and as expected. Built-in try/catch, retry, and rollback capabilities deal with errors and exceptions automatically based on your defined business logic.
-  - Designed for reliability and scale
-    Step Functions offers two workflow types - Standard or Express - that can be used depending on your specific use case. Standard Workflows are used to manage long-running workloads. Express Workflows support high-volume event processing workloads.
+- AWS Step Functions is a low-code, visual workflow service that developers use to build distributed applications, automate IT and business processes, and build data and machine learning pipelines using AWS services. [AWS Step Functions](AWS%20Step%20Functions.md)
 
 ### 22.12. Amazon AppFlow
 
