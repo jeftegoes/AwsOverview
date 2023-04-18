@@ -1,4 +1,4 @@
-# AWS Directory Services<!-- omit in toc -->
+# AWS Directory Services <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
