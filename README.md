@@ -129,7 +129,6 @@
   - [16.5. Penetration Testing on AWS Cloud](#165-penetration-testing-on-aws-cloud)
   - [16.6. Data at rest vs. Data in transit](#166-data-at-rest-vs-data-in-transit)
   - [16.7. AWS KMS (Key Management Service)](#167-aws-kms-key-management-service)
-  - [16.8. CloudHSM](#168-cloudhsm)
   - [16.9. Types of CMK (Customer Master Keys)](#169-types-of-cmk-customer-master-keys)
   - [16.10. AWS Certificate Manager (ACM)](#1610-aws-certificate-manager-acm)
   - [16.11. AWS Secrets Manager](#1611-aws-secrets-manager)
@@ -1413,26 +1412,7 @@
 
 ### 16.7. AWS KMS (Key Management Service)
 
-- Anytime you hear "encryption" for an AWS service, it's most likely KMS.
-- KMS = **AWS manages the encryption keys for us**.
-- **Encryption Opt-in:**
-  - EBS volumes: encrypt volumes.
-  - S3 buckets: Server-side encryption of objects.
-  - Redshift database: encryption of data.
-  - RDS database: encryption of data.
-  - EFS drives: encryption of data.
-- **Encryption Automatically enabled:**
-  - CloudTrail Logs.
-  - S3 Glacier.
-  - Storage Gateway.
-
-### 16.8. CloudHSM
-
-- KMS => AWS manages the software for encryption.
-- CloudHSM => AWS provisions encryption hardware.
-- Dedicated Hardware (HSM = Hardware Security Module).
-- You manage your own encryption keys entirely (not AWS).
-- HSM device is tamper resistant, FIPS 140-2 Level 3 compliance.
+- [AWS KMS](AWS%20KMS.md)
 
 ### 16.9. Types of CMK (Customer Master Keys)
 
