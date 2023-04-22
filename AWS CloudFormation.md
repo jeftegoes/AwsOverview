@@ -8,6 +8,40 @@
   - [1.3. How CloudFormation Works](#13-how-cloudformation-works)
   - [1.4. Deploying CloudFormation templates](#14-deploying-cloudformation-templates)
   - [1.5. CloudFormation Building Blocks](#15-cloudformation-building-blocks)
+- [2. YAML](#2-yaml)
+  - [2.1. What are resources?](#21-what-are-resources)
+  - [2.2. How do I find resources documentation?](#22-how-do-i-find-resources-documentation)
+  - [2.3. FAQ for resources](#23-faq-for-resources)
+- [3. What are parameters?](#3-what-are-parameters)
+  - [3.1. When should you use a parameter?](#31-when-should-you-use-a-parameter)
+  - [3.2. Parameters Settings](#32-parameters-settings)
+  - [3.3. How to Reference a Parameter](#33-how-to-reference-a-parameter)
+  - [3.4. Concept: Pseudo Parameters](#34-concept-pseudo-parameters)
+  - [3.5. What are mappings?](#35-what-are-mappings)
+  - [3.6. When would you use mappings vs parameters?](#36-when-would-you-use-mappings-vs-parameters)
+  - [3.7. Fn::FindInMap Accessing Mapping Values](#37-fnfindinmap-accessing-mapping-values)
+- [4. What are outputs?](#4-what-are-outputs)
+  - [4.1. Outputs Example](#41-outputs-example)
+- [5. Cross Stack Reference](#5-cross-stack-reference)
+- [6. What are conditions used for?](#6-what-are-conditions-used-for)
+  - [6.1. How to define a condition?](#61-how-to-define-a-condition)
+  - [6.2. Using a Condition](#62-using-a-condition)
+- [7. Must Know Intrinsic Functions](#7-must-know-intrinsic-functions)
+  - [7.1. Fn::Ref](#71-fnref)
+  - [7.2. Fn::GetAtt](#72-fngetatt)
+  - [7.3. Fn::FindInMap - Accessing Mapping Values](#73-fnfindinmap---accessing-mapping-values)
+  - [7.4. Fn::ImportValue](#74-fnimportvalue)
+  - [7.5. Fn::Join](#75-fnjoin)
+  - [7.6. Fn::Sub](#76-fnsub)
+  - [7.7. Condition Functions](#77-condition-functions)
+- [8. Rollbacks](#8-rollbacks)
+- [9. Stack Notifications](#9-stack-notifications)
+- [10. ChangeSets](#10-changesets)
+- [11. Nested stacks](#11-nested-stacks)
+- [12. CloudFormation – Cross vs Nested Stacks](#12-cloudformation--cross-vs-nested-stacks)
+- [13. StackSets](#13-stacksets)
+- [14. Drift](#14-drift)
+- [15. Stack Policies](#15-stack-policies)
 
 # 1. Introduction Infrastructure as Code
 
@@ -32,27 +66,25 @@
 
 ## 1.2. Benefits of AWS CloudFormation
 
-- Infrastructure as code
-  - No resources are manually created, which is excellent for control
-  - The code can be version controlled for example using git
-  - Changes to the infrastructure are reviewed through code
-- Cost
-  - Each resources within the stack is tagged with an identifier so you can easily see how much a stack costs you
-  - You can estimate the costs of your resources using the CloudFormation template
+- **Infrastructure as code**
+  - No resources are manually created, which is excellent for control.
+  - The code can be version controlled for example using git.
+  - Changes to the infrastructure are reviewed through code.
+- **Cost**
+  - Each resources within the stack is tagged with an identifier so you can easily see how much a stack costs you.
+  - You can estimate the costs of your resources using the CloudFormation template.
   - Savings strategy: In Dev, you could automation deletion of templates at 5 PM and recreated at 8 AM, safely.
-- Productivity
-  - Ability to destroy and re-create an infrastructure on the cloud on the fly
+- **Productivity**
+  - Ability to destroy and re-create an infrastructure on the cloud on the fly.
   - Automated generation of Diagram for your templates!
-  - Declarative programming (no need to figure out ordering and orchestration)
+  - Declarative programming (no need to figure out ordering and orchestration).
 - Separation of concern: create many stacks for many apps, and many layers. Ex:
-  - VPC stacks
-  - Network stacks
-  - App stacks
-- Don't re-invent the wheel
+  - VPC stacks.
+  - Network stacks.
+  - App stacks.
+- **Don't re-invent the wheel**
   - Leverage existing templates on the web!
-  - Leverage the documentation
-    © Stephane Maarek
-    NOT FOR DISTRIBUTION © Stephane Maarek www.datacumulus.com
+  - Leverage the documentation.
 
 ## 1.3. How CloudFormation Works
 
@@ -87,3 +119,269 @@
 
 1. References
 2. Functions
+
+# 2. YAML
+
+- YAML and JSON are the languages you can use for CloudFormation.
+  - JSON
+  - YAML (better)
+
+## 2.1. What are resources?
+
+- Resources are the core of your CloudFormation template (MANDATORY).
+- They represent the different AWS Components that will be created and configured.
+- Resources are declared and can reference each other.
+- AWS figures out creation, updates and deletes of resources for us
+- There are over ~224 types of resources
+- Resource types identifiers are of the form:
+  `AWS::aws-product-name::data-type-name`
+
+## 2.2. How do I find resources documentation?
+
+- I can't teach you all of the 224 resources, but I can teach you how to learn how to use them.
+- All the resources can be found here: [Resources](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+- Example here (for an EC2 instance): [Example](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html)
+
+## 2.3. FAQ for resources
+
+- Can I create a dynamic amount of resources?
+  - No, you can't. Everything in the CloudFormation template has to be declared. You can't perform code generation there.
+- Is every AWS Service supported?
+  - Almost. Only a select few niches are not there yet.
+  - You can work around that using AWS Lambda Custom Resources.
+
+# 3. What are parameters?
+
+- Parameters are a way to provide inputs to your AWS CloudFormation template.
+- They're important to know about if:
+  - You want to reuse your templates across the company.
+  - Some inputs can not be determined ahead of time.
+- Parameters are extremely powerful, controlled, and can prevent errors from happening in your templates thanks to types.
+
+## 3.1. When should you use a parameter?
+
+- Ask yourself this:
+  - Is this CloudFormation resource configuration likely to change in the future?
+  - If so, make it a parameter.
+- You won't have to re-upload a template to change its content.
+
+## 3.2. Parameters Settings
+
+- Parameters can be controlled by all these settings:
+  - Type:
+    - String
+    - Number
+    - CommaDelimitedList
+    - List<Type>
+    - AWS Parameter (to help catch invalid values – match against existing values in the AWS Account)
+  - Description
+  - Constraints
+  - ConstraintDescription (String)
+  - Min/MaxLength
+  - Min/MaxValue
+  - Defaults
+  - AllowedValues (array)
+  - AllowedPattern (regexp)
+  - NoEcho (Boolean)
+
+## 3.3. How to Reference a Parameter
+
+- The `Fn::Ref` function can be leveraged to reference parameters
+- Parameters can be used anywhere in a template.
+- The shorthand for this in YAML is `!Ref`
+- The function can also reference other elements within the template
+
+## 3.4. Concept: Pseudo Parameters
+
+- AWS offers us pseudo parameters in any CloudFormation template.
+- These can be used at any time and are enabled by default
+
+| Reference Value       | Example Return Value                                               |
+| --------------------- | ------------------------------------------------------------------ |
+| AWS::AccountId        | 1234567890                                                         |
+| AWS::NotificationARNs | [arn:aws:sns:us-east-1:123456789012:MyTopic]                       |
+| AWS::NoValue          | Does not return a value                                            |
+| AWS::Region           | us-east-2                                                          |
+| AWS::StackId          | rn:aws:cloudformation:us-east-1:123456789012:stack/MyStack/1c2fa62 |
+| AWS::StackName        | MyStack                                                            |
+
+## 3.5. What are mappings?
+
+- Mappings are fixed variables within your CloudFormation Template.
+- They're very handy to differentiate between different environments (dev vs prod), regions (AWS regions), AMI types, etc.
+- All the values are hardcoded within the template.
+
+## 3.6. When would you use mappings vs parameters?
+
+- Mappings are great when you know in advance all the values that can be taken and that they can be deduced from variables such as:
+  - Region
+  - Availability Zone
+  - AWS Account
+  - Environment (dev vs prod)
+  - Etc...
+- They allow safer control over the template.
+- Use parameters when the values are really user specific
+
+## 3.7. Fn::FindInMap Accessing Mapping Values
+
+- We use Fn::FindInMap to return a named value from a specific key
+- !FindInMap [ MapName, TopLevelKey, SecondLevelKey ]
+
+# 4. What are outputs?
+
+- The Outputs section declares optional outputs values that we can import into other stacks (if you export them first)!
+- You can also view the outputs in the AWS Console or in using the AWS CLI
+- They're very useful for example if you define a network CloudFormation, and output the variables such as VPC ID and your Subnet IDs
+- It's the best way to perform some collaboration cross stack, as you let expert handle their own part of the stack
+- You can't delete a CloudFormation Stack if its outputs are being referenced by another CloudFormation stack.
+
+## 4.1. Outputs Example
+
+- Creating a SSH Security Group as part of one template.
+- We create an output that references that security group.
+
+# 5. Cross Stack Reference
+
+- We then create a second template that leverages that security group.
+- For this, we use the Fn::ImportValue function.
+- You can't delete the underlying stack until all the references are deleted too.
+
+# 6. What are conditions used for?
+
+- Conditions are used to control the creation of resources or outputs based on a condition.
+- Conditions can be whatever you want them to be, but common ones are:
+  - Environment (dev / test / prod).
+  - AWS Region.
+  - Any parameter value.
+- Each condition can reference another condition, parameter value or mapping.
+
+## 6.1. How to define a condition?
+
+- The logical ID is for you to choose. It's how you name condition
+- The intrinsic function (logical) can be any of the following:
+  - `Fn::And`
+  - `Fn::Equals`
+  - `Fn::If`
+  - `Fn::Not`
+  - `Fn::Or`
+
+## 6.2. Using a Condition
+
+- Conditions can be applied to resources / outputs / etc...
+
+# 7. Must Know Intrinsic Functions
+
+- Ref
+- Fn::GetAtt
+- Fn::FindInMap
+- Fn::ImportValue
+- Fn::Join
+- Fn::Sub
+- Condition Functions (Fn::If, Fn::Not, Fn::Equals, etc...)
+
+## 7.1. Fn::Ref
+
+- The `Fn::Ref` function can be leveraged to reference.
+  - Parameters => returns the value of the parameter.
+  - Resources => returns the physical ID of the underlying resource (ex: EC2 ID).
+- The shorthand for this in YAML is `!Ref`.
+
+## 7.2. Fn::GetAtt
+
+- Attributes are attached to any resources you create.
+- To know the attributes of your resources, the best place to look at is the documentation.
+- For example: the AZ of an EC2 machine!
+
+## 7.3. Fn::FindInMap - Accessing Mapping Values
+
+- We use `Fn::FindInMap` to return a named value from a specific key.
+- !FindInMap [ MapName, TopLevelKey, SecondLevelKey ].
+
+## 7.4. Fn::ImportValue
+
+- Import values that are exported in other templates.
+- For this, we use the Fn::ImportValue function.
+
+## 7.5. Fn::Join
+
+- Join values with a delimiter.
+- This creates "a:b:c".
+
+## 7.6. Fn::Sub
+
+- Fn::Sub, or !Sub as a shorthand, is used to substitute variables from a text. It's a very handy function that will allow you to fully customize your templates.
+- For example, you can combine Fn::Sub with References or AWS Pseudo variables!
+- String must contain ${VariableName} and will substitute them.
+
+## 7.7. Condition Functions
+
+- The logical ID is for you to choose. It's how you name condition.
+- The intrinsic function (logical) can be any of the following:
+  - Fn::And
+  - Fn::Equals
+  - Fn::If
+  - Fn::Not
+  - Fn::Or
+
+# 8. Rollbacks
+
+- Stack Creation Fails:
+  - Default: everything rolls back (gets deleted). We can look at the log.
+  - Option to disable rollback and troubleshoot what happened.
+- Stack Update Fails:
+  - The stack automatically rolls back to the previous known working state.
+  - Ability to see in the log what happened and error messages.
+
+# 9. Stack Notifications
+
+- Send Stack events to SNS Topic (Email, Lambda, ...)
+- Enable SNS Integration using Stack Options
+
+# 10. ChangeSets
+
+- When you update a stack, you need to know what changes before it happens for greater confidence.
+- ChangeSets won't say if the update will be successful.
+
+# 11. Nested stacks
+
+- Nested stacks are stacks as part of other stacks.
+- They allow you to isolate repeated patterns / common components in separate stacks and call them from other stacks.
+- Example:
+  - Load Balancer configuration that is re-used.
+  - Security Group that is re-used.
+- Nested stacks are considered best practice.
+- To update a nested stack, always update the parent (root stack).Stephane Maarek
+
+# 12. CloudFormation – Cross vs Nested Stacks
+
+- Cross Stacks
+  - Helpful when stacks have different lifecycles.
+  - Use Outputs Export and Fn::ImportValue.
+  - When you need to pass export values to many stacks (VPC Id, etc...).
+- Nested Stacks
+  - Helpful when components must be re-used.
+  - Ex: re-use how to properly configure an Application Load Balancer.
+  - The nested stack only is important to the higher level stack (it's not shared).
+
+# 13. StackSets
+
+- Create, update, or delete stacks across **multiple accounts and regions** with a single operation.
+- Administrator account to create StackSets.
+- Trusted accounts to create, update, delete stack instances from StackSets.
+- When you update a stack set, all associated stack instances are updated throughout all accounts and regions.
+
+# 14. Drift
+
+- CloudFormation allows you to create infrastructure.
+- But it doesn't protect you against manual configuration changes.
+- How do we know if our resources have drifted?
+- We can use CloudFormation drift!
+- Not all resources are supported yet: [Resources](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import-supported-resources.html)
+
+# 15. Stack Policies
+
+- During a CloudFormation Stack update, all update actions are allowed on all resources (default)
+- **A Stack Policy is a JSON document that defines the update actions that are allowed on specific resources during Stack updates.**
+- Protect resources from unintentional updates.
+- When you set a Stack Policy, all resources in the Stack are protected by default.
+- Specify an explicit ALLOW for the resources you want to be allowed to be updated.
