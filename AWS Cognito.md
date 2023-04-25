@@ -3,7 +3,7 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. AWS AppSync](#2-aws-appsync)
+- [2. Cognito sync store](#2-cognito-sync-store)
 - [3. Cognito User Pools (CUP)](#3-cognito-user-pools-cup)
   - [3.1. User Features](#31-user-features)
   - [3.2. Integrations](#32-integrations)
@@ -30,28 +30,28 @@
   - Integrate with Cognito User Pools as an identity provider.
 - **Cognito vs IAM**: "hundreds of users", "mobile users", "authenticate with SAML".
 
-# 2. AWS AppSync
+# 2. Cognito sync store
 
-- If you have a social media web/mobile application that uses API Gateway, Lambda, DynamoDB, and Cognito.
-  - You have been tasked to synchronize user profile data across mobile devices and the web without requiring your own backend.
-    - Use [AppSync](AWS%20AppSync.md) for this.
+- The Amazon Cognito Sync store is a key/value pair store linked to an Amazon Cognito identity.
+- There is no limit to the number of identities you can create in your identity pools and sync store.
+- Each Amazon Cognito identity within the sync store has its own user information store.
 
 # 3. Cognito User Pools (CUP)
 
 ## 3.1. User Features
 
-- Create a serverless database of user for your web & mobile apps
-- Simple login: Username (or email) / password combination
-- Password reset
-- Email & Phone Number Verification
-- Multi-factor authentication (MFA)
+- Create a serverless database of user for your web & mobile apps.
+- Simple login: Username (or email) / password combination.
+- Password reset.
+- Email & Phone Number Verification.
+- Multi-factor authentication (MFA).
 - Federated Identities: users from Facebook, Google, SAML...
-- Feature: block users if their credentials are compromised elsewhere
-- Login sends back a JSON Web Token (JWT)
+- Feature: block users if their credentials are compromised elsewhere.
+- Login sends back a JSON Web Token (JWT).
 
 ## 3.2. Integrations
 
-- CUP integrates with API Gateway and Application Load Balancer
+- CUP integrates with API Gateway and Application Load Balancer.
 
 ## 3.3. Lambda Triggers
 

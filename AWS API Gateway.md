@@ -284,13 +284,15 @@
 # 15. API Gateway - Errors
 
 - 4xx means Client errors:
-  - 400: Bad Request.
-  - 403: Access Denied, WAF filtered.
-  - 429: Quota exceeded, Throttle.
+  - **400:** Bad Request.
+  - **403:** Access Denied, WAF filtered.
+  - **429:**
+    - Quota exceeded
+    - Throttle.
 - 5xx means Server errors:
-  - 502: Bad Gateway Exception, usually for an incompatible output returned from a Lambda proxy integration backend and occasionally for out-of-order invocations due to heavy loads.
-  - 503: Service Unavailable Exception.
-  - 504: Integration Failure - ex Endpoint Request Timed-out Exception API Gateway requests time out after 29 second maximum.
+  - **502:** Bad Gateway Exception, usually for an incompatible output returned from a Lambda proxy integration backend and occasionally for out-of-order invocations due to heavy loads.
+  - **503:** Service Unavailable Exception.
+  - **504:** Integration Failure - ex Endpoint Request Timed-out Exception API Gateway requests time out after 29 second maximum.
 
 # 16. CORS
 

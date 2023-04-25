@@ -135,13 +135,13 @@
 ### 6.1.1. Write Capacity Units (WCU)
 
 - One Write Capacity Unit (WCU) represents one write per second for an item up to 1 KB in size.
-- If the items are larger than 1 KB, more WCUs are consumed.
-- Example 1: we write 10 items per second, with item size 2 KB:
-  - We need 10 \* (2/1) = 20 WCUs.
-- Example 2: we write 6 items per second, with item size 4.5 KB
-  - We need 6 \* (5/1) = 30 WCUs (4.5 gets rounded to the upper KB).
-- Example 3: we write 120 items per minute, with item size 2 KB
-  - We need (120/60) \* (2/1) = 4 WCUs
+- If the items are larger than 1 KB, more WCUs are consumed:
+  - Example 1: we write 10 items per second, with item size 2 KB:
+    - We need 10 \* (2/1) = 20 WCUs.
+  - Example 2: we write 6 items per second, with item size 4.5 KB
+    - We need 6 \* (5/1) = 30 WCUs (4.5 gets rounded to the upper KB).
+  - Example 3: we write 120 items per minute, with item size 2 KB
+    - We need (120/60) \* (2/1) = 4 WCUs
 
 ### 6.1.2. Strongly Consistent Read vs. Eventually Consistent Read
 
@@ -158,7 +158,14 @@
   - **One (1) Strongly Consistent Read** per second
   - **Two (2) Eventually Consistent Reads** per second
 - For an item up to 4 **KB** in size.
-- If the items are larger than 4 KB, more RCUs are consumed.
+
+- If the items are larger than 4 KB, more RCUs are consumed:
+  - Example 1: 10 Strongly Consistent Reads per second, with item size 4 KB
+    - We need 10 \* (4kb/4kb) = 10 RCUs.
+  - Example 2: 16 Eventually Consistent Reads per second, with item size 12 KB
+    - We need (16/2) \* (12kb/4kb) = 24 RCUs (4.5 gets rounded to the upper KB).
+  - Example 3: 10 Strongly Consistent Reads per second, with item size 6 KB
+    - We need 10 \* (8kb/4kb) = 20 RCUs (We must round up 6 KB to 8 KB)
 
 ### 6.1.4. Partitions Internal
 

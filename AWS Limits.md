@@ -10,8 +10,8 @@
 
 - **DescribeInstances** API for EC2 has a limit of 100 calls per seconds.
 - **GetObject** on S3 has a limit of 5500 GET per second per prefix.
-- For Intermittent Errors: implement Exponential Backoff.
-- For Consistent Errors: request an API throttling limit increase.
+- For Intermittent Errors: Implement Exponential Backoff.
+- For Consistent Errors: Request an API throttling limit increase.
 
 # 2. Service Quotas (Service Limits)
 

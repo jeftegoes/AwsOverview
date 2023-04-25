@@ -38,7 +38,7 @@
   - [9.5. Domains](#95-domains)
 - [10. Amazon CodeGuru](#10-amazon-codeguru)
   - [10.1. Reviewer](#101-reviewer)
-  - [10.2. Amazon CodeGuru Profiler](#102-amazon-codeguru-profiler)
+  - [10.2. Profiler](#102-profiler)
   - [10.3. Agent Configuration](#103-agent-configuration)
 - [11. AWS Cloud9](#11-aws-cloud9)
 
@@ -313,7 +313,7 @@
 
 ## 7.5. Deployment to EC2
 
-- Define how to deploy the application using `appspec.yml` + Deployment Strategy.
+- Define **how to deploy the application** using `appspec.yml` + Deployment Strategy.
 - Will do In-place update to your fleet of EC2 instances.
 - Can use hooks to verify the deployment after each deployment phase.
 
@@ -426,7 +426,7 @@
 - Supports Java and Python.
 - Integrates with GitHub, Bitbucket, and AWS CodeCommit.
 
-## 10.2. Amazon CodeGuru Profiler
+## 10.2. Profiler
 
 - Helps understand the runtime behavior of your application.
 - Example: identify if your application is consuming excessive CPU capacity on a logging routine.

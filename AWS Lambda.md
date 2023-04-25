@@ -670,7 +670,8 @@ CMD ["app.lambdaHandler"]
 
 - Aliases are "pointers" to Lambda function versions.
 - We can define a "dev", "test", "prod" aliases and have them point at different lambda versions.
-- Aliases are mutable - Aliases enable **Blue / Green** deployment by assigning weights to lambda functions.
+- Aliases are mutable.
+- Aliases enable **Blue / Green** deployment by assigning weights to lambda functions.
 - Aliases enable stable configuration of our event triggers / destinations.
 - Aliases have their own ARNs.
 - Aliases cannot reference aliases.

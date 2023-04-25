@@ -10,7 +10,8 @@
   - [4.2. Compute Optimized](#42-compute-optimized)
   - [4.3. Memory Optimized](#43-memory-optimized)
   - [4.4. Storage Optimized](#44-storage-optimized)
-  - [4.5. EC2 Instance Types: example](#45-ec2-instance-types-example)
+  - [4.5. Accelerated Computing](#45-accelerated-computing)
+  - [4.6. EC2 Instance Types: example](#46-ec2-instance-types-example)
 - [5. Introduction to Security Groups](#5-introduction-to-security-groups)
   - [5.1. Security Groups Deeper Dive](#51-security-groups-deeper-dive)
   - [5.2. Security Groups Good to know](#52-security-groups-good-to-know)
@@ -24,11 +25,11 @@
   - [10.3. Savings Plans](#103-savings-plans)
   - [10.4. Spot Instances](#104-spot-instances)
   - [10.5. Dedicated Hosts](#105-dedicated-hosts)
-  - [Dedicated Instances](#dedicated-instances)
-  - [Capacity Reservations](#capacity-reservations)
-  - [10.5.1. Which purchasing option is right for me? (Correlation with Hotel)](#1051-which-purchasing-option-is-right-for-me-correlation-with-hotel)
-  - [10.5.2. AWS License Manager](#1052-aws-license-manager)
-  - [10.5.3. Shared Responsibility Model for EC2](#1053-shared-responsibility-model-for-ec2)
+  - [10.6. Dedicated Instances](#106-dedicated-instances)
+  - [10.7. Capacity Reservations](#107-capacity-reservations)
+  - [10.8. Which purchasing option is right for me? (Correlation with Hotel)](#108-which-purchasing-option-is-right-for-me-correlation-with-hotel)
+  - [10.9. AWS License Manager](#109-aws-license-manager)
+  - [10.10. Shared Responsibility Model for EC2](#1010-shared-responsibility-model-for-ec2)
 
 # 1. Introduction
 
@@ -90,7 +91,6 @@
   - Media transcoding.
   - High performance web servers.
   - High performance computing (HPC).
-  - Scientific modeling & machine learning.
   - Dedicated gaming servers.
 
 ## 4.3. Memory Optimized
@@ -112,7 +112,16 @@
   - Data warehousing applications.
   - Distributed file systems.
 
-## 4.5. EC2 Instance Types: example
+## 4.5. Accelerated Computing
+
+- Accelerated computing instances use hardware accelerators, or co-processors, to perform functions, such:
+  - Floating point number calculations.
+  - Graphics processing.
+  - Data pattern matching.
+  - Scientific modeling & machine learning.
+- More efficiently than is possible in software running on CPUs.
+
+## 4.6. EC2 Instance Types: example
 
 | Instance    | vCPU | Mem (GiB) | Storage          | Network performance | EBS Banwidth () |
 | ----------- | ---- | --------- | ---------------- | ------------------- | --------------- |
@@ -263,13 +272,13 @@
 - Useful for software that have complicated licensing model (BYOL - Bring Your Own License).
 - Or for companies that have strong regulatory or compliance needs.
 
-## Dedicated Instances
+## 10.6. Dedicated Instances
 
 - Instances running on hardware that's dedicated to you.
 - May share hardware with other instances in same account.
 - No control over instance placement (can move hardware after Stop / Start).
 
-## Capacity Reservations
+## 10.7. Capacity Reservations
 
 - Reserve **On-Demand** instances capacity in a specific AZ for any duration.
 - You always have access to EC2 capacity when you need it.
@@ -278,7 +287,7 @@
 - You're charged at On-Demand rate whether you run instances or not.
 - Suitable for short-term, uninterrupted workloads that needs to be in a specific AZ.
 
-## 10.5.1. Which purchasing option is right for me? (Correlation with Hotel)
+## 10.8. Which purchasing option is right for me? (Correlation with Hotel)
 
 - **On demand:** coming and staying in resort whenever we like, we pay the full price.
 - **Reserved:** like planning ahead and if we plan to stay for a long time, we may get a good discount.
@@ -287,7 +296,7 @@
 - **Dedicated Hosts:** We book an entire building of the resort.
 - **Capacity Reservations:** you book a room for a period with full price even you don't stay in it.
 
-## 10.5.2. AWS License Manager
+## 10.9. AWS License Manager
 
 - AWS License Manager makes it easier to manage your software licenses from vendors such as Microsoft, SAP, Oracle, and IBM across AWS and on-premises environments.
 - AWS License Manager lets administrators create customized licensing rules that mirror the terms of their licensing agreements.
@@ -296,7 +305,7 @@
 - Administrators gain control and visibility of all their licenses with the AWS License Manager dashboard and reduce the risk of non-compliance, misreporting, and additional costs due to licensing overages.
 - Independent software vendors (ISVs) can also use AWS License Manager to easily distribute and track licenses.
 
-## 10.5.3. Shared Responsibility Model for EC2
+## 10.10. Shared Responsibility Model for EC2
 
 - AWS:
   - Infrastructure (global network security)
