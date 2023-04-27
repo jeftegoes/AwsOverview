@@ -81,7 +81,7 @@
 - **Rolling with additional batches:** Like rolling, but spins up new instances to move the batch (so that the old application is still available).
 - **Immutable:** Spins up new instances in a new ASG, deploys version to these instances, and then swaps all the instances when everything is healthy.
 - **Blue Green:** Create a new environment and switch over when ready.
-- **Traffic Splitting:** Canary testing – send a small % of traffic to new deployment.
+- **Traffic Splitting:** Canary testing - send a small % of traffic to new deployment.
 
 ## 4.1. All at once
 
@@ -90,6 +90,8 @@
 - Great for quick iterations in development environment.
 - No additional cost.
 
+![All at once deployment](Images/AwsElasticBeanstalkAllAtOnce.png)
+
 ## 4.2. Rolling
 
 - Application is running **below** capacity.
@@ -97,6 +99,8 @@
 - Application is running both versions simultaneously.
 - No additional cost.
 - Long deployment.
+
+![Rolling deployment](Images/AwsElasticBeanstalkRolling.png)
 
 ## 4.3. Rolling with additional batches
 
@@ -108,6 +112,8 @@
 - Longer deployment.
 - Good for prod.
 
+![Rolling with additional batches deployment](Images/AwsElasticBeanstalkRollingAdditionalBatches.png)
+
 ## 4.4. Immutable
 
 - **In this mode, a full set of new instances running the new version of the application in a separate Auto Scaling Group is launched. To roll back quickly, this mode terminates the ASG holding the new application version, while the current one is untouched and already running at full capacity.**
@@ -118,25 +124,31 @@
 - Quick rollback in case of failures (just terminate new ASG).
 - Great for prod.
 
+![Immutable deployment](Images/AwsElasticBeanstalkImmutable.png)
+
 ## 4.5. Blue / Green
 
 - Not a "direct feature" of Elastic Beanstalk.
 - Zero downtime and release facility.
 - Create a new "stage" environment and deploy v2 there.
-- The new environment (green) can be validated independently and roll back if issues.
+- The new environment (green) can be validated independently and rollback if issues.
 - Route 53 can be setup using weighted policies to redirect a little bit of traffic to the stage environment.
 - Using Beanstalk, "swap URLs" when done with the environment test.
 
+![Immutable deployment](Images/AwsElasticBeanstalkBlueGreen.png)
+
 ## 4.6. Traffic Splitting
 
-- **Canary Testing**.
+- **Canary Testing.**
 - New application version is deployed to a temporary ASG with the same capacity.
 - A small % of traffic is sent to the temporary ASG for a configurable amount of time.
 - Deployment health is monitored.
-- If there's a deployment failure, this triggers an automated rollback (very quick).
+- If there's a deployment failure, this triggers an **automated rollback (very quick)**.
 - No application downtime.
 - New instances are migrated from the temporary to the original ASG.
 - Old application version is then terminated.
+
+![Immutable deployment](Images/AwsElasticBeanstalkTrafficSplitting.png)
 
 # 5. Elastic Beanstalk CLI
 

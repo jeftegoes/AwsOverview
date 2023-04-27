@@ -33,7 +33,7 @@
   - [10.3. Example of String Comparisons](#103-example-of-string-comparisons)
 - [11. Optimistic Locking](#11-optimistic-locking)
 - [12. Accelerator - DAX](#12-accelerator---dax)
-- [13. DynamoDB Streams](#13-dynamodb-streams)
+- [13. Streams](#13-streams)
   - [13.1. DynamoDB Streams and AWS Lambda](#131-dynamodb-streams-and-aws-lambda)
 - [14. Time To Live (TTL)](#14-time-to-live-ttl)
 - [15. DynamoDB CLI - Good to Know](#15-dynamodb-cli---good-to-know)
@@ -367,7 +367,7 @@
 - Multi-AZ (3 nodes minimum recommended for production).
 - Secure (Encryption at rest with KMS, VPC, IAM, CloudTrail, ...)
 
-# 13. DynamoDB Streams
+# 13. Streams
 
 - Ordered stream of item-level modifications (create/update/delete) in a table.
 - Stream records can be:

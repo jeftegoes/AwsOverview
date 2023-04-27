@@ -29,16 +29,18 @@
 - [7. Must Know Intrinsic Functions](#7-must-know-intrinsic-functions)
   - [7.1. Fn::Ref](#71-fnref)
   - [7.2. Fn::GetAtt](#72-fngetatt)
-  - [7.3. Fn::FindInMap - Accessing Mapping Values](#73-fnfindinmap---accessing-mapping-values)
-  - [7.4. Fn::ImportValue](#74-fnimportvalue)
-  - [7.5. Fn::Join](#75-fnjoin)
-  - [7.6. Fn::Sub](#76-fnsub)
-  - [7.7. Condition Functions](#77-condition-functions)
+  - [7.3. Fn::GetAZs](#73-fngetazs)
+  - [7.4. Fn::Select](#74-fnselect)
+  - [7.5. Fn::FindInMap - Accessing Mapping Values](#75-fnfindinmap---accessing-mapping-values)
+  - [7.6. Fn::ImportValue](#76-fnimportvalue)
+  - [7.7. Fn::Join](#77-fnjoin)
+  - [7.8. Fn::Sub](#78-fnsub)
+  - [7.9. Condition Functions](#79-condition-functions)
 - [8. Rollbacks](#8-rollbacks)
 - [9. Stack Notifications](#9-stack-notifications)
 - [10. ChangeSets](#10-changesets)
 - [11. Nested stacks](#11-nested-stacks)
-- [12. CloudFormation – Cross vs Nested Stacks](#12-cloudformation--cross-vs-nested-stacks)
+- [12. CloudFormation - Cross vs Nested Stacks](#12-cloudformation---cross-vs-nested-stacks)
 - [13. StackSets](#13-stacksets)
 - [14. Drift](#14-drift)
 - [15. Stack Policies](#15-stack-policies)
@@ -173,7 +175,7 @@
     - Number
     - CommaDelimitedList
     - List<Type>
-    - AWS Parameter (to help catch invalid values – match against existing values in the AWS Account)
+    - AWS Parameter (to help catch invalid values - match against existing values in the AWS Account)
   - Description
   - Constraints
   - ConstraintDescription (String)
@@ -273,6 +275,8 @@
 
 - Ref
 - Fn::GetAtt
+- Fn::GetAZs
+- Fn::Select
 - Fn::FindInMap
 - Fn::ImportValue
 - Fn::Join
@@ -292,28 +296,36 @@
 - To know the attributes of your resources, the best place to look at is the documentation.
 - For example: the AZ of an EC2 machine!
 
-## 7.3. Fn::FindInMap - Accessing Mapping Values
+## 7.3. Fn::GetAZs
+
+- Returns an array that lists Availability Zones for a specified region in alphabetical order.
+
+## 7.4. Fn::Select
+
+- Returns a single object from a list of objects by index.
+
+## 7.5. Fn::FindInMap - Accessing Mapping Values
 
 - We use `Fn::FindInMap` to return a named value from a specific key.
 - !FindInMap [ MapName, TopLevelKey, SecondLevelKey ].
 
-## 7.4. Fn::ImportValue
+## 7.6. Fn::ImportValue
 
 - Import values that are exported in other templates.
 - For this, we use the Fn::ImportValue function.
 
-## 7.5. Fn::Join
+## 7.7. Fn::Join
 
 - Join values with a delimiter.
 - This creates "a:b:c".
 
-## 7.6. Fn::Sub
+## 7.8. Fn::Sub
 
 - Fn::Sub, or !Sub as a shorthand, is used to substitute variables from a text. It's a very handy function that will allow you to fully customize your templates.
 - For example, you can combine Fn::Sub with References or AWS Pseudo variables!
 - String must contain ${VariableName} and will substitute them.
 
-## 7.7. Condition Functions
+## 7.9. Condition Functions
 
 - The logical ID is for you to choose. It's how you name condition.
 - The intrinsic function (logical) can be any of the following:
@@ -352,7 +364,7 @@
 - Nested stacks are considered best practice.
 - To update a nested stack, always update the parent (root stack).Stephane Maarek
 
-# 12. CloudFormation – Cross vs Nested Stacks
+# 12. CloudFormation - Cross vs Nested Stacks
 
 - Cross Stacks
   - Helpful when stacks have different lifecycles.

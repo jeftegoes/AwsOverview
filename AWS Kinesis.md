@@ -90,7 +90,7 @@
 - AWS Lambda
 - Kinesis Data Analytics
 - Kinesis Data Firehose
-- Custom Consumer (AWS SDK) – Classic or Enhanced Fan-Out
+- Custom Consumer (AWS SDK) - Classic or Enhanced Fan-Out
 - Kinesis Client Library (KCL): library to simplify reading from data stream
 
 ### 3.2.1. Consumers Types

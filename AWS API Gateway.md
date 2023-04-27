@@ -9,7 +9,7 @@
 - [5. Deployment Stages](#5-deployment-stages)
   - [5.1. API Gateway Stages v1 and v2 API breaking change](#51-api-gateway-stages-v1-and-v2-api-breaking-change)
 - [6. Stage Variables](#6-stage-variables)
-  - [6.1. Stage Variables \& Lambda Aliases](#61-stage-variables--lambda-aliases)
+  - [6.1. Stage Variables and Lambda Aliases](#61-stage-variables-and-lambda-aliases)
 - [7. Canary Deployment](#7-canary-deployment)
 - [8. Integration Types (Methods)](#8-integration-types-methods)
   - [8.1. MOCK](#81-mock)
@@ -120,8 +120,14 @@
   - Configure HTTP endpoints your stages talk to (dev, test, prod...).
   - Pass configuration parameters to AWS Lambda through mapping templates.
 - Stage variables are passed to the "context" object in AWS Lambda.
+- Examples:
+  - A full URI without protocol - `http://${stageVariables.<variable_name>}`
+  - A full domain - `http://${stageVariables.<variable_name>}/resource/operation`
+  - A subdomain - `http://${stageVariables.<variable_name>}.example.com/resource/operation`
+  - A path - `http://example.com/${stageVariables.<variable_name>}/bar`
+  - A query string - `http://example.com/foo?q=${stageVariables.<variable_name>}`
 
-## 6.1. Stage Variables & Lambda Aliases
+## 6.1. Stage Variables and Lambda Aliases
 
 - We create a stage variable to indicate the corresponding Lambda alias.
 - Our API gateway will automatically invoke the right Lambda function!
@@ -134,7 +140,7 @@
 - Choose the % of traffic the canary channel receives.
 - Metrics & Logs are separate (for better monitoring).
 - Possibility to override stage variables for canary.
-- This is blue / green deployment with AWS Lambda & API Gateway.
+- This is blue / green deployment with [AWS Lambda](AWS%20Lambda.md) and API Gateway.
 
 ![API Gateway - Canary Deployment](/Images/APIGatewayCanaryDeployment.png)
 

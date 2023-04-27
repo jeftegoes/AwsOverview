@@ -486,9 +486,9 @@
 | Runtime Support                    | JavaScript                                | Node.js, Python                                   |
 | # of Requests                      | Millions of requests per second           | Thousands of requests per second                  |
 | CloudFront Triggers                | Viewer Request/Response                   | Viewer Request/Response - Origin Request/Response |
-| Max. Execution Time                | < 1 ms                                    | 5 – 10 seconds                                    |
+| Max. Execution Time                | < 1 ms                                    | 5 - 10 seconds                                    |
 | Max. Memory                        | 2 MB                                      | 128 MB up to 10 GB                                |
-| Total Package Size                 | 10 KB                                     | 1 MB – 50 MB                                      |
+| Total Package Size                 | 10 KB                                     | 1 MB - 50 MB                                      |
 | Network Access, File System Access | No                                        | Yes                                               |
 | Access to the Request Body         | No                                        | Yes                                               |
 | Pricing                            | Free tier available, 1/6th price of @Edge | No free tier, charged per request & duration      |

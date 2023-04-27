@@ -238,7 +238,7 @@
 
 ## 7.1. Secrets Manager CloudFormation Integration RDS & Aurora
 
-- ManageMasterUserPassword – creates admin secret implicitly.
+- ManageMasterUserPassword - creates admin secret implicitly.
 - RDS, Aurora will manage the secret in Secrets Manager and its rotation.
 
 ## 7.2. SSM Parameter Store vs Secrets Manager
@@ -280,6 +280,6 @@
 - Fully isolated virtual machines, hardened, and highly constrained
   - Not a container, not persistent storage, no interactive access, no external networking.
 - Helps reduce the attack surface for sensitive data processing apps
-  - Cryptographic Attestation – only authorized code can be running in your Enclave.
+  - Cryptographic Attestation - only authorized code can be running in your Enclave.
   - Only Enclaves can access sensitive data (integration with KMS).
 - Use cases: securing private keys, processing credit cards, secure multi-party computation...

@@ -219,12 +219,22 @@
   - `parameter-store` - variables stored in SSM Parameter Store.
   - `secrets-manager` - variables stored in AWS Secrets Manager.
 - `phases` - specify commands to run:
-  - install - install dependencies you may need for your build.
-  - pre_build - final commands to execute before build.
-  - Build - actual build commands.
-  - post_build - finishing touches (e.g., zip output).
+  - `install` - install dependencies you may need for your build.
+  - `pre_build` - final commands to execute before build.
+  - `build` - actual build commands.
+  - `post_build` - finishing touches (e.g., zip output).
 - `artifacts` - what to upload to S3 (encrypted with KMS).
 - `cache` - files to cache (usually dependencies) to S3 for future build speedup.
+- Order:
+  - "SUBMITTED"
+  - "PROVISIONING"
+  - "DOWNLOAD_SOURCE"
+    - "INSTALL"
+    - "PRE_BUILD"
+    - "BUILD"
+    - "POST_BUILD"
+  - "UPLOAD_ARTIFACTS"
+  - "FINALIZING"
 
 ## 6.3. Local Build
 
@@ -287,12 +297,20 @@
   - `destination`
 - `hooks` - Set of instructions to do to deploy the new version (hooks can have timeouts), the order is:
   - `ApplicationStop`
-  - `DownloadBundle`
-  - `BeforeInstall`
-  - `Install`
-  - `AfterInstall`
-  - `ApplicationStart`
-  - `ValidateService` <- important!!
+  - EC2
+    - `DownloadBundle`
+    - `Install`
+    - `ValidateService` <- important!!
+    - `BeforeInstall`
+    - `AfterInstall`
+    - `ApplicationStart`
+    - `AllowTrafic`
+    - `BeforeAllowTraffic`
+    - `AfterAllowTraffic`
+  - Lambda
+    - `AllowTrafic`
+    - `BeforeAllowTraffic`
+    - `AfterAllowTraffic`
 
 ## 7.4. Deployment Configuration
 
