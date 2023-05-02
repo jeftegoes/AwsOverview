@@ -14,6 +14,7 @@
   - [5.3. Events vs.Webhooks vs. Polling](#53-events-vswebhooks-vs-polling)
   - [5.4. Action Types Constraints for](#54-action-types-constraints-for)
   - [5.5. Manual Approval Stage](#55-manual-approval-stage)
+  - [5.6. Pipeline executions](#56-pipeline-executions)
 - [6. AWS CodeBuild](#6-aws-codebuild)
   - [6.1. Supported Environments](#61-supported-environments)
   - [6.2. buildspec.yml](#62-buildspecyml)
@@ -178,6 +179,17 @@
 
 - **Important: Owner is "AWS", Action is "Manual".**
 
+## 5.6. Pipeline executions
+
+- Traverse pipeline stages in order.
+- Valid statuses for pipelines are:
+  - InProgress
+  - Stopping
+  - Stopped
+  - Succeeded
+  - Superseded
+  - Failed.
+
 # 6. AWS CodeBuild
 
 - A fully managed continuous integration (CI) service.
@@ -310,6 +322,12 @@
   - Lambda
     - `AllowTrafic`
     - `BeforeAllowTraffic`
+    - `AfterAllowTraffic`
+  - ECS
+    - `BeforeInstall`
+    - `AfterInstall`
+    - `AfterAllowTestTraffic`
+    - `AfterAllowTestTraffic`
     - `AfterAllowTraffic`
 
 ## 7.4. Deployment Configuration

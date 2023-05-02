@@ -59,7 +59,7 @@
 
 ## 5.1. S3 Events to multiple queues
 
-- For the same combination of: **event type** (e.g. object create) and **prefix** (e.g. images/) you can only have one S3 Event rule.
+- For the same combination of: **event type** (e.g. object create) and **prefix** (e.g. Images/) you can only have one S3 Event rule.
 - If you want to send the same S3 event to many SQS queues, use fan-out.
 
 ## 5.2. SNS to Amazon S3 through

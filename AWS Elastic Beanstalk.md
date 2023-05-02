@@ -1,4 +1,4 @@
-# AWS SDK - Software Development Kit <!-- omit in toc -->
+# AWS Elastic Beanstalk <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -21,7 +21,8 @@
 - [10. Elastic Beanstalk Cloning](#10-elastic-beanstalk-cloning)
 - [11. Migration: Load Balancer](#11-migration-load-balancer)
 - [12. RDS with Elastic Beanstalk](#12-rds-with-elastic-beanstalk)
-  - [12.1. Decouple RDS](#121-decouple-rds)
+  - [12.1. Database lifecycle](#121-database-lifecycle)
+  - [12.2. Decouple RDS](#122-decouple-rds)
 - [13. Single Docker](#13-single-docker)
   - [13.1. Multi Docker Container](#131-multi-docker-container)
 - [14. HTTPS](#14-https)
@@ -56,6 +57,8 @@
   - Collection of AWS resources running an application version (only one application version at a time).
   - **Tiers:** Web Server Environment Tier & Worker Environment Tier.
   - You can create multiple environments (dev, test, prod, ...).
+
+![Elastic Beanstalk Workflow](Images/ElasticBeanstalkWorkflow.png)
 
 ## 3.1. Supported Platforms
 
@@ -228,7 +231,14 @@
 - This is not great for prod as the database lifecycle is tied to the Beanstalk environment lifecycle.
 - The best for prod is to separately create an RDS database and provide our EB application with the connection string.
 
-## 12.1. Decouple RDS
+## 12.1. Database lifecycle
+
+- You can choose what you want to happen to the database after you decouple it from your Elastic Beanstalk environment.
+  - **Snapshot:** Before Elastic Beanstalk terminates the database, it saves a snapshot of it.
+  - **Delete:** Elastic Beanstalk terminates the database. After it's terminated, the database instance is no longer available for any operation.
+  - **Retain:** The database instance isn't terminated. It remains available and operational, though decoupled from Elastic Beanstalk.
+
+## 12.2. Decouple RDS
 
 1. Create a snapshot of RDS DB (as a safeguard).
 2. Go to the RDS console and protect the RDS database from deletion.

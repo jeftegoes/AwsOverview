@@ -44,7 +44,7 @@
   - [19.5. Encryption in transit (SSL/TLS)](#195-encryption-in-transit-ssltls)
   - [19.6. Default Encryption vs Bucket Policies](#196-default-encryption-vs-bucket-policies)
 - [20. What is CORS?](#20-what-is-cors)
-  - [20.1. Amazon S3 - CORS](#201-amazon-s3---cors)
+    - [20.1. Amazon S3 - CORS](#201-amazon-s3---cors)
 - [21. MFA Delete](#21-mfa-delete)
 - [22. Access Logs](#22-access-logs)
   - [22.1. Access Logs WARNING](#221-access-logs-warning)
@@ -108,7 +108,7 @@
 - **User based:**
   - **IAM policies:** Which API calls should be allowed for a specific user from IAM console.
 
-![S3 Iam Permissions](Images/S3IamPermissions.png)
+![S3 IAM Permissions](Images/S3IamPermissions.png)
 ![EC2 instance access - IAM Roles](Images/S3IamRoles.png)
 
 - **Resource Based:**
@@ -345,7 +345,7 @@
 # 16. Baseline Performance
 
 - Amazon S3 automatically scales to high request rates, latency 100-200 ms.
-- Your application can achieve at least 3,500 PUT/COPY/POST/DELETE and 5,500 GET/HEAD requests per second per prefix in a bucket.
+- Your application can achieve at least **3,500 PUT/COPY/POST/DELETE and 5,500 GET/HEAD requests per second per prefix in a bucket**.
 - There are no limits to the number of prefixes in a bucket.
 - Example (object path => prefix):
   - bucket/folder1/sub1/file => /folder1/sub1/
@@ -361,7 +361,7 @@
 
 ## 16.2. S3 Transfer Acceleration
 
-- Increase transfer speed by transferring file to an AWS edge location which will forward the data to the S3 bucket in the target region.
+- **Amazon S3 Transfer Acceleration enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket. Transfer Acceleration takes advantage of Amazon CloudFront's globally distributed edge locations. As the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.**
 - Compatible with multi-part upload.
 
 # 17. Byte-Range Fetches
@@ -409,14 +409,14 @@
 - Encryption using keys handled, managed, and owned by AWS.
 - Object is encrypted server-side.
 - Encryption type is **AES-256**.
-- Must set header **"x-amz-server-side-encryption": "AES256"**.
+- Must set header `"x-amz-server-side-encryption": "AES256"`.
 
 ## 19.2. SSE-KMS
 
 - Encryption using keys handled and managed by AWS KMS (Key Management Service).
 - KMS advantages: user control + audit key usage using CloudTrail.
 - Object is encrypted server side.
-- Must set header **"x-amz-server-side-encryption": "aws:kms"**.
+- Must set header `"x-amz-server-side-encryption": "aws:kms"`.
 
 ### 19.2.1. SSE-KMS Limitation
 
@@ -432,6 +432,13 @@
 - Amazon S3 does **NOT** store the encryption key you provide.
 - **HTTPS must be used.**
 - Encryption key must provided in HTTP headers, for every HTTP request made.
+- Must set header `"x-amz-server-side-encryption-customer-algorithm": "AES256"`.
+
+| Name                                            | Description                                                                                                                                                                                                                             |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| x-amz-server-side-encryption-customer-algorithm | Use this header to specify the encryption algorithm. The header value must be AES256.                                                                                                                                                   |
+| x-amz-server-side-encryption-customer-key       | Use this header to provide the 256-bit, base64-encoded encryption key for Amazon S3 to use to encrypt or decrypt your data.                                                                                                             |
+| x-amz-server-side-encryption-customer-key-MD5   | Use this header to provide the base64-encoded 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error. |
 
 ## 19.4. Client-Side Encryption
 
@@ -468,7 +475,7 @@
 
 ![CORS Diagram](Images/APIGatewayCORS.png)
 
-## 20.1. Amazon S3 - CORS
+### 20.1. Amazon S3 - CORS
 
 - If a client makes a cross-origin request on our S3 bucket, we need to enable the correct CORS headers.
 - You can allow for a specific origin or for \* (all origins).

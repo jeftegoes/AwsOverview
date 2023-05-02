@@ -6,24 +6,23 @@
 - [2. Kinesis Data Streams](#2-kinesis-data-streams)
   - [2.1. Capacity Modes](#21-capacity-modes)
   - [2.2. Security](#22-security)
-- [3. Kinesis Data Streams](#3-kinesis-data-streams)
-  - [3.1. Producers](#31-producers)
-  - [3.2. Consumers](#32-consumers)
-    - [3.2.1. Consumers Types](#321-consumers-types)
-  - [3.3. AWS Lambda](#33-aws-lambda)
-- [4. Kinesis Client Library (KCL)](#4-kinesis-client-library-kcl)
-- [5. Kinesis Operation](#5-kinesis-operation)
-  - [5.1. Shard Splitting](#51-shard-splitting)
-  - [5.2. Merging Shards](#52-merging-shards)
-- [6. Kinesis Data Firehose](#6-kinesis-data-firehose)
-  - [6.1. Kinesis Data Streams vs Firehose](#61-kinesis-data-streams-vs-firehose)
-- [7. Kinesis Data Analytics (SQL application)](#7-kinesis-data-analytics-sql-application)
-  - [7.1. Kinesis Data Analytics for Apache Flink](#71-kinesis-data-analytics-for-apache-flink)
-- [8. Ordering data into](#8-ordering-data-into)
-  - [8.1. Kinesis](#81-kinesis)
-  - [8.2. SQS](#82-sqs)
-  - [8.3. Kinesis vs SQS ordering](#83-kinesis-vs-sqs-ordering)
-- [9. SQS vs SNS vs Kinesis](#9-sqs-vs-sns-vs-kinesis)
+  - [2.3. Producers](#23-producers)
+  - [2.4. Consumers](#24-consumers)
+    - [2.4.1. Consumers Types](#241-consumers-types)
+  - [2.5. AWS Lambda](#25-aws-lambda)
+- [3. Kinesis Client Library (KCL)](#3-kinesis-client-library-kcl)
+- [4. Kinesis Operation](#4-kinesis-operation)
+  - [4.1. Shard Splitting](#41-shard-splitting)
+  - [4.2. Merging Shards](#42-merging-shards)
+- [5. Kinesis Data Firehose](#5-kinesis-data-firehose)
+  - [5.1. Kinesis Data Streams vs Firehose](#51-kinesis-data-streams-vs-firehose)
+- [6. Kinesis Data Analytics (SQL application)](#6-kinesis-data-analytics-sql-application)
+  - [6.1. Kinesis Data Analytics for Apache Flink](#61-kinesis-data-analytics-for-apache-flink)
+- [7. Ordering data into](#7-ordering-data-into)
+  - [7.1. Kinesis](#71-kinesis)
+  - [7.2. SQS](#72-sqs)
+  - [7.3. Kinesis vs SQS ordering](#73-kinesis-vs-sqs-ordering)
+- [8. SQS vs SNS vs Kinesis](#8-sqs-vs-sns-vs-kinesis)
 
 # 1. Introduction
 
@@ -67,9 +66,7 @@
 - VPC Endpoints available for Kinesis to access within VPC.
 - Monitor API calls using CloudTrail.
 
-# 3. Kinesis Data Streams
-
-## 3.1. Producers
+## 2.3. Producers
 
 - Puts data records into data streams.
 - Data record consists of:
@@ -84,7 +81,7 @@
 - PutRecord API.
 - Use batching with PutRecords API to reduce costs and increase throughput.
 
-## 3.2. Consumers
+## 2.4. Consumers
 
 - Get data records from data streams and process them
 - AWS Lambda
@@ -93,7 +90,7 @@
 - Custom Consumer (AWS SDK) - Classic or Enhanced Fan-Out
 - Kinesis Client Library (KCL): library to simplify reading from data stream
 
-### 3.2.1. Consumers Types
+### 2.4.1. Consumers Types
 
 | Shared (Classic) Fan-out Consumer - pull                                 | Enhanced Fan-out Consumer - push                                      |
 | ------------------------------------------------------------------------ | --------------------------------------------------------------------- |
@@ -105,7 +102,7 @@
 | Consumers poll data from Kinesis using GetRecords API call               | Soft limit of 5 consumer applications (KCL) per data stream (default) |
 | Returns up to 10 MB (then throttle for 5 seconds) or up to 10000 records |                                                                       |
 
-## 3.3. AWS Lambda
+## 2.5. AWS Lambda
 
 - Supports Classic & Enhanced fan-out consumers.
 - Read records in batches.
@@ -113,7 +110,7 @@
 - If error occurs, Lambda retries until succeeds or data expired.
 - Can process up to 10 batches per shard simultaneously.
 
-# 4. Kinesis Client Library (KCL)
+# 3. Kinesis Client Library (KCL)
 
 - A Java library that helps read record from a Kinesis Data Stream with distributed applications sharing the read workload.
 - Each shard is to be read by only one KCL instance:
@@ -127,9 +124,9 @@
   - KCL 1.x (supports shared consumer).
   - KCL 2.x (supports shared & enhanced fan-out consumer).
 
-# 5. Kinesis Operation
+# 4. Kinesis Operation
 
-## 5.1. Shard Splitting
+## 4.1. Shard Splitting
 
 - Used to increase the Stream capacity (1 MB/s data in per shard)
 - Used to divide a "hot shard"
@@ -137,14 +134,14 @@
 - No automatic scaling (manually increase/decrease capacity)
 - Can't split into more than two shards in a single operation
 
-## 5.2. Merging Shards
+## 4.2. Merging Shards
 
 - Decrease the Stream capacity and save costs.
 - Can be used to group two shards with low traffic (cold shards).
 - Old shards are closed and will be deleted once the data is expired.
 - Can't merge more than two shards in a single operation.
 
-# 6. Kinesis Data Firehose
+# 5. Kinesis Data Firehose
 
 - Fully Managed Service, no administration, automatic scaling, serverless.
   - AWS:
@@ -161,7 +158,7 @@
 - Supports custom data transformations using AWS Lambda.
 - Can send failed or all data to a backup S3 bucket.
 
-## 6.1. Kinesis Data Streams vs Firehose
+## 5.1. Kinesis Data Streams vs Firehose
 
 | Kinesis Data Streams                       | Kinesis Data Firehose                                                         |
 | ------------------------------------------ | ----------------------------------------------------------------------------- |
@@ -172,7 +169,7 @@
 | Data storage for 1 to 365 days             | No data storage                                                               |
 | Supports replay capability                 | Doesn't support replay capability                                             |
 
-# 7. Kinesis Data Analytics (SQL application)
+# 6. Kinesis Data Analytics (SQL application)
 
 - Real-time analytics on **Kinesis Data Streams & Firehose** using SQL.
 - Add reference data from Amazon S3 to enrich streaming data.
@@ -187,7 +184,7 @@
   - Real-time dashboards.
   - Real-time metrics.
 
-## 7.1. Kinesis Data Analytics for Apache Flink
+## 6.1. Kinesis Data Analytics for Apache Flink
 
 - Use Flink (Java, Scala or SQL) to process and analyze streaming data.
 - Run any Apache Flink application on a managed cluster on AWS:
@@ -196,9 +193,9 @@
   - Use any Apache Flink programming features.
   - Flink does not read from Firehose (use Kinesis Analytics for SQL instead).
 
-# 8. Ordering data into
+# 7. Ordering data into
 
-## 8.1. Kinesis
+## 7.1. Kinesis
 
 - Imagine you have 100 trucks (truck_1, truck_2, ... truck_100) on the road sending their GPS positions regularly into AWS.
 - You want to consume the data in order for each truck, so that you can track their movement accurately.
@@ -206,14 +203,14 @@
   - Answer: send using a "Partition Key" value of the "truck_id".
   - The same key will always go to the same shard.
 
-## 8.2. SQS
+## 7.2. SQS
 
 - For SQS standard, there is no ordering.
 - For SQS FIFO, if you don't use a Group ID, messages are consumed in the order they are sent, **with only one consumer**.
 - You want to scale the number of consumers, but you want messages to be "grouped" when they are related to each other.
 - Then you use a Group ID (similar to Partition Key in Kinesis).
 
-## 8.3. Kinesis vs SQS ordering
+## 7.3. Kinesis vs SQS ordering
 
 - **Let's assume 100 trucks, 5 kinesis shards, 1 SQS FIFO.**
 - Kinesis Data Streams:
@@ -227,7 +224,7 @@
   - You can have up to 100 Consumers (due to the 100 Group ID).
   - You have up to 300 messages per second (or 3000 if using batching).
 
-# 9. SQS vs SNS vs Kinesis
+# 8. SQS vs SNS vs Kinesis
 
 | SQS                                             | SNS                                                   | Kinesis                                                   |
 | ----------------------------------------------- | ----------------------------------------------------- | --------------------------------------------------------- |

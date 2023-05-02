@@ -30,6 +30,7 @@
   - [10.8. Which purchasing option is right for me? (Correlation with Hotel)](#108-which-purchasing-option-is-right-for-me-correlation-with-hotel)
   - [10.9. AWS License Manager](#109-aws-license-manager)
   - [10.10. Shared Responsibility Model for EC2](#1010-shared-responsibility-model-for-ec2)
+- [11. CloudFormation helper scripts reference](#11-cloudformation-helper-scripts-reference)
 
 # 1. Introduction
 
@@ -318,3 +319,14 @@
   - Software and utilities installed on the EC2 instance
   - IAM Roles assigned to EC2ASDASD\_\_& IAM user access management
   - Data security on your instance
+
+# 11. CloudFormation helper scripts reference
+
+- AWS CloudFormation provides the following Python helper scripts that you can use to install software and start services on an Amazon EC2 instance that you create as part of your stack:
+  - `cfn-init`: Use to retrieve and interpret resource metadata, install packages, create files, and start services.
+  - `cfn-signal`: Use to signal with a CreationPolicy or WaitCondition, so you can synchronize other resources in the stack when the prerequisite resource or application is ready.
+  - `cfn-get-metadata`: Use to retrieve metadata for a resource or path to a specific key.
+  - `cfn-hup`: Use to check for updates to metadata and execute custom hooks when changes are detected.
+- You call the scripts directly from your template.
+- The scripts work in conjunction with resource metadata that's defined in the same template.
+- The scripts run on the Amazon EC2 instance during the stack creation process.

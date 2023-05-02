@@ -33,6 +33,7 @@
   - [10.3. Example of String Comparisons](#103-example-of-string-comparisons)
 - [11. Optimistic Locking](#11-optimistic-locking)
 - [12. Accelerator - DAX](#12-accelerator---dax)
+  - [12.1. Use cases for DAX](#121-use-cases-for-dax)
 - [13. Streams](#13-streams)
   - [13.1. DynamoDB Streams and AWS Lambda](#131-dynamodb-streams-and-aws-lambda)
 - [14. Time To Live (TTL)](#14-time-to-live-ttl)
@@ -135,6 +136,9 @@
 ### 6.1.1. Write Capacity Units (WCU)
 
 - One Write Capacity Unit (WCU) represents one write per second for an item up to 1 KB in size.
+
+![WCU Formula](Images/DynamoDBWCUFormula.png)
+
 - If the items are larger than 1 KB, more WCUs are consumed:
   - Example 1: we write 10 items per second, with item size 2 KB:
     - We need 10 \* (2/1) = 20 WCUs.
@@ -158,6 +162,8 @@
   - **One (1) Strongly Consistent Read** per second
   - **Two (2) Eventually Consistent Reads** per second
 - For an item up to 4 **KB** in size.
+
+![WCU Formula](Images/DynamoDBRCUFormula.png)
 
 - If the items are larger than 4 KB, more RCUs are consumed:
   - Example 1: 10 Strongly Consistent Reads per second, with item size 4 KB
@@ -270,6 +276,10 @@
   - Up to 100 items, up to 16 MB of data.
   - Items are retrieved in parallel to minimize latency.
   - **UnprocessedKeys** for failed read operations (exponential backoff or add RCU).
+    - For example, The DynamoDB API returns up to 100 items limited to 16MB per call. If there are still missing records to be returned, the API returns UnprocessedKeys until the process is finished.
+      - In the present case, although we have 50 records, their total size is 50 x 2MB = 100MB, which exceeds the 16MB limit, so the message will be returned as follows:
+        - Sixth call returns 16MB - 6 UnprocessedKeys (Total returned 92MB)
+        - Seventh call returns 8MB - Query process terminated (Total returned 100MB)
 
 # 8. Indexes
 
@@ -367,6 +377,14 @@
 - Multi-AZ (3 nodes minimum recommended for production).
 - Secure (Encryption at rest with KMS, VPC, IAM, CloudTrail, ...)
 
+## 12.1. Use cases for DAX
+
+- DAX is ideal for the following types of applications:
+  - Applications that require the fastest possible response time for reads.
+  - Applications that read a small number of items more frequently than others.
+  - Applications that are read-intensive, but are also cost-sensitive.
+  - Applications that require repeated reads against a large set of data.
+
 # 13. Streams
 
 - Ordered stream of item-level modifications (create/update/delete) in a table.
@@ -425,18 +443,22 @@
 
 # 16. Transactions
 
+![Transactions formulas](Images/DynamoDBTransactionsFormulas.png)
+
 - Coordinated, all-or-nothing operations (add/update/delete) to multiple items across one or more tables.
 - Provides Atomicity, Consistency, Isolation, and Durability (ACID).
-- **Read Modes** - Eventual Consistency, Strong Consistency, Transactional.
-- **Write Modes** - Standard, Transactional.
+- **Read Modes:** Eventual Consistency, Strong Consistency, Transactional.
+- **Write Modes:** Standard, Transactional.
 - **Consumes 2x WCUs & RCUs.**
   - DynamoDB performs 2 operations for every item (prepare & commit).
 - Two operations: (up to 25 unique items or up to 4 MB of data):
-  - **TransactGetItems** - one or more **GetItem** operations.
-  - **TransactWriteItems** - one or more **PutItem**, **UpdateItem**, and **DeleteItem** operations.
+  - `TransactGetItems` - one or more `GetItem` operations.
+  - `TransactWriteItems` - one or more `PutItem`, `UpdateItem`, and `DeleteItem` operations.
 - Use cases: financial transactions, managing orders, multiplayer games, ...
 
 ## 16.1. Capacity Computations
+
+\*\*
 
 - **Example 1:** 3 Transactional writes per second, with item size 5 KB:
   - We need 3 _(5kb / 1kb)_ 2 (transactional cost) = 30 WCUs.
@@ -490,6 +512,10 @@
 
 # 21. Security & Other Features
 
+- When creating a new table, you can choose one of the following AWS KMS key types to encrypt your table. **You can switch between these key types at any time**.
+  - **AWS owned key:** Default encryption type. The key is owned by DynamoDB (no additional charge)
+  - **AWS managed key:** The key is stored in your account and is managed by AWS KMS (AWS KMS charges apply).
+  - **Customer managed key:** The key is stored in your account and is created, owned, and managed by you. You have full control over the KMS key (AWS KMS charges apply).
 - **Security:**
   - VPC Endpoints available to access DynamoDB without using the Internet.
   - Access fully controlled by IAM.

@@ -21,6 +21,8 @@
   - [2.2. Features of Aurora](#22-features-of-aurora)
   - [2.3. Aurora Security](#23-aurora-security)
   - [2.4. Amazon RDS Proxy](#24-amazon-rds-proxy)
+- [3. Amazon Aurora Serverless](#3-amazon-aurora-serverless)
+- [4. Amazon Aurora vs Amazon Aurora Serverless](#4-amazon-aurora-vs-amazon-aurora-serverless)
 
 # 1. AWS RDS Overview
 
@@ -232,3 +234,21 @@
 - No code changes required for most apps.
 - Enforce IAM Authentication for DB, and securely store credentials in AWS Secrets Manager.
 - RDS Proxy is never publicly accessible (must be accessed from VPC).
+
+# 3. Amazon Aurora Serverless
+
+- The Aurora Serverless is an auto-scaling, on-demand configuration designed for Amazon Aurora RDS.
+- It can start, shut and scale capacity automatically, according to individual application's requirements.
+- This service allows you to run cloud-powered databases without the need to manage database capacity.
+
+# 4. Amazon Aurora vs Amazon Aurora Serverless
+
+| Amazon Aurora Highlights         | Amazon Aurora Serverless Highlights                       |
+| -------------------------------- | --------------------------------------------------------- |
+| MySQL Compatibility              | API Integration                                           |
+| Better performance               | Compatible with cloud functions for Google, Azure and IBM |
+| Easy read scalability            | Lower charges                                             |
+| High speed                       | Auto-scaling                                              |
+| Low latency read replica         | Openwhisk                                                 |
+| Higher IOPS cost                 |                                                           |
+| Better cost-to-performance ratio |                                                           |

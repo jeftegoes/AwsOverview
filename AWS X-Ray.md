@@ -19,6 +19,7 @@
   - [13.2. Read APIs](#132-read-apis)
 - [14. X-Ray with Elastic Beanstalk](#14-x-ray-with-elastic-beanstalk)
 - [15. AWS Distro for OpenTelemetry](#15-aws-distro-for-opentelemetry)
+- [16. Running the X-Ray daemon on Amazon ECS](#16-running-the-x-ray-daemon-on-amazon-ecs)
 
 # 1. Introduction
 
@@ -170,3 +171,8 @@
 - X-Ray, CloudWatch, Prometheus...
 - Instrument your apps running on AWS (e.g., [ECS](AWS%20EC2.md), [ECS](AWS%20ECS.md), EKS, Fargate, [Lambda](AWS%20Lambda.md)) as well as on-premises.
 - Migrate from X-Ray to AWS Distro for Temeletry if you want to standardize with open-source APIs from Telemetry or send traces to multiple destinations simultaneously.
+
+# 16. Running the X-Ray daemon on Amazon ECS
+
+- In Amazon ECS, create a Docker image that runs the X-Ray daemon, upload it to a Docker image repository, and then deploy it to your Amazon ECS cluster.
+- You can use port mappings and network mode settings in your task definition file to allow your application to communicate with the daemon container.

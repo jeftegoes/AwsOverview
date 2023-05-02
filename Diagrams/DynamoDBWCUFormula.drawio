@@ -1,0 +1,37 @@
+<mxfile host="Electron" modified="2023-04-30T23:28:50.426Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.1.2 Chrome/106.0.5249.199 Electron/21.4.3 Safari/537.36" etag="NImhBnWI2jo_OMEmq3jo" version="21.1.2" type="device">
+  <diagram name="Page-1" id="TKbwjN6o_ijqUqL9hRBT">
+    <mxGraphModel dx="1185" dy="488" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kMj5f04dgcrr9fPWQqDN-1" value="Write Capacity Units (WCU) - Formula" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=22;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="210" y="290" width="420" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kMj5f04dgcrr9fPWQqDN-2" value="items_per_second" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="230" y="355" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kMj5f04dgcrr9fPWQqDN-9" value="x" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="410" y="355" width="30" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kMj5f04dgcrr9fPWQqDN-11" value="item_size_kb" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="455" y="345" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kMj5f04dgcrr9fPWQqDN-12" value="1kb" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="495" y="379" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kMj5f04dgcrr9fPWQqDN-13" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="455" y="385" as="sourcePoint" />
+            <mxPoint x="580" y="385" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kMj5f04dgcrr9fPWQqDN-18" value="(" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=62;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="430" y="330" width="40" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="kMj5f04dgcrr9fPWQqDN-19" value=")" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=62;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="570" y="330" width="40" height="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

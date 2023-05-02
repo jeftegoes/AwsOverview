@@ -47,7 +47,7 @@
   - You get billed for all the provisioned capacity.
   - You can increase the capacity of the drive over time.
 
-![EBS Volume diagram](images/EBSVolumeDiagram.png)
+![EBS Volume diagram](Images/EBSVolumeDiagram.png)
 
 # 3. EBS - Delete on Termination attribute
 

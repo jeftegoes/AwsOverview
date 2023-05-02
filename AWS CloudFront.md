@@ -8,8 +8,9 @@
 - [3. Caching](#3-caching)
   - [3.1. Cache Key](#31-cache-key)
   - [3.2. Cache Policy](#32-cache-policy)
-    - [3.2.1. HTTP Headers](#321-http-headers)
-    - [3.2.2. Cache Policy Query Strings](#322-cache-policy-query-strings)
+    - [3.2.1. Managing cache expiration](#321-managing-cache-expiration)
+    - [3.2.2. HTTP Headers](#322-http-headers)
+    - [3.2.3. Cache Policy Query Strings](#323-cache-policy-query-strings)
   - [3.3. Origin Request Policy](#33-origin-request-policy)
   - [3.4. Cache Invalidations](#34-cache-invalidations)
   - [3.5. Cache Behaviors](#35-cache-behaviors)
@@ -80,18 +81,27 @@
   - **HTTP Headers:** None - Whitelist.
   - **Cookies:** None - Whitelist - Include All-Except - All.
   - **Query Strings:** None - Whitelist - Include All-Except - All.
-- Control the TTL (0 seconds to 1 year), can be set by the origin using the **Cache-Control** header, **Expires** header...
+- Control the TTL (0 seconds to 1 year), can be set by the origin using the `Cache-Control` header, **Expires** header...
 - Create your own policy or use Predefined Managed Policies.
-- *All HTTP headers, cookies, and query strings that you include in the Cache Key are automatically included in origin requests.*
+- _All HTTP headers, cookies, and query strings that you include in the Cache Key are automatically included in origin requests._
 
-### 3.2.1. HTTP Headers
+### 3.2.1. Managing cache expiration
+
+- By default, each file automatically expires after 24 hours, but you can change the default behavior in two ways:
+  - To change the cache duration for all files that match the same path pattern, you can change the CloudFront settings for:
+    - **Minimum TTL**
+    - **Maximum TTL**
+    - **Default TTL**
+  - To change the cache duration for an individual file, you can configure your origin to add a `Cache-Control` header with the max-age or s-maxage directive, or an Expires header to the file.
+
+### 3.2.2. HTTP Headers
 
 - None:
   - Don't include any headers in the Cache Key (except default).
   - Headers are not forwarded (except default).
   - Best caching performance.
 - Whitelist:
-  - *Only specified headers* included in the Cache Key.
+  - _Only specified headers_ included in the Cache Key.
   - Specified headers are also forwarded to Origin.
 - Example:
 
@@ -105,7 +115,7 @@
   Language: fr-fr
   ```
 
-### 3.2.2. Cache Policy Query Strings
+### 3.2.3. Cache Policy Query Strings
 
 - **None**
   - Don't include any query strings in the Cache Key.
@@ -120,7 +130,7 @@
   - Include all query strings in the Cache Key.
   - All query strings are forwarded.
   - Worst caching performance.
-- Example: ``GET /image/cat.jpg?border=red&size=large HTTP/1.1``
+- Example: `GET /image/cat.jpg?border=red&size=large HTTP/1.1`
 
 ## 3.3. Origin Request Policy
 
@@ -136,16 +146,16 @@
 
 - In case you update the back-end origin, CloudFront doesn't know about it and will only get the refreshed content after the TTL has expired.
 - However, you can force an entire or partial cache refresh (thus bypassing the TTL) by performing a **CloudFront Invalidation**.
-- You can invalidate all files (*) or a special path (/images/\*).
+- You can invalidate all files (\*) or a special path (/Images/\*).
 
 ## 3.5. Cache Behaviors
 
 - Configure different settings for a given URL path pattern.
-- Example: one specific cache behavior to **images/*.jpg** files on your origin web server.
+- Example: one specific cache behavior to **Images/\*.jpg** files on your origin web server.
 - Route to different kind of origins/origin groups based on the content type or path pattern:
-  - /images/*
-  - /api/*
-  - /* (default cache behavior)
+  - /Images/\*
+  - /api/\*
+  - /\* (default cache behavior)
 - When adding additional Cache Behaviors, the Default Cache Behavior is always the last to be processed **and is always /\***
 
 # 4. Geo Restriction
@@ -211,7 +221,7 @@
 
 - To route to different kind of origins based on the content type
 - Based on path pattern:
-  - /images/\*
+  - /Images/\*
   - /api/\*
   - /\*
 

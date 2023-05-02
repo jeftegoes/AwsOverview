@@ -1,0 +1,57 @@
+<mxfile host="Electron" modified="2023-05-01T13:19:43.121Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.1.2 Chrome/106.0.5249.199 Electron/21.4.3 Safari/537.36" etag="hADK7va7HCxcKILWOGVV" version="21.1.2" type="device">
+  <diagram name="Page-1" id="yOCEg2ORqPnxLRFbBr-n">
+    <mxGraphModel dx="1098" dy="838" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="fvv3f63ElpRzNDrw9EsS-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="fvv3f63ElpRzNDrw9EsS-1" target="fvv3f63ElpRzNDrw9EsS-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fvv3f63ElpRzNDrw9EsS-1" value="Create Application" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="310" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fvv3f63ElpRzNDrw9EsS-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="fvv3f63ElpRzNDrw9EsS-2" target="fvv3f63ElpRzNDrw9EsS-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fvv3f63ElpRzNDrw9EsS-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="fvv3f63ElpRzNDrw9EsS-2" target="fvv3f63ElpRzNDrw9EsS-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="505" y="410" />
+              <mxPoint x="845" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fvv3f63ElpRzNDrw9EsS-13" value="Deploy New Version" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="fvv3f63ElpRzNDrw9EsS-12">
+          <mxGeometry x="0.1273" y="-2" relative="1" as="geometry">
+            <mxPoint x="-28" y="8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fvv3f63ElpRzNDrw9EsS-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;endArrow=none;endFill=0;" edge="1" parent="1" source="fvv3f63ElpRzNDrw9EsS-2" target="fvv3f63ElpRzNDrw9EsS-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="505" y="270" />
+              <mxPoint x="845" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fvv3f63ElpRzNDrw9EsS-15" value="Update Version" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="fvv3f63ElpRzNDrw9EsS-14">
+          <mxGeometry x="0.0571" y="-1" relative="1" as="geometry">
+            <mxPoint x="-12" y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fvv3f63ElpRzNDrw9EsS-2" value="Upload Version" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="310" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fvv3f63ElpRzNDrw9EsS-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="fvv3f63ElpRzNDrw9EsS-3" target="fvv3f63ElpRzNDrw9EsS-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fvv3f63ElpRzNDrw9EsS-3" value="Launch Environment" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="610" y="310" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fvv3f63ElpRzNDrw9EsS-4" value="Manage Environment" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="780" y="310" width="130" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

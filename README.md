@@ -86,7 +86,6 @@
   - [12.2. Global AWS Infrastructure](#122-global-aws-infrastructure)
   - [12.3. Global Applications in AWS](#123-global-applications-in-aws)
   - [12.4. AWS CloudFront](#124-aws-cloudfront)
-  - [12.5. S3 Transfer Acceleration](#125-s3-transfer-acceleration)
   - [12.6. AWS Global Accelerator](#126-aws-global-accelerator)
   - [12.7. AWS Global Accelerator vs CloudFront](#127-aws-global-accelerator-vs-cloudfront)
   - [12.8. AWS Outposts](#128-aws-outposts)
@@ -989,11 +988,6 @@
 ### 12.4. AWS CloudFront
 
 [AWS CloudFront](AWS%20CloudFront.md)
-
-### 12.5. S3 Transfer Acceleration
-
-- **Amazon S3 Transfer Acceleration enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket. Transfer Acceleration takes advantage of Amazon CloudFront's globally distributed edge locations. As the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.**
-- Increase transfer speed by transferring file to an AWS edge location which will forward the data to the S3 bucket in the target region.
 
 ### 12.6. AWS Global Accelerator
 
