@@ -16,11 +16,13 @@
   - [5.5. Manual Approval Stage](#55-manual-approval-stage)
   - [5.6. Pipeline executions](#56-pipeline-executions)
 - [6. AWS CodeBuild](#6-aws-codebuild)
-  - [6.1. Supported Environments](#61-supported-environments)
-  - [6.2. buildspec.yml](#62-buildspecyml)
-  - [6.3. Local Build](#63-local-build)
-  - [6.4. Inside VPC](#64-inside-vpc)
-  - [6.5. CloudFormation Integration](#65-cloudformation-integration)
+  - [6.1. Details](#61-details)
+  - [6.2. Supported Environments](#62-supported-environments)
+  - [6.3. How it Works](#63-how-it-works)
+  - [6.4. buildspec.yml](#64-buildspecyml)
+  - [6.5. Local Build](#65-local-build)
+  - [6.6. Inside VPC](#66-inside-vpc)
+  - [6.7. CloudFormation Integration](#67-cloudformation-integration)
 - [7. AWS CodeDeploy](#7-aws-codedeploy)
   - [7.1. Steps To Make it Work](#71-steps-to-make-it-work)
   - [7.2. Primary Components](#72-primary-components)
@@ -30,6 +32,7 @@
   - [7.6. Deploy to an ASG](#76-deploy-to-an-asg)
   - [7.7. Redeploy \& Rollbacks](#77-redeploy--rollbacks)
   - [7.8. Troubleshooting](#78-troubleshooting)
+  - [7.9. CodeBuild support SDK and CLI](#79-codebuild-support-sdk-and-cli)
 - [8. AWS CodeStar](#8-aws-codestar)
 - [9. AWS CodeArtifact](#9-aws-codeartifact)
   - [9.1. Resource Policy](#91-resource-policy)
@@ -203,6 +206,9 @@
   - Integration with KMS for encryption of build artifacts.
   - IAM for CodeBuild permissions, and VPC for network security.
   - AWS CloudTrail for API calls logging.
+
+## 6.1. Details
+
 - **Source:** CodeCommit, S3, Bitbucket, GitHub.
 - **Build instructions:** Code file buildspec.yml or insert manually in Console.
 - **Output logs** can be stored in Amazon S3 & CloudWatch Logs.
@@ -211,7 +217,7 @@
 - Use CloudWatch Alarms to notify if you need "thresholds" for failures.
 - **Build Projects can be defined within CodePipeline or CodeBuild.**
 
-## 6.1. Supported Environments
+## 6.2. Supported Environments
 
 - Java.
 - Ruby.
@@ -223,7 +229,11 @@
 - PHP.
 - Docker - extend any environment you like.
 
-## 6.2. buildspec.yml
+## 6.3. How it Works
+
+![CodeBuild Diagram](Images/CodeBuildDiagram.png)
+
+## 6.4. buildspec.yml
 
 - `buildspec.yml` file must be at the **root** of your code.
 - `env` - define environment variables
@@ -248,14 +258,14 @@
   - "UPLOAD_ARTIFACTS"
   - "FINALIZING"
 
-## 6.3. Local Build
+## 6.5. Local Build
 
 - In case of need of deep troubleshooting beyond logs...
 - You can run CodeBuild locally on your desktop (after installing Docker).
 - For this, leverage the CodeBuild Agent.
 - [Run builds locally with the AWS CodeBuild agent](https://docs.aws.amazon.com/codebuild/latest/userguide/use-codebuild-agent.html)
 
-## 6.4. Inside VPC
+## 6.6. Inside VPC
 
 - By default, your CodeBuild containers are launched outside your VPC.
   - It cannot access resources in a VPC.
@@ -266,7 +276,7 @@
 - Then your build can access resources in your VPC (e.g., RDS, ElastiCache, EC2, ALB, ...).
 - Use cases: integration tests, data query, internal load balancers, ...
 
-## 6.5. CloudFormation Integration
+## 6.7. CloudFormation Integration
 
 - CloudFormation is used to deploy complex infrastructure using an API
   - `CREATE_UPDATE` - create or update an existing stack
@@ -379,6 +389,11 @@
   - If the date and time on your EC2 instance are not set correctly, they might not match the signature date of your deployment request, which CodeDeploy rejects.
 - Check log files to understand deployment issues:
   - For Amazon Linux, Ubuntu, and RHEL log files stored at `/opt/codedeploy-agent/deployment-root/deployment- logs/codedeploy-agent-deployments.log`.
+
+## 7.9. CodeBuild support SDK and CLI
+
+- To use one the AWS SDKs or tools to automate AWS CodeBuild.
+- If you want to use the AWS CLI to run CodeBuild.
 
 # 8. AWS CodeStar
 
