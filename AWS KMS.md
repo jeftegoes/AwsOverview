@@ -82,13 +82,18 @@
 
 - AWS Owned Keys (free): SSE-S3, SSE-SQS, SSE-DDB (default key).
 - AWS Managed Key: **free** (aws/service-name, example: aws/rds or aws/ebs).
-- Customer managed keys created in KMS: **$1 / month**.
-- Customer managed keys imported (must be symmetric key): $1 / month.
-- \+ pay for API call to KMS ($0.03 / 10000 calls).
-- Automatic Key rotation:
+- Customer managed keys created in KMS.
+- Customer managed keys imported (must be symmetric key).
+- **Automatic Key rotation**
   - AWS-managed KMS Key: automatic every 1 year.
   - Customer-managed KMS Key: (must be enabled) automatic every 1 year.
   - Imported KMS Key: only manual rotation possible using alias.
+
+| Type of KMS key      | Can view KMS key metadata | Can manage KMS key | Used only for my AWS account | Automatic rotation                            | Pricing                                                             |
+| -------------------- | ------------------------- | ------------------ | ---------------------------- | --------------------------------------------- | ------------------------------------------------------------------- |
+| Customer managed key | Yes                       | Yes                | Yes                          | Optional. Every year (approximately 365 days) | Monthly fee (pro-rated hourly) Per-use fee                          |
+| AWS managed key      | Yes                       | No                 | Yes                          | Required. Every year (approximately 365 days) | No monthly fee Per-use fee (some AWS services pay this fee for you) |
+| AWS owned key        | No                        | No                 | No                           | Varies                                        | No fees                                                             |
 
 ## 2.3. Key Policies
 

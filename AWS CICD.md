@@ -27,6 +27,7 @@
   - [7.1. Steps To Make it Work](#71-steps-to-make-it-work)
   - [7.2. Primary Components](#72-primary-components)
   - [7.3. appspec.yml](#73-appspecyml)
+    - [7.3.1. List of lifecycle event hooks](#731-list-of-lifecycle-event-hooks)
   - [7.4. Deployment Configuration](#74-deployment-configuration)
   - [7.5. Deployment to EC2](#75-deployment-to-ec2)
   - [7.6. Deploy to an ASG](#76-deploy-to-an-asg)
@@ -339,6 +340,11 @@
     - `AfterAllowTestTraffic`
     - `AfterAllowTestTraffic`
     - `AfterAllowTraffic`
+
+### 7.3.1. List of lifecycle event hooks
+
+- `Install` - During this deployment lifecycle event, the CodeDeploy agent copies the revision files from the temporary location to the final destination folder.
+  - **This event is reserved for the CodeDeploy agent and cannot be used to run scripts.**
 
 ## 7.4. Deployment Configuration
 

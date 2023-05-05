@@ -12,8 +12,9 @@
   - [2.5. AWS Lambda](#25-aws-lambda)
 - [3. Kinesis Client Library (KCL)](#3-kinesis-client-library-kcl)
 - [4. Kinesis Operation](#4-kinesis-operation)
-  - [4.1. Shard Splitting](#41-shard-splitting)
-  - [4.2. Merging Shards](#42-merging-shards)
+  - [4.1. Shard](#41-shard)
+  - [4.2. Shard Splitting](#42-shard-splitting)
+  - [4.3. Merging Shards](#43-merging-shards)
 - [5. Kinesis Data Firehose](#5-kinesis-data-firehose)
   - [5.1. Kinesis Data Streams vs Firehose](#51-kinesis-data-streams-vs-firehose)
 - [6. Kinesis Data Analytics (SQL application)](#6-kinesis-data-analytics-sql-application)
@@ -126,7 +127,11 @@
 
 # 4. Kinesis Operation
 
-## 4.1. Shard Splitting
+## 4.1. Shard
+
+- 1 Shard = Capture 1 MB / Distribution 2 MB
+
+## 4.2. Shard Splitting
 
 - Used to increase the Stream capacity (1 MB/s data in per shard)
 - Used to divide a "hot shard"
@@ -134,7 +139,7 @@
 - No automatic scaling (manually increase/decrease capacity)
 - Can't split into more than two shards in a single operation
 
-## 4.2. Merging Shards
+## 4.3. Merging Shards
 
 - Decrease the Stream capacity and save costs.
 - Can be used to group two shards with low traffic (cold shards).

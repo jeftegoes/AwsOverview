@@ -81,18 +81,18 @@
   - **HTTP Headers:** None - Whitelist.
   - **Cookies:** None - Whitelist - Include All-Except - All.
   - **Query Strings:** None - Whitelist - Include All-Except - All.
-- Control the TTL (0 seconds to 1 year), can be set by the origin using the `Cache-Control` header, **Expires** header...
+- Control the TTL (0 seconds to 1 year), can be set by the origin using the `Cache-Control` header, `Expires` header...
 - Create your own policy or use Predefined Managed Policies.
 - _All HTTP headers, cookies, and query strings that you include in the Cache Key are automatically included in origin requests._
 
 ### 3.2.1. Managing cache expiration
 
-- By default, each file automatically expires after 24 hours, but you can change the default behavior in two ways:
+- **By default, each file automatically expires after 24 hours**, but you can change the default behavior in two ways:
   - To change the cache duration for all files that match the same path pattern, you can change the CloudFront settings for:
     - **Minimum TTL**
     - **Maximum TTL**
     - **Default TTL**
-  - To change the cache duration for an individual file, you can configure your origin to add a `Cache-Control` header with the max-age or s-maxage directive, or an Expires header to the file.
+  - To change the cache duration for an individual file, you can configure your origin to add a `Cache-Control` header with the `max-age` or `s-maxage` directive, or an `Expires` header to the file.
 
 ### 3.2.2. HTTP Headers
 
