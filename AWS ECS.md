@@ -29,6 +29,7 @@
       - [3.11.2.4. Distinct Instance (distinctInstance)](#31124-distinct-instance-distinctinstance)
       - [3.11.2.5. memberOf](#31125-memberof)
 - [4. Amazon ECR](#4-amazon-ecr)
+  - [4.1. Amazon ECR public](#41-amazon-ecr-public)
 - [5. AWS Copilot](#5-aws-copilot)
 - [6. Amazon EKS Overview](#6-amazon-eks-overview)
   - [6.1. Node Types](#61-node-types)
@@ -237,6 +238,10 @@
 - Fully integrated with ECS, backed by Amazon S3.
 - Access is controlled through IAM (permission errors => policy).
 - Supports image vulnerability scanning, versioning, image tags, image lifecycle, ...
+
+## 4.1. Amazon ECR public
+
+- Developers building container-based applications can now discover and download Docker Official Images directly from Amazon Elastic Container Registry (Amazon ECR) Public.
 
 # 5. AWS Copilot
 

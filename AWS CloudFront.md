@@ -4,6 +4,7 @@
 
 - [1. Introduction](#1-introduction)
   - [1.1. Origins](#11-origins)
+  - [1.2. Restricting access to an Amazon S3 origin](#12-restricting-access-to-an-amazon-s3-origin)
 - [2. CloudFront vs S3 Cross Region Replication](#2-cloudfront-vs-s3-cross-region-replication)
 - [3. Caching](#3-caching)
   - [3.1. Cache Key](#31-cache-key)
@@ -48,6 +49,12 @@
   - EC2 instance.
   - S3 website (must first enable the bucket as a static S3 website).
   - Any HTTP backend you want.
+
+## 1.2. Restricting access to an Amazon S3 origin
+
+- All Amazon S3 buckets in all AWS Regions, including opt-in Regions launched after December 2022.
+- Amazon S3 server-side encryption with AWS KMS (SSE-KMS)
+- Dynamic requests (PUT and DELETE) to Amazon S3
 
 # 2. CloudFront vs S3 Cross Region Replication
 

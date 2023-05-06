@@ -44,6 +44,7 @@
 - [13. StackSets](#13-stacksets)
 - [14. Drift](#14-drift)
 - [15. Stack Policies](#15-stack-policies)
+- [16. CloudFormation helper scripts reference](#16-cloudformation-helper-scripts-reference)
 
 # 1. Introduction Infrastructure as Code
 
@@ -397,3 +398,14 @@
 - Protect resources from unintentional updates.
 - When you set a Stack Policy, all resources in the Stack are protected by default.
 - Specify an explicit ALLOW for the resources you want to be allowed to be updated.
+
+# 16. CloudFormation helper scripts reference
+
+- AWS CloudFormation provides the following Python helper scripts that you can use to install software and start services on an [Amazon EC2](AWS%20EC2.md) instance that you create as part of your stack:
+  - `cfn-init`: Use to retrieve and interpret resource metadata, install packages, create files, and start services.
+  - `cfn-signal`: Use to signal with a `CreationPolicy` or `WaitCondition`, so you can synchronize other resources in the stack when the prerequisite resource or application is ready.
+  - `cfn-get-metadata`: Use to retrieve metadata for a resource or path to a specific key.
+  - `cfn-hup`: Use to check for updates to metadata and execute custom hooks when changes are detected.
+- You call the scripts directly from your template.
+- The scripts work in conjunction with resource metadata that's defined in the same template.
+- The scripts run on the [Amazon EC2](AWS%20EC2.md) instance during the stack creation process.

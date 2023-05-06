@@ -298,7 +298,7 @@
   - The Operating System (OS).
   - Additional Software.
   - Scripts that Beanstalk runs on these platforms.
-- Use case: app language is incompatible with Beanstalk & doesn't use Docker.
+- Use case: **app language is incompatible with Beanstalk & doesn't use Docker.**
 - To create your own platform:
   - Define an AMI using `Platform.yaml` file.
   - Build that platform using the **Packer software (open source tool to create AMIs)**.
