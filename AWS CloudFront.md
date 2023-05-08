@@ -155,6 +155,8 @@
 - However, you can force an entire or partial cache refresh (thus bypassing the TTL) by performing a **CloudFront Invalidation**.
 - You can invalidate all files (\*) or a special path (/Images/\*).
 
+![Cache Invalidations](Images/AWSCloudFrontCacheInvalidations.png)
+
 ## 3.5. Cache Behaviors
 
 - Configure different settings for a given URL path pattern.

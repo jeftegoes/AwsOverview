@@ -20,6 +20,7 @@
   - [6.2. Supported Environments](#62-supported-environments)
   - [6.3. How it Works](#63-how-it-works)
   - [6.4. buildspec.yml](#64-buildspecyml)
+    - [6.4.1. Custom buildspec file name and location](#641-custom-buildspec-file-name-and-location)
   - [6.5. Local Build](#65-local-build)
   - [6.6. Inside VPC](#66-inside-vpc)
   - [6.7. CloudFormation Integration](#67-cloudformation-integration)
@@ -258,6 +259,14 @@
     - "POST_BUILD"
   - "UPLOAD_ARTIFACTS"
   - "FINALIZING"
+
+### 6.4.1. Custom buildspec file name and location
+
+- To override the default buildspec file name, location, or both, do one of the following:
+
+1. Run the AWS CLI `create-project` or `update-project` command, setting the buildspec value to the path to the alternate buildspec file relative to the value of the built-in environment variable `CODEBUILD_SRC_DIR`.
+2. Run the AWS CLI `start-build` command, setting the `buildspecOverride` value to the path to the alternate buildspec file relative to the value of the built-in environment variable `CODEBUILD_SRC_DIR`.
+3. In an AWS CloudFormation template, set the BuildSpec property of Source in a resource of type `AWS::CodeBuild::Project` to the path to the alternate buildspec file relative to the value of the built-in environment variable `CODEBUILD_SRC_DIR`.
 
 ## 6.5. Local Build
 

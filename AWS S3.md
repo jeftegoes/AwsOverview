@@ -346,7 +346,9 @@
 # 16. Baseline Performance
 
 - Amazon S3 automatically scales to high request rates, latency 100-200 ms.
-- Your application can achieve at least **3,500 PUT/COPY/POST/DELETE and 5,500 GET/HEAD requests per second per prefix in a bucket**.
+- Your application can achieve at least:
+  - **3,500 PUT/COPY/POST/DELETE.**
+  - **5,500 GET/HEAD requests per second per prefix in a bucket.**
 - There are no limits to the number of prefixes in a bucket.
 - Example (object path => prefix):
   - bucket/folder1/sub1/file => /folder1/sub1/

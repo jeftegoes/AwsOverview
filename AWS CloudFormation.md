@@ -1,4 +1,4 @@
-# AWS CloudTrail<!-- omit in toc -->
+# AWS CloudFormation<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -382,6 +382,8 @@
 - Administrator account to create StackSets.
 - Trusted accounts to create, update, delete stack instances from StackSets.
 - When you update a stack set, all associated stack instances are updated throughout all accounts and regions.
+
+![CloudFormation StackSet](Images/AWSCloudFormationStackSet.png)
 
 # 14. Drift
 

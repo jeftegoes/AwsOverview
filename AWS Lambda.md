@@ -63,7 +63,7 @@
   - [24.1. Lambda Container Images](#241-lambda-container-images)
 - [25. AWS Lambda Versions](#25-aws-lambda-versions)
 - [26. AWS Lambda Aliases](#26-aws-lambda-aliases)
-- [27. Lambda \& CodeDeploy](#27-lambda--codedeploy)
+- [27. Lambda and CodeDeploy](#27-lambda-and-codedeploy)
 - [28. Function URL](#28-function-url)
   - [28.1. Function URL Security](#281-function-url-security)
 - [29. Lambda and CodeGuru Profiling](#29-lambda-and-codeguru-profiling)
@@ -693,16 +693,16 @@ CMD ["app.lambdaHandler"]
 - Aliases have their own ARNs.
 - Aliases cannot reference aliases.
 
-# 27. Lambda & CodeDeploy
+# 27. Lambda and CodeDeploy
 
 - **CodeDeploy** can help you automate traffic shift for Lambda aliases.
 - Feature is integrated within the SAM framework.
 - **Linear:** grow traffic every N minutes until 100%
-  - Linear10PercentEvery3Minutes
-  - Linear10PercentEvery10Minutes
+  - `CodeDeployDefault.LambdaLinear10PercentEvery3Minutes` - Shifts 10 percent of traffic every three minutes until all traffic is shifted.
+  - `CodeDeployDefault.LambdaLinear10PercentEvery10Minutes` - Shifts 10 percent of traffic every 10 minutes until all traffic is shifted.
 - **Canary:** try X percent then 100%
-  - Canary10Percent5Minutes
-  - Canary10Percent30Minutes
+  - `CodeDeployDefault.LambdaCanary10Percent5Minutes` - Shifts 10 percent of traffic in the first increment. The remaining 90 percent is deployed five minutes later.
+  - `CodeDeployDefault.LambdaCanary10Percent30Minutes` - Shifts 10 percent of traffic in the first increment. The remaining 90 percent is deployed 30 minutes later.
 - **AllAtOnce:** immediate
   - Can create Pre & Post Traffic hooks to check the health of the Lambda function.
 

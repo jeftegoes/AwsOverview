@@ -12,6 +12,7 @@
   - [2.1. Why use a load balancer?](#21-why-use-a-load-balancer)
 - [3. Why use an Elastic Load Balancer (ELB)?](#3-why-use-an-elastic-load-balancer-elb)
 - [4. Health Checks](#4-health-checks)
+  - [Settings](#settings)
 - [5. Types of load balancer on AWS](#5-types-of-load-balancer-on-aws)
   - [5.1. Classic Load Balancers (v1)](#51-classic-load-balancers-v1)
   - [5.2. Application Load Balancer (v2)](#52-application-load-balancer-v2)
@@ -36,7 +37,7 @@
   - [10.4. Predictive Scaling](#104-predictive-scaling)
   - [10.5. Good metrics to scale on](#105-good-metrics-to-scale-on)
   - [10.6. Scaling Cooldowns](#106-scaling-cooldowns)
-  - [10.7. Auto Scaling - Instance Refresh](#107-auto-scaling--instance-refresh)
+  - [10.7. Auto Scaling - Instance Refresh](#107-auto-scaling---instance-refresh)
   - [10.8. Scaling Strategies (Resume)](#108-scaling-strategies-resume)
 
 # 1. Scalability and High Availability
@@ -125,6 +126,19 @@
 - They enable the load balancer to know if instances it forwards traffic to are available to reply to requests.
 - The health check is done on a port and a route (/health is common).
 - If the response is not 200 (OK), then the instance is unhealthy.
+
+## Settings
+
+| Setting                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| HealthCheckProtocol        | The protocol the load balancer uses when performing health checks on targets. The possible protocols are HTTP and HTTPS. The default is the HTTP protocol. These protocols use the HTTP GET method to send health check requests.                                                                                                                                                                                                                                                                                                                |
+| HealthCheckPort            | The port the load balancer uses when performing health checks on targets. The default is to use the port on which each target receives traffic from the load balancer.                                                                                                                                                                                                                                                                                                                                                                           |
+| HealthCheckPath            | The destination for health checks on the targets. If the protocol version is HTTP/1.1 or HTTP/2, specify a valid URI (/path?query). The default is /. If the protocol version is gRPC, specify the path of a custom health check method with the format /package.service/method. The default is /AWS.ALB/healthcheck.                                                                                                                                                                                                                            |
+| HealthCheckTimeoutSeconds  | The amount of time, in seconds, during which no response from a target means a failed health check. The range is 2–120 seconds. The default is 5 seconds if the target type is instance or ip and 30 seconds if the target type is lambda.                                                                                                                                                                                                                                                                                                       |
+| HealthCheckIntervalSeconds | The approximate amount of time, in seconds, between health checks of an individual target. The range is 5–300 seconds. The default is 30 seconds if the target type is instance or ip and 35 seconds if the target type is lambda.                                                                                                                                                                                                                                                                                                               |
+| HealthyThresholdCount      | The number of consecutive successful health checks required before considering an unhealthy target healthy. The range is 2–10. The default is 5.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| UnhealthyThresholdCount    | The number of consecutive failed health checks required before considering a target unhealthy. The range is 2–10. The default is 2.                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Matcher                    | The codes to use when checking for a successful response from a target. These are called Success codes in the console. If the protocol version is HTTP/1.1 or HTTP/2, the possible values are from 200 to 499. You can specify multiple values (for example, "200,202") or a range of values (for example, "200-299"). The default value is 200. If the protocol version is gRPC, the possible values are from 0 to 99. You can specify multiple values (for example, "0,1") or a range of values (for example, "0-5"). The default value is 12. |
 
 # 5. Types of load balancer on AWS
 
