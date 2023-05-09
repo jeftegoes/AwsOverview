@@ -7,7 +7,8 @@
 - [3. Continuous Delivery (CD)](#3-continuous-delivery-cd)
 - [4. AWS CodeCommit](#4-aws-codecommit)
   - [4.1. Security](#41-security)
-  - [4.2. CodeCommit vs. GitHub](#42-codecommit-vs-github)
+  - [4.2. Migrations](#42-migrations)
+  - [4.3. CodeCommit vs. GitHub](#43-codecommit-vs-github)
 - [5. AWS CodePipeline](#5-aws-codepipeline)
   - [5.1. Artifacts](#51-artifacts)
   - [5.2. Troubleshooting](#52-troubleshooting)
@@ -35,6 +36,10 @@
   - [7.7. Redeploy \& Rollbacks](#77-redeploy--rollbacks)
   - [7.8. Troubleshooting](#78-troubleshooting)
   - [7.9. CodeBuild support SDK and CLI](#79-codebuild-support-sdk-and-cli)
+  - [7.10. AppSpec by Compute Platform](#710-appspec-by-compute-platform)
+    - [7.10.1. ECS](#7101-ecs)
+    - [7.10.2. Lambda](#7102-lambda)
+    - [7.10.3. EC2](#7103-ec2)
 - [8. AWS CodeStar](#8-aws-codestar)
 - [9. AWS CodeArtifact](#9-aws-codeartifact)
   - [9.1. Resource Policy](#91-resource-policy)
@@ -121,7 +126,15 @@
   - Do NOT share your SSH keys or your AWS credentials.
   - Use an IAM Role in your AWS account and use AWS STS (AssumeRole API).
 
-## 4.2. CodeCommit vs. GitHub
+## 4.2. Migrations
+
+- You can migrate to CodeCommit from other version control systems, such:
+  - Perforce.
+  - Subversion.
+  - TFS.
+- **But you must first migrate to Git.**
+
+## 4.3. CodeCommit vs. GitHub
 
 |                                     | CodeCommit              | GitHub                                                            |
 | ----------------------------------- | ----------------------- | ----------------------------------------------------------------- |
@@ -409,6 +422,24 @@
 
 - To use one the AWS SDKs or tools to automate AWS CodeBuild.
 - If you want to use the AWS CLI to run CodeBuild.
+
+## 7.10. AppSpec by Compute Platform
+
+### 7.10.1. ECS
+
+- The name of the Amazon ECS service and the container name and port used to direct traffic to the new task set.
+- The functions to be used as validation tests.
+
+### 7.10.2. Lambda
+
+- The AWS Lambda function version to deploy.
+- The functions to be used as validation tests.
+
+### 7.10.3. EC2
+
+- Map the source files in your application revision to their destinations on the instance.
+- Specify custom permissions for deployed files.
+- Specify scripts to be run on each instance at various stages of the deployment process.
 
 # 8. AWS CodeStar
 

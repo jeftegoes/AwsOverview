@@ -6,7 +6,8 @@
 - [2. Events](#2-events)
 - [3. Insights](#3-insights)
 - [4. Events Retention](#4-events-retention)
-- [5. CloudTrail vs CloudWatch vs X-Ray](#5-cloudtrail-vs-cloudwatch-vs-x-ray)
+- [5. DynamoDB information in CloudTrail](#5-dynamodb-information-in-cloudtrail)
+- [6. CloudTrail vs CloudWatch vs X-Ray](#6-cloudtrail-vs-cloudwatch-vs-x-ray)
 
 # 1. Introduction
 
@@ -59,7 +60,12 @@
 - Events are stored for 90 days in CloudTrail.
 - To keep events beyond this period, log them to S3 and use Athena.
 
-# 5. CloudTrail vs CloudWatch vs X-Ray
+# 5. DynamoDB information in CloudTrail
+
+- When supported event activity occurs in DynamoDB, that activity is recorded in a CloudTrail event along with other AWS service events in Event history.
+- You can view, search, and download recent events in your AWS account.
+
+# 6. CloudTrail vs CloudWatch vs X-Ray
 
 - CloudTrail:
   - Audit API calls made by users / services / AWS console.

@@ -22,4 +22,4 @@
 
 # 3. Kinesys
 
-- 1 Shard = Capture or production 1 MB / Distribution or consume 2 MB
+- 1 Shard = Capture, production or ingestion 1 MB / Distribution or consume 2 MB

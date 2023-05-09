@@ -96,8 +96,11 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - By default, the "message visibility timeout" is 30 seconds.
 - That means the message has 30 seconds to be processed.
 - After the message visibility timeout is over, the message is "visible" in SQS.
+
+![SQS Visibility Timeout](Images/AWSSQSMessageVisibilityTimeout.png)
+
 - If a message is not processed within the visibility timeout, it will be processed **twice**.
-- A consumer could call the ChangeMessageVisibility API to get more time.
+- A consumer could call the `ChangeMessageVisibility` API to get more time.
 - If visibility timeout is high (hours), and consumer crashes, re-processing will take time.
 - If visibility timeout is too low (seconds), we may get duplicates.
 
@@ -131,6 +134,8 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - Can set a default at queue level.
 - Can override the default on send using the `DelaySeconds` parameter.
 
+![SQS Delay Queue](Images/AWSSQSDelayQueue.png)
+
 # 11. Long Polling
 
 - When a consumer requests messages from the queue, it can optionally "wait" for messages to arrive if there are none in the queue.
@@ -147,13 +152,13 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 
 # 13. Must know API
 
-- **CreateQueue (MessageRetentionPeriod), DeleteQueue.**
-- **PurgeQueue:** delete all the messages in queue.
-- **SendMessage (DelaySeconds), ReceiveMessage, DeleteMessage.**
-- **MaxNumberOfMessages:** default 1, max 10 (for ReceiveMessage API).
-- **ReceiveMessageWaitTimeSeconds:** Long Polling.
-- **ChangeMessageVisibility:** change the message timeout.
-- Batch APIs for **SendMessage, DeleteMessage, ChangeMessageVisibility** helps decrease your costs.
+- `CreateQueue` (MessageRetentionPeriod), `DeleteQueue`.
+- `PurgeQueue` - Delete all the messages in queue.
+- `SendMessage` (DelaySeconds), `ReceiveMessage`, `DeleteMessage`.
+- `MaxNumberOfMessages` - Default 1, max 10 (for ReceiveMessage API).
+- `ReceiveMessageWaitTimeSeconds` - Long Polling.
+- `ChangeMessageVisibility` - Change the message timeout.
+- Batch APIs for `SendMessage`, `DeleteMessage`, `ChangeMessageVisibility` helps decrease your costs.
 
 # 14. SQS FIFO
 

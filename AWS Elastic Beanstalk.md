@@ -16,7 +16,7 @@
 - [5. Elastic Beanstalk CLI](#5-elastic-beanstalk-cli)
 - [6. Elastic Beanstalk Deployment Process](#6-elastic-beanstalk-deployment-process)
 - [7. Lifecycle Policy](#7-lifecycle-policy)
-- [8. Elastic Beanstalk Extensions](#8-elastic-beanstalk-extensions)
+- [8. Elastic Beanstalk Extensions (Customizations)](#8-elastic-beanstalk-extensions-customizations)
 - [9. Under the Hood](#9-under-the-hood)
 - [10. Elastic Beanstalk Cloning](#10-elastic-beanstalk-cloning)
 - [11. Migration: Load Balancer](#11-migration-load-balancer)
@@ -188,14 +188,14 @@
 - Versions that are currently used won't be deleted.
 - Option not to delete the source bundle in S3 to prevent data loss.
 
-# 8. Elastic Beanstalk Extensions
+# 8. Elastic Beanstalk Extensions (Customizations)
 
 - A zip file containing our code must be deployed to Elastic Beanstalk.
 - All the parameters set in the UI can be configured with code using files.
 - Requirements:
-  - in the .ebextensions/ directory in the root of source code.
+  - In the .ebextensions / directory in the root of source code.
   - YAML / JSON format.
-  - .config extensions (example: logging.config).
+  - **.config** extensions (example: logging.config).
   - Able to modify some default settings using: option_settings.
   - Ability to add resources such as RDS, ElastiCache, DynamoDB, etc...
 - Resources managed by .ebextensions get deleted if the environment goes away.
