@@ -10,12 +10,13 @@
   - [4.2. Migrations](#42-migrations)
   - [4.3. CodeCommit vs. GitHub](#43-codecommit-vs-github)
 - [5. AWS CodePipeline](#5-aws-codepipeline)
-  - [5.1. Artifacts](#51-artifacts)
-  - [5.2. Troubleshooting](#52-troubleshooting)
-  - [5.3. Events vs.Webhooks vs. Polling](#53-events-vswebhooks-vs-polling)
-  - [5.4. Action Types Constraints for](#54-action-types-constraints-for)
-  - [5.5. Manual Approval Stage](#55-manual-approval-stage)
-  - [5.6. Pipeline executions](#56-pipeline-executions)
+  - [5.1. How pipeline executions are started](#51-how-pipeline-executions-are-started)
+  - [5.2. Artifacts](#52-artifacts)
+  - [5.3. Troubleshooting](#53-troubleshooting)
+  - [5.4. Events vs.Webhooks vs. Polling](#54-events-vswebhooks-vs-polling)
+  - [5.5. Action Types Constraints for](#55-action-types-constraints-for)
+  - [5.6. Manual Approval Stage](#56-manual-approval-stage)
+  - [5.7. Pipeline executions](#57-pipeline-executions)
 - [6. AWS CodeBuild](#6-aws-codebuild)
   - [6.1. Details](#61-details)
   - [6.2. Supported Environments](#62-supported-environments)
@@ -157,12 +158,17 @@
   - Example: Build -> Test -> Deploy -> Load Testing -> ...
   - Manual approval can be defined at any stage.
 
-## 5.1. Artifacts
+## 5.1. How pipeline executions are started
+
+- You can trigger an execution when you **change your source code** or **manually** start the pipeline.
+- You can also trigger an execution through an [Amazon CloudWatch](AWS%20CloudWatch.md) Events rule that you schedule.
+
+## 5.2. Artifacts
 
 - Each pipeline stage can create artifacts.
 - Artifacts stored in an S3 bucket and passed on to the next stage.
 
-## 5.2. Troubleshooting
+## 5.3. Troubleshooting
 
 - For CodePipeline Pipeline/Action/Stage Execution State Changes.
 - Use **CloudWatch Events (Amazon EventBridge)**.
@@ -173,13 +179,13 @@
 - If pipeline can't perform an action, make sure the "IAM Service Role" attached does have enough IAM permissions (IAM Policy).
 - AWS CloudTrail can be used to audit AWS API calls.
 
-## 5.3. Events vs.Webhooks vs. Polling
+## 5.4. Events vs.Webhooks vs. Polling
 
 - Events
 - Webhooks
 - Polling
 
-## 5.4. Action Types Constraints for
+## 5.5. Action Types Constraints for
 
 - **Owner**
   - **AWS:** For AWS services
@@ -193,11 +199,11 @@
   - **Invoke:** Lambda
   - **Deploy:** S3, CloudFormation, CodeDeploy, Elastic Beanstalk, OpsWorks, ECS, Service Catalog, ...
 
-## 5.5. Manual Approval Stage
+## 5.6. Manual Approval Stage
 
 - **Important: Owner is "AWS", Action is "Manual".**
 
-## 5.6. Pipeline executions
+## 5.7. Pipeline executions
 
 - Traverse pipeline stages in order.
 - Valid statuses for pipelines are:
