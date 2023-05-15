@@ -179,5 +179,5 @@
 
 # 16. Running the X-Ray daemon on Amazon ECS
 
-- In Amazon ECS, create a Docker image that runs the X-Ray daemon, upload it to a Docker image repository, and then deploy it to your Amazon ECS cluster.
+- In [Amazon ECS](AWS%20ECS.md), create a Docker image that runs the X-Ray daemon, upload it to a Docker image repository, and then deploy it to your [Amazon ECS](AWS%20ECS.md) cluster.
 - You can use port mappings and network mode settings in your task definition file to allow your application to communicate with the daemon container.

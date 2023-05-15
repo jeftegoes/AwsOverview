@@ -121,6 +121,16 @@
 
 ![AWS ElastiCache Solution Architecture - DB Cache](Images/AWSElastiCacheSolutionArchitectureDbCache.png)
 
+```
+  // Pseudo code
+
+  if (record_value == NULL)
+  {
+    record_value = db.query("SELECT Details FROM Records WHERE ID == {0}", record_key)
+    cache.set (record_key, record_value)
+  }
+```
+
 ## 6.2. Write Through - Add or Update cache when database is updated
 
 - Pros:
