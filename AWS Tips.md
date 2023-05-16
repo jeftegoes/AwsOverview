@@ -5,6 +5,7 @@
 - [1. S3](#1-s3)
 - [2. DynamoDB](#2-dynamodb)
 - [3. Kinesys](#3-kinesys)
+- [4. KMS](#4-kms)
 
 # 1. S3
 
@@ -23,3 +24,9 @@
 # 3. Kinesys
 
 - 1 Shard = Capture, production or ingestion 1 MB / Distribution or consume 2 MB
+
+# 4. KMS
+
+- Envelope Encryption
+  - KMS Encrypt API call has a limit of 4 KB
+  - If you want to encrypt >4 KB, we need to use Envelope Encryption

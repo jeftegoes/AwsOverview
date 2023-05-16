@@ -69,21 +69,22 @@
 
 - **KMS Keys is the new name of KMS Customer Master Key.**
 - **Symmetric (AES-256 keys)**
-  - Single encryption key that is used to Encrypt and Decrypt
-  - AWS services that are integrated with KMS use Symmetric CMKs
-  - You never get access to the KMS Key unencrypted (must call KMS API to use)
+  - Single encryption key that is used to Encrypt and Decrypt.
+  - AWS services that are integrated with KMS use Symmetric CMKs.
+  - You never get access to the KMS Key unencrypted (must call KMS API to use).
 - **Asymmetric (RSA & ECC key pairs)**
-  - Public (Encrypt) and Private Key (Decrypt) pair
-  - Used for Encrypt/Decrypt, or Sign/Verify operations
-  - The public key is downloadable, but you can't access the Private Key unencrypted
-  - Use case: encryption outside of AWS by users who can't call the KMS API
+  - Public (Encrypt) and Private Key (Decrypt) pair.
+  - Used for Encrypt/Decrypt, or Sign/Verify operations.
+  - The public key is downloadable, but you can't access the Private Key unencrypted.
+  - Use case: encryption outside of AWS by users who can't call the KMS API.
 
 ## 2.2. Types of KMS Keys
 
-- AWS Owned Keys (free): SSE-S3, SSE-SQS, SSE-DDB (default key).
-- AWS Managed Key: **free** (aws/service-name, example: aws/rds or aws/ebs).
-- Customer managed keys created in KMS.
-- Customer managed keys imported (must be symmetric key).
+- Types of KMS Keys:
+  - AWS Owned Keys (free): SSE-S3, SSE-SQS, SSE-DDB (default key).
+  - AWS Managed Key: **free** (aws/service-name, example: aws/rds or aws/ebs).
+  - Customer managed keys created in KMS.
+  - Customer managed keys imported (must be symmetric key).
 - **Automatic Key rotation**
   - AWS-managed KMS Key: automatic every 1 year.
   - Customer-managed KMS Key: (must be enabled) automatic every 1 year.
