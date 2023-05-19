@@ -73,27 +73,27 @@
   - [10.2. AWS Cloud Development Kit (CDK)](#102-aws-cloud-development-kit-cdk)
   - [10.3. Developer problems on AWS](#103-developer-problems-on-aws)
   - [10.4. AWS Elastic Beanstalk Overview](#104-aws-elastic-beanstalk-overview)
-  - [10.6. AWS CI/CD](#106-aws-cicd)
-  - [10.7. AWS Systems Manager (SSM)](#107-aws-systems-manager-ssm)
-    - [10.7.1. How Systems Manager works?](#1071-how-systems-manager-works)
-    - [10.7.2. Systems Manager - SSM Session Manager](#1072-systems-manager---ssm-session-manager)
-  - [10.8. AWS OpsWorks](#108-aws-opsworks)
-  - [10.9. AWS Amplify](#109-aws-amplify)
-  - [10.10. Deployment - Summary](#1010-deployment---summary)
+  - [10.5. AWS CI/CD](#105-aws-cicd)
+  - [10.6. AWS Systems Manager (SSM)](#106-aws-systems-manager-ssm)
+    - [10.6.1. How Systems Manager works?](#1061-how-systems-manager-works)
+    - [10.6.2. Systems Manager - SSM Session Manager](#1062-systems-manager---ssm-session-manager)
+  - [10.7. AWS OpsWorks](#107-aws-opsworks)
+  - [10.8. AWS Amplify](#108-aws-amplify)
+  - [10.9. Deployment - Summary](#109-deployment---summary)
 - [11. Route 53](#11-route-53)
 - [12. Global Infrastructure](#12-global-infrastructure)
   - [12.1. Why make a global application?](#121-why-make-a-global-application)
   - [12.2. Global AWS Infrastructure](#122-global-aws-infrastructure)
   - [12.3. Global Applications in AWS](#123-global-applications-in-aws)
   - [12.4. AWS CloudFront](#124-aws-cloudfront)
-  - [12.6. AWS Global Accelerator](#126-aws-global-accelerator)
-  - [12.7. AWS Global Accelerator vs CloudFront](#127-aws-global-accelerator-vs-cloudfront)
-  - [12.8. AWS Outposts](#128-aws-outposts)
-  - [12.9. AWS WaveLength](#129-aws-wavelength)
-  - [12.10. AWS Local Zones](#1210-aws-local-zones)
-  - [12.11. Global Applications Architecture](#1211-global-applications-architecture)
+  - [12.5. AWS Global Accelerator](#125-aws-global-accelerator)
+  - [12.6. AWS Global Accelerator vs CloudFront](#126-aws-global-accelerator-vs-cloudfront)
+  - [12.7. AWS Outposts](#127-aws-outposts)
+  - [12.8. AWS WaveLength](#128-aws-wavelength)
+  - [12.9. AWS Local Zones](#129-aws-local-zones)
+  - [12.10. Global Applications Architecture](#1210-global-applications-architecture)
+  - [12.11. Global Applications in AWS - Summary](#1211-global-applications-in-aws---summary)
   - [12.12. Global Applications in AWS - Summary](#1212-global-applications-in-aws---summary)
-  - [12.13. Global Applications in AWS - Summary](#1213-global-applications-in-aws---summary)
 - [13. Cloud Integration](#13-cloud-integration)
   - [13.1. Amazon SQS - Standard Queue](#131-amazon-sqs---standard-queue)
   - [13.2. Amazon Kinesis](#132-amazon-kinesis)
@@ -126,20 +126,19 @@
   - [16.5. Penetration Testing on AWS Cloud](#165-penetration-testing-on-aws-cloud)
   - [16.6. Data at rest vs. Data in transit](#166-data-at-rest-vs-data-in-transit)
   - [16.7. AWS KMS (Key Management Service)](#167-aws-kms-key-management-service)
-  - [16.9. Types of CMK (Customer Master Keys)](#169-types-of-cmk-customer-master-keys)
-  - [16.10. AWS Certificate Manager (ACM)](#1610-aws-certificate-manager-acm)
-  - [16.11. AWS Secrets Manager](#1611-aws-secrets-manager)
-  - [16.12. AWS Artifact (not really a service)](#1612-aws-artifact-not-really-a-service)
-  - [16.13. Amazon GuardDuty](#1613-amazon-guardduty)
-  - [16.14. Amazon Inspector](#1614-amazon-inspector)
-    - [16.14.1. What does AWS Inspector evaluate?](#16141-what-does-aws-inspector-evaluate)
-  - [16.15. AWS Config](#1615-aws-config)
-  - [16.16. Amazon Macie](#1616-amazon-macie)
-  - [16.17. AWS Security Hub](#1617-aws-security-hub)
-  - [16.18. Amazon Detective](#1618-amazon-detective)
-  - [16.19. AWS Abuse](#1619-aws-abuse)
-  - [16.20. Root user privileges](#1620-root-user-privileges)
-  - [16.21. Summary: Security \& Compliance](#1621-summary-security--compliance)
+  - [16.8. AWS Certificate Manager (ACM)](#168-aws-certificate-manager-acm)
+  - [16.9. AWS Secrets Manager](#169-aws-secrets-manager)
+  - [16.10. AWS Artifact (not really a service)](#1610-aws-artifact-not-really-a-service)
+  - [16.11. Amazon GuardDuty](#1611-amazon-guardduty)
+  - [16.12. Amazon Inspector](#1612-amazon-inspector)
+    - [16.12.1. What does AWS Inspector evaluate?](#16121-what-does-aws-inspector-evaluate)
+  - [16.13. AWS Config](#1613-aws-config)
+  - [16.14. Amazon Macie](#1614-amazon-macie)
+  - [16.15. AWS Security Hub](#1615-aws-security-hub)
+  - [16.16. Amazon Detective](#1616-amazon-detective)
+  - [16.17. AWS Abuse](#1617-aws-abuse)
+  - [16.18. Root user privileges](#1618-root-user-privileges)
+  - [16.19. Summary: Security \& Compliance](#1619-summary-security--compliance)
 - [17. Machine Learning](#17-machine-learning)
   - [17.1. Amazon Rekognition](#171-amazon-rekognition)
   - [17.2. Amazon Transcribe](#172-amazon-transcribe)
@@ -880,11 +879,11 @@
 - **AWS Elastic Beanstalk makes it even easier for developers to quickly deploy and manage applications in the AWS Cloud.**
 - [AWS Elastic Beanstalk](AWS%20Elastic%20Beanstalk.md)
 
-### 10.6. AWS CI/CD
+### 10.5. AWS CI/CD
 
 [AWS CI/CD](AWS%20CICD.md)
 
-### 10.7. AWS Systems Manager (SSM)
+### 10.6. AWS Systems Manager (SSM)
 
 - **AWS Systems Manager gives you visibility and control of your infrastructure on AWS. It is used for patching systems at scale.**
 - Helps you manage your EC2 and On-Premises systems at scale.
@@ -897,14 +896,14 @@
   - Store parameter configuration with the SSM Parameter Store.
 - Works for both Windows and Linux OS.
 
-#### 10.7.1. How Systems Manager works?
+#### 10.6.1. How Systems Manager works?
 
 - We need to install the SSM agent onto the systems we control.
 - Installed by default on Amazon Linux AMI & some Ubuntu AMI.
 - If an instance can't be controlled with SSM, it's probably an issue with the SSM agent!
 - Thanks to the SSM agent, we can run commands, patch & configure our servers.
 
-#### 10.7.2. Systems Manager - SSM Session Manager
+#### 10.6.2. Systems Manager - SSM Session Manager
 
 - Allows you to start a secure shell on your EC2 and on-premises servers.
 - No SSH access, bastion hosts, or SSH keys needed.
@@ -912,7 +911,7 @@
 - Supports Linux, macOS, and Windows.
 - Send session log data to S3 or CloudWatch Logs.
 
-### 10.8. AWS OpsWorks
+### 10.7. AWS OpsWorks
 
 - Chef & Puppet help you perform server configuration automatically, or repetitive actions.
 - They work great with EC2 & On-Premises VM.
@@ -922,11 +921,11 @@
   - EC2 Instances, Databases, Load Balancers, EBS volumes...
 - Tip: Chef or Puppet needed => AWS OpsWorks.
 
-### 10.9. AWS Amplify
+### 10.8. AWS Amplify
 
 - [AWS Amplify](AWS%20Amplify.md)
 
-### 10.10. Deployment - Summary
+### 10.9. Deployment - Summary
 
 - CloudFormation: (AWS only):
   - Infrastructure as Code, works with almost all of AWS resources.
@@ -989,14 +988,14 @@
 
 [AWS CloudFront](AWS%20CloudFront.md)
 
-### 12.6. AWS Global Accelerator
+### 12.5. AWS Global Accelerator
 
 - Improve global application availability and performance using the AWS global network.
 - Leverage the AWS internal network to optimize the route to your application (60% improvement).
 - 2 Anycast IP are created for your application and traffic is sent through Edge Locations.
 - The Edge locations send the traffic to your application.
 
-### 12.7. AWS Global Accelerator vs CloudFront
+### 12.6. AWS Global Accelerator vs CloudFront
 
 - They both use the AWS global network and its edge locations around the world.
 - Both services integrate with AWS Shield for DDoS protection.
@@ -1009,7 +1008,7 @@
   - Good for HTTP use cases that require static IP addresses.
   - Good for HTTP use cases that required deterministic, fast regional failover.
 
-### 12.8. AWS Outposts
+### 12.7. AWS Outposts
 
 - Hybrid Cloud: businesses that keep an on-premises infrastructure alongside a cloud infrastructure.
 - Therefore, two ways of dealing with IT systems:
@@ -1033,7 +1032,7 @@
   - Amazon RDS
   - Amazon EMR
 
-### 12.9. AWS WaveLength
+### 12.8. AWS WaveLength
 
 - **AWS Wavelength is an AWS Infrastructure offering optimized for mobile edge computing applications. Wavelength combines the high bandwidth and ultra-low latency of 5G networks with AWS compute and storage services to enable developers to innovate and build a whole new class of applications.**
 - WaveLength Zones are infrastructure deployments embedded within the telecommunications providers datacenters at the edge of the 5G networks.
@@ -1045,7 +1044,7 @@
 - No additional charges or service agreements.
 - Use cases: Smart Cities, ML-assisted diagnostics, Connected Vehicles, Interactive Live Video Streams, AR/VR, Real-time Gaming, ...
 
-### 12.10. AWS Local Zones
+### 12.9. AWS Local Zones
 
 - Places AWS compute, storage, database, and other selected AWS services closer to end users to run latency-sensitive applications
 - Extend your VPC to more locations - "Extension of an AWS Region"
@@ -1054,14 +1053,14 @@
   - AWS Region: N. Virginia (us-east-1)
   - AWS Local Zones: Boston, Chicago, Dallas, Houston, Miami, ...
 
-### 12.11. Global Applications Architecture
+### 12.10. Global Applications Architecture
 
 - Single Region, Single AZ.
 - Single Region, Multi AZ.
 - Multi Region, Active-Passive.
 - Multi Region, Active-Active.
 
-### 12.12. Global Applications in AWS - Summary
+### 12.11. Global Applications in AWS - Summary
 
 - Global DNS: Route 53
   - Great to route users to the closest deployment with least latency.
@@ -1074,7 +1073,7 @@
 - AWS Global Accelerator
   - Improve global application availability and performance using the AWS global network.
 
-### 12.13. Global Applications in AWS - Summary
+### 12.12. Global Applications in AWS - Summary
 
 - AWS Outposts
   - Deploy Outposts Racks in your own Data Centers to extend AWS services
@@ -1372,28 +1371,12 @@
 
 - [AWS KMS](AWS%20KMS.md)
 
-### 16.9. Types of CMK (Customer Master Keys)
-
-- **Customer Managed CMK:**
-  - Create, manage and used by the customer, can enable or disable.
-  - Possibility of rotation policy (new key generated every year, old key preserved).
-  - Possibility to bring-your-own-key.
-- **AWS managed CMK:**
-  - Created, managed and used on the customer's behalf by AWS.
-  - Used by AWS services (aws/s3, aws/ebs, aws/redshift).
-- **AWS owned CMK:**
-  - Collection of CMKs that an AWS service owns and manages to use in multiple accounts.
-  - AWS can use those to protect resources in your account (but you can't view the keys).
-- **CloudHSM Keys (custom keystore):**
-  - Keys generated from your own CloudHSM hardware device.
-  - Cryptographic operations are performed within the CloudHSM cluster.
-
-### 16.10. AWS Certificate Manager (ACM)
+### 16.8. AWS Certificate Manager (ACM)
 
 - **AWS Certificate Manager is a service that lets you easily provision, manage, and deploy public and private Secure Sockets Layer/Transport Layer Security (SSL/TLS) certificates for use with AWS services and your internal connected resources.**
   [AWS ACM](AWS%20ACM.md)
 
-### 16.11. AWS Secrets Manager
+### 16.9. AWS Secrets Manager
 
 - Newer service, meant for storing secrets.
 - Capability to force **rotation of secrets** every X days.
@@ -1402,7 +1385,7 @@
 - Secrets are encrypted using KMS.
 - Mostly meant for RDS integration.
 
-### 16.12. AWS Artifact (not really a service)
+### 16.10. AWS Artifact (not really a service)
 
 - **AWS Artifact is your go-to, central resource for compliance-related information that matters to you.**
 - Portal that provides customers with on-demand access to AWS compliance documentation and AWS agreements.
@@ -1410,7 +1393,7 @@
 - **Artifact Agreements** - Allows you to review, accept, and track the status of AWS agreements such as the Business Associate Addendum (BAA) or the Health Insurance Portability and Accountability Act (HIPAA) for an individual account or in your organization.
 - Can be used to support internal audit or compliance.
 
-### 16.13. Amazon GuardDuty
+### 16.11. Amazon GuardDuty
 
 - **Amazon GuardDuty is a threat detection service that continuously monitors for malicious activity and unauthorized behavior to protect your AWS accounts and workloads.**
 - Intelligent Threat discovery to Protect AWS Account.
@@ -1427,7 +1410,7 @@
 - CloudWatch Events rules can target AWS Lambda or SNS.
 - Can protect against CryptoCurrency attacks (has a dedicated "finding" for it).
 
-### 16.14. Amazon Inspector
+### 16.12. Amazon Inspector
 
 - **Amazon Inspector is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS.**
 - **It helps you test the network accessibility of your Amazon EC2 instances and the security state of your applications running on the instances.**
@@ -1441,7 +1424,7 @@
 - Reporting & integration with AWS Security Hub.
 - Send findings to Amazon Event Bridge.
 
-#### 16.14.1. What does AWS Inspector evaluate?
+#### 16.12.1. What does AWS Inspector evaluate?
 
 - **Only for EC2 instances and container infrastructure**.
 - Continuous scanning of the infrastructure, only when needed.
@@ -1449,7 +1432,7 @@
 - Network reachability (EC2).
 - A risk score is associated with all vulnerabilities for prioritization.
 
-### 16.15. AWS Config
+### 16.13. AWS Config
 
 - **AWS Config is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources.**
 - Helps with **auditing and recording compliance of your AWS resources**.
@@ -1463,12 +1446,12 @@
 - AWS Config is a per-region service.
 - Can be aggregated across regions and accounts.
 
-### 16.16. Amazon Macie
+### 16.14. Amazon Macie
 
 - Amazon Macie is a fully managed data security and data privacy service that uses **machine learning and pattern matching to discover and protect your sensitive data in AWS**.
 - Macie helps identify and alert you to **sensitive data, such as personally identifiable information (PII)**.
 
-### 16.17. AWS Security Hub
+### 16.15. AWS Security Hub
 
 - **AWS Security Hub provides you with a comprehensive view of your security state within AWS and your compliance with security standards and best practices.**
 - Central security tool to manage security across several AWS accounts and automate security checks.
@@ -1483,7 +1466,7 @@
   - AWS Partner Network Solutions.
 - Must first enable the AWS Config Service.
 
-### 16.18. Amazon Detective
+### 16.16. Amazon Detective
 
 - Amazon Detective **analyzes, investigates, and quickly identifies the root cause of security issues or suspicious activities (using ML and graphs)**.
 - GuardDuty, Macie, and Security Hub are used to identify potential security issues, or findings.
@@ -1491,7 +1474,7 @@
 - Automatically collects and processes events from VPC Flow Logs, CloudTrail, GuardDuty and create a unified view.
 - Produces visualizations with details and context to get to the root cause.
 
-### 16.19. AWS Abuse
+### 16.17. AWS Abuse
 
 - **Report suspected AWS resources used for abusive or illegal purposes**.
 - Abusive & prohibited behaviors are:
@@ -1503,7 +1486,7 @@
   - **Distributing malware** - AWS resources distributing softwares to harm computers or machines.
 - Contact the AWS Abuse team: AWS abuse form, or abuse@amazonaws.com.
 
-### 16.20. Root user privileges
+### 16.18. Root user privileges
 
 - Root user = Account Owner (created when the account is created).
 - Has complete access to all AWS services and resources.
@@ -1520,7 +1503,7 @@
   - Edit or delete an Amazon S3 bucket policy that includes an invalid VPC ID or VPC endpoint ID.
   - Sign up for GovCloud.
 
-### 16.21. Summary: Security & Compliance
+### 16.19. Summary: Security & Compliance
 
 - Shared Responsibility on AWS
 - Shield: Automatic DDoS Protection + 24/7 support for advanced

@@ -130,7 +130,7 @@
 - **Write Capacity Units (WCU)** - throughput for writes.
 - Option to setup auto-scaling of throughput to meet demand.
 - Throughput can be exceeded temporarily using **"Burst Capacity"**.
-- If Burst Capacity has been consumed, you'll get a **"ProvisionedThroughputExceededException"**.
+- If Burst Capacity has been consumed, you'll get a `ProvisionedThroughputExceededException`.
 - It's then advised to do an **exponential backoff** retry.
 
 ### 6.1.1. Write Capacity Units (WCU)
@@ -180,7 +180,7 @@
 
 ### 6.1.5. Throttling
 
-- If we exceed provisioned RCUs or WCUs, we get **"ProvisionedThroughputExceededException"**.
+- If we exceed provisioned RCUs or WCUs, we get `ProvisionedThroughputExceededException`.
 - Reasons:
   - **Hot Keys** - one partition key is being read too many times (e.g., popular item).
   - **Hot Partitions.**
@@ -367,7 +367,7 @@
 # 12. Accelerator - DAX
 
 - **DynamoDB that delivers up to 10x performance improvement.**
-- **It caches the most frequently used data, thus offloading the heavy reads on hot keys of your DynamoDB table, hence preventing the "ProvisionedThroughputExceededException" exception.**
+- **It caches the most frequently used data, thus offloading the heavy reads on hot keys of your DynamoDB table, hence preventing the `ProvisionedThroughputExceededException` exception.**
 - Fully-managed, highly available, seamless in-memory cache for DynamoDB.
 - Microseconds latency for cached reads and queries.
 - Doesn't require application logic modification (compatible with existing DynamoDB APIs).

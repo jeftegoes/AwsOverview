@@ -12,9 +12,9 @@
   - [2.3. Key Policies](#23-key-policies)
   - [2.4. Copying Snapshots across accounts](#24-copying-snapshots-across-accounts)
   - [2.5. Envelope Encryption](#25-envelope-encryption)
-  - [2.6. Encryption SDK](#26-encryption-sdk)
-    - [2.6.1. diagram](#261-diagram)
-  - [2.7. API Summary](#27-api-summary)
+    - [2.5.1. Encryption SDK](#251-encryption-sdk)
+    - [2.5.2. Diagram](#252-diagram)
+  - [2.6. API Summary](#26-api-summary)
 - [3. Request Quotas](#3-request-quotas)
 - [4. S3 Bucket Key for SSE-KMS encryption](#4-s3-bucket-key-for-sse-kms-encryption)
 - [5. CloudHSM](#5-cloudhsm)
@@ -67,7 +67,7 @@
 
 ## 2.1. KMS Keys Types
 
-- **KMS Keys is the new name of KMS Customer Master Key.**
+- **KMS Keys is the new name of KMS Customer Master Key (CMK).**
 - **Symmetric (AES-256 keys)**
   - Single encryption key that is used to Encrypt and Decrypt.
   - AWS services that are integrated with KMS use Symmetric CMKs.
@@ -118,26 +118,26 @@
 
 ## 2.5. Envelope Encryption
 
-- KMS Encrypt API call has a limit of 4 KB
-- If you want to encrypt >4 KB, we need to use Envelope Encryption
-- The main API that will help us is the GenerateDataKey API
+- KMS Encrypt API call has a limit of 4 KB.
+- If you want to encrypt >4 KB, we need to use Envelope Encryption.
+- The main API that will help us is the GenerateDataKey API.
 - **Anything over 4 KB of data that needs to be encrypted must use the Envelope Encryption == GenerateDataKey API.**
 
-## 2.6. Encryption SDK
+### 2.5.1. Encryption SDK
 
 - The AWS Encryption SDK implemented Envelope Encryption for us.
 - The Encryption SDK also exists as a CLI tool we can install.
 - Implementations for Java, Python, C, JavaScript.
 - Feature - Data Key Caching:
-  - re-use data keys instead of creating new ones for each encryption.
+  - Re-use data keys instead of creating new ones for each encryption.
   - Helps with reducing the number of calls to KMS with a security trade-off.
-- Use LocalCryptoMaterialsCache (max age, max bytes, max number of messages).
+  - Use LocalCryptoMaterialsCache (max age, max bytes, max number of messages).
 
-### 2.6.1. diagram
+### 2.5.2. Diagram
 
 - The SDK encrypts the data encryption key and stores it (encrypted) as part of the returned ciphertext.
 
-## 2.7. API Summary
+## 2.6. API Summary
 
 - **Encrypt:** encrypt up to 4 KB of data through KMS.
 - **GenerateDataKey**

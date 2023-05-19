@@ -8,7 +8,8 @@
 - [4. Policy Templates](#4-policy-templates)
 - [5. SAM and CodeDeploy](#5-sam-and-codedeploy)
 - [6. Local Capabilities](#6-local-capabilities)
-- [7. Serverless Application Repository (SAR)](#7-serverless-application-repository-sar)
+- [7. Summary](#7-summary)
+- [8. Serverless Application Repository (SAR)](#8-serverless-application-repository-sar)
 
 # 1. Introduction
 
@@ -29,9 +30,15 @@
   - AWS::Serverless::Function
   - AWS::Serverless::Api
   - AWS::Serverless::SimpleTable
-- Package & Deploy:
-  - aws cloudformation package / sam package
-  - aws cloudformation deploy / sam deploy
+- Commands to package and deploy respectively:
+  - CloudFormation
+    - `aws cloudformation package`
+    - `aws cloudformation deploy`
+  - AWS SAM
+    - `sam package`
+    - `sam deploy`
+
+![SAM Deployment](Images/AWSSAMDeployment.png)
 
 # 3. CLI Debugging
 
@@ -77,7 +84,18 @@
   - Generate sample payloads for event sources
   - S3, API Gateway, SNS, Kinesis, DynamoDB...
 
-# 7. Serverless Application Repository (SAR)
+# 7. Summary
+
+- SAM is built on CloudFormation.
+- SAM requires the Transform and Resources sections.
+- Commands to know:
+  - `sam build`: fetch dependencies and create local deployment artifacts
+  - `sam package`: package and upload to Amazon S3, generate CF template
+  - `sam deploy`: deploy to CloudFormation
+- SAM Policy templates for easy IAM policy definition
+- SAM is integrated with CodeDeploy to do deploy to Lambda aliases
+
+# 8. Serverless Application Repository (SAR)
 
 - **Allows you to share your Serverless applications packages using SAM with other AWS accounts**
 - Managed repository for serverless applications.
