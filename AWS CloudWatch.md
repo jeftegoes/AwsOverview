@@ -18,8 +18,9 @@
 - [13. CloudWatch Alarms](#13-cloudwatch-alarms)
   - [13.1. Alarm Targets](#131-alarm-targets)
   - [13.2. Composite Alarms](#132-composite-alarms)
-  - [13.3. EC2 Instance Recovery](#133-ec2-instance-recovery)
-  - [13.4. CloudWatch Alarm: good to know](#134-cloudwatch-alarm-good-to-know)
+  - [13.3. Evaluating an alarm](#133-evaluating-an-alarm)
+  - [13.4. EC2 Instance Recovery](#134-ec2-instance-recovery)
+  - [13.5. CloudWatch Alarm: good to know](#135-cloudwatch-alarm-good-to-know)
 - [14. Synthetics Canary](#14-synthetics-canary)
   - [14.1. Canary Blueprints](#141-canary-blueprints)
 - [15. CloudWatch Events (Will be replaced with EventBridge)](#15-cloudwatch-events-will-be-replaced-with-eventbridge)
@@ -83,13 +84,13 @@
 
 - Possibility to define and send your own custom metrics to CloudWatch.
 - Example: memory (RAM) usage, disk space, number of logged in users...
-- Use API call PutMetricData.
+- Use API call `PutMetricData`.
 - Ability to use dimensions (attributes) to segment metrics.
   - Instance.id
   - Environment.name
 - Metric resolution (StorageResolution API parameter - two possible value):
   - Standard: 1 minute (60 seconds).
-  - High Resolution: 1/5/10/30 second(s) - Higher cost.
+  - High Resolution: 1/5/10/30 second(s) - **Higher cost**.
 - Important: Accepts metric data points two weeks in the past and two hours in the future (make sure to configure your EC2 instance time correctly).
 
 # 6. Logs
@@ -191,14 +192,23 @@
 - AND and OR conditions.
 - Helpful to reduce "alarm noise" by creating complex composite alarms.
 
-## 13.3. EC2 Instance Recovery
+## 13.3. Evaluating an alarm
+
+- When you create an alarm, you specify three settings to enable CloudWatch to evaluate when to change the alarm state:
+  - **Period:** Is the length of time to evaluate the metric or expression to create each individual data point for an alarm. It is expressed in seconds.
+  - **Evaluation Periods:** Is the number of the most recent periods, or data points, to evaluate when determining alarm state.
+  - **Datapoints to Alarm:** Is the number of data points within the Evaluation Periods that must be breaching to cause the alarm to go to the ALARM state. The breaching data points don't have to be consecutive, but they must all be within the last number of data points equal to **Evaluation Period**.
+
+![Evaluating an alarm](Images/CloudWatchEvaluatingAlarm.png)
+
+## 13.4. EC2 Instance Recovery
 
 - Status Check:
   - Instance status = check the EC2 VM.
   - System status = check the underlying hardware.
 - Recovery: Same Private, Public, Elastic IP, metadata, placement group
 
-## 13.4. CloudWatch Alarm: good to know
+## 13.5. CloudWatch Alarm: good to know
 
 - Alarms can be created based on CloudWatch Logs Metrics Filters.
 - To test alarms and notifications, set the alarm state to Alarm using CLI: `aws cloudwatch set-alarm-state --alarm-name "myalarm" --state-value ALARM --state-reason "testing purposes"`

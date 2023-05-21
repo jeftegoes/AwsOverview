@@ -8,7 +8,7 @@
 - [4. Error Handling in Step Functions](#4-error-handling-in-step-functions)
   - [4.1. Retry (Task or Parallel State)](#41-retry-task-or-parallel-state)
   - [4.2. Catch (Task or Parallel State)](#42-catch-task-or-parallel-state)
-  - [4.3. ResultPath](#43-resultpath)
+  - [4.3. Amazon States Language](#43-amazon-states-language)
 - [5. Wait for Task Token](#5-wait-for-task-token)
 - [6. Activity Tasks](#6-activity-tasks)
 
@@ -76,9 +76,23 @@
 - Next: State to send to
 - ResultPath - A path that determines what input is sent to the state specified in the Next field.
 
-## 4.3. ResultPath
+## 4.3. Amazon States Language
 
-- Include the error in the input
+- In the Amazon States Language, these fields filter and control the flow of JSON from state to state:
+  - `InputPath`
+    - Selects **WHAT** portion of the entire input payload to be used as a task's input.
+  - `Parameters`
+    - Specifies **HOW** the input should look like before invoking the task.
+  - `ResultSelector`
+    - Specifies HOW the input should look like before invoking the task.
+  - `ResultPath`
+    - Determines **WHERE** to put a task's output.
+    - Use the `ResultPath` to determine whether the output of a state is a copy of its input, the result it produces, or a combination of both.
+  - `OutputPath`
+    - Determines **WHAT** to send to the next state.
+    - With `OutputPath`, you can filter out unwanted information, and pass only the portion of JSON data that you care about.
+
+![Task states](Images/AWSStepFunctionsTaskStates.png)
 
 # 5. Wait for Task Token
 

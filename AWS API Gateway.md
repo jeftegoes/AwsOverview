@@ -23,11 +23,11 @@
   - [10.1. Request Validation](#101-request-validation)
   - [10.2. RequestValidation - OpenAPI](#102-requestvalidation---openapi)
 - [11. Caching API responses](#11-caching-api-responses)
-  - [11.1. Cache Invalidation](#111-cache-invalidation)
+  - [11.1. Cache invalidations](#111-cache-invalidations)
 - [12. Usage Plans \& API Keys](#12-usage-plans--api-keys)
   - [12.1. Correct Order for API keys](#121-correct-order-for-api-keys)
 - [13. Logging \& Tracing](#13-logging--tracing)
-  - [13.1. CloudWatch Metrics](#131-cloudwatch-metrics)
+  - [13.1. CloudWatch metrics](#131-cloudwatch-metrics)
 - [14. Throttling](#14-throttling)
 - [15. API Gateway - Errors](#15-api-gateway---errors)
 - [16. CORS](#16-cors)
@@ -146,8 +146,6 @@
 
 # 8. Integration Types (Methods)
 
-- Integration Type...
-
 ## 8.1. MOCK
 
 - API Gateway returns a response without sending the request to the backend.
@@ -156,6 +154,8 @@
 
 - You must configure both the integration request and integration response.
 - Setup data mapping using mapping templates for the request & response.
+- `HTTP` is commonly used in AWS Services like EC2.
+- **`AWS` is only used for Lambda custom integration**.
 
 ## 8.3. AWS_PROXY (Lambda Proxy)
 
@@ -226,11 +226,13 @@
 - Cache capacity between 0.5GB to 237GB.
 - Cache is expensive, makes sense in production, may not make sense in dev / test.
 
-## 11.1. Cache Invalidation
+## 11.1. Cache invalidations
 
 - Able to flush the entire cache (invalidate it) immediately.
-- Clients can invalidate the cache with header: Cache-Control: max-age=0 (with proper IAM authorization).
-- If you don't impose an InvalidateCache policy (or choose the Require authorization check box in the console), any client can invalidate the API cache.
+- Clients can invalidate the cache with header: `Cache-Control: max-age=0` (with proper IAM authorization).
+- If you don't impose an InvalidateCache policy (or choose the Require Authorization check box in the console), any client can invalidate the API cache.
+
+![API Gateway cache parameter](Images/APIGatewayCacheParameter.png)
 
 # 12. Usage Plans & API Keys
 
@@ -268,24 +270,25 @@
   - Enable tracing to get extra information about requests in API Gateway.
   - X-Ray API Gateway + AWS Lambda gives you the full picture.
 
-## 13.1. CloudWatch Metrics
+## 13.1. CloudWatch metrics
 
 - Metrics are by stage, Possibility to enable detailed metrics.
-- **CacheHitCount & CacheMissCount:** efficiency of the cache.
-- **Count:** The total number API requests in a given period.
-- **IntegrationLatency:** The time between when API Gateway relays a request to the backend and when it receives a response from the backend.
-- **Latency:** The time between when API Gateway receives a request from a client and when it returns a response to the client. The latency includes the integration latency and other API Gateway overhead.
-- **4XXError** (client-side) & **5XXError** (server-side).
+- `CacheHitCount` and `CacheMissCount` - Efficiency of the cache.
+- `Count` - The total number API requests in a given period.
+- `IntegrationLatency` - The time between when API Gateway relays a request to the backend and when it receives a response from the backend.
+- `Latency` - The time between when API Gateway receives a request from a client and when it returns a response to the client.
+  - The latency includes the integration latency and other API Gateway overhead.
+- **4XX Error** (client-side) & **5XX Error** (server-side).
 
 # 14. Throttling
 
-- Account Limit:
+- **Account Limit**
   - API Gateway throttles requests at10000 rps across all API.
   - Soft limit that can be increased upon request.
 - In case of throttling => **429 Too Many Requests** (retriable error).
-- Can set Stage limit & Method limits to improve performance.
-- Or you can define Usage Plans to throttle per customer.
-- Just like Lambda Concurrency, one API that is overloaded, if not limited, can cause the other APIs to be throttled.
+- Can set **Stage limit & Method limits** to improve performance.
+- Or you can define **Usage Plans** to throttle per customer.
+- **Just like Lambda Concurrency, one API that is overloaded, if not limited, can cause the other APIs to be throttled.**
 
 # 15. API Gateway - Errors
 

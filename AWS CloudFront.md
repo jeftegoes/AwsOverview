@@ -13,7 +13,7 @@
     - [3.2.2. HTTP Headers](#322-http-headers)
     - [3.2.3. Cache Policy Query Strings](#323-cache-policy-query-strings)
   - [3.3. Origin Request Policy](#33-origin-request-policy)
-  - [3.4. Cache Invalidations](#34-cache-invalidations)
+  - [3.4. Cache invalidations](#34-cache-invalidations)
   - [3.5. Cache Behaviors](#35-cache-behaviors)
 - [4. Geo Restriction](#4-geo-restriction)
 - [5. Signed URL / Signed Cookies](#5-signed-url--signed-cookies)
@@ -149,7 +149,7 @@
 - Ability to add CloudFront HTTP headers and Custom Headers to an origin request that were not included in the viewer request.
 - Create your own policy or use Predefined Managed Policies.
 
-## 3.4. Cache Invalidations
+## 3.4. Cache invalidations
 
 - In case you update the back-end origin, CloudFront doesn't know about it and will only get the refreshed content after the TTL has expired.
 - However, you can force an entire or partial cache refresh (thus bypassing the TTL) by performing a **CloudFront Invalidation**.

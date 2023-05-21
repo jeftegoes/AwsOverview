@@ -14,7 +14,7 @@
   - [2.5. Envelope Encryption](#25-envelope-encryption)
     - [2.5.1. Encryption SDK](#251-encryption-sdk)
     - [2.5.2. Diagram](#252-diagram)
-  - [2.6. API Summary](#26-api-summary)
+  - [2.6. KMS Symmetric - API Summary](#26-kms-symmetric---api-summary)
 - [3. Request Quotas](#3-request-quotas)
 - [4. S3 Bucket Key for SSE-KMS encryption](#4-s3-bucket-key-for-sse-kms-encryption)
 - [5. CloudHSM](#5-cloudhsm)
@@ -137,18 +137,18 @@
 
 - The SDK encrypts the data encryption key and stores it (encrypted) as part of the returned ciphertext.
 
-## 2.6. API Summary
+## 2.6. KMS Symmetric - API Summary
 
-- **Encrypt:** encrypt up to 4 KB of data through KMS.
-- **GenerateDataKey**
+- `Encrypt` - Encrypt **up to 4 KB** of data through KMS.
+- `GenerateDataKey`
   - Generates a unique symmetric data key (DEK).
   - Returns a plaintext copy of the data key.
   - AND a copy that is encrypted under the CMK that you specify.
-- **GenerateDataKeyWithoutPlaintext**
+- `GenerateDataKeyWithoutPlaintext`
   - Generate a DEK to use at some point (not immediately).
   - DEK that is encrypted under the CMK that you specify (must use Decrypt later).
-- **Decrypt:** decrypt up to 4 KB of data (including Data Encryption Keys).
-- **GenerateRandom:** Returns a random byte string.
+- `Decrypt` - Decrypt **up to 4 KB** of data (including Data Encryption Keys).
+- `GenerateRandom` - Returns a random byte string.
 
 # 3. Request Quotas
 

@@ -69,6 +69,7 @@
 - [29. Lambda and CodeGuru Profiling](#29-lambda-and-codeguru-profiling)
 - [30. AWS Lambda Limits to Know - per region](#30-aws-lambda-limits-to-know---per-region)
 - [31. AWS Lambda Best Practices](#31-aws-lambda-best-practices)
+- [32. Error creating a lambda function via CLI](#32-error-creating-a-lambda-function-via-cli)
 
 # 1. What's serverless?
 
@@ -80,15 +81,15 @@
 
 ## 1.1. Serverless in AWS
 
-- AWS Lambda
-- DynamoDB
-- AWS Cognito
+- [AWS Lambda](AWS%20Lambda.md)
+- [DynamoDB](AWS%20DynamoDB.md)
+- [AWS Cognito](AWS%20Cognito.md)
 - AWS API Gateway
-- Amazon S3
+- [Amazon S3](AWS%20S3.md)
 - AWS SNS & SQS
 - AWS Kinesis Data Firehose
 - Aurora Serverless
-- Step Functions
+- [Step Functions](AWS%20Step%20Functions.md)
 - Fargate
 
 # 2. Why AWS Lambda?
@@ -573,7 +574,7 @@
 
 # 20. Lambda Concurrency and Throttling
 
-- Concurrency limit: up to 1000 concurrent executions.
+- Concurrency limit: **up to 1000** concurrent executions.
 - Can set a "reserved concurrency" at the function level (=limit).
 - Each invocation over the concurrency limit will trigger a "Throttle".
 - Throttle behavior:
@@ -706,6 +707,8 @@ CMD ["app.lambdaHandler"]
 - **AllAtOnce:** immediate
   - Can create Pre & Post Traffic hooks to check the health of the Lambda function.
 
+![Canary deploy](Images/LambdaCanaryDeploy.png)
+
 # 28. Function URL
 
 - Dedicated HTTP(S) endpoint for your Lambda function.
@@ -773,3 +776,11 @@ CMD ["app.lambdaHandler"]
   - Remember the AWS Lambda limits.
   - Use Layers where necessary.
 - **Avoid using recursive code, never have a Lambda function call itself.**
+
+# 32. Error creating a lambda function via CLI
+
+- `InvalidParameterValueException` - Will be returned if one of the parameters in the request is invalid.
+  - For example, if you provided an IAM role in the `CreateFunction` API which AWS Lambda is unable to assume.
+- `CodeStorageExceededException` - If you have exceeded your maximum total code size per account, will be returned.
+- `ResourceConflictException` - If the resource already exists, will be returned and not `InvalidParameterValueException`.
+- `ServiceException` - If the AWS Lambda service encountered an internal error, will be returned.

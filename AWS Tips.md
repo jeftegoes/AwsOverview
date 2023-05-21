@@ -12,6 +12,9 @@
 - Your application can achieve at least:
   - **3,500 PUT/COPY/POST/DELETE.**
   - **5,500 GET/HEAD requests per second per prefix in a bucket.**
+- Object values are the content of the body:
+  - Max Object Size is 5TB (5000GB).
+  - If uploading more than 5GB, must use "multi-part upload".
 
 # 2. DynamoDB
 

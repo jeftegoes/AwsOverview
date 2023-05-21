@@ -20,7 +20,7 @@
   - [2.1. Aurora High Availability and Read Scaling](#21-aurora-high-availability-and-read-scaling)
   - [2.2. Features of Aurora](#22-features-of-aurora)
   - [2.3. Aurora Security](#23-aurora-security)
-  - [2.4. Amazon RDS Proxy](#24-amazon-rds-proxy)
+  - [2.4. RDS Proxy](#24-rds-proxy)
 - [3. Amazon Aurora Serverless](#3-amazon-aurora-serverless)
 - [4. Amazon Aurora vs Amazon Aurora Serverless](#4-amazon-aurora-vs-amazon-aurora-serverless)
 
@@ -223,7 +223,7 @@
 - You are responsible for protecting the instance with security groups.
 - You can't SSH.
 
-## 2.4. Amazon RDS Proxy
+## 2.4. RDS Proxy
 
 - Fully managed database proxy for RDS.
 - Allows apps to pool and share DB connections established with the database.
@@ -234,6 +234,8 @@
 - No code changes required for most apps.
 - Enforce IAM Authentication for DB, and securely store credentials in AWS Secrets Manager.
 - RDS Proxy is never publicly accessible (must be accessed from VPC).
+
+![RDS Proxy Diagram](Images/AWSRDSProxyDiagram.png)
 
 # 3. Amazon Aurora Serverless
 
