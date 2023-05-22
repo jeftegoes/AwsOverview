@@ -38,7 +38,7 @@
 - Can separate Read Events (that don't modify resources) from Write Events (that may modify resources).
 - Data Events:
   - By default, data events are not logged (because high volume operations).
-  - Amazon S3 object-level activity (ex: GetObject, DeleteObject, PutObject): can separate Read and Write Events.
+  - Amazon S3 object-level activity (ex: `GetObject`, `DeleteObject`, `PutObject`): can separate Read and Write Events.
   - AWS Lambda function execution activity (the Invoke API).
 
 # 3. Insights

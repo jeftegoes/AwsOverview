@@ -23,6 +23,8 @@
 - 100,000 topics limit.
 - Many AWS services can send data directly to SNS for notifications.
 
+![AWS SNS Diagram](Images/AWSSNSDiagram.png)
+
 # 2. How to publish
 
 - Topic Publish (using the SDK)

@@ -16,6 +16,7 @@
     - [1.6.2. Network \& IAM](#162-network--iam)
     - [1.6.3. IAM Authentication](#163-iam-authentication)
     - [1.6.4. Security - Summary](#164-security---summary)
+  - [1.7. Monitoring](#17-monitoring)
 - [2. Amazon Aurora](#2-amazon-aurora)
   - [2.1. Aurora High Availability and Read Scaling](#21-aurora-high-availability-and-read-scaling)
   - [2.2. Features of Aurora](#22-features-of-aurora)
@@ -177,6 +178,10 @@
   - No manual DB patching.
   - No manual OS patching.
   - No way to audit the underlying instance.
+
+## 1.7. Monitoring
+
+![RDS Monitoring log options](Images/AWSRDSMonitoring.png)
 
 # 2. Amazon Aurora
 

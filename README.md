@@ -261,6 +261,7 @@
   - [26.21. W](#2621-w)
 - [27. Commands](#27-commands)
   - [27.1. DynamoDB](#271-dynamodb)
+  - [S3](#s3)
 - [28. Credits](#28-credits)
 
 ## 1. Traditionally, how to build infrastructure
@@ -2736,6 +2737,11 @@
   - aws dynamodb scan --table-name `<table_name>` --projection-expression "`<attribute_fields_or_columns>`" # Filter attributes
 - List all content of table (F ilter expression)
   - aws dynamodb scan --table-name DemoTTL --filter-expression "`<attribute_fields_or_columns>` = :u" --expression-attribute-values '{":u": {"S":"`<content>`"}}'
+
+### S3
+
+- List all itens of bucket with pagination
+  - aws s3api list-objects --bucket `<bucket_name>` --page-size 100
 
 ## 28. Credits
 

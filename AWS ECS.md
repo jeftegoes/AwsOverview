@@ -209,6 +209,8 @@
 
 #### 3.11.2.1. Binpack
 
+- Place tasks based on the least available amount of CPU or memory.
+  - This minimizes the number of instances in use.
 - Tasks are placed on the least available amount of CPU and Memory.
 - Minimizes the number of EC2 instances in use (cost savings).
 
@@ -218,6 +220,8 @@
 
 #### 3.11.2.3. Spread
 
+- Place tasks evenly based on the specified value.
+  - Accepted values are attribute key-value pairs, instanceId, or host.
 - Tasks are placed evenly based on the specified value.
 - Example: **instanceId, attribute:ecs.availability-zone, ...**
 

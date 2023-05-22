@@ -153,7 +153,7 @@
   - If we read just after a write, it's possible we'll get some stale data because of replication.
 - **Strongly Consistent Read**
   - If we read just after a write, we will get the correct data.
-  - Set "ConsistentRead" parameter to True in API calls (GetItem, BatchGetItem, Query, Scan).
+  - Set "ConsistentRead" parameter to True in API calls (`GetItem`, `BatchGetItem`, `Query`, `Scan`).
   - Consumes twice the RCU.
 
 ### 6.1.3. Read Capacity Units (RCU)
@@ -266,12 +266,12 @@
 - Allows you to save in latency by reducing the number of API calls.
 - Operations are done in parallel for better efficiency.
 - Part of a batch can fail; in which case we need to try again for the failed items.
-- **BatchWriteItem**
+- `BatchWriteItem`
   - Up to 25 **PutItem** and/or **DeleteItem** in one call.
   - Up to 16 MB of data written, up to 400 KB of data per item.
   - Can't update items (use **UpdateItem**).
   - **UnprocessedItems** for failed write operations (exponential backoff or add WCU).
-- **BatchGetItem**
+- `BatchGetItem`
   - Return items from one or more tables.
   - Up to 100 items, up to 16 MB of data.
   - Items are retrieved in parallel to minimize latency.

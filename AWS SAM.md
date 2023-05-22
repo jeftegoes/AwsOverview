@@ -27,9 +27,11 @@
 - Transform Header indicates it's SAM template:
   - Transform: 'AWS::Serverless-2016-10-31'
 - Write Code
-  - AWS::Serverless::Function
-  - AWS::Serverless::Api
-  - AWS::Serverless::SimpleTable
+  - `AWS::Serverless::Function` - For creating a Lambda function.
+  - `AWS::Serverless::LayerVersion` - This resource type creates a Lambda layer version.
+  - `AWS::Serverless::Api` - This resource type describes an API Gateway resource.
+  - `AWS::Serverless::SimpleTable` - For creating a DynamoDB.
+  - `AWS::Serverless::Application` - To define a nested application in your serverless application.
 - Commands to package and deploy respectively:
   - CloudFormation
     - `aws cloudformation package`
