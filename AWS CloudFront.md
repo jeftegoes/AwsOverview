@@ -25,6 +25,7 @@
   - [7.1. Origin Groups](#71-origin-groups)
 - [8. Field Level Encryption](#8-field-level-encryption)
 - [9. Real Time Logs](#9-real-time-logs)
+- [10. HTTPS for communication between viewers and CloudFront](#10-https-for-communication-between-viewers-and-cloudfront)
 
 # 1. Introduction
 
@@ -257,3 +258,7 @@
 - Allows you to choose:
   - Sampling Rate - percentage of requests for which you want to receive.
   - Specific fields and specific Cache Behaviors (path patterns).
+
+# 10. HTTPS for communication between viewers and CloudFront
+
+- Change the **Origin Protocol Policy** and **Viewer Protocol Policy**.
