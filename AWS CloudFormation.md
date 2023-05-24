@@ -12,6 +12,7 @@
   - [2.1. What are resources?](#21-what-are-resources)
   - [2.2. How do I find resources documentation?](#22-how-do-i-find-resources-documentation)
   - [2.3. FAQ for resources](#23-faq-for-resources)
+- [JSON](#json)
 - [3. What are parameters?](#3-what-are-parameters)
   - [3.1. When should you use a parameter?](#31-when-should-you-use-a-parameter)
   - [3.2. Parameters Settings](#32-parameters-settings)
@@ -152,6 +153,50 @@
 - Is every AWS Service supported?
   - Almost. Only a select few niches are not there yet.
   - You can work around that using AWS Lambda Custom Resources.
+
+# JSON
+
+- An S3 bucket policy statement is composed of several elements, and the following are required to create a valid policy:
+
+  - `Effect` - The effect can be Allow or Deny.
+  - `Action` - The specific API action for which you are granting or denying permission.
+  - `Principal` - The user, account, service, or other entity that is allowed or denied access to the bucket or objects within the bucket.
+  - `Resource` - The resource that's affected by the action.
+    - You specify a resource using an Amazon Resource Name (ARN).
+
+  ```
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+          "Effect": "Allow",
+          "Principal": {
+              "AWS": [
+                "arn:aws:iam::1234567890:role/Developer"
+              ]
+          },
+          "Action": [
+              "s3:GetObject"
+          ],
+          "Resource": "arn:aws:s3:::jeftegoesdev/*"
+        },
+        {
+          "Effect": "Allow",
+          "Principal": {
+              "AWS": [
+                "arn:aws:iam::1234567890:role/QA"
+              ]
+          },
+          "Action": [
+              "s3:GetObject"
+          ],
+          "Resource": "arn:aws:s3:::jeftegoesdev/qa/*"
+        }
+    ]
+  }
+  ```
+
+![Example CloudFormation in JSON](Images/AWSCloudFormationExampleJson.png)
 
 # 3. What are parameters?
 

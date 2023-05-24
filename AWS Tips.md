@@ -7,6 +7,8 @@
 - [3. Kinesys](#3-kinesys)
 - [4. KMS](#4-kms)
 - [5. General tips](#5-general-tips)
+- [6. ECS](#6-ecs)
+- [7. X-Ray](#7-x-ray)
 
 # 1. S3
 
@@ -38,3 +40,28 @@
 # 5. General tips
 
 - Resource-based = AWS Cross account
+
+# 6. ECS
+
+- Task Placement Strategies
+  - **Binpack**
+    - Place tasks based on the least available amount of CPU or memory.
+  - **Random**
+    - Tasks are placed randomly.
+  - **Spread**
+  - Tasks are placed evenly based on the specified value.
+    - Example: **instanceId, attribute:ecs.availability-zone, ...**
+
+# 7. X-Ray
+
+X-Ray Concepts
+
+- **Segments:** Each application / service will send them.
+- **Subsegments:** If you need more details in your segment.
+- **Trace:** Segments collected together to form an end-to-end trace.
+- **Sampling:** Decrease the amount of requests sent to X-Ray, reduce cost.
+- **Annotations:** Key Value pairs used to **index** traces and use with **filters**.
+- **Metadata:** Key Value pairs, **not indexed**, not used for searching.
+- The X-Ray daemon / agent has a config to send traces cross account:
+  - Make sure the IAM permissions are correct - the agent will assume the role.
+  - This allows to have a central account for all your application tracing.

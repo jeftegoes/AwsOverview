@@ -157,15 +157,15 @@
 
 - We can install an additional CLI called the "EB cli" which makes working with Beanstalk from the CLI easier.
 - Basic commands are:
-  - eb create
-  - eb status
-  - eb health
-  - eb events
-  - eb logs
-  - eb open
-  - eb deploy
-  - eb config
-  - eb terminate
+  - `eb create`
+  - `eb status`
+  - `eb health`
+  - `eb events`
+  - `eb logs`
+  - `eb open`
+  - `eb deploy`
+  - `eb config`
+  - `eb terminate`
 - It's helpful for your automated deployment pipelines!
 
 # 6. Elastic Beanstalk Deployment Process

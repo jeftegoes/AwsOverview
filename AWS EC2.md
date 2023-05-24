@@ -15,7 +15,7 @@
 - [5. Introduction to Security Groups](#5-introduction-to-security-groups)
   - [5.1. Security Groups Deeper Dive](#51-security-groups-deeper-dive)
   - [5.2. Security Groups Good to know](#52-security-groups-good-to-know)
-  - [To access S3](#to-access-s3)
+  - [5.3. To access S3](#53-to-access-s3)
 - [6. Classic Ports to know](#6-classic-ports-to-know)
 - [7. How to SSH into your EC2 Instance](#7-how-to-ssh-into-your-ec2-instance)
 - [8. Elastic IP](#8-elastic-ip)
@@ -167,13 +167,14 @@
 - All inbound traffic is **blocked** by default.
 - All outbound traffic is **authorised** by default.
 
-## To access S3
+## 5.3. To access S3
 
 ![EC2 Access S3](Images/AWSEC2AccessS3.png)
 
 - In this scenario, **S3 is not part of your VPC**, unlike your EC2 instances, EBS volumes, ELBs, and other services that typically reside within your private network.
 - An EC2 instance needs to have access to the Internet, via the Internet Gateway or a NAT Instance/Gateway in order to access S3.
 - Alternatively, you can also create a VPC endpoint so your private subnet would be able to connect to S3.
+- [AWS VPC](AWS%20VPC.md)
 
 # 6. Classic Ports to know
 

@@ -313,6 +313,11 @@
 
 # 7. AWS CodeDeploy
 
+- CodeDeploy is a deployment service that automates application deployments to:
+  - Amazon EC2 instances.
+  - On-premises instances.
+  - Serverless Lambda functions.
+  - Amazon ECS services.
 - We want to deploy our application automatically to many EC2 instances.
 - These EC2 instances are not managed by Elastic Beanstalk.
 - There are several ways to handle deployments using open-source tools (Ansible, Terraform, Chef, Puppet, ...).
@@ -346,7 +351,7 @@
 - `files` - How to source and copy from S3 / GitHub to filesystem
   - `source`
   - `destination`
-- `hooks` - Set of instructions to do to deploy the new version (hooks can have timeouts), the order is:
+- `hooks` - The content in the `hooks` section of the AppSpec file varies, depending on the compute platform for your deployment:
   - `ApplicationStop`
   - EC2
     - `DownloadBundle`
@@ -359,9 +364,10 @@
     - `BeforeAllowTraffic`
     - `AfterAllowTraffic`
   - Lambda
+    - `Start` - Cannot be scripted or used.
+    - `BeforeAllowTraffic` - Use to run tasks before traffic is shifted to the deployed Lambda function version.
     - `AllowTrafic`
-    - `BeforeAllowTraffic`
-    - `AfterAllowTraffic`
+    - `AfterAllowTraffic` - Use to run tasks after all traffic is shifted to the deployed Lambda function version.
   - ECS
     - `BeforeInstall`
     - `AfterInstall`
