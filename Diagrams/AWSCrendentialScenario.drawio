@@ -1,0 +1,71 @@
+<mxfile host="Electron" modified="2023-05-24T03:33:38.415Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="lbS2gMFo2PKV0v0JbXGg" version="21.2.8" type="device">
+  <diagram name="Page-1" id="6TUWxLMRrrh3bwpQY3n-">
+    <mxGraphModel dx="660" dy="704" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-6" value="AWS Account" style="rounded=1;arcSize=10;dashed=0;fillColor=none;gradientColor=none;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=20;spacingTop=10;strokeColor=#d86613;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="90" y="280" width="640" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-10" value="2. EC2 instance" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_ec2_instance_contents;strokeColor=#D86613;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#D86613;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="280" y="340" width="260" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-16" value="1. Role: Get-Bucket-Jefte" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#BF0816;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.role;" vertex="1" parent="ZcDz3BlvymfypT8Ua1h_-10">
+          <mxGeometry x="112.28" y="157" width="35.45" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-12" value="Application" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;strokeWidth=1;align=center;outlineConnect=0;dashed=0;outlineConnect=0;shape=mxgraph.aws3d.application;fillColor=#4286c5;strokeColor=#57A2D8;aspect=fixed;" vertex="1" parent="ZcDz3BlvymfypT8Ua1h_-10">
+          <mxGeometry x="107.45999999999998" y="30" width="45.06" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-14" value="" style="endArrow=none;html=1;rounded=0;strokeColor=#d86613;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="491" as="sourcePoint" />
+            <mxPoint x="540" y="491" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-15" value="Instance profile" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="279" y="470" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-17" value="1. Admin creates &lt;b&gt;role &lt;/b&gt;that &lt;br&gt;grants access to the &lt;b&gt;bucket-jefte&lt;/b&gt;." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="310" y="550" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-20" value="2. Developer lauches an instance with the role." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="275" y="310" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZcDz3BlvymfypT8Ua1h_-21" target="ZcDz3BlvymfypT8Ua1h_-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-21" value="3. App retrieves role&lt;br&gt;credentials from the instance." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="89" y="375" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZcDz3BlvymfypT8Ua1h_-23" target="ZcDz3BlvymfypT8Ua1h_-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-23" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#007e9e;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.addon;" vertex="1" parent="1">
+          <mxGeometry x="140" y="440" width="78" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZcDz3BlvymfypT8Ua1h_-16" target="ZcDz3BlvymfypT8Ua1h_-23">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="179" y="507" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-27" value="S3 bucket-jefte" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#3F8624;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.bucket_with_objects;" vertex="1" parent="1">
+          <mxGeometry x="630" y="421" width="75" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-29" value="4. App gets &lt;b&gt;bucket-jefte&lt;/b&gt; using&lt;br&gt;the &lt;b&gt;role &lt;/b&gt;credentials." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="540" y="345" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZcDz3BlvymfypT8Ua1h_-30" target="ZcDz3BlvymfypT8Ua1h_-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-30" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#007e9e;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.addon;" vertex="1" parent="1">
+          <mxGeometry x="590" y="385" width="39" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcDz3BlvymfypT8Ua1h_-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZcDz3BlvymfypT8Ua1h_-12" target="ZcDz3BlvymfypT8Ua1h_-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

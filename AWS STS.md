@@ -23,7 +23,7 @@
 # 1. STS - Security Token Service
 
 - Allows to grant limited and temporary access to AWS resources (up to 1 hour).
-- `AssumeRole`: Assume roles within your account or cross account.
+- `AssumeRole`: Assume roles within **your account** or **cross account**.
 - `AssumeRoleWithSAML`: return credentials for users logged with SAML.
 - `AssumeRoleWithWebIdentity`:
   - Return creds for users logged with an IdP (Facebook Login, Google Login, OIDC compatible...).
@@ -41,8 +41,11 @@
 - Temporary credentials can be valid between 15 minutes to 1 hour.
 
 ![AWS STS Assume a Role](Images/AWSSTSAssumeRole.png)
+![AWS STS Assume a Role](Images/AWSSTSAssumeRole2.png)
 
 # 3. Cross account access with STS
+
+![STS Diagram](Images/AWSSTSCrossAccount.png)
 
 [Example scenario using separate development and production accounts](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_aws-accounts.html)
 

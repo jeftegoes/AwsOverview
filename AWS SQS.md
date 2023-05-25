@@ -167,7 +167,9 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - De-duplication interval is 5 minutes.
 - Two de-duplication methods:
   - Content-based deduplication: will do a SHA-256 hash of the message body.
-  - Explicitly provide a Message Deduplication ID.
+  - `MessageDeduplicationId` - Explicitly provide a Message Deduplication ID.
+
+![MessageDeduplicationId](Images/AWSSQSDeduplicationID.png)
 
 ## 14.2. Message Grouping
 

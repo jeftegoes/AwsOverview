@@ -364,6 +364,8 @@
 - DynamoDB has a feature called **"Conditional Writes"**.
 - Each item has an attribute that acts as a version number.
 
+![Optimistic Locking](Images/DynamoDBOptimisticLocking.png)
+
 # 12. Accelerator - DAX
 
 - **DynamoDB that delivers up to 10x performance improvement.**

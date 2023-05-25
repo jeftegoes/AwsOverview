@@ -9,6 +9,7 @@
   - [4.1. Security](#41-security)
   - [4.2. Migrations](#42-migrations)
   - [4.3. CodeCommit vs. GitHub](#43-codecommit-vs-github)
+  - [4.4. Migrate a project](#44-migrate-a-project)
 - [5. AWS CodePipeline](#5-aws-codepipeline)
   - [5.1. How pipeline executions are started](#51-how-pipeline-executions-are-started)
   - [5.2. Artifacts](#52-artifacts)
@@ -31,16 +32,19 @@
   - [7.2. Primary Components](#72-primary-components)
   - [7.3. appspec.yml](#73-appspecyml)
     - [7.3.1. List of lifecycle event hooks](#731-list-of-lifecycle-event-hooks)
-  - [7.4. Deployment Configuration](#74-deployment-configuration)
-  - [7.5. Deployment to EC2](#75-deployment-to-ec2)
-  - [7.6. Deploy to an ASG](#76-deploy-to-an-asg)
-  - [7.7. Redeploy \& Rollbacks](#77-redeploy--rollbacks)
-  - [7.8. Troubleshooting](#78-troubleshooting)
-  - [7.9. CodeBuild support SDK and CLI](#79-codebuild-support-sdk-and-cli)
-  - [7.10. AppSpec by Compute Platform](#710-appspec-by-compute-platform)
-    - [7.10.1. ECS](#7101-ecs)
-    - [7.10.2. Lambda](#7102-lambda)
-    - [7.10.3. EC2](#7103-ec2)
+  - [7.4. EC2/On-premises Platform](#74-ec2on-premises-platform)
+  - [7.5. CodeDeploy Agent](#75-codedeploy-agent)
+  - [7.6. Lambda Platform](#76-lambda-platform)
+  - [7.7. ECS Platform](#77-ecs-platform)
+  - [7.8. Deployment to EC2](#78-deployment-to-ec2)
+  - [7.9. Deploy to an ASG](#79-deploy-to-an-asg)
+  - [7.10. Redeploy \& Rollbacks](#710-redeploy--rollbacks)
+  - [7.11. Troubleshooting](#711-troubleshooting)
+  - [7.12. CodeBuild support SDK and CLI](#712-codebuild-support-sdk-and-cli)
+  - [7.13. AppSpec by Compute Platform](#713-appspec-by-compute-platform)
+    - [7.13.1. ECS](#7131-ecs)
+    - [7.13.2. Lambda](#7132-lambda)
+    - [7.13.3. EC2](#7133-ec2)
 - [8. AWS CodeStar](#8-aws-codestar)
 - [9. AWS CodeArtifact](#9-aws-codeartifact)
   - [9.1. Resource Policy](#91-resource-policy)
@@ -145,6 +149,17 @@
 | Security                            | IAM Users & Roles       | GitHub Users                                                      |
 | Hosting                             | Managed & hosted by AWS | Hosted by GitHub / GitHub Enterprise: self hosted on your servers |
 | UI                                  | Minimal                 | Fully Featured                                                    |
+
+## 4.4. Migrate a project
+
+- To migrate a project hosted on another Git repository to CodeCommit, you have to follow the process, below:
+  1. Complete the initial setup required for CodeCommit.
+  2. Create a CodeCommit repository.
+  3. Clone the repository and push it to CodeCommit.
+  4. View files in the CodeCommit repository.
+  5. Share the CodeCommit repository with your team.
+
+![AWS CodeCommit migration](Images/AWSCodeCommitMigration.png)
 
 # 5. AWS CodePipeline
 
@@ -380,30 +395,54 @@
 - `Install` - During this deployment lifecycle event, the CodeDeploy agent copies the revision files from the temporary location to the final destination folder.
   - **This event is reserved for the CodeDeploy agent and cannot be used to run scripts.**
 
-## 7.4. Deployment Configuration
+## 7.4. EC2/On-premises Platform
 
-- Configurations:
-  - **One At A Time:** One EC2 instance at a time, if one instance fails then deployment stops.
-  - **Half At A Time:** 50%.
-  - **All At Once:** Quick but no healthy host, downtime. Good for dev.
-  - **Custom:** Min. healthy host = 75%.
-- Failures:
-  - EC2 instances stay in "Failed" state.
-  - New deployments will first be deployed to failed instances.
-  - **To rollback, redeploy old deployment or enable automated rollback for failures.**
-- Deployment Groups:
-  - A set of **tagged** EC2 instances.
-  - Directly to an ASG.
-  - Mix of ASG / Tags so you can build deployment segments.
-  - Customization in scripts with `DEPLOYMENT_GROUP_NAME` environment variables.
+- Can deploy to EC2 Instances & on-premises servers.
+- Perform in-place deployments or blue/green deployments.
+- Must run the CodeDeploy Agent on the target instances.
+- Define deployment speed:
+  - AllAtOnce: Most downtime.
+  - HalfAtATime: Reduced capacity by 50%.
+  - OneAtATime: Slowest, lowest availability impact.
+  - Custom: Define your.
 
-## 7.5. Deployment to EC2
+## 7.5. CodeDeploy Agent
+
+- The CodeDeploy Agent must be running on the EC2 instances as a pre-requisites.
+- It can be installed and updated automatically if you’re using Systems Manager.
+- The EC2 Instances must have sufficient permissions to access Amazon S3 to get deployment bundles.
+
+## 7.6. Lambda Platform
+
+- **CodeDeploy** can help you automate traffic shift for Lambda aliases.
+- Feature is integrated within the SAM framework.
+- **Linear:** grow traffic every N minutes until 100%
+  - `LambdaLinear10PercentEvery3Minutes`
+  - `LambdaLinear10PercentEvery10Minutes`
+- **Canary:** try X percent then 100%
+  - `LambdaCanary10Percent5Minutes`
+  - `LambdaCanary10Percent30Minutes`
+- `AllAtOnce` - Immediate.
+
+## 7.7. ECS Platform
+
+- CodeDeploy can help you automate the deployment of a new **ECS Task Definition**.
+- **Only Blue/Green Deployments**.
+- **Linear:** grow traffic every N minutes until 100%.
+  - `ECSLinear10PercentEvery3Minutes`
+  - `ECSLinear10PercentEvery10Minutes`
+- **Canary:** try X percent then 100%:
+  - `ECSCanary10Percent5Minutes`
+  - `ECSCanary10Percent30Minutes`
+- `AllAtOnce` - Immediate.
+
+## 7.8. Deployment to EC2
 
 - Define **how to deploy the application** using `appspec.yml` + Deployment Strategy.
 - Will do In-place update to your fleet of EC2 instances.
 - Can use hooks to verify the deployment after each deployment phase.
 
-## 7.6. Deploy to an ASG
+## 7.9. Deploy to an ASG
 
 - **In-place Deployment**
   - Updates existing EC2 instances.
@@ -413,7 +452,7 @@
   - Choose how long to keep the old EC2 instances (old ASG).
   - Must be using an ELB.
 
-## 7.7. Redeploy & Rollbacks
+## 7.10. Redeploy & Rollbacks
 
 - Rollback = redeploy a previously deployed revision of your application.
 - Deployments can be rolled back:
@@ -422,7 +461,7 @@
 - Disable Rollbacks - do not perform rollbacks for this deployment.
 - **If a roll back happens, CodeDeploy redeploys the last known good revision as a new deployment (not a restored version).**
 
-## 7.8. Troubleshooting
+## 7.11. Troubleshooting
 
 - Deployment Error: "InvalidSignatureException - Signature expired: [time] is now earlier than [time]"
   - For CodeDeploy to perform its operations, it requires accurate time references.
@@ -430,24 +469,24 @@
 - Check log files to understand deployment issues:
   - For Amazon Linux, Ubuntu, and RHEL log files stored at `/opt/codedeploy-agent/deployment-root/deployment- logs/codedeploy-agent-deployments.log`.
 
-## 7.9. CodeBuild support SDK and CLI
+## 7.12. CodeBuild support SDK and CLI
 
 - To use one the AWS SDKs or tools to automate AWS CodeBuild.
 - If you want to use the AWS CLI to run CodeBuild.
 
-## 7.10. AppSpec by Compute Platform
+## 7.13. AppSpec by Compute Platform
 
-### 7.10.1. ECS
+### 7.13.1. ECS
 
 - The name of the Amazon ECS service and the container name and port used to direct traffic to the new task set.
 - The functions to be used as validation tests.
 
-### 7.10.2. Lambda
+### 7.13.2. Lambda
 
 - The AWS Lambda function version to deploy.
 - The functions to be used as validation tests.
 
-### 7.10.3. EC2
+### 7.13.3. EC2
 
 - Map the source files in your application revision to their destinations on the instance.
 - Specify custom permissions for deployed files.

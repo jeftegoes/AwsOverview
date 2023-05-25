@@ -135,7 +135,7 @@
 - Zero downtime and release facility.
 - Create a new "stage" environment and deploy v2 there.
 - The new environment (green) can be validated independently and rollback if issues.
-- Route 53 can be setup using weighted policies to redirect a little bit of traffic to the stage environment.
+- Route 53 can be setup using weighted policies to redirect a little bit of traffic to the stage environment (CNAMEs).
 - Using Beanstalk, "swap URLs" when done with the environment test.
 
 ![Immutable deployment](Images/AwsElasticBeanstalkBlueGreen.png)
@@ -171,7 +171,7 @@
 # 6. Elastic Beanstalk Deployment Process
 
 - Describe dependencies (requirements.txt for Python, package.json for Node.js).
-- Package code as zip, and describe dependencies.
+- **Package code as ZIP**, and describe dependencies.
   - Python: requirements.txt
   - Node.js: package.json
 - **Console:** Upload zip file (creates new app version), and then deploy.

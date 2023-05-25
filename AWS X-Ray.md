@@ -112,6 +112,7 @@
 
 - **Segments:** Each application / service will send them.
 - **Subsegments:** If you need more details in your segment.
+  - `namespace` - aws for AWS SDK calls; remote for other downstream calls.
 - **Trace:** Segments collected together to form an end-to-end trace.
 - **Sampling:** Decrease the amount of requests sent to X-Ray, reduce cost.
 - **Annotations:** Key Value pairs used to **index** traces and use with **filters**.
