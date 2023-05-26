@@ -315,13 +315,13 @@
 
 - SQL-compatible query language for DynamoDB.
 - Allows you to select, insert, update, and delete (but not all) data in DynamoDB using SQL.
-- Run queries across multiple DynamoDB tables
+- Run queries across multiple DynamoDB tables.
 - Run PartiQL queries from:
-  - AWS Management Console
-  - NoSQL Workbench for DynamoDB
-  - DynamoDB APIs
-  - AWS CLI
-  - AWS SDK
+  - AWS Management Console.
+  - NoSQL Workbench for DynamoDB.
+  - DynamoDB APIs.
+  - AWS CLI.
+  - AWS SDK.
 - It supports Batch operations.
 
 # 10. Conditional Writes

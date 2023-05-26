@@ -259,9 +259,10 @@
   - [26.19. T](#2619-t)
   - [26.20. V](#2620-v)
   - [26.21. W](#2621-w)
-- [27. Commands](#27-commands)
+- [27. Commands AWS CLI](#27-commands-aws-cli)
   - [27.1. DynamoDB](#271-dynamodb)
-  - [S3](#s3)
+  - [27.2. S3](#272-s3)
+  - [27.3. Lambda](#273-lambda)
 - [28. Credits](#28-credits)
 
 ## 1. Traditionally, how to build infrastructure
@@ -2713,7 +2714,7 @@
 - WAFWeb Application Firewall
 - WCU Write Capacity Units
 
-## 27. Commands
+## 27. Commands AWS CLI
 
 - List of all profiles
   - aws configure list-profiles
@@ -2738,10 +2739,14 @@
 - List all content of table (F ilter expression)
   - aws dynamodb scan --table-name DemoTTL --filter-expression "`<attribute_fields_or_columns>` = :u" --expression-attribute-values '{":u": {"S":"`<content>`"}}'
 
-### S3
+### 27.2. S3
 
 - List all itens of bucket with pagination
   - aws s3api list-objects --bucket `<bucket_name>` --page-size 100
+
+### 27.3. Lambda
+
+- aws lambda invoke --function-name `<lambda_name>` --invocation-type `<invocation_type>` response.json # `invocation_type` like: `Event` or `RequestResponse`
 
 ## 28. Credits
 

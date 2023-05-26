@@ -10,6 +10,13 @@
 - [6. ECS](#6-ecs)
 - [7. X-Ray](#7-x-ray)
 - [8. Files](#8-files)
+- [9. PartiQL](#9-partiql)
+- [10. AWS CodeBuild](#10-aws-codebuild)
+- [11. CodePipeline](#11-codepipeline)
+- [12. ALG - Auto Scaling Group](#12-alg---auto-scaling-group)
+- [13. CloudWatch Events](#13-cloudwatch-events)
+- [14. VPC Endpoints](#14-vpc-endpoints)
+- [15. Elastic Beanstalk](#15-elastic-beanstalk)
 
 # 1. S3
 
@@ -30,17 +37,17 @@
 
 # 3. Kinesys
 
-- 1 Shard = Capture, production or ingestion 1 MB / Distribution or consume 2 MB
+- 1 Shard = Capture, production or ingestion 1 MB / Distribution or consume 2 MB.
 
 # 4. KMS
 
 - Envelope Encryption
-  - KMS Encrypt API call has a limit of 4 KB
-  - If you want to encrypt >4 KB, we need to use Envelope Encryption
+  - KMS Encrypt API call has a limit of 4 KB.
+  - If you want to encrypt >4 KB, we need to use Envelope Encryption.
 
 # 5. General tips
 
-- Resource-based = AWS Cross account
+- Resource-based = AWS Cross account.
 
 # 6. ECS
 
@@ -68,5 +75,47 @@
 
 # 8. Files
 
-- buildspec.yml - CodeBuild
-- appspec.yml - CodeDeploy
+- buildspec.yml - CodeBuild.
+- appspec.yml - CodeDeploy.
+- env.yml - Elastic Beanstalk.
+  - .config - Configuration files are YAML- or JSON-formatted documents with a **.config** file extension that you place in a folder named **.ebextensions**.
+
+# 9. PartiQL
+
+- SQL-compatible query language for DynamoDB.
+- Allows you to select, insert, update, and delete (but not all) data in DynamoDB using SQL.
+- Run queries across multiple DynamoDB tables.
+- Run PartiQL queries from:
+  - AWS Management Console.
+  - NoSQL Workbench for DynamoDB.
+  - DynamoDB APIs.
+  - AWS CLI.
+  - AWS SDK.
+- It supports Batch operations.
+
+# 10. AWS CodeBuild
+
+- **Source:** CodeCommit, S3, Bitbucket, GitHub.
+
+# 11. CodePipeline
+
+- InProgress, Stopping, Stopped, Succeeded, Superseded e Failed.
+
+# 12. ALG - Auto Scaling Group
+
+- Lauch template = Lauch onfiguration.
+
+# 13. CloudWatch Events
+
+- CloudWatch Events = Amazon EventBridge.
+
+# 14. VPC Endpoints
+
+- Endpoints allow you to connect to AWS Services **using a private network** instead of the public www network.
+- This gives you enhanced security and lower latency to access AWS services.
+- **VPC Endpoint Gateway**: S3 and DynamoDB.
+- **VPC Endpoint Interface**: the rest.
+
+# 15. Elastic Beanstalk
+
+![Elastic Beanstalk Workflow](Images/ElasticBeanstalkWorkflow.png)
