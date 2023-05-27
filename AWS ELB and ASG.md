@@ -193,8 +193,8 @@
 
 - Fixed hostname (XXX.region.elb.amazonaws.com).
 - The application servers don't see the IP of the client directly.
-  - The true IP of the client is inserted in the header X-Forwarded-For.
-  - We can also get Port (X-Forwarded-Port) and proto (X-Forwarded-Proto).
+  - The true IP of the client is inserted in the header `X-Forwarded-For`.
+  - We can also get Port (`X-Forwarded-Port`) and proto (`X-Forwarded-Proto`).
 
 ## 5.3. Network Load Balancer (v2)
 

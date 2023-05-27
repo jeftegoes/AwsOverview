@@ -2742,7 +2742,7 @@
 ### 27.2. S3
 
 - List all itens of bucket with pagination
-  - aws s3api list-objects --bucket `<bucket_name>` --page-size 100
+  - aws s3api list-objects --bucket `<bucket_name>` --page-size 100 --max-items 5
 
 ### 27.3. Lambda
 

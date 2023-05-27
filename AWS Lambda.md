@@ -637,17 +637,17 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
 ## 23.1. Inline
 
 - Inline functions are very simple.
-- Use the Code.ZipFile property.
+- Use the `Code.ZipFile` property.
 - You cannot include function dependencies with inline functions.
 
 ## 23.2. Through S3
 
 - You must store the Lambda zip in S3.
 - You must refer the S3 zip location in the CloudFormation code:
-  - S3Bucket.
-  - S3Key: full path to zip.
-  - S3ObjectVersion: if versioned bucket.
-- If you update the code in S3, but don't update S3Bucket, S3Key or S3ObjectVersion, CloudFormation won't update your function.
+  - `S3Bucket`
+  - `S3Key` - Full path to zip.
+  - `S3ObjectVersion` - If versioned bucket.
+- If you update the code in S3, but don't update `S3Bucket`, `S3Key` or `S3ObjectVersion`, CloudFormation won't update your function.
 
 ### 23.2.1. through S3 Multiple accounts
 

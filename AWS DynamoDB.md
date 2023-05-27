@@ -210,7 +210,7 @@
   - Consumes WCUs.
 - **UpdateItem:**
   - Edits an existing item's attributes or adds a new item if it doesn't exist.
-  - Can be used to implement Atomic Counters - a numeric attribute that's unconditionally incremented.
+  - Can be used to implement **Atomic Counters** - A numeric attribute that's unconditionally incremented.
 - **Conditional Writes:**
   - Accept a write/update/delete only if conditions are met, otherwise returns an error.
   - Helps with concurrent access to items.
@@ -326,8 +326,8 @@
 
 # 10. Conditional Writes
 
-- For PutItem, UpdateItem, DeleteItem, and BatchWriteItem.
-- You can specify a Condition expression to determine which items should be modified:
+- For `PutItem`, `UpdateItem`, `DeleteItem`, and `BatchWriteItem`.
+- You can specify a **Condition Expression** to determine which items should be modified:
   - **attribute_exists**
   - **attribute_not_exists**
   - **attribute_type**

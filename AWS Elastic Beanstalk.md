@@ -6,7 +6,7 @@
 - [2. Overview](#2-overview)
 - [3. Components](#3-components)
   - [3.1. Supported Platforms](#31-supported-platforms)
-- [4. Deployment Options for Updates](#4-deployment-options-for-updates)
+- [4. Deployment options for updates](#4-deployment-options-for-updates)
   - [4.1. All at once](#41-all-at-once)
   - [4.2. Rolling](#42-rolling)
   - [4.3. Rolling with additional batches](#43-rolling-with-additional-batches)
@@ -77,7 +77,7 @@
 - Preconfigured Docker
 - If not supported, you can write your custom platform (advanced)
 
-# 4. Deployment Options for Updates
+# 4. Deployment options for updates
 
 - **All at once (deploy all in one go):** Fastest, but instances aren't available to serve traffic for a bit (downtime).
 - **Rolling:** Update a few instances at a time (bucket), and then move onto the next bucket once the first bucket is healthy.
@@ -85,6 +85,8 @@
 - **Immutable:** Spins up new instances in a new ASG, deploys version to these instances, and then swaps all the instances when everything is healthy.
 - **Blue Green:** Create a new environment and switch over when ready.
 - **Traffic Splitting:** Canary testing - send a small % of traffic to new deployment.
+
+[Deploying applications to Elastic Beanstalk environments](https://docs.aws.amazon.com/pt_br/elasticbeanstalk/latest/dg/using-features.deploy-existing-version.html)
 
 ## 4.1. All at once
 

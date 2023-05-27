@@ -80,8 +80,13 @@
   - **Kinesis Producer Library (KPL):** C++, Java, batch, compression, retries.
   - **Kinesis Agent:** Monitor log files.
 - Write throughput: 1 MB/sec or 1000 records/sec per shard.
-- PutRecord API.
-- Use batching with PutRecords API to reduce costs and increase throughput.
+- There are two API calls available for writing records to a Kinesis Data Stream: `PutRecord` or `PutRecords`.
+  - `PutRecord` writes a single record to the stream
+  - While `PutRecords` writes multiple records to the stream in a batch.
+  - Kinesis Data Streams attempts to process all records in each `PutRecords` request.
+  - A single record failure does not stop the processing of subsequent records.
+  - As a result, `PutRecords` doesn't guarantee the ordering of records.
+    - If you need to read records in the same order they are written to the stream, use `PutRecord` along with the `SequenceNumberForOrdering` parameter.
 
 ## 2.4. Consumers
 
@@ -90,7 +95,7 @@
 - Kinesis Data Analytics
 - Kinesis Data Firehose
 - Custom Consumer (AWS SDK) - Classic or Enhanced Fan-Out
-- Kinesis Client Library (KCL): library to simplify reading from data stream
+- Kinesis Client Library (KCL): Library to simplify reading from data stream
 
 ### 2.4.1. Consumers Types
 

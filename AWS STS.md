@@ -24,14 +24,14 @@
 
 - Allows to grant limited and temporary access to AWS resources (up to 1 hour).
 - `AssumeRole`: Assume roles within **your account** or **cross account**.
-- `AssumeRoleWithSAML`: return credentials for users logged with SAML.
+- `AssumeRoleWithSAML` - Return credentials for users logged with SAML.
 - `AssumeRoleWithWebIdentity`:
   - Return creds for users logged with an IdP (Facebook Login, Google Login, OIDC compatible...).
   - **AWS recommends against using this, and using Cognito Identity Pools instead.**
-- `GetSessionToken`: for MFA, from a user or AWS account root user.
-- `GetFederationToken`: obtain temporary creds for a federated user.
-- `GetCallerIdentity`: return details about the IAM user or role used in the API call.
-- `DecodeAuthorizationMessage`: decode error message when an AWS API is denied.
+- `GetSessionToken` - For MFA, from a user or AWS account root user.
+- `GetFederationToken` - Obtain temporary creds for a federated user.
+- `GetCallerIdentity` - Return details about the IAM user or role used in the API call.
+- `DecodeAuthorizationMessage` - Decode error message when an AWS API is denied.
 
 # 2. Using STS to Assume a Role
 
