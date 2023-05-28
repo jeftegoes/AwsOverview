@@ -177,8 +177,8 @@
   - Python: requirements.txt
   - Node.js: package.json
 - **Console:** Upload zip file (creates new app version), and then deploy.
-- **CLI:** Create new app version using CLI (uploads zip), and then deploy.
-- Elastic Beanstalk will deploy the zip on each EC2 instance, resolve dependencies and start the application.
+- **CLI:** Create new app version using CLI (uploads ZIP), and then deploy.
+- Elastic Beanstalk will deploy the ZIP on each EC2 instance, resolve dependencies and start the application.
 
 # 7. Lifecycle Policy
 

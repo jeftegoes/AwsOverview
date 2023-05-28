@@ -21,9 +21,10 @@
   - [2.1. Aurora High Availability and Read Scaling](#21-aurora-high-availability-and-read-scaling)
   - [2.2. Features of Aurora](#22-features-of-aurora)
   - [2.3. Aurora Security](#23-aurora-security)
-  - [2.4. RDS Proxy](#24-rds-proxy)
-- [3. Amazon Aurora Serverless](#3-amazon-aurora-serverless)
-- [4. Amazon Aurora vs Amazon Aurora Serverless](#4-amazon-aurora-vs-amazon-aurora-serverless)
+- [3. RDS Proxy](#3-rds-proxy)
+- [4. Amazon Aurora Serverless](#4-amazon-aurora-serverless)
+- [5. MySQL error log](#5-mysql-error-log)
+- [6. Amazon Aurora vs Amazon Aurora Serverless](#6-amazon-aurora-vs-amazon-aurora-serverless)
 
 # 1. AWS RDS Overview
 
@@ -228,7 +229,7 @@
 - You are responsible for protecting the instance with security groups.
 - You can't SSH.
 
-## 2.4. RDS Proxy
+# 3. RDS Proxy
 
 - Fully managed database proxy for RDS.
 - Allows apps to pool and share DB connections established with the database.
@@ -242,13 +243,19 @@
 
 ![RDS Proxy Diagram](Images/AWSRDSProxyDiagram.png)
 
-# 3. Amazon Aurora Serverless
+# 4. Amazon Aurora Serverless
 
 - The Aurora Serverless is an auto-scaling, on-demand configuration designed for Amazon Aurora RDS.
 - It can start, shut and scale capacity automatically, according to individual application's requirements.
 - This service allows you to run cloud-powered databases without the need to manage database capacity.
 
-# 4. Amazon Aurora vs Amazon Aurora Serverless
+# 5. MySQL error log
+
+- You can monitor the MySQL logs directly through the Amazon RDS console, Amazon RDS API, AWS CLI, or AWS SDKs.
+- You can also access MySQL logs by directing the logs to a database table in the main database and querying that table.
+- You can use the mysqlbinlog utility to download a binary log.
+
+# 6. Amazon Aurora vs Amazon Aurora Serverless
 
 | Amazon Aurora Highlights         | Amazon Aurora Serverless Highlights                       |
 | -------------------------------- | --------------------------------------------------------- |

@@ -12,7 +12,7 @@
   - [2.1. Why use a load balancer?](#21-why-use-a-load-balancer)
 - [3. Why use an Elastic Load Balancer (ELB)?](#3-why-use-an-elastic-load-balancer-elb)
 - [4. Health Checks](#4-health-checks)
-  - [Settings](#settings)
+  - [4.1. Settings](#41-settings)
 - [5. Types of load balancer on AWS](#5-types-of-load-balancer-on-aws)
   - [5.1. Classic Load Balancers (v1)](#51-classic-load-balancers-v1)
   - [5.2. Application Load Balancer (v2)](#52-application-load-balancer-v2)
@@ -127,10 +127,10 @@
 - The health check is done on a port and a route (/health is common).
 - If the response is not 200 (OK), then the instance is unhealthy.
 
-## Settings
+## 4.1. Settings
 
 | Setting                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | HealthCheckProtocol        | The protocol the load balancer uses when performing health checks on targets. The possible protocols are HTTP and HTTPS. The default is the HTTP protocol. These protocols use the HTTP GET method to send health check requests.                                                                                                                                                                                                                                                                                                                |
 | HealthCheckPort            | The port the load balancer uses when performing health checks on targets. The default is to use the port on which each target receives traffic from the load balancer.                                                                                                                                                                                                                                                                                                                                                                           |
 | HealthCheckPath            | The destination for health checks on the targets. If the protocol version is HTTP/1.1 or HTTP/2, specify a valid URI (/path?query). The default is /. If the protocol version is gRPC, specify the path of a custom health check method with the format /package.service/method. The default is /AWS.ALB/healthcheck.                                                                                                                                                                                                                            |

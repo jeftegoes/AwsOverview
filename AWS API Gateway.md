@@ -16,9 +16,10 @@
   - [8.2. HTTP / AWS (Lambda \& AWS Services)](#82-http--aws-lambda--aws-services)
   - [8.3. AWS\_PROXY (Lambda Proxy)](#83-aws_proxy-lambda-proxy)
   - [8.4. HTTP\_PROXY](#84-http_proxy)
-- [9. Mapping Templates (AWS \& HTTP Integration)](#9-mapping-templates-aws--http-integration)
+- [9. Mapping Templates (AWS and HTTP Integration)](#9-mapping-templates-aws-and-http-integration)
   - [9.1. Mapping Example: JSON to XML with SOAP](#91-mapping-example-json-to-xml-with-soap)
   - [9.2. Mapping Example: Query String parameters](#92-mapping-example-query-string-parameters)
+  - [9.3. Velocity Template Language (VTL)](#93-velocity-template-language-vtl)
 - [10. Open API spec](#10-open-api-spec)
   - [10.1. Request Validation](#101-request-validation)
   - [10.2. RequestValidation - OpenAPI](#102-requestvalidation---openapi)
@@ -169,7 +170,7 @@
 - The HTTP request is passed to the backend.
 - The HTTP response from the backend is forwarded by API Gateway.
 
-# 9. Mapping Templates (AWS & HTTP Integration)
+# 9. Mapping Templates (AWS and HTTP Integration)
 
 - Mapping templates can be used to modify request / responses.
 - Rename / Modify query string parameters.
@@ -188,6 +189,11 @@
   - Transform XML response to desired format (like JSON), and respond to the user.
 
 ## 9.2. Mapping Example: Query String parameters
+
+## 9.3. Velocity Template Language (VTL)
+
+- You should use VTL for data mapping and transformations rather than complex business logic.
+- There are exceptions but the drawbacks of using VTL for other use cases often outweigh the benefits.
 
 # 10. Open API spec
 

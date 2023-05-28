@@ -111,7 +111,6 @@
 
 ![S3 IAM Permissions](Images/S3IamPermissions.png)
 ![EC2 instance access - IAM Roles](Images/S3IamRoles.png)
-![Scenario IAM Role and EC2 Instance Profile](Images/AWSCrendentialScenario.png)
 
 - **Resource Based:**
   - **Bucket Policies:** bucket wide rules from the S3 console - allows cross account.

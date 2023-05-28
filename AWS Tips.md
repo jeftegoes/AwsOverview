@@ -17,6 +17,8 @@
 - [13. CloudWatch Events](#13-cloudwatch-events)
 - [14. VPC Endpoints](#14-vpc-endpoints)
 - [15. Elastic Beanstalk](#15-elastic-beanstalk)
+- [16. API Gateway - Errors](#16-api-gateway---errors)
+- [17. ALB - HealthCheck](#17-alb---healthcheck)
 
 # 1. S3
 
@@ -114,8 +116,26 @@
 - Endpoints allow you to connect to AWS Services **using a private network** instead of the public www network.
 - This gives you enhanced security and lower latency to access AWS services.
 - **VPC Endpoint Gateway**: S3 and DynamoDB.
-- **VPC Endpoint Interface**: the rest.
+- **VPC Endpoint Interface**: The rest.
 
 # 15. Elastic Beanstalk
 
 ![Elastic Beanstalk Workflow](Images/ElasticBeanstalkWorkflow.png)
+
+# 16. API Gateway - Errors
+
+- 4xx means Client errors:
+  - **400:** Bad Request.
+  - **403:** Access Denied, WAF filtered.
+  - **429:**
+    - Quota exceeded
+    - Throttle.
+- 5xx means Server errors:
+  - **502:** Bad Gateway Exception, usually for an incompatible output returned from a Lambda proxy integration backend and occasionally for out-of-order invocations due to heavy loads.
+  - **503:** Service Unavailable Exception.
+  - **504:** Integration Failure - ex Endpoint Request Timed-out Exception API Gateway requests time out after 29 second maximum.
+
+# 17. ALB - HealthCheck
+
+- `HealthyThresholdCount` - The number of consecutive successful health checks required before considering an unhealthy target healthy. The range is 2–10. The default is 5.
+- `UnhealthyThresholdCount` - The number of consecutive failed health checks required before considering a target unhealthy. The range is 2–10. The default is 2.
