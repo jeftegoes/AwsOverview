@@ -19,6 +19,7 @@
 - [15. Elastic Beanstalk](#15-elastic-beanstalk)
 - [16. API Gateway - Errors](#16-api-gateway---errors)
 - [17. ALB - HealthCheck](#17-alb---healthcheck)
+- [18. CloudFormation](#18-cloudformation)
 
 # 1. S3
 
@@ -98,10 +99,26 @@
 # 10. AWS CodeBuild
 
 - **Source:** CodeCommit, S3, Bitbucket, GitHub.
+- Phases order:
+  - SUBMITTED
+  - PROVISIONING
+  - DOWNLOAD_SOURCE
+    - INSTALL
+    - PRE_BUILD
+    - BUILD
+    - POST_BUILD
+  - UPLOAD_ARTIFACTS
+  - FINALIZING
 
 # 11. CodePipeline
 
-- InProgress, Stopping, Stopped, Succeeded, Superseded e Failed.
+- Phases order:
+  - InProgress
+  - Stopping
+  - Stopped
+  - Succeeded
+  - Superseded
+  - Failed
 
 # 12. ALG - Auto Scaling Group
 
@@ -139,3 +156,37 @@
 
 - `HealthyThresholdCount` - The number of consecutive successful health checks required before considering an unhealthy target healthy. The range is 2–10. The default is 5.
 - `UnhealthyThresholdCount` - The number of consecutive failed health checks required before considering a target unhealthy. The range is 2–10. The default is 2.
+
+# 18. CloudFormation
+
+- **Structure**
+  - **Resources**
+    - They represent the different AWS Components that will be created and configured `Type: AWS::aws-product-name::data-type-name`.
+    - Example: Type: AWS::EC2::Instance
+  - **Parameters**
+    - Parameters are a way to provide inputs to your AWS CloudFormation template.
+    - The `Fn::Ref` function can be leveraged to reference parameters.
+  - **Mapping**
+    - We use `Fn::FindInMap` to return a named value from a specific key
+      - `!FindInMap [ MapName, TopLevelKey, SecondLevelKey ]`
+  - **Output**
+    - Cross Stack Reference
+      - We then create a second template that leverages that security group.
+      - For this, we use the `Fn::ImportValue` function.
+  - **Conditions**
+    - Conditions are used to control the creation of **Resources** or **Outputs** based on a condition.
+    - The intrinsic function **(logical)** can be any of the following:
+      - `Fn::And`
+      - `Fn::Equals`
+      - `Fn::If`
+      - `Fn::Not`
+      - `Fn::Or`
+- **Intrisic Funcionts**
+  - Fn::Ref
+  - Fn::GetAtt
+  - Fn::FindInMap
+  - Fn::ImportValue
+  - Fn::Join
+  - Fn::Sub
+  - Fn::GetAZs
+  - Fn::Select

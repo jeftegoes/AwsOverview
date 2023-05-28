@@ -284,15 +284,15 @@
 - `artifacts` - what to upload to S3 (encrypted with KMS).
 - `cache` - files to cache (usually dependencies) to S3 for future build speedup.
 - Order:
-  - "SUBMITTED"
-  - "PROVISIONING"
-  - "DOWNLOAD_SOURCE"
-    - "INSTALL"
-    - "PRE_BUILD"
-    - "BUILD"
-    - "POST_BUILD"
-  - "UPLOAD_ARTIFACTS"
-  - "FINALIZING"
+  - SUBMITTED
+  - PROVISIONING
+  - DOWNLOAD_SOURCE
+    - INSTALL
+    - PRE_BUILD
+    - BUILD
+    - POST_BUILD
+  - UPLOAD_ARTIFACTS
+  - FINALIZING
 
 ### 6.4.1. Custom buildspec file name and location
 

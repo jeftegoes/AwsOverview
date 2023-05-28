@@ -127,30 +127,50 @@
 ## 5.1. Bucket Policies
 
 - **JSON based policies:**
-  - Resources: buckets and objects
-  - Actions: Set of API to Allow or Deny
-  - Effect: Allow / Deny
-  - Principal: The account or user to apply the policy to
-- **Use S3 bucket for policy to:**
-  - Grant public access to the bucket
-  - Force objects to be encrypted at upload
-  - Grant access to another account (Cross Account)
+  - An S3 bucket policy statement is composed of several elements, and the following are required to create a valid policy:
+    - `Effect` - The effect can be Allow or Deny.
+    - `Action` - The specific API action for which you are granting or denying permission.
+    - `Principal` - The user, account, service, or other entity that is allowed or denied access to the bucket or objects within the bucket.
+    - `Resource` - The resource that's affected by the action.
+      - You specify a resource using an Amazon Resource Name (ARN).
+      ```
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                  "AWS": [
+                    "arn:aws:iam::1234567890:role/Developer"
+                  ]
+              },
+              "Action": [
+                  "s3:GetObject"
+              ],
+              "Resource": "arn:aws:s3:::jeftegoesdev/*"
+            },
+            {
+              "Effect": "Allow",
+              "Principal": {
+                  "AWS": [
+                    "arn:aws:iam::1234567890:role/QA"
+                  ]
+              },
+              "Action": [
+                  "s3:GetObject"
+              ],
+              "Resource": "arn:aws:s3:::jeftegoesdev/qa/*"
+            }
+        ]
+      }
+      ```
 
-```
-{
-    "Version": "2012-10-17",
-    "Id": "Policy1648843736704",
-    "Statement": [
-        {
-            "Sid": "Stmt1648843733338",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::test-bucket-jefte-goes/*"
-        }
-    ]
-}
-```
+![Example ](Images/AWSS3BucketPoliciesExample.png)
+
+- **Use S3 bucket for policy to:**
+  - Grant public access to the bucket.
+  - Force objects to be encrypted at upload.
+  - Grant access to another account (Cross Account).
 
 ## 5.2. Bucket settings for Block Public Access
 

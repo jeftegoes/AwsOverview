@@ -12,7 +12,7 @@
     - [3.4.1. Hosted UI Custom Domain](#341-hosted-ui-custom-domain)
   - [3.5. Adaptive Authentication](#35-adaptive-authentication)
   - [3.6. Decoding a ID Token; JWT - JSON Web Token](#36-decoding-a-id-token-jwt---json-web-token)
-  - [3.7. Authenticate Users](#37-authenticate-users)
+  - [3.7. ALB - Authenticate Users](#37-alb---authenticate-users)
   - [3.8. ALB - Auth through Cognito User Pools](#38-alb---auth-through-cognito-user-pools)
     - [3.8.1. ALB - Auth. Through an Identity Provider (IdP) That is OpenID Connect (OIDC) Compliant](#381-alb---auth-through-an-identity-provider-idp-that-is-openid-connect-oidc-compliant)
 - [4. Cognito Identity Pools (Federated Identities)](#4-cognito-identity-pools-federated-identities)
@@ -49,9 +49,13 @@
 - Feature: block users if their credentials are compromised elsewhere.
 - Login sends back a JSON Web Token (JWT).
 
+  ![Cognito User Pools Diagram](Images/AWSCognitoUserPoolsCUP.png)
+
 ## 3.2. Integrations
 
 - CUP integrates with API Gateway and Application Load Balancer.
+  ![API Gateway](Images/AWSCognitoUserPoolsCUPApiGatewayIntegration.png)
+  ![Application Load Balancer](Images/AWSCognitoUserPoolsCUPApplicationLoadBalancer.png)
 
 ## 3.3. Lambda Triggers
 
@@ -89,7 +93,7 @@
 - The Payload will contain the user information (sub UUID, given_name, email, phone_number, attributes...).
 - From the sub UUID, you can retrieve all users details from Cognito / OIDC.
 
-## 3.7. Authenticate Users
+## 3.7. ALB - Authenticate Users
 
 - Your Application Load Balancer can securely authenticate users:
   - Offload the work of authenticating users to your load balancer.
@@ -132,6 +136,8 @@
 - **Users can then access AWS services directly or through API Gateway**
   - The IAM policies applied to the credentials are defined in Cognito.
   - They can be customized based on the user_id for fine grained control.
+
+![Cognito Identity Pools](Images/AWSCognitoIdentityPoolsDiagram.png)
 
 ## 4.1. IAM Roles
 
