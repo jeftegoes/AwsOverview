@@ -529,7 +529,7 @@
   - Load Balancer configuration that is re-used.
   - Security Group that is re-used.
 - Nested stacks are considered best practice.
-- To update a nested stack, always update the parent (root stack).Stephane Maarek
+- To update a nested stack, always update the parent (root stack).
 
 # 8. CloudFormation - Cross vs Nested Stacks
 

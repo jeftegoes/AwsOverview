@@ -4,6 +4,7 @@
 
 - [1. Introduction](#1-introduction)
 - [2. Recipe](#2-recipe)
+  - [Example](#example)
 - [3. CLI Debugging](#3-cli-debugging)
 - [4. Policy Templates](#4-policy-templates)
 - [5. SAM and CodeDeploy](#5-sam-and-codedeploy)
@@ -25,7 +26,7 @@
 # 2. Recipe
 
 - Transform Header indicates it's SAM template:
-  - Transform: 'AWS::Serverless-2016-10-31'
+  - `Transform: 'AWS::Serverless-2016-10-31'`
 - Write Code
   - `AWS::Serverless::Function` - For creating a Lambda function.
   - `AWS::Serverless::LayerVersion` - This resource type creates a Lambda layer version.
@@ -41,6 +42,48 @@
     - `sam deploy`
 
 ![SAM Deployment](Images/AWSSAMDeployment.png)
+
+## Example
+
+```
+  # SAM FILE
+  AWSTemplateFormatVersion: '2010-09-09'
+  Transform: 'AWS::Serverless-2016-10-31'
+  Description: A starter AWS Lambda function.
+  Resources:
+    helloworldpython3:
+      Type: 'AWS::Serverless::Function'
+      Properties:
+        Handler: app.lambda_handler
+        Runtime: python3.9
+        CodeUri: src/
+        Description: A starter AWS Lambda function.
+        MemorySize: 128
+        Timeout: 3
+        Environment:
+          Variables:
+            TABLE_NAME: !Ref Table
+            REGION_NAME: !Ref AWS::Region
+        Events:
+          HelloWorldSAMAPI:
+            Type: Api
+            Properties:
+              Path: /hello
+              Method: GET
+        Policies:
+          - DynamoDBCrudPolicy:
+              TableName: !Ref Table
+
+    Table:
+      Type: AWS::Serverless::SimpleTable
+      Properties:
+        PrimaryKey:
+          Name: greeting
+          Type: String
+        ProvisionedThroughput:
+          ReadCapacityUnits: 2
+          WriteCapacityUnits: 2
+```
 
 # 3. CLI Debugging
 

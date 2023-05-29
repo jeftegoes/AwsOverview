@@ -140,7 +140,7 @@
     - `arn:aws:lambda:us-west-2:123456789012:function:myFunction:1`
     - `arn:aws:lambda:us-west-2:123456789012:function:myFunction:*`
   - **Unqualified**
-    - `arn:aws:lambda:us-west-2:123456789012:function:myFunction` **$LATEST**
+    - `arn:aws:lambda:us-west-2:123456789012:function:myFunction` `$LATEST`
     - `arn:aws:lambda:us-west-2:123456789012:function:myFunction*`
 
 # 6. Pricing: example
@@ -687,7 +687,7 @@ CMD ["app.lambdaHandler"]
 
 # 26. AWS Lambda Versions
 
-- When you work on a Lambda function, we work on **$LATEST**.
+- When you work on a Lambda function, we work on `$LATEST`.
 - When we're ready to publish a Lambda function, we create a version.
 - Versions are immutable.
 - Versions have increasing version numbers.
@@ -722,16 +722,18 @@ CMD ["app.lambdaHandler"]
 
 # 29. Function URL
 
-- Dedicated HTTP(S) endpoint for your Lambda function.
+- **Dedicated** HTTP(S) endpoint for your Lambda function.
 - A unique URL endpoint is generated for you (never changes).
   - `https://<url-id>.lambda-url.<region>.on.aws (dual-stack IPv4 & IPv6)`
 - Invoke via a web browser, curl, Postman, or any HTTP client.
 - Access your function URL through the public Internet only.
   - Doesn't support PrivateLink (Lambda functions do support).
 - Supports Resource-based Policies & CORS configurations.
-- Can be applied to any function alias or to $LATEST (can't be applied to other function versions).
+- Can be applied to any function alias or to `$LATEST` (can't be applied to other function versions).
 - Create and configure using AWS Console or AWS API.
 - Throttle your function by using Reserved Concurrency.
+
+![Lambda Function URL](Images/LambdaFunctionURL.png)
 
 ## 29.1. Function URL Security
 
@@ -742,11 +744,13 @@ CMD ["app.lambdaHandler"]
 - **AuthType NONE**
   - Allow public and unauthenticated access.
     - Resource-based Policy is always in effect (must grant public access).
-- **AuthType `AWS_IAM`:** IAM is used to authenticate and authorize requests.
+- `lambda:FunctionUrlAuthType: "AWS_IAM"`- IAM is used to authenticate and authorize requests.
   - Both Principal's Identity-based Policy and Resource-based Policy are evaluated.
   - Principal must have `lambda:InvokeFunctionUrl` permissions.
   - **Same account:** Identity-based Policy **OR** Resource-based Policy as ALLOW.
   - **Cross account:** Identity-based Policy **AND** Resource Based Policy as ALLOW.
+
+![Lambda secutiry options](Images/LambdaFunctionURLSecutiryOptions.png)
 
 # 30. Lambda and CodeGuru Profiling
 

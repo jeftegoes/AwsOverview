@@ -9,6 +9,7 @@
 - [5. General tips](#5-general-tips)
 - [6. ECS](#6-ecs)
 - [7. X-Ray](#7-x-ray)
+  - [7.1. Lambda Tracing with X-Ray](#71-lambda-tracing-with-x-ray)
 - [8. Files](#8-files)
 - [9. PartiQL](#9-partiql)
 - [10. AWS CodeBuild](#10-aws-codebuild)
@@ -20,6 +21,7 @@
 - [16. API Gateway - Errors](#16-api-gateway---errors)
 - [17. ALB - HealthCheck](#17-alb---healthcheck)
 - [18. CloudFormation](#18-cloudformation)
+- [19. CloudWatch](#19-cloudwatch)
 
 # 1. S3
 
@@ -75,6 +77,18 @@
 - The X-Ray daemon / agent has a config to send traces cross account:
   - Make sure the IAM permissions are correct - the agent will assume the role.
   - This allows to have a central account for all your application tracing.
+
+## 7.1. Lambda Tracing with X-Ray
+
+- Enable in Lambda configuration **(Active Tracing)**.
+- Runs the X-Ray daemon for you.
+- Use AWS X-Ray SDK in Code.
+- Ensure Lambda Function has a correct IAM Execution Role.
+  - The managed policy is called `AWSXRayDaemonWriteAccess`.
+- Environment variables to communicate with X-Ray:
+  - `_X_AMZN_TRACE_ID` - Contains the tracing header
+  - `AWS_XRAY_CONTEXT_MISSING` - By default, LOG_ERROR
+  - `AWS_XRAY_DAEMON_ADDRESS` - The X-Ray Daemon IP_ADDRESS:PORT
 
 # 8. Files
 
@@ -190,3 +204,14 @@
   - Fn::Sub
   - Fn::GetAZs
   - Fn::Select
+
+# 19. CloudWatch
+
+- AWS CloudWatch Metrics
+  - CloudWatch provides metrics for every services in AWS.
+  - **Metric** is a variable to monitor (CPUUtilization, NetworkIn...).
+  - Metrics belong to **namespaces**.
+  - **Dimension** is an attribute of a metric (instance id, environment, etc...).
+  - Up to 10 dimensions per metric.
+  - Metrics have **timestamps**.
+  - Can create CloudWatch dashboards of metrics.

@@ -37,7 +37,7 @@
 
 - Define an IAM Role within your account or cross-account.
 - Define which principals can access this IAM Role.
-- Use AWS STS (Security Token Service) to retrieve credentials and impersonate the IAM Role you have access to (AssumeRole API).
+- Use AWS STS (Security Token Service) to retrieve credentials and impersonate the IAM Role you have access to (`AssumeRole` API).
 - Temporary credentials can be valid between 15 minutes to 1 hour.
 
 ![AWS STS Assume a Role](Images/AWSSTSAssumeRole.png)
@@ -85,7 +85,7 @@
 
 - Define an IAM Role for another account to access.
 - Define which accounts can access this IAM Role.
-- Use AWS STS (Security Token Service) to retrieve credentials and impersonate the IAM Role you have access to (AssumeRole API).
+- Use AWS STS (Security Token Service) to retrieve credentials and impersonate the IAM Role you have access to (`AssumeRole` API).
 - Temporary credentials can be valid between 15 minutes to 1 hour.
 
 # 6. Advanced IAM - Authorization Model Evaluation of Policies, simplified

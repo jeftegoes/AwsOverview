@@ -129,7 +129,7 @@
   - Encrypted in transit (can only use HTTPS or SSH - both secure).
 - **Cross-account Access**
   - Do NOT share your SSH keys or your AWS credentials.
-  - Use an IAM Role in your AWS account and use AWS STS (AssumeRole API).
+  - Use an IAM Role in your AWS account and use AWS STS (`AssumeRole` API).
 
 ## 4.2. Migrations
 
