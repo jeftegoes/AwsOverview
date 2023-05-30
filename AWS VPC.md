@@ -31,6 +31,8 @@
 - **Internet Gateways** helps our VPC instances connect with the internet.
 - Public Subnets have a route to the internet gateway.
 - **NAT Gateways** (AWS-managed) and **NAT Instances** (self-managed) allow your instances in your **Private Subnets** to access the internet while remaining private.
+- A subnet can only be associated with one route table at a time.
+  - **But you can associate multiple subnets with the same subnet route table.**
 
 # 3. Network ACL and Security Groups
 

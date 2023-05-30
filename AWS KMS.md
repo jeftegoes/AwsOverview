@@ -149,8 +149,7 @@
 - `Encrypt` - Encrypt **up to 4 KB** of data through KMS.
 - `GenerateDataKey`
   - Generates a unique symmetric data key (DEK).
-  - Returns a plaintext copy of the data key.
-  - AND a copy that is encrypted under the CMK that you specify.
+  - Returns a plaintext copy of the data key **AND** a copy that is encrypted under the CMK that you specify.
 - `GenerateDataKeyWithoutPlaintext`
   - Generate a DEK to use at some point (not immediately).
   - DEK that is encrypted under the CMK that you specify (must use Decrypt later).

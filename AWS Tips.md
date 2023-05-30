@@ -10,6 +10,7 @@
 - [6. ECS](#6-ecs)
 - [7. X-Ray](#7-x-ray)
   - [7.1. Lambda Tracing with X-Ray](#71-lambda-tracing-with-x-ray)
+  - [7.2. Read APIs](#72-read-apis)
 - [8. Files](#8-files)
 - [9. PartiQL](#9-partiql)
 - [10. AWS CodeBuild](#10-aws-codebuild)
@@ -69,7 +70,9 @@
 
 - **Segments:** Each application / service will send them.
 - **Subsegments:** If you need more details in your segment.
-  - `namespace` - aws for AWS SDK calls; remote for other downstream calls.
+  - `namespace`
+    - `aws` for AWS SDK calls.
+    - `remote` for other downstream calls.
 - **Trace:** Segments collected together to form an end-to-end trace.
 - **Sampling:** Decrease the amount of requests sent to X-Ray, reduce cost.
 - **Annotations:** Key Value pairs used to **index** traces and use with **filters**.
@@ -77,6 +80,29 @@
 - The X-Ray daemon / agent has a config to send traces cross account:
   - Make sure the IAM permissions are correct - the agent will assume the role.
   - This allows to have a central account for all your application tracing.
+- Example:
+  ```
+    "subsegments" : [
+        {
+          "id"         : "53995c3f42cd8ad8",
+          "name"       : "api.example.com",
+          "start_time" : 1461096053.37769,
+          "end_time"   : 1461096053.40379,
+          "namespace"  : "remote",
+          "http"       : {
+            "request"  : {
+              "url"    : "https://api.example.com/health",
+              "method" : "POST",
+              "traced" : true
+            },
+            "response" : {
+              "status"         : 200,
+              "content_length" : 861
+            }
+          }
+        }
+      ]
+  ```
 
 ## 7.1. Lambda Tracing with X-Ray
 
@@ -89,6 +115,14 @@
   - `_X_AMZN_TRACE_ID` - Contains the tracing header
   - `AWS_XRAY_CONTEXT_MISSING` - By default, LOG_ERROR
   - `AWS_XRAY_DAEMON_ADDRESS` - The X-Ray Daemon IP_ADDRESS:PORT
+
+## 7.2. Read APIs
+
+- `GetServiceGraph` - Main graph.
+- `BatchGetTraces` - Retrieves a list of traces specified by ID.
+  - Each trace is a collection of segment documents that originates from a single request.
+- `GetTraceSummaries` - Retrieves IDs and annotations for traces available for a specified time frame using an optional filter. To get the full traces, pass the trace IDs to BatchGetTraces.
+- `GetTraceGraph` - Retrieves a service graph for one or more specific trace IDs.
 
 # 8. Files
 

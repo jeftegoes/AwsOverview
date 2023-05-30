@@ -151,7 +151,8 @@
 - `GetServiceGraph` - Main graph.
 - `BatchGetTraces` - Retrieves a list of traces specified by ID.
   - Each trace is a collection of segment documents that originates from a single request.
-- `GetTraceSummaries` - Retrieves IDs and annotations for traces available for a specified time frame using an optional filter. To get the full traces, pass the trace IDs to BatchGetTraces.
+- `GetTraceSummaries` - Retrieves IDs and annotations for traces available for a specified time frame using an optional filter.
+  - To get the full traces, pass the trace IDs to `BatchGetTraces`.
 - `GetTraceGraph` - Retrieves a service graph for one or more specific trace IDs.
 
 # 14. X-Ray with Elastic Beanstalk
