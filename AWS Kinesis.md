@@ -152,12 +152,16 @@
 - No automatic scaling (manually increase/decrease capacity)
 - Can't split into more than two shards in a single operation
 
+![Kinesis Shard Splitting](Images/AWSKinesisSplittingShards.png)
+
 ## 5.3. Merging Shards
 
 - Decrease the Stream capacity and save costs.
 - Can be used to group two shards with low traffic (cold shards).
 - Old shards are closed and will be deleted once the data is expired.
 - Can't merge more than two shards in a single operation.
+
+![Kinesis Merging Shards](Images/AWSKinesisMergingShards.png)
 
 # 6. Kinesis Data Firehose
 

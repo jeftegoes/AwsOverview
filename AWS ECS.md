@@ -232,7 +232,7 @@
 #### 3.11.2.5. memberOf
 
 - Tasks are placed on EC2 instances that satisfy a specified expression.
-- Uses the Cluster Query Language (advanced).
+- Uses the **Cluster Query Language** (advanced).
 
 # 4. Amazon ECR
 

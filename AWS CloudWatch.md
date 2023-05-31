@@ -150,14 +150,14 @@
 
 # 11. Unified Agent - Metrics
 
-- Collected directly on your Linux server / EC2 instance.
-- CPU (active, guest, idle, system, user, steal).
-- Disk metrics (free, used, total), Disk IO (writes, reads, bytes, iops).
-- RAM (free, inactive, used, total, cached).
-- Netstat (number of TCP and UDP connections, net packets, bytes).
-- Processes (total, dead, bloqued, idle, running, sleep).
-- Swap Space (free, used, used %).
-- Reminder: out-of-the box metrics for EC2 - disk, CPU, network (high level).
+- Collected directly on your Linux server / EC2 instance:
+  - **CPU:** (active, guest, idle, system, user, steal).
+  - **Disk metrics:** (free, used, total), Disk IO (writes, reads, bytes, iops).
+  - **RAM:** (free, inactive, used, total, cached).
+  - **Netstat:** (number of TCP and UDP connections, net packets, bytes).
+  - **Processes:** (total, dead, bloqued, idle, running, sleep).
+  - **Swap Space:** (free, used, used %).
+  - Reminder: out-of-the box metrics for EC2 - disk, CPU, network (high level).
 
 # 12. Logs Metric Filter
 

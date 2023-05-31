@@ -263,6 +263,7 @@
   - [27.1. DynamoDB](#271-dynamodb)
   - [27.2. S3](#272-s3)
   - [27.3. Lambda](#273-lambda)
+  - [27.4. Systems Manager](#274-systems-manager)
 - [28. Credits](#28-credits)
 
 ## 1. Traditionally, how to build infrastructure
@@ -2747,6 +2748,12 @@
 ### 27.3. Lambda
 
 - aws lambda invoke --function-name `<lambda_name>` --invocation-type `<invocation_type>` response.json # `invocation_type` like: `Event` or `RequestResponse`
+
+
+### 27.4. Systems Manager
+
+- Create parameter 
+  - aws ssm put-parameter --name myEC2TypeDev --type String --value "t2.small"
 
 ## 28. Credits
 

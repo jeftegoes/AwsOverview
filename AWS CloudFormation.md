@@ -17,6 +17,7 @@
     - [2.2.2. Parameters Settings](#222-parameters-settings)
     - [2.2.3. How to Reference a Parameter](#223-how-to-reference-a-parameter)
     - [2.2.4. Concept: Pseudo Parameters](#224-concept-pseudo-parameters)
+    - [2.2.5. Systems Manager parameter](#225-systems-manager-parameter)
   - [2.3. Mappings](#23-mappings)
     - [2.3.1. When would you use Mappings vs Parameters?](#231-when-would-you-use-mappings-vs-parameters)
     - [2.3.2. Fn::FindInMap Accessing Mapping Values](#232-fnfindinmap-accessing-mapping-values)
@@ -238,6 +239,27 @@
 | AWS::Region           | us-east-2                                                          |
 | AWS::StackId          | rn:aws:cloudformation:us-east-1:123456789012:stack/MyStack/1c2fa62 |
 | AWS::StackName        | MyStack                                                            |
+
+### 2.2.5. Systems Manager parameter
+
+- CloudFormation parameters already support certain AWS specific types.
+- SSM parameter types will be an addition to these types.
+- New parameter types introduced in CloudFormation are:
+
+- `AWS::SSM::Parameter::Name`
+- `AWS::SSM::Parameter::Value<String>`
+- `AWS::SSM::Parameter::Value<List<String>>`
+- `AWS::SSM::Parameter::Value<Any AWS type>`
+
+- Example:
+  ```
+    aws ssm put-parameter --name myEC2TypeDev --type String --value "t2.small"
+
+    Parameters:
+      InstanceType :
+        Type : 'AWS::SSM::Parameter::Value<String>'
+        Default: myEC2TypeDev
+  ```  
 
 ## 2.3. Mappings
 

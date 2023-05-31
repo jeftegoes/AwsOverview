@@ -22,6 +22,7 @@
   - [7.4. Reading Data (Scan)](#74-reading-data-scan)
   - [7.5. Deleting Data](#75-deleting-data)
   - [7.6. Batch Operations](#76-batch-operations)
+  - [7.7. Extra](#77-extra)
 - [8. Indexes](#8-indexes)
   - [8.1. Local Secondary Index (LSI)](#81-local-secondary-index-lsi)
   - [8.2. Global Secondary Index (GSI)](#82-global-secondary-index-gsi)
@@ -205,10 +206,10 @@
 
 ## 7.1. Writing Data
 
-- **PutItem:**
+- `PutItem`
   - Creates a new item or fully replace an old item (same Primary Key).
   - Consumes WCUs.
-- **UpdateItem:**
+- `UpdateItem`
   - Edits an existing item's attributes or adds a new item if it doesn't exist.
   - Can be used to implement **Atomic Counters** - A numeric attribute that's unconditionally incremented.
 - **Conditional Writes:**
@@ -218,16 +219,16 @@
 
 ## 7.2. Reading Data
 
-- **GetItem:**
+- `GetItem`
   - Read based on Primary key.
   - Primary Key can be HASH or HASH+RANGE.
   - Eventually Consistent Read (default).
   - Option to use Strongly Consistent Reads (more RCU - might take longer).
-  - **ProjectionExpression** can be specified to retrieve only certain attributes.
+  - `ProjectionExpression` can be specified to retrieve only certain attributes.
 
 ## 7.3. Reading Data (Query)
 
-- **Query** returns items based on:
+- `Query` returns items based on:
   - **KeyConditionExpression:**
     - Partition Key value (must be = operator) - required.
     - Sort Key value (=, <, <=, >, >=, Between, Begins with) - optional.
@@ -242,10 +243,10 @@
 
 ## 7.4. Reading Data (Scan)
 
-- **Scan** the entire table and then filter out data (inefficient).
+- `Scan` the entire table and then filter out data (inefficient).
 - Returns up to 1 MB of data - use pagination to keep on reading.
 - Consumes a lot of RCU.
-- Limit impact using **Limit** or reduce the size of the result and pause.
+- Limit impact using `Limit` or reduce the size of the result and pause.
 - For faster performance, use **Parallel Scan**.
   - Multiple workers scan multiple data segments at the same time.
   - Increases the throughput and RCU consumed.
@@ -254,10 +255,10 @@
 
 ## 7.5. Deleting Data
 
-- **DeleteItem:**
+- `DeleteItem`
   - Delete an individual item.
   - Ability to perform a conditional delete.
-- **DeleteTable:**
+- `DeleteTable`
   - Delete a whole table and all its items.
   - Much quicker deletion than calling DeleteItem on all items.
 
@@ -267,19 +268,26 @@
 - Operations are done in parallel for better efficiency.
 - Part of a batch can fail; in which case we need to try again for the failed items.
 - `BatchWriteItem`
-  - Up to 25 **PutItem** and/or **DeleteItem** in one call.
+  - Up to 25 `PutItem` and/or `DeleteItem` in one call.
   - Up to 16 MB of data written, up to 400 KB of data per item.
-  - Can't update items (use **UpdateItem**).
-  - **UnprocessedItems** for failed write operations (exponential backoff or add WCU).
+  - Can't update items (use `UpdateItem`).
+  - `UnprocessedItems` for failed write operations (exponential backoff or add WCU).
 - `BatchGetItem`
   - Return items from one or more tables.
   - Up to 100 items, up to 16 MB of data.
   - Items are retrieved in parallel to minimize latency.
-  - **UnprocessedKeys** for failed read operations (exponential backoff or add RCU).
-    - For example, The DynamoDB API returns up to 100 items limited to 16MB per call. If there are still missing records to be returned, the API returns UnprocessedKeys until the process is finished.
+  - `UnprocessedKeys` for failed read operations (exponential backoff or add RCU).
+    - For example, The DynamoDB API returns up to 100 items limited to 16MB per call. If there are still missing records to be returned, the API returns `UnprocessedKeys` until the process is finished.
       - In the present case, although we have 50 records, their total size is 50 x 2MB = 100MB, which exceeds the 16MB limit, so the message will be returned as follows:
-        - Sixth call returns 16MB - 6 UnprocessedKeys (Total returned 92MB)
+        - Sixth call returns 16MB - 6 `UnprocessedKeys` (Total returned 92MB)
         - Seventh call returns 8MB - Query process terminated (Total returned 100MB)
+
+## 7.7. Extra
+
+- To return the number of write capacity units consumed by any of these operations (`PutItem`, `UpdateItem`, `DeleteItem`), set the `ReturnConsumedCapacity` parameter to one of the following:
+  - `TOTAL` — returns the total number of write capacity units consumed.
+  - `INDEXES` — returns the total number of write capacity units consumed, with subtotals for the table and any secondary indexes that were affected by the operation.
+  - `NONE` — no write capacity details are returned. (This is the default.)
 
 # 8. Indexes
 

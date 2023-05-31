@@ -241,6 +241,8 @@
 - Origin Group: one primary and one secondary origin.
 - If the primary origin fails, the second one is used.
 
+![CloudFront Origin Groups](Images/AWSCloudFrontOriginGroups.png)
+
 # 8. Field Level Encryption
 
 - Protect user sensitive information through application stack.

@@ -4,6 +4,8 @@
 
 - [1. S3](#1-s3)
 - [2. DynamoDB](#2-dynamodb)
+  - [2.1. General tips](#21-general-tips)
+  - [2.2. Batch Operations](#22-batch-operations)
 - [3. Kinesys](#3-kinesys)
 - [4. KMS](#4-kms)
 - [5. General tips](#5-general-tips)
@@ -19,10 +21,14 @@
 - [13. CloudWatch Events](#13-cloudwatch-events)
 - [14. VPC Endpoints](#14-vpc-endpoints)
 - [15. Elastic Beanstalk](#15-elastic-beanstalk)
-- [16. API Gateway - Errors](#16-api-gateway---errors)
+- [16. API Gateway](#16-api-gateway)
+  - [16.1. Erros](#161-erros)
+  - [16.2. CloudWatch metrics](#162-cloudwatch-metrics)
 - [17. ALB - HealthCheck](#17-alb---healthcheck)
 - [18. CloudFormation](#18-cloudformation)
 - [19. CloudWatch](#19-cloudwatch)
+- [20. Lambda](#20-lambda)
+  - [24. Layers](#24-layers)
 
 # 1. S3
 
@@ -35,11 +41,22 @@
 
 # 2. DynamoDB
 
+## 2.1. General tips
+
 - **UnprocessedKeys** for failed read operations (exponential backoff or add RCU).
   - For example, The DynamoDB API returns up to 100 items limited to 16MB per call. If there are still missing records to be returned, the API returns UnprocessedKeys until the process is finished.
     - In the present case, although we have 50 records, their total size is 50 x 2MB = 100MB, which exceeds the 16MB limit, so the message will be returned as follows:
       - Sixth call returns 16MB - 6 UnprocessedKeys (Total returned 92MB)
       - Seventh call returns 8MB - Query process terminated (Total returned 100MB)
+
+## 2.2. Batch Operations
+
+- `BatchWriteItem`
+  - Up to 25 **PutItem** and/or **DeleteItem** in one call.
+  - Up to 16 MB of data written, up to 400 KB of data per item.
+- `BatchGetItem`
+  - Return items from one or more tables.
+  - Up to 100 items, up to 16 MB of data.
 
 # 3. Kinesys
 
@@ -65,6 +82,11 @@
   - **Spread**
   - Tasks are placed evenly based on the specified value.
     - Example: **instanceId, attribute:ecs.availability-zone, ...**
+  - **Distinct Instance**
+    - Tasks are placed on a different EC2 instance.
+  - **memberOf**
+    - Tasks are placed on EC2 instances that satisfy a specified expression.
+    - Uses the **Cluster Query Language** (advanced).
 
 # 7. X-Ray
 
@@ -130,6 +152,7 @@
 - appspec.yml - CodeDeploy.
 - env.yml - Elastic Beanstalk.
   - .config - Configuration files are YAML- or JSON-formatted documents with a **.config** file extension that you place in a folder named **.ebextensions**.
+- amplify.yml - Use the test step to run any test commands at build time.
 
 # 9. PartiQL
 
@@ -187,7 +210,9 @@
 
 ![Elastic Beanstalk Workflow](Images/ElasticBeanstalkWorkflow.png)
 
-# 16. API Gateway - Errors
+# 16. API Gateway
+
+## 16.1. Erros
 
 - 4xx means Client errors:
   - **400:** Bad Request.
@@ -199,6 +224,17 @@
   - **502:** Bad Gateway Exception, usually for an incompatible output returned from a Lambda proxy integration backend and occasionally for out-of-order invocations due to heavy loads.
   - **503:** Service Unavailable Exception.
   - **504:** Integration Failure - ex Endpoint Request Timed-out Exception API Gateway requests time out after 29 second maximum.
+
+## 16.2. CloudWatch metrics
+
+- Metrics are by stage, Possibility to enable detailed metrics.
+- `CacheHitCount` - The number of requests served from the API cache in a given period.
+- `CacheMissCount` - Tracks the number of requests served from the backend in a given period, when API caching is enabled.
+- `Count` - The total number API requests in a given period.
+- `IntegrationLatency` - The time between when API Gateway relays a request to the backend and when it receives a response from the backend.
+- `Latency` - The time between when API Gateway receives a request from a client and when it returns a response to the client.
+  - The latency includes the integration latency and other API Gateway overhead.
+- **4XX Error** (client-side) & **5XX Error** (server-side).
 
 # 17. ALB - HealthCheck
 
@@ -249,3 +285,13 @@
   - Up to 10 dimensions per metric.
   - Metrics have **timestamps**.
   - Can create CloudWatch dashboards of metrics.
+
+# 20. Lambda
+## 24. Layers
+
+- Custom Runtimes:
+  - Ex: C++ https://github.com/awslabs/aws-lambda-cpp
+  - Ex: Rust https://github.com/awslabs/aws-lambda-rust-runtime
+- Externalize Dependencies to re-use them.
+- C++ and Rust
+  - **Take note that this programming language is not natively supported yet in Lambda, which is why the use of a Custom Runtime is essential.**

@@ -236,9 +236,27 @@
 
 - Able to flush the entire cache (invalidate it) immediately.
 - Clients can invalidate the cache with header: `Cache-Control: max-age=0` (with proper IAM authorization).
-- If you don't impose an InvalidateCache policy (or choose the Require Authorization check box in the console), any client can invalidate the API cache.
+- If you don't impose an `execute-api:InvalidateCache` policy (or choose the Require Authorization check box in the console), any client can invalidate the API cache.
 
 ![API Gateway cache parameter](Images/APIGatewayCacheParameter.png)
+
+- Role example:
+  ```
+    {
+      "Version":"2012-10-17",
+      "Statement":[
+          {
+            "Effect":"Allow",
+            "Action":[
+                "execute-api:InvalidateCache"
+            ],
+            "Resource":[
+                "arn:aws:execute-api:region:account-id:api-id/stage-name/GET/resource-path-specifier"
+            ]
+          }
+      ]
+    }
+  ```
 
 # 12. Usage Plans & API Keys
 
@@ -279,7 +297,8 @@
 ## 13.1. CloudWatch metrics
 
 - Metrics are by stage, Possibility to enable detailed metrics.
-- `CacheHitCount` and `CacheMissCount` - Efficiency of the cache.
+- `CacheHitCount` - The number of requests served from the API cache in a given period.
+- `CacheMissCount` - Tracks the number of requests **served from the backend** in a given period, when API caching is enabled.
 - `Count` - The total number API requests in a given period.
 - `IntegrationLatency` - The time between when API Gateway relays a request to the backend and when it receives a response from the backend.
 - `Latency` - The time between when API Gateway receives a request from a client and when it returns a response to the client.
@@ -307,7 +326,7 @@
 - 5xx means Server errors:
   - **502:** Bad Gateway Exception, usually for an incompatible output returned from a Lambda proxy integration backend and occasionally for out-of-order invocations due to heavy loads.
   - **503:** Service Unavailable Exception.
-  - **504:** Integration Failure - ex Endpoint Request Timed-out Exception API Gateway requests time out after 29 second maximum.
+  - **504:** Integration Failure - ex Endpoint Request Timed-out Exception API Gateway requests time out after **29** second maximum.
 
 # 16. CORS
 
@@ -345,10 +364,12 @@
 
 ## 17.3. Lambda Authorizer (formerly Custom Authorizers)
 
-- Token-based authorizer (bearer token) - ex JWT (JSON Web Token) or Oauth.
-- A request parameter-based Lambda authorizer (headers, query string, stage var).
+- `Token-based` authorizer (bearer token) - ex JWT (JSON Web Token) or Oauth.
+- A `request parameter-based` Lambda authorizer (headers, query string, stage var).
 - Lambda must return an IAM policy for the user, result policy is cached.
 - **Authentication = External** | _Authorization = Lambda function_.
+
+![Lambda Authorizer Diagram](Images/APIGatewayLambdaAuthorizer.png)
 
 ## 17.4. Summary
 

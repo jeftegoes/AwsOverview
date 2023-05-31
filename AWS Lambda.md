@@ -657,6 +657,8 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
   - Ex: C++ https://github.com/awslabs/aws-lambda-cpp
   - Ex: Rust https://github.com/awslabs/aws-lambda-rust-runtime
 - Externalize Dependencies to re-use them.
+- C++ and Rust
+  - **Take note that this programming language is not natively supported yet in Lambda, which is why the use of a Custom Runtime is essential.**
 
 # 25. Lambda Container Images
 

@@ -40,12 +40,13 @@
   - [20.2. SSE-KMS](#202-sse-kms)
     - [20.2.1. SSE-KMS Limitation](#2021-sse-kms-limitation)
   - [20.3. SSE-C](#203-sse-c)
-  - [20.5. Client-Side Encryption](#205-client-side-encryption)
-  - [20.6. Encryption in transit (SSL/TLS)](#206-encryption-in-transit-ssltls)
-  - [20.7. Default Encryption vs Bucket Policies](#207-default-encryption-vs-bucket-policies)
+  - [20.4. Client-Side Encryption](#204-client-side-encryption)
+  - [20.5. Encryption in transit (SSL/TLS)](#205-encryption-in-transit-ssltls)
+  - [20.6. Default Encryption vs Bucket Policies](#206-default-encryption-vs-bucket-policies)
 - [21. What is CORS?](#21-what-is-cors)
   - [21.1. Amazon S3 - CORS](#211-amazon-s3---cors)
   - [21.2. CloudFront to respect CORS settings](#212-cloudfront-to-respect-cors-settings)
+  - [21.3. Cors configuration](#213-cors-configuration)
 - [22. MFA Delete](#22-mfa-delete)
 - [23. Access Logs](#23-access-logs)
   - [23.1. Access Logs WARNING](#231-access-logs-warning)
@@ -476,14 +477,14 @@
 | x-amz-server-side-encryption-customer-key       | Use this header to provide the 256-bit, base64-encoded encryption key for Amazon S3 to use to encrypt or decrypt your data.                                                                                                             |
 | x-amz-server-side-encryption-customer-key-MD5   | Use this header to provide the base64-encoded 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error. |
 
-## 20.5. Client-Side Encryption
+## 20.4. Client-Side Encryption
 
 - Use client libraries such as **Amazon S3 Client-Side Encryption Library**.
 - Clients must encrypt data themselves before sending to Amazon S3.
 - Clients must decrypt data themselves when retrieving from Amazon S3.
 - Customer fully manages the keys and encryption cycle.
 
-## 20.6. Encryption in transit (SSL/TLS)
+## 20.5. Encryption in transit (SSL/TLS)
 
 - Encryption in flight is also called SSL/TLS.
 - Amazon S3 exposes two endpoints:
@@ -493,7 +494,7 @@
 - **HTTPS is mandatory for SSE-C.**
 - Most clients would use the HTTPS endpoint by default.
 
-## 20.7. Default Encryption vs Bucket Policies
+## 20.6. Default Encryption vs Bucket Policies
 
 - **SSE-S3 encryption is automatically applied to new objects stored in S3 bucket.**
 - Optionally, you can "force encryption" using a bucket policy and refuse any API call to PUT an S3 object without encryption headers (SSE-KMS or SSE-C).
@@ -525,6 +526,32 @@
     - `Access-Control-Request-Headers`
     - `Access-Control-Request-Method`
 
+## 21.3. Cors configuration
+
+```
+  <?xml version="1.0" encoding="UTF-8"?>
+  <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <CORSRule>
+      <AllowedOrigin>https://example.org</AllowedOrigin>
+      <AllowedMethod>HEAD</AllowedMethod>
+      <AllowedMethod>GET</AllowedMethod>
+      <AllowedMethod>PUT</AllowedMethod>
+      <AllowedMethod>POST</AllowedMethod>
+      <AllowedMethod>DELETE</AllowedMethod>
+      <AllowedHeader>*</AllowedHeader>
+      <ExposeHeader>ETag</ExposeHeader>
+      <ExposeHeader>x-amz-meta-custom-header</ExposeHeader>
+    </CORSRule>
+  </CORSConfiguration>
+```
+
+- `AllowedOrigin` - Specifies domain origins that you allow to make cross-domain requests.
+- `AllowedMethod` - Specifies a type of request you allow (GET, PUT, POST, DELETE, HEAD) in cross-domain requests.
+- `AllowedHeader` - Specifies the headers allowed in a preflight request.
+- Below are some of the CORSRule elements:
+  - `MaxAgeSeconds` - Specifies the amount of time in seconds (in this example, 3000) that the browser caches an Amazon S3 response to a preflight OPTIONS request for the specified resource.
+    - By caching the response, the browser does not have to send preflight requests to Amazon S3 if the original request will be repeated.
+  - `ExposeHeader` - Identifies the response headers (in this example, `x-amz-server-side-encryption`, `x-amz-request-id`, and `x-amz-id-2`) that customers are able to access from their applications (for example, from a JavaScript XMLHttpRequest object).
 # 22. MFA Delete
 
 - **MFA (Multi-Factor Authentication)** - force users to generate a code on a device (usually a mobile phone or hardware) before doing important operations on S3.

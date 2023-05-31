@@ -354,7 +354,7 @@
   - **AWS Lambda or Amazon ECS:** specify how traffic is routed to your updated versions
 - **Deployment Group:** Group of tagged EC2 instances (allows to deploy gradually, or dev, test, prod...)
 - **Deployment Type:** Method used to deploy the application to a Deployment Group
-  - **In-place Deployment:** Supports EC2/On-Premises
+  - **In-place Deployment:** Supports EC2 / On-Premises
   - **Blue/Green Deployment:** Supports EC2 instances only, AWS Lambda, and Amazon ECS
 - **IAM Instance Profile:** Give EC2 instances the permissions to access both S3 / GitHub
 - **Application Revision:** Application code + `appspec.yml` file

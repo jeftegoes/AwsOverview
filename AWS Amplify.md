@@ -54,6 +54,6 @@
 
 - Run end-to-end (E2E) tests in the test phase in Amplify.
 - Catch regressions before pushing code to production.
-- Use the test step to run any test commands at build time `(amplify.yml)`.
+- Use the test step to run any test commands at build time `amplify.yml `.
 - **Integrated with Cypress testing framework**.
   - Allows you to generate UI report for your tests.

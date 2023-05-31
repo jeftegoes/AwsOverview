@@ -13,8 +13,10 @@
   - [2.4. Copying Snapshots across accounts](#24-copying-snapshots-across-accounts)
   - [2.5. How does KMS work? API – Encrypt and Decrypt](#25-how-does-kms-work-api--encrypt-and-decrypt)
   - [2.6. Envelope Encryption](#26-envelope-encryption)
-    - [2.6.1. Encryption SDK](#261-encryption-sdk)
-    - [2.6.2. Diagram](#262-diagram)
+    - [2.6.1. Encrypt](#261-encrypt)
+    - [2.6.2. Decrypt](#262-decrypt)
+    - [2.6.3. Encryption SDK](#263-encryption-sdk)
+    - [2.6.4. Diagram](#264-diagram)
   - [2.7. KMS Symmetric - API Summary](#27-kms-symmetric---api-summary)
 - [3. Request Quotas](#3-request-quotas)
 - [4. S3 Bucket Key for SSE-KMS encryption](#4-s3-bucket-key-for-sse-kms-encryption)
@@ -130,7 +132,20 @@
 
 ![Envelope Encryption diagram](Images/AWSKMSEncryptDecryptEnvelope.png)
 
-### 2.6.1. Encryption SDK
+### 2.6.1. Encrypt
+
+- It is recommended that you use the following pattern to encrypt data locally in your application:
+1. Use the GenerateDataKey operation to get a data encryption key.
+2. Use the plaintext data key (returned in the Plaintext field of the response) to encrypt data locally, then erase the plaintext data key from memory.
+3. Store the encrypted data key (returned in the CiphertextBlob field of the response) alongside the locally encrypted data.
+
+### 2.6.2. Decrypt
+
+- To decrypt data locally:
+1. Use the Decrypt operation to decrypt the encrypted data key. The operation returns a plaintext copy of the data key.
+2. Use the plaintext data key to decrypt data locally, then erase the plaintext data key from memory.
+
+### 2.6.3. Encryption SDK
 
 - The AWS Encryption SDK implemented Envelope Encryption for us.
 - The Encryption SDK also exists as a CLI tool we can install.
@@ -140,7 +155,7 @@
   - Helps with reducing the number of calls to KMS with a security trade-off.
   - Use LocalCryptoMaterialsCache (max age, max bytes, max number of messages).
 
-### 2.6.2. Diagram
+### 2.6.4. Diagram
 
 - The SDK encrypts the data encryption key and stores it (encrypted) as part of the returned ciphertext.
 

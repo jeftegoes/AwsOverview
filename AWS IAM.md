@@ -11,10 +11,11 @@
 - [5. How can users access AWS ?](#5-how-can-users-access-aws-)
 - [6. What's the AWS CLI?](#6-whats-the-aws-cli)
 - [7. What's the AWS SDK?](#7-whats-the-aws-sdk)
-- [8. IAM Roles for Services](#8-iam-roles-for-services)
-- [9. IAM Security Tools](#9-iam-security-tools)
-- [10. IAM Guidelines \& Best Practices](#10-iam-guidelines--best-practices)
-- [11. Shared Responsibility Model for IAM](#11-shared-responsibility-model-for-iam)
+- [8. Roles for Services](#8-roles-for-services)
+- [9. Security Tools](#9-security-tools)
+- [10. Guidelines \& Best Practices](#10-guidelines--best-practices)
+- [11. Certificate Store](#11-certificate-store)
+- [12. Shared Responsibility Model for IAM](#12-shared-responsibility-model-for-iam)
 
 # 1. IAM: Users & Groups
 
@@ -122,7 +123,7 @@
   - IoT Device SDKs (Embedded C, Arduino, ...).
 - Example: AWS CLI is built on AWS SDK for Python.
 
-# 8. IAM Roles for Services
+# 8. Roles for Services
 
 - Some AWS service will need to perform actions on your behalf.
 - To do so, we will assign permissions to AWS services with IAM Roles.
@@ -131,7 +132,7 @@
   - Lambda Function Roles.
   - Roles for CloudFormation.
 
-# 9. IAM Security Tools
+# 9. Security Tools
 
 - **IAM Credentials Report (account-level):**
   - A report that lists all your account's users and the status of their various credentials.
@@ -139,7 +140,7 @@
   - Access advisor shows the service permissions granted to a user and when those services were last accessed.
   - You can use this information to revise your policies.
 
-# 10. IAM Guidelines & Best Practices
+# 10. Guidelines & Best Practices
 
 - Don't use the root account except for AWS account setup.
 - One physical user = One AWS user.
@@ -151,7 +152,15 @@
 - Audit permissions of your account with the IAM Credentials Report.
 - **Never share IAM users & Access Keys.**
 
-# 11. Shared Responsibility Model for IAM
+# 11. Certificate Store
+
+- Use IAM as a certificate manager only when you must support HTTPS connections in a Region that is not supported by ACM.
+- IAM securely encrypts your private keys and stores the encrypted version in IAM SSL certificate storage.
+- IAM supports deploying server certificates in all Regions, but you must obtain your certificate from an external provider for use with AWS.
+- You cannot upload an ACM certificate to IAM.
+- Additionally, you cannot manage your certificates from the IAM Console.
+
+# 12. Shared Responsibility Model for IAM
 
 - AWS:
   - Infrastructure (global network security).
