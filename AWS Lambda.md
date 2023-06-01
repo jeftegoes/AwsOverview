@@ -60,17 +60,18 @@
   - [23.2. Through S3](#232-through-s3)
     - [23.2.1. through S3 Multiple accounts](#2321-through-s3-multiple-accounts)
 - [24. Lambda Layers](#24-lambda-layers)
-- [25. Lambda Container Images](#25-lambda-container-images)
-  - [25.1. Lambda Container Images](#251-lambda-container-images)
-- [26. AWS Lambda Versions](#26-aws-lambda-versions)
-- [27. AWS Lambda Aliases](#27-aws-lambda-aliases)
-- [28. Lambda and CodeDeploy](#28-lambda-and-codedeploy)
-- [29. Function URL](#29-function-url)
-  - [29.1. Function URL Security](#291-function-url-security)
-- [30. Lambda and CodeGuru Profiling](#30-lambda-and-codeguru-profiling)
-- [31. AWS Lambda Limits to Know - per region](#31-aws-lambda-limits-to-know---per-region)
-- [32. AWS Lambda Best Practices](#32-aws-lambda-best-practices)
-- [33. Error creating a lambda function via CLI](#33-error-creating-a-lambda-function-via-cli)
+- [25. Custom Runtimes](#25-custom-runtimes)
+- [26. Lambda Container Images](#26-lambda-container-images)
+  - [26.1. Lambda Container Images](#261-lambda-container-images)
+- [27. AWS Lambda Versions](#27-aws-lambda-versions)
+- [28. AWS Lambda Aliases](#28-aws-lambda-aliases)
+- [29. Lambda and CodeDeploy](#29-lambda-and-codedeploy)
+- [30. Function URL](#30-function-url)
+  - [30.1. Function URL Security](#301-function-url-security)
+- [31. Lambda and CodeGuru Profiling](#31-lambda-and-codeguru-profiling)
+- [32. AWS Lambda Limits to Know - per region](#32-aws-lambda-limits-to-know---per-region)
+- [33. AWS Lambda Best Practices](#33-aws-lambda-best-practices)
+- [34. Error creating a lambda function via CLI](#34-error-creating-a-lambda-function-via-cli)
 
 # 1. What's serverless?
 
@@ -561,11 +562,11 @@
 
 ## 19.1. Lambda Execution Context
 
-- The execution context is a temporary runtime environment that initializes any external dependencies of your lambda code.
+- The **execution context** is a temporary runtime environment that initializes any external dependencies of your lambda code.
 - Great for database connections, HTTP clients, SDK clients...
-- The execution context is maintained for some time in anticipation of another Lambda function invocation.
+- The **execution context** is maintained for some time in anticipation of another Lambda function invocation.
 - The next function invocation can "re-use" the context to execution time and save time in initializing connections objects.
-- The execution context includes the _/tmp_ directory.
+- The **execution context** includes the _/tmp_ directory.
 
 ## 19.2. Lambda Functions /tmp space
 
@@ -573,7 +574,7 @@
 - If your Lambda function needs disk space to perform operations...
 - You can use the /tmp directory.
 - Max size is 512MB.
-- The directory content remains when the execution context is frozen, providing transient cache that can be used for multiple invocations (helpful to checkpoint your work).
+- The directory content remains when the **execution context** is frozen, providing transient cache that can be used for multiple invocations (helpful to checkpoint your work).
 - For permanent persistence of object (non temporary), use S3.
 
 # 20. File Systems Mounting
@@ -639,7 +640,18 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
 - Inline functions are very simple.
 - Use the `Code.ZipFile` property.
 - You cannot include function dependencies with inline functions.
-
+- Example:
+  ```
+    Resources:
+    MyFunction:
+      Type: AWS::Lambda::Function
+      Properties:
+        Code:
+          ZipFile: |
+            import json
+            def handler(event, context):
+                print("Event: %s" % json.dumps(event))
+  ```
 ## 23.2. Through S3
 
 - You must store the Lambda zip in S3.
@@ -648,19 +660,34 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
   - `S3Key` - Full path to zip.
   - `S3ObjectVersion` - If versioned bucket.
 - If you update the code in S3, but don't update `S3Bucket`, `S3Key` or `S3ObjectVersion`, CloudFormation won't update your function.
+- Example:
+  ```
+    MyFunction:
+      DependsOn: CopyZips
+      Type: AWS::Lambda::Function
+      Properties:
+        Code:
+          S3Bucket: !Ref 'LambdaZipsBucket'
+          S3Key: !Sub '${QSS3KeyPrefix}functions/packages/MyFunction/lambda.zip'
+  ```
 
 ### 23.2.1. through S3 Multiple accounts
 
 # 24. Lambda Layers
 
+- Externalize Dependencies to re-use them.
+# 25. Custom Runtimes
+
+- You can implement an AWS Lambda runtime in any programming language.
+- A runtime is a program that runs a Lambda function's handler method when the function is invoked.
+- You can include a runtime in your function's deployment package in the form of an executable file named bootstrap.
 - Custom Runtimes:
   - Ex: C++ https://github.com/awslabs/aws-lambda-cpp
   - Ex: Rust https://github.com/awslabs/aws-lambda-rust-runtime
-- Externalize Dependencies to re-use them.
 - C++ and Rust
   - **Take note that this programming language is not natively supported yet in Lambda, which is why the use of a Custom Runtime is essential.**
 
-# 25. Lambda Container Images
+# 26. Lambda Container Images
 
 - Deploy Lambda function as container images of up to 10GB from ECR.
 - Pack complex dependencies, large dependencies in a container.
@@ -669,7 +696,7 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
 - Test the containers locally using the Lambda Runtime Interface Emulator.
 - Unified workflow to build apps.
 
-## 25.1. Lambda Container Images
+## 26.1. Lambda Container Images
 
 - Example: build from the base images provided by AWS:
 
@@ -687,7 +714,7 @@ RUN npm install
 CMD ["app.lambdaHandler"]
 ```
 
-# 26. AWS Lambda Versions
+# 27. AWS Lambda Versions
 
 - When you work on a Lambda function, we work on `$LATEST`.
 - When we're ready to publish a Lambda function, we create a version.
@@ -697,7 +724,7 @@ CMD ["app.lambdaHandler"]
 - Version = code + configuration (nothing can be changed - immutable).
 - Each version of the lambda function can be accessed.
 
-# 27. AWS Lambda Aliases
+# 28. AWS Lambda Aliases
 
 - Aliases are "pointers" to Lambda function versions.
 - We can define a "dev", "test", "prod" aliases and have them point at different lambda versions.
@@ -707,7 +734,7 @@ CMD ["app.lambdaHandler"]
 - Aliases have their own ARNs.
 - Aliases cannot reference aliases.
 
-# 28. Lambda and CodeDeploy
+# 29. Lambda and CodeDeploy
 
 - **CodeDeploy** can help you automate traffic shift for Lambda aliases.
 - Feature is integrated within the SAM framework.
@@ -722,7 +749,7 @@ CMD ["app.lambdaHandler"]
 
 ![Canary deploy](Images/LambdaCanaryDeploy.png)
 
-# 29. Function URL
+# 30. Function URL
 
 - **Dedicated** HTTP(S) endpoint for your Lambda function.
 - A unique URL endpoint is generated for you (never changes).
@@ -737,7 +764,7 @@ CMD ["app.lambdaHandler"]
 
 ![Lambda Function URL](Images/LambdaFunctionURL.png)
 
-## 29.1. Function URL Security
+## 30.1. Function URL Security
 
 - **Resource-based Policy**
   - Authorize other accounts / specific CIDR / IAM principals.
@@ -754,7 +781,7 @@ CMD ["app.lambdaHandler"]
 
 ![Lambda secutiry options](Images/LambdaFunctionURLSecutiryOptions.png)
 
-# 30. Lambda and CodeGuru Profiling
+# 31. Lambda and CodeGuru Profiling
 
 - Gain insights into runtime performance of your Lambda functions using CodeGuru Profiler.
 - CodeGuru creates a Profiler Group for your Lambda function.
@@ -765,7 +792,7 @@ CMD ["app.lambdaHandler"]
   - Environment variables to your function.
   - `AmazonCodeGuruProfilerAgentAccess` policy to your function.
 
-# 31. AWS Lambda Limits to Know - per region
+# 32. AWS Lambda Limits to Know - per region
 
 - **Execution:**
   - Memory allocation: 128 MB - 10GB (1 MB increments).
@@ -779,7 +806,7 @@ CMD ["app.lambdaHandler"]
   - Can use the /tmp directory to load other files at startup.
   - Size of environment variables: 4 KB.
 
-# 32. AWS Lambda Best Practices
+# 33. AWS Lambda Best Practices
 
 - Perform heavy-duty work outside of your function handler:
   - Connect to databases outside of your function handler.
@@ -793,8 +820,12 @@ CMD ["app.lambdaHandler"]
   - Remember the AWS Lambda limits.
   - Use Layers where necessary.
 - **Avoid using recursive code, never have a Lambda function call itself.**
+- Take advantage of **Execution Context** reuse to improve the performance of your function.
 
-# 33. Error creating a lambda function via CLI
+
+
+
+# 34. Error creating a lambda function via CLI
 
 - `InvalidParameterValueException` - Will be returned if one of the parameters in the request is invalid.
   - For example, if you provided an IAM role in the `CreateFunction` API which AWS Lambda is unable to assume.

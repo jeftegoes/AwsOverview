@@ -216,7 +216,8 @@
 
 #### 3.11.2.2. Random
 
-- Tasks are placed randomly.
+- Random places tasks on instances at random yet still honors the other constraints that you specified, implicitly or explicitly.
+- Specifically, it still makes sure that tasks are scheduled on instances with enough resources to run them.
 
 #### 3.11.2.3. Spread
 

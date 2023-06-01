@@ -298,6 +298,9 @@
 - Up to 5 Local Secondary Indexes per table.
 - **Must be defined at table creation time.**
 - **Attribute Projections** - can contain some or all the attributes of the base table **(KEYS_ONLY, INCLUDE, ALL)**.
+- When you query this index, you can choose **either eventual consistency or strong consistency**.
+- For each partition key value, the total size of all indexed items must be **10 GB** or less.
+- Queries or scans on this index consume read capacity units from the base table.
 
 ## 8.2. Global Secondary Index (GSI)
 
@@ -307,6 +310,8 @@
 - **Attribute Projections** - some or all the attributes of the base table **(KEYS_ONLY, INCLUDE, ALL)**.
 - Must provision RCUs and WCUs for the index.
 - **Can be added/modified after table creation.**
+- `Queries` or `scans` on this index consume capacity units from the index, not from the base table.
+- Queries on this index **support eventual consistency only**.
 
 ## 8.3. Indexes and Throttling
 

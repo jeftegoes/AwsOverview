@@ -260,6 +260,14 @@
         Type : 'AWS::SSM::Parameter::Value<String>'
         Default: myEC2TypeDev
   ```  
+  ```
+    MyIAMUser:
+      Type: AWS::IAM::User
+      Properties:
+        UserName: 'MyUserName'
+        LoginProfile:
+          Password: '{{resolve:ssm-secure:IAMUserPassword:10}}'
+  ```
 
 ## 2.3. Mappings
 

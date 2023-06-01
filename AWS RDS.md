@@ -12,19 +12,21 @@
   - [1.5. Multi AZ (Disaster Recovery)](#15-multi-az-disaster-recovery)
     - [1.5.1. From Single-AZ to Multi-AZ](#151-from-single-az-to-multi-az)
   - [1.6. Security - Encryption](#16-security---encryption)
-    - [1.6.1. Encryption Operations](#161-encryption-operations)
-    - [1.6.2. Network \& IAM](#162-network--iam)
-    - [1.6.3. IAM Authentication](#163-iam-authentication)
-    - [1.6.4. Security - Summary](#164-security---summary)
+    - [1.6.1. TDE - Transparent Data Encryption](#161-tde---transparent-data-encryption)
+    - [1.6.2. Encryption Operations](#162-encryption-operations)
+    - [1.6.3. Network \& IAM](#163-network--iam)
+    - [1.6.4. IAM Authentication](#164-iam-authentication)
+    - [1.6.5. Security - Summary](#165-security---summary)
   - [1.7. Monitoring](#17-monitoring)
+  - [1.8. RDS Proxy](#18-rds-proxy)
+  - [1.9. Enhanced Monitoring](#19-enhanced-monitoring)
 - [2. Amazon Aurora](#2-amazon-aurora)
   - [2.1. Aurora High Availability and Read Scaling](#21-aurora-high-availability-and-read-scaling)
   - [2.2. Features of Aurora](#22-features-of-aurora)
   - [2.3. Aurora Security](#23-aurora-security)
-- [3. RDS Proxy](#3-rds-proxy)
-- [4. Amazon Aurora Serverless](#4-amazon-aurora-serverless)
-- [5. MySQL error log](#5-mysql-error-log)
-- [6. Amazon Aurora vs Amazon Aurora Serverless](#6-amazon-aurora-vs-amazon-aurora-serverless)
+- [3. Amazon Aurora Serverless](#3-amazon-aurora-serverless)
+- [4. MySQL error log](#4-mysql-error-log)
+- [5. Amazon Aurora vs Amazon Aurora Serverless](#5-amazon-aurora-vs-amazon-aurora-serverless)
 
 # 1. AWS RDS Overview
 
@@ -124,7 +126,6 @@
   - Possibility to encrypt the master & read replicas with AWS KMS - AES-256 encryption.
   - Encryption has to be defined at launch time.
   - If the master is not encrypted, the read replicas cannot be encrypted.
-  - Transparent Data Encryption (TDE) available for Oracle and SQL Server.
 - In-flight encryption:
   - SSL certificates to encrypt data to RDS in flight.
   - Provide SSL options with trust certificate when connecting to database.
@@ -132,7 +133,14 @@
     - PostgreSQL: rds.force_ssl=1 in the AWS RDS Console (Parameter Groups).
     - MySQL: Within the DB: `GRANT USAGE ON *.* TO 'mysqluser'@'%' REQUIRE SSL;`
 
-### 1.6.1. Encryption Operations
+### 1.6.1. TDE - Transparent Data Encryption
+
+- Amazon RDS supports using Transparent Data Encryption (TDE) to encrypt stored data on your DB instances running Microsoft SQL Server or Oracle.
+- TDE automatically encrypts data before it is written to storage, and automatically decrypts data when the data is read from storage.
+- At rest encryption:
+  - Transparent Data Encryption (TDE) available for Oracle and SQL Server.
+
+### 1.6.2. Encryption Operations
 
 - Encrypting RDS backups:
   - Snapshots of un-encrypted RDS databases are un-encrypted.
@@ -144,7 +152,7 @@
   - Restore the database from the encrypted snapshot.
   - Migrate applications to the new database, and delete the old database.
 
-### 1.6.2. Network & IAM
+### 1.6.3. Network & IAM
 
 - Network Security:
   - RDS databases are usually deployed within a private subnet, not in a public one.
@@ -154,7 +162,7 @@
   - Traditional Username and Password can be used to login into the database.
   - IAM-based authentication can be used to login into RDS MySQL & PostgreSQL.
 
-### 1.6.3. IAM Authentication
+### 1.6.4. IAM Authentication
 
 - IAM database authentication works with MySQL and PostgreSQL.
 - You don't need a password, just an authentication token obtained through IAM & RDS API calls.
@@ -164,7 +172,7 @@
   - IAM to centrally manage users instead of DB.
   - Can leverage IAM Roles and EC2 Instance profiles for easy integration.
 
-### 1.6.4. Security - Summary
+### 1.6.5. Security - Summary
 
 - Encryption at rest:
   - Is done only when you first create the DB instance.
@@ -183,6 +191,28 @@
 ## 1.7. Monitoring
 
 ![RDS Monitoring log options](Images/AWSRDSMonitoring.png)
+
+
+## 1.8. RDS Proxy
+
+- Fully managed database proxy for RDS.
+- Allows apps to pool and share DB connections established with the database.
+- Improving database efficiency by reducing the stress on database resources (e.g., CPU, RAM) and minimize open connections (and timeouts).
+- Serverless, autoscaling, highly available (multi-AZ).
+- Reduced RDS & Aurora failover time by up 66%.
+- Supports RDS (MySQL, PostgreSQL, MariaDB) and Aurora (MySQL, PostgreSQL).
+- No code changes required for most apps.
+- Enforce IAM Authentication for DB, and securely store credentials in AWS Secrets Manager.
+- RDS Proxy is never publicly accessible (must be accessed from VPC).
+
+![RDS Proxy Diagram](Images/AWSRDSProxyDiagram.png)
+
+## 1.9. Enhanced Monitoring
+
+- Amazon RDS provides metrics in real-time for the operating system (OS) that your DB instance runs on.
+- You can view the metrics for your DB instance using the console or consume the Enhanced Monitoring JSON output from CloudWatch Logs in a monitoring system of your choice.
+- By default, **Enhanced Monitoring metrics are stored in the CloudWatch Logs for 30 days**.
+- To modify the amount of time the metrics are stored in the CloudWatch Logs, change the retention for the `RDSOSMetrics` log group in the CloudWatch console.
 
 # 2. Amazon Aurora
 
@@ -229,33 +259,19 @@
 - You are responsible for protecting the instance with security groups.
 - You can't SSH.
 
-# 3. RDS Proxy
-
-- Fully managed database proxy for RDS.
-- Allows apps to pool and share DB connections established with the database.
-- Improving database efficiency by reducing the stress on database resources (e.g., CPU, RAM) and minimize open connections (and timeouts).
-- Serverless, autoscaling, highly available (multi-AZ).
-- Reduced RDS & Aurora failover time by up 66%.
-- Supports RDS (MySQL, PostgreSQL, MariaDB) and Aurora (MySQL, PostgreSQL).
-- No code changes required for most apps.
-- Enforce IAM Authentication for DB, and securely store credentials in AWS Secrets Manager.
-- RDS Proxy is never publicly accessible (must be accessed from VPC).
-
-![RDS Proxy Diagram](Images/AWSRDSProxyDiagram.png)
-
-# 4. Amazon Aurora Serverless
+# 3. Amazon Aurora Serverless
 
 - The Aurora Serverless is an auto-scaling, on-demand configuration designed for Amazon Aurora RDS.
 - It can start, shut and scale capacity automatically, according to individual application's requirements.
 - This service allows you to run cloud-powered databases without the need to manage database capacity.
 
-# 5. MySQL error log
+# 4. MySQL error log
 
 - You can monitor the MySQL logs directly through the Amazon RDS console, Amazon RDS API, AWS CLI, or AWS SDKs.
 - You can also access MySQL logs by directing the logs to a database table in the main database and querying that table.
 - You can use the mysqlbinlog utility to download a binary log.
 
-# 6. Amazon Aurora vs Amazon Aurora Serverless
+# 5. Amazon Aurora vs Amazon Aurora Serverless
 
 | Amazon Aurora Highlights         | Amazon Aurora Serverless Highlights                       |
 | -------------------------------- | --------------------------------------------------------- |

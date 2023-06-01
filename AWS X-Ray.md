@@ -16,6 +16,7 @@
 - [12. Custom Sampling Rules](#12-custom-sampling-rules)
 - [13. X-Ray Write and Read APIs](#13-x-ray-write-and-read-apis)
   - [13.1. Write APIs (used by the X-Ray daemon)](#131-write-apis-used-by-the-x-ray-daemon)
+    - [13.1.1. Segment documents](#1311-segment-documents)
   - [13.2. Read APIs](#132-read-apis)
 - [14. X-Ray with Elastic Beanstalk](#14-x-ray-with-elastic-beanstalk)
 - [15. AWS Distro for OpenTelemetry](#15-aws-distro-for-opentelemetry)
@@ -145,6 +146,10 @@
 - `GetSamplingRules` - Retrieve all sampling rules (to know what/when to send).
 - `GetSamplingTargets` and `GetSamplingStatisticSummaries` - Advanced.
 - The X-Ray daemon needs to have an IAM policy authorizing the correct API calls to function correctly.
+
+### 13.1.1. Segment documents
+
+![Segment documents](Images/AwsXRaySegmentDocuments.png)
 
 ## 13.2. Read APIs
 

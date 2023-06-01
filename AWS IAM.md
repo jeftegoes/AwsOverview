@@ -15,7 +15,9 @@
 - [9. Security Tools](#9-security-tools)
 - [10. Guidelines \& Best Practices](#10-guidelines--best-practices)
 - [11. Certificate Store](#11-certificate-store)
-- [12. Shared Responsibility Model for IAM](#12-shared-responsibility-model-for-iam)
+- [12. Providing access to externally authenticated users (identity federation)](#12-providing-access-to-externally-authenticated-users-identity-federation)
+  - [12.1. Custom identity broker application](#121-custom-identity-broker-application)
+- [13. Shared Responsibility Model for IAM](#13-shared-responsibility-model-for-iam)
 
 # 1. IAM: Users & Groups
 
@@ -160,7 +162,13 @@
 - You cannot upload an ACM certificate to IAM.
 - Additionally, you cannot manage your certificates from the IAM Console.
 
-# 12. Shared Responsibility Model for IAM
+# 12. Providing access to externally authenticated users (identity federation)
+
+## 12.1. Custom identity broker application
+
+![Custom Identity Federation Diagram](Images/AWSIAMCustomIdentityFederation.png)
+
+# 13. Shared Responsibility Model for IAM
 
 - AWS:
   - Infrastructure (global network security).
