@@ -4,18 +4,18 @@
 
 - [1. Introduction](#1-introduction)
 - [2. Task States](#2-task-states)
-- [3. Step Function - States](#3-step-function---states)
+  - [2.1. Others states](#21-others-states)
+- [3. Amazon States Language](#3-amazon-states-language)
 - [4. Error Handling in Step Functions](#4-error-handling-in-step-functions)
   - [4.1. Retry (Task or Parallel State)](#41-retry-task-or-parallel-state)
   - [4.2. Catch (Task or Parallel State)](#42-catch-task-or-parallel-state)
-  - [4.3. Amazon States Language](#43-amazon-states-language)
 - [5. Wait for Task Token](#5-wait-for-task-token)
 - [6. Activity Tasks](#6-activity-tasks)
 
 # 1. Introduction
 
 - **AWS Step Functions is a low-code visual workflow service used to orchestrate AWS services, automate business processes, and build Serverless applications. It manages failures, retries, parallelization, service integrations, ...**
-- Model your workflows as state machines (one per workflow):
+- Model your **workflows** as **state machines (one per workflow)**:
   - Order fulfillment, Data processing.
   - Web applications, Any workflow.
 - Written in JSON.
@@ -26,7 +26,7 @@
 
 - Do some work in your state machine.
 - Invoke one AWS service:
-  - Can invoke a Lambda function.
+  - Can invoke a **Lambda function**.
   - Run an AWS Batch job.
   - Run an ECS task and wait for it to complete.
   - Insert an item from DynamoDB.
@@ -37,7 +37,7 @@
   - Activities poll the Step functions for work.
   - Activities send results back to Step Functions.
 
-# 3. Step Function - States
+## 2.1. Others states
 
 - **Choice State:** Test for a condition to send to a branch (or default branch).
 - **Fail or Succeed State:** Stop execution with failure or success.
@@ -46,37 +46,7 @@
 - **Map State:** Dynamically iterate steps.
 - **Parallel State:** Begin parallel branches of execution.
 
-# 4. Error Handling in Step Functions
-
-- Any state can encounter runtime errors for various reasons:
-  - State machine definition issues (for example, no matching rule in a Choice state).
-  - Task failures (for example, an exception in a Lambda function).
-  - Transient issues (for example, network partition events).
-- Use **Retry** (to retry failed state) and **Catch** (transition to failure path) in the State Machine to handle the errors instead of inside the Application Code.
-- Predefined error codes:
-  - `States.ALL`: matches any error name
-  - `States.Timeout`: Task ran longer than TimeoutSeconds or no heartbeat received
-  - `States.TaskFailed`: execution failure
-  - `States.Permissions`: insufficient privileges to execute code
-- The state may report is own errors.
-
-## 4.1. Retry (Task or Parallel State)
-
-- Evaluated from top to bottom.
-- `ErrorEquals`: match a specific kind of error.
-- `IntervalSeconds`: initial delay before retrying.
-- `BackoffRate`: multiple the delay after each retry.
-- `MaxAttempts`: default to 3, set to 0 for never retried.
-- When max attempts are reached, the **Catch** kicks in.
-
-## 4.2. Catch (Task or Parallel State)
-
-- Evaluated from top to bottom
-- ErrorEquals: match a specific kind of error
-- Next: State to send to
-- ResultPath - A path that determines what input is sent to the state specified in the Next field.
-
-## 4.3. Amazon States Language
+# 3. Amazon States Language
 
 - In the Amazon States Language, these fields filter and control the flow of JSON from state to state:
   - `InputPath`
@@ -93,6 +63,70 @@
     - With `OutputPath`, you can filter out unwanted information, and pass only the portion of JSON data that you care about.
 
 ![Task states](Images/AWSStepFunctionsTaskStates.png)
+
+# 4. Error Handling in Step Functions
+
+- Any state can encounter runtime errors for various reasons:
+  - State machine definition issues (for example, no matching rule in a Choice state).
+  - Task failures (for example, an exception in a Lambda function).
+  - Transient issues (for example, network partition events).
+- Use `Retry` (to retry failed state) and `Catch` (transition to failure path) in the State Machine to handle the errors instead of inside the Application Code.
+- Predefined ERROR codes:
+  - `States.ALL`: matches any error name
+  - `States.Timeout`: Task ran longer than TimeoutSeconds or no heartbeat received
+  - `States.TaskFailed`: execution failure
+  - `States.Permissions`: insufficient privileges to execute code
+- The state may report is own errors.
+
+## 4.1. Retry (Task or Parallel State)
+
+- Evaluated from top to bottom.
+- `ErrorEquals` - Match a specific kind of error.
+- `IntervalSeconds` - Initial delay before retrying.
+- `BackoffRate` - Multiple the delay after each retry.
+- `MaxAttempts` - Default to 3, set to 0 for never retried.
+- When max attempts are reached, the `Catch` kicks in.
+- Example:
+  ```
+    "Retry":
+    [
+      {
+        "ErrorEquals": [ "States.Timeout" ],
+        "IntervalSeconds": 3,
+        "MaxAttempts": 2,
+        "BackoffRate": 1
+      }
+    ]
+  ```
+
+## 4.2. Catch (Task or Parallel State)
+
+- Evaluated from top to bottom:
+  - `ErrorEquals` - Match a specific kind of error, a non-empty array of strings that match error names.
+  - `Next`: State to send to, a string that must exactly match one of the state machine's state names.
+  - `ResultPath` - A path that determines what input is sent to the state specified in the Next field.
+- Example:
+  ```
+    {
+      "NoMessage": {
+      "Type": "Task",
+        "Resource": "arn:aws: lambda: ap-northeast-1:
+        "Catch": [{
+          "ErrorEquals": ["States.ALL"],
+          "ResultPath": "$.error",
+          "Next": "Cause Of Error"
+        }],
+        "TimeoutSeconds": 1,
+        "End": true
+      },
+      "Cause Of Error": {
+        "Type": "Pass",
+        "ResultPath": "$.response",
+        "Result": "An error has occured.",
+        "End": true
+      }
+    }
+  ```
 
 # 5. Wait for Task Token
 

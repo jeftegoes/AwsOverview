@@ -46,7 +46,7 @@
 - [21. What is CORS?](#21-what-is-cors)
   - [21.1. Amazon S3 - CORS](#211-amazon-s3---cors)
   - [21.2. CloudFront to respect CORS settings](#212-cloudfront-to-respect-cors-settings)
-  - [21.3. Cors configuration](#213-cors-configuration)
+  - [21.3. CORS configuration](#213-cors-configuration)
 - [22. MFA Delete](#22-mfa-delete)
 - [23. Access Logs](#23-access-logs)
   - [23.1. Access Logs WARNING](#231-access-logs-warning)
@@ -526,7 +526,7 @@
     - `Access-Control-Request-Headers`
     - `Access-Control-Request-Method`
 
-## 21.3. Cors configuration
+## 21.3. CORS configuration
 
 ```
   <?xml version="1.0" encoding="UTF-8"?>

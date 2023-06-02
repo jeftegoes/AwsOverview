@@ -160,6 +160,42 @@
   - To an ECS task
   - To CodePipeline to allow it to invoke other services
 - For this, you need the IAM permission `iam:PassRole`.
-- It often comes with iam:GetRole to view the role being passed.
-- No: Roles can only be passed to what their trust allows.
-- A trust policy for the role that allows the service to assume the role.
+- It often comes with `iam:GetRole` to view the role being passed.
+- Example:
+  ```
+    {
+      "Version": "2012-10-17",
+      "Statement":[
+        {
+          "Effect": "Allow",
+          "Action": [
+            "ec2:*"
+          ],
+          "Resource": "*"
+        },
+        {
+          "Effect": "Allow",
+          "Action": "iam:PassRole",
+          "Resource": "arn:aws:iam::123456789012:role/S3Access"
+        }
+      ]
+    }
+  ```
+
+- Can a role be passed to any service?
+  - **No: Roles can only be passed to what their trust allows.**
+  - A trust policy for the role that allows the service to assume the role.
+  - Example:
+  ```
+    {
+      "Version": "2012-10-17",
+        "Statement": {
+        "Sid": "TrustPolicyStatementThatAllowsEC2ServiceToAssumeTheAttachedRole",
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "ec2.amazonaws.com"
+        },
+        "Action": "sts: AssumeRole"
+      }
+    }
+  ``` 

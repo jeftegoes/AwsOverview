@@ -8,7 +8,7 @@
 - [4. IAM - Password Policy](#4-iam---password-policy)
   - [4.1. Multi Factor Authentication - MFA](#41-multi-factor-authentication---mfa)
   - [4.2. MFA devices options in AWS](#42-mfa-devices-options-in-aws)
-- [5. How can users access AWS ?](#5-how-can-users-access-aws-)
+- [5. How can users access AWS?](#5-how-can-users-access-aws)
 - [6. What's the AWS CLI?](#6-whats-the-aws-cli)
 - [7. What's the AWS SDK?](#7-whats-the-aws-sdk)
 - [8. Roles for Services](#8-roles-for-services)
@@ -89,7 +89,7 @@
 - Hardware Key Fob MFA Device for AWS GovCloud (US):
   - Provided by SurePassID (3rd party).
 
-# 5. How can users access AWS ?
+# 5. How can users access AWS?
 
 - To access AWS, you have three options:
   - **AWS Management Console** (protected by password + MFA).

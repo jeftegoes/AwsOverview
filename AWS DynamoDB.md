@@ -548,8 +548,8 @@
 
 - Using Web Identity Federation or Cognito Identity Pools, each user gets AWS credentials.
 - You can assign an IAM Role to these users with a Condition to limit their API access to DynamoDB.
-- LeadingKeys - limit row-level access for users on the Primary Key.
-- Attributes - limit specific attributes the user can see.
+- `LeadingKeys` - Limit row-level access for users on the Primary Key.
+- `Attributes` - Limit specific attributes the user can see.
 
 # 22. Global Tables
 

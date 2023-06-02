@@ -178,7 +178,7 @@
 - To respond, use **exponential backoff** (backoff and retry).
 - For cryptographic operations, they share a quota.
 - This includes requests made by AWS on your behalf (ex: SSE-KMS).
-- For GenerateDataKey, consider using DEK caching from the Encryption SDK.
+- For `GenerateDataKey`, consider using DEK caching from the Encryption SDK.
 - **You can request a Request Quotas increase through API or AWS support.**
 
 # 4. S3 Bucket Key for SSE-KMS encryption

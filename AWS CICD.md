@@ -121,7 +121,9 @@
 - Interactions are done using Git (standard).
 - **Authentication**
   - **SSH Keys:** AWS Users can configure SSH keys in their IAM Console.
-  - **HTTPS:** With AWS CLI Credential helper or Git Credentials for IAM user.
+  - **HTTPS:**
+    1. Set-up a **Git credential helper** using your access key credentials specified in your AWS credential profile.
+    2. Generate HTTPS Git credentials for AWS CodeCommit (IAM). Specify the credentials in the Git Credential Manager.
 - **Authorization**
   - IAM policies to manage users/roles permissions to repositories.
 - **Encryption**
@@ -348,18 +350,18 @@
 
 ## 7.2. Primary Components
 
-- **Application:** A unique name functions as a container (revision, deployment configuration, ...)
+- **Application:** A unique name functions as a container (revision, deployment configuration, ...).
 - **Compute Platform:** EC2/On-Premises, AWS Lambda, or Amazon ECS
-  - **Deployment Configuration:** A set of deployment rules for success/failure - EC2/On-premises - specify the minimum number of healthy instances for the deployment
-  - **AWS Lambda or Amazon ECS:** specify how traffic is routed to your updated versions
-- **Deployment Group:** Group of tagged EC2 instances (allows to deploy gradually, or dev, test, prod...)
+  - **Deployment Configuration:** A set of deployment rules for success/failure - EC2/On-premises .- specify the minimum number of healthy instances for the deployment.
+  - **AWS Lambda or Amazon ECS:** specify how traffic is routed to your updated versions.
+- **Deployment Group:** Group of tagged EC2 instances (allows to deploy gradually, or dev, test, prod...).
 - **Deployment Type:** Method used to deploy the application to a Deployment Group
   - **In-place Deployment:** Supports EC2 / On-Premises
   - **Blue/Green Deployment:** Supports EC2 instances only, AWS Lambda, and Amazon ECS
-- **IAM Instance Profile:** Give EC2 instances the permissions to access both S3 / GitHub
-- **Application Revision:** Application code + `appspec.yml` file
+- **IAM Instance Profile:** Give EC2 instances the permissions to access both S3 / GitHub.
+- **Application Revision:** Application code + `appspec.yml` file.
 - **Service Role:** An IAM Role for CodeDeploy to perform operations on EC2 instances, ASGs, ELBs...
-- **Target Revision:** The most recent revision that you want to deploy to a Deployment Group
+- **Target Revision:** The most recent revision that you want to deploy to a Deployment Group.
 
 ## 7.3. appspec.yml
 
