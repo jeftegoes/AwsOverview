@@ -152,12 +152,14 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 
 # 13. Must know API
 
-- `CreateQueue` (MessageRetentionPeriod), `DeleteQueue`.
+- `CreateQueue` - Creates a new standard or FIFO queue (MessageRetentionPeriod).
+- `DeleteQueue` - Deletes the queue specified by the QueueUrl, regardless of the queue's contents. When you delete a queue, any messages in the queue are no longer available.
 - `PurgeQueue` - Delete all the messages in queue.
 - `SendMessage` (DelaySeconds), `ReceiveMessage`, `DeleteMessage`.
 - `MaxNumberOfMessages` - Default 1, max 10 (for ReceiveMessage API).
 - `ReceiveMessageWaitTimeSeconds` - Long Polling.
 - `ChangeMessageVisibility` - Change the message timeout.
+- `RemovePermission` - Revokes any permissions in the queue policy that matches the specified Label parameter.
 - Batch APIs for `SendMessage`, `DeleteMessage`, `ChangeMessageVisibility` helps decrease your costs.
 
 # 14. SQS FIFO

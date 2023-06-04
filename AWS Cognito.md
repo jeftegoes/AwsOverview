@@ -16,7 +16,8 @@
   - [3.8. ALB - Auth through Cognito User Pools](#38-alb---auth-through-cognito-user-pools)
     - [3.8.1. ALB - Auth. Through an Identity Provider (IdP) That is OpenID Connect (OIDC) Compliant](#381-alb---auth-through-an-identity-provider-idp-that-is-openid-connect-oidc-compliant)
 - [4. Cognito Identity Pools (Federated Identities)](#4-cognito-identity-pools-federated-identities)
-  - [4.1. IAM Roles](#41-iam-roles)
+  - [4.1. Developer Authenticated](#41-developer-authenticated)
+  - [4.2. IAM Roles](#42-iam-roles)
 - [5. Cognito User Pools vs Identity Pools](#5-cognito-user-pools-vs-identity-pools)
 
 # 1. Introduction
@@ -141,7 +142,12 @@
 
 ![Cognito Identity Pools](Images/AWSCognitoIdentityPoolsDiagram.png)
 
-## 4.1. IAM Roles
+## 4.1. Developer Authenticated
+
+- With developer authenticated identities, you can register and authenticate users via your own existing authentication process, while still using Amazon Cognito to synchronize user data and access AWS resources.
+- Using developer authenticated identities involves interaction between the end-user device, your backend for authentication, and Amazon Cognito.
+
+## 4.2. IAM Roles
 
 - Default IAM roles for authenticated and guest users.
 - Define rules to choose the role for each user based on the user's ID.

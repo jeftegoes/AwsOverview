@@ -18,6 +18,8 @@
 - [4. Geo Restriction](#4-geo-restriction)
 - [5. Signed URL / Signed Cookies](#5-signed-url--signed-cookies)
   - [5.1. Signed URL vs S3 Pre-Signed URL](#51-signed-url-vs-s3-pre-signed-url)
+    - [5.1.1. CloudFront Signed URL](#511-cloudfront-signed-url)
+    - [5.1.2. S3 Pre-Signed URL](#512-s3-pre-signed-url)
   - [5.2. Signed URL Process](#52-signed-url-process)
 - [6. Pricing](#6-pricing)
   - [6.1. Price Classes](#61-price-classes)
@@ -188,15 +190,18 @@
 
 ## 5.1. Signed URL vs S3 Pre-Signed URL
 
-- CloudFront Signed URL:
-  - Allow access to a path, no matter the origin.
-  - Account wide key-pair, only the root can manage it.
-  - Can filter by IP, path, date, expiration.
-  - Can leverage caching features.
-- S3 Pre-Signed URL:
-  - Issue a request as the person who pre-signed the URL.
-  - Uses the IAM key of the signing IAM principal.
-  - Limited lifetime.
+### 5.1.1. CloudFront Signed URL
+
+- Allow access to a path, no matter the origin.
+- **Account wide key-pair, only the root can manage it.**
+- Can filter by IP, path, date, expiration.
+- Can leverage caching features.
+
+### 5.1.2. S3 Pre-Signed URL
+
+- Issue a request as the person who pre-signed the URL.
+- Uses the IAM key of the signing IAM principal.
+- Limited lifetime.
 
 ## 5.2. Signed URL Process
 

@@ -141,7 +141,7 @@
 - **Activity Worker** apps can be running on EC2, Lambda, mobile device...
 - Activity Worker poll for a Task using `GetActivityTask` API.
 - After Activity Worker completes its work, it sends a response of its success/failure using `SendTaskSuccess` or `SendTaskFailure`.
-- To keep the Task active:
-  - Configure how long a task can wait by setting `TimeoutSeconds`.
-  - Periodically send a heartbeat from your Activity Worker using `SendTaskHeartBeat` within the time you set in `HeartBeatSeconds`.
-- By configuring a long `TimeoutSeconds` and actively sending a heartbeat, Activity Task can wait up to 1 year.
+  - To keep the Task active:
+    - Configure how long a task can wait by setting `TimeoutSeconds`.
+    - Periodically send a heartbeat from your Activity Worker using `SendTaskHeartBeat` within the time you set in `HeartBeatSeconds`.
+  - By configuring a long `TimeoutSeconds` and actively sending a heartbeat, Activity Task can wait up to 1 year.

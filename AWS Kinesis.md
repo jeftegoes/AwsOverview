@@ -38,6 +38,7 @@
 # 2. Kinesis Data Streams
 
 - Retention between 1 day to 365 days.
+  - Default 24 hours.
 - Ability to reprocess (replay) data.
 - Once data is inserted in Kinesis, it can't be deleted (immutability).
 - Data that shares the same partition goes to the same shard (ordering).

@@ -31,7 +31,8 @@
 - `AssumeRoleWithWebIdentity`
   - Return creds for users logged with an IdP (Facebook Login, Google Login, OIDC compatible...).
   - **AWS recommends against using this, and using Cognito Identity Pools instead.**
-- `GetSessionToken` - Returns a set of temporary security credentials to an existing IAM user.
+- `GetSessionToken` - Gives you a set of temporary credentials **based on your own IAM User**.
+  - Returns a set of temporary security credentials to an existing IAM user.
   - This is useful for providing enhanced security, such as allowing AWS requests only when MFA is enabled for the IAM user.
   - Because the credentials are temporary, they provide enhanced security when you have an IAM user who accesses your resources through a less secure environment.
 - `GetFederationToken` - Obtain temporary creds for a federated user.

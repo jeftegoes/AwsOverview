@@ -66,8 +66,8 @@
 - [26. Lambda Container Images](#26-lambda-container-images)
   - [26.1. Prerequisites](#261-prerequisites)
   - [26.2. Lambda Container Images](#262-lambda-container-images)
-- [27. AWS Lambda Versions](#27-aws-lambda-versions)
-- [28. AWS Lambda Aliases](#28-aws-lambda-aliases)
+- [27. Versions](#27-versions)
+- [28. Aliases](#28-aliases)
 - [29. Lambda and CodeDeploy](#29-lambda-and-codedeploy)
 - [30. Function URL](#30-function-url)
   - [30.1. Function URL Security](#301-function-url-security)
@@ -771,7 +771,7 @@ RUN npm install
 CMD ["app.lambdaHandler"]
 ```
 
-# 27. AWS Lambda Versions
+# 27. Versions
 
 - When you work on a Lambda function, we work on `$LATEST`.
 - When we're ready to publish a Lambda function, we create a version.
@@ -781,7 +781,7 @@ CMD ["app.lambdaHandler"]
 - Version = code + configuration (nothing can be changed - immutable).
 - Each version of the lambda function can be accessed.
 
-# 28. AWS Lambda Aliases
+# 28. Aliases
 
 - Aliases are "pointers" to Lambda function versions.
 - We can define a "dev", "test", "prod" aliases and have them point at different lambda versions.
@@ -835,7 +835,7 @@ CMD ["app.lambdaHandler"]
     - Both Principal's Identity-based Policy and Resource-based Policy are evaluated.
     - Principal must have `lambda:InvokeFunctionUrl` permissions.
     - **Same account:** Identity-based Policy **OR** Resource-based Policy as ALLOW.
-    - **Cross account:** Identity-based Policy **AND** Resource Based Policy as ALLOW.
+    - **Cross account:** Identity-based Policy **AND** Resource-based Policy as ALLOW.
 
 ![Lambda secutiry options](Images/LambdaFunctionURLSecutiryOptions.png)
 

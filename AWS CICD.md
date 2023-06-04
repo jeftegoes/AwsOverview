@@ -125,7 +125,8 @@
   - **SSH Keys:** AWS Users can configure SSH keys in their IAM Console.
   - **HTTPS:**
     1. Set-up a **Git credential helper** using your access key credentials specified in your AWS credential profile.
-    2. Generate HTTPS Git credentials for AWS CodeCommit (IAM). Specify the credentials in the Git Credential Manager.
+    2. Generate HTTPS Git credentials for AWS CodeCommit (IAM).
+       1. Specify the credentials in the Git Credential Manager.
 - **Authorization**
   - IAM policies to manage users/roles permissions to repositories.
 - **Encryption**

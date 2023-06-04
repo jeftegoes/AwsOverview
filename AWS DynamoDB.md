@@ -20,7 +20,7 @@
   - [7.2. Reading Data](#72-reading-data)
   - [7.3. Reading Data (Query)](#73-reading-data-query)
   - [7.4. Reading Data (Scan)](#74-reading-data-scan)
-    - [7.4.1. Rate-limited parallel](#741-rate-limited-parallel)
+    - [7.4.1. Rate-limited parallel scan](#741-rate-limited-parallel-scan)
   - [7.5. Deleting Data](#75-deleting-data)
   - [7.6. Batch Operations](#76-batch-operations)
   - [7.7. Extra](#77-extra)
@@ -47,8 +47,9 @@
 - [19. Write Types](#19-write-types)
 - [20. Operations](#20-operations)
 - [21. Security \& Other Features](#21-security--other-features)
-  - [21.1. Fine-Grained Access Control](#211-fine-grained-access-control)
-- [22. Global Tables](#22-global-tables)
+  - [21.1. Server-side encryption at rest](#211-server-side-encryption-at-rest)
+  - [21.2. DynamoDB Encryption Client](#212-dynamodb-encryption-client)
+  - [21.3. Fine-Grained Access Control](#213-fine-grained-access-control)
 
 # 1. Traditional Architecture
 
@@ -248,15 +249,15 @@
 - Returns up to 1 MB of data - use pagination to keep on reading.
 - Consumes a lot of RCU.
 - Limit impact using `Limit` or reduce the size of the result and pause.
-- For faster performance, use **Parallel Scan**.
+- For faster performance, use **Rate-limited parallel `scan`**.
   - Multiple workers scan multiple data segments at the same time.
   - Increases the throughput and RCU consumed.
   - Limit the impact of parallel scans just like you would for Scans.
 - Can use `ProjectionExpression` and `FilterExpression` (no changes to RCU).
 
-### 7.4.1. Rate-limited parallel
+### 7.4.1. Rate-limited parallel scan
 
-- By default, the `Scan` operation processes data sequentially.
+- By default, the `Scan` operation processes **data sequentially**.
 - Amazon DynamoDB returns data to the application in 1 MB increments, and an application performs additional `Scan` operations to retrieve the next 1 MB of data.
 - To address these issues, the `Scan` operation can logically divide a table or secondary index into multiple segments, with multiple application workers scanning the segments in parallel.
 - Each worker can be a thread (in programming languages that support multithreading) or an operating system process.
@@ -552,14 +553,28 @@
   - Develop and test apps locally without accessing the DynamoDB web service (without Internet).
 - AWS Database Migration Service (AWS DMS) can be used to migrate to DynamoDB (from MongoDB, Oracle, MySQL, S3, ...).
 
-## 21.1. Fine-Grained Access Control
+## 21.1. Server-side encryption at rest
 
-- Using Web Identity Federation or Cognito Identity Pools, each user gets AWS credentials.
-- You can assign an IAM Role to these users with a Condition to limit their API access to DynamoDB.
-- `LeadingKeys` - Limit row-level access for users on the Primary Key.
+- DynamoDB supports encryption at rest, a server-side encryption feature in which DynamoDB transparently encrypts your tables for you when the table is persisted to disk, and decrypts them when you access the table data.
+- When you use an **AWS SDK** to interact with DynamoDB, by default, your data is encrypted in transit over an HTTPS connection, decrypted at the DynamoDB endpoint, and then re-encrypted before being stored in DynamoDB.
+  - Encryption by default.
+  - DynamoDB creates and manages the cryptographic keys.
+  - All table data is encrypted on disk.
+  - Objects related to tables are encrypted, too.
+  - Your items are decrypted when you access them.
+
+## 21.2. DynamoDB Encryption Client
+
+- Client-side encryption provides end-to-end protection for your data, in transit and at rest, from its source to storage in DynamoDB. Your plaintext data is never exposed to any third party, including AWS. However, the DynamoDB Encryption Client is designed to be implemented in new, unpopulated databases. You need to add the encryption features to your DynamoDB applications before you send any data to DynamoDB.
+  - Your data is protected in transit and at rest.
+  - You can sign your table Items.
+  - You choose how your cryptographic keys are generated and protected.
+  - You determine how your data is protected.
+  - The DynamoDB Encryption Client doesn't encrypt the entire table.
+
+## 21.3. Fine-Grained Access Control
+
+- Using **Web Identity Federation** or **Cognito Identity Pools**, each user gets AWS credentials.
+- You can assign an IAM Role to these users with a **Condition** to limit their API access to DynamoDB.
+- `LeadingKeys` - Limit row-level access for users on the **Primary Key**.
 - `Attributes` - Limit specific attributes the user can see.
-
-# 22. Global Tables
-
-- Make a DynamoDB table accessible with low latency in multiple-regions.
-- Active-Active replication (read/write to any AWS Region).

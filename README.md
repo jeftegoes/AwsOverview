@@ -1671,7 +1671,7 @@
 
 - **Service control policies (SCPs) are a type of organization policy that you can use to manage permissions in your organization. An SCP spans all IAM users, groups, and roles, including the AWS account root user.**
 - Whitelist or blacklist IAM actions.
-- Applied at the **OU** or **Account** level.
+- Applied at the **OU - Organizational Unit** or **Account** level.
 - Does not apply to the Master Account.
 - SCP is applied to all the **Users and Roles** of the Account, including Root user.
 - The SCP does not affect service-linked roles.
@@ -2749,10 +2749,9 @@
 
 - aws lambda invoke --function-name `<lambda_name>` --invocation-type `<invocation_type>` response.json # `invocation_type` like: `Event` or `RequestResponse`
 
-
 ### 27.4. Systems Manager
 
-- Create parameter 
+- Create parameter
   - aws ssm put-parameter --name myEC2TypeDev --type String --value "t2.small"
 
 ## 28. Credits

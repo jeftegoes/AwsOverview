@@ -12,6 +12,7 @@
   - [4.4. Storage Optimized](#44-storage-optimized)
   - [4.5. Accelerated Computing](#45-accelerated-computing)
   - [4.6. EC2 Instance Types: example](#46-ec2-instance-types-example)
+    - [4.6.1. Burstable performance instances](#461-burstable-performance-instances)
 - [5. Introduction to Security Groups](#5-introduction-to-security-groups)
   - [5.1. Security Groups Deeper Dive](#51-security-groups-deeper-dive)
   - [5.2. Security Groups Good to know](#52-security-groups-good-to-know)
@@ -134,6 +135,11 @@
 | m5.8xlarge  | 32   | 128       | EBS-Only         | 10 Gbps             | 6,800           |
 
 - **t2.micro is part of the AWS free tier (up to 750 hours per month).**
+
+### 4.6.1. Burstable performance instances
+
+- Which are T3, T3a, and T2 instances, are designed to provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload.
+  - Burstable performance instances are the only instance types that use credits for CPU usage.
 
 # 5. Introduction to Security Groups
 
