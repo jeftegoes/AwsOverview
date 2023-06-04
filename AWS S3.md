@@ -31,6 +31,7 @@
   - [15.1. S3 Event Notifications](#151-s3-event-notifications)
 - [16. Baseline Performance](#16-baseline-performance)
   - [16.1. Multi-Part upload:](#161-multi-part-upload)
+    - [16.1.1. Sample multipart upload calls](#1611-sample-multipart-upload-calls)
   - [16.2. S3 Transfer Acceleration](#162-s3-transfer-acceleration)
 - [17. Byte-Range Fetches](#17-byte-range-fetches)
 - [18. S3 Select \& Glacier Select](#18-s3-select--glacier-select)
@@ -383,6 +384,15 @@
 - **Recommended for files > 100MB, must use for files > 5GB**.
 - Can help parallelize uploads (speed up transfers).
 
+### 16.1.1. Sample multipart upload calls
+
+- For this example, assume that you are generating a multipart upload for a 100 GB file.
+- In this case, you would have the following API calls for the entire process.
+- There would be a total of 1002 API calls.
+  - A `CreateMultipartUpload` call to start the process.
+  - 1000 individual `UploadPart` calls, each uploading a part of 100 MB, for a total size of 100 GB
+  - A `CompleteMultipartUpload` call to finish the process.
+
 ## 16.2. S3 Transfer Acceleration
 
 - **Amazon S3 Transfer Acceleration enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket. Transfer Acceleration takes advantage of Amazon CloudFront's globally distributed edge locations. As the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.**
@@ -552,6 +562,7 @@
   - `MaxAgeSeconds` - Specifies the amount of time in seconds (in this example, 3000) that the browser caches an Amazon S3 response to a preflight OPTIONS request for the specified resource.
     - By caching the response, the browser does not have to send preflight requests to Amazon S3 if the original request will be repeated.
   - `ExposeHeader` - Identifies the response headers (in this example, `x-amz-server-side-encryption`, `x-amz-request-id`, and `x-amz-id-2`) that customers are able to access from their applications (for example, from a JavaScript XMLHttpRequest object).
+
 # 22. MFA Delete
 
 - **MFA (Multi-Factor Authentication)** - force users to generate a code on a device (usually a mobile phone or hardware) before doing important operations on S3.

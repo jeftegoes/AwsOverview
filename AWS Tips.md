@@ -8,6 +8,7 @@
   - [2.2. Batch Operations](#22-batch-operations)
 - [3. Kinesys](#3-kinesys)
 - [4. KMS](#4-kms)
+  - [4.1. Encrypt](#41-encrypt)
 - [5. General tips](#5-general-tips)
 - [6. ECS](#6-ecs)
 - [7. X-Ray](#7-x-ray)
@@ -28,7 +29,10 @@
 - [18. CloudFormation](#18-cloudformation)
 - [19. CloudWatch](#19-cloudwatch)
 - [20. Lambda](#20-lambda)
-  - [24. Layers](#24-layers)
+  - [20.1. Layers](#201-layers)
+- [21. EC2](#21-ec2)
+  - [21.1. Types EC2](#211-types-ec2)
+- [22. Route 53](#22-route-53)
 
 # 1. S3
 
@@ -67,6 +71,13 @@
 - Envelope Encryption
   - KMS Encrypt API call has a limit of 4 KB.
   - If you want to encrypt >4 KB, we need to use Envelope Encryption.
+
+## 4.1. Encrypt
+
+- It is recommended that you use the following pattern to encrypt data locally in your application:
+  1. Use the GenerateDataKey operation to get a data encryption key.
+  2. Use the plaintext data key (returned in the Plaintext field of the response) to encrypt data locally, then erase the plaintext data key from memory.
+  3. Store the encrypted data key (returned in the CiphertextBlob field of the response) alongside the locally encrypted data.
 
 # 5. General tips
 
@@ -153,6 +164,8 @@
 - env.yml - Elastic Beanstalk.
   - .config - Configuration files are YAML- or JSON-formatted documents with a **.config** file extension that you place in a folder named **.ebextensions**.
 - amplify.yml - Use the test step to run any test commands at build time.
+- Dockerrun.aws.json - Is used to generate the ECS task definition in EBS.
+- xray-daemon.config - You can run the daemon by setting an option in the Elastic Beanstalk console or with a configuration file.
 
 # 9. PartiQL
 
@@ -218,7 +231,7 @@
   - **400:** Bad Request.
   - **403:** Access Denied, WAF filtered.
   - **429:**
-    - Quota exceeded
+    - Quota exceeded.
     - Throttle.
 - 5xx means Server errors:
   - **502:** Bad Gateway Exception, usually for an incompatible output returned from a Lambda proxy integration backend and occasionally for out-of-order invocations due to heavy loads.
@@ -287,7 +300,8 @@
   - Can create CloudWatch dashboards of metrics.
 
 # 20. Lambda
-## 24. Layers
+
+## 20.1. Layers
 
 - Custom Runtimes:
   - Ex: C++ https://github.com/awslabs/aws-lambda-cpp
@@ -295,3 +309,60 @@
 - Externalize Dependencies to re-use them.
 - C++ and Rust
   - **Take note that this programming language is not natively supported yet in Lambda, which is why the use of a Custom Runtime is essential.**
+
+# 21. EC2
+
+## 21.1. Types EC2
+
+- **General Purpose**
+  - Great for a diversity of workloads such as web servers or code repositories.
+  - Balance between:
+    - Compute.
+    - Memory.
+    - Networking.
+- **Compute Optimized**
+  - Great for compute-intensive tasks that require high performance processors:
+    - Batch processing workloads.
+    - Media transcoding.
+    - High performance web servers.
+    - High performance computing (HPC).
+    - Dedicated gaming servers.
+- **Memory Optimized**
+  - Fast performance for workloads that process large data sets in memory.
+  - Use cases:
+    - High performance, relational/non-relational databases.
+    - Distributed web scale cache stores.
+    - In-memory databases optimized for BI (business intelligence).
+    - Applications performing real-time processing of big unstructured data.
+- **Storage Optimized**
+  - Great for storage-intensive tasks that require high, sequential read and write access to large data sets on local storage.
+  - Use cases:
+    - High frequency online transaction processing (OLTP) systems.
+    - Relational & NoSQL databases.
+    - Cache for in-memory databases (for example, Redis).
+    - Data warehousing applications.
+    - Distributed file systems.
+- **Accelerated Computing**
+  - Accelerated computing instances use hardware accelerators, or co-processors, to perform functions, such:
+    - Floating point number calculations.
+    - Graphics processing.
+    - Data pattern matching.
+    - Scientific modeling & machine learning.
+  - More efficiently than is possible in software running on CPUs.
+
+# 22. Route 53
+
+Routing Policies
+
+- Define how Route 53 responds to DNS queries.
+- Don't get confused by the word "Routing":
+  - It's not the same as Load balancer routing which routes the traffic.
+  - DNS does not route any traffic, it only responds to the DNS queries.
+- Route 53 Supports the following Routing Policies:
+  - Simple.
+  - Weighted.
+  - Failover.
+  - Latency based.
+  - Geolocation.
+  - Multi-Value Answer.
+  - Geoproximity (using Route 53 Traffic Flow feature).

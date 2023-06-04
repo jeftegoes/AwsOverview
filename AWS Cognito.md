@@ -65,7 +65,9 @@
 
 - Cognito has a hosted authentication UI that you can add to your app to handle sign-up and sign-in workflows.
 - Using the hosted UI, you have a foundation for integration with social logins, OIDC or SAML.
-- Can customize with a custom logo and custom CSS.
+- Can customize:
+  - Custom logo.
+  - Custom CSS.
 - [Reference](https://aws.amazon.com/blogs/aws/launch-amazon-cognito-user-pools-general-availability-app-integration-and-federation/)
 
 ### 3.4.1. Hosted UI Custom Domain
@@ -104,7 +106,7 @@
     - Social IdPs, such as Amazon, Facebook, or Google.
     - Corporate identities using SAML, LDAP, or Microsoft AD.
 - **Must use an HTTPS listener to set authenticate-oidc & authenticate-cognito rules.**
-- `OnUnauthenticatedRequest` - authenticate (default), deny, allow.
+- `OnUnauthenticatedRequest` - Authenticate (default), deny, allow.
 
 ## 3.8. ALB - Auth through Cognito User Pools
 

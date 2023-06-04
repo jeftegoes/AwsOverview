@@ -19,14 +19,15 @@
   - [5.6. Manual Approval Stage](#56-manual-approval-stage)
   - [5.7. Pipeline executions](#57-pipeline-executions)
 - [6. AWS CodeBuild](#6-aws-codebuild)
-  - [6.1. Details](#61-details)
-  - [6.2. Supported Environments](#62-supported-environments)
-  - [6.3. How it Works](#63-how-it-works)
-  - [6.4. buildspec.yml](#64-buildspecyml)
-    - [6.4.1. Custom buildspec file name and location](#641-custom-buildspec-file-name-and-location)
-  - [6.5. Local Build](#65-local-build)
-  - [6.6. Inside VPC](#66-inside-vpc)
-  - [6.7. CloudFormation Integration](#67-cloudformation-integration)
+  - [6.1. Security:](#61-security)
+  - [6.2. Details](#62-details)
+  - [6.3. Supported Environments](#63-supported-environments)
+  - [6.4. How it Works](#64-how-it-works)
+  - [6.5. buildspec.yml](#65-buildspecyml)
+    - [6.5.1. Custom buildspec file name and location](#651-custom-buildspec-file-name-and-location)
+  - [6.6. Local Build](#66-local-build)
+  - [6.7. Inside VPC](#67-inside-vpc)
+  - [6.8. CloudFormation Integration](#68-cloudformation-integration)
 - [7. AWS CodeDeploy](#7-aws-codedeploy)
   - [7.1. Steps To Make it Work](#71-steps-to-make-it-work)
   - [7.2. Primary Components](#72-primary-components)
@@ -57,6 +58,7 @@
   - [10.2. Profiler](#102-profiler)
   - [10.3. Agent Configuration](#103-agent-configuration)
 - [11. AWS Cloud9](#11-aws-cloud9)
+- [12. Sections erros](#12-sections-erros)
 
 # 1. CICD - Introduction
 
@@ -182,8 +184,8 @@
 
 ## 5.2. Artifacts
 
-- Each pipeline stage can create artifacts.
-- Artifacts stored in an S3 bucket and passed on to the next stage.
+- Each pipeline stage can create `artifacts`.
+- `artifacts` - This element represents information about where CodeBuild can find the build output and how CodeBuild prepares it for uploading to the S3 output bucket.
 
 ## 5.3. Troubleshooting
 
@@ -240,12 +242,14 @@
 - Charged per minute for compute resources (time it takes to complete the builds).
 - Leverages Docker under the hood for reproducible builds.
 - Use prepackaged Docker images or create your own custom Docker image.
-- Security:
-  - Integration with KMS for encryption of build artifacts.
-  - IAM for CodeBuild permissions, and VPC for network security.
-  - AWS CloudTrail for API calls logging.
 
-## 6.1. Details
+## 6.1. Security:
+
+- Integration with KMS for encryption of build artifacts.
+- IAM for CodeBuild permissions, and VPC for network security.
+- AWS CloudTrail for API calls logging.
+
+## 6.2. Details
 
 - **Source:** CodeCommit, S3, Bitbucket, GitHub.
 - **Build instructions:** Code file buildspec.yml or insert manually in Console.
@@ -255,7 +259,7 @@
 - Use CloudWatch Alarms to notify if you need "thresholds" for failures.
 - **Build Projects can be defined within CodePipeline or CodeBuild.**
 
-## 6.2. Supported Environments
+## 6.3. Supported Environments
 
 - Java.
 - Ruby.
@@ -267,11 +271,11 @@
 - PHP.
 - Docker - extend any environment you like.
 
-## 6.3. How it Works
+## 6.4. How it Works
 
 ![CodeBuild Diagram](Images/CodeBuildDiagram.png)
 
-## 6.4. buildspec.yml
+## 6.5. buildspec.yml
 
 - `buildspec.yml` file must be at the **root** of your code.
 - `env` - define environment variables
@@ -296,7 +300,7 @@
   - UPLOAD_ARTIFACTS
   - FINALIZING
 
-### 6.4.1. Custom buildspec file name and location
+### 6.5.1. Custom buildspec file name and location
 
 - To override the default buildspec file name, location, or both, do one of the following:
 
@@ -304,14 +308,14 @@
 2. Run the AWS CLI `start-build` command, setting the `buildspecOverride` value to the path to the alternate buildspec file relative to the value of the built-in environment variable `CODEBUILD_SRC_DIR`.
 3. In an AWS CloudFormation template, set the BuildSpec property of Source in a resource of type `AWS::CodeBuild::Project` to the path to the alternate buildspec file relative to the value of the built-in environment variable `CODEBUILD_SRC_DIR`.
 
-## 6.5. Local Build
+## 6.6. Local Build
 
 - In case of need of deep troubleshooting beyond logs...
 - You can run CodeBuild locally on your desktop (after installing Docker).
 - For this, leverage the CodeBuild Agent.
 - [Run builds locally with the AWS CodeBuild agent](https://docs.aws.amazon.com/codebuild/latest/userguide/use-codebuild-agent.html)
 
-## 6.6. Inside VPC
+## 6.7. Inside VPC
 
 - By default, your CodeBuild containers are launched outside your VPC.
   - It cannot access resources in a VPC.
@@ -322,7 +326,7 @@
 - Then your build can access resources in your VPC (e.g., RDS, ElastiCache, EC2, ALB, ...).
 - Use cases: integration tests, data query, internal load balancers, ...
 
-## 6.7. CloudFormation Integration
+## 6.8. CloudFormation Integration
 
 - CloudFormation is used to deploy complex infrastructure using an API
   - `CREATE_UPDATE` - create or update an existing stack
@@ -389,8 +393,8 @@
     - `BeforeInstall`
     - `AfterInstall`
     - `AfterAllowTestTraffic`
-    - `AfterAllowTestTraffic`
     - `AfterAllowTraffic`
+    - `BeforeAllowTraffic`
 
 ### 7.3.1. List of lifecycle event hooks
 
@@ -608,3 +612,10 @@
 - Prepackaged with essential tools for popular programming languages (JavaScript, Python, PHP, ...).
 - Share your development environment with your team (pair programming).
 - Fully integrated with AWS SAM & Lambda to easily build serverless applications.
+
+# 12. Sections erros
+
+- `DownloadBundle` deployment lifecycle event will throw an error whenever:
+  - The EC2 instance’s IAM profile does not have permission to access the application code in the Amazon S3.
+  - An Amazon S3 internal error occurs.
+  - The instances you deploy to are associated with one AWS Region (for example, US West Oregon), but the Amazon S3 bucket that contains the application revision is related to another AWS Region (for example, US East N. Virginia).

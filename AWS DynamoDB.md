@@ -20,6 +20,7 @@
   - [7.2. Reading Data](#72-reading-data)
   - [7.3. Reading Data (Query)](#73-reading-data-query)
   - [7.4. Reading Data (Scan)](#74-reading-data-scan)
+    - [7.4.1. Rate-limited parallel](#741-rate-limited-parallel)
   - [7.5. Deleting Data](#75-deleting-data)
   - [7.6. Batch Operations](#76-batch-operations)
   - [7.7. Extra](#77-extra)
@@ -251,7 +252,14 @@
   - Multiple workers scan multiple data segments at the same time.
   - Increases the throughput and RCU consumed.
   - Limit the impact of parallel scans just like you would for Scans.
-- Can use **ProjectionExpression and FilterExpression** (no changes to RCU).
+- Can use `ProjectionExpression` and `FilterExpression` (no changes to RCU).
+
+### 7.4.1. Rate-limited parallel
+
+- By default, the `Scan` operation processes data sequentially.
+- Amazon DynamoDB returns data to the application in 1 MB increments, and an application performs additional `Scan` operations to retrieve the next 1 MB of data.
+- To address these issues, the `Scan` operation can logically divide a table or secondary index into multiple segments, with multiple application workers scanning the segments in parallel.
+- Each worker can be a thread (in programming languages that support multithreading) or an operating system process.
 
 ## 7.5. Deleting Data
 
@@ -446,13 +454,13 @@
 
 # 15. DynamoDB CLI - Good to Know
 
-- **--projection-expression:** one or more attributes to retrieve.
-- **--filter-expression:** filter items before returned to you.
+- `--projection-expression` - One or more attributes to retrieve.
+- `--filter-expression` - Filter items before returned to you.
 - General AWS CLI Pagination options (e.g., DynamoDB, S3, ...):
 
-  - **--page-size:** specify that AWS CLI retrieves the full list of items but with a larger number of API calls instead of one API call (default: 1000 items).
-  - **--max-items:** max. number of items to show in the CLI (returns NextToken).
-  - **--starting-token:** specify the last NextToken to retrieve the next set of items.
+  - `--page-size` - Specify that AWS CLI retrieves the full list of items but with a larger number of API calls instead of one API call (default: 1000 items).
+  - `--max-items` - Max. number of items to show in the CLI (returns NextToken).
+  - `--starting-token` - Specify the last NextToken to retrieve the next set of items.
 
   [Commands section](README.md)
 

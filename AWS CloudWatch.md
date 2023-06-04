@@ -197,7 +197,8 @@
 - When you create an alarm, you specify three settings to enable CloudWatch to evaluate when to change the alarm state:
   - **Period:** Is the length of time to evaluate the metric or expression to create each individual data point for an alarm. It is expressed in seconds.
   - **Evaluation Periods:** Is the number of the most recent periods, or data points, to evaluate when determining alarm state.
-  - **Datapoints to Alarm:** Is the number of data points within the Evaluation Periods that must be breaching to cause the alarm to go to the ALARM state. The breaching data points don't have to be consecutive, but they must all be within the last number of data points equal to **Evaluation Period**.
+  - **Datapoints to Alarm:** Is the number of data points within the Evaluation Periods that must be breaching to cause the alarm to go to the ALARM state.
+    - The breaching data points don't have to be consecutive, but they must all be within the last number of data points equal to **Evaluation Period**.
 
 ![Evaluating an alarm](Images/CloudWatchEvaluatingAlarm.png)
 

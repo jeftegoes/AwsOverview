@@ -253,8 +253,8 @@
 
 - Run your application as a single docker container.
 - Either provide:
-  - **Dockerfile:** Elastic Beanstalk will build and run the Docker container
-  - **Dockerrun.aws.json (v1):** Describe where _already built_ Docker image is
+  - `Dockerfile` - Elastic Beanstalk will build and run the Docker container
+  - `Dockerrun.aws.json` - Aat the root of source code, describe where _already built_ Docker image is:
     - Image
     - Ports
     - Volumes
@@ -270,8 +270,8 @@
   - EC2 instances, configured to use the ECS Cluster.
   - Load Balancer (in high availability mode).
   - Task definitions and execution.
-- Requires a config **Dockerrun.aws.json (v2)** at the root of source code.
-- **Dockerrun.aws.json** is used to generate the **ECS task definition**.
+- Requires a config `Dockerrun.aws.json` at the root of source code.
+- `Dockerrun.aws.json` - Is used to generate the **ECS task definition**.
 - Your Docker images must be pre-built and stored in ECR for example.
 
 # 14. HTTPS

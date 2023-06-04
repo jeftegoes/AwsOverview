@@ -31,6 +31,8 @@
   - [11.4. Queues \& Lambda](#114-queues--lambda)
   - [11.5. Lambda Event Mapper Scaling](#115-lambda-event-mapper-scaling)
 - [12. Event and Context Objects](#12-event-and-context-objects)
+  - [12.1. Event Object](#121-event-object)
+  - [12.2. Context Object](#122-context-object)
 - [13. Lambda - Destinations](#13-lambda---destinations)
 - [14. Lambda Execution Role (IAM Role)](#14-lambda-execution-role-iam-role)
   - [14.1. Lambda Resource Based Policies](#141-lambda-resource-based-policies)
@@ -62,7 +64,8 @@
 - [24. Lambda Layers](#24-lambda-layers)
 - [25. Custom Runtimes](#25-custom-runtimes)
 - [26. Lambda Container Images](#26-lambda-container-images)
-  - [26.1. Lambda Container Images](#261-lambda-container-images)
+  - [26.1. Prerequisites](#261-prerequisites)
+  - [26.2. Lambda Container Images](#262-lambda-container-images)
 - [27. AWS Lambda Versions](#27-aws-lambda-versions)
 - [28. AWS Lambda Aliases](#28-aws-lambda-aliases)
 - [29. Lambda and CodeDeploy](#29-lambda-and-codedeploy)
@@ -377,15 +380,52 @@
 
 # 12. Event and Context Objects
 
-- **Event Object**
-  - JSON-formatted document contains data for the function to process.
-  - Contains information from the invoking service (e.g., EventBridge, custom, ...).
-  - Lambda runtime converts the event to an object (e.g., dict type in Python).
-  - Example: input arguments, invoking service arguments, ...
-- **Context Object**
-  - Provides methods and properties that provide information about the invocation, function, and runtime environment.
-  - Passed to your function by Lambda at runtime.
-  - Example: aws_request_id, function_name, memory_limit_in_mb, ...
+## 12.1. Event Object
+
+- JSON-formatted document contains data for the function to process.
+- Contains information from the invoking service (e.g., EventBridge, custom, ...).
+- Lambda runtime converts the event to an object (e.g., dict type in Python).
+- Example: input arguments, invoking service arguments, ...
+- Example of return:
+  ```
+  {
+    "version": "0",
+    "id": "fe8d3c65-xmpl-c5c3-2c87-81584709a377",
+    "detail-type": "RDS DB Instance Event",
+    "source": "aws.rds",
+    "account": "123456789012",
+    "time": "2020-04-28T07:20:20Z",
+    "region": "us-east-2",
+    "resources":[
+      "arn:aws:rds: us-east-2:123456789012: db: rdz6xmpliljlb1"
+    ],
+    "detail": {
+      "EventCategories": [ "backup" ],
+      "SourceType": "DB_INSTANCE",
+      "SourceArn": "arn: aws: rds: us-east-2:123456789012: db: rdz6xmpliljlb1", "Date": "2020-04-28T07:20:20.112Z",
+      "Message": "Finished DB Instance backup",
+      "SourceIdentifier": "rdz6xmpliljlb1"
+    }
+  }
+  ```
+
+## 12.2. Context Object
+
+- Provides methods and properties that provide information about the invocation, function, and runtime environment.
+- Passed to your function by Lambda at runtime.
+- Example of return:
+  ```
+    {
+      "aws_request_id": "a3de505e-f16b-42f4-b3e6-bcd2e4a73903",
+      "function_name": "MyFunction-AULC3LB8Q02F",
+      "invoked_function_arn": "arn: aws: lambda: us-west-2:123456789012: function: MyFunction-AULC3LB8Q02F",
+      "function_version": "$LATEST",
+      "memory_limit_in_mb": "128",
+      "log_group_name": "/aws/lambda/MyFunction-AULC3LB8Q02F",
+      "log_stream_name": "2015/10/26/[$LATEST] c71058d852474b980f221f73402ad",
+      "client_context": "None",
+    }
+  ```
 
 # 13. Lambda - Destinations
 
@@ -652,6 +692,7 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
             def handler(event, context):
                 print("Event: %s" % json.dumps(event))
   ```
+
 ## 23.2. Through S3
 
 - You must store the Lambda zip in S3.
@@ -676,6 +717,7 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
 # 24. Lambda Layers
 
 - Externalize Dependencies to re-use them.
+
 # 25. Custom Runtimes
 
 - You can implement an AWS Lambda runtime in any programming language.
@@ -689,6 +731,8 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
 
 # 26. Lambda Container Images
 
+- AWS provides a set of open-source base images that you can use to create your container image.
+  - These base images include a **runtime interface client** to manage the interaction between Lambda and your function code.
 - Deploy Lambda function as container images of up to 10GB from ECR.
 - Pack complex dependencies, large dependencies in a container.
 - Base images are available for Python, Node.js, Java, .NET, Go, Ruby.
@@ -696,7 +740,20 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
 - Test the containers locally using the Lambda Runtime Interface Emulator.
 - Unified workflow to build apps.
 
-## 26.1. Lambda Container Images
+## 26.1. Prerequisites
+
+1. The container image must **implement the Lambda Runtime API**.
+   - The AWS open-source **runtime interface clients** implement the API.
+   - You can add a runtime interface client to your preferred base image to make it compatible with Lambda.
+2. The container image must be able to run on a read-only file system. Your function code can access a writable /tmp directory with between 512 MB and 10,240 MB, in 1-MB increments, of storage.
+3. The default Lambda user must be able to read all the files required to run your function code.
+   - Lambda follows security best practices by defining a default Linux user with least-privileged permissions.
+   - Verify that your application code does not rely on files that other Linux users are restricted from running.
+4. Lambda supports **only Linux-based container** images.
+5. Lambda provides multi-architecture base images. However, the image you build for your function must target only one of the architectures.
+   - Lambda does not support functions that use multi-architecture container images.
+
+## 26.2. Lambda Container Images
 
 - Example: build from the base images provided by AWS:
 
@@ -737,7 +794,7 @@ CMD ["app.lambdaHandler"]
 # 29. Lambda and CodeDeploy
 
 - **CodeDeploy** can help you automate traffic shift for Lambda aliases.
-- Feature is integrated within the SAM framework.
+- Feature is integrated within the SAM framework `routing-config`.
 - **Linear:** grow traffic every N minutes until 100%
   - `CodeDeployDefault.LambdaLinear10PercentEvery3Minutes` - Shifts 10 percent of traffic every three minutes until all traffic is shifted.
   - `CodeDeployDefault.LambdaLinear10PercentEvery10Minutes` - Shifts 10 percent of traffic every 10 minutes until all traffic is shifted.
@@ -770,14 +827,15 @@ CMD ["app.lambdaHandler"]
   - Authorize other accounts / specific CIDR / IAM principals.
 - **Cross-Origin Resource Sharing (CORS)**
   - If you call your Lambda function URL from a different domain.
-- **AuthType NONE**
-  - Allow public and unauthenticated access.
-    - Resource-based Policy is always in effect (must grant public access).
-- `lambda:FunctionUrlAuthType: "AWS_IAM"`- IAM is used to authenticate and authorize requests.
-  - Both Principal's Identity-based Policy and Resource-based Policy are evaluated.
-  - Principal must have `lambda:InvokeFunctionUrl` permissions.
-  - **Same account:** Identity-based Policy **OR** Resource-based Policy as ALLOW.
-  - **Cross account:** Identity-based Policy **AND** Resource Based Policy as ALLOW.
+- There are two types of authorization available for Lambda function URLs:
+  - `lambda:FunctionUrlAuthType: "NONE"`
+    - Allow public and unauthenticated access.
+      - Resource-based Policy is always in effect (must grant public access).
+  - `lambda:FunctionUrlAuthType: "AWS_IAM"` - IAM is used to authenticate and authorize requests.
+    - Both Principal's Identity-based Policy and Resource-based Policy are evaluated.
+    - Principal must have `lambda:InvokeFunctionUrl` permissions.
+    - **Same account:** Identity-based Policy **OR** Resource-based Policy as ALLOW.
+    - **Cross account:** Identity-based Policy **AND** Resource Based Policy as ALLOW.
 
 ![Lambda secutiry options](Images/LambdaFunctionURLSecutiryOptions.png)
 
@@ -821,9 +879,6 @@ CMD ["app.lambdaHandler"]
   - Use Layers where necessary.
 - **Avoid using recursive code, never have a Lambda function call itself.**
 - Take advantage of **Execution Context** reuse to improve the performance of your function.
-
-
-
 
 # 34. Error creating a lambda function via CLI
 

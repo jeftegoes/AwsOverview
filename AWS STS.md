@@ -23,12 +23,17 @@
 # 1. STS - Security Token Service
 
 - Allows to grant limited and temporary access to AWS resources (up to 1 hour).
-- `AssumeRole`: Assume roles within **your account** or **cross account**.
+- `AssumeRole` - Is useful for allowing existing IAM users to access AWS resources that they don't already have access to.
+  - For example, the user might need access to resources **in another AWS account (cross account)**.
+  - It is also useful as a means to temporarily gain privileged access—for example, to provide multi-factor authentication (MFA).
+  - You must call this API using existing IAM user credentials.
 - `AssumeRoleWithSAML` - Return credentials for users logged with SAML.
-- `AssumeRoleWithWebIdentity`:
+- `AssumeRoleWithWebIdentity`
   - Return creds for users logged with an IdP (Facebook Login, Google Login, OIDC compatible...).
   - **AWS recommends against using this, and using Cognito Identity Pools instead.**
-- `GetSessionToken` - For MFA, from a user or AWS account root user.
+- `GetSessionToken` - Returns a set of temporary security credentials to an existing IAM user.
+  - This is useful for providing enhanced security, such as allowing AWS requests only when MFA is enabled for the IAM user.
+  - Because the credentials are temporary, they provide enhanced security when you have an IAM user who accesses your resources through a less secure environment.
 - `GetFederationToken` - Obtain temporary creds for a federated user.
 - `GetCallerIdentity` - Return details about the IAM user or role used in the API call.
 - `DecodeAuthorizationMessage` - Decode error message when an AWS API is denied.
@@ -162,6 +167,7 @@
 - For this, you need the IAM permission `iam:PassRole`.
 - It often comes with `iam:GetRole` to view the role being passed.
 - Example:
+
   ```
     {
       "Version": "2012-10-17",
@@ -198,4 +204,4 @@
         "Action": "sts: AssumeRole"
       }
     }
-  ``` 
+  ```

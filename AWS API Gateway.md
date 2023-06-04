@@ -236,7 +236,7 @@
 
 - Able to flush the entire cache (invalidate it) immediately.
 - Clients can invalidate the cache with header: `Cache-Control: max-age=0` (with proper IAM authorization).
-- If you don't impose an `execute-api:InvalidateCache` policy (or choose the Require Authorization check box in the console), any client can invalidate the API cache.
+- If you don't impose an `execute-api:InvalidateCache` policy (or choose the **Require Authorization** check box in the console), any client can invalidate the API cache.
 
 ![API Gateway cache parameter](Images/APIGatewayCacheParameter.png)
 
