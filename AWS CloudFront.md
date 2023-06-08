@@ -183,8 +183,8 @@
 - You want to distribute paid shared content to premium users over the world.
 - To **Restrict Viewer Access**, we can create a CloudFront Signed URL / Cookie.
 - How long should the URL be valid for?
-  - Shared content (movie, music): make it short (a few minutes).
-  - Private content (private to the user): you can make it last for years.
+  - Shared content (movie, music): Make it short (a few minutes).
+  - Private content (private to the user): You can make it last for years.
 - Signed URL = access to individual files (one signed URL per file).
 - Signed Cookies = access to multiple files (one signed cookie for many files).
 

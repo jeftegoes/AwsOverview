@@ -130,7 +130,7 @@
 
 # 5. Wait for Task Token
 
-- Allows you to pause Step Functions during a Task until a Task Token is returned
+- Allows you to pause Step Functions during a Task until a Task Token is returned.
 - Task might wait for other AWS services, human approval, 3rd party integration, call legacy systems...
 - Append `.waitForTaskToken` to the **Resource** field to tell Step Functions to wait for the Task Token to be returned
 - Task will pause until it receives that Task Token back with a `SendTaskSuccess` or `SendTaskFailure` API call.

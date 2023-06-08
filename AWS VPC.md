@@ -4,6 +4,7 @@
 
 - [1. VPC and Subnets Primer](#1-vpc-and-subnets-primer)
 - [2. Internet Gateway and NAT Gateways](#2-internet-gateway-and-nat-gateways)
+  - [2.1. Subnet](#21-subnet)
 - [3. Network ACL and Security Groups](#3-network-acl-and-security-groups)
   - [3.1. Network ACLs vs Security Groups](#31-network-acls-vs-security-groups)
 - [4. VPC Flow Logs](#4-vpc-flow-logs)
@@ -31,8 +32,13 @@
 - **Internet Gateways** helps our VPC instances connect with the internet.
 - Public Subnets have a route to the internet gateway.
 - **NAT Gateways** (AWS-managed) and **NAT Instances** (self-managed) allow your instances in your **Private Subnets** to access the internet while remaining private.
+
+## 2.1. Subnet
+
 - A subnet can only be associated with one route table at a time (1..1).
+  - A subnet is **implicitly associated** with the **main route table** if it is not explicitly associated with a particular route table. So, a subnet is always associated with some route table.
   - **But you can associate multiple subnets with the same subnet route table (1..N).**
+- A route table contains a set of rules, called routes, that are used to determine where network traffic from your subnet or gateway is directed. The route table in the instance's subnet should have a route defined to the Internet Gateway.
 
 # 3. Network ACL and Security Groups
 

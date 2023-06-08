@@ -54,7 +54,7 @@
 - [21. Lambda Concurrency and Throttling](#21-lambda-concurrency-and-throttling)
   - [21.1. Lambda Concurrency Issue](#211-lambda-concurrency-issue)
   - [21.2. Concurrency and Asynchronous Invocations](#212-concurrency-and-asynchronous-invocations)
-  - [21.3. Cold Starts \& Provisioned Concurrency](#213-cold-starts--provisioned-concurrency)
+  - [21.3. Cold Starts and Provisioned Concurrency](#213-cold-starts-and-provisioned-concurrency)
   - [21.4. Reserved and Provisioned Concurrency](#214-reserved-and-provisioned-concurrency)
 - [22. Lambda Function Dependencies](#22-lambda-function-dependencies)
 - [23. Lambda and CloudFormation](#23-lambda-and-cloudformation)
@@ -644,7 +644,7 @@
 - For throttling errors (429) and system errors (500-series), Lambda returns the event to the queue and attempts to run the function again for up to 6 hours.
 - The retry interval increases exponentially from 1 second after the first attempt to a maximum of 5 minutes.
 
-## 21.3. Cold Starts & Provisioned Concurrency
+## 21.3. Cold Starts and Provisioned Concurrency
 
 - **Cold Start:**
   - New instance => code is loaded and code outside the handler run (init)
@@ -733,11 +733,12 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
 
 - AWS provides a set of open-source base images that you can use to create your container image.
   - These base images include a **runtime interface client** to manage the interaction between Lambda and your function code.
-- Deploy Lambda function as container images of up to 10GB from ECR.
+- Deploy Lambda function as container images of up to **10GB** from ECR.
+  - Note that you must create the Lambda function from the same account as the container registry in Amazon ECR.
 - Pack complex dependencies, large dependencies in a container.
 - Base images are available for Python, Node.js, Java, .NET, Go, Ruby.
 - Can create your own image as long as it implements the Lambda Runtime API.
-- Test the containers locally using the Lambda Runtime Interface Emulator.
+- Test the containers locally using the **Lambda Runtime Interface Emulator**.
 - Unified workflow to build apps.
 
 ## 26.1. Prerequisites

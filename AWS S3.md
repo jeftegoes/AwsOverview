@@ -54,7 +54,8 @@
 - [24. Pre-Signed URLs](#24-pre-signed-urls)
 - [25. S3 - Access Points](#25-s3---access-points)
 - [26. S3 Object Lambda](#26-s3-object-lambda)
-- [27. Shared Responsibility Model for S3](#27-shared-responsibility-model-for-s3)
+- [27. S3 Object Lock](#27-s3-object-lock)
+- [28. Shared Responsibility Model for S3](#28-shared-responsibility-model-for-s3)
 
 # 1. Introduction
 
@@ -615,7 +616,12 @@
   - Converting across data formats, such as converting XML to JSON.
   - Resizing and watermarking images on the fly using caller-specific details, such as the user who requested the object.
 
-# 27. Shared Responsibility Model for S3
+# 27. S3 Object Lock
+
+- S3 Object Lock enables you to store objects using a "Write Once Read Many" (WORM) model.
+- S3 Object Lock can help prevent accidental or inappropriate deletion of data, it is not the right choice for the current scenario.
+
+# 28. Shared Responsibility Model for S3
 
 - Aws:
   - Infrastructure (global security, durability, availability, sustain concurrent loss of data in two facilities)

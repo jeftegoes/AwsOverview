@@ -9,24 +9,25 @@
   - [1.4. Deploying CloudFormation templates](#14-deploying-cloudformation-templates)
   - [1.5. CloudFormation Building Blocks](#15-cloudformation-building-blocks)
 - [2. YAML](#2-yaml)
-  - [2.1. Resources](#21-resources)
-    - [2.1.1. How do I find resources documentation?](#211-how-do-i-find-resources-documentation)
-    - [2.1.2. FAQ for resources](#212-faq-for-resources)
-  - [2.2. Parameters](#22-parameters)
-    - [2.2.1. When should you use a parameter?](#221-when-should-you-use-a-parameter)
-    - [2.2.2. Parameters Settings](#222-parameters-settings)
-    - [2.2.3. How to Reference a Parameter](#223-how-to-reference-a-parameter)
-    - [2.2.4. Concept: Pseudo Parameters](#224-concept-pseudo-parameters)
-    - [2.2.5. Systems Manager parameter](#225-systems-manager-parameter)
-  - [2.3. Mappings](#23-mappings)
-    - [2.3.1. When would you use Mappings vs Parameters?](#231-when-would-you-use-mappings-vs-parameters)
-    - [2.3.2. Fn::FindInMap Accessing Mapping Values](#232-fnfindinmap-accessing-mapping-values)
-  - [2.4. Outputs](#24-outputs)
-    - [2.4.1. Example](#241-example)
-    - [2.4.2. Cross Stack Reference](#242-cross-stack-reference)
-  - [2.5. Conditions](#25-conditions)
-    - [2.5.1. How to define a condition?](#251-how-to-define-a-condition)
-    - [2.5.2. Using a Condition](#252-using-a-condition)
+  - [2.1. Template anatomy](#21-template-anatomy)
+  - [2.2. Resources](#22-resources)
+    - [2.2.1. How do I find resources documentation?](#221-how-do-i-find-resources-documentation)
+    - [2.2.2. FAQ for resources](#222-faq-for-resources)
+  - [2.3. Parameters](#23-parameters)
+    - [2.3.1. When should you use a parameter?](#231-when-should-you-use-a-parameter)
+    - [2.3.2. Parameters Settings](#232-parameters-settings)
+    - [2.3.3. How to Reference a Parameter](#233-how-to-reference-a-parameter)
+    - [2.3.4. Concept: Pseudo Parameters](#234-concept-pseudo-parameters)
+    - [2.3.5. Systems Manager parameter](#235-systems-manager-parameter)
+  - [2.4. Mappings](#24-mappings)
+    - [2.4.1. When would you use Mappings vs Parameters?](#241-when-would-you-use-mappings-vs-parameters)
+    - [2.4.2. Fn::FindInMap Accessing Mapping Values](#242-fnfindinmap-accessing-mapping-values)
+  - [2.5. Outputs](#25-outputs)
+    - [2.5.1. Example](#251-example)
+    - [2.5.2. Cross Stack Reference](#252-cross-stack-reference)
+  - [2.6. Conditions](#26-conditions)
+    - [2.6.1. How to define a condition?](#261-how-to-define-a-condition)
+    - [2.6.2. Using a Condition](#262-using-a-condition)
 - [3. Must Know Intrinsic Functions](#3-must-know-intrinsic-functions)
   - [3.1. Fn::Ref](#31-fnref)
   - [3.2. Fn::GetAtt](#32-fngetatt)
@@ -43,7 +44,7 @@
 - [7. Nested stacks](#7-nested-stacks)
 - [8. CloudFormation - Cross vs Nested Stacks](#8-cloudformation---cross-vs-nested-stacks)
 - [9. StackSets](#9-stacksets)
-- [10. Drift](#10-drift)
+- [10. Drift detection](#10-drift-detection)
 - [11. Stack Policies](#11-stack-policies)
 - [12. CloudFormation helper scripts reference](#12-cloudformation-helper-scripts-reference)
 
@@ -130,7 +131,40 @@
   - JSON
   - YAML (better)
 
-## 2.1. Resources
+## 2.1. Template anatomy
+
+```
+  AWSTemplateFormatVersion: "version date"
+
+  Description:
+    String
+
+  Metadata:
+    template metadata
+
+  Parameters:
+    set of parameters
+
+  Rules:
+    set of rules
+
+  Mappings:
+    set of mappings
+
+  Conditions:
+    set of conditions
+
+  Transform:
+    set of transforms
+
+  Resources:
+    set of resources
+
+  Outputs:
+    set of outputs
+```
+
+## 2.2. Resources
 
 - Resources are the core of your CloudFormation template (MANDATORY).
 - They represent the different AWS Components that will be created and configured.
@@ -150,12 +184,12 @@
             InstanceType: t2.micro
     ```
 
-### 2.1.1. How do I find resources documentation?
+### 2.2.1. How do I find resources documentation?
 
 - All the resources can be found here: [Resources](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
 - Example here (for an EC2 instance): [Example](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html)
 
-### 2.1.2. FAQ for resources
+### 2.2.2. FAQ for resources
 
 - Can I create a dynamic amount of resources?
   - No, you can't.
@@ -165,7 +199,7 @@
   - Almost. Only a select few niches are not there yet.
   - You can work around that using AWS Lambda Custom Resources.
 
-## 2.2. Parameters
+## 2.3. Parameters
 
 - Parameters are a way to provide inputs to your AWS CloudFormation template.
 - They're important to know about if:
@@ -173,7 +207,7 @@
   - Some inputs can not be determined ahead of time.
 - Parameters are extremely powerful, controlled, and can prevent errors from happening in your templates thanks to types.
 
-### 2.2.1. When should you use a parameter?
+### 2.3.1. When should you use a parameter?
 
 - Ask yourself this:
   - Is this CloudFormation resource configuration likely to change in the future?
@@ -187,7 +221,7 @@
         Type: String
   ```
 
-### 2.2.2. Parameters Settings
+### 2.3.2. Parameters Settings
 
 - Parameters can be controlled by all these settings:
   - Type:
@@ -206,7 +240,7 @@
   - AllowedPattern (regexp)
   - NoEcho (Boolean)
 
-### 2.2.3. How to Reference a Parameter
+### 2.3.3. How to Reference a Parameter
 
 - The `Fn::Ref` function can be leveraged to reference parameters.
 - Parameters can be used anywhere in a template.
@@ -226,21 +260,21 @@
         GroupDescription: !Ref SecurityGroupDescription
   ```
 
-### 2.2.4. Concept: Pseudo Parameters
+### 2.3.4. Concept: Pseudo Parameters
 
 - AWS offers us pseudo parameters in any CloudFormation template.
 - These can be used at any time and are enabled by default
 
 | Reference Value       | Example Return Value                                               |
 | --------------------- | ------------------------------------------------------------------ |
-| AWS::AccountId        | 1234567890                                                         |
+| AWS::AccountId        | 1234567890 (ID Account AWS)                                        |
 | AWS::NotificationARNs | [arn:aws:sns:us-east-1:123456789012:MyTopic]                       |
 | AWS::NoValue          | Does not return a value                                            |
 | AWS::Region           | us-east-2                                                          |
 | AWS::StackId          | rn:aws:cloudformation:us-east-1:123456789012:stack/MyStack/1c2fa62 |
 | AWS::StackName        | MyStack                                                            |
 
-### 2.2.5. Systems Manager parameter
+### 2.3.5. Systems Manager parameter
 
 - CloudFormation parameters already support certain AWS specific types.
 - SSM parameter types will be an addition to these types.
@@ -252,6 +286,7 @@
 - `AWS::SSM::Parameter::Value<Any AWS type>`
 
 - Example:
+
   ```
     aws ssm put-parameter --name myEC2TypeDev --type String --value "t2.small"
 
@@ -259,7 +294,8 @@
       InstanceType :
         Type : 'AWS::SSM::Parameter::Value<String>'
         Default: myEC2TypeDev
-  ```  
+  ```
+
   ```
     MyIAMUser:
       Type: AWS::IAM::User
@@ -269,7 +305,7 @@
           Password: '{{resolve:ssm-secure:IAMUserPassword:10}}'
   ```
 
-## 2.3. Mappings
+## 2.4. Mappings
 
 - Mappings are fixed variables within your CloudFormation Template.
 - They're very handy to differentiate between different environments (dev vs prod), regions (AWS regions), AMI types, etc.
@@ -301,7 +337,7 @@
           "HVM64": "ami-06cd52961ce9f0d85"
   ```
 
-### 2.3.1. When would you use Mappings vs Parameters?
+### 2.4.1. When would you use Mappings vs Parameters?
 
 - Mappings are great when you know in advance all the values that can be taken and that they can be deduced from variables such as:
   - Region
@@ -312,7 +348,7 @@
 - They allow safer control over the template.
 - Use parameters when the values are really user specific
 
-### 2.3.2. Fn::FindInMap Accessing Mapping Values
+### 2.4.2. Fn::FindInMap Accessing Mapping Values
 
 - We use `Fn::FindInMap` to return a named value from a specific key:
   - `!FindInMap [ MapName, TopLevelKey, SecondLevelKey ]`
@@ -344,15 +380,17 @@
           InstanceType: m1.small
   ```
 
-## 2.4. Outputs
+## 2.5. Outputs
 
 - The Outputs section declares optional outputs values that we can import into other stacks (if you export them first)!
 - You can also view the outputs in the AWS Console or in using the AWS CLI.
 - They're very useful for example if you define a network CloudFormation, and output the variables such as VPC ID and your Subnet IDs.
 - It's the best way to perform some collaboration cross stack, as you let expert handle their own part of the stack.
 - You can't delete a CloudFormation Stack if its outputs are being referenced by another CloudFormation stack.
+- You can use the Export Output Values to export the name of the resource output for a cross-stack reference.
+  - **For each AWS account, export names must be unique within a region.**
 
-### 2.4.1. Example
+### 2.5.1. Example
 
 - Creating a VPC as part of one template.
 - We create an output that references that VPC.
@@ -366,7 +404,7 @@
           Name: MyBeautifulVPC
   ```
 
-### 2.4.2. Cross Stack Reference
+### 2.5.2. Cross Stack Reference
 
 - We then create a second template that leverages that security group.
 - For this, we use the `Fn::ImportValue` function.
@@ -392,16 +430,17 @@
             - !ImportValue SSHMyBeautifulSecurityGroup
   ```
 
-## 2.5. Conditions
+## 2.6. Conditions
 
 - Conditions are used to control the creation of **Resources** or **Outputs** based on a condition.
+  - **NOT Parameter.**
 - Conditions can be whatever you want them to be, but common ones are:
   - Environment (dev / test / prod).
   - AWS Region.
   - Any parameter value.
 - Each condition can reference another condition, parameter value or mapping.
 
-### 2.5.1. How to define a condition?
+### 2.6.1. How to define a condition?
 
 - Example:
   ```
@@ -419,9 +458,10 @@
   - `Fn::Not`
   - `Fn::Or`
 
-### 2.5.2. Using a Condition
+### 2.6.2. Using a Condition
 
 - Conditions can be applied to **Resources**, **Outputs** and etc...
+  - **NOT Parameter.**
 - Example:
   ```
     Resources:
@@ -581,13 +621,13 @@
 
 ![CloudFormation StackSet](Images/AWSCloudFormationStackSet.png)
 
-# 10. Drift
+# 10. Drift detection
 
 - CloudFormation allows you to create infrastructure.
 - But it doesn't protect you against manual configuration changes.
 - How do we know if our resources have drifted?
-- We can use CloudFormation drift!
-- Not all resources are supported yet: [Resources](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import-supported-resources.html)
+  - We can use **CloudFormation drift detection**!
+  - Not all resources are supported yet: [Resources](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import-supported-resources.html)
 
 # 11. Stack Policies
 

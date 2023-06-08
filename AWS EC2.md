@@ -199,11 +199,18 @@
 # 7. How to SSH into your EC2 Instance
 
 - Windows:
+
   - We'll learn how to SSH into your EC2 instance using Windows.
   - Configure pem file
     ![Permission Propertie Aws PemFile](/Images/PermissionPropertieAwsPemFile.png)
   - Command
     - ssh -i D:\MY_PENFILE.pem ec2-user@PUBLIC_IP.
+
+- Generate a public SSH key from a private SSH key. Then, import the key into each of your AWS Regions.
+- Here is the correct way of reusing SSH keys in your AWS Regions:
+  1. Generate a public SSH key (.pub) file from the private SSH key (.pem) file.
+  2. Set the AWS Region you wish to import to.
+  3. Import the public SSH key into the new Region.
 
 # 8. Elastic IP
 
@@ -246,7 +253,14 @@
 - Your reserve a specific instance attributes **(Instance, type, region, tenancy, OS)**.
 - Reservation period: **1 year** = + discount | **3 years** = +++ discount.
 - Payment options: **No Upfront** = + | **partial upfront** = ++ | **All upfront** = +++ discount.
-- **Reserved Instance's Scope:** Regional or Zonal (reserve capacity in an AZ).
+- **Reserved Instance's Scope:**
+  |                               | Regional Reserved Instances                                                                                                                                                                                                                                                   | Zonal Reserved Instances                                                                                                             |
+  | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+  | Ability to reserve capacity   | A regional Reserved Instance does not reserve capacity.                                                                                                                                                                                                                       | A zonal Reserved Instance reserves capacity in the specified Availability Zone.                                                      |
+  | Availability Zone flexibility | The Reserved Instance discount applies to instance usage in any Availability Zone in the specified Region.                                                                                                                                                                    | No Availability Zone flexibility—the Reserved Instance discount applies to instance usage in the specified Availability Zone only.   |
+  | Instance size flexibility     | The Reserved Instance discount applies to instance usage within the instance family, regardless of size. Only supported on Amazon Linux/Unix Reserved Instances with default tenancy. For more information, see Instance size flexibility determined by normalization factor. | No instance size flexibility—the Reserved Instance discount applies to instance usage for the specified instance type and size only. |
+  | Queuing a purchase            | You can queue purchases for regional Reserved Instances.                                                                                                                                                                                                                      | You can't queue purchases for zonal Reserved Instances.                                                                              |
+
 - Recommended for steady-state usage applications (think database).
 - You can buy and sell in the Reserved Instance Marketplace.
 - **Convertible Reserved Instance**

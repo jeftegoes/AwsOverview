@@ -19,7 +19,7 @@
   - [5.6. Manual Approval Stage](#56-manual-approval-stage)
   - [5.7. Pipeline executions](#57-pipeline-executions)
 - [6. AWS CodeBuild](#6-aws-codebuild)
-  - [6.1. Security:](#61-security)
+  - [6.1. Security](#61-security)
   - [6.2. Details](#62-details)
   - [6.3. Supported Environments](#63-supported-environments)
   - [6.4. How it Works](#64-how-it-works)
@@ -28,6 +28,7 @@
   - [6.6. Local Build](#66-local-build)
   - [6.7. Inside VPC](#67-inside-vpc)
   - [6.8. CloudFormation Integration](#68-cloudformation-integration)
+  - [6.9. Timeouts](#69-timeouts)
 - [7. AWS CodeDeploy](#7-aws-codedeploy)
   - [7.1. Steps To Make it Work](#71-steps-to-make-it-work)
   - [7.2. Primary Components](#72-primary-components)
@@ -244,7 +245,7 @@
 - Leverages Docker under the hood for reproducible builds.
 - Use prepackaged Docker images or create your own custom Docker image.
 
-## 6.1. Security:
+## 6.1. Security
 
 - Integration with KMS for encryption of build artifacts.
 - IAM for CodeBuild permissions, and VPC for network security.
@@ -333,6 +334,14 @@
   - `CREATE_UPDATE` - create or update an existing stack
   - `DELETE_ONLY` - delete a stack if it exists
 
+## 6.9. Timeouts
+
+- A build represents a set of actions performed by AWS CodeBuild to create output artifacts (for example, a JAR file) based on a set of input artifacts (for example, a collection of Java class files).
+- A build in a queue that does not start after the number of minutes specified in its time out value is removed from the queue.
+  - **The default timeout value is eight hours.**
+  - You can override the build queue timeout with a value **between five minutes and eight hours** when you run your build.
+- By setting the timeout configuration, the build process will automatically terminate post the expiry of the configured timeout.
+
 # 7. AWS CodeDeploy
 
 - CodeDeploy is a deployment service that automates application deployments to:
@@ -416,7 +425,7 @@
 ## 7.5. CodeDeploy Agent
 
 - The CodeDeploy Agent must be running on the EC2 instances as a pre-requisites.
-- It can be installed and updated automatically if you’re using Systems Manager.
+- It can be installed and updated automatically if you're using Systems Manager.
 - The EC2 Instances must have sufficient permissions to access Amazon S3 to get deployment bundles.
 
 ## 7.6. Lambda Platform
@@ -617,6 +626,6 @@
 # 12. Sections erros
 
 - `DownloadBundle` deployment lifecycle event will throw an error whenever:
-  - The EC2 instance’s IAM profile does not have permission to access the application code in the Amazon S3.
+  - The EC2 instance's IAM profile does not have permission to access the application code in the Amazon S3.
   - An Amazon S3 internal error occurs.
   - The instances you deploy to are associated with one AWS Region (for example, US West Oregon), but the Amazon S3 bucket that contains the application revision is related to another AWS Region (for example, US East N. Virginia).

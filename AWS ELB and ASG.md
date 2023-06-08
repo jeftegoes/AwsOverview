@@ -18,6 +18,8 @@
   - [5.2. Application Load Balancer (v2)](#52-application-load-balancer-v2)
     - [5.2.1. Target Groups](#521-target-groups)
     - [5.2.2. Good to Know](#522-good-to-know)
+    - [5.2.3. Access Logs](#523-access-logs)
+    - [5.2.4. Request tracing](#524-request-tracing)
   - [5.3. Network Load Balancer (v2)](#53-network-load-balancer-v2)
     - [5.3.1. Target Groups](#531-target-groups)
   - [5.4. Gateway Load Balancer](#54-gateway-load-balancer)
@@ -195,6 +197,19 @@
 - The application servers don't see the IP of the client directly.
   - The true IP of the client is inserted in the header `X-Forwarded-For`.
   - We can also get Port (`X-Forwarded-Port`) and proto (`X-Forwarded-Proto`).
+
+### 5.2.3. Access Logs
+
+- Elastic Load Balancing provides **access logs** that capture detailed information about requests sent to your load balancer.
+- Each log contains information such as the time the request was received, the client's IP address, latencies, request paths, and server responses.
+- You can use these access logs to analyze traffic patterns and troubleshoot issues.
+- Access logging is an optional feature of Elastic Load Balancing that is **disabled by default**.
+
+### 5.2.4. Request tracing
+
+- You can use request tracing to track HTTP requests.
+- The load balancer adds a header with a trace identifier to each request it receives.
+- Request tracing will not help you to analyze latency specific data.
 
 ## 5.3. Network Load Balancer (v2)
 

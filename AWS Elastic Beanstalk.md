@@ -13,6 +13,7 @@
   - [4.4. Immutable](#44-immutable)
   - [4.5. Blue / Green](#45-blue--green)
   - [4.6. Traffic Splitting](#46-traffic-splitting)
+  - [4.7. Details](#47-details)
 - [5. Elastic Beanstalk CLI](#5-elastic-beanstalk-cli)
 - [6. Elastic Beanstalk Deployment Process](#6-elastic-beanstalk-deployment-process)
 - [7. Lifecycle Policy](#7-lifecycle-policy)
@@ -154,6 +155,15 @@
 - Old application version is then terminated.
 
 ![Immutable deployment](Images/AwsElasticBeanstalkTrafficSplitting.png)
+
+## 4.7. Details
+
+- Some policies replace all instances during the deployment or update.
+  - This causes all accumulated Amazon EC2 burst balances to be lost.
+- It happens in the following cases:
+  1. Managed platform updates with instance replacement enabled.
+  2. **Immutable** updates.
+  3. Deployments with **immutable updates** or **traffic splitting** enabled.
 
 # 5. Elastic Beanstalk CLI
 

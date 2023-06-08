@@ -50,6 +50,7 @@
   - [21.1. Server-side encryption at rest](#211-server-side-encryption-at-rest)
   - [21.2. DynamoDB Encryption Client](#212-dynamodb-encryption-client)
   - [21.3. Fine-Grained Access Control](#213-fine-grained-access-control)
+- [22. Backup](#22-backup)
 
 # 1. Traditional Architecture
 
@@ -156,8 +157,8 @@
   - If we read just after a write, it's possible we'll get some stale data because of replication.
 - **Strongly Consistent Read**
   - If we read just after a write, we will get the correct data.
-  - Set "ConsistentRead" parameter to True in API calls (`GetItem`, `BatchGetItem`, `Query`, `Scan`).
-  - Consumes twice the RCU.
+  - Set `ConsistentRead` parameter to `TRUE` in API calls (`GetItem`, `BatchGetItem`, `Query`, `Scan`).
+    - Consumes twice the RCU.
 
 ### 6.1.3. Read Capacity Units (RCU)
 
@@ -544,9 +545,6 @@
   - VPC Endpoints available to access DynamoDB without using the Internet.
   - Access fully controlled by IAM.
   - Encryption at rest using AWS KMS and in-transit using SSL/TLS.
-- **Backup and Restore feature available:**
-  - Point-in-time Recovery (PITR) like RDS.
-  - No performance impact.
 - **Global Tables:**
   - Multi-region, multi-active, fully replicated, high performance.
 - **DynamoDB Local:**
@@ -578,3 +576,13 @@
 - You can assign an IAM Role to these users with a **Condition** to limit their API access to DynamoDB.
 - `LeadingKeys` - Limit row-level access for users on the **Primary Key**.
 - `Attributes` - Limit specific attributes the user can see.
+
+# 22. Backup
+
+- DynamoDB offers two built-in backup methods:
+  - **On-demand:** Create backups when you choose.
+  - **Point-in-time recovery:** Turn on automatic and continuous backups.
+- Both of these methods are suitable for backing up your tables for disaster recovery purposes.
+- However, with these methods, you can't use the data for use cases involving data analysis or extract, transform, and load (ETL) jobs.
+- The DynamoDB Export to S3 feature is the easiest way to create backups that you can download locally or use with another AWS service.
+- To customize the process of creating backups, you can use Amazon EMR, AWS Glue, or AWS Data Pipeline.

@@ -18,13 +18,15 @@
 - [8. What's the AWS SDK?](#8-whats-the-aws-sdk)
 - [9. Roles for Services](#9-roles-for-services)
 - [10. Security Tools](#10-security-tools)
+  - [10.1. IAM Access Advisor (user-level)](#101-iam-access-advisor-user-level)
 - [11. Guidelines \& Best Practices](#11-guidelines--best-practices)
-- [12. Certificate Store](#12-certificate-store)
+- [12. IAM Certificate Store](#12-iam-certificate-store)
 - [13. Providing access to externally authenticated users (identity federation)](#13-providing-access-to-externally-authenticated-users-identity-federation)
   - [13.1. Custom identity broker application](#131-custom-identity-broker-application)
 - [14. Shared Responsibility Model for IAM](#14-shared-responsibility-model-for-iam)
 - [15. Identity-based policies and resource-based policies](#15-identity-based-policies-and-resource-based-policies)
 - [16. Permissions boundary](#16-permissions-boundary)
+- [17. IAM Access Analyzer](#17-iam-access-analyzer)
 
 # 1. IAM: Users & Groups
 
@@ -189,9 +191,13 @@
 
 - **IAM Credentials Report (account-level):**
   - A report that lists all your account's users and the status of their various credentials.
-- **IAM Access Advisor (user-level):**
-  - Access advisor shows the service permissions granted to a user and when those services were last accessed.
-  - You can use this information to revise your policies.
+
+## 10.1. IAM Access Advisor (user-level)
+
+- To help identify the unused roles, IAM reports the last-used timestamp that represents when a role was last used to make an AWS request.
+  - Your security team can use this information to identify, analyze, and then confidently remove unused roles.
+  - This helps improve the security posture of your AWS environments.
+  - Additionally, by removing unused roles, you can simplify your monitoring and auditing efforts by focusing only on roles that are in use.
 
 # 11. Guidelines & Best Practices
 
@@ -205,7 +211,7 @@
 - Audit permissions of your account with the IAM Credentials Report.
 - **Never share IAM users & Access Keys.**
 
-# 12. Certificate Store
+# 12. IAM Certificate Store
 
 - Use IAM as a certificate manager only when you must support HTTPS connections in a Region that is not supported by ACM.
 - IAM securely encrypts your private keys and stores the encrypted version in IAM SSL certificate storage.
@@ -240,3 +246,11 @@
 
 - Permissions boundary is a managed policy that is used for an IAM entity (user or role).
 - The policy defines the maximum permissions that the identity-based policies can grant to an entity, but does not grant permissions.
+
+# 17. IAM Access Analyzer
+
+- AWS IAM Access Analyzer helps you identify the resources in your organization and accounts, such as Amazon S3 buckets or IAM roles, that are shared with an external entity. This lets you identify unintended access to your resources and data, which is a security risk.
+- You can set the scope for the analyzer to an organization or an AWS account.
+- This is your zone of trust.
+- The analyzer scans all of the supported resources within your zone of trust.
+- When Access Analyzer finds a policy that allows access to a resource from outside of your zone of trust, it generates an active finding.

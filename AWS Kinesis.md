@@ -170,7 +170,7 @@
   - AWS:
     - Redshift
     - Amazon S3
-    - OpenSearch
+    - OpenSearch (Elasticsearch)
   - 3rd party partner: Splunk / MongoDB / DataDog / NewRelic / ...
   - Custom: send to any HTTP endpoint.
 - Pay for data going through Firehose.

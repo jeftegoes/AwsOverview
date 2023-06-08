@@ -46,7 +46,8 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - Oldest offering (over 10 years old).
 - Fully managed service, used to **decouple applications**.
 - Attributes:
-  - Unlimited throughput, unlimited number of messages in queue.
+  - Unlimited throughput.
+  - Unlimited number of messages in queue.
   - Default retention of messages: 4 days, maximum of 14 days.
   - Low latency (<10 ms on publish and receive).
   - Limitation of 256KB per message sent.
