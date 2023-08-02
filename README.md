@@ -263,7 +263,8 @@
   - [27.1. DynamoDB](#271-dynamodb)
   - [27.2. S3](#272-s3)
   - [27.3. Lambda](#273-lambda)
-  - [27.4. Systems Manager](#274-systems-manager)
+  - [27.4. ECS](#274-ecs)
+  - [27.5. Systems Manager](#275-systems-manager)
 - [28. Credits](#28-credits)
 
 ## 1. Traditionally, how to build infrastructure
@@ -2747,9 +2748,15 @@
 
 ### 27.3. Lambda
 
-- aws lambda invoke --function-name `<lambda_name>` --invocation-type `<invocation_type>` response.json # `invocation_type` like: `Event` or `RequestResponse`
+- Invoke a synchronous or asynchronous lambda function.
+  - aws lambda invoke --function-name `<lambda_name>` --invocation-type `<invocation_type>` response.json # `invocation_type` like: `Event` or `RequestResponse`
 
-### 27.4. Systems Manager
+### 27.4. ECS
+
+- There is no option to delete a task definition on the AWS console. But, you can deregister (delete) a task definition by executing the following command.
+  - aws ecs deregister-task-definition --task-definition `<name_task_definition:"revision>`
+
+### 27.5. Systems Manager
 
 - Create parameter
   - aws ssm put-parameter --name myEC2TypeDev --type String --value "t2.small"
