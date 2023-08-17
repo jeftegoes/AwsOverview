@@ -2,33 +2,49 @@
 
 ## Contents <!-- omit in toc -->
 
-- [1. CICD - Introduction](#1-cicd---introduction)
+- [1. CICD in AWS](#1-cicd-in-aws)
 - [2. Continuous Integration (CI)](#2-continuous-integration-ci)
 - [3. Continuous Delivery (CD)](#3-continuous-delivery-cd)
 - [4. AWS CodeCommit](#4-aws-codecommit)
   - [4.1. Security](#41-security)
   - [4.2. Migrations](#42-migrations)
   - [4.3. CodeCommit vs. GitHub](#43-codecommit-vs-github)
-  - [4.4. Migrate a project](#44-migrate-a-project)
+  - [4.4. Monitoring with EventBridge](#44-monitoring-with-eventbridge)
+  - [4.5. Migrate a project](#45-migrate-a-project)
+  - [4.6. Cross-Region Replication](#46-cross-region-replication)
+  - [4.7. Branch Security](#47-branch-security)
+  - [4.8. Pull Request Approval Rules](#48-pull-request-approval-rules)
 - [5. AWS CodePipeline](#5-aws-codepipeline)
   - [5.1. How pipeline executions are started](#51-how-pipeline-executions-are-started)
   - [5.2. Artifacts](#52-artifacts)
   - [5.3. Troubleshooting](#53-troubleshooting)
   - [5.4. Events vs.Webhooks vs. Polling](#54-events-vswebhooks-vs-polling)
-  - [5.5. Action Types Constraints for](#55-action-types-constraints-for)
+  - [5.5. Action types constraints for artifacts](#55-action-types-constraints-for-artifacts)
   - [5.6. Manual Approval Stage](#56-manual-approval-stage)
-  - [5.7. Pipeline executions](#57-pipeline-executions)
+  - [5.7. CloudFormation as a target](#57-cloudformation-as-a-target)
+  - [5.8. CloudFormation integration](#58-cloudformation-integration)
+  - [5.9. Best Practices](#59-best-practices)
+  - [5.10. EventBridge](#510-eventbridge)
+  - [5.11. Invoke Action](#511-invoke-action)
+  - [5.12. Multi Region](#512-multi-region)
+  - [5.13. Pipeline executions](#513-pipeline-executions)
 - [6. AWS CodeBuild](#6-aws-codebuild)
-  - [6.1. Security](#61-security)
-  - [6.2. Details](#62-details)
-  - [6.3. Supported Environments](#63-supported-environments)
-  - [6.4. How it Works](#64-how-it-works)
-  - [6.5. buildspec.yml](#65-buildspecyml)
-    - [6.5.1. Custom buildspec file name and location](#651-custom-buildspec-file-name-and-location)
-  - [6.6. Local Build](#66-local-build)
-  - [6.7. Inside VPC](#67-inside-vpc)
+  - [6.1. Details](#61-details)
+  - [6.2. Supported Environments](#62-supported-environments)
+  - [6.3. How it Works](#63-how-it-works)
+  - [6.4. buildspec.yml](#64-buildspecyml)
+    - [6.4.1. Custom buildspec file name and location](#641-custom-buildspec-file-name-and-location)
+  - [6.5. Local Build](#65-local-build)
+  - [6.6. Inside VPC](#66-inside-vpc)
+  - [6.7. Environment Variables](#67-environment-variables)
   - [6.8. CloudFormation Integration](#68-cloudformation-integration)
   - [6.9. Timeouts](#69-timeouts)
+  - [6.10. Build Badges](#610-build-badges)
+  - [6.11. Triggers](#611-triggers)
+  - [6.12. Validate Pull Requests](#612-validate-pull-requests)
+  - [6.13. Test Reports](#613-test-reports)
+  - [6.14. Security](#614-security)
+    - [6.14.1. CodeBuild Service Role](#6141-codebuild-service-role)
 - [7. AWS CodeDeploy](#7-aws-codedeploy)
   - [7.1. Steps To Make it Work](#71-steps-to-make-it-work)
   - [7.2. Primary Components](#72-primary-components)
@@ -61,19 +77,8 @@
 - [11. AWS Cloud9](#11-aws-cloud9)
 - [12. Sections erros](#12-sections-erros)
 
-# 1. CICD - Introduction
+# 1. CICD in AWS
 
-- We have learned how to:
-  - Create AWS resources, manually (fundamentals).
-  - Interact with AWS programmatically (AWS CLI).
-  - Deploy code to AWS using Elastic Beanstalk.
-- All these manual steps make it very likely for us to do mistakes!
-- We would like our code "in a repository" and have it deployed onto AWS
-  - Automatically.
-  - The right way.
-  - Making sure it's tested before being deployed.
-  - With possibility to go into different stages (dev, test, staging, prod).
-  - With manual approval where needed.
 - This is all about automating the deployment we've done so far while adding increased safety:
   - **AWS CodeCommit:** Storing our code.
   - **AWS CodePipeline:** Automating our pipeline from code to Elastic Beanstalk.
@@ -156,7 +161,12 @@
 | Hosting                             | Managed & hosted by AWS | Hosted by GitHub / GitHub Enterprise: self hosted on your servers |
 | UI                                  | Minimal                 | Fully Featured                                                    |
 
-## 4.4. Migrate a project
+## 4.4. Monitoring with EventBridge
+
+- You can monitor CodeCommit events in EventBridge (near real-time).
+- `pullRequestCreated`, `pullRequestStatusChanged`, `referenceCreated`, `commentOnCommitCreated`.
+
+## 4.5. Migrate a project
 
 - To migrate a project hosted on another Git repository to CodeCommit, you have to follow the process, below:
   1. Complete the initial setup required for CodeCommit.
@@ -167,13 +177,35 @@
 
 ![AWS CodeCommit migration](Images/AWSCodeCommitMigration.png)
 
+## 4.6. Cross-Region Replication
+
+- Use case: achieve lower latency pulls for global developers, backups...
+  - us-east-1 > us-east-2
+
+## 4.7. Branch Security
+
+- By default, a user who has push permissions to a CodeCommit repository can contribute to any branch.
+- Use IAM policies to restrict users to push or merge code to a specific branch.
+- Example: only senior developers can push to production branch.
+- **Note: Resource Policy is not supported yet.**
+
+## 4.8. Pull Request Approval Rules
+
+- Helps ensure the quality of your code by requiring user(s) to approve the open PRs before the code can be merged.
+- Specify a pool of users to approve and number of users who must approve the PR.
+- Specify IAM Principal ARN (IAM users, federated users, IAM Roles, IAM Groups).
+- Approval Rule Templates.
+- Automatically apply Approval Rules to PRs in specific repositories.
+- Example: define different rules for dev and prod branches.
+
 # 5. AWS CodePipeline
 
 - Visual Workflow to orchestrate your CI/CD.
-- **Source:** CodeCommit, ECR, S3, Bitbucket, GitHub
-- **Build:** CodeBuild, Jenkins, CloudBees, TeamCity
+- **Source:** CodeCommit, ECR, S3, Bitbucket, GitHub.
+- **Build:** CodeBuild, Jenkins, CloudBees, TeamCity.
 - **Test:** CodeBuild, AWS Device Farm, 3rd party tools, ...
 - **Deploy:** CodeDeploy, Elastic Beanstalk, CloudFormation, ECS, S3, ...
+- **Invoke:** Lambda, Step Functions.
 - Consists of stages:
   - Each stage can have sequential actions and/or parallel actions.
   - Example: Build -> Test -> Deploy -> Load Testing -> ...
@@ -188,6 +220,7 @@
 
 - Each pipeline stage can create `artifacts`.
 - `artifacts` - This element represents information about where CodeBuild can find the build output and how CodeBuild prepares it for uploading to the S3 output bucket.
+  - Artifacts stored in an S3 bucket and passed on to the next stage.
 
 ## 5.3. Troubleshooting
 
@@ -203,28 +236,82 @@
 ## 5.4. Events vs.Webhooks vs. Polling
 
 - Events
+  - CodeCommit -> `event` -> EventBridge -> `trigger` -> CodePipeline
+  - GitHub -> CodeStar Source Connection (GitHub App) -> `trigger` -> CodePipeline
+  - **Note: Events are the default and recommended**
 - Webhooks
+  - Script/Code -> `HTTP Webhook` CodePipeline
 - Polling
+  - GitHub -> regular checks -> CodePipeline
 
-## 5.5. Action Types Constraints for
+## 5.5. Action types constraints for artifacts
 
 - **Owner**
-  - **AWS:** For AWS services
-  - **3rd Party:** GitHub or Alexa Skills Kit
-  - **Custom:** Jenkins
+  - **AWS:** For AWS services.
+  - **3rd Party:** GitHub or Alexa Skills Kit.
+  - **Custom:** Jenkins.
 - **Action Type**
   - **Source:** S3, ECR, GitHub, ...
-  - **Build:** CodeBuild, Jenkins
-  - **Test:** CodeBuild, Device Farm, Jenkins
-  - **Approval:** Manual
-  - **Invoke:** Lambda
+  - **Build:** CodeBuild, Jenkins.
+  - **Test:** CodeBuild, Device Farm, Jenkins.
+  - **Approval:** Manual.
+  - **Invoke:** Lambda.
   - **Deploy:** S3, CloudFormation, CodeDeploy, Elastic Beanstalk, OpsWorks, ECS, Service Catalog, ...
 
 ## 5.6. Manual Approval Stage
 
+- CodePipeline
+  - CodeCommit -> `new commit` CodeBuild -> `trigger` > Manual Approval -> `deploy` -> CodeDeploy
 - **Important: Owner is "AWS", Action is "Manual".**
 
-## 5.7. Pipeline executions
+## 5.7. CloudFormation as a target
+
+- CloudFormation Deploy Action can be used to deploy AWS resources.
+- Example: deploy Lambda functions using CDK or SAM (alternative to CodeDeploy).
+- Works with CloudFormation StackSets to deploy across multiple AWS accounts and AWS Regions.
+- Configure different settings:
+  - Stack name, Change Set name, template, parameters, IAM Role, Action Mode...
+- **Action Modes**
+  - Create or Replace a Change Set, Execute a Change Set.
+  - Create or Update a Stack, Delete a Stack, Replace a Failed Stack.
+- **Template Parameter Overrides**
+  - Specify a JSON object to override parameter values.
+  - Retrives the parameter value from CodePipeline Input Artifact.
+  - All parameter names must be present in the template.
+  - **Static:** Use template configuration file (recommended).
+  - **Dynamic:** Use parameter overrides.
+
+## 5.8. CloudFormation integration
+
+- `CREATE_UPDATE` - Create or update an existing stack.
+- `DELETE_ONLY` - Delete a stack if it exists.
+
+## 5.9. Best Practices
+
+- One CodePipeline, One CodeDeploy, Parallel deploy to multiple Deployment Groups.
+- Parallel Actions using in a Stage using RunOrder.
+- Deploy to Pre-Prod before Deploying to Prod.
+
+## 5.10. EventBridge
+
+- EventBridge - Detect and react to changes in execution states (e.g., intercept failures at certain stages).
+
+## 5.11. Invoke Action
+
+- **Lambda:** Invokes a Lambda function within a Pipeline.
+- **Step Functions:** Starts a State Machine within a Pipeline.
+
+## 5.12. Multi Region
+
+- Actions in your pipeline can be in different regions.
+  - Example: deploy a Lambda function through CloudFormation into multiple regions.
+- S3 Artifact Stores must be defined in each region where you have actions.
+  - CodePipeline must have read/write access into every artifact buckets.
+  - If you use the console default artifact buckets are configured, else you must create them.
+- CodePipeline handles the copying of input artifacts from one AWS Region to the other Regions when performing cross-region actions.
+  - In your cross-region actions, only reference the name of the input artifacts.
+
+## 5.13. Pipeline executions
 
 - Traverse pipeline stages in order.
 - Valid statuses for pipelines are:
@@ -245,23 +332,17 @@
 - Leverages Docker under the hood for reproducible builds.
 - Use prepackaged Docker images or create your own custom Docker image.
 
-## 6.1. Security
-
-- Integration with KMS for encryption of build artifacts.
-- IAM for CodeBuild permissions, and VPC for network security.
-- AWS CloudTrail for API calls logging.
-
-## 6.2. Details
+## 6.1. Details
 
 - **Source:** CodeCommit, S3, Bitbucket, GitHub.
 - **Build instructions:** Code file buildspec.yml or insert manually in Console.
 - **Output logs** can be stored in Amazon S3 & CloudWatch Logs.
 - Use CloudWatch Metrics to monitor build statistics.
-- Use CloudWatch Events to detect failed builds and trigger notifications.
+- Use EventBridge (CloudWatch Events) to detect failed builds and trigger notifications.
 - Use CloudWatch Alarms to notify if you need "thresholds" for failures.
 - **Build Projects can be defined within CodePipeline or CodeBuild.**
 
-## 6.3. Supported Environments
+## 6.2. Supported Environments
 
 - Java.
 - Ruby.
@@ -273,11 +354,11 @@
 - PHP.
 - Docker - extend any environment you like.
 
-## 6.4. How it Works
+## 6.3. How it Works
 
 ![CodeBuild Diagram](Images/CodeBuildDiagram.png)
 
-## 6.5. buildspec.yml
+## 6.4. buildspec.yml
 
 - `buildspec.yml` file must be at the **root** of your code.
 - `env` - define environment variables
@@ -302,7 +383,7 @@
   - UPLOAD_ARTIFACTS
   - FINALIZING
 
-### 6.5.1. Custom buildspec file name and location
+### 6.4.1. Custom buildspec file name and location
 
 - To override the default buildspec file name, location, or both, do one of the following:
 
@@ -310,14 +391,14 @@
 2. Run the AWS CLI `start-build` command, setting the `buildspecOverride` value to the path to the alternate buildspec file relative to the value of the built-in environment variable `CODEBUILD_SRC_DIR`.
 3. In an AWS CloudFormation template, set the BuildSpec property of Source in a resource of type `AWS::CodeBuild::Project` to the path to the alternate buildspec file relative to the value of the built-in environment variable `CODEBUILD_SRC_DIR`.
 
-## 6.6. Local Build
+## 6.5. Local Build
 
 - In case of need of deep troubleshooting beyond logs...
 - You can run CodeBuild locally on your desktop (after installing Docker).
 - For this, leverage the CodeBuild Agent.
 - [Run builds locally with the AWS CodeBuild agent](https://docs.aws.amazon.com/codebuild/latest/userguide/use-codebuild-agent.html)
 
-## 6.7. Inside VPC
+## 6.6. Inside VPC
 
 - By default, your CodeBuild containers are launched outside your VPC.
   - It cannot access resources in a VPC.
@@ -328,11 +409,20 @@
 - Then your build can access resources in your VPC (e.g., RDS, ElastiCache, EC2, ALB, ...).
 - Use cases: integration tests, data query, internal load balancers, ...
 
+## 6.7. Environment Variables
+
+- **Default Environment Variables**
+  - Defined and provided by AWS.
+  - AWS_DEFAULT_REGION, CODEBUILD_BUILD_ARN, CODEBUILD_BUILD_ID, CODEBUILD_BUILD_IMAGE...
+- **Custom Environment Variables**
+  - **Static:** Defined at build time (override using start-build API call).
+  - **Dynamic:** Using SSM Parameter Store and Secrets Manager.
+
 ## 6.8. CloudFormation Integration
 
-- CloudFormation is used to deploy complex infrastructure using an API
-  - `CREATE_UPDATE` - create or update an existing stack
-  - `DELETE_ONLY` - delete a stack if it exists
+- CloudFormation is used to deploy complex infrastructure using an API:
+  - `CREATE_UPDATE` - create or update an existing stack.
+  - `DELETE_ONLY` - delete a stack if it exists.
 
 ## 6.9. Timeouts
 
@@ -341,6 +431,51 @@
   - **The default timeout value is eight hours.**
   - You can override the build queue timeout with a value **between five minutes and eight hours** when you run your build.
 - By setting the timeout configuration, the build process will automatically terminate post the expiry of the configured timeout.
+
+## 6.10. Build Badges
+
+- Dynamically generated badge that displays the status of the latest build.
+- Can be accessed through a public URL for your CodeBuild project.
+- Supported for **CodeCommit, GitHub, and BitBucket**.
+- **Note: Badges are available at the branch level.**
+
+## 6.11. Triggers
+
+- CodeCommit -> `event` -> EventBridge -> `trigger` -> CodeBuild.
+- CodeCommit -> `event` -> EventBridge -> `trigger` -> Lambda -> `trigger` -> CodeBuild.
+- GitHub -> `trigger` -> Web Hook -> `trigger` -> CodeBuild.
+
+## 6.12. Validate Pull Requests
+
+- Validate proposed code changes in PRs before they get merged.
+- Ensure high level of code quality and avoid code conflicts.
+
+## 6.13. Test Reports
+
+- Contains details about tests that are run during builds.
+- **Unit tests, configuration tests, functional tests**.
+- Create your test cases with any test framework that can create report files in the following format:
+  - JUnit XML, NUnit XML, NUnit3 XML.
+  - Cucumber JSON, TestNG XML, Visual Studio TRX.
+- Create a test report and add a **Report Group** name in **buildspec.yml** file with information about your tests.
+
+## 6.14. Security
+
+- Integration with KMS for encryption of build artifacts.
+- IAM for CodeBuild permissions, and VPC for network security.
+- AWS CloudTrail for API calls logging.
+
+### 6.14.1. CodeBuild Service Role
+
+- Allows CodeBuild to access AWS resources on your behalf (assign the required permissions).
+- Use cases:
+  - Download code from CodeCommit repository.
+  - Fetch parameters from SSM Parameter Store.
+  - Upload build artifacts to S3 bucket.
+  - Fetch secrets from Secrets Manager.
+  - Store logs in CloudWatch Logs.
+- In-transit and at-rest data encryption (cache, logs...).
+- Build output artifact encryption (requires access to KMS).
 
 # 7. AWS CodeDeploy
 

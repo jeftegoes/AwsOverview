@@ -11,7 +11,7 @@
   - [2.2. Types of KMS Keys](#22-types-of-kms-keys)
   - [2.3. Key Policies](#23-key-policies)
   - [2.4. Copying Snapshots across accounts](#24-copying-snapshots-across-accounts)
-  - [2.5. How does KMS work? API – Encrypt and Decrypt](#25-how-does-kms-work-api--encrypt-and-decrypt)
+  - [2.5. How does KMS work? API - Encrypt and Decrypt](#25-how-does-kms-work-api--encrypt-and-decrypt)
   - [2.6. Envelope Encryption](#26-envelope-encryption)
     - [2.6.1. Encrypt](#261-encrypt)
     - [2.6.2. Decrypt](#262-decrypt)
@@ -119,7 +119,7 @@
 4. (in target) Create a copy of the Snapshot, encrypt it with a CMK in your account.
 5. Create a volume from the snapshot KMS Key Policy.
 
-## 2.5. How does KMS work? API – Encrypt and Decrypt
+## 2.5. How does KMS work? API - Encrypt and Decrypt
 
 ![Encrypt and Decrypt](Images/AWSKMSEncryptDecrypt.png)
 

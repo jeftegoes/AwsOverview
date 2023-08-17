@@ -172,7 +172,7 @@
   - [18.6. AWS Pricing Calculator](#186-aws-pricing-calculator)
   - [18.7. AWS Billing Dashboard](#187-aws-billing-dashboard)
     - [18.7.1. Cost Allocation Tags](#1871-cost-allocation-tags)
-    - [18.7.2. Tagging and Resource Groups](#1872-tagging-and-resource-groups)
+    - [18.7.2. AWS Resource Groups and Tagging](#1872-aws-resource-groups-and-tagging)
     - [18.7.3. Cost and Usage Reports](#1873-cost-and-usage-reports)
     - [18.7.4. Cost Explorer](#1874-cost-explorer)
   - [18.8. Billing Alarms in CloudWatch](#188-billing-alarms-in-cloudwatch)
@@ -1878,16 +1878,9 @@
 - **User-defined tags:**
   - Defined by the user.
 
-#### 18.7.2. Tagging and Resource Groups
+#### 18.7.2. AWS Resource Groups and Tagging
 
-- **Tags** are used for organizing resources:
-  - EC2: instances, images, load balancers, security groups...
-  - RDS, VPC resources, Route 53, IAM users, etc...
-  - Resources created by CloudFormation are all tagged the same way.
-- Free naming, common tags are: Name, Environment, Team ...
-- Tags can be used to create Resource Groups:
-  - Create, maintain, and view a collection of resources that share common tags.
-  - Manage these tags using the Tag Editor.
+- [AWS Resource Groups and Tagging](AWS%20Resource%20Groups.md)
 
 #### 18.7.3. Cost and Usage Reports
 

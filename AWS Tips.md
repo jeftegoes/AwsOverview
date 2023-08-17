@@ -251,8 +251,8 @@
 
 # 17. ALB - HealthCheck
 
-- `HealthyThresholdCount` - The number of consecutive successful health checks required before considering an unhealthy target healthy. The range is 2–10. The default is 5.
-- `UnhealthyThresholdCount` - The number of consecutive failed health checks required before considering a target unhealthy. The range is 2–10. The default is 2.
+- `HealthyThresholdCount` - The number of consecutive successful health checks required before considering an unhealthy target healthy. The range is 2-10. The default is 5.
+- `UnhealthyThresholdCount` - The number of consecutive failed health checks required before considering a target unhealthy. The range is 2-10. The default is 2.
 
 # 18. CloudFormation
 
