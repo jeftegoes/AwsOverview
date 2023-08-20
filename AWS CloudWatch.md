@@ -28,6 +28,7 @@
   - [16.1. Schema Registry](#161-schema-registry)
   - [16.2. Resource-based Policy](#162-resource-based-policy)
 - [17. Amazon EventBridge vs CloudWatch Events](#17-amazon-eventbridge-vs-cloudwatch-events)
+- [18. CloudWatch Evidently](#18-cloudwatch-evidently)
 
 # 1. Why Monitoring is Important
 
@@ -281,3 +282,13 @@
 - Event Bridge has the Schema Registry capability.
 - EventBridge has a different name to mark the new capabilities.
 - Over time, the CloudWatch Events name will be replaced with EventBridge.
+
+# 18. CloudWatch Evidently
+
+- Safely validate new features by serving them to a specified % of your users.
+- Reduce risk and identify unintended consequences.
+- Collect experiment data, analyze using stats, monitor performance.
+- Launches (= feature flags): enable and disable features for a subset of users.
+- Experiments (= A/B testing): compare multiple versions of the same feature.
+- Overrides: pre-define a variation for a specific user.
+- Store evaluation events in CloudWatch Logs or S3.

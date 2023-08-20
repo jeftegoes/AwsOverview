@@ -46,23 +46,6 @@
   - [6.14. Security](#614-security)
     - [6.14.1. CodeBuild Service Role](#6141-codebuild-service-role)
 - [7. AWS CodeDeploy](#7-aws-codedeploy)
-  - [7.1. Steps To Make it Work](#71-steps-to-make-it-work)
-  - [7.2. Primary Components](#72-primary-components)
-  - [7.3. appspec.yml](#73-appspecyml)
-    - [7.3.1. List of lifecycle event hooks](#731-list-of-lifecycle-event-hooks)
-  - [7.4. EC2/On-premises Platform](#74-ec2on-premises-platform)
-  - [7.5. CodeDeploy Agent](#75-codedeploy-agent)
-  - [7.6. Lambda Platform](#76-lambda-platform)
-  - [7.7. ECS Platform](#77-ecs-platform)
-  - [7.8. Deployment to EC2](#78-deployment-to-ec2)
-  - [7.9. Deploy to an ASG](#79-deploy-to-an-asg)
-  - [7.10. Redeploy \& Rollbacks](#710-redeploy--rollbacks)
-  - [7.11. Troubleshooting](#711-troubleshooting)
-  - [7.12. CodeBuild support SDK and CLI](#712-codebuild-support-sdk-and-cli)
-  - [7.13. AppSpec by Compute Platform](#713-appspec-by-compute-platform)
-    - [7.13.1. ECS](#7131-ecs)
-    - [7.13.2. Lambda](#7132-lambda)
-    - [7.13.3. EC2](#7133-ec2)
 - [8. AWS CodeStar](#8-aws-codestar)
 - [9. AWS CodeArtifact](#9-aws-codeartifact)
   - [9.1. Resource Policy](#91-resource-policy)
@@ -73,6 +56,8 @@
 - [10. Amazon CodeGuru](#10-amazon-codeguru)
   - [10.1. Reviewer](#101-reviewer)
   - [10.2. Profiler](#102-profiler)
+    - [10.2.1. Reviewer Secrets Detector](#1021-reviewer-secrets-detector)
+    - [10.2.2. Ftunction decoractors](#1022-ftunction-decoractors)
   - [10.3. Agent Configuration](#103-agent-configuration)
 - [11. AWS Cloud9](#11-aws-cloud9)
 - [12. Sections erros](#12-sections-erros)
@@ -479,169 +464,7 @@
 
 # 7. AWS CodeDeploy
 
-- CodeDeploy is a deployment service that automates application deployments to:
-  - Amazon EC2 instances.
-  - On-premises instances.
-  - Serverless Lambda functions.
-  - Amazon ECS services.
-- We want to deploy our application automatically to many EC2 instances.
-- These EC2 instances are not managed by Elastic Beanstalk.
-- There are several ways to handle deployments using open-source tools (Ansible, Terraform, Chef, Puppet, ...).
-- We can use the managed service AWS CodeDeploy.
-
-## 7.1. Steps To Make it Work
-
-- **Each EC2 instance/on-premises server must be running the CodeDeploy Agent.**
-- The agent is continuously polling AWS CodeDeploy for work to do.
-- Application + `appspec.yml` is pulled from GitHub or S3.
-- EC2 instances will run the deployment instructions in `appspec.yml`.
-- CodeDeploy Agent will report of success/failure of the deployment.
-
-## 7.2. Primary Components
-
-- **Application:** A unique name functions as a container (revision, deployment configuration, ...).
-- **Compute Platform:** EC2/On-Premises, AWS Lambda, or Amazon ECS
-  - **Deployment Configuration:** A set of deployment rules for success/failure - EC2/On-premises .- specify the minimum number of healthy instances for the deployment.
-  - **AWS Lambda or Amazon ECS:** specify how traffic is routed to your updated versions.
-- **Deployment Group:** Group of tagged EC2 instances (allows to deploy gradually, or dev, test, prod...).
-- **Deployment Type:** Method used to deploy the application to a Deployment Group
-  - **In-place Deployment:** Supports EC2 / On-Premises
-  - **Blue/Green Deployment:** Supports EC2 instances only, AWS Lambda, and Amazon ECS
-- **IAM Instance Profile:** Give EC2 instances the permissions to access both S3 / GitHub.
-- **Application Revision:** Application code + `appspec.yml` file.
-- **Service Role:** An IAM Role for CodeDeploy to perform operations on EC2 instances, ASGs, ELBs...
-- **Target Revision:** The most recent revision that you want to deploy to a Deployment Group.
-
-## 7.3. appspec.yml
-
-- `files` - How to source and copy from S3 / GitHub to filesystem
-  - `source`
-  - `destination`
-- `hooks` - The content in the `hooks` section of the AppSpec file varies, depending on the compute platform for your deployment:
-  - `ApplicationStop`
-  - EC2
-    - `DownloadBundle`
-    - `Install`
-    - `ValidateService` <- important!!
-    - `BeforeInstall`
-    - `AfterInstall`
-    - `ApplicationStart`
-    - `AllowTrafic`
-    - `BeforeAllowTraffic`
-    - `AfterAllowTraffic`
-  - Lambda
-    - `Start` - Cannot be scripted or used.
-    - `BeforeAllowTraffic` - Use to run tasks before traffic is shifted to the deployed Lambda function version.
-    - `AllowTrafic`
-    - `AfterAllowTraffic` - Use to run tasks after all traffic is shifted to the deployed Lambda function version.
-  - ECS
-    - `BeforeInstall`
-    - `AfterInstall`
-    - `AfterAllowTestTraffic`
-    - `AfterAllowTraffic`
-    - `BeforeAllowTraffic`
-
-### 7.3.1. List of lifecycle event hooks
-
-- `Install` - During this deployment lifecycle event, the CodeDeploy agent copies the revision files from the temporary location to the final destination folder.
-  - **This event is reserved for the CodeDeploy agent and cannot be used to run scripts.**
-
-## 7.4. EC2/On-premises Platform
-
-- Can deploy to EC2 Instances & on-premises servers.
-- Perform in-place deployments or blue/green deployments.
-- Must run the CodeDeploy Agent on the target instances.
-- Define deployment speed:
-  - AllAtOnce: Most downtime.
-  - HalfAtATime: Reduced capacity by 50%.
-  - OneAtATime: Slowest, lowest availability impact.
-  - Custom: Define your.
-
-## 7.5. CodeDeploy Agent
-
-- The CodeDeploy Agent must be running on the EC2 instances as a pre-requisites.
-- It can be installed and updated automatically if you're using Systems Manager.
-- The EC2 Instances must have sufficient permissions to access Amazon S3 to get deployment bundles.
-
-## 7.6. Lambda Platform
-
-- **CodeDeploy** can help you automate traffic shift for Lambda aliases.
-- Feature is integrated within the SAM framework.
-- **Linear:** grow traffic every N minutes until 100%
-  - `LambdaLinear10PercentEvery3Minutes`
-  - `LambdaLinear10PercentEvery10Minutes`
-- **Canary:** try X percent then 100%
-  - `LambdaCanary10Percent5Minutes`
-  - `LambdaCanary10Percent30Minutes`
-- `AllAtOnce` - Immediate.
-
-## 7.7. ECS Platform
-
-- CodeDeploy can help you automate the deployment of a new **ECS Task Definition**.
-- **Only Blue/Green Deployments**.
-- **Linear:** grow traffic every N minutes until 100%.
-  - `ECSLinear10PercentEvery3Minutes`
-  - `ECSLinear10PercentEvery10Minutes`
-- **Canary:** try X percent then 100%:
-  - `ECSCanary10Percent5Minutes`
-  - `ECSCanary10Percent30Minutes`
-- `AllAtOnce` - Immediate.
-
-## 7.8. Deployment to EC2
-
-- Define **how to deploy the application** using `appspec.yml` + Deployment Strategy.
-- Will do In-place update to your fleet of EC2 instances.
-- Can use hooks to verify the deployment after each deployment phase.
-
-## 7.9. Deploy to an ASG
-
-- **In-place Deployment**
-  - Updates existing EC2 instances.
-  - Newly created EC2 instances by an ASG will also get automated deployments.
-- **Blue/Green Deployment**
-  - A new Auto-Scaling Group is created (settings are copied).
-  - Choose how long to keep the old EC2 instances (old ASG).
-  - Must be using an ELB.
-
-## 7.10. Redeploy & Rollbacks
-
-- Rollback = redeploy a previously deployed revision of your application.
-- Deployments can be rolled back:
-  - **Automatically:** Rollback when a deployment fails or rollback when a CloudWatch Alarm thresholds are met.
-  - **Manually.**
-- Disable Rollbacks - do not perform rollbacks for this deployment.
-- **If a roll back happens, CodeDeploy redeploys the last known good revision as a new deployment (not a restored version).**
-
-## 7.11. Troubleshooting
-
-- Deployment Error: "InvalidSignatureException - Signature expired: [time] is now earlier than [time]"
-  - For CodeDeploy to perform its operations, it requires accurate time references.
-  - If the date and time on your EC2 instance are not set correctly, they might not match the signature date of your deployment request, which CodeDeploy rejects.
-- Check log files to understand deployment issues:
-  - For Amazon Linux, Ubuntu, and RHEL log files stored at `/opt/codedeploy-agent/deployment-root/deployment- logs/codedeploy-agent-deployments.log`.
-
-## 7.12. CodeBuild support SDK and CLI
-
-- To use one the AWS SDKs or tools to automate AWS CodeBuild.
-- If you want to use the AWS CLI to run CodeBuild.
-
-## 7.13. AppSpec by Compute Platform
-
-### 7.13.1. ECS
-
-- The name of the Amazon ECS service and the container name and port used to direct traffic to the new task set.
-- The functions to be used as validation tests.
-
-### 7.13.2. Lambda
-
-- The AWS Lambda function version to deploy.
-- The functions to be used as validation tests.
-
-### 7.13.3. EC2
-
-- Map the source files in your application revision to their destinations on the instance.
-- Specify custom permissions for deployed files.
-- Specify scripts to be run on each instance at various stages of the deployment process.
+[AWS CodeDeploy](AWS%20CodeDeploy.md)
 
 # 8. AWS CodeStar
 
@@ -670,7 +493,7 @@
 
 ## 9.2. Upstream Repositories
 
-- A CodeArtifact repository can have other CodeArtifact repositories as Upstream Repositories.
+- A CodeArtifact repository can have other CodeArtifact repositories as **Upstream Repositories**.
 - Allows a package manager client to access the packages that are contained in more than one repository using a single repository endpoint.
 - Up to 10 Upstream Repositories.
 - Only one external connection.
@@ -692,12 +515,12 @@
 - The retained package version is not affected by changes to the Upstream Repository (deleting it, updating the package, ...)
 - Intermediate repositories do not keep the package
 - Example - Fetching Package from npmjs.com
-  - Package Manager connected to Repository A requests the package Lodash v4.17.20
+  - Package Manager connected to Repository A requests the package **Lodash v4.17.20**
   - The package version is not present in any of the three repositories
   - The package version will be fetched from npmjs.com
-  - When Lodash 4.17.20 is fetched, it will be retained in:
-    - Repository A - the most-downstream repository
-    - Repository C - has the external connection to npmjs.com
+  - When **Lodash 4.17.20** is fetched, it will be retained in:
+    - **Repository A** - the most-downstream repository
+    - **Repository C** - has the external connection to npmjs.com
     - The Package version will not be retained in Repository B as that is an intermediate Repository
 
 ## 9.5. Domains
@@ -737,6 +560,19 @@
   - Anomaly Detection.
 - Support applications running on AWS or on-premise.
 - Minimal overhead on application.
+
+### 10.2.1. Reviewer Secrets Detector
+
+- Uses ML to identify hardcoded secrets embedded in your code (e.g., passwords, API keys, credentials, SSH keys...).
+- Besides scanning code, it scans configuration and documentation files.
+- Suggests remediation to automatically protect your secrets with Secrets Manager.
+
+### 10.2.2. Ftunction decoractors
+
+- Integrate and apply CodeGuru Profiler to Lambda functions either using:
+  - Function Decorator `@with_lambda_profiler`
+  - Add codeguru_profiler_agent dependency to your **Lambda function .zip** file or use **Lambda Layers**.
+- Enable Profiling in the Lambda function configuration.
 
 ## 10.3. Agent Configuration
 

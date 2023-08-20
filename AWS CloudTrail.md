@@ -7,7 +7,8 @@
 - [3. Insights](#3-insights)
 - [4. Events Retention](#4-events-retention)
 - [5. DynamoDB information in CloudTrail](#5-dynamodb-information-in-cloudtrail)
-- [6. CloudTrail vs CloudWatch vs X-Ray](#6-cloudtrail-vs-cloudwatch-vs-x-ray)
+- [6. Amazon EventBridge + CloudTrail](#6-amazon-eventbridge--cloudtrail)
+- [7. CloudTrail vs CloudWatch vs X-Ray](#7-cloudtrail-vs-cloudwatch-vs-x-ray)
 
 # 1. Introduction
 
@@ -65,7 +66,12 @@
 - When supported event activity occurs in DynamoDB, that activity is recorded in a CloudTrail event along with other AWS service events in Event history.
 - You can view, search, and download recent events in your AWS account.
 
-# 6. CloudTrail vs CloudWatch vs X-Ray
+# 6. Amazon EventBridge + CloudTrail
+
+- User -> `AssumeRole` -> `API Call logs` -> CloudTrail -> `event` -> EventBridge -> SNS
+- User -> `Edit SG Inbound Rules` -> EC2 -> `API Call logs` -> CloudTrail -> `event` -> EventBridge -> SNS
+
+# 7. CloudTrail vs CloudWatch vs X-Ray
 
 - CloudTrail:
   - Audit API calls made by users / services / AWS console.
