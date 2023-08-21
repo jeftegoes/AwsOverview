@@ -2,12 +2,11 @@
 
 ## Contents <!-- omit in toc -->
 
-- [1. Introduction Infrastructure as Code](#1-introduction-infrastructure-as-code)
+- [1. Introduction Infrastructure as Code (IaC)](#1-introduction-infrastructure-as-code-iac)
   - [1.1. What is CloudFormation](#11-what-is-cloudformation)
   - [1.2. Benefits of AWS CloudFormation](#12-benefits-of-aws-cloudformation)
   - [1.3. How CloudFormation Works](#13-how-cloudformation-works)
   - [1.4. Deploying CloudFormation templates](#14-deploying-cloudformation-templates)
-  - [1.5. CloudFormation Building Blocks](#15-cloudformation-building-blocks)
 - [2. YAML](#2-yaml)
   - [2.1. Template anatomy](#21-template-anatomy)
   - [2.2. Resources](#22-resources)
@@ -28,7 +27,7 @@
   - [2.6. Conditions](#26-conditions)
     - [2.6.1. How to define a condition?](#261-how-to-define-a-condition)
     - [2.6.2. Using a Condition](#262-using-a-condition)
-- [3. Must Know Intrinsic Functions](#3-must-know-intrinsic-functions)
+- [3. Intrinsic Functions](#3-intrinsic-functions)
   - [3.1. Fn::Ref](#31-fnref)
   - [3.2. Fn::GetAtt](#32-fngetatt)
   - [3.3. Fn::FindInMap - Accessing Mapping Values](#33-fnfindinmap---accessing-mapping-values)
@@ -41,14 +40,16 @@
 - [4. Rollbacks](#4-rollbacks)
 - [5. Stack Notifications](#5-stack-notifications)
 - [6. ChangeSets](#6-changesets)
-- [7. Nested stacks](#7-nested-stacks)
-- [8. CloudFormation - Cross vs Nested Stacks](#8-cloudformation---cross-vs-nested-stacks)
-- [9. StackSets](#9-stacksets)
-- [10. Drift detection](#10-drift-detection)
-- [11. Stack Policies](#11-stack-policies)
-- [12. CloudFormation helper scripts reference](#12-cloudformation-helper-scripts-reference)
+- [7. Retaining Data on Deletes](#7-retaining-data-on-deletes)
+- [8. Termination Protection on Stacks](#8-termination-protection-on-stacks)
+- [9. Nested stacks](#9-nested-stacks)
+- [10. CloudFormation - Cross vs Nested Stacks](#10-cloudformation---cross-vs-nested-stacks)
+- [11. StackSets](#11-stacksets)
+- [12. Drift detection](#12-drift-detection)
+- [13. Stack Policies](#13-stack-policies)
+- [14. CloudFormation helper scripts reference](#14-cloudformation-helper-scripts-reference)
 
-# 1. Introduction Infrastructure as Code
+# 1. Introduction Infrastructure as Code (IaC)
 
 - Currently, we have been doing a lot of manual work.
 - All this manual work will be very tough to reproduce:
@@ -63,9 +64,9 @@
 - CloudFormation is a declarative way of outlining your AWS Infrastructure, for any resources (most of them are supported).
 - For example, within a CloudFormation template, you say:
   - I want a security group.
-  - I want two EC2 machines using this security group.
-  - I want two Elastic IPs for these EC2 machines.
-  - I want an S3 bucket.
+  - I want two [EC2](AWS%20EC2.md) machines using this security group.
+  - I want two Elastic IPs for these [EC2](AWS%20EC2.md) machines.
+  - I want an [S3](AWS%20S3.md) bucket.
   - I want a load balancer (ELB) in front of these machines.
 - Then CloudFormation creates those for you, in the right order, with the exact configuration that you specify.
 
@@ -83,20 +84,21 @@
   - Ability to destroy and re-create an infrastructure on the cloud on the fly.
   - Automated generation of Diagram for your templates!
   - Declarative programming (no need to figure out ordering and orchestration).
-- Separation of concern: create many stacks for many apps, and many layers. Ex:
-  - VPC stacks.
-  - Network stacks.
-  - App stacks.
+- **Separation of concern: create many stacks for many apps, and many layers**
+  - Examples:
+    - VPC stacks.
+    - Network stacks.
+    - App stacks.
 - **Don't re-invent the wheel**
   - Leverage existing templates on the web!
   - Leverage the documentation.
 
 ## 1.3. How CloudFormation Works
 
-- Templates have to be uploaded in S3 and then referenced in
-  CloudFormation
-- To update a template, we can't edit previous ones. We have to re-upload a new version of the template to AWS
-- Stacks are identified by a name
+- Templates have to be uploaded in S3 and then referenced in CloudFormation.
+- To update a template, we can't edit previous ones.
+- We have to re-upload a new version of the template to AWS.
+- Stacks are identified by a name.
 - Deleting a stack deletes every single artifact that was created by CloudFormation.
 
 ## 1.4. Deploying CloudFormation templates
@@ -109,27 +111,16 @@
   - Using the AWS CLI (Command Line Interface) to deploy the templates
   - Recommended way when you fully want to automate your flow
 
-## 1.5. CloudFormation Building Blocks
-
-- Templates components (one course section for each):
-
-1. Resources: your AWS resources declared in the template (MANDATORY).
-2. Parameters: the dynamic inputs for your template.
-3. Mappings: the static variables for your template.
-4. Outputs: References to what has been created.
-5. Conditionals: List of conditions to perform resource creation.
-6. Metadata.
-
-- Templates helpers:
-
-1. References.
-2. Functions.
-
 # 2. YAML
 
 - YAML and JSON are the languages you can use for CloudFormation.
   - JSON
   - YAML (better)
+- Key value Pairs.
+- Nested objects.
+- Support Arrays.
+- Multi line strings.
+- Comments.
 
 ## 2.1. Template anatomy
 
@@ -186,8 +177,8 @@
 
 ### 2.2.1. How do I find resources documentation?
 
-- All the resources can be found here: [Resources](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
-- Example here (for an EC2 instance): [Example](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html)
+- [All the resources can be found here](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+- [Example here (for an EC2 instance)](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html)
 
 ### 2.2.2. FAQ for resources
 
@@ -203,7 +194,7 @@
 
 - Parameters are a way to provide inputs to your AWS CloudFormation template.
 - They're important to know about if:
-  - You want to reuse your templates across the company.
+  - You want to **reuse** your templates across the company.
   - Some inputs can not be determined ahead of time.
 - Parameters are extremely powerful, controlled, and can prevent errors from happening in your templates thanks to types.
 
@@ -346,7 +337,7 @@
   - Environment (dev vs prod)
   - Etc...
 - They allow safer control over the template.
-- Use parameters when the values are really user specific
+- Use parameters when the values are really user specific.
 
 ### 2.4.2. Fn::FindInMap Accessing Mapping Values
 
@@ -450,7 +441,7 @@
         - prod
   ```
 - The logical ID is for you to choose.
-  - It's how you name condition
+  - It's how you name condition.
 - The intrinsic function **(logical)** can be any of the following:
   - `Fn::And`
   - `Fn::Equals`
@@ -470,17 +461,17 @@
         Condition: CreateProdResources
   ```
 
-# 3. Must Know Intrinsic Functions
+# 3. Intrinsic Functions
 
-- Ref
-- Fn::GetAtt
-- Fn::GetAZs
-- Fn::Select
-- Fn::FindInMap
-- Fn::ImportValue
-- Fn::Join
-- Fn::Sub
-- Condition Functions (Fn::If, Fn::Not, Fn::Equals, etc...)
+- `Ref`
+- `Fn::GetAtt`
+- `Fn::GetAZs`
+- `Fn::Select`
+- `Fn::FindInMap`
+- `Fn::ImportValue`
+- `Fn::Join`
+- `Fn::Sub`
+- Condition Functions (`Fn::If`, `Fn::Not`, `Fn::Equals`, etc...).
 
 ## 3.1. Fn::Ref
 
@@ -556,7 +547,7 @@
 ## 3.7. Condition Functions
 
 - The logical ID is for you to choose.
-  - It's how you name condition
+  - It's how you name condition.
 - The intrinsic function **(logical)** can be any of the following:
   - `Fn::And`
   - `Fn::Equals`
@@ -574,10 +565,10 @@
 
 # 4. Rollbacks
 
-- Stack Creation Fails:
+- **Stack Creation Fails:**
   - Default: everything rolls back (gets deleted). We can look at the log.
   - Option to disable rollback and troubleshoot what happened.
-- Stack Update Fails:
+- **Stack Update Fails:**
   - The stack automatically rolls back to the previous known working state.
   - Ability to see in the log what happened and error messages.
 
@@ -591,7 +582,24 @@
 - When you update a stack, you need to know what changes before it happens for greater confidence.
 - ChangeSets won't say if the update will be successful.
 
-# 7. Nested stacks
+# 7. Retaining Data on Deletes
+
+- You can put a DeletionPolicy on any resource to control what happens when the CloudFormation template is deleted.
+- DeletionPolicy = Retain:
+  - Specify on resources to preserve / backup in case of CloudFormation deletes.
+  - To keep a resource, specify Retain (works for any resource / nested stack).
+- DeletionPolicy = Snapshot:
+  - EBS Volume, ElastiCache Cluster, ElastiCache ReplicationGroup.
+  - RDS DBInstance, RDS DBCluster, Redshift Cluster.
+- DeletePolicy = Delete (default behavior):
+  - Note: for `AWS::RDS::DBCluster` resources, the default policy is Snapshot.
+  - Note: to delete an S3 bucket, you need to first empty the bucket of its content.
+
+# 8. Termination Protection on Stacks
+
+- To prevent accidental deletes of CloudFormation templates, use `TerminationProtection`.
+
+# 9. Nested stacks
 
 - Nested stacks are stacks as part of other stacks.
 - They allow you to isolate repeated patterns / common components in separate stacks and call them from other stacks.
@@ -601,7 +609,7 @@
 - Nested stacks are considered best practice.
 - To update a nested stack, always update the parent (root stack).
 
-# 8. CloudFormation - Cross vs Nested Stacks
+# 10. CloudFormation - Cross vs Nested Stacks
 
 - Cross Stacks
   - Helpful when stacks have different lifecycles.
@@ -612,7 +620,7 @@
   - Ex: re-use how to properly configure an Application Load Balancer.
   - The nested stack only is important to the higher level stack (it's not shared).
 
-# 9. StackSets
+# 11. StackSets
 
 - Create, update, or delete stacks across **multiple accounts and regions** with a single operation.
 - Administrator account to create StackSets.
@@ -621,7 +629,7 @@
 
 ![CloudFormation StackSet](Images/AWSCloudFormationStackSet.png)
 
-# 10. Drift detection
+# 12. Drift detection
 
 - CloudFormation allows you to create infrastructure.
 - But it doesn't protect you against manual configuration changes.
@@ -629,15 +637,15 @@
   - We can use **CloudFormation drift detection**!
   - Not all resources are supported yet: [Resources](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import-supported-resources.html)
 
-# 11. Stack Policies
+# 13. Stack Policies
 
-- During a CloudFormation Stack update, all update actions are allowed on all resources (default)
+- During a CloudFormation Stack update, all update actions are allowed on all resources (default).
 - **A Stack Policy is a JSON document that defines the update actions that are allowed on specific resources during Stack updates.**
 - Protect resources from unintentional updates.
 - When you set a Stack Policy, all resources in the Stack are protected by default.
 - Specify an explicit ALLOW for the resources you want to be allowed to be updated.
 
-# 12. CloudFormation helper scripts reference
+# 14. CloudFormation helper scripts reference
 
 - AWS CloudFormation provides the following Python helper scripts that you can use to install software and start services on an [Amazon EC2](AWS%20EC2.md) instance that you create as part of your stack:
   - `cfn-init`: Use to retrieve and interpret resource metadata, install packages, create files, and start services.
