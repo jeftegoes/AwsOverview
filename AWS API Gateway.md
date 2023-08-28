@@ -5,7 +5,7 @@
 - [1. Introduction](#1-introduction)
 - [2. Integrations High Level](#2-integrations-high-level)
 - [3. Endpoint Types](#3-endpoint-types)
-- [4. General Security](#4-general-security)
+- [4. Security](#4-security)
 - [5. Deployment Stages](#5-deployment-stages)
   - [5.1. API Gateway Stages v1 and v2 API breaking change](#51-api-gateway-stages-v1-and-v2-api-breaking-change)
 - [6. Stage Variables](#6-stage-variables)
@@ -60,38 +60,40 @@
 
 # 2. Integrations High Level
 
-- Lambda Function:
+- **Lambda Function**
   - Invoke Lambda function.
   - Easy way to expose REST API backed by AWS Lambda.
-- HTTP:
+- **HTTP**
   - Expose HTTP endpoints in the backend.
   - Example: internal HTTP API on premise, Application Load Balancer...
-  - Why? Add rate limiting, caching, user authentications, API keys, etc...
-- AWS Service
+    - Why? Add rate limiting, caching, user authentications, API keys, etc...
+- **AWS Service**
   - Expose any AWS API through the API Gateway.
   - Example: start an AWS Step Function workflow, post a message to SQS.
-  - Why? Add authentication, deploy publicly, rate control...
+    - Why? Add authentication, deploy publicly, rate control...
 
 # 3. Endpoint Types
 
-- Edge-Optimized (default): For global clients
+- **Edge-Optimized (default)**
+  - For global clients
   - Requests are routed through the CloudFront Edge locations (improves latency).
   - The API Gateway still lives in only one region.
-- Regional:
+- **Regional**
   - For clients within the same region.
   - Could manually combine with CloudFront (more control over the caching strategies and the distribution).
-- Private:
+- **Private**
   - Can only be accessed from your VPC using an interface VPC endpoint (ENI).
   - Use a resource policy to define access.
 
-# 4. General Security
+# 4. Security
 
-- **User Authentication through:**
+- **User Authentication through**
   - IAM Roles (useful for internal applications).
   - Cognito (identity for external users - example mobile users).
   - Custom Authorizer (your own logic).
-- **Custom Domain Name HTTPS** security through integration with AWS Certificate Manager (ACM):
-  - If using Edge-Optimized endpoint, then the certificate must be in us-east-1.
+- **Custom Domain Name HTTPS**
+  - Security through integration with AWS Certificate Manager (ACM):
+  - If using Edge-Optimized endpoint, then the certificate must be in `us-east-1`.
   - If using Regional endpoint, the certificate must be in the API Gateway region.
   - Must setup CNAME or A-alias record in Route 53.
 
@@ -199,11 +201,11 @@
 
 - Common way of defining REST APIs, using API definition as code.
 - Import existing OpenAPI 3.0 spec to API Gateway:
-  - Method
-  - Method Request
-  - Integration Request
-  - Method Response
-  - +AWS extensions for API gateway and setup every single option
+  - Method.
+  - Method Request.
+  - Integration Request.
+  - Method Response.
+  - +AWS extensions for API gateway and setup every single option.
 - Can export current API as OpenAPI spec.
 - OpenAPI specs can be written in YAML or JSON.
 - Using OpenAPI we can generate SDK for our applications.
@@ -286,11 +288,11 @@
 
 # 13. Logging & Tracing
 
-- CloudWatch Logs:
+- **CloudWatch Logs**
   - Enable CloudWatch logging at the Stage level (with Log Level).
   - Can override settings on a per API basis (ex: ERROR, DEBUG, INFO).
   - Log contains information about request / response body.
-- X-Ray:
+- **X-Ray**
   - Enable tracing to get extra information about requests in API Gateway.
   - X-Ray API Gateway + AWS Lambda gives you the full picture.
 
@@ -317,13 +319,13 @@
 
 # 15. API Gateway - Errors
 
-- 4xx means Client errors:
+- **4xx means Client errors**
   - **400:** Bad Request.
   - **403:** Access Denied, WAF filtered.
   - **429:**
     - Quota exceeded
     - Throttle.
-- 5xx means Server errors:
+- **5xx means Server errors**
   - **502:** Bad Gateway Exception, usually for an incompatible output returned from a Lambda proxy integration backend and occasionally for out-of-order invocations due to heavy loads.
   - **503:** Service Unavailable Exception.
   - **504:** Integration Failure - ex Endpoint Request Timed-out Exception API Gateway requests time out after **29** second maximum.

@@ -42,12 +42,15 @@
 - [6. ChangeSets](#6-changesets)
 - [7. Retaining Data on Deletes](#7-retaining-data-on-deletes)
 - [8. Termination Protection on Stacks](#8-termination-protection-on-stacks)
-- [9. Nested stacks](#9-nested-stacks)
-- [10. CloudFormation - Cross vs Nested Stacks](#10-cloudformation---cross-vs-nested-stacks)
-- [11. StackSets](#11-stacksets)
-- [12. Drift detection](#12-drift-detection)
-- [13. Stack Policies](#13-stack-policies)
-- [14. CloudFormation helper scripts reference](#14-cloudformation-helper-scripts-reference)
+- [9. User Data in EC2 for CloudFormation](#9-user-data-in-ec2-for-cloudformation)
+  - [9.1. The Problems with EC2 User Data](#91-the-problems-with-ec2-user-data)
+  - [9.2. CloudFormation helper scripts reference](#92-cloudformation-helper-scripts-reference)
+  - [AWS::CloudFormation::Init (1/2)](#awscloudformationinit-12)
+- [10. Nested stacks](#10-nested-stacks)
+- [11. CloudFormation - Cross vs Nested Stacks](#11-cloudformation---cross-vs-nested-stacks)
+- [12. StackSets](#12-stacksets)
+- [13. Drift detection](#13-drift-detection)
+- [14. Stack Policies](#14-stack-policies)
 
 # 1. Introduction Infrastructure as Code (IaC)
 
@@ -599,7 +602,46 @@
 
 - To prevent accidental deletes of CloudFormation templates, use `TerminationProtection`.
 
-# 9. Nested stacks
+# 9. User Data in EC2 for CloudFormation
+
+- Let's learn how to write the same EC2 user-data script in our CloudFormation template.
+- The important thing to pass is the entire script through the function
+  `Fn::Base64`.
+- Good to know, user data script log is in /var/log/cloud-init-output.log
+
+## 9.1. The Problems with EC2 User Data
+
+- What if we want to have a very large instance configuration?
+- What if we want to evolve the state of the EC2 instance without terminating it and creating a new one?
+- How do we make EC2 user-data more readable?
+- How do we know or signal that our EC2 user-data script completed successfully?
+
+## 9.2. CloudFormation helper scripts reference
+
+- AWS CloudFormation provides the following Python helper scripts that you can use to install software and start services on an [Amazon EC2](AWS%20EC2.md) instance that you create as part of your stack:
+- We have 4 Python scripts, that come directly on Amazon Linux 2 AMI, or can be installed using `yum` on non-Amazon Linux AMIs.
+  - `cfn-init`: Use to retrieve and interpret resource metadata, install packages, create files, and start services.
+  - `cfn-signal`: Use to signal with a `CreationPolicy` or `WaitCondition`, so you can synchronize other resources in the stack when the prerequisite resource or application is ready.
+  - `cfn-get-metadata`: Use to retrieve metadata for a resource or path to a specific key.
+  - `cfn-hup`: Use to check for updates to metadata and execute custom hooks when changes are detected.
+- You call the scripts directly from your template.
+- The scripts work in conjunction with resource metadata that's defined in the same template.
+- The scripts run on the [Amazon EC2](AWS%20EC2.md) instance during the stack creation process.
+
+## AWS::CloudFormation::Init (1/2)
+
+- A config contains the following and is executed in that order:
+  - **Packages:** used to download and install pre-packaged apps and components on Linux/Windows (ex. MySQL, PHP, etc...).
+  - **Groups:** define user groups - Users: define users, and which group they belong to.
+  - **Sources:** download files and archives and place them on the EC2 instance.
+  - **Files:** create files on the EC2 instance, using inline or can be pulled from a URL.
+  - **Commands:** run a series of commands.
+  - **Services:** launch a list of sysvinit.
+- You can have multiple **configs** in your AWS::CloudFormation::Init
+- You create configSets with multiple **configs**
+- And you invoke `configSets` from your EC2 user-data
+
+# 10. Nested stacks
 
 - Nested stacks are stacks as part of other stacks.
 - They allow you to isolate repeated patterns / common components in separate stacks and call them from other stacks.
@@ -609,7 +651,7 @@
 - Nested stacks are considered best practice.
 - To update a nested stack, always update the parent (root stack).
 
-# 10. CloudFormation - Cross vs Nested Stacks
+# 11. CloudFormation - Cross vs Nested Stacks
 
 - Cross Stacks
   - Helpful when stacks have different lifecycles.
@@ -620,7 +662,7 @@
   - Ex: re-use how to properly configure an Application Load Balancer.
   - The nested stack only is important to the higher level stack (it's not shared).
 
-# 11. StackSets
+# 12. StackSets
 
 - Create, update, or delete stacks across **multiple accounts and regions** with a single operation.
 - Administrator account to create StackSets.
@@ -629,7 +671,7 @@
 
 ![CloudFormation StackSet](Images/AWSCloudFormationStackSet.png)
 
-# 12. Drift detection
+# 13. Drift detection
 
 - CloudFormation allows you to create infrastructure.
 - But it doesn't protect you against manual configuration changes.
@@ -637,21 +679,10 @@
   - We can use **CloudFormation drift detection**!
   - Not all resources are supported yet: [Resources](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import-supported-resources.html)
 
-# 13. Stack Policies
+# 14. Stack Policies
 
 - During a CloudFormation Stack update, all update actions are allowed on all resources (default).
 - **A Stack Policy is a JSON document that defines the update actions that are allowed on specific resources during Stack updates.**
 - Protect resources from unintentional updates.
 - When you set a Stack Policy, all resources in the Stack are protected by default.
 - Specify an explicit ALLOW for the resources you want to be allowed to be updated.
-
-# 14. CloudFormation helper scripts reference
-
-- AWS CloudFormation provides the following Python helper scripts that you can use to install software and start services on an [Amazon EC2](AWS%20EC2.md) instance that you create as part of your stack:
-  - `cfn-init`: Use to retrieve and interpret resource metadata, install packages, create files, and start services.
-  - `cfn-signal`: Use to signal with a `CreationPolicy` or `WaitCondition`, so you can synchronize other resources in the stack when the prerequisite resource or application is ready.
-  - `cfn-get-metadata`: Use to retrieve metadata for a resource or path to a specific key.
-  - `cfn-hup`: Use to check for updates to metadata and execute custom hooks when changes are detected.
-- You call the scripts directly from your template.
-- The scripts work in conjunction with resource metadata that's defined in the same template.
-- The scripts run on the [Amazon EC2](AWS%20EC2.md) instance during the stack creation process.

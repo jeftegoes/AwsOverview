@@ -627,7 +627,7 @@
 # 21. Lambda Concurrency and Throttling
 
 - Concurrency limit: **up to 1000** concurrent executions.
-- Can set a "reserved concurrency" at the function level (=limit).
+- Can set a **reserved concurrency** at the function level (=limit).
 - Each invocation over the concurrency limit will trigger a "Throttle".
 - Throttle behavior:
   - If synchronous invocation => return ThrottleError - 429.
@@ -646,16 +646,16 @@
 
 ## 21.3. Cold Starts and Provisioned Concurrency
 
-- **Cold Start:**
-  - New instance => code is loaded and code outside the handler run (init)
+- **Cold Start**
+  - New instance => code is loaded and code outside the handler run (init).
   - If the init is large (code, dependencies, SDK...) this process can take some time.
-  - First request served by new instances has higher latency than the rest
-- Provisioned Concurrency:
-  - Concurrency is allocated before the function is invoked (in advance)
-  - So the cold start never happens and all invocations have low latency
-  - Application Auto Scaling can manage concurrency (schedule or target utilization)
-- Note:
-  - Note: cold starts in VPC have been dramatically reduced in Oct & Nov 2019
+  - First request served by new instances has higher latency than the rest.
+- **Provisioned Concurrency**
+  - Concurrency is allocated before the function is invoked (in advance).
+  - So the cold start never happens and all invocations have low latency.
+  - Application Auto Scaling can manage concurrency (schedule or target utilization).
+- **Note**
+  - Note: cold starts in VPC have been dramatically reduced in Oct & Nov 2019.
   - https://aws.amazon.com/blogs/compute/announcing-improved-vpc-networking-for-aws-lambda-functions/
 
 ## 21.4. Reserved and Provisioned Concurrency
@@ -787,10 +787,10 @@ CMD ["app.lambdaHandler"]
 - Aliases are "pointers" to Lambda function versions.
 - We can define a "dev", "test", "prod" aliases and have them point at different lambda versions.
 - Aliases are mutable.
-- Aliases enable **Blue / Green** deployment by assigning weights to lambda functions.
+- Aliases enable `Canary Deployment` by assigning weights to lambda functions.
 - Aliases enable stable configuration of our event triggers / destinations.
 - Aliases have their own ARNs.
-- Aliases cannot reference aliases.
+- **Aliases cannot reference aliases.**
 
 # 29. Lambda and CodeDeploy
 

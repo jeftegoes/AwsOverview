@@ -18,7 +18,7 @@
 
 # 2. AWS Amplify
 
-- Set of tools to get started with creating **mobile and web applications**.
+- A set of tools to get started with creating **mobile and web applications**.
 - "Elastic Beanstalk for mobile and web applications".
 - Must-have features such as **data storage, authentication, storage, and machine-learning**, all powered by AWS services.
 - **Front-end libraries** with ready-to-use components for React.js, Vue, Javascript, iOS, Android, Flutter, etc...
