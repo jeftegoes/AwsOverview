@@ -534,6 +534,7 @@
 
 # 10. Amazon CodeGuru
 
+- **Amazon CodeGuru is a developer tool that provides intelligent recommendations to improve code quality and identify an application's most expensive lines of code.**
 - An ML-powered service for **automated code reviews** and **application performance recommendations**.
 - Provides two functionalities
   - **CodeGuru Reviewer:** Automated code reviews for static code analysis (development).
