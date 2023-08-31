@@ -117,7 +117,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - If a consumer fails to process a message within the Visibility Timeout... the message goes back to the queue!
 - We can set a threshold of how many times a message can go back to the queue.
 - After the `MaximumReceives` threshold is exceeded, the message goes into a Dead Letter Queue (DLQ).
-- Useful for debugging!
+- Useful for **debugging**!
 - **DLQ of a FIFO queue must also be a FIFO queue.**
 - **DLQ of a Standard queue must also be a Standard queue.**
 - Make sure to process the messages in the DLQ before they expire:

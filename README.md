@@ -105,14 +105,12 @@
     - [14.1.1. Important Metrics](#1411-important-metrics)
   - [14.2. Amazon CloudWatch Alarms](#142-amazon-cloudwatch-alarms)
   - [14.3. Amazon CloudWatch Logs](#143-amazon-cloudwatch-logs)
-  - [14.4. Amazon CloudWatch Events](#144-amazon-cloudwatch-events)
-  - [14.5. Amazon EventBridge](#145-amazon-eventbridge)
-  - [14.6. AWS CloudTrail](#146-aws-cloudtrail)
-  - [14.7. AWS X-Ray](#147-aws-x-ray)
-  - [14.8. Amazon CodeGuru](#148-amazon-codeguru)
-  - [14.10. AWS Status - Service Health Dashboard](#1410-aws-status---service-health-dashboard)
-  - [14.11. AWS Personal Health Dashboard](#1411-aws-personal-health-dashboard)
-  - [14.12. Monitoring Summary](#1412-monitoring-summary)
+  - [14.4. Amazon EventBridge](#144-amazon-eventbridge)
+  - [14.5. AWS CloudTrail](#145-aws-cloudtrail)
+  - [14.6. AWS X-Ray](#146-aws-x-ray)
+  - [14.7. Amazon CodeGuru](#147-amazon-codeguru)
+  - [14.8. AWS Health Dashboard](#148-aws-health-dashboard)
+  - [14.9. Monitoring Summary](#149-monitoring-summary)
 - [15. VPC](#15-vpc)
 - [16. Security \& Compliance](#16-security--compliance)
   - [16.1. AWS Shared Responsibility Model](#161-aws-shared-responsibility-model)
@@ -1181,45 +1179,27 @@
 - Enables real-time monitoring of logs.
 - Adjustable CloudWatch Logs retention.
 
-## 14.4. Amazon CloudWatch Events
-
-- Schedule: Cron jobs (scheduled scripts).
-- Event Pattern: Event rules to react to a service doing something.
-- Trigger Lambda functions, send SQS/SNS messages...
-
-## 14.5. Amazon EventBridge
+## 14.4. Amazon EventBridge
 
 [AWS EventBridge](/AWS%20EventBridge.md)
 
-## 14.6. AWS CloudTrail
+## 14.5. AWS CloudTrail
 
 [AWS CloudTrail](AWS%20CloudTrail.md)
 
-## 14.7. AWS X-Ray
+## 14.6. AWS X-Ray
 
 [AWS X-Ray](/AWS%20X-Ray.md)
 
-## 14.8. Amazon CodeGuru
+## 14.7. Amazon CodeGuru
 
 [Amazon CodeGuru](/AWS%20CICD.md)
 
-## 14.10. AWS Status - Service Health Dashboard
+## 14.8. AWS Health Dashboard
 
-- Shows all regions, all services health
-- Shows historical information for each day
-- Has an RSS feed you can subscribe to
-- https://status.aws.amazon.com/
+[AWS Health Dashboard](AWS%20Health%20Dashboard.md)
 
-## 14.11. AWS Personal Health Dashboard
-
-- AWS Personal Health Dashboard provides **alerts and remediation guidance** when AWS is experiencing **events that may impact you**.
-- While the Service Health Dashboard displays the general status of AWS services, Personal Health Dashboard gives you a **personalized view into the performance and availability of the AWS services underlying your AWS resources**.
-- The dashboard displays **relevant and timely information** to help you manage events in progress and **provides proactive** notification to help you plan for **scheduled activities**.
-- Global service https://phd.aws.amazon.com/
-- Shows how AWS outages directly impact you & your AWS resources.
-- Alert, remediation, proactive, scheduled activities.
-
-## 14.12. Monitoring Summary
+## 14.9. Monitoring Summary
 
 - CloudWatch:
   - Metrics: monitor the performance of AWS services and billing metrics.

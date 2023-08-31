@@ -12,6 +12,7 @@
 - [6. FIFO Topic](#6-fifo-topic)
 - [7. SNS FIFO + SQS FIFO: Fan Out](#7-sns-fifo--sqs-fifo-fan-out)
 - [8. Message Filtering](#8-message-filtering)
+- [9. Dead Letter Queue (DLQ)](#9-dead-letter-queue-dlq)
 
 # 1. Introduction
 
@@ -85,3 +86,9 @@
 
 - JSON policy used to filter messages sent to SNS topic's subscriptions.
 - If a subscription doesn't have a filter policy, it receives every message.
+
+# 9. Dead Letter Queue (DLQ)
+
+- After exhausting the delivery policy (delivery retries), messages that haven’t been delivered are discarded unless you set a DLQ (Dead Letter Queue).
+- Redrive Policy - JSON object that refers to the ARN of the DLQ (SQS or SQS FIFO).
+- DLQ is attached to SNS Subscription-level (rather than the SNS Topic).

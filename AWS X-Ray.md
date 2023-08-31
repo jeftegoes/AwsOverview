@@ -32,6 +32,7 @@
 - Log formats differ across applications using CloudWatch and analytics is hard.
 - Debugging: monolith "easy", distributed services "hard".
 - No common views of your entire architecture!
+- Tracing requests across your microservices (distributed systems).
 
 # 2. Visual analysis of our applications
 
@@ -50,12 +51,14 @@
 
 # 4. Compatibility
 
-- AWS Lambda.
-- Elastic Beanstalk.
-- ECS.
-- ELB.
-- API Gateway.
-- EC2 Instances or any application server (even on premise).
+- Integrations with:
+  - EC2 - install the X-Ray agent.
+  - ECS - install the X-Ray agent or Docker container.
+  - Lambda.
+  - Beanstalk - agent is automatically installed.
+  - API Gateway - helpful to debug errors (such as 504).
+  - ELB.
+- The X-Ray agent or services need IAM permissions to X-Ray.
 
 # 5. Leverages Tracing
 
@@ -179,11 +182,11 @@
 - Provides a single set of APIs, libraries, agents, and collector services.
 - Collects distributed traces and metrics from your apps.
 - Collects metadata from your AWS resources and services.
-- Auto-instrumentation Agents to collect traces without changing your code.
+- **Auto-instrumentation Agents** to collect traces without changing your code.
 - Send traces and metrics to multiple AWS services and partner solutions.
 - X-Ray, CloudWatch, Prometheus...
 - Instrument your apps running on AWS (e.g., [ECS](AWS%20EC2.md), [ECS](AWS%20ECS.md), EKS, Fargate, [Lambda](AWS%20Lambda.md)) as well as on-premises.
-- Migrate from X-Ray to AWS Distro for Temeletry if you want to standardize with open-source APIs from Telemetry or send traces to multiple destinations simultaneously.
+- **Migrate from X-Ray to AWS Distro for Temeletry if you want to standardize with open-source APIs from Telemetry or send traces to multiple destinations simultaneously.**
 
 # 16. Running the X-Ray daemon on Amazon ECS
 

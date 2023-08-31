@@ -28,34 +28,35 @@
   - [13.2. Scenario 2](#132-scenario-2)
 - [14. Amazon S3 Analytics - Storage Class Analysis](#14-amazon-s3-analytics---storage-class-analysis)
 - [15. Event Notifications](#15-event-notifications)
-  - [15.1. S3 Event Notifications](#151-s3-event-notifications)
-- [16. Baseline Performance](#16-baseline-performance)
-  - [16.1. Multi-Part upload:](#161-multi-part-upload)
-    - [16.1.1. Sample multipart upload calls](#1611-sample-multipart-upload-calls)
-  - [16.2. S3 Transfer Acceleration](#162-s3-transfer-acceleration)
-- [17. Byte-Range Fetches](#17-byte-range-fetches)
-- [18. S3 Select \& Glacier Select](#18-s3-select--glacier-select)
-- [19. S3 User-Defined Object Metadata \& S3 Object Tags](#19-s3-user-defined-object-metadata--s3-object-tags)
-- [20. Object Encryption](#20-object-encryption)
-  - [20.1. SSE-S3](#201-sse-s3)
-  - [20.2. SSE-KMS](#202-sse-kms)
-    - [20.2.1. SSE-KMS Limitation](#2021-sse-kms-limitation)
-  - [20.3. SSE-C](#203-sse-c)
-  - [20.4. Client-Side Encryption](#204-client-side-encryption)
-  - [20.5. Encryption in transit (SSL/TLS)](#205-encryption-in-transit-ssltls)
-  - [20.6. Default Encryption vs Bucket Policies](#206-default-encryption-vs-bucket-policies)
-- [21. What is CORS?](#21-what-is-cors)
-  - [21.1. Amazon S3 - CORS](#211-amazon-s3---cors)
-  - [21.2. CloudFront to respect CORS settings](#212-cloudfront-to-respect-cors-settings)
-  - [21.3. CORS configuration](#213-cors-configuration)
-- [22. MFA Delete](#22-mfa-delete)
-- [23. Access Logs](#23-access-logs)
-  - [23.1. Access Logs WARNING](#231-access-logs-warning)
-- [24. Pre-Signed URLs](#24-pre-signed-urls)
-- [25. S3 - Access Points](#25-s3---access-points)
-- [26. S3 Object Lambda](#26-s3-object-lambda)
-- [27. S3 Object Lock](#27-s3-object-lock)
-- [28. Shared Responsibility Model for S3](#28-shared-responsibility-model-for-s3)
+  - [15.1. S3 Event Notifications with Amazon EventBridge](#151-s3-event-notifications-with-amazon-eventbridge)
+- [16. Object Integrity](#16-object-integrity)
+- [17. Baseline Performance](#17-baseline-performance)
+  - [17.1. Multi-Part upload:](#171-multi-part-upload)
+    - [17.1.1. Sample multipart upload calls](#1711-sample-multipart-upload-calls)
+  - [17.2. S3 Transfer Acceleration](#172-s3-transfer-acceleration)
+- [18. Byte-Range Fetches](#18-byte-range-fetches)
+- [19. S3 Select \& Glacier Select](#19-s3-select--glacier-select)
+- [20. S3 User-Defined Object Metadata \& S3 Object Tags](#20-s3-user-defined-object-metadata--s3-object-tags)
+- [21. Object Encryption](#21-object-encryption)
+  - [21.1. SSE-S3](#211-sse-s3)
+  - [21.2. SSE-KMS](#212-sse-kms)
+    - [21.2.1. SSE-KMS Limitation](#2121-sse-kms-limitation)
+  - [21.3. SSE-C](#213-sse-c)
+  - [21.4. Client-Side Encryption](#214-client-side-encryption)
+  - [21.5. Encryption in transit (SSL/TLS)](#215-encryption-in-transit-ssltls)
+  - [21.6. Default Encryption vs Bucket Policies](#216-default-encryption-vs-bucket-policies)
+- [22. What is CORS?](#22-what-is-cors)
+  - [22.1. Amazon S3 - CORS](#221-amazon-s3---cors)
+  - [22.2. CloudFront to respect CORS settings](#222-cloudfront-to-respect-cors-settings)
+  - [22.3. CORS configuration](#223-cors-configuration)
+- [23. MFA Delete](#23-mfa-delete)
+- [24. Access Logs](#24-access-logs)
+  - [24.1. Access Logs WARNING](#241-access-logs-warning)
+- [25. Pre-Signed URLs](#25-pre-signed-urls)
+- [26. S3 - Access Points](#26-s3---access-points)
+- [27. S3 Object Lambda](#27-s3-object-lambda)
+- [28. S3 Object Lock](#28-s3-object-lock)
+- [29. Shared Responsibility Model for S3](#29-shared-responsibility-model-for-s3)
 
 # 1. Introduction
 
@@ -357,16 +358,24 @@
 - S3:ObjectCreated, S3:ObjectRemoved, S3:ObjectRestore, S3:Replication...
 - Object name filtering possible (\*.jpg).
 - Use case: generate thumbnails of images uploaded to S3.
-- Can create as many "S3 events" as desired.
+- **Can create as many "S3 events" as desired.**
 - S3 event notifications typically deliver events in seconds but can sometimes take a minute or longer.
 
-## 15.1. S3 Event Notifications
+## 15.1. S3 Event Notifications with Amazon EventBridge
 
-- **Advanced filtering** options with JSON rules (metadata, object size, name...).
+- **Advanced filtering:** Options with JSON rules (metadata, object size, name...).
 - **Multiple Destinations:** Ex Step Functions, Kinesis Streams / Firehose...
 - **EventBridge Capabilities:** Archive, Replay Events, Reliable delivery.
 
-# 16. Baseline Performance
+# 16. Object Integrity
+
+- S3 uses checksum to validate the integrity of uploaded objects.
+  - Using MD5.
+  - Using MD5 and Etag.
+    - ETag - represents a specific version of the object, ETag = MD5 (if SSE-S3).
+- Other supported checksums: SHA-1, SHA-256, CRC32, CRC32C.
+
+# 17. Baseline Performance
 
 - Amazon S3 automatically scales to high request rates, latency 100-200 ms.
 - Your application can achieve at least:
@@ -380,12 +389,12 @@
   - bucket/2/file => /2/
 - If you spread reads across all four prefixes evenly, you can achieve 22,000 requests per second for GET and HEAD.
 
-## 16.1. Multi-Part upload:
+## 17.1. Multi-Part upload:
 
 - **Recommended for files > 100MB, must use for files > 5GB**.
 - Can help parallelize uploads (speed up transfers).
 
-### 16.1.1. Sample multipart upload calls
+### 17.1.1. Sample multipart upload calls
 
 - For this example, assume that you are generating a multipart upload for a 100 GB file.
 - In this case, you would have the following API calls for the entire process.
@@ -394,25 +403,25 @@
   - 1000 individual `UploadPart` calls, each uploading a part of 100 MB, for a total size of 100 GB
   - A `CompleteMultipartUpload` call to finish the process.
 
-## 16.2. S3 Transfer Acceleration
+## 17.2. S3 Transfer Acceleration
 
 - **Amazon S3 Transfer Acceleration enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket. Transfer Acceleration takes advantage of Amazon CloudFront's globally distributed edge locations. As the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.**
 - Compatible with multi-part upload.
 
-# 17. Byte-Range Fetches
+# 18. Byte-Range Fetches
 
 - Parallelize GETs by requesting specific byte ranges.
 - Better resilience in case of failures.
 - Can be used to speed up downloads.
 - Can be used to retrieve only partial data (for example the head of a file).
 
-# 18. S3 Select & Glacier Select
+# 19. S3 Select & Glacier Select
 
 - Retrieve less data using SQL by performing server-side filtering.
 - Can filter by rows & columns (simple SQL statements).
 - Less network transfer, less CPU cost client-side.
 
-# 19. S3 User-Defined Object Metadata & S3 Object Tags
+# 20. S3 User-Defined Object Metadata & S3 Object Tags
 
 - **S3 User-Defined Object Metadata**
   - When uploading an object, you can also assign metadata.
@@ -427,7 +436,7 @@
 - **You cannot search the object metadata or object tags.**
 - Instead, you must use an external DB as a search index such as DynamoDB.
 
-# 20. Object Encryption
+# 21. Object Encryption
 
 - You can encrypt objects in S3 buckets using one of 4 methods:
   - **Server-Side Encryption (SSE):**
@@ -439,7 +448,7 @@
       - When you want to manage your own encryption keys.
 - **Client-Side Encryption.**
 
-## 20.1. SSE-S3
+## 21.1. SSE-S3
 
 - Encryption using keys handled, managed, and owned by AWS.
   - **You never have access to this key.**
@@ -450,7 +459,7 @@
 
 ![Encryption SSE-S3](Images/S3EncryptionSSES3.png)
 
-## 20.2. SSE-KMS
+## 21.2. SSE-KMS
 
 - Encryption using keys handled and managed by AWS KMS (Key Management Service).
   - **Manage your own keys.**
@@ -460,7 +469,7 @@
 
 ![Encryption SSE-KMS](Images/S3EncryptionSSEKMS.png)
 
-### 20.2.1. SSE-KMS Limitation
+### 21.2.1. SSE-KMS Limitation
 
 - If you use SSE-KMS, you may be impacted by the KMS limits.
   - **Upload and download files from Amazon S3, you need to leverage a KMS Key.**
@@ -472,7 +481,7 @@
 - Count towards the KMS quota per second (5500, 10000, 30000 req/s based on region).
 - You can request a quota increase using the Service Quotas Console.
 
-## 20.3. SSE-C
+## 21.3. SSE-C
 
 - Server-Side Encryption using keys fully managed by the customer outside of AWS.
 - Amazon S3 does **NOT** store the encryption key you provide.
@@ -488,14 +497,14 @@
 | x-amz-server-side-encryption-customer-key       | Use this header to provide the 256-bit, base64-encoded encryption key for Amazon S3 to use to encrypt or decrypt your data.                                                                                                             |
 | x-amz-server-side-encryption-customer-key-MD5   | Use this header to provide the base64-encoded 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error. |
 
-## 20.4. Client-Side Encryption
+## 21.4. Client-Side Encryption
 
 - Use client libraries such as **Amazon S3 Client-Side Encryption Library**.
 - Clients must encrypt data themselves before sending to Amazon S3.
 - Clients must decrypt data themselves when retrieving from Amazon S3.
 - Customer fully manages the keys and encryption cycle.
 
-## 20.5. Encryption in transit (SSL/TLS)
+## 21.5. Encryption in transit (SSL/TLS)
 
 - Encryption in flight is also called SSL/TLS.
 - Amazon S3 exposes two endpoints:
@@ -505,13 +514,13 @@
 - **HTTPS is mandatory for SSE-C.**
 - Most clients would use the HTTPS endpoint by default.
 
-## 20.6. Default Encryption vs Bucket Policies
+## 21.6. Default Encryption vs Bucket Policies
 
 - **SSE-S3 encryption is automatically applied to new objects stored in S3 bucket.**
 - Optionally, you can "force encryption" using a bucket policy and refuse any API call to PUT an S3 object without encryption headers (SSE-KMS or SSE-C).
 - **Note: Bucket Policies are evaluated before "default encryption".**
 
-# 21. What is CORS?
+# 22. What is CORS?
 
 - **Cross-Origin Resource Sharing (CORS).**
 - **Origin = scheme (protocol) + host (domain) + port.**
@@ -523,12 +532,12 @@
 
 ![CORS Diagram](Images/APIGatewayCORS.png)
 
-## 21.1. Amazon S3 - CORS
+## 22.1. Amazon S3 - CORS
 
 - If a client makes a cross-origin request on our S3 bucket, we need to enable the correct CORS headers.
 - You can allow for a specific origin or for \* (all origins).
 
-## 21.2. CloudFront to respect CORS settings
+## 22.2. CloudFront to respect CORS settings
 
 - If you want `OPTIONS` responses to be cached, do the following:
   - Choose the options for default cache behavior settings that enable caching for `OPTIONS` responses.
@@ -537,7 +546,7 @@
     - `Access-Control-Request-Headers`
     - `Access-Control-Request-Method`
 
-## 21.3. CORS configuration
+## 22.3. CORS configuration
 
 ```
   <?xml version="1.0" encoding="UTF-8"?>
@@ -564,7 +573,7 @@
     - By caching the response, the browser does not have to send preflight requests to Amazon S3 if the original request will be repeated.
   - `ExposeHeader` - Identifies the response headers (in this example, `x-amz-server-side-encryption`, `x-amz-request-id`, and `x-amz-id-2`) that customers are able to access from their applications (for example, from a JavaScript XMLHttpRequest object).
 
-# 22. MFA Delete
+# 23. MFA Delete
 
 - **MFA (Multi-Factor Authentication)** - force users to generate a code on a device (usually a mobile phone or hardware) before doing important operations on S3.
 - MFA will be required to:
@@ -576,7 +585,7 @@
 - To use MFA Delete, **Versioning must be enabled** on the bucket.
 - **Only the bucket owner (root account) can enable/disable MFA Delete.**
 
-# 23. Access Logs
+# 24. Access Logs
 
 - For audit purpose, you may want to log all access to S3 buckets.
 - Any request made to S3, from any account, authorized or denied, will be logged into another S3 bucket.
@@ -584,12 +593,12 @@
 - The target logging bucket must be in the same AWS region.
 - The log format is at: https://docs.aws.amazon.com/AmazonS3/latest/dev/LogFormat.html
 
-## 23.1. Access Logs WARNING
+## 24.1. Access Logs WARNING
 
 - Do not set your logging bucket to be the monitored bucket.
 - It will create a logging loop, and **your bucket will grow exponentially**.
 
-# 24. Pre-Signed URLs
+# 25. Pre-Signed URLs
 
 - Generate pre-signed URLs using the **S3 Console, AWS CLI or SDK**.
 - **URL Expiration:**
@@ -601,13 +610,13 @@
   - Allow an ever-changing list of users to download files by generating URLs dynamically.
   - Allow temporarily a user to upload a file to a precise location in your S3 bucket.
 
-# 25. S3 - Access Points
+# 26. S3 - Access Points
 
 - Each Access Point gets its own DNS and policy to limit who can access it:
   - A specific IAM user / group.
   - One policy per Access Point => **Easier to manage than complex bucket policies**.
 
-# 26. S3 Object Lambda
+# 27. S3 Object Lambda
 
 - Use AWS Lambda Functions to change the object before it is retrieved by the caller application.
 - Only one S3 bucket is needed, on top of which we create **S3 Access Point and S3 Object Lambda Access Points**.
@@ -616,12 +625,12 @@
   - Converting across data formats, such as converting XML to JSON.
   - Resizing and watermarking images on the fly using caller-specific details, such as the user who requested the object.
 
-# 27. S3 Object Lock
+# 28. S3 Object Lock
 
 - S3 Object Lock enables you to store objects using a "Write Once Read Many" (WORM) model.
 - S3 Object Lock can help prevent accidental or inappropriate deletion of data, it is not the right choice for the current scenario.
 
-# 28. Shared Responsibility Model for S3
+# 29. Shared Responsibility Model for S3
 
 - Aws:
   - Infrastructure (global security, durability, availability, sustain concurrent loss of data in two facilities)
