@@ -10,6 +10,9 @@
 - Managed extract, transform, and load (ETL) service.
 - Useful to prepare and transform data for analytics.
 - Fully serverless service.
+- Glue Data Catalog: catalog of datasets.
+  - **The AWS Glue Data Catalog is a central repository to store structural and operational metadata for all your data assets. For a given data set, you can store its table definition, physical location, add business relevant attributes, as well as track how this data has changed over time.**
+  - Can be used by Athena, Redshift, EMR.
 
 # 2. Things to know at a high-level
 

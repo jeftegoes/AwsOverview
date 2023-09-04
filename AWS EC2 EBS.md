@@ -10,6 +10,8 @@
 - [5. AMI Overview](#5-ami-overview)
   - [5.1. AMI Process (from an EC2 instance)](#51-ami-process-from-an-ec2-instance)
   - [5.2. EC2 Image Builder](#52-ec2-image-builder)
+  - [5.3. Cross-Account AMI Sharing](#53-cross-account-ami-sharing)
+  - [5.4. Cross-Account AMI Copy](#54-cross-account-ami-copy)
 - [6. EC2 Instance Store](#6-ec2-instance-store)
 - [7. EBS Volume Types](#7-ebs-volume-types)
   - [7.1. EBS Volume Types Use cases](#71-ebs-volume-types-use-cases)
@@ -108,6 +110,20 @@
      1. Create
   3. New AMI
   4. Test EC2 Instance
+
+## 5.3. Cross-Account AMI Sharing
+
+- You can share an AMI with another AWS account.
+- Sharing an AMI does not affect the ownership of the AMI.
+- You can only share AMIs that have unencrypted volumes and volumes that are encrypted with a customer managed key.
+- If you share an AMI with encrypted volumes, you must also share any customer managed keys used to encrypt them.
+
+## 5.4. Cross-Account AMI Copy
+
+- If you copy an AMI that has been shared with your account, you are the owner of the target AMI in your account.
+- The owner of the source AMI must grant you read permissions for the storage that backs the AMI (EBS Snapshot).
+- If the shared AMI has encrypted snapshots, the owner must share the key or keys with you as well.
+- Can encrypt the AMI with your own CMK while copying.
 
 # 6. EC2 Instance Store
 

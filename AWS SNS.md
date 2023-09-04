@@ -89,6 +89,6 @@
 
 # 9. Dead Letter Queue (DLQ)
 
-- After exhausting the delivery policy (delivery retries), messages that haven’t been delivered are discarded unless you set a DLQ (Dead Letter Queue).
+- After exhausting the delivery policy (delivery retries), messages that haven't been delivered are discarded unless you set a DLQ (Dead Letter Queue).
 - Redrive Policy - JSON object that refers to the ARN of the DLQ (SQS or SQS FIFO).
 - DLQ is attached to SNS Subscription-level (rather than the SNS Topic).

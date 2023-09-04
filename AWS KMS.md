@@ -11,7 +11,7 @@
   - [2.2. Types of KMS Keys](#22-types-of-kms-keys)
   - [2.3. Key Policies](#23-key-policies)
   - [2.4. Copying Snapshots across accounts](#24-copying-snapshots-across-accounts)
-  - [2.5. How does KMS work? API - Encrypt and Decrypt](#25-how-does-kms-work-api--encrypt-and-decrypt)
+  - [2.5. How does KMS work? API - Encrypt and Decrypt](#25-how-does-kms-work-api---encrypt-and-decrypt)
   - [2.6. Envelope Encryption](#26-envelope-encryption)
     - [2.6.1. Encrypt](#261-encrypt)
     - [2.6.2. Decrypt](#262-decrypt)
@@ -28,8 +28,9 @@
   - [6.1. Store Hierarchy](#61-store-hierarchy)
   - [6.2. Parameters Policies (for advanced parameters)](#62-parameters-policies-for-advanced-parameters)
 - [7. AWS Secrets Manager](#7-aws-secrets-manager)
-  - [7.1. Secrets Manager CloudFormation Integration RDS \& Aurora](#71-secrets-manager-cloudformation-integration-rds--aurora)
-  - [7.2. SSM Parameter Store vs Secrets Manager](#72-ssm-parameter-store-vs-secrets-manager)
+  - [7.1. AWS Secrets Manager - Multi-Region Secrets](#71-aws-secrets-manager--multi-region-secrets)
+  - [7.2. Secrets Manager CloudFormation Integration RDS \& Aurora](#72-secrets-manager-cloudformation-integration-rds--aurora)
+  - [7.3. SSM Parameter Store vs Secrets Manager](#73-ssm-parameter-store-vs-secrets-manager)
 - [8. CloudWatch Logs - Encryption](#8-cloudwatch-logs---encryption)
 - [9. CodeBuild Security](#9-codebuild-security)
 - [10. AWS Nitro Enclaves](#10-aws-nitro-enclaves)
@@ -135,6 +136,7 @@
 ### 2.6.1. Encrypt
 
 - It is recommended that you use the following pattern to encrypt data locally in your application:
+
 1. Use the GenerateDataKey operation to get a data encryption key.
 2. Use the plaintext data key (returned in the Plaintext field of the response) to encrypt data locally, then erase the plaintext data key from memory.
 3. Store the encrypted data key (returned in the CiphertextBlob field of the response) alongside the locally encrypted data.
@@ -142,6 +144,7 @@
 ### 2.6.2. Decrypt
 
 - To decrypt data locally:
+
 1. Use the Decrypt operation to decrypt the encrypted data key. The operation returns a plaintext copy of the data key.
 2. Use the plaintext data key to decrypt data locally, then erase the plaintext data key from memory.
 
@@ -259,16 +262,23 @@
 - Newer service, meant for storing secrets.
 - Capability to force **rotation of secrets** every X days.
 - Automate generation of secrets on rotation (uses Lambda).
-- Integration with **Amazon RDS** (MySQL, PostgreSQL, Aurora).
+- Integration with [Amazon RDS](AWS%20RDS.md) (MySQL, PostgreSQL, Aurora).
 - Secrets are encrypted using KMS.
 - Mostly meant for RDS integration.
 
-## 7.1. Secrets Manager CloudFormation Integration RDS & Aurora
+## 7.1. AWS Secrets Manager - Multi-Region Secrets
+
+- Replicate Secrets across multiple AWS Regions.
+- Secrets Manager keeps read replicas in sync with the primary Secret.
+- Ability to promote a read replica Secret to a standalone Secret.
+- Use cases: multi-region apps, disaster recovery strategies, multi-region DB...
+
+## 7.2. Secrets Manager CloudFormation Integration RDS & Aurora
 
 - ManageMasterUserPassword - creates admin secret implicitly.
 - RDS, Aurora will manage the secret in Secrets Manager and its rotation.
 
-## 7.2. SSM Parameter Store vs Secrets Manager
+## 7.3. SSM Parameter Store vs Secrets Manager
 
 - **Secrets Manager ($$$)**
   - Automatic rotation of secrets with AWS Lambda.

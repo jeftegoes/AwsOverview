@@ -127,7 +127,6 @@
   - [16.10. AWS Artifact (not really a service)](#1610-aws-artifact-not-really-a-service)
   - [16.11. Amazon GuardDuty](#1611-amazon-guardduty)
   - [16.12. Amazon Inspector](#1612-amazon-inspector)
-    - [16.12.1. What does AWS Inspector evaluate?](#16121-what-does-aws-inspector-evaluate)
   - [16.13. AWS Config](#1613-aws-config)
   - [16.14. Amazon Macie](#1614-amazon-macie)
   - [16.15. AWS Security Hub](#1615-aws-security-hub)
@@ -149,9 +148,6 @@
   - [17.11. AWS Machine Learning - Summary](#1711-aws-machine-learning---summary)
 - [18. Account Management, Billing \& Support](#18-account-management-billing--support)
   - [18.1. AWS Organizations](#181-aws-organizations)
-    - [18.1.1. Multi Account Strategies](#1811-multi-account-strategies)
-    - [18.1.2. Service Control Policies (SCP)](#1812-service-control-policies-scp)
-    - [18.1.3. AWS Organization - Consolidated Billing](#1813-aws-organization---consolidated-billing)
   - [18.2. AWS Control Tower](#182-aws-control-tower)
   - [18.3. Pricing Models in AWS](#183-pricing-models-in-aws)
     - [18.3.1. Free services and free tier in AWS](#1831-free-services-and-free-tier-in-aws)
@@ -173,8 +169,7 @@
     - [18.7.4. Cost Explorer](#1874-cost-explorer)
   - [18.8. Billing Alarms in CloudWatch](#188-billing-alarms-in-cloudwatch)
   - [18.9. AWS Budgets](#189-aws-budgets)
-  - [18.10. Trusted Advisor](#1810-trusted-advisor)
-  - [18.11. Trusted Advisor - Support Plans](#1811-trusted-advisor---support-plans)
+  - [18.10. AWS Trusted Advisor](#1810-aws-trusted-advisor)
   - [18.12. AWS Support Plans Pricing](#1812-aws-support-plans-pricing)
     - [18.12.1. AWS Basic Support Plan](#18121-aws-basic-support-plan)
     - [18.12.2. AWS Developer Support Plan](#18122-aws-developer-support-plan)
@@ -188,7 +183,7 @@
 - [21. Advanced Identity](#21-advanced-identity)
   - [21.1. Amazon Cognito](#211-amazon-cognito)
   - [21.2. AWS Organizations](#212-aws-organizations)
-  - [21.3. AWS Single Sign-On (SSO)](#213-aws-single-sign-on-sso)
+  - [21.3. AWS IAM Identity Center (Successor to AWS Single Sign-On)](#213-aws-iam-identity-center-successor-to-aws-single-sign-on)
   - [21.4. Advanced Identity - Summary](#214-advanced-identity---summary)
 - [22. Other AWS Services](#22-other-aws-services)
   - [22.1. Amazon WorkSpaces](#221-amazon-workspaces)
@@ -674,8 +669,7 @@
 
 ## 8.10. Amazon Athena
 
-- **Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is no infrastructure to manage, and you pay only for the queries that you run.**
-  [AWS Athena](AWS%20Athena.md)
+- **Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is no infrastructure to manage, and you pay only for the queries that you run.** [AWS Athena](AWS%20Athena.md)
 
 ## 8.11. Amazon QuickSight
 
@@ -736,13 +730,7 @@
 
 ## 8.16. AWS Glue
 
-- **AWS Glue is a fully managed extract, transform, and load (ETL) service that makes it easy for customers to prepare and load their data for analytics.**
-- Managed extract, transform, and load (ETL) service.
-- Useful to prepare and transform data for analytics.
-- Fully serverless service.
-- Glue Data Catalog: catalog of datasets.
-  - **The AWS Glue Data Catalog is a central repository to store structural and operational metadata for all your data assets. For a given data set, you can store its table definition, physical location, add business relevant attributes, as well as track how this data has changed over time.**
-  - Can be used by Athena, Redshift, EMR.
+- **AWS Glue is a fully managed extract, transform, and load (ETL) service that makes it easy for customers to prepare and load their data for analytics.** [AWS Glue](AWS%20Glue.md)
 
 ## 8.17. DMS - Database Migration Service
 
@@ -794,12 +782,6 @@
 - API Gateway: expose Lambda functions as HTTP API.
 
 ## 9.3. Amazon API Gateway
-
-- Example: building a serverless API.
-- Fully managed service for developers to easily create, publish, maintain, monitor, and secure APIs.
-- Serverless and scalable.
-- Supports RESTful APIs and WebSocket APIs.
-- Support for security, user authentication, API throttling, API keys, monitoring...
 
 [AWS API Gateway](/AWS%20API%20Gateway.md)
 
@@ -1292,6 +1274,8 @@
   - Size constraints, **geo-match (block countries)**.
   - Rate-based rules (to count occurrences of events) - for DDoS protection.
 
+[AWS WAF](AWS%20WAF.md)
+
 ## 16.5. Penetration Testing on AWS Cloud
 
 - AWS customers are welcome to carry out security assessments or penetration tests against their AWS infrastructure **without prior approval for 8 services**:
@@ -1369,38 +1353,11 @@
 ## 16.12. Amazon Inspector
 
 - **Amazon Inspector is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS.**
-- **It helps you test the network accessibility of your Amazon EC2 instances and the security state of your applications running on the instances.**
-- **Automated Security Assessments**.
-- **For EC2 instances:**
-  - Leveraging the AWS System Manager (SSM) agent.
-  - Analyze against unintended network accessibility.
-  - Analyze the running OS against known vulnerabilities.
-- **For Containers push to Amazon ECR:**
-  - Assessment of containers as they are pushed.
-- Reporting & integration with AWS Security Hub.
-- Send findings to Amazon Event Bridge.
-
-### 16.12.1. What does AWS Inspector evaluate?
-
-- **Only for EC2 instances and container infrastructure**.
-- Continuous scanning of the infrastructure, only when needed.
-- Package vulnerabilities (EC2 & ECR) - database of CVE.
-- Network reachability (EC2).
-- A risk score is associated with all vulnerabilities for prioritization.
+- **It helps you test the network accessibility of your Amazon EC2 instances and the security state of your applications running on the instances.** [Amazon Inspector](Amazon%20Inspector.md)
 
 ## 16.13. AWS Config
 
-- **AWS Config is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources.**
-- Helps with **auditing and recording compliance of your AWS resources**.
-- Helps record configurations and changes over time.
-- Possibility of storing the configuration data into S3 (analyzed by Athena).
-- Questions that can be solved by AWS Config:
-  - Is there unrestricted SSH access to my security groups?
-  - Do my buckets have any public access?
-  - How has my ALB configuration changed over time?
-- You can receive alerts (SNS notifications) for any changes.
-- AWS Config is a per-region service.
-- Can be aggregated across regions and accounts.
+- **AWS Config is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources.** [AWS Config](AWS%20Config.md)
 
 ## 16.14. Amazon Macie
 
@@ -1424,10 +1381,11 @@
 
 ## 16.16. Amazon Detective
 
-- Amazon Detective **analyzes, investigates, and quickly identifies the root cause of security issues or suspicious activities (using ML and graphs)**.
-- GuardDuty, Macie, and Security Hub are used to identify potential security issues, or findings.
+- GuardDuty, Macie, and Security Hub are used to identify potential
+  security issues, or findings.
 - Sometimes security findings require deeper analysis to isolate the root cause and take action - it's a complex process.
-- Automatically collects and processes events from VPC Flow Logs, CloudTrail, GuardDuty and create a unified view.
+- Amazon Detective **analyzes, investigates, and quickly identifies the root cause of security issues or suspicious activities using ML and graphs**.
+- **Automatically collects and processes events** from VPC Flow Logs, CloudTrail, and GuardDuty to create a unified view.
 - Produces visualizations with details and context to get to the root cause.
 
 ## 16.17. AWS Abuse
@@ -1602,56 +1560,11 @@
 
 ## 18.1. AWS Organizations
 
-- Global service.
-- Allows to manage **multiple AWS accounts**.
-- The main account is the master account.
-- Cost Benefits:
-  - **Consolidated Billing** across all accounts - single payment method.
-  - Pricing benefits from **aggregated usage** (volume discount for EC2, S3...).
-  - **Pooling of Reserved EC2 instances** for optimal savings.
-- API is available to **automate AWS account creation**.
-- **Restrict account privileges using Service Control Policies (SCP)**.
-
-### 18.1.1. Multi Account Strategies
-
-- Create accounts per **department**, per **cost center**, per **dev / test / prod**, based on **regulatory restrictions** (using SCP), for **better resource isolation** (ex: VPC), to have **separate per-account service limits**, isolated account for **logging**.
-- Multi Account vs One Account Multi VPC.
-- Use tagging standards for billing purposes.
-- Enable CloudTrail on all accounts, send logs to central S3 account.
-- Send CloudWatch Logs to central logging account.
-
-### 18.1.2. Service Control Policies (SCP)
-
-- **Service control policies (SCPs) are a type of organization policy that you can use to manage permissions in your organization. An SCP spans all IAM users, groups, and roles, including the AWS account root user.**
-- Whitelist or blacklist IAM actions.
-- Applied at the **OU - Organizational Unit** or **Account** level.
-- Does not apply to the Master Account.
-- SCP is applied to all the **Users and Roles** of the Account, including Root user.
-- The SCP does not affect service-linked roles.
-  - Service-linked roles enable other AWS services to integrate with AWS Organizations and can't be restricted by SCPs.
-- SCP must have an explicit Allow (does not allow anything by default).
-- Use cases:
-  - Restrict access to certain services (for example: can't use EMR).
-  - Enforce PCI compliance by explicitly disabling services.
-
-### 18.1.3. AWS Organization - Consolidated Billing
-
-- When enabled, provides you with:
-  - Combined Usage - combine the usage across all AWS accounts in the AWS Organization to share the volume pricing, Reserved Instances and Savings Plans discounts.
-  - One Bill - get one bill for all AWS Accounts in the AWS Organization.
-- The management account can turn off Reserved Instances discount sharing for any account in the AWS Organization, including itself.
+[AWS Organizations](AWS%20Organizations.md)
 
 ## 18.2. AWS Control Tower
 
-- **AWS Control Tower offers the easiest way to set up and govern a new, secure, multi-account AWS environment. It establishes a landing zone that is based on best-practices blueprints, and enables governance using guardrails you can choose from a pre-packaged list.**
-- Easy way to **set up and govern a secure and compliant multi-account AWS environment** based on best practices.
-- Benefits:
-  - Automate the set up of your environment in a few clicks.
-  - Automate ongoing policy management using guardrails.
-  - Detect policy violations and remediate them.
-  - Monitor compliance through an interactive dashboard.
-- AWS Control Tower runs on top of AWS Organizations:
-  - It automatically sets up AWS Organizations to organize accounts and implement SCPs (Service Control Policies).
+- **AWS Control Tower offers the easiest way to set up and govern a new, secure, multi-account AWS environment. It establishes a landing zone that is based on best-practices blueprints, and enables governance using guardrails you can choose from a pre-packaged list.** [AWS Control Tower](AWS%20Control%20Tower.md)
 
 ## 18.3. Pricing Models in AWS
 
@@ -1872,28 +1785,10 @@
 - Same options as AWS Cost Explorer!
 - 2 budgets are free, then $0.02/day/budget.
 
-## 18.10. Trusted Advisor
+## 18.10. AWS Trusted Advisor
 
 - **AWS Trusted Advisor is an online tool that provides you real time guidance to help you provision your resources following AWS best practices, including performance, security, and fault tolerance, but also cost optimization and service limits.**
-- No need to install anything - high level AWS account assessment
-- Analyze your AWS accounts and provides recommendation on 5 categories:
-  - Cost optimization
-  - Performance
-  - Security
-  - Fault tolerance
-  - Service limits
-
-## 18.11. Trusted Advisor - Support Plans
-
-| 7 CORE CHECKS - Basic & Developer Support plan | FULL CHECKS - Business & Enterprise Support plan |
-| ---------------------------------------------- | ------------------------------------------------ |
-| S3 Bucket Permissions                          | Full Checks available on the 5 categories        |
-| Security Groups - Specific Ports Unrestricted  | Ability to set CloudWatch alarms when            |
-| IAM Use (one IAM user minimum)                 | reaching limits                                  |
-| MFA on Root Account                            | Programmatic Access using AWS Support API        |
-| EBS Public Snapshots                           |                                                  |
-| RDS Public Snapshots                           |                                                  |
-| Service Limits                                 |                                                  |
+  [AWS Trusted Advisor](AWS%20Trusted%20Advisor.md)
 
 ## 18.12. AWS Support Plans Pricing
 
@@ -1993,12 +1888,9 @@
 
 - Organizations helps you to centrally manage billing; control access, compliance, and security; and share resources across your AWS accounts.
 
-## 21.3. AWS Single Sign-On (SSO)
+## 21.3. AWS IAM Identity Center (Successor to AWS Single Sign-On)
 
-- Centrally manage Single Sign-On to access multiple accounts and 3rd-party business applications.
-- Integrated with AWS Organizations.
-- Supports SAML 2.0 markup.
-- Integration with on-premise Active Directory.
+[AWS IAM Identity Center](AWS%20IAM%20Identity%20Center.md)
 
 ## 21.4. Advanced Identity - Summary
 
