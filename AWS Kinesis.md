@@ -8,6 +8,7 @@
   - [2.2. Security](#22-security)
   - [2.3. Producers](#23-producers)
   - [2.4. Consumers](#24-consumers)
+    - [Scaling Consumers](#scaling-consumers)
     - [2.4.1. Consumers Types](#241-consumers-types)
   - [2.5. AWS Lambda](#25-aws-lambda)
 - [3. Kinesis Client Library (KCL)](#3-kinesis-client-library-kcl)
@@ -49,12 +50,12 @@
 
 ## 2.1. Capacity Modes
 
-- **Provisioned mode:**
+- **Provisioned mode**
   - You choose the number of shards provisioned, scale manually or using API.
   - Each shard gets 1MB/s in (or 1000 records per second).
   - Each shard gets 2MB/s out (classic or enhanced fan-out consumer).
   - You pay per shard provisioned per hour.
-- **On-demand mode:**
+- **On-demand mode**
   - No need to provision or manage the capacity.
   - Default capacity provisioned (4 MB/s in or 4000 records per second).
   - Scales automatically based on observed throughput peak during the last 30 days.
@@ -97,6 +98,14 @@
 - Kinesis Data Firehose
 - Custom Consumer (AWS SDK) - Classic or Enhanced Fan-Out
 - Kinesis Client Library (KCL): Library to simplify reading from data stream
+
+### Scaling Consumers
+
+- `GetRecords.IteratorAgeMilliseconds` (CloudWatch Metric).
+  - The difference between current time and when the last record of the `GetRecords` call was written to the stream.
+  - Used to track the progress of Kinesis Consumers (tracks the read position).
+  - `IteratorAgeMilliseconds` = 0, then records being read are completely caught up with the Stream.
+  - `IteratorAgeMilliseconds` > 0 means we’re not processing the records fast enough.
 
 ### 2.4.1. Consumers Types
 
