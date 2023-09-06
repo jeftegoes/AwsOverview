@@ -9,8 +9,11 @@
 - [3. Redis vs Memcached](#3-redis-vs-memcached)
 - [4. Cache Security](#4-cache-security)
 - [5. Replication](#5-replication)
-  - [5.1. Cluster Mode DISABLED](#51-cluster-mode-disabled)
-  - [5.2. Cluster Mode ENABLED](#52-cluster-mode-enabled)
+  - [5.1. ElastiCache Replication: Cluster Mode Disabled](#51-elasticache-replication-cluster-mode-disabled)
+  - [5.2. Redis Scaling - Cluster Mode Disabled](#52-redis-scaling---cluster-mode-disabled)
+  - [5.3. Cluster Mode ENABLED](#53-cluster-mode-enabled)
+  - [5.4. ElastiCache for Redis - Auto Scaling](#54-elasticache-for-redis---auto-scaling)
+  - [5.5. ElastiCache - Redis Connection Endpoints](#55-elasticache---redis-connection-endpoints)
 - [6. Caching Implementation Considerations](#6-caching-implementation-considerations)
   - [6.1. Lazy Loading / Cache-Aside / Lazy Population](#61-lazy-loading--cache-aside--lazy-population)
   - [6.2. Write Through - Add or Update cache when database is updated](#62-write-through---add-or-update-cache-when-database-is-updated)
@@ -20,7 +23,6 @@
 
 # 1. Amazon ElastiCache Overview
 
-- **Amazon ElastiCache is a web service that makes it easy to deploy and run Memcached or Redis protocol-compliant server nodes in the cloud. ElastiCache caches are in-memory databases with high performance, low latency. They help reduce load off databases for read intensive workloads.**
 - The same way RDS is to get managed Relational Databases...
 - ElastiCache is to get managed Redis or Memcached.
 - Caches are in-memory databases with really high performance, low latency.
@@ -76,7 +78,7 @@
 
 # 5. Replication
 
-## 5.1. Cluster Mode DISABLED
+## 5.1. ElastiCache Replication: Cluster Mode Disabled
 
 - One primary node, up to 5 replicas.
 - Asynchronous Replication.
@@ -87,7 +89,15 @@
 - Multi-AZ enabled by default for failover.
 - Helpful to scale read performance.
 
-## 5.2. Cluster Mode ENABLED
+## 5.2. Redis Scaling - Cluster Mode Disabled
+
+- **Horizontal**
+  - Scale out/in by adding/removing read replicas (max. 5 replicas).
+- **Vertical**
+  - Scale up/down to larger/smaller node type.
+  - ElastiCache will internally create a new node group, then data replication and DNS update.
+
+## 5.3. Cluster Mode ENABLED
 
 - **Data is partitioned across shards (helpful to scale writes).**
 - Each shard has a primary and up to 5 replica nodes (same concept as before).
@@ -97,6 +107,24 @@
   - 250 shards with 1 master and 1 replica.
   - ...
   - 83 shards with one master and 5 replicas.
+
+## 5.4. ElastiCache for Redis - Auto Scaling
+
+- Automatically increase/decrease the desired shards or replicas.
+- Supports both **Target Tracking and Scheduled** Scaling Policies.
+- Works only for Redis with **Cluster Mode Enabled**.
+
+## 5.5. ElastiCache - Redis Connection Endpoints
+
+- **Standalone Node**
+  - One endpoint for read and write operations.
+- **Cluster Mode Disabled Cluster**
+  - **Primary Endpoint:** For all write operations.
+  - **Reader Endpoint:** Evenly split read operations across all read replicas.
+  - **Node Endpoint:** For read operations.
+- **Cluster Mode Enabled Cluster**
+  - **Configuration Endpoint:** For all read/write operations that support Cluster Mode Enabled commands.
+  - **Node Endpoint:** For read operations.
 
 # 6. Caching Implementation Considerations
 

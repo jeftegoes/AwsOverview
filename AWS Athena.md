@@ -8,7 +8,7 @@
 
 # 1. Introduction
 
-- **Serverless** query service to analyze data stored in [AWS S3](AWS%20S3.md).
+- **Serverless** query service to analyze data stored in [AWS S3](Amazon%20S3.md).
 - Uses standard SQL language to query the files (built on Presto).
 - Supports CSV, JSON, ORC, Avro, and Parquet.
 - Pricing: $5.00 per TB of data scanned.
@@ -38,4 +38,4 @@
 
 - Allows you to run SQL queries across data stored in relational, non-relational, object, and custom data sources (AWS or on-premises).
 - Uses Data Source Connectors that run on AWS Lambda to run Federated Queries (e.g., [CloudWatch Logs](AWS%20CloudWatch.md), [DynamoDB](AWS%20DynamoDB.md), [RDS](AWS%20RDS.md), ...).
-- Store the results back in [Amazon S3](AWS%20S3.md).
+- Store the results back in [Amazon S3](Amazon%20S3.md).

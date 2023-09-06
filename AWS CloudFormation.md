@@ -69,7 +69,7 @@
   - I want a security group.
   - I want two [EC2](AWS%20EC2.md) machines using this security group.
   - I want two Elastic IPs for these [EC2](AWS%20EC2.md) machines.
-  - I want an [S3](AWS%20S3.md) bucket.
+  - I want an [S3](Amazon%20S3.md) bucket.
   - I want a load balancer (ELB) in front of these machines.
 - Then CloudFormation creates those for you, in the right order, with the exact configuration that you specify.
 

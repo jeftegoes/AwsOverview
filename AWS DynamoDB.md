@@ -5,7 +5,7 @@
 - [1. Traditional Architecture](#1-traditional-architecture)
 - [2. NoSQL databases](#2-nosql-databases)
 - [3. Amazon DynamoDB](#3-amazon-dynamodb)
-- [4. DynamoDB - Basics](#4-dynamodb---basics)
+- [4. Details](#4-details)
 - [5. Primary Keys](#5-primary-keys)
 - [6. Read/Write Capacity Modes](#6-readwrite-capacity-modes)
   - [6.1. R/W Capacity Modes - Provisioned](#61-rw-capacity-modes---provisioned)
@@ -38,19 +38,21 @@
   - [12.1. Use cases for DAX](#121-use-cases-for-dax)
 - [13. Streams](#13-streams)
   - [13.1. DynamoDB Streams and AWS Lambda](#131-dynamodb-streams-and-aws-lambda)
-- [14. Time To Live (TTL)](#14-time-to-live-ttl)
-- [15. DynamoDB CLI - Good to Know](#15-dynamodb-cli---good-to-know)
-- [16. Transactions](#16-transactions)
-  - [16.1. Capacity Computations](#161-capacity-computations)
-- [17. Session State Cache](#17-session-state-cache)
-- [18. Write Sharding](#18-write-sharding)
-- [19. Write Types](#19-write-types)
-- [20. Operations](#20-operations)
-- [21. Security \& Other Features](#21-security--other-features)
-  - [21.1. Server-side encryption at rest](#211-server-side-encryption-at-rest)
-  - [21.2. DynamoDB Encryption Client](#212-dynamodb-encryption-client)
-  - [21.3. Fine-Grained Access Control](#213-fine-grained-access-control)
-- [22. Backup](#22-backup)
+- [14. Global Tables](#14-global-tables)
+- [15. Time To Live (TTL)](#15-time-to-live-ttl)
+- [16. DynamoDB CLI - Good to Know](#16-dynamodb-cli---good-to-know)
+- [17. Transactions](#17-transactions)
+  - [17.1. Capacity Computations](#171-capacity-computations)
+- [18. Session State Cache](#18-session-state-cache)
+- [19. Write Sharding](#19-write-sharding)
+- [20. Write Types](#20-write-types)
+- [21. Operations](#21-operations)
+- [22. Security \& Other Features](#22-security--other-features)
+  - [22.1. Server-side encryption at rest](#221-server-side-encryption-at-rest)
+  - [22.2. DynamoDB Encryption Client](#222-dynamodb-encryption-client)
+  - [22.3. Fine-Grained Access Control](#223-fine-grained-access-control)
+- [23. Backups for disaster recovery](#23-backups-for-disaster-recovery)
+- [24. Integration with Amazon S3](#24-integration-with-amazon-s3)
 
 # 1. Traditional Architecture
 
@@ -73,7 +75,6 @@
 
 # 3. Amazon DynamoDB
 
-- **DynamoDB is a fast and flexible non-relational database service for any scale. It can scale with no downtime, it can process millions of requests per second, and is fast and consistent in performance.**
 - Fully managed, highly available with replication across multiple AZs.
 - **NoSQL database - not a relational database.**
 - Scales to massive workloads, distributed **serverless** database.
@@ -82,9 +83,10 @@
 - Integrated with IAM for security, authorization and administration.
 - Enables event driven programming with DynamoDB Streams.
 - Low cost and auto-scaling capabilities.
+- No maintenance or patching, always available.
 - Standard and Infrequent Access (IA) Table Class.
 
-# 4. DynamoDB - Basics
+# 4. Details
 
 - DynamoDB is made of **Tables**.
 - Each table has a **Primary Key** (must be decided at creation time).
@@ -94,7 +96,8 @@
 - Data types supported are:
   - **Scalar Types:** String, Number, Binary, Boolean, Null.
   - **Document Types:** List, Map.
-  - **Set Types:** String Set, Number Set, Binary Set.
+  - **Set Types:** String Set, Number Set, Binary Set.t
+- Therefore, in DynamoDB you can rapidly evolve schemas.
 
 # 5. Primary Keys
 
@@ -117,14 +120,16 @@
 # 6. Read/Write Capacity Modes
 
 - Control how you manage your table's capacity (read/write throughput).
-- **Provisioned Mode (default):**
+- **Provisioned Mode (default)**
   - You specify the number of reads/writes per second.
   - You need to plan capacity beforehand.
-  - Pay for provisioned read and write capacity units.
-- **On-Demand Mode:**
+  - Pay for provisioned Read Capacity Units (RCU) & Write Capacity Units (WCU).
+  - Possibility to add auto-scaling mode for RCU & WCU.
+- **On-Demand Mode**
   - Read/writes automatically scale up/down with your workloads.
   - No capacity planning needed.
   - Pay for what you use, more expensive ($$$).
+  - Great for unpredictable workloads, steep sudden spikes.
 - You can switch between different modes once every 24 hours.
 
 ## 6.1. R/W Capacity Modes - Provisioned
@@ -394,7 +399,8 @@
 - **DynamoDB that delivers up to 10x performance improvement.**
 - **It caches the most frequently used data, thus offloading the heavy reads on hot keys of your DynamoDB table, hence preventing the `ProvisionedThroughputExceededException` exception.**
 - Fully-managed, highly available, seamless in-memory cache for DynamoDB.
-- Microseconds latency for cached reads and queries.
+- **Help solve read congestion by caching.**
+- **Microseconds latency for cached data.**
 - Doesn't require application logic modification (compatible with existing DynamoDB APIs).
 - Solves the "Hot Key" problem (too many reads).
 - 5 minutes TTL for cache (default).
@@ -443,7 +449,14 @@
 
   [AWS Lambda](AWS%20Lambda.md)
 
-# 14. Time To Live (TTL)
+# 14. Global Tables
+
+- Make a DynamoDB table accessible with low latency in multiple-regions.
+- Active-Active replication.
+- Applications can READ and WRITE to the table in any region.
+- Must enable DynamoDB Streams as a pre-requisite.
+
+# 15. Time To Live (TTL)
 
 - Automatically delete items after an expiry timestamp.
 - Doesn't consume any WCUs (i.e., no extra cost).
@@ -454,19 +467,17 @@
 - A delete operation for each expired item enters the DynamoDB Streams (can help recover expired items).
 - Use cases: reduce stored data by keeping only current items, adhere to regulatory obligations, ...
 
-# 15. DynamoDB CLI - Good to Know
+# 16. DynamoDB CLI - Good to Know
 
 - `--projection-expression` - One or more attributes to retrieve.
 - `--filter-expression` - Filter items before returned to you.
-- General AWS CLI Pagination options (e.g., DynamoDB, S3, ...):
-
+- **General AWS CLI Pagination options (e.g., DynamoDB, S3, ...)**
   - `--page-size` - Specify that AWS CLI retrieves the full list of items but with a larger number of API calls instead of one API call (default: 1000 items).
   - `--max-items` - Max. number of items to show in the CLI (returns NextToken).
   - `--starting-token` - Specify the last NextToken to retrieve the next set of items.
+    [Commands section](README.md)
 
-  [Commands section](README.md)
-
-# 16. Transactions
+# 17. Transactions
 
 ![Transactions formulas](Images/DynamoDBTransactionsFormulas.png)
 
@@ -481,7 +492,7 @@
   - `TransactWriteItems` - one or more `PutItem`, `UpdateItem`, and `DeleteItem` operations.
 - Use cases: financial transactions, managing orders, multiplayer games, ...
 
-## 16.1. Capacity Computations
+## 17.1. Capacity Computations
 
 \*\*
 
@@ -491,7 +502,7 @@
   - We need 5 _(8gb / 4kb)_ 2 (transactional cost) = 20 RCUs.
   - (5 gets rounded to the upper 4 KB).
 
-# 17. Session State Cache
+# 18. Session State Cache
 
 - It's common to use DynamoDB to store session states.
 - **vs. ElastiCache**
@@ -504,7 +515,7 @@
 - **vs. S3**
   - S3 is higher latency, and not meant for small objects.
 
-# 18. Write Sharding
+# 19. Write Sharding
 
 - Imagine we have a voting application with two candidates, **candidate A** and **candidate B**.
 - If **Partition Key** is **"Candidate_ID"**, this results into two partitions, which will generate issues (e.g., Hot Partition).
@@ -514,14 +525,14 @@
   - Sharding Using Random Suffix.
   - Sharding Using Calculated Suffix.
 
-# 19. Write Types
+# 20. Write Types
 
 - Concurrent Writes
 - Atomic Writes
 - Conditional Writes
 - Batch Write
 
-# 20. Operations
+# 21. Operations
 
 - **Table Cleanup:**
   - **Option 1:** Scan + DeleteItem
@@ -535,7 +546,7 @@
   - **Option 3:** Scan + PutItem or BatchWriteItem
     - Write your own code
 
-# 21. Security & Other Features
+# 22. Security & Other Features
 
 - When creating a new table, you can choose one of the following AWS KMS key types to encrypt your table. **You can switch between these key types at any time**.
   - **AWS owned key:** Default encryption type. The key is owned by DynamoDB (no additional charge)
@@ -551,7 +562,7 @@
   - Develop and test apps locally without accessing the DynamoDB web service (without Internet).
 - AWS Database Migration Service (AWS DMS) can be used to migrate to DynamoDB (from MongoDB, Oracle, MySQL, S3, ...).
 
-## 21.1. Server-side encryption at rest
+## 22.1. Server-side encryption at rest
 
 - DynamoDB supports encryption at rest, a server-side encryption feature in which DynamoDB transparently encrypts your tables for you when the table is persisted to disk, and decrypts them when you access the table data.
 - When you use an **AWS SDK** to interact with DynamoDB, by default, your data is encrypted in transit over an HTTPS connection, decrypted at the DynamoDB endpoint, and then re-encrypted before being stored in DynamoDB.
@@ -561,7 +572,7 @@
   - Objects related to tables are encrypted, too.
   - Your items are decrypted when you access them.
 
-## 21.2. DynamoDB Encryption Client
+## 22.2. DynamoDB Encryption Client
 
 - Client-side encryption provides end-to-end protection for your data, in transit and at rest, from its source to storage in DynamoDB. Your plaintext data is never exposed to any third party, including AWS. However, the DynamoDB Encryption Client is designed to be implemented in new, unpopulated databases. You need to add the encryption features to your DynamoDB applications before you send any data to DynamoDB.
   - Your data is protected in transit and at rest.
@@ -570,19 +581,41 @@
   - You determine how your data is protected.
   - The DynamoDB Encryption Client doesn't encrypt the entire table.
 
-## 21.3. Fine-Grained Access Control
+## 22.3. Fine-Grained Access Control
 
 - Using **Web Identity Federation** or **Cognito Identity Pools**, each user gets AWS credentials.
 - You can assign an IAM Role to these users with a **Condition** to limit their API access to DynamoDB.
 - `LeadingKeys` - Limit row-level access for users on the **Primary Key**.
 - `Attributes` - Limit specific attributes the user can see.
 
-# 22. Backup
+# 23. Backups for disaster recovery
 
 - DynamoDB offers two built-in backup methods:
-  - **On-demand:** Create backups when you choose.
-  - **Point-in-time recovery:** Turn on automatic and continuous backups.
+  - **Continuous backups using point-in-time recovery (PITR)**
+    - Optionally enabled for the last 35 days.
+    - Point-in-time recovery to any time within the backup window.
+    - The recovery process creates a new table.
+  - **On-demand backups**
+    - Full backups for long-term retention, until explicitely deleted.
+    - Doesn't affect performance or latency.
+    - Can be configured and managed in AWS Backup (enables cross-region copy).
+    - The recovery process creates a new table.
 - Both of these methods are suitable for backing up your tables for disaster recovery purposes.
 - However, with these methods, you can't use the data for use cases involving data analysis or extract, transform, and load (ETL) jobs.
 - The DynamoDB Export to S3 feature is the easiest way to create backups that you can download locally or use with another AWS service.
 - To customize the process of creating backups, you can use Amazon EMR, AWS Glue, or AWS Data Pipeline.
+
+# 24. Integration with Amazon S3
+
+- **Export to S3 (must enable PITR)**
+  - Works for any point of time in the last 35 days.
+  - Doesn't affect the read capacity of your table.
+  - Perform data analysis on top of DynamoDB.
+  - Retain snapshots for auditing.
+  - ETL on top of S3 data before importing back into DynamoDB.
+  - Export in DynamoDB JSON or ION format.
+- **Import from S3**
+  - Import CSV, DynamoDB JSON or ION format.
+  - Doesn't consume any write capacity.
+  - Creates a new table.
+  - Import errors are logged in CloudWatch Logs.

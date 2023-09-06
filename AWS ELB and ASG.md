@@ -8,7 +8,7 @@
   - [1.3. High Availability](#13-high-availability)
   - [1.4. High Availability and Scalability for EC2](#14-high-availability-and-scalability-for-ec2)
   - [1.5. Scalability vs Elasticity (vs Agility)](#15-scalability-vs-elasticity-vs-agility)
-- [2. What is Load Balancing?](#2-what-is-load-balancing)
+- [2. What's Load Balancing?](#2-whats-load-balancing)
   - [2.1. Why use a load balancer?](#21-why-use-a-load-balancer)
 - [3. Why use an Elastic Load Balancer (ELB)?](#3-why-use-an-elastic-load-balancer-elb)
 - [4. Health Checks](#4-health-checks)
@@ -39,8 +39,19 @@
   - [10.4. Predictive Scaling](#104-predictive-scaling)
   - [10.5. Good metrics to scale on](#105-good-metrics-to-scale-on)
   - [10.6. Scaling Cooldowns](#106-scaling-cooldowns)
-  - [10.7. Auto Scaling - Instance Refresh](#107-auto-scaling---instance-refresh)
-  - [10.8. Scaling Strategies (Resume)](#108-scaling-strategies-resume)
+  - [10.7. Lifecycle Hooks](#107-lifecycle-hooks)
+  - [10.8. SNS Notifications](#108-sns-notifications)
+  - [10.9. EventBridge Events](#109-eventbridge-events)
+  - [10.10. Auto Scaling - Instance Refresh](#1010-auto-scaling---instance-refresh)
+  - [10.11. Scaling Strategies (Resume)](#1011-scaling-strategies-resume)
+  - [10.12. Termination Policies](#1012-termination-policies)
+    - [10.12.1. Different Termination Policies](#10121-different-termination-policies)
+  - [10.13. Scale-out Latency Problem](#1013-scale-out-latency-problem)
+- [11. ASG Warm Pools](#11-asg-warm-pools)
+  - [11.1. Warm Pools Pricing: m5.large](#111-warm-pools-pricing-m5large)
+  - [11.2. Instance Reuse Policy](#112-instance-reuse-policy)
+- [12. AWS Application Auto Scaling](#12-aws-application-auto-scaling)
+  - [12.1. Integrated AWS Services](#121-integrated-aws-services)
 
 # 1. Scalability and High Availability
 
@@ -93,7 +104,7 @@
   - This is "cloud-friendly": pay-per-use, match demand, optimize costs.
 - **Agility:** (not related to scalability - distractor) new IT resources are only a click away, which means that you reduce the time to make those resources available to your developers from weeks to just minutes.
 
-# 2. What is Load Balancing?
+# 2. What's Load Balancing?
 
 - Load balancers are servers that forward internet traffic to multiple servers (EC2 Instances) downstream.
 
@@ -380,13 +391,13 @@
 
 ## 10.3. Dynamic Scaling Policies
 
-- **Target Tracking Scaling:**
+- **Target Tracking Scaling**
   - Most simple and easy to set-up.
   - Example: I want the average ASG CPU to stay at around 40%.
-- **Simple / Step Scaling:**
+- **Simple / Step Scaling**
   - When a CloudWatch alarm is triggered (example CPU > 70%), then add 2 units.
   - When a CloudWatch alarm is triggered (example CPU < 30%), then remove 1.
-- **Scheduled Actions:**
+- **Scheduled Actions**
   - Anticipate a scaling based on known usage patterns.
   - Example: increase the min capacity to 10 at 5 pm on Fridays.
 
@@ -396,8 +407,8 @@
 
 ## 10.5. Good metrics to scale on
 
-- **CPUUtilization:** Average CPU utilization across your instances.
-- **RequestCountPerTarget:** to make sure the number of requests per EC2 instances is stable.
+- `CPUUtilization` - Average CPU utilization across your instances.
+- `RequestCountPerTarget` - To make sure the number of requests per EC2 instances is stable.
 - **Average Network In / Out** (if you're application is network bound).
 - **Any custom metric** (that you push using CloudWatch).
 
@@ -407,14 +418,40 @@
 - During the cooldown period, the ASG will not launch or terminate additional instances (to allow for metrics to stabilize).
 - Advice: Use a ready-to-use AMI to reduce configuration time in order to be serving request fasters and reduce the cooldown period.
 
-## 10.7. Auto Scaling - Instance Refresh
+## 10.7. Lifecycle Hooks
+
+- By default, as soon as an instance is launched in an ASG it's in service.
+- You can perform extra steps before the instance goes in service (Pending state).
+  - Define a script to run on the instances as they start.
+- You can perform some actions before the instance is terminated (Terminating state).
+  - Pause the instances before they're terminated for troubleshooting.
+- Use cases: cleanup, log extraction, special health checks.
+- Integration with EventBridge, SNS, and SQS.
+
+## 10.8. SNS Notifications
+
+- ASG supports sending SNS notifications for the following events:
+  - `autoscaling:EC2_INSTANCE_LAUNCH`
+  - `autoscaling:EC2_INSTANCE_LAUNCH_ERROR`
+  - `autoscaling:EC2_INSTANCE_TERMINATE`
+  - `autoscaling:EC2_INSTANCE_TERMINATE_ERROR`
+
+## 10.9. EventBridge Events
+
+- You can create Rules that match the following ASG events:
+  - EC2 Instance Launching, EC2 Instance Launch Successful/Unsuccessful.
+  - EC2 Instance Terminating, EC2 Instance Terminate Successful/Unsuccessful.
+  - EC2 Auto Scaling Instance Refresh Checkpoint Reached.
+  - EC2 Auto Scaling Instance Refresh Started, Succeeded, Failed, Cancelled.
+
+## 10.10. Auto Scaling - Instance Refresh
 
 - Goal: update launch template and then re-creating all EC2 instances.
 - For this we can use the native feature of Instance Refresh.
 - Setting of minimum healthy percentage.
 - Specify warm-up time (how long until the instance is ready to use).
 
-## 10.8. Scaling Strategies (Resume)
+## 10.11. Scaling Strategies (Resume)
 
 - Manual Scaling: Update the size of an ASG manually
 - Dynamic Scaling: Respond to changing demand
@@ -430,3 +467,80 @@
   - Uses Machine Learning to predict future traffic ahead of time.
   - Automatically provisions the right number of EC2 instances in advance.
   - Useful when your load has predictable time-based patterns.
+
+## 10.12. Termination Policies
+
+- Determine which instances to terminates first during scale-in events, Instance Refresh, and AZ Rebalancing.
+- **Default Termination Policy**
+  - Select AZ with more instances.
+  - Terminate instance with oldest Launch Template or Launch Configuration.
+  - If instances were launched using the same Launch Template, terminate the instance that is closest to the next billing hour.
+
+### 10.12.1. Different Termination Policies
+
+- `Default` - Terminates instances according to Default Termination Policy
+- `AllocationStrategy` - Terminates instances to align the remaining instances to the Allocation Strategy (e.g., lowest-price for Spot Instances, or lower priority On-Demand Instances)
+- `OldestLaunchTemplate` - Terminates instances that have the oldest Launch Template
+- `OldestLaunchConfiguration` - Terminates instances that have the oldest Launch Configuration
+- `ClosestToNextInstanceHour` - Terminates instances that are closest to the next billing hour
+- `NewestInstance` - Terminates the newest instance (testing new launch template)
+- `OldestInstance` - Terminates the oldest instance (upgrading instance size, not launch template)
+- **Note: you can use one or more policies and specify the evaluation order.**
+- **Note: can define Custom Termination Policy backed by a Lambda function.**
+
+## 10.13. Scale-out Latency Problem
+
+- When an ASG scales out, it tries to launch instances as fast as possible.
+- Some applications contain a lengthy unavoidable latency that exists at the application initialization/bootstrap layer (several minutes or more).
+- Processes that can only happen at initial boot: applying updates, data or state hydration, running configuration scripts...
+- Solution was to over-provision compute resources to absorb unexpected demand increases (increased cost) or use Golden Images to try to reduce boot time.
+- **New solution: ASG Warm Pools**
+
+# 11. ASG Warm Pools
+
+- Reduces scale-out latency by maintaining a pool of pre-initialized instances.
+- In a scale-out event, ASG uses the pre-initialized instances from the Warm Pool instead of launching new instances.
+- **Warm Pool Size Settings**
+  - **Minimum warm pool size** (always in the warm pool).
+  - **Max prepared capacity** = Max capacity of ASG (default).
+  - **OR Max prepared capacity** = Set number of instances.
+- **Warm Pool Instance State** - What state to keep your Warm Pool instances in after initialization **(Running, Stopped, Hibernated)**.
+- Warm Pools instances don't contribute to ASG metrics that affect Scaling Policies.
+
+## 11.1. Warm Pools Pricing: m5.large
+
+- If we "over provision an EC2 instance" in an ASG.
+- Running Cost = $0.096/hour _ 24 hours/day _ 30 days = $69.12 \* EBS charges.
+- If the EC2 instance is stopped, we only pay for the attached EBS volume.
+- EBS Volume Cost = $0.10/GB-month \* 10GB = $1.00
+
+## 11.2. Instance Reuse Policy
+
+- By default, ASG terminates instances when ASG scales in, then it launches new instances into the Warm Pool.
+- **Instance Reuse Policy allows you to return instances to the Warm Pool when a scale-in event happens.**
+
+# 12. AWS Application Auto Scaling
+
+- Monitors your apps and automatically adjusts capacity to maintain steady, predictable performance at lowest cost.
+- Setup scaling for multiple resouces across multiple services from a single place (no need to navigate across different services).
+- Point to your app and select the services and resources you want to scale (no need to setup alarms and scaling actions for each service).
+- Search for resources/services using CloudFormation Stack, Tags, or EC2 ASG.
+- Build Scaling Plans to automatically add/remove capacity from your resources in real-time as demand changes.
+- **Supports Target Tracking, Step, and Scheduled Scaling Policies.**
+
+## 12.1. Integrated AWS Services
+
+- AppStream 2.0 - Fleets
+- Aurora - Replicas
+- Comprehend - Document classification and Entity recognizer endpoints
+- DynamoDB - Tables & GSI
+- ECS - Services
+- ElastiCache for Redis - Replication Groups
+- EMR - Clusters
+- KeySpaces - Tables
+- Lambda - Provisioned Concurrency
+- MSK - Broker Storage
+- Neptune - Clusters
+- SageMaker - Endpoint Variants
+- Spot Fleet - Requests
+- Custom Resources

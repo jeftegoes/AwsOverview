@@ -22,8 +22,9 @@
   - [1.9. Enhanced Monitoring](#19-enhanced-monitoring)
 - [2. Amazon Aurora](#2-amazon-aurora)
   - [2.1. Aurora High Availability and Read Scaling](#21-aurora-high-availability-and-read-scaling)
-  - [2.2. Features of Aurora](#22-features-of-aurora)
-  - [2.3. Aurora Security](#23-aurora-security)
+  - [2.2. Global Aurora](#22-global-aurora)
+  - [2.3. Features of Aurora](#23-features-of-aurora)
+  - [2.4. Aurora Security](#24-aurora-security)
 - [3. Amazon Aurora Serverless](#3-amazon-aurora-serverless)
 - [4. MySQL error log](#4-mysql-error-log)
 - [5. Amazon Aurora vs Amazon Aurora Serverless](#5-amazon-aurora-vs-amazon-aurora-serverless)
@@ -194,7 +195,6 @@
 
 ![RDS Monitoring log options](Images/AWSRDSMonitoring.png)
 
-
 ## 1.8. RDS Proxy
 
 - Fully managed database proxy for RDS.
@@ -239,7 +239,20 @@
 - Master + up to 15 Aurora Read Replicas serve reads.
 - **Support for Cross Region Replication.**
 
-## 2.2. Features of Aurora
+## 2.2. Global Aurora
+
+- **Aurora Cross Region Read Replicas**
+  - Useful for disaster recovery.
+  - Simple to put in place.
+- **Aurora Global Database (recommended)**
+  - 1 Primary Region (read / write).
+  - Up to 5 secondary (read-only) regions, replication lag is less than 1 second.
+  - Up to 16 Read Replicas per secondary region.
+  - Helps for decreasing latency.
+  - Promoting another region (for disaster recovery) has an RTO of < 1 minute.
+  - **Typical cross-region replication takes less than 1 second.**
+
+## 2.3. Features of Aurora
 
 - Automatic fail-over.
 - Backup and Recovery.
@@ -251,7 +264,7 @@
 - Routine Maintenance.
 - Backtrack: restore data at any point of time without using backups.
 
-## 2.3. Aurora Security
+## 2.4. Aurora Security
 
 - Similar to RDS because uses the same engines.
 - Encryption at rest using KMS.

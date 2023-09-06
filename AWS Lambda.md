@@ -90,7 +90,7 @@
 - [DynamoDB](AWS%20DynamoDB.md)
 - [AWS Cognito](AWS%20Cognito.md)
 - AWS API Gateway
-- [Amazon S3](AWS%20S3.md)
+- [Amazon S3](Amazon%20S3.md)
 - AWS SNS & SQS
 - AWS Kinesis Data Firehose
 - Aurora Serverless

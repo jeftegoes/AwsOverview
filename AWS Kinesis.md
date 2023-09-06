@@ -105,7 +105,7 @@
   - The difference between current time and when the last record of the `GetRecords` call was written to the stream.
   - Used to track the progress of Kinesis Consumers (tracks the read position).
   - `IteratorAgeMilliseconds` = 0, then records being read are completely caught up with the Stream.
-  - `IteratorAgeMilliseconds` > 0 means we’re not processing the records fast enough.
+  - `IteratorAgeMilliseconds` > 0 means we're not processing the records fast enough.
 
 ### 2.4.1. Consumers Types
 

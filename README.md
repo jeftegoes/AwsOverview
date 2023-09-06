@@ -57,7 +57,7 @@
   - [8.14. Amazon QLDB](#814-amazon-qldb)
   - [8.15. Amazon Managed Blockchain](#815-amazon-managed-blockchain)
   - [8.16. AWS Glue](#816-aws-glue)
-  - [8.17. DMS - Database Migration Service](#817-dms---database-migration-service)
+  - [8.17. AWS Database Migration Service (DMS)](#817-aws-database-migration-service-dms)
   - [8.18. Databases \& Analytics Summary in AWS](#818-databases--analytics-summary-in-aws)
 - [9. Other Compute Services: ECS, Lambda, Batch, Lightsail](#9-other-compute-services-ecs-lambda-batch-lightsail)
   - [9.1. ECS - Elastic Container Service, Fargate and ECR - Elastic Container Registry](#91-ecs---elastic-container-service-fargate-and-ecr---elastic-container-registry)
@@ -538,7 +538,7 @@
 
 # 7. Amazon S3
 
-[AWS S3](AWS%20S3.md)
+[AWS S3](Amazon%20S3.md)
 
 ## 7.1. AWS Snow Family
 
@@ -546,13 +546,7 @@
 
 ## 7.2. AWS Storage Gateway
 
-- Bridge between on-premise data and cloud data in S3
-- Hybrid storage service to allow on- premises to seamlessly use the AWS Cloud
-- Use cases: disaster recovery, backup & restore, tiered storage
-- Types of Storage Gateway:
-  - File Gateway
-  - Volume Gateway
-  - Tape Gateway
+[AWS Storage Gateway](AWS%20Storage%20Gateway.md)
 
 ## 7.3. Amazon S3 - Summary
 
@@ -637,11 +631,11 @@
 
 ## 8.6. DynamoDB
 
-[AWS DynamoDB](AWS%20DynamoDB.md)
+- **DynamoDB is a fast and flexible non-relational database service for any scale. It can scale with no downtime, it can process millions of requests per second, and is fast and consistent in performance.** [AWS DynamoDB](AWS%20DynamoDB.md)
 
 ## 8.7. ElastiCache
 
-[AWS ElastiCache](AWS%20ElastiCache.md)
+- **Amazon ElastiCache is a web service that makes it easy to deploy and run Memcached or Redis protocol-compliant server nodes in the cloud. ElastiCache caches are in-memory databases with high performance, low latency. They help reduce load off databases for read intensive workloads.** [AWS ElastiCache](AWS%20ElastiCache.md)
 
 ## 8.8. Redshift Overview
 
@@ -732,14 +726,9 @@
 
 - **AWS Glue is a fully managed extract, transform, and load (ETL) service that makes it easy for customers to prepare and load their data for analytics.** [AWS Glue](AWS%20Glue.md)
 
-## 8.17. DMS - Database Migration Service
+## 8.17. AWS Database Migration Service (DMS)
 
-- **AWS Database Migration Service helps you migrate databases to AWS quickly and securely. The source database remains fully operational during the migration, minimizing downtime to applications that rely on the database.**
-- Quickly and securely migrate databases to AWS, resilient, self healing
-- The source database remains available during the migration
-- Supports:
-  - Homogeneous migrations: ex Oracle to Oracle
-  - Heterogeneous migrations: ex Microsoft SQL Server to Aurora
+- **AWS Database Migration Service helps you migrate databases to AWS quickly and securely. The source database remains fully operational during the migration, minimizing downtime to applications that rely on the database.** [AWS Database Migration Service](AWS%20Database%20Migration%20Service.md)
 
 ## 8.18. Databases & Analytics Summary in AWS
 
