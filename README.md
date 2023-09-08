@@ -33,8 +33,16 @@
   - [4.1. EC2 - Summary](#41-ec2---summary)
 - [5. AWS EC2 EBS Elastic Block Storage](#5-aws-ec2-ebs-elastic-block-storage)
   - [5.1. EC2 EBS Summary](#51-ec2-ebs-summary)
-- [6. AWS ELB - Elastic Load Balancing and AWS ASG - Auto Scaling Groups](#6-aws-elb---elastic-load-balancing-and-aws-asg---auto-scaling-groups)
-  - [6.1. ELB and ASG - Summary](#61-elb-and-asg---summary)
+- [6. Scalability and High Availability](#6-scalability-and-high-availability)
+  - [6.1. Vertical Scalability](#61-vertical-scalability)
+  - [6.2. Horizontal Scalability](#62-horizontal-scalability)
+  - [6.3. High Availability](#63-high-availability)
+  - [6.4. High Availability and Scalability for EC2](#64-high-availability-and-scalability-for-ec2)
+  - [6.5. Scalability vs Elasticity (vs Agility)](#65-scalability-vs-elasticity-vs-agility)
+  - [6.6. AWS ELB - Elastic Load Balancing](#66-aws-elb---elastic-load-balancing)
+  - [6.7. AWS ASG - Auto Scaling Groups](#67-aws-asg---auto-scaling-groups)
+  - [6.8. Multi AZ in AWS](#68-multi-az-in-aws)
+    - [6.8.1. ELB and ASG - Summary](#681-elb-and-asg---summary)
 - [7. Amazon S3](#7-amazon-s3)
   - [7.1. AWS Snow Family](#71-aws-snow-family)
   - [7.2. AWS Storage Gateway](#72-aws-storage-gateway)
@@ -170,14 +178,14 @@
   - [18.8. Billing Alarms in CloudWatch](#188-billing-alarms-in-cloudwatch)
   - [18.9. AWS Budgets](#189-aws-budgets)
   - [18.10. AWS Trusted Advisor](#1810-aws-trusted-advisor)
-  - [18.12. AWS Support Plans Pricing](#1812-aws-support-plans-pricing)
-    - [18.12.1. AWS Basic Support Plan](#18121-aws-basic-support-plan)
-    - [18.12.2. AWS Developer Support Plan](#18122-aws-developer-support-plan)
-    - [18.12.3. AWS Business Support Plan (24/7)](#18123-aws-business-support-plan-247)
-    - [18.12.4. AWS Enterprise On-Ramp Support Plan (24/7)](#18124-aws-enterprise-on-ramp-support-plan-247)
-    - [18.12.5. AWS Enterprise Support Plan (24/7)](#18125-aws-enterprise-support-plan-247)
-  - [18.13. Account Best Practices - Summary](#1813-account-best-practices---summary)
-  - [18.14. Billing and Costing Tools - Summary](#1814-billing-and-costing-tools---summary)
+  - [18.11. AWS Support Plans Pricing](#1811-aws-support-plans-pricing)
+    - [18.11.1. AWS Basic Support Plan](#18111-aws-basic-support-plan)
+    - [18.11.2. AWS Developer Support Plan](#18112-aws-developer-support-plan)
+    - [18.11.3. AWS Business Support Plan (24/7)](#18113-aws-business-support-plan-247)
+    - [18.11.4. AWS Enterprise On-Ramp Support Plan (24/7)](#18114-aws-enterprise-on-ramp-support-plan-247)
+    - [18.11.5. AWS Enterprise Support Plan (24/7)](#18115-aws-enterprise-support-plan-247)
+  - [18.12. Account Best Practices - Summary](#1812-account-best-practices---summary)
+  - [18.13. Billing and Costing Tools - Summary](#1813-billing-and-costing-tools---summary)
 - [19. AWS STS - Security Token Service](#19-aws-sts---security-token-service)
 - [20. AWS Directory Services](#20-aws-directory-services)
 - [21. Advanced Identity](#21-advanced-identity)
@@ -520,11 +528,82 @@
 - FSx for Windows: Network File System for Windows servers.
 - FSx for Lustre: High Performance Computing Linux file system.
 
-# 6. AWS ELB - Elastic Load Balancing and AWS ASG - Auto Scaling Groups
+# 6. Scalability and High Availability
+
+- Scalability means that an application / system can handle greater loads by adapting.
+- There are two kinds of scalability:
+  - Vertical Scalability.
+  - Horizontal Scalability (= elasticity).
+- **Scalability is linked but different to High Availability.**
+
+## 6.1. Vertical Scalability
+
+- Vertical Scalability means increasing the size of the instance.
+- For example, your application runs on a t2.micro.
+  - Scaling that application vertically means running it on a t2.large.
+- Vertical scalability is very common for **NON** distributed systems, such as a database.
+- RDS, ElastiCache are services that can scale vertically.
+- There's usually a limit to how much you can vertically scale (hardware limit).
+
+## 6.2. Horizontal Scalability
+
+- Horizontal Scalability means increasing the number of instances / systems for your application.
+- Horizontal scaling implies distributed systems.
+- This is very common for web applications / modern applications.
+- It's easy to horizontally scale thanks the cloud offerings such as Amazon EC2.
+
+## 6.3. High Availability
+
+- High Availability usually goes **hand in hand with Horizontal Scaling**.
+- High availability means running your application / system in at least 2 data centers (Availability Zones).
+- The goal of high availability is to survive a data center loss (disaster).
+- The high availability can be passive (for RDS Multi AZ for example).
+- The high availability can be active (for horizontal scaling).
+
+## 6.4. High Availability and Scalability for EC2
+
+- **Vertical Scaling:** Increase instance size (= scale up / down).
+  - From: t2.nano - 0.5G of RAM, 1 vCPU.
+  - To: u-12tb1.metal - 12.3 TB of RAM, 448 vCPUs.
+- **Horizontal Scaling:** Increase number of instances (= scale out / in).
+  - Auto Scaling Group.
+  - Load Balancer.
+- **High Availability:** Run instances for the same application across multi AZ.
+  - Auto Scaling Group multi AZ.
+  - Load Balancer multi AZ.
+
+## 6.5. Scalability vs Elasticity (vs Agility)
+
+- **Scalability:** Ability to accommodate a larger load by making the hardware stronger (scale up), or by adding nodes (scale out).
+- **Elasticity:** Once a system is scalable, elasticity means that there will be some "auto-scaling" so that the system can scale based on the load.
+  - This is "cloud-friendly": pay-per-use, match demand, optimize costs.
+- **Agility:** (not related to scalability - distractor) new IT resources are only a click away, which means that you reduce the time to make those resources available to your developers from weeks to just minutes.
+
+## 6.6. AWS ELB - Elastic Load Balancing
 
 [AWS ELB and ASG](AWS%20ELB%20and%20ASG.md)
 
-## 6.1. ELB and ASG - Summary
+## 6.7. AWS ASG - Auto Scaling Groups
+
+- **Auto Scaling in EC2 allows you to have the right number of instances to handle the application load. Auto Scaling in DynamoDB automatically adjusts read and write throughput capacity, in response to dynamically changing request volumes, with zero downtime. These are both examples of horizontal scaling.**
+- **For each Auto Scaling Group, there's a Cooldown Period after each scaling activity. In this period, the ASG doesn't launch or terminate EC2 instances. This gives time to metrics to stabilize. The default value for the Cooldown Period is 300 seconds (5 minutes).** [AWS ASG](AWS%20ASG.md)
+
+## 6.8. Multi AZ in AWS
+
+- Services where Multi-AZ must be enabled manually:
+  - EFS, ELB, ASG, Beanstalk: assign AZ.
+  - RDS, ElastiCache: multi-AZ (synchronous standby DB for failovers).
+  - Aurora:
+    - Data is stored automatically across multi-AZ.
+    - Can have multi-AZ for the DB itself (same as RDS).
+  - OpenSearch (managed): multi master.
+  - Jenkins (self deployed): multi master.
+- Service where Multi-AZ is implicitly there:
+  - S3 (except OneZone-Infrequent Access).
+  - DynamoDB.
+  - All of AWS proprietary, managed services.
+
+### 6.8.1. ELB and ASG - Summary
 
 - High Availability vs Scalability (vertical and horizontal) vs Elasticity vs Agility in the Cloud.
 - Elastic Load Balancers (ELB):
@@ -1779,15 +1858,15 @@
 - **AWS Trusted Advisor is an online tool that provides you real time guidance to help you provision your resources following AWS best practices, including performance, security, and fault tolerance, but also cost optimization and service limits.**
   [AWS Trusted Advisor](AWS%20Trusted%20Advisor.md)
 
-## 18.12. AWS Support Plans Pricing
+## 18.11. AWS Support Plans Pricing
 
-### 18.12.1. AWS Basic Support Plan
+### 18.11.1. AWS Basic Support Plan
 
 - **Customer Service & Communities -** 24x7 access to customer service, documentation, whitepapers, and support forums.
 - **AWS Trusted Advisor -** Access to the 7 core Trusted Advisor checks and guidance to provision your resources following best practices to increase performance and improve security.
 - **AWS Personal Health Dashboard -** A personalized view of the health of AWS services, and alerts when your resources are impacted.
 
-### 18.12.2. AWS Developer Support Plan
+### 18.11.2. AWS Developer Support Plan
 
 - All Basic Support Plan +
 - **Business hours email access** to Cloud Support Associates.
@@ -1796,7 +1875,7 @@
   - General guidance: < 24 business hours.
   - System impaired: < 12 business hours.
 
-### 18.12.3. AWS Business Support Plan (24/7)
+### 18.11.3. AWS Business Support Plan (24/7)
 
 - Intended to be used if you have **production workloads**.
 - **Trusted Advisor** - Full set of checks + API access.
@@ -1809,7 +1888,7 @@
   - Production system impaired: < 4 hours.
   - Production system down: < 1 hour.
 
-### 18.12.4. AWS Enterprise On-Ramp Support Plan (24/7)
+### 18.11.4. AWS Enterprise On-Ramp Support Plan (24/7)
 
 - Intended to be used if you have production or business critical workloads.
 - All of Business Support Plan +
@@ -1821,7 +1900,7 @@
   - Production system down: < 1 hour.
   - **Business-critical system down: < 30 minutes**.
 
-### 18.12.5. AWS Enterprise Support Plan (24/7)
+### 18.11.5. AWS Enterprise Support Plan (24/7)
 
 - Intended to be used if you have **mission critical workloads**.
 - All of Business Support Plan +
@@ -1833,7 +1912,7 @@
   - Production system down: < 1 hour.
   - **Business-critical system down: < 15 minutes**.
 
-## 18.13. Account Best Practices - Summary
+## 18.12. Account Best Practices - Summary
 
 - Operate multiple accounts using **Organizations**.
 - Use **SCP** (service control policies) to restrict account power.
@@ -1847,7 +1926,7 @@
 - **CloudTrail** to record API calls made within your account.
 - **If your Account is compromised:** change the root password, delete and rotate all passwords / keys, contact the AWS support.
 
-## 18.14. Billing and Costing Tools - Summary
+## 18.13. Billing and Costing Tools - Summary
 
 - **Compute Optimizer:** recommends resources, configurations to reduce cost.
 - **Pricing Calculator:** cost of services on AWS.

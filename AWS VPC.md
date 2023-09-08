@@ -3,17 +3,20 @@
 ## Contents <!-- omit in toc -->
 
 - [1. VPC and Subnets Primer](#1-vpc-and-subnets-primer)
-- [2. Internet Gateway and NAT Gateways](#2-internet-gateway-and-nat-gateways)
-  - [2.1. Subnet](#21-subnet)
-- [3. Network ACL and Security Groups](#3-network-acl-and-security-groups)
-  - [3.1. Network ACLs vs Security Groups](#31-network-acls-vs-security-groups)
-- [4. VPC Flow Logs](#4-vpc-flow-logs)
-- [5. VPC Peering](#5-vpc-peering)
-- [6. VPC Endpoints](#6-vpc-endpoints)
-- [7. Site to Site VPN \& Direct Connect](#7-site-to-site-vpn--direct-connect)
-- [8. Site-to-Site VPN](#8-site-to-site-vpn)
-- [9. Transit Gateway](#9-transit-gateway)
-- [10. VPC Closing Comments](#10-vpc-closing-comments)
+- [2. NAT Gateways](#2-nat-gateways)
+  - [2.1. NAT Gateway with High Availability](#21-nat-gateway-with-high-availability)
+  - [2.2. NAT Gateway vs. NAT Instance](#22-nat-gateway-vs-nat-instance)
+- [3. Internet Gateway](#3-internet-gateway)
+  - [3.1. Subnet](#31-subnet)
+- [4. Network ACL and Security Groups](#4-network-acl-and-security-groups)
+  - [4.1. Network ACLs vs Security Groups](#41-network-acls-vs-security-groups)
+- [5. VPC Flow Logs](#5-vpc-flow-logs)
+- [6. VPC Peering](#6-vpc-peering)
+- [7. VPC Endpoints](#7-vpc-endpoints)
+- [8. Site to Site VPN \& Direct Connect](#8-site-to-site-vpn--direct-connect)
+- [9. Site-to-Site VPN](#9-site-to-site-vpn)
+- [10. Transit Gateway](#10-transit-gateway)
+- [11. VPC Closing Comments](#11-vpc-closing-comments)
 
 # 1. VPC and Subnets Primer
 
@@ -26,21 +29,42 @@
 
 ![AWS VPC ](Images/AwsVPCDiagram.png)
 
-# 2. Internet Gateway and NAT Gateways
+# 2. NAT Gateways
 
 - **NAT Gateways allow your instances in your private subnets to access the Internet while remaining private, and are managed by AWS.**
-- **Internet Gateways** helps our VPC instances connect with the internet.
-- Public Subnets have a route to the internet gateway.
 - **NAT Gateways** (AWS-managed) and **NAT Instances** (self-managed) allow your instances in your **Private Subnets** to access the internet while remaining private.
+- AWS-managed NAT, higher bandwidth, high availability, no administration.
+- Pay per hour for usage and bandwidth.
+- NATGW is created in a specific Availability Zone, uses an Elastic IP.
+- Can't be used by EC2 instance in the same subnet (only from other subnets).
+- Requires an IGW (Private Subnet => NATGW => IGW).
+- 5 Gbps of bandwidth with automatic scaling up to 100 Gbps.
+- No Security Groups to manage / required.
 
-## 2.1. Subnet
+## 2.1. NAT Gateway with High Availability
 
+- **NAT Gateway is resilient within a single Availability Zone.**
+- Must create **multiple NAT** Gateways in **multiple AZs** for fault-tolerance.
+- There is no cross-AZ failover needed because if an AZ goes down it doesn't need NAT.
+
+## 2.2. NAT Gateway vs. NAT Instance
+
+[Compare NAT gateways and NAT instances](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-comparison.html)
+
+# 3. Internet Gateway
+
+- **Internet Gateways** helps our VPC instances connect with the internet.
+
+## 3.1. Subnet
+
+- Public Subnets have a route to the internet gateway.
 - A subnet can only be associated with one route table at a time (1..1).
-  - A subnet is **implicitly associated** with the **main route table** if it is not explicitly associated with a particular route table. So, a subnet is always associated with some route table.
+  - A subnet is **implicitly associated** with the **main route table** if it is not explicitly associated with a particular route table.
+  - So, a subnet is always associated with some route table.
   - **But you can associate multiple subnets with the same subnet route table (1..N).**
 - A route table contains a set of rules, called routes, that are used to determine where network traffic from your subnet or gateway is directed. The route table in the instance's subnet should have a route defined to the Internet Gateway.
 
-# 3. Network ACL and Security Groups
+# 4. Network ACL and Security Groups
 
 - **A network access control list (NACL) is an optional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets.**
 - **They have both ALLOW and DENY rules.**
@@ -54,7 +78,7 @@
   - Can have only ALLOW rules.
   - Rules include IP addresses and other security groups.
 
-## 3.1. Network ACLs vs Security Groups
+## 4.1. Network ACLs vs Security Groups
 
 | Security group                                                                                                                                               | Network ACL                                                                                                                                                                            |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -66,7 +90,7 @@
 
 - https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html
 
-# 4. VPC Flow Logs
+# 5. VPC Flow Logs
 
 - Capture information about IP traffic going into your interfaces:
   - **VPC Flow** Logs.
@@ -79,14 +103,14 @@
 - Captures network information from AWS managed interfaces too: Elastic Load Balancers, ElastiCache, RDS, Aurora, etc...
 - VPC Flow logs data can go to S3 / CloudWatch Logs.
 
-# 5. VPC Peering
+# 6. VPC Peering
 
 - Connect two VPC, privately using AWS' network.
 - Make them behave as if they were in the same network.
 - Must not have overlapping CIDR (IP address range).
 - VPC Peering connection is not transitive (must be established for each VPC that need to communicate with one another).
 
-# 6. VPC Endpoints
+# 7. VPC Endpoints
 
 - Endpoints allow you to connect to AWS Services **using a private network** instead of the public www network.
 - This gives you enhanced security and lower latency to access AWS services.
@@ -95,7 +119,7 @@
 
 ![VPC Endpoints diagram](Images/VPCEndpoints.png)
 
-# 7. Site to Site VPN & Direct Connect
+# 8. Site to Site VPN & Direct Connect
 
 - **Site to Site VPN:**
   - Connect an on-premises VPN to AWS.
@@ -109,19 +133,19 @@
     - Takes at least a month to establish.
 - Note: **Site-to-site VPN** and **Direct Connect** cannot access **VPC endpoints**.
 
-# 8. Site-to-Site VPN
+# 9. Site-to-Site VPN
 
 - On-premises: must use a **Customer Gateway** (CGW)
 - AWS: must use a **Virtual Private Gateway** (VGW)
 
-# 9. Transit Gateway
+# 10. Transit Gateway
 
 - **Transit Gateway connects thousands of VPC and on-premises networks together in a single gateway.**
 - For having transitive peering between thousands of VPC and on-premises, hub-and-spoke (star) connection.
 - One single Gateway to provide this functionality.
 - Works with Direct Connect Gateway, VPN connections.
 
-# 10. VPC Closing Comments
+# 11. VPC Closing Comments
 
 - **VPC:** Virtual Private Cloud.
 - **Subnets:** Tied to an AZ, network partition of the VPC.
