@@ -21,9 +21,9 @@
   - Python.
   - Java.
   - .NET.
-- Contains high level components called **constructs**.
+- Contains high level components called `constructs`.
 - The code is "compiled" into a CloudFormation template (JSON/YAML).
-- You can therefore deploy infrastructure and application runtime code together.
+- **You can therefore deploy infrastructure and application runtime code together.**
   - Great for Lambda functions.
   - Great for Docker containers in ECS / EKS.
 
@@ -33,12 +33,12 @@
 
 # 3. CDK vs SAM
 
-- **SAM:**
+- **SAM**
   - Serverless focused.
   - Write your template declaratively in JSON or YAML.
   - Great for quickly getting started with Lambda.
   - Leverages CloudFormation.
-- **CDK:**
+- **CDK**
   - All AWS services.
   - Write infra in a programming language:
     - JavaScript/TypeScript.
@@ -46,6 +46,8 @@
     - Java.
     - .NET.
   - Leverages CloudFormation.
+- You can use SAM CLI to locally test your CDK apps.
+- **You must first run cdk synth.**
 
 # 4. Constructs
 

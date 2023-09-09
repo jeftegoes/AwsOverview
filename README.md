@@ -79,12 +79,9 @@
 - [10. Deploying and Managing Infrastructure at Scale](#10-deploying-and-managing-infrastructure-at-scale)
   - [10.1. CloudFormation](#101-cloudformation)
   - [10.2. AWS Cloud Development Kit (CDK)](#102-aws-cloud-development-kit-cdk)
-  - [10.3. Developer problems on AWS](#103-developer-problems-on-aws)
   - [10.4. AWS Elastic Beanstalk Overview](#104-aws-elastic-beanstalk-overview)
   - [10.5. AWS CI/CD](#105-aws-cicd)
   - [10.6. AWS Systems Manager (SSM)](#106-aws-systems-manager-ssm)
-    - [10.6.1. How Systems Manager works?](#1061-how-systems-manager-works)
-    - [10.6.2. Systems Manager - SSM Session Manager](#1062-systems-manager---ssm-session-manager)
   - [10.7. AWS OpsWorks](#107-aws-opsworks)
   - [10.8. AWS Amplify](#108-aws-amplify)
   - [10.9. Deployment - Summary](#109-deployment---summary)
@@ -209,8 +206,8 @@
   - [22.11. AWS Step Functions](#2211-aws-step-functions)
   - [22.12. Amazon AppFlow](#2212-amazon-appflow)
   - [22.13. AWS CloudSearch](#2213-aws-cloudsearch)
-  - [22.14. Aws Service Catalog](#2214-aws-service-catalog)
-  - [22.15. Amazon AWS SES - Simple Email Service](#2215-amazon-aws-ses---simple-email-service)
+  - [22.14. AWS Service Catalog](#2214-aws-service-catalog)
+  - [22.15. Amazon SES - Simple Email Service](#2215-amazon-ses---simple-email-service)
 - [23. AWS Architecting \& Ecosystem](#23-aws-architecting--ecosystem)
   - [23.1. Well Architected Framework General - Guiding Principles](#231-well-architected-framework-general---guiding-principles)
   - [23.2. AWS Cloud Best Practices - Design Principles](#232-aws-cloud-best-practices---design-principles)
@@ -912,16 +909,6 @@
 
 [AWS Cloud Development Kit](AWS%20Cloud%20Development%20Kit.md)
 
-## 10.3. Developer problems on AWS
-
-- Managing infrastructure.
-- Deploying Code.
-- Configuring all the databases, load balancers, etc.
-- Scaling concerns.
-- Most web apps have the same architecture (ALB + ASG).
-- All the developers want is for their code to run!
-- Possibly, consistently across different applications and environments.
-
 ## 10.4. AWS Elastic Beanstalk Overview
 
 - **Elastic Beanstalk is a Platform as a Service (PaaS).**
@@ -935,31 +922,7 @@
 
 ## 10.6. AWS Systems Manager (SSM)
 
-- **AWS Systems Manager gives you visibility and control of your infrastructure on AWS. It is used for patching systems at scale.**
-- Helps you manage your EC2 and On-Premises systems at scale.
-- Another Hybrid AWS service.
-- Get operational insights about the state of your infrastructure.
-- Suite of 10+ products.
-- Most important features are:
-  - Patching automation for enhanced compliance.
-  - Run commands across an entire fleet of servers.
-  - Store parameter configuration with the SSM Parameter Store.
-- Works for both Windows and Linux OS.
-
-### 10.6.1. How Systems Manager works?
-
-- We need to install the SSM agent onto the systems we control.
-- Installed by default on Amazon Linux AMI & some Ubuntu AMI.
-- If an instance can't be controlled with SSM, it's probably an issue with the SSM agent!
-- Thanks to the SSM agent, we can run commands, patch & configure our servers.
-
-### 10.6.2. Systems Manager - SSM Session Manager
-
-- Allows you to start a secure shell on your EC2 and on-premises servers.
-- No SSH access, bastion hosts, or SSH keys needed.
-- No port 22 needed (better security).
-- Supports Linux, macOS, and Windows.
-- Send session log data to S3 or CloudWatch Logs.
+- **AWS Systems Manager gives you visibility and control of your infrastructure on AWS. It is used for patching systems at scale.** [AWS Systems Manager](AWS%20Systems%20Manager.md)
 
 ## 10.7. AWS OpsWorks
 
@@ -2087,7 +2050,7 @@
 
 ## 22.11. AWS Step Functions
 
-- AWS Step Functions is a low-code, visual workflow service that developers use to build distributed applications, automate IT and business processes, and build data and machine learning pipelines using AWS services. [AWS Step Functions](AWS%20Step%20Functions.md)
+- **AWS Step Functions is a low-code visual workflow service used to orchestrate AWS services, automate business processes, and build Serverless applications. It manages failures, retries, parallelization, service integrations, ...** [AWS Step Functions](AWS%20Step%20Functions.md)
 
 ## 22.12. Amazon AppFlow
 
@@ -2113,17 +2076,13 @@
 - Amazon CloudSearch is a managed service in the AWS Cloud that makes it simple and cost-effective to set up, manage, and scale a search solution for your website or application.
 - Amazon CloudSearch supports 34 languages and popular search features such as highlighting, autocomplete, and geospatial search.
 
-## 22.14. Aws Service Catalog
+## 22.14. AWS Service Catalog
 
-- AWS Service Catalog allows organizations to create and manage catalogs of IT services that are approved for use on AWS.
-- These IT services can include everything from virtual machine images, servers, software, and databases to complete multi-tier application architectures.
-- AWS Service Catalog allows you to centrally manage deployed IT services and your applications, resources, and metadata.
-- This helps you achieve consistent governance and meet your compliance requirements, while enabling users to quickly deploy only the approved IT services they need. With AWS Service Catalog AppRegistry, organizations can understand the application context of their AWS resources.
-- You can define and manage your applications and their metadata, to keep track of cost, performance, security, compliance and operational status at the application level.
+[AWS Service Catalog](AWS%20Service%20Catalog.md)
 
-## 22.15. Amazon AWS SES - Simple Email Service
+## 22.15. Amazon SES - Simple Email Service
 
-[AWS SES](AWS%20SES.md)
+[AWS SES](Amazon%20SES.md)
 
 # 23. AWS Architecting & Ecosystem
 

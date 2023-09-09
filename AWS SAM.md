@@ -4,7 +4,7 @@
 
 - [1. Introduction](#1-introduction)
 - [2. Recipe](#2-recipe)
-  - [Example](#example)
+  - [2.1. Example](#21-example)
 - [3. CLI Debugging](#3-cli-debugging)
 - [4. Policy Templates](#4-policy-templates)
 - [5. SAM and CodeDeploy](#5-sam-and-codedeploy)
@@ -45,7 +45,7 @@
 
 ![SAM Deployment](Images/AWSSAMDeployment.png)
 
-## Example
+## 2.1. Example
 
 ```
   # SAM FILE
@@ -110,6 +110,18 @@
 - Traffic Shifting feature.
 - Pre and Post traffic hooks features to validate deployment (before the traffic shift starts and after it ends).
 - Easy & automated rollback using CloudWatch Alarms.
+- `AutoPublishAlias`
+  - Detects when new code is being deployed.
+  - Creates and publishes an updated version of that function with the latest code.
+  - Points the alias to the updated version of the Lambda function.
+- `DeploymentPreference`
+  - Canary.
+  - Linear.
+  - AllAtOnce.
+- `Alarms`
+  - Alarms that can trigger a rollback.
+- `Hooks`
+  - Pre and post traffic shifting Lambda functions to test your deployment.
 
 # 6. Local Capabilities
 

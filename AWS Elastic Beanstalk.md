@@ -28,7 +28,8 @@
   - [13.1. Multi Docker Container](#131-multi-docker-container)
 - [14. HTTPS](#14-https)
 - [15. Web Server vs Worker Environment](#15-web-server-vs-worker-environment)
-- [16. Custom Platform (Advanced)](#16-custom-platform-advanced)
+- [16. Notifications](#16-notifications)
+- [17. Custom Platform (Advanced)](#17-custom-platform-advanced)
 
 # 1. Developer problems on AWS
 
@@ -54,7 +55,7 @@
 
 - **Application:** Collection of Elastic Beanstalk components (environments, versions, configurations, ...).
 - **Application Version:** An iteration of your application code.
-- Environment
+- **Environment**
   - Collection of AWS resources running an application version (only one application version at a time).
   - **Tiers:** Web Server Environment Tier & Worker Environment Tier.
   - You can create multiple environments (dev, test, prod, ...).
@@ -304,7 +305,15 @@
 - Example: processing a video, generating a zip file, etc.
 - You can define periodic tasks in a file `cron.yaml`.
 
-# 16. Custom Platform (Advanced)
+# 16. Notifications
+
+- Create Rules in EventBridge to act to the following events:
+  - **Environment Operations Status:** `create`, `update`, `terminate` (start, success, fail).
+  - **Other Resources Status:** ASG, ELB, EC2 Instance (created, deleted).
+  - **Managed Updates Status:** Started, failed.
+  - **Environment Health Status.**
+
+# 17. Custom Platform (Advanced)
 
 - Custom Platforms are very advanced, they allow to define from scratch:
   - The Operating System (OS).

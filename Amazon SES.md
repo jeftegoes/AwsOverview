@@ -1,4 +1,4 @@
-# AWS SES - Simple Email Service <!-- omit in toc -->
+# Amazon SES - Simple Email Service <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

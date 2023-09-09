@@ -14,7 +14,6 @@
 
 # 1. Introduction
 
-- **AWS Step Functions is a low-code visual workflow service used to orchestrate AWS services, automate business processes, and build Serverless applications. It manages failures, retries, parallelization, service integrations, ...**
 - Model your **workflows** as **state machines (one per workflow)**:
   - Order fulfillment, Data processing.
   - Web applications, Any workflow.
