@@ -731,10 +731,10 @@
 
 - EMR stands for "Elastic MapReduce"
 - **Amazon EMR is a web service that enables businesses, researchers, data analysts, and developers to easily and cost-effectively process vast amounts of data. EMR helps creating Apache Hadoop clusters (Big Data) to analyze and process vast amount of data.**
-- The clusters can be made of hundreds of EC2 instances
+- The clusters can be made of hundreds of EC2 instances.
 - Also supports Apache Spark, HBase, Presto, Flink...
-- EMR takes care of all the provisioning and configuration
-- Auto-scaling and integrated with Spot instances
+- EMR takes care of all the provisioning and configuration.
+- Auto-scaling and integrated with Spot instances.
 - Use cases: data processing, machine learning, web indexing, big data...
 
 ## 8.10. Amazon Athena
@@ -2082,7 +2082,7 @@
 
 ## 22.15. Amazon SES - Simple Email Service
 
-[AWS SES](Amazon%20SES.md)
+- **Fully managed service to send emails securely, globally and at scale.** [AWS SES](Amazon%20SES.md)
 
 # 23. AWS Architecting & Ecosystem
 

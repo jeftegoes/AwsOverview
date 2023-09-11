@@ -30,7 +30,7 @@
   - [19.5. CloudWatch Alarm: good to know](#195-cloudwatch-alarm-good-to-know)
 - [20. Synthetics Canary](#20-synthetics-canary)
   - [20.1. Canary Blueprints](#201-canary-blueprints)
-- [21. CloudWatch Events (Will be replaced with EventBridge)](#21-cloudwatch-events-will-be-replaced-with-eventbridge)
+- [21. CloudWatch Events (Will be replaced with Amazon EventBridge)](#21-cloudwatch-events-will-be-replaced-with-amazon-eventbridge)
 - [22. CloudWatch Evidently](#22-cloudwatch-evidently)
 
 # 1. Why Monitoring is Important
@@ -313,7 +313,7 @@
 - **Canary Recorder:** Used with CloudWatch Synthetics Recorder (record your actions on a website and automatically generates a script for that).
 - **GUI Workflow Builder:** Verifies that actions can be taken on your webpage (e.g., test a webpage with a login form).
 
-# 21. CloudWatch Events (Will be replaced with EventBridge)
+# 21. CloudWatch Events (Will be replaced with Amazon EventBridge)
 
 - Event Pattern: Intercept events from AWS services (Sources):
   - Example sources: EC2 Instance Start, CodeBuild Failure, S3, Trusted Advisor.
@@ -324,6 +324,8 @@
   - Integration: SQS, SNS, Kinesis Data Streams, Kinesis Data Firehose.
   - Orchestration: Step Functions, CodePipeline, CodeBuild.
   - Maintenance: SSM, EC2 Actions.
+
+[Amazon EventBridge](Amazon%20EventBridge.md)
 
 # 22. CloudWatch Evidently
 

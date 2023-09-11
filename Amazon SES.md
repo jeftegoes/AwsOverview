@@ -6,7 +6,6 @@
 
 # 1. Introduction
 
-- **Fully managed service to send emails securely, globally and at scale.**
 - Allows inbound/outbound emails.
 - Reputation dashboard, performance insights, anti-spam feedback.
 - Provides statistics such as email deliveries, bounces, feedback loop results, email open.

@@ -1,4 +1,4 @@
-# AWS Route 53<!-- omit in toc -->
+# Amazon Route 53<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

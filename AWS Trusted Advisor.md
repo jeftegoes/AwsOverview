@@ -3,24 +3,27 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-  - [1.1. Checks Examples](#11-checks-examples)
+  - [1.1. Checks examples](#11-checks-examples)
+- [2. Monitoring](#2-monitoring)
+- [3. Integrations](#3-integrations)
+  - [3.1. Targets](#31-targets)
 
 # 1. Introduction
 
-- No need to install anything - high level AWS account assessment
+- No need to install anything - high level AWS account assessment.
 - **Analyze your AWS accounts and provides recommendations:**
-  - Cost optimization
-  - Performance
-  - Security
-  - Fault tolerance
-  - Service limits
-- Core Checks and recommendations - all customers
-- Can enable weekly email notification from the console
-- Full Trusted Advisor - Available for **Business & Enterprise** support plans
-  - Ability to set CloudWatch alarms when reaching limits
+  - Cost optimization.
+  - Performance.
+  - Security.
+  - Fault tolerance.
+  - Service limits.
+- Core Checks and recommendations - all customers.
+- Can enable weekly email notification from the console.
+- Full Trusted Advisor - Available for **Business & Enterprise** support plans.
+  - Ability to set CloudWatch alarms when reaching limits.
   - **Programmatic Access using AWS Support API.**
 
-## 1.1. Checks Examples
+## 1.1. Checks examples
 
 - **Cost Optimization**
   - Low utilization EC2 instances, idle load balancers, under-utilized EBS volumes...
@@ -35,3 +38,22 @@
   - EBS snapshots age, Availability Zone Balance.
   - ASG Multi-AZ, RDS Multi-AZ, ELB configuration...
 - **Service Limits.**
+
+# 2. Monitoring
+
+![Trusted Advisor - Monitoring](Images/AWSTrustedAdvisorMonitoring.png)
+
+# 3. Integrations
+
+- You can use [Amazon EventBridge](Amazon%20EventBridge.md) to detect and react to changes in the status of Trusted Advisor checks.
+- Then, based on the rules that you create, EventBridge invokes one or more target actions when a check status changes to the value you specify in a rule.
+- Depending on the type of status change, you might want to send notifications, capture status information, take corrective action, initiate events, or take other actions.
+
+## 3.1. Targets
+
+- You can select the following types of targets when using EventBridge as a part of your Trusted Advisor workflow:
+  - AWS Lambda functions
+  - Amazon Kinesis streams
+  - Amazon Simple Queue Service queues
+  - Built-in targets (CloudWatch alarm actions)
+  - Amazon Simple Notification Service topics
