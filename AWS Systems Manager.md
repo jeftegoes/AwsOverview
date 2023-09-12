@@ -41,10 +41,12 @@
 
 ## 1.1. How Systems Manager works?
 
-- We need to install the SSM agent onto the systems we control.
+- We need to install the **SSM Agent** onto the systems we control.
 - Installed by default on Amazon Linux AMI & some Ubuntu AMI.
-- If an instance can't be controlled with SSM, it's probably an issue with the SSM agent!
-- Thanks to the SSM agent, we can run commands, patch & configure our servers.
+- If an instance can't be controlled with SSM, it's probably an issue with the **SSM Agent**!
+- Thanks to the **SSM Agent**, we can run commands, patch & configure our servers.
+
+![SSM Agent](Images/AWSSystemsManagerSSMAgent.png)
 
 ## 1.2. Systems Manager - SSM Session Manager
 

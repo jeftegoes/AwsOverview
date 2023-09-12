@@ -1198,7 +1198,9 @@
 
 ## 14.5. AWS CloudTrail
 
-[AWS CloudTrail](AWS%20CloudTrail.md)
+- **Is a web service that records activity made on your account and delivers log files to your Amazon S3 bucket. AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account.**
+- **Can record the history of events/API calls made within you AWS account, which will help determine who or what deleted the resource. You should investigate it first.**
+  [AWS CloudTrail](AWS%20CloudTrail.md)
 
 ## 14.6. AWS X-Ray
 
@@ -2504,6 +2506,7 @@
 - OLTP Online Transaction Processing
 - OLAP Online Analytics Processing
 - OCI Open Container Initiative
+- OVA Open Virtualization Format
 
 ## 26.15. P
 
