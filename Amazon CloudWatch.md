@@ -1,10 +1,10 @@
-# AWS CloudWatch - Monitoring, Troubleshooting and Audit<!-- omit in toc -->
+# Amazon CloudWatch - Monitoring, Troubleshooting and Audit<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
 - [1. Why Monitoring is Important](#1-why-monitoring-is-important)
 - [2. Monitoring in AWS](#2-monitoring-in-aws)
-- [3. AWS CloudWatch Metrics](#3-aws-cloudwatch-metrics)
+- [3. Amazon CloudWatch Metrics](#3-aws-cloudwatch-metrics)
 - [4. EC2 Detailed monitoring](#4-ec2-detailed-monitoring)
 - [5. Metric Streams](#5-metric-streams)
 - [6. Custom Metrics](#6-custom-metrics)
@@ -19,19 +19,19 @@
 - [14. All kind of Logs](#14-all-kind-of-logs)
   - [14.1. AWS Managed Logs](#141-aws-managed-logs)
 - [15. Logs for EC2](#15-logs-for-ec2)
-- [16. Logs Agent \& Unified Agent](#16-logs-agent--unified-agent)
-- [17. Unified Agent - Metrics](#17-unified-agent---metrics)
-- [18. Logs Metric Filter](#18-logs-metric-filter)
-- [19. CloudWatch Alarms](#19-cloudwatch-alarms)
-  - [19.1. Alarm Targets](#191-alarm-targets)
-  - [19.2. Composite Alarms](#192-composite-alarms)
-  - [19.3. Evaluating an alarm](#193-evaluating-an-alarm)
-  - [19.4. EC2 Instance Recovery](#194-ec2-instance-recovery)
-  - [19.5. CloudWatch Alarm: good to know](#195-cloudwatch-alarm-good-to-know)
-- [20. Synthetics Canary](#20-synthetics-canary)
-  - [20.1. Canary Blueprints](#201-canary-blueprints)
-- [21. CloudWatch Events (Will be replaced with Amazon EventBridge)](#21-cloudwatch-events-will-be-replaced-with-amazon-eventbridge)
-- [22. CloudWatch Evidently](#22-cloudwatch-evidently)
+  - [15.1. Logs Agent \& Unified Agent](#151-logs-agent--unified-agent)
+  - [15.2. Unified Agent - Metrics](#152-unified-agent---metrics)
+- [16. Logs Metric Filter](#16-logs-metric-filter)
+- [17. CloudWatch Alarms](#17-cloudwatch-alarms)
+  - [17.1. Alarm Targets](#171-alarm-targets)
+  - [17.2. Composite Alarms](#172-composite-alarms)
+  - [17.3. Evaluating an alarm](#173-evaluating-an-alarm)
+  - [17.4. EC2 Instance Recovery](#174-ec2-instance-recovery)
+  - [17.5. CloudWatch Alarm: good to know](#175-cloudwatch-alarm-good-to-know)
+- [18. Synthetics Canary](#18-synthetics-canary)
+  - [18.1. Canary Blueprints](#181-canary-blueprints)
+- [19. CloudWatch Events (Will be replaced with Amazon EventBridge)](#19-cloudwatch-events-will-be-replaced-with-amazon-eventbridge)
+- [20. CloudWatch Evidently](#20-cloudwatch-evidently)
 
 # 1. Why Monitoring is Important
 
@@ -54,7 +54,7 @@
 
 # 2. Monitoring in AWS
 
-- **AWS CloudWatch**
+- **Amazon CloudWatch**
   - Metrics: Collect and track key metrics.
   - Logs: Collect, monitor, analyze and store log files.
   - Events: Send notifications when certain events happen in your AWS.
@@ -66,7 +66,7 @@
   - Internal monitoring of API calls being made.
   - Audit changes to AWS Resources by your users.
 
-# 3. AWS CloudWatch Metrics
+# 3. Amazon CloudWatch Metrics
 
 - CloudWatch provides metrics for every services in AWS.
 - **Metric** is a variable to monitor (CPUUtilization, NetworkIn...).
@@ -212,14 +212,16 @@
 
 # 15. Logs for EC2
 
-- By default, no logs from your EC2 machine will go to CloudWatch.
+- **By default, no logs from your EC2 machine will go to CloudWatch.**
 - You need to run a CloudWatch agent on EC2 to push the log files you want.
 - Make sure IAM permissions are correct.
 - The CloudWatch log agent can be setup on-premises too.
 
-# 16. Logs Agent & Unified Agent
+![Amazon CloudWatch Logs Agent](Images/AmazonCloudWatchAgentLog.png)
 
-- For virtual servers (EC2 instances, on-premise servers...)
+## 15.1. Logs Agent & Unified Agent
+
+- For virtual servers (EC2 instances, on-premise servers...).
 - **CloudWatch Logs Agent:**
   - Old version of the agent.
   - Can only send to CloudWatch Logs.
@@ -228,7 +230,7 @@
   - Collect logs to send to CloudWatch Logs.
   - Centralized configuration using SSM Parameter Store.
 
-# 17. Unified Agent - Metrics
+## 15.2. Unified Agent - Metrics
 
 - Collected directly on your Linux server / EC2 instance:
   - **CPU:** (active, guest, idle, system, user, steal).
@@ -239,7 +241,7 @@
   - **Swap Space:** (free, used, used %).
   - Reminder: out-of-the box metrics for EC2 - disk, CPU, network (high level).
 
-# 18. Logs Metric Filter
+# 16. Logs Metric Filter
 
 - CloudWatch Logs can use filter expressions.
   - For example, find a specific IP inside of a log.
@@ -247,7 +249,7 @@
   - Metric filters can be used to trigger alarms.
 - Filters do not retroactively filter data. Filters only publish the metric data points for events that happen after the filter was created.
 
-# 19. CloudWatch Alarms
+# 17. CloudWatch Alarms
 
 - Alarms are used to trigger notifications for any metric.
 - Various options (sampling, %, max, min, etc...).
@@ -259,20 +261,20 @@
   - Length of time in seconds to evaluate the metric.
   - **High-Resolution Custom Metrics:** 10 sec, 30 sec or multiples of 60 sec.
 
-## 19.1. Alarm Targets
+## 17.1. Alarm Targets
 
 - Stop, Terminate, Reboot, or Recover an EC2 Instance.
 - Trigger Auto Scaling Action.
 - Send notification to SNS (from which you can do pretty much anything).
 
-## 19.2. Composite Alarms
+## 17.2. Composite Alarms
 
 - CloudWatch Alarms are on a single metric.
 - Composite Alarms are monitoring the states of multiple other alarms.
 - AND and OR conditions.
 - Helpful to reduce "alarm noise" by creating complex composite alarms.
 
-## 19.3. Evaluating an alarm
+## 17.3. Evaluating an alarm
 
 - When you create an alarm, you specify three settings to enable CloudWatch to evaluate when to change the alarm state:
   - **Period:** Is the length of time to evaluate the metric or expression to create each individual data point for an alarm. It is expressed in seconds.
@@ -282,19 +284,19 @@
 
 ![Evaluating an alarm](Images/CloudWatchEvaluatingAlarm.png)
 
-## 19.4. EC2 Instance Recovery
+## 17.4. EC2 Instance Recovery
 
 - Status Check:
   - Instance status = check the EC2 VM.
   - System status = check the underlying hardware.
 - Recovery: Same Private, Public, Elastic IP, metadata, placement group.
 
-## 19.5. CloudWatch Alarm: good to know
+## 17.5. CloudWatch Alarm: good to know
 
 - Alarms can be created based on CloudWatch Logs Metrics Filters.
-- To test alarms and notifications, set the alarm state to Alarm using CLI: `aws cloudwatch set-alarm-state --alarm-name "myalarm" --state-value ALARM --state-reason "testing purposes"`
+- To test alarms and notifications, set the alarm state to Alarm using CLI: `Amazon CloudWatch set-alarm-state --alarm-name "myalarm" --state-value ALARM --state-reason "testing purposes"`
 
-# 20. Synthetics Canary
+# 18. Synthetics Canary
 
 - Configurable script that monitor your APIs, URLs, Websites, ...
 - Reproduce what your customers do programmatically to find issues before customers are impacted.
@@ -304,7 +306,7 @@
 - Programmatic access to a headless Google Chrome browser.
 - Can run once or on a regular schedule.
 
-## 20.1. Canary Blueprints
+## 18.1. Canary Blueprints
 
 - **Heartbeat Monitor:** Load URL, store screenshot and an HTTP archive file.
 - **API Canary:** Test basic read and write functions of REST APIs.
@@ -313,7 +315,7 @@
 - **Canary Recorder:** Used with CloudWatch Synthetics Recorder (record your actions on a website and automatically generates a script for that).
 - **GUI Workflow Builder:** Verifies that actions can be taken on your webpage (e.g., test a webpage with a login form).
 
-# 21. CloudWatch Events (Will be replaced with Amazon EventBridge)
+# 19. CloudWatch Events (Will be replaced with Amazon EventBridge)
 
 - Event Pattern: Intercept events from AWS services (Sources):
   - Example sources: EC2 Instance Start, CodeBuild Failure, S3, Trusted Advisor.
@@ -327,7 +329,7 @@
 
 [Amazon EventBridge](Amazon%20EventBridge.md)
 
-# 22. CloudWatch Evidently
+# 20. CloudWatch Evidently
 
 - Safely validate new features by serving them to a specified % of your users.
 - Reduce risk and identify unintended consequences.

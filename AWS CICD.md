@@ -199,7 +199,7 @@
 ## 5.1. How pipeline executions are started
 
 - You can trigger an execution when you **change your source code** or **manually** start the pipeline.
-- You can also trigger an execution through an [Amazon CloudWatch](AWS%20CloudWatch.md) Events rule that you schedule.
+- You can also trigger an execution through an [Amazon CloudWatch](Amazon%20CloudWatch.md) Events rule that you schedule.
 
 ## 5.2. Artifacts
 

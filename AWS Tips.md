@@ -290,7 +290,7 @@
 
 # 19. CloudWatch
 
-- AWS CloudWatch Metrics
+- Amazon CloudWatch Metrics
   - CloudWatch provides metrics for every services in AWS.
   - **Metric** is a variable to monitor (CPUUtilization, NetworkIn...).
   - Metrics belong to **namespaces**.

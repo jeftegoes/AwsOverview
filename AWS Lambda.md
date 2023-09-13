@@ -118,7 +118,7 @@
 - Integrated with the whole AWS suite of services.
 - **Event-Driven**: functions get invoked by AWS when needed.
 - Integrated with many programming languages.
-- Easy monitoring through AWS CloudWatch.
+- Easy monitoring through Amazon CloudWatch.
 - Easy to get more resources per functions (up to 10GB of RAM!).
 - Increasing RAM will also improve CPU and network!
 
@@ -482,10 +482,10 @@
 # 16. Lambda Logging & Monitoring
 
 - CloudWatch Logs:
-  - AWS Lambda execution logs are stored in AWS CloudWatch Logs.
+  - AWS Lambda execution logs are stored in Amazon CloudWatch Logs.
   - **Make sure your AWS Lambda function has an execution role with an IAM policy that authorizes writes to CloudWatch Logs.**
 - CloudWatch Metrics:
-  - AWS Lambda metrics are displayed in AWS CloudWatch Metrics.
+  - AWS Lambda metrics are displayed in Amazon CloudWatch Metrics.
   - Invocations, Durations, Concurrent Executions.
   - Error count, Success Rates, Throttles.
   - Async Delivery Failures.

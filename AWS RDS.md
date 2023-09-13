@@ -28,6 +28,7 @@
 - [3. Amazon Aurora Serverless](#3-amazon-aurora-serverless)
 - [4. MySQL error log](#4-mysql-error-log)
 - [5. Amazon Aurora vs Amazon Aurora Serverless](#5-amazon-aurora-vs-amazon-aurora-serverless)
+- [6. CloudFormation](#6-cloudformation)
 
 # 1. AWS RDS Overview
 
@@ -297,3 +298,12 @@
 | Low latency read replica         | Openwhisk                                                 |
 | Higher IOPS cost                 |                                                           |
 | Better cost-to-performance ratio |                                                           |
+
+# 6. CloudFormation
+
+- `RDS::DBInstance`
+  - `EngineVersion`- The version number of the database engine to use.
+  - `AutoMinorVersionUpgrade` - A value that indicates whether minor engine upgrades are applied automatically to the DB instance during the maintenance window.
+    - By default, minor engine upgrades are applied automatically.
+  - `AllowMajorVersionUpgrade` - A value that indicates whether major version upgrades are allowed.
+    - Changing this parameter doesn't result in an outage and the change is asynchronously applied as soon as possible.

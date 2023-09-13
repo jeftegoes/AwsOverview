@@ -1154,7 +1154,7 @@
 
 ## 14.1. Amazon CloudWatch Metrics
 
-[AWS CloudWatch](/AWS%20CloudWatch.md)
+[Amazon CloudWatch](/Amazon%20CloudWatch.md)
 
 ### 14.1.1. Important Metrics
 
@@ -2389,7 +2389,7 @@
 ## 26.1. A
 
 - AWS Amazon Web Services
-- Amazon ES Amazon Elasticsearch Service
+- Amazon ES = Amazon Elasticsearch Service
 - AMI Amazon Machine Image
 - API Application Programming Interface
 - AI Artificial Intelligence
