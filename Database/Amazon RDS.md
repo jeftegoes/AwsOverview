@@ -1,4 +1,4 @@
-# AWS RDS - Relational Database Service<!-- omit in toc -->
+# Amazon RDS - Relational Database Service<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

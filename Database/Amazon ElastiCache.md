@@ -1,4 +1,4 @@
-# AWS ElastiCache<!-- omit in toc -->
+# Amazon ElastiCache<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -39,7 +39,7 @@
 - Helps relieve load in RDS.
 - Cache must have an invalidation strategy to make sure only the most current data is used in there.
 
-![AWS ElastiCache Solution Architecture - DB Cache](Images/AWSElastiCacheSolutionArchitectureDbCache.png)
+![Amazon ElastiCache Solution Architecture - DB Cache](Images/AWSElastiCacheSolutionArchitectureDbCache.png)
 
 ## 2.2. User Session Store
 
@@ -48,7 +48,7 @@
 - The user hits another instance of our application.
 - The instance retrieves the data and the user is already logged in.
 
-![AWS ElastiCache Solution Architecture User Session Store](Images/AWSElastiCacheSolutionArchitectureUserSessionStore.png)
+![Amazon ElastiCache Solution Architecture User Session Store](Images/AWSElastiCacheSolutionArchitectureUserSessionStore.png)
 
 # 3. Redis vs Memcached
 
@@ -147,7 +147,7 @@
   - Cache miss penalty that results in 3 round trips, noticeable delay for that request.
   - Stale data: data can be updated in the database and outdated in the cache.
 
-![AWS ElastiCache Solution Architecture - DB Cache](Images/AWSElastiCacheSolutionArchitectureDbCache.png)
+![Amazon ElastiCache Solution Architecture - DB Cache](Images/AWSElastiCacheSolutionArchitectureDbCache.png)
 
 ```
   // Pseudo code

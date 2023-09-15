@@ -1,4 +1,4 @@
-# AWS Cognito <!-- omit in toc -->
+# Amazon Cognito <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

@@ -711,7 +711,7 @@
 
 ## 8.7. ElastiCache
 
-- **Amazon ElastiCache is a web service that makes it easy to deploy and run Memcached or Redis protocol-compliant server nodes in the cloud. ElastiCache caches are in-memory databases with high performance, low latency. They help reduce load off databases for read intensive workloads.** [AWS ElastiCache](AWS%20ElastiCache.md)
+- **Amazon ElastiCache is a web service that makes it easy to deploy and run Memcached or Redis protocol-compliant server nodes in the cloud. ElastiCache caches are in-memory databases with high performance, low latency. They help reduce load off databases for read intensive workloads.** [Amazon ElastiCache](AWS%20ElastiCache.md)
 
 ## 8.8. Redshift Overview
 
