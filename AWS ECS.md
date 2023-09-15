@@ -66,7 +66,7 @@
 - ECS = Elastic Container Service.
 - Launch Docker containers on AWS = Launch **ECS Tasks** on **ECS Clusters**.
 - **EC2 Launch Type: You must provision and maintain the infrastructure (the EC2 instances).**
-- Each EC2 Instance must run the ECS Agent to register in the ECS Cluster.
+- Each EC2 Instance must run the **ECS Agent** to register in the ECS Cluster.
 - AWS takes care of starting / stopping containers.
 
 ### 3.1.2. Fargate Launch Type

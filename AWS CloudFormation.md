@@ -53,13 +53,21 @@
 - [10. Nested stacks](#10-nested-stacks)
 - [11. CloudFormation - Cross vs Nested Stacks](#11-cloudformation---cross-vs-nested-stacks)
 - [12. Continue Rolling Back an Update](#12-continue-rolling-back-an-update)
-- [13. StackSets](#13-stacksets)
-  - [13.1. StackSet Operations](#131-stackset-operations)
-  - [13.2. StackSet Deployment Options](#132-stackset-deployment-options)
-  - [13.3. Permission Models for StackSet](#133-permission-models-for-stackset)
-  - [13.4. StackSets with AWS Organizations](#134-stacksets-with-aws-organizations)
-  - [13.5. StackSet Drift Detection](#135-stackset-drift-detection)
-- [14. Stack Policies](#14-stack-policies)
+- [13. Custom Resources](#13-custom-resources)
+- [14. How to define a Custom Resource?](#14-how-to-define-a-custom-resource)
+- [15. Service Role](#15-service-role)
+- [16. SSM Parameter Type](#16-ssm-parameter-type)
+- [17. Dynamic References](#17-dynamic-references)
+  - [17.1. Dynamic Reference: ssm](#171-dynamic-reference-ssm)
+  - [17.2. Dynamic Reference: ssm-secure](#172-dynamic-reference-ssm-secure)
+  - [17.3. Dynamic Reference: secretsmanager](#173-dynamic-reference-secretsmanager)
+- [18. StackSets](#18-stacksets)
+  - [18.1. StackSet Operations](#181-stackset-operations)
+  - [18.2. StackSet Deployment Options](#182-stackset-deployment-options)
+  - [18.3. Permission Models for StackSet](#183-permission-models-for-stackset)
+  - [18.4. StackSets with AWS Organizations](#184-stacksets-with-aws-organizations)
+  - [18.5. StackSet Drift Detection](#185-stackset-drift-detection)
+- [19. Stack Policies](#19-stack-policies)
 
 # 1. Introduction Infrastructure as Code (IaC)
 
@@ -696,226 +704,104 @@
 
 # 11. CloudFormation - Cross vs Nested Stacks
 
-- Cross Stacks
+- **Cross Stacks**
   - Helpful when stacks have different lifecycles.
-  - Use Outputs Export and Fn::ImportValue.
+  - Use Outputs Export and `Fn::ImportValue`.
   - When you need to pass export values to many stacks (VPC Id, etc...).
-- Nested Stacks
+- **Nested Stacks**
   - Helpful when components must be re-used.
   - Ex: re-use how to properly configure an Application Load Balancer.
   - The nested stack only is important to the higher level stack (it's not shared).
 
 # 12. Continue Rolling Back an Update
 
-- A stack goes into the UPDATE_ROLLBACK_FAILED state
-  when CloudFormation can't roll back all changes during an
-  update
-- A resource can't return to its original state, causing the
-  rollback to fail
-- Example: roll back to an old database instance that was
-  deleted outside CloudFormation
+- A stack goes into the `UPDATE_ROLLBACK_FAILED` state when CloudFormation can't roll back all changes during an update.
+- A resource can't return to its original state, causing the rollback to fail.
+- Example: roll back to an old database instance that was deleted outside CloudFormation.
 - Solutions:
-- Fix the errors manually outside of CloudFormation and then
-  continue update rollback the stack
-- Skip the resources that can't rollback successfully (CloudFormation
-  will mark the failed resources as UPDATE_COMPLETE)
-- You can't update a stack in this state
-- For nested stacks, rolling back the parent stack will attempt to
-  roll back all the child stacks as well
-  Stack
-  Template Template
-  (updated)
-  RDS Instance
-  User
-  delete using
-  RDS Console
-  CloudFormation
-  CREATE_COMPLETE
-  update-stack create-stack
-  UPDATE_ROLLBACK_FAILED
-  © Stephane Maarek
-  NOT FOR DISTRIBUTION © Stephane Maarek www.datacumulus.com
-  Custom Resources
-- Enable you to write custom provision logic in templates that AWS
-  CloudFormation runs anytime you create, update, delete stacks
-- Defined in the template using AWS::CloudFormation::CustomResource or
-  Custom::MyCustomResourceTypeName (recommended)
+  - Fix the errors manually outside of CloudFormation and then continue update rollback the stack.
+  - Skip the resources that can't rollback successfully (CloudFormation will mark the failed resources as `UPDATE_COMPLETE`).
+- You can't update a stack in this state.
+- For nested stacks, rolling back the parent stack will attempt to roll back all the child stacks as well.
+
+# 13. Custom Resources
+
+- Enable you to write custom provision logic in templates that AWS CloudFormation runs anytime you create, update, delete stacks.
+- Defined in the template using AWS::CloudFormation::CustomResource or `Custom::MyCustomResourceTypeName` (recommended).
 - Two types:
-- Amazon SNS-backed Custom Resources
-- AWS Lambda-backed Custom Resources
+  - Amazon SNS-backed Custom Resources.
+  - AWS Lambda-backed Custom Resources.
 - Use cases:
-- An AWS resource is not covered yet (new service for example)
-- An on-premises resource
-- Running a Lambda function to empty an S3 bucket before being deleted
-- Fetch an AMI id
-- Anything you want...!
-  © Stephane Maarek
-  NOT FOR DISTRIBUTION © Stephane Maarek www.datacumulus.com
-  How to define a Custom Resource?
-- ServiceToken specifies where CloudFormation sends requests to, such
-  as Lambda ARN or SNS ARN (required & must be in the same region)
-- Input data parameters (optional)
-  © Stephane Maarek
-  NOT FOR DISTRIBUTION © Stephane Maarek www.datacumulus.com
-  Custom Resources - How does it work?
-  Template developer
-  create/update/delete
-  CloudFormation
-  Resource Provider
-  AWS Lambda
-  Amazon SNS
-  OR
-  Template with
-  custom resource
-  Whatever you want
-  API calls
-  request contains
-  S3 pre-signed URL for response
-  upload JSON response to S3
-  Amazon S3
-  listens
-  Using S3 pre-signed URL
-  © Stephane Maarek
-  NOT FOR DISTRIBUTION © Stephane Maarek www.datacumulus.com
-  Custom Resource - Request & Response
-  Request
-  Response
-  © Stephane Maarek
-  NOT FOR DISTRIBUTION © Stephane Maarek www.datacumulus.com
-  Hands-On: Lambda-backed Custom Resource
-- You can't delete a non-empty S3 bucket
-- To delete a non-empty S3 bucket, you
-  must first delete all the objects inside it
-- We'll create a custom resource with AWS
-  Lambda that will be used to empty an S3
-  bucket before deleting it
-- Let's create our first Custom Resource!
-  Custom resource Lambda function
-  delete stack
-  S3 bucket
-  CloudFormation
-  empty bucket
-  Stack
-  User
-  © Stephane Maarek
-  NOT FOR DISTRIBUTION © Stephane Maarek www.datacumulus.com
-  Service Role
-- IAM role that allows CloudFormation to
-  create/update/delete stack resources on your behalf
-- By default, CloudFormation uses a temporary
-  session that it generates from your user credentials
+  - An AWS resource is not covered yet (new service for example).
+  - An on-premises resource.
+  - Running a Lambda function to empty an S3 bucket before being deleted.
+  - Fetch an AMI id.
+  - Anything you want...!
+
+# 14. How to define a Custom Resource?
+
+- `ServiceToken` specifies where CloudFormation sends requests to, such as Lambda ARN or SNS ARN (required & must be in the same region).
+- Input data parameters (optional).
+
+# 15. Service Role
+
+- IAM role that allows CloudFormation to create/update/delete stack resources on your behalf.
+- By default, CloudFormation uses a temporary session that it generates from your user credentials.
 - Use cases:
-- You want to achieve the least privilege principle
-- But you don't want to give the user all the required
-  permissions to create the stack resources
-- Give ability to users to create/update/delete the
-  stack resources even if they don't have permissions
-  to work with the resources in the stack
+  - You want to achieve the least privilege principle.
+  - But you don't want to give the user all the required permissions to create the stack resources.
+- Give ability to users to create/update/delete the stack resources even if they don't have permissions to work with the resources in the stack.
 
-- cloudformation:\*
-- iam:PassRole
-  Permissions
-- s3:CreateBucket
-  Service Role
-  User
-  Template
-  CloudFormation
-  Stack
-  S3 bucket
-  © Stephane Maarek
-  NOT FOR DISTRIBUTION © Stephane Maarek www.datacumulus.com
-  SSM Parameter Type
-  - Reference parameters in Systems Manager Parameter Store
-  - Specify SSM parameter key as the value
-  - CloudFormation always fetches the latest value (you can't
-    specify parameter version)
-  - CloudFormation doesn't store Secure String values
-  - Validation done on SSM parameter keys, but not values
-  - Supported SSM Parameter Types:
-  - AWS::SSM::Parameter::Name
-  - AWS::SSM::Parameter::Value<String>
-  - AWS::SSM::Parameter::Value<List<String>> or
-    AWS::SSM::Parameter::Value<CommaDelimitedList>
-  - AWS::SSM::Parameter::Value<AWS-Specific Parameter>
-  - AWS::SSM::Parameter::Value<List<AWS-Specific Parameter>>
-    Parameter1
-    Type: AWS::SSM::Parameter::Value<String>
-    Default: /dev/ec2/instanceType
+# 16. SSM Parameter Type
 
-* CloudFormation
-  Template
-  create stack
-  SSM Parameter Store
-  fetch
-  Key: /dev/ec2/instanceType
-  Value: t2.small
-  © Stephane Maarek
-  NOT FOR DISTRIBUTION © Stephane Maarek www.datacumulus.com
-  Example: Fetch Latest AMI IDs
-  Parameter1
-  Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
-  Default: /aws/service/ami-amazon-linux-latest/amzn2-ami-hvmx86_64-gp2
-* Template
-  create stack
-  fetch
-  Key: /aws/service/amiamazon-linux-latest/amzn2-
-  ami-hvm-x86_64-gp2
-  Value: <Image-Id>
-  CloudFormation SSM Parameter
-  Store
-  Fetch Latest AMI IDs from SSM Parameter Store (AWS Public Parameters)
-  © Stephane Maarek
-  NOT FOR DISTRIBUTION © Stephane Maarek www.datacumulus.com
-  Dynamic References
-  - Reference external values stored in SSM Parameter Store
-    and AWS Secrets Manager within CloudFormation
-    templates
-  - CloudFormation retrieves the value of the specified
-    reference during stack and change set operations
-  - For example: retrieve RDS DB Instance master password
-    from AWS Secrets Manager
-  - Supports
-  - ssm: for plaintext values stored in SSM Parameter Store
-  - ssm-secure: for secure strings stored in SSM Parameter Store
-  - secretsmanager: for secret values stored in AWS Secrets Manager
-  - Up to 60 dynamic references in a template
-    CloudFormation
-    create/update
-    Template
-    SSM Parameter Store
-    AWS Secrets Manager
-    get value
-    (reference-key) result
-    ‘{{resolve:service-name:reference-key}}'
-    © Stephane Maarek
-    NOT FOR DISTRIBUTION © Stephane Maarek www.datacumulus.com
-    Dynamic Reference: ssm
-    ‘{{resolve:ssm:parameter-name:version}}'
-  - Reference values stored in SSM Parameter Store of type String and
-    StringList
-  - If no version specified, CloudFormation uses the latest version
-  - Doesn't support public SSM parameters (e.g., Amazon Linux 2 AMI)
-    © Stephane Maarek
-    NOT FOR DISTRIBUTION © Stephane Maarek www.datacumulus.com
-    Dynamic Reference: ssm-secure
-  - Reference values stored in SSM Parameter Store of type SecureString
-  - For example: passwords, license keys, etc...
-  - CloudFormation never stores the actual parameter value
-  - If no version specified, CloudFormation uses the latest version
-  - Only use with supported resources
-    https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/dynamic
-    -references.html#template-parameters-dynamic-patterns-resources
-    ‘{{resolve:ssm-secure:parameter-name:version}}'
-    © Stephane Maarek
-    NOT FOR DISTRIBUTION © Stephane Maarek www.datacumulus.com
-    Dynamic Reference: secretsmanager
-  - Retrieve entire secrets or secret values stored in AWS Secrets Manager
-  - For example: database credentials, passwords, 3rd party API keys, etc...
-  - To update a secret, you must update the resource containing the
-    secretsmanager dynamic reference (one of the resource properties)
-    ‘{{resolve:secretsmanager:secret-id:secret-string:json-key:version-stage:version-id}}'
+- Reference parameters in Systems Manager Parameter Store.
+- Specify SSM parameter key as the value.
+- CloudFormation always fetches the latest value (you can't specify parameter version).
+- CloudFormation doesn't store Secure String values.
+- Validation done on SSM parameter keys, but not values.
+- Supported SSM Parameter Types:
+  - `AWS::SSM::Parameter::Name`
+  - `AWS::SSM::Parameter::Value<String>`
+  - `AWS::SSM::Parameter::Value<List<String>>` or `AWS::SSM::Parameter::Value<CommaDelimitedList>`
+  - `AWS::SSM::Parameter::Value<AWS-Specific Parameter>`
+  - `AWS::SSM::Parameter::Value<List<AWS-Specific Parameter>>`
 
-# 13. StackSets
+# 17. Dynamic References
+
+- Reference external values stored in SSM Parameter Store and AWS Secrets Manager within CloudFormation templates.
+- CloudFormation retrieves the value of the specified reference during stack and change set operations.
+- For example: retrieve RDS DB Instance master password from AWS Secrets Manager.
+- Supports
+  - `ssm` - For plaintext values stored in SSM Parameter Store
+  - `ssm-secure` - For secure strings stored in SSM Parameter Store
+  - `secretsmanager` - For secret values stored in AWS Secrets Manager
+- Up to 60 dynamic references in a template.
+- `{{resolve:service-name:reference-key}}`
+
+## 17.1. Dynamic Reference: ssm
+
+- Reference values stored in SSM Parameter Store of type `String` and `StringList`.
+- If no version specified, CloudFormation uses the latest version.
+- Doesn't support public SSM parameters (e.g., Amazon Linux 2 AMI).
+- `{{resolve:ssm:parameter-name:version}}`
+
+## 17.2. Dynamic Reference: ssm-secure
+
+- Reference values stored in SSM Parameter Store of type `SecureString`.
+- For example: passwords, license keys, etc...
+- CloudFormation never stores the actual parameter value
+- If no version specified, CloudFormation uses the latest version
+- [Only use with supported resources](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/dynamic-references.html#template-parameters-dynamic-patterns-resources)
+- `{{resolve:ssm-secure:parameter-name:version}}`
+
+## 17.3. Dynamic Reference: secretsmanager
+
+- Retrieve entire secrets or secret values stored in AWS Secrets Manager.
+- For example: database credentials, passwords, 3rd party API keys, etc...
+- To update a secret, you must update the resource containing the secretsmanager dynamic reference (one of the resource properties).
+- `{{resolve:secretsmanager:secret-id:secret-string:json-key:version-stage:version-id}}`
+
+# 18. StackSets
 
 - Create, update, or delete stacks across **multiple accounts and regions** with a single operation.
 - Administrator account to create StackSets.
@@ -926,7 +812,7 @@
 
 ![CloudFormation StackSet](Images/AWSCloudFormationStackSet.png)
 
-## 13.1. StackSet Operations
+## 18.1. StackSet Operations
 
 - **Create StackSet**
   - Provide template + target accounts/regions.
@@ -939,7 +825,7 @@
 - **Delete StackSet**
   - Must delete all stack instances within StackSet to delete it.
 
-## 13.2. StackSet Deployment Options
+## 18.2. StackSet Deployment Options
 
 - **Deployment Order**
   - Order of regions where stacks are deployed.
@@ -953,7 +839,7 @@
 - **Retain Stacks**
   - Used when deleting StackSet to keep stacks and their resources running when removed from StackSet.
 
-## 13.3. Permission Models for StackSet
+## 18.3. Permission Models for StackSet
 
 - Self-managed Permissions
   - Create the IAM roles (with established trusted relationship) in both administrator and target accounts.
@@ -964,13 +850,13 @@
   - Must **enable all features** in AWS Organizations.
   - Ability to deploy to accounts added to your organization in the future (Automatic Deployments).
 
-## 13.4. StackSets with AWS Organizations
+## 18.4. StackSets with AWS Organizations
 
 - Ability to **automatically** deploy Stack instances to new Accounts in an Organization.
 - Can delegate StackSets administration to member accounts in AWS Organization.
 - Trusted access with AWS Organizations must be enabled before delegated administrators can deploy to accounts managed by Organizations.
 
-## 13.5. StackSet Drift Detection
+## 18.5. StackSet Drift Detection
 
 - Performs drift detection on the stack associated with each stack instance in the StackSet.
 - If the current state of a resource in a stack varies from the expected state:
@@ -981,7 +867,7 @@
 - Changes made through CloudFormation to a stack directly (not at the StackSet level), aren't considered drifted.
 - You can stop drift detection on a StackSet.
 
-# 14. Stack Policies
+# 19. Stack Policies
 
 - During a CloudFormation Stack update, all update actions are allowed on all resources (default).
 - **A Stack Policy is a JSON document that defines the update actions that are allowed on specific resources during Stack updates.**
