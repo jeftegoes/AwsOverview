@@ -33,6 +33,7 @@
   - [10.8. Which purchasing option is right for me? (Correlation with Hotel)](#108-which-purchasing-option-is-right-for-me-correlation-with-hotel)
   - [10.9. AWS License Manager](#109-aws-license-manager)
   - [10.10. Shared Responsibility Model for EC2](#1010-shared-responsibility-model-for-ec2)
+- [11. VM Import/Export](#11-vm-importexport)
 
 # 1. Introduction
 
@@ -146,7 +147,7 @@
 - Security Groups are the fundamental of network security in AWS.
 - They control how traffic is allowed into or out of our EC2 Instances.
 
-  ![Security Group diagram](image/../Images/SecurityGroupBasicDiagram.png)
+  ![Security Group diagram](/Images/SecurityGroupBasicDiagram.png)
 
 - Security groups only contain **allow** rules.
 - Security groups rules can reference by IP or by security group.
@@ -161,7 +162,7 @@
   - Control of inbound network (from other to the instance).
   - Control of outbound network (from the instance to other).
 
-  ![Security Group Deeper Dive Diagram](Images/SecurityGroupDeeperDiveDiagram.png)
+  ![Security Group Deeper Dive Diagram](/Images/SecurityGroupDeeperDiveDiagram.png)
 
 ## 5.2. Security Groups Good to know
 
@@ -176,7 +177,7 @@
 
 ## 5.3. To access S3 into VPC
 
-![EC2 Access S3](Images/AWSEC2AccessS3.png)
+![EC2 Access S3](/Images/AWSEC2AccessS3.png)
 
 - In this scenario, **S3 is not part of your VPC**, unlike your EC2 instances, EBS volumes, ELBs, and other services that typically reside within your private network.
 - An EC2 instance needs to have access to the Internet, via the Internet Gateway or a NAT Instance/Gateway in order to access S3.
@@ -185,7 +186,7 @@
 
 ## 5.4. To acess S3 with IAM Roles
 
-![Scenario IAM Role and EC2 Instance Profile](Images/AWSCrendentialScenario.png)
+![Scenario IAM Role and EC2 Instance Profile](/Images/AWSCrendentialScenario.png)
 
 # 6. Classic Ports to know
 
@@ -254,12 +255,12 @@
 - Reservation period: **1 year** = + discount | **3 years** = +++ discount.
 - Payment options: **No Upfront** = + | **partial upfront** = ++ | **All upfront** = +++ discount.
 - **Reserved Instance's Scope:**
-  |                               | Regional Reserved Instances                                                                                                                                                                                                                                                   | Zonal Reserved Instances                                                                                                             |
+  | | Regional Reserved Instances | Zonal Reserved Instances |
   | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-  | Ability to reserve capacity   | A regional Reserved Instance does not reserve capacity.                                                                                                                                                                                                                       | A zonal Reserved Instance reserves capacity in the specified Availability Zone.                                                      |
-  | Availability Zone flexibility | The Reserved Instance discount applies to instance usage in any Availability Zone in the specified Region.                                                                                                                                                                    | No Availability Zone flexibility—the Reserved Instance discount applies to instance usage in the specified Availability Zone only.   |
-  | Instance size flexibility     | The Reserved Instance discount applies to instance usage within the instance family, regardless of size. Only supported on Amazon Linux/Unix Reserved Instances with default tenancy. For more information, see Instance size flexibility determined by normalization factor. | No instance size flexibility—the Reserved Instance discount applies to instance usage for the specified instance type and size only. |
-  | Queuing a purchase            | You can queue purchases for regional Reserved Instances.                                                                                                                                                                                                                      | You can't queue purchases for zonal Reserved Instances.                                                                              |
+  | Ability to reserve capacity | A regional Reserved Instance does not reserve capacity. | A zonal Reserved Instance reserves capacity in the specified Availability Zone. |
+  | Availability Zone flexibility | The Reserved Instance discount applies to instance usage in any Availability Zone in the specified Region. | No Availability Zone flexibility—the Reserved Instance discount applies to instance usage in the specified Availability Zone only. |
+  | Instance size flexibility | The Reserved Instance discount applies to instance usage within the instance family, regardless of size. Only supported on Amazon Linux/Unix Reserved Instances with default tenancy. For more information, see Instance size flexibility determined by normalization factor. | No instance size flexibility—the Reserved Instance discount applies to instance usage for the specified instance type and size only. |
+  | Queuing a purchase | You can queue purchases for regional Reserved Instances. | You can't queue purchases for zonal Reserved Instances. |
 
 - Recommended for steady-state usage applications (think database).
 - You can buy and sell in the Reserved Instance Marketplace.
@@ -353,3 +354,7 @@
   - Software and utilities installed on the EC2 instance
   - IAM Roles assigned to EC2ASDASD\_\_& IAM user access management
   - Data security on your instance
+
+# 11. VM Import/Export
+
+![VM Import/Export](/Images/AmazonEC2VMImportExport.png)

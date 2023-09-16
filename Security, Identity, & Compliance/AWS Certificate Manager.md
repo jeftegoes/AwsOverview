@@ -1,4 +1,4 @@
-# Amazon Certificate Manager (ACM)<!-- omit in toc -->
+# AWS Certificate Manager (ACM)<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
