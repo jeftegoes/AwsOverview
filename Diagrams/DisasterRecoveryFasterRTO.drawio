@@ -1,0 +1,42 @@
+<mxfile host="Electron" modified="2023-09-16T00:15:49.076Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.5.1 Chrome/112.0.5615.204 Electron/24.6.0 Safari/537.36" etag="1HGJA4r0kCrke79hLxB3" version="21.5.1" type="device">
+  <diagram name="Page-1" id="pojwVhFQjaks1TvOoS6w">
+    <mxGraphModel dx="1717" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="SWwUbeUap5Pi2Jigo5oW-2" value="" style="rounded=0;whiteSpace=wrap;html=1;gradientColor=#00CC00;gradientDirection=west;fillColor=#FF3333;" vertex="1" parent="1">
+          <mxGeometry x="200" y="160" width="930" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="SWwUbeUap5Pi2Jigo5oW-3" value="Disaster" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;outlineConnect=0;verticalAlign=top;align=center;shape=mxgraph.office.clouds.cloud_disaster;fillColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="210" y="168" width="94" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="SWwUbeUap5Pi2Jigo5oW-5" value="Backup &amp;amp; Restore" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="350" y="195" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SWwUbeUap5Pi2Jigo5oW-6" value="Pilot Light" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="590" y="195" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SWwUbeUap5Pi2Jigo5oW-7" value="Warm Standby" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="760" y="195" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SWwUbeUap5Pi2Jigo5oW-8" value="Multi Site" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="980" y="195" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SWwUbeUap5Pi2Jigo5oW-9" value="&amp;nbsp;Faster RTO&amp;nbsp;" style="edgeStyle=none;orthogonalLoop=1;jettySize=auto;html=1;rounded=0;startArrow=baseDash;startFill=0;strokeWidth=4;fontSize=20;endSize=30;startSize=30;" edge="1" parent="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="200" y="131" as="sourcePoint" />
+            <mxPoint x="1130" y="130" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SWwUbeUap5Pi2Jigo5oW-10" value="&amp;nbsp;AWS Multi Region&amp;nbsp;" style="edgeStyle=none;orthogonalLoop=1;jettySize=auto;html=1;rounded=0;startArrow=classic;startFill=1;strokeWidth=4;fontSize=20;endSize=30;startSize=30;" edge="1" parent="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="200" y="301" as="sourcePoint" />
+            <mxPoint x="1130" y="300" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

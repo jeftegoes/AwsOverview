@@ -15,19 +15,6 @@
   - [4.7. Branch Security](#47-branch-security)
   - [4.8. Pull Request Approval Rules](#48-pull-request-approval-rules)
 - [5. AWS CodePipeline](#5-aws-codepipeline)
-  - [5.1. How pipeline executions are started](#51-how-pipeline-executions-are-started)
-  - [5.2. Artifacts](#52-artifacts)
-  - [5.3. Troubleshooting](#53-troubleshooting)
-  - [5.4. Events vs.Webhooks vs. Polling](#54-events-vswebhooks-vs-polling)
-  - [5.5. Action types constraints for artifacts](#55-action-types-constraints-for-artifacts)
-  - [5.6. Manual Approval Stage](#56-manual-approval-stage)
-  - [5.7. CloudFormation as a target](#57-cloudformation-as-a-target)
-  - [5.8. CloudFormation integration](#58-cloudformation-integration)
-  - [5.9. Best Practices](#59-best-practices)
-  - [5.10. EventBridge](#510-eventbridge)
-  - [5.11. Invoke Action](#511-invoke-action)
-  - [5.12. Multi Region](#512-multi-region)
-  - [5.13. Pipeline executions](#513-pipeline-executions)
 - [6. AWS CodeBuild](#6-aws-codebuild)
   - [6.1. Details](#61-details)
   - [6.2. Supported Environments](#62-supported-environments)
@@ -160,7 +147,7 @@
   4. View files in the CodeCommit repository.
   5. Share the CodeCommit repository with your team.
 
-![AWS CodeCommit migration](Images/AWSCodeCommitMigration.png)
+![AWS CodeCommit migration](/Images/AWSCodeCommitMigration.png)
 
 ## 4.6. Cross-Region Replication
 
@@ -185,127 +172,7 @@
 
 # 5. AWS CodePipeline
 
-- Visual Workflow to orchestrate your CI/CD.
-- **Source:** CodeCommit, ECR, S3, Bitbucket, GitHub.
-- **Build:** CodeBuild, Jenkins, CloudBees, TeamCity.
-- **Test:** CodeBuild, AWS Device Farm, 3rd party tools, ...
-- **Deploy:** CodeDeploy, Elastic Beanstalk, CloudFormation, ECS, S3, ...
-- **Invoke:** Lambda, Step Functions.
-- Consists of stages:
-  - Each stage can have sequential actions and/or parallel actions.
-  - Example: Build -> Test -> Deploy -> Load Testing -> ...
-  - Manual approval can be defined at any stage.
-
-## 5.1. How pipeline executions are started
-
-- You can trigger an execution when you **change your source code** or **manually** start the pipeline.
-- You can also trigger an execution through an [Amazon CloudWatch](Amazon%20CloudWatch.md) Events rule that you schedule.
-
-## 5.2. Artifacts
-
-- Each pipeline stage can create `artifacts`.
-- `artifacts` - This element represents information about where CodeBuild can find the build output and how CodeBuild prepares it for uploading to the S3 output bucket.
-  - Artifacts stored in an S3 bucket and passed on to the next stage.
-
-## 5.3. Troubleshooting
-
-- For CodePipeline Pipeline/Action/Stage Execution State Changes.
-- Use **CloudWatch Events (Amazon EventBridge)**.
-- Example:
-  - You can create events for failed pipelines.
-  - You can create events for cancelled stages.
-- If CodePipeline fails a stage, your pipeline stops, and you can get information in the console.
-- If pipeline can't perform an action, make sure the "IAM Service Role" attached does have enough IAM permissions (IAM Policy).
-- AWS CloudTrail can be used to audit AWS API calls.
-
-## 5.4. Events vs.Webhooks vs. Polling
-
-- Events
-  - CodeCommit -> `event` -> EventBridge -> `trigger` -> CodePipeline
-  - GitHub -> CodeStar Source Connection (GitHub App) -> `trigger` -> CodePipeline
-  - **Note: Events are the default and recommended**
-- Webhooks
-  - Script/Code -> `HTTP Webhook` CodePipeline
-- Polling
-  - GitHub -> regular checks -> CodePipeline
-
-## 5.5. Action types constraints for artifacts
-
-- **Owner**
-  - **AWS:** For AWS services.
-  - **3rd Party:** GitHub or Alexa Skills Kit.
-  - **Custom:** Jenkins.
-- **Action Type**
-  - **Source:** S3, ECR, GitHub, ...
-  - **Build:** CodeBuild, Jenkins.
-  - **Test:** CodeBuild, Device Farm, Jenkins.
-  - **Approval:** Manual.
-  - **Invoke:** Lambda.
-  - **Deploy:** S3, CloudFormation, CodeDeploy, Elastic Beanstalk, OpsWorks, ECS, Service Catalog, ...
-
-## 5.6. Manual Approval Stage
-
-- CodePipeline
-  - CodeCommit -> `new commit` CodeBuild -> `trigger` > Manual Approval -> `deploy` -> CodeDeploy
-- **Important: Owner is "AWS", Action is "Manual".**
-
-## 5.7. CloudFormation as a target
-
-- CloudFormation Deploy Action can be used to deploy AWS resources.
-- Example: deploy Lambda functions using CDK or SAM (alternative to CodeDeploy).
-- Works with CloudFormation StackSets to deploy across multiple AWS accounts and AWS Regions.
-- Configure different settings:
-  - Stack name, Change Set name, template, parameters, IAM Role, Action Mode...
-- **Action Modes**
-  - Create or Replace a Change Set, Execute a Change Set.
-  - Create or Update a Stack, Delete a Stack, Replace a Failed Stack.
-- **Template Parameter Overrides**
-  - Specify a JSON object to override parameter values.
-  - Retrives the parameter value from CodePipeline Input Artifact.
-  - All parameter names must be present in the template.
-  - **Static:** Use template configuration file (recommended).
-  - **Dynamic:** Use parameter overrides.
-
-## 5.8. CloudFormation integration
-
-- `CREATE_UPDATE` - Create or update an existing stack.
-- `DELETE_ONLY` - Delete a stack if it exists.
-
-## 5.9. Best Practices
-
-- One CodePipeline, One CodeDeploy, Parallel deploy to multiple Deployment Groups.
-- Parallel Actions using in a Stage using RunOrder.
-- Deploy to Pre-Prod before Deploying to Prod.
-
-## 5.10. EventBridge
-
-- EventBridge - Detect and react to changes in execution states (e.g., intercept failures at certain stages).
-
-## 5.11. Invoke Action
-
-- **Lambda:** Invokes a Lambda function within a Pipeline.
-- **Step Functions:** Starts a State Machine within a Pipeline.
-
-## 5.12. Multi Region
-
-- Actions in your pipeline can be in different regions.
-  - Example: deploy a Lambda function through CloudFormation into multiple regions.
-- S3 Artifact Stores must be defined in each region where you have actions.
-  - CodePipeline must have read/write access into every artifact buckets.
-  - If you use the console default artifact buckets are configured, else you must create them.
-- CodePipeline handles the copying of input artifacts from one AWS Region to the other Regions when performing cross-region actions.
-  - In your cross-region actions, only reference the name of the input artifacts.
-
-## 5.13. Pipeline executions
-
-- Traverse pipeline stages in order.
-- Valid statuses for pipelines are:
-  - InProgress
-  - Stopping
-  - Stopped
-  - Succeeded
-  - Superseded
-  - Failed.
+[AWS CodePipeline](/Developer%20Tools/AWS%20CodePipeline.md)
 
 # 6. AWS CodeBuild
 
@@ -341,7 +208,7 @@
 
 ## 6.3. How it Works
 
-![CodeBuild Diagram](Images/CodeBuildDiagram.png)
+![CodeBuild Diagram](/Images/CodeBuildDiagram.png)
 
 ## 6.4. buildspec.yml
 
@@ -464,7 +331,7 @@
 
 # 7. AWS CodeDeploy
 
-[AWS CodeDeploy](AWS%20CodeDeploy.md)
+[AWS CodeDeploy](/Developer%20Tools/AWS%20CodeDeploy.md)
 
 # 8. AWS CodeStar
 

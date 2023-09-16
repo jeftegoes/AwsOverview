@@ -3,50 +3,75 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. Disaster Recovery Strategies](#2-disaster-recovery-strategies)
-- [3. Disaster Recovery - Pilot Light](#3-disaster-recovery--pilot-light)
-- [4. Warm Standby](#4-warm-standby)
-- [5. Multi Site / Hot Site Approach](#5-multi-site--hot-site-approach)
-- [6. Disaster Recovery Tips](#6-disaster-recovery-tips)
+- [2. RPO \& RTO](#2-rpo--rto)
+- [3. Disaster Recovery Strategies (Faster RTO)](#3-disaster-recovery-strategies-faster-rto)
+  - [3.1. Backup and Restore (High RPO)](#31-backup-and-restore-high-rpo)
+  - [3.2. Pilot Light](#32-pilot-light)
+  - [3.3. Warm Standby](#33-warm-standby)
+  - [3.4. Multi Site / Hot Site Approach (Low RTO)](#34-multi-site--hot-site-approach-low-rto)
+    - [3.4.1. All AWS Multi Region](#341-all-aws-multi-region)
+- [4. Disaster Recovery Tips](#4-disaster-recovery-tips)
 
 # 1. Introduction
 
 - Any event that has a negative impact on a company's business continuity or finances is a disaster.
 - Disaster recovery (DR) is about preparing for and recovering from a disaster.
 - What kind of disaster recovery?
-  - On-premise => On-premise: traditional DR, and very expensive.
-  - On-premise => AWS Cloud: hybrid recovery.
+  - On-premise => On-premise: Traditional DR, and very expensive.
+  - On-premise => AWS Cloud: Hybrid recovery.
   - AWS Cloud Region A => AWS Cloud Region B.
-- Need to define two terms:
-  - RPO: Recovery Point Objective.
-  - RTO: Recovery Time Objective.
 
-# 2. Disaster Recovery Strategies
+# 2. RPO & RTO
+
+- **RPO:** Recovery Point Objective.
+  - How much of a data loss are you willing to accept in case of a disaster happens?
+- **RTO:** Recovery Time Objective.
+  - Is when you recover from your disaster.
+
+![RPO & RTO](Images/DisasterRecoveryRpoRto.png)
+
+# 3. Disaster Recovery Strategies (Faster RTO)
 
 - Backup and Restore.
 - Pilot Light.
 - Warm Standby.
 - Hot Site / Multi Site Approach.
-  Faster RTO
 
-# 3. Disaster Recovery - Pilot Light
+![Faster RTO](Images/DisasterRecoveryFasterRTO.png)
+
+## 3.1. Backup and Restore (High RPO)
+
+![Backup and Restore](Images/DisasterRecoveryBackupAndRestore.png)
+
+## 3.2. Pilot Light
 
 - A small version of the app is always running in the cloud.
 - Useful for the critical core (pilot light).
 - Very similar to Backup and Restore.
 - Faster than Backup and Restore as critical systems are already up.
 
-# 4. Warm Standby
+![Pilot Light](Images/DisasterRecoveryPilotLight.png)
+
+## 3.3. Warm Standby
 
 - Full system is up and running, but at minimum size.
 - Upon disaster, we can scale to production load.
 
-# 5. Multi Site / Hot Site Approach
+![Warm Standby](Images/DisasterRecoveryWarmStandby.png)
 
-- Very low RTO (minutes or seconds) - very expensive.
+## 3.4. Multi Site / Hot Site Approach (Low RTO)
+
+- Very low RTO (minutes or seconds).
+  - **Very expensive.**
 - Full Production Scale is running AWS and On Premise.
 
-# 6. Disaster Recovery Tips
+![Multi Site / Hot Site Approach](Images/DisasterRecoveryMultiSiteHotSite.png)
+
+### 3.4.1. All AWS Multi Region
+
+![Multi Site / Hot Site Approach all AWS](Images/DisasterRecoveryMultiSiteHotSiteAllAWS.png)
+
+# 4. Disaster Recovery Tips
 
 - **Backup**
   - EBS Snapshots, RDS automated backups / Snapshots, etc...
