@@ -90,7 +90,7 @@
 
 ## 6.1. Custom rules
 
-[Custom rules](/Images/AWSConfigCustomRules.png)
+![Custom rules](/Images/AWSConfigCustomRules.png)
 
 # 7. Organizational Rules vs. Conformance Packs
 

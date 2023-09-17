@@ -41,11 +41,11 @@
 
 # 2. Monitoring
 
-![Trusted Advisor - Monitoring](Images/AWSTrustedAdvisorMonitoring.png)
+![Trusted Advisor - Monitoring](/Images/AWSTrustedAdvisorMonitoring.png)
 
 # 3. Integrations
 
-- You can use [Amazon EventBridge](Amazon%20EventBridge.md) to detect and react to changes in the status of Trusted Advisor checks.
+- You can use [Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md) to detect and react to changes in the status of Trusted Advisor checks.
 - Then, based on the rules that you create, EventBridge invokes one or more target actions when a check status changes to the value you specify in a rule.
 - Depending on the type of status change, you might want to send notifications, capture status information, take corrective action, initiate events, or take other actions.
 

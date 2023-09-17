@@ -117,11 +117,11 @@
 
 ## 5.1. In-Place deployment
 
-![Aws CodeDeploy In-Place Deployment](Images/AwsCodeDeployInPlaceDeployment.png)
+![Aws CodeDeploy In-Place Deployment](/Images/AwsCodeDeployInPlaceDeployment.png)
 
 ## 5.2. Blue / Green Deployment
 
-![Aws CodeDeploy Blue/Green Deployment](Images/AwsCodeDeployBlueGreenDeployment.png)
+![Aws CodeDeploy Blue/Green Deployment](/Images/AwsCodeDeployBlueGreenDeployment.png)
 
 ## 5.3. CodeDeploy Agent
 
@@ -156,14 +156,13 @@
 # Deployment to EC2
 
 - Define how to deploy the application using appspec.yml +
-Deployment Strategy
+  Deployment Strategy
 - Will do In
--place update to
-your fleet of EC2 instances
+  -place update to
+  your fleet of EC2 instances
 - Can use hooks to verify the
-deployment after each
-deployment phase
-
+  deployment after each
+  deployment phase
 
 # 8. In-place
 
@@ -208,12 +207,14 @@ deployment phase
 - **When the Deployment or all Lifecycle Events are skipped (EC2/On- Premises)**, you get one of the following errors:
   - "The overall deployment failed because too many individual instances failed deployment".
   - "Too few healthy instances are available for deployment".
-  - "Some instances in your deployment group are experiencing problems. (Error code: HEALTH_CONSTRAINTS)".
+  - "Some instances in your deployment group are experiencing problems. (Error code: `HEALTH_CONSTRAINTS`)".
 - **Reasons:**
   - CodeDeploy Agent might not be installed, running, or it can't reach CodeDeploy.
   - CodeDeploy Service Role or IAM instance profile might not have the required permissions.
   - You're using an HTTP Proxy, configure CodeDeploy Agent with `:proxy_uri:` parameter.
   - Date and Time mismatch between CodeDeploy and Agent.
+
+![Deployment failure](/Images/AWSCodeDeployDeploymentFailure.png)
 
 ## 11.3. Scenario 3
 

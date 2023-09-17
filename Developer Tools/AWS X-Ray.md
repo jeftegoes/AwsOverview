@@ -24,7 +24,6 @@
 
 # 1. Introduction
 
-- **AWS X-Ray helps developers analyze and debug production, distributed applications, such as those built using a microservices architecture.**
 - Debugging in Production, the good old way:
   - Test locally.
   - Add log statements everywhere.

@@ -1154,7 +1154,7 @@
 
 ## 14.1. Amazon CloudWatch Metrics
 
-[Amazon CloudWatch](/Amazon%20CloudWatch.md)
+[Amazon CloudWatch](Management%20&%20Governance/Amazon%20CloudWatch.md)
 
 ### 14.1.1. Important Metrics
 
@@ -1194,25 +1194,24 @@
 
 ## 14.4. Amazon EventBridge
 
-[AWS EventBridge](/AWS%20EventBridge.md)
+[Amazon EventBridge](Application%20Integration/Amazon%20EventBridge.md)
 
 ## 14.5. AWS CloudTrail
 
 - **Is a web service that records activity made on your account and delivers log files to your Amazon S3 bucket. AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account.**
-- **Can record the history of events/API calls made within you AWS account, which will help determine who or what deleted the resource. You should investigate it first.**
-  [AWS CloudTrail](AWS%20CloudTrail.md)
+- **Can record the history of events/API calls made within you AWS account, which will help determine who or what deleted the resource. You should investigate it first.** [AWS CloudTrail](Management%20&%20Governance/AWS%20CloudTrail.md)
 
 ## 14.6. AWS X-Ray
 
-[AWS X-Ray](/AWS%20X-Ray.md)
+- **AWS X-Ray helps developers analyze and debug production, distributed applications, such as those built using a microservices architecture.** [AWS X-Ray](Developer%20Tools/AWS%20X-Ray.md)
 
 ## 14.7. Amazon CodeGuru
 
-[Amazon CodeGuru](/AWS%20CICD.md)
+[Amazon CodeGuru](Developer%20Tools/AWS%20CICD.md)
 
 ## 14.8. AWS Health Dashboard
 
-[AWS Health Dashboard](AWS%20Health%20Dashboard.md)
+[AWS Health Dashboard](Management%20&%20Governance/AWS%20Health%20Dashboard.md)
 
 ## 14.9. Monitoring Summary
 

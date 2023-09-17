@@ -14,7 +14,7 @@
 - [10. Best Practices](#10-best-practices)
 - [11. EventBridge](#11-eventbridge)
 - [12. Invoke Action](#12-invoke-action)
-- [13. Multi Region](#13-multi-region)
+- [13. Multi Region (Cross-Region Actions)](#13-multi-region-cross-region-actions)
 - [14. Pipeline executions](#14-pipeline-executions)
 
 # 1. Introduction
@@ -122,15 +122,15 @@
 - **Lambda:** Invokes a Lambda function within a Pipeline.
 - **Step Functions:** Starts a State Machine within a Pipeline.
 
-# 13. Multi Region
+# 13. Multi Region (Cross-Region Actions)
 
 - Actions in your pipeline can be in different regions.
   - Example: deploy a Lambda function through CloudFormation into multiple regions.
 - S3 Artifact Stores must be defined in each region where you have actions.
-  - CodePipeline must have read/write access into every artifact buckets.
-  - If you use the console default artifact buckets are configured, else you must create them.
-- CodePipeline handles the copying of input artifacts from one AWS Region to the other Regions when performing cross-region actions.
-  - In your cross-region actions, only reference the name of the input artifacts.
+  - CodePipeline must have read/write access into every **artifact buckets**.
+  - If you use the console default **artifact buckets** are configured, else you must create them.
+- CodePipeline handles the copying of input artifacts from one AWS Region to the other Regions when performing **cross-region actions**.
+  - In your **cross-region actions**, only reference the name of the input artifacts.
 
 # 14. Pipeline executions
 

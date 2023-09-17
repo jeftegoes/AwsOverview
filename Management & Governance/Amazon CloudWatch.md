@@ -4,7 +4,7 @@
 
 - [1. Why Monitoring is Important](#1-why-monitoring-is-important)
 - [2. Monitoring in AWS](#2-monitoring-in-aws)
-- [3. Amazon CloudWatch Metrics](#3-aws-cloudwatch-metrics)
+- [3. Amazon CloudWatch Metrics](#3-amazon-cloudwatch-metrics)
 - [4. EC2 Detailed monitoring](#4-ec2-detailed-monitoring)
 - [5. Metric Streams](#5-metric-streams)
 - [6. Custom Metrics](#6-custom-metrics)
@@ -327,7 +327,7 @@
   - Orchestration: Step Functions, CodePipeline, CodeBuild.
   - Maintenance: SSM, EC2 Actions.
 
-[Amazon EventBridge](Amazon%20EventBridge.md)
+[Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md)
 
 # 20. CloudWatch Evidently
 

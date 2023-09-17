@@ -46,12 +46,12 @@
 - Use AWS STS (Security Token Service) to retrieve credentials and impersonate the IAM Role you have access to (`AssumeRole` API).
 - Temporary credentials can be valid between 15 minutes to 1 hour.
 
-![AWS STS Assume a Role](Images/AWSSTSAssumeRole.png)
-![AWS STS Assume a Role](Images/AWSSTSAssumeRole2.png)
+![AWS STS Assume a Role](/Images/AWSSTSAssumeRole.png)
+![AWS STS Assume a Role](/Images/AWSSTSAssumeRole2.png)
 
 # 3. Cross account access with STS
 
-![STS Diagram](Images/AWSSTSCrossAccount.png)
+![STS Diagram](/Images/AWSSTSCrossAccount.png)
 
 [Example scenario using separate development and production accounts](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_aws-accounts.html)
 

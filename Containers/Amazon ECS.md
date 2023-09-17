@@ -1,4 +1,4 @@
-# AWS ECS - Elastic Container Service, Fargate and ECR - Elastic Container Registry<!-- omit in toc -->
+# Amazon ECS - Elastic Container Service, Fargate and ECR - Elastic Container Registry<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
