@@ -28,7 +28,7 @@
   - [6.1. Store Hierarchy](#61-store-hierarchy)
   - [6.2. Parameters Policies (for advanced parameters)](#62-parameters-policies-for-advanced-parameters)
 - [7. AWS Secrets Manager](#7-aws-secrets-manager)
-  - [7.1. AWS Secrets Manager - Multi-Region Secrets](#71-aws-secrets-manager--multi-region-secrets)
+  - [7.1. AWS Secrets Manager - Multi-Region Secrets](#71-aws-secrets-manager---multi-region-secrets)
   - [7.2. Secrets Manager CloudFormation Integration RDS \& Aurora](#72-secrets-manager-cloudformation-integration-rds--aurora)
   - [7.3. SSM Parameter Store vs Secrets Manager](#73-ssm-parameter-store-vs-secrets-manager)
 - [8. CloudWatch Logs - Encryption](#8-cloudwatch-logs---encryption)
@@ -122,7 +122,7 @@
 
 ## 2.5. How does KMS work? API - Encrypt and Decrypt
 
-![Encrypt and Decrypt](Images/AWSKMSEncryptDecrypt.png)
+![Encrypt and Decrypt](/Images/AWSKMSEncryptDecrypt.png)
 
 ## 2.6. Envelope Encryption
 
@@ -131,7 +131,7 @@
 - The main API that will help us is the GenerateDataKey API.
 - **Anything over 4 KB of data that needs to be encrypted must use the Envelope Encryption == `GenerateDataKey` API.**
 
-![Envelope Encryption diagram](Images/AWSKMSEncryptDecryptEnvelope.png)
+![Envelope Encryption diagram](/Images/AWSKMSEncryptDecryptEnvelope.png)
 
 ### 2.6.1. Encrypt
 

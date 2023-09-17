@@ -11,6 +11,7 @@
 - [4. Aggregators](#4-aggregators)
 - [5. Conformance Pack](#5-conformance-pack)
 - [6. Organizational Rules](#6-organizational-rules)
+  - [6.1. Custom rules](#61-custom-rules)
 - [7. Organizational Rules vs. Conformance Packs](#7-organizational-rules-vs-conformance-packs)
 
 # 1. Introduction
@@ -86,6 +87,10 @@
 # 6. Organizational Rules
 
 - AWS Config Rule that you can manage across all accounts within an AWS Organization.
+
+## 6.1. Custom rules
+
+[Custom rules](/Images/AWSConfigCustomRules.png)
 
 # 7. Organizational Rules vs. Conformance Packs
 

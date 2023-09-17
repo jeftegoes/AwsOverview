@@ -9,13 +9,13 @@
   - [2.1. Policies](#21-policies)
 - [3. SSM - Documents](#3-ssm---documents)
 - [4. SSM - Run Command](#4-ssm---run-command)
-- [5. SSM - Automation](#5-ssm---automation)
+- [5. Automation](#5-automation)
 - [6. SSM - Parameter Store](#6-ssm---parameter-store)
 - [7. SSM Parameter Store Hierarchy](#7-ssm-parameter-store-hierarchy)
 - [8. Parameters Policies (for advanced parameters)](#8-parameters-policies-for-advanced-parameters)
 - [9. Patch Manager](#9-patch-manager)
-  - [9.1. SSM - Patch Manager](#91-ssm---patch-manager)
-  - [9.2. SSM - Patch Manager Patch Baselines](#92-ssm---patch-manager-patch-baselines)
+  - [9.1. Patch Baseline \& Patch Group](#91-patch-baseline--patch-group)
+  - [9.2. Patch Manager Patch Baselines](#92-patch-manager-patch-baselines)
 - [10. SSM - Maintenance Windows](#10-ssm---maintenance-windows)
 - [11. SSM - Session Manager](#11-ssm---session-manager)
 - [12. SSM - Session Manager](#12-ssm---session-manager)
@@ -86,7 +86,7 @@
 - Send notifications to SNS about command statues (In progress, Success, Failed...).
 - Can be invoked using EventBridge.
 
-# 5. SSM - Automation
+# 5. Automation
 
 - Simplifies common maintenance and deployment tasks of EC2 instances and other AWS resources.
 - Example: restart instances, create an AMI, EBS snapshot.
@@ -94,11 +94,13 @@
   - SSM Documents of type Automation.
   - Defines actions preformed on your EC2 instances or AWS resources.
   - Pre-defined runbooks (AWS) or create custom runbooks.
-- Can be triggered
+- **Can be triggered**
   - Manually using AWS Console, AWS CLI or SDK.
   - By Amazon EventBridge.
   - On a schedule using Maintenance Windows.
   - By AWS Config for rules remediations.
+
+![SSM - Automation](/Images/AWSSystemsManagerAutomation.png)
 
 # 6. SSM - Parameter Store
 
@@ -140,7 +142,9 @@
 - Scan instances and generate patch compliance report (missing patches).
 - Patch compliance report can be sent to S3.
 
-## 9.1. SSM - Patch Manager
+![Patch Manager](/Images/AWSSystemsManagerPatchManager.png)
+
+## 9.1. Patch Baseline & Patch Group
 
 - **Patch Baseline**
   - Defines which patches should and shouldn't be installed on your instances.
@@ -154,7 +158,7 @@
   - An instance can only be in one Patch Group.
   - Patch Group can be registered with only one Patch Baseline.
 
-## 9.2. SSM - Patch Manager Patch Baselines
+## 9.2. Patch Manager Patch Baselines
 
 - **Pre-Defined Patch Baseline**
   - Managed by AWS for different Operating Systems (can't be modified).

@@ -701,6 +701,9 @@
   - Security Group that is re-used.
 - Nested stacks are considered best practice.
 - To update a nested stack, always update the parent (root stack).
+- You create a nested stack within another stack by using the `AWS::CloudFormation::Stack` resource.
+
+![Nested stacks](/Images/AWSCloudFormationNestedStacks.png)
 
 # 11. CloudFormation - Cross vs Nested Stacks
 
@@ -810,7 +813,7 @@
 - Regional service.
 - Can be applied into all accounts of an AWS organizations.
 
-![CloudFormation StackSet](Images/AWSCloudFormationStackSet.png)
+![CloudFormation StackSet](/Images/AWSCloudFormationStackSet.png)
 
 ## 18.1. StackSet Operations
 
