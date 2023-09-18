@@ -1,6 +1,6 @@
 # AWS ASG - Auto Scaling Groups<!-- omit in toc -->
 
-# Contents <!-- omit in toc -->
+## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
 - [2. Auto Scaling Group Attributes](#2-auto-scaling-group-attributes)

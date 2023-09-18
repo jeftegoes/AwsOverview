@@ -2,7 +2,7 @@
 
 ## Contents <!-- omit in toc -->
 
-- [1. AWS RDS Overview](#1-aws-rds-overview)
+- [1. Introduction](#1-introduction)
   - [1.1. Advantage over using RDS versus deploying DB on EC2](#11-advantage-over-using-rds-versus-deploying-db-on-ec2)
   - [1.2. Backups](#12-backups)
   - [1.3. Storage Auto Scaling](#13-storage-auto-scaling)
@@ -30,9 +30,8 @@
 - [5. Amazon Aurora vs Amazon Aurora Serverless](#5-amazon-aurora-vs-amazon-aurora-serverless)
 - [6. CloudFormation](#6-cloudformation)
 
-# 1. AWS RDS Overview
+# 1. Introduction
 
-- **Amazon Relational Database Service (Amazon RDS) is a SQL managed service that makes it easy to set up, operate, and scale a relational database in the cloud. It is suited for OLTP workloads.**
 - RDS stands for Relational Database Service.
 - It's a managed DB service for DB use SQL as a query language.
 - It allows you to create databases in the cloud that are managed by AWS:

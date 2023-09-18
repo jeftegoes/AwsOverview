@@ -43,30 +43,8 @@
   - [6.7. AWS ASG - Auto Scaling Groups](#67-aws-asg---auto-scaling-groups)
   - [6.8. Multi AZ in AWS](#68-multi-az-in-aws)
     - [6.8.1. ELB and ASG - Summary](#681-elb-and-asg---summary)
-- [7. Amazon S3](#7-amazon-s3)
-  - [7.1. AWS Snow Family](#71-aws-snow-family)
-  - [7.2. AWS Storage Gateway](#72-aws-storage-gateway)
-  - [7.3. Amazon S3 - Summary](#73-amazon-s3---summary)
+- [7. Storage](#7-storage)
 - [8. Databases](#8-databases)
-  - [8.1. Introduction](#81-introduction)
-  - [8.2. Relational Databases](#82-relational-databases)
-  - [8.3. NoSQL Databases](#83-nosql-databases)
-    - [8.3.1. NoSQL data example: JSON](#831-nosql-data-example-json)
-  - [8.4. Databases and Shared Responsibility on AWS](#84-databases-and-shared-responsibility-on-aws)
-  - [8.5. RDS - Relational Database Service](#85-rds---relational-database-service)
-  - [8.6. DynamoDB](#86-dynamodb)
-  - [8.7. ElastiCache](#87-elasticache)
-  - [8.8. Redshift Overview](#88-redshift-overview)
-  - [8.9. Amazon EMR](#89-amazon-emr)
-  - [8.10. Amazon Athena](#810-amazon-athena)
-  - [8.11. Amazon QuickSight](#811-amazon-quicksight)
-  - [8.12. DocumentDB](#812-documentdb)
-  - [8.13. Amazon Neptune](#813-amazon-neptune)
-  - [8.14. Amazon QLDB](#814-amazon-qldb)
-  - [8.15. Amazon Managed Blockchain](#815-amazon-managed-blockchain)
-  - [8.16. AWS Glue](#816-aws-glue)
-  - [8.17. AWS Database Migration Service (DMS)](#817-aws-database-migration-service-dms)
-  - [8.18. Databases \& Analytics Summary in AWS](#818-databases--analytics-summary-in-aws)
 - [9. Other Compute Services: ECS, Lambda, Batch, Lightsail](#9-other-compute-services-ecs-lambda-batch-lightsail)
   - [9.1. ECS - Elastic Container Service, Fargate and ECR - Elastic Container Registry](#91-ecs---elastic-container-service-fargate-and-ecr---elastic-container-registry)
   - [9.2. Lambda](#92-lambda)
@@ -79,12 +57,12 @@
 - [10. Deploying and Managing Infrastructure at Scale](#10-deploying-and-managing-infrastructure-at-scale)
   - [10.1. CloudFormation](#101-cloudformation)
   - [10.2. AWS Cloud Development Kit (CDK)](#102-aws-cloud-development-kit-cdk)
-  - [10.4. AWS Elastic Beanstalk Overview](#104-aws-elastic-beanstalk-overview)
-  - [10.5. AWS CI/CD](#105-aws-cicd)
-  - [10.6. AWS Systems Manager (SSM)](#106-aws-systems-manager-ssm)
-  - [10.7. AWS OpsWorks](#107-aws-opsworks)
-  - [10.8. AWS Amplify](#108-aws-amplify)
-  - [10.9. Deployment - Summary](#109-deployment---summary)
+  - [10.3. AWS Elastic Beanstalk Overview](#103-aws-elastic-beanstalk-overview)
+  - [10.4. AWS CI/CD](#104-aws-cicd)
+  - [10.5. AWS Systems Manager (SSM)](#105-aws-systems-manager-ssm)
+  - [10.6. AWS OpsWorks](#106-aws-opsworks)
+  - [10.7. AWS Amplify](#107-aws-amplify)
+  - [10.8. Deployment - Summary](#108-deployment---summary)
 - [11. Route 53](#11-route-53)
 - [12. Global Infrastructure](#12-global-infrastructure)
   - [12.1. Why make a global application?](#121-why-make-a-global-application)
@@ -140,17 +118,6 @@
   - [16.18. Root user privileges](#1618-root-user-privileges)
   - [16.19. Summary: Security \& Compliance](#1619-summary-security--compliance)
 - [17. Machine Learning](#17-machine-learning)
-  - [17.1. Amazon Rekognition](#171-amazon-rekognition)
-  - [17.2. Amazon Transcribe](#172-amazon-transcribe)
-  - [17.3. Amazon Polly](#173-amazon-polly)
-  - [17.4. Amazon Translate](#174-amazon-translate)
-  - [17.5. Amazon Lex \& Connect](#175-amazon-lex--connect)
-  - [17.6. Amazon Comprehend](#176-amazon-comprehend)
-  - [17.7. Amazon SageMaker](#177-amazon-sagemaker)
-  - [17.8. Amazon Forecast](#178-amazon-forecast)
-  - [17.9. Amazon Kendra](#179-amazon-kendra)
-  - [17.10. Amazon Personalize](#1710-amazon-personalize)
-  - [17.11. AWS Machine Learning - Summary](#1711-aws-machine-learning---summary)
 - [18. Account Management, Billing \& Support](#18-account-management-billing--support)
   - [18.1. AWS Organizations](#181-aws-organizations)
   - [18.2. AWS Control Tower](#182-aws-control-tower)
@@ -612,216 +579,13 @@
   - Scale EC2 instances based on the demand on your system, replace unhealthy
   - Integrated with the ELB
 
-# 7. Amazon S3
+# 7. Storage
 
-[AWS S3](Amazon%20S3.md)
-
-## 7.1. AWS Snow Family
-
-[AWS Snow Family](AWS%20Snow%20Family.md)
-
-## 7.2. AWS Storage Gateway
-
-[AWS Storage Gateway](AWS%20Storage%20Gateway.md)
-
-## 7.3. Amazon S3 - Summary
-
-- Buckets vs Objects: global unique name, tied to a region.
-- S3 security: IAM policy, S3 Bucket Policy (public access), S3 Encryption.
-- S3 Websites: host a static website on Amazon S3.
-- S3 Versioning: multiple versions for files, prevent accidental deletes.
-- S3 Access Logs: log requests made within your S3 bucket.
-- S3 Replication: same-region or cross-region, must enable versioning.
-- S3 Storage Classes: Standard, IA, 1Z-IA, Intelligent, Glacier, Glacier Deep Archive.
-- S3 Lifecycle Rules: transition objects between classes.
-- S3 Glacier Vault Lock / S3 Object Lock: WORM (Write Once Read Many).
-- Snow Family: import data onto S3 through a physical device, edge computing.
-- OpsHub: desktop application to manage Snow Family devices.
-- Storage Gateway: hybrid solution to extend on-premises storage to S3.
+[Storage](Storage/README.md)
 
 # 8. Databases
 
-## 8.1. Introduction
-
-- Storing data on disk (EFS, EBS, EC2 Instance Store, S3) can have its limits.
-- Sometimes, you want to store data in a database...
-- You can **structure** the data.
-- You build **indexes** to efficiently **query / search** through the data.
-- You define **relationships** between your **datasets**.
-- Databases are **optimized for a purpose** and come with different features, shapes and constraints.
-
-## 8.2. Relational Databases
-
-- Looks just like Excel spreadsheets, with links between them!
-- Can use the SQL language to perform queries / lookups.
-
-## 8.3. NoSQL Databases
-
-- NoSQL = non-SQL = non relational databases
-- NoSQL databases are purpose built for specific data models and have flexible schemas for building modern applications.
-- Benefits:
-  - Flexibility: easy to evolve data model.
-  - Scalability: designed to scale-out by using distributed clusters.
-  - High-performance: optimized for a specific data model.
-  - Highly functional: types optimized for the data model.
-- Examples: Key-value, document, graph, in-memory, search databases.
-
-### 8.3.1. NoSQL data example: JSON
-
-- JSON = JavaScript Object Notation.
-- JSON is a common form of data that fits into a NoSQL model.
-- Data can be nested.
-- Fields can change over time.
-- Support for new types: arrays, etc...
-
-```
-{
-   "name":"John",
-   "age":30,
-   "cars":[
-      "Ford",
-      "BMW",
-      "Fiat"
-   ],
-   "address":{
-      "type":"house",
-      "number":23,
-      "street":"Dream Road"
-   }
-}
-```
-
-## 8.4. Databases and Shared Responsibility on AWS
-
-- AWS offers use to **manage** different databases.
-- **Databases** & Shared Responsibility on AWS include:
-  - Quick Provisioning, High Availability, Vertical and Horizontal Scaling.
-  - Automated Backup & Restore, Operations, Upgrades.
-  - Operating System Patching is handled by AWS.
-  - Monitoring, alerting.
-- Note: many databases technologies could be run on EC2, but you must handle yourself the resiliency, backup, patching, high availability, fault tolerance, scaling...
-
-## 8.5. RDS - Relational Database Service
-
-[AWS RDS](AWS%20RDS.md)
-
-## 8.6. DynamoDB
-
-- **DynamoDB is a fast and flexible non-relational database service for any scale. It can scale with no downtime, it can process millions of requests per second, and is fast and consistent in performance.** [AWS DynamoDB](AWS%20DynamoDB.md)
-
-## 8.7. ElastiCache
-
-- **Amazon ElastiCache is a web service that makes it easy to deploy and run Memcached or Redis protocol-compliant server nodes in the cloud. ElastiCache caches are in-memory databases with high performance, low latency. They help reduce load off databases for read intensive workloads.** [Amazon ElastiCache](AWS%20ElastiCache.md)
-
-## 8.8. Redshift Overview
-
-- **Amazon Redshift is a fully managed, petabyte-scale data warehouse service in the cloud.**
-- Redshift is based on PostgreSQL, but it's not used for OLTP.
-- **It's OLAP - online analytical processing (analytics and data warehousing).**
-- Load data once every hour, not every second.
-- 10x better performance than other data warehouses, scale to PBs of data.
-- **Columnar** storage of data (instead of row based).
-- Massively Parallel Query Execution (MPP), highly available.
-- Pay as you go based on the instances provisioned.
-- Has a SQL interface for performing the queries.
-- BI tools such as AWS Quicksight or Tableau integrate with it.
-- **Manage their data warehouse.**
-
-## 8.9. Amazon EMR
-
-- EMR stands for "Elastic MapReduce"
-- **Amazon EMR is a web service that enables businesses, researchers, data analysts, and developers to easily and cost-effectively process vast amounts of data. EMR helps creating Apache Hadoop clusters (Big Data) to analyze and process vast amount of data.**
-- The clusters can be made of hundreds of EC2 instances.
-- Also supports Apache Spark, HBase, Presto, Flink...
-- EMR takes care of all the provisioning and configuration.
-- Auto-scaling and integrated with Spot instances.
-- Use cases: data processing, machine learning, web indexing, big data...
-
-## 8.10. Amazon Athena
-
-- **Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is no infrastructure to manage, and you pay only for the queries that you run.** [AWS Athena](AWS%20Athena.md)
-
-## 8.11. Amazon QuickSight
-
-- **Amazon QuickSight is a fast, cloud-powered business intelligence (BI) service that makes it easy for you to deliver insights to everyone in your organization. You can create and publish interactive dashboards.**
-- Serverless machine learning-powered business intelligence service to create interactive dashboards.
-- Fast, automatically scalable, embeddable, with per-session pricing.
-- Use cases:
-  - Business analytics
-  - Building visualizations
-  - Perform ad-hoc analysis
-  - Get business insights using data
-- Integrated with RDS, Aurora, Athena, Redshift, S3...
-
-## 8.12. DocumentDB
-
-- **Amazon DocumentDB (with MongoDB compatibility) is a fast, calable, highly available, and fully managed document database service that supports MongoDB workloads.**
-- Aurora is an "AWS-implementation" of PostgreSQL / MySQL...
-- **DocumentDB is the same for MongoDB (which is a NoSQL database).**
-- MongoDB is used to store, query, and index JSON data.
-- Similar "deployment concepts" as Aurora.
-- Fully Managed, highly available with replication across 3 AZ.
-- Aurora storage automatically grows in increments of 10GB, up to 64 TB.
-- Automatically scales to workloads with millions of requests per seconds.
-
-## 8.13. Amazon Neptune
-
-- **Amazon Neptune is a fast, reliable, fully-managed graph database service that makes it easy to build and run applications that work with highly connected datasets. It can be used for knowledge graphs, fraud detection, recommendations engines, social networking, etc.**
-- Fully managed graph database.
-- A popular graph dataset would be a social network.
-  - Users have friends
-  - Posts have comments
-  - Comments have likes from users
-  - Users share and like posts...
-- Highly available across 3 AZ, with up to 15 read replicas.
-- Build and run applications working with highly connected datasets - optimized for these complex and hard queries.
-- Can store up to billions of relations and query the graph with milliseconds latency.
-- Highly available with replications across multiple AZs.
-
-## 8.14. Amazon QLDB
-
-- QLDB stands for "Quantum Ledger Database".
-- **Amazon QLDB is a fully managed ledger database that provides a transparent, immutable, and cryptographically verifiable transaction log owned by a central trusted authority. Amazon QLDB tracks each and every application data change and maintains a complete and verifiable history of changes over time.**
-- A ledger is a book recording financial transactions.
-- Fully Managed, Serverless, High available, Replication across 3 AZ.
-- Used to review history of all the changes made to your application data over time.
-- Immutable system: no entry can be removed or modified, cryptographically verifiable.
-- 2-3x better performance than common ledger blockchain frameworks, manipulate data using SQL.
-- Difference with Amazon Managed Blockchain: no decentralization component, in accordance with financial regulation rules.
-
-## 8.15. Amazon Managed Blockchain
-
-- **Amazon Managed Blockchain is a fully managed service that makes it easy to create and manage scalable blockchain networks using the popular open source frameworks Hyperledger Fabric and Ethereum. It allows multiple parties to execute transactions without the need of a trusted, central authority.**
-- Blockchain makes it possible to build applications where multiple parties can execute transactions without the need for a trusted, central authority.
-- Amazon Managed Blockchain is a managed service to:
-  - Join public blockchain networks
-  - Or create your own scalable private network
-- Compatible with the frameworks Hyperledger Fabric & Ethereum
-
-## 8.16. AWS Glue
-
-- **AWS Glue is a fully managed extract, transform, and load (ETL) service that makes it easy for customers to prepare and load their data for analytics.** [AWS Glue](AWS%20Glue.md)
-
-## 8.17. AWS Database Migration Service (DMS)
-
-- **AWS Database Migration Service helps you migrate databases to AWS quickly and securely. The source database remains fully operational during the migration, minimizing downtime to applications that rely on the database.** [AWS Database Migration Service](AWS%20Database%20Migration%20Service.md)
-
-## 8.18. Databases & Analytics Summary in AWS
-
-- Relational Databases: OLTP, RDS and Aurora (SQL).
-- Differences between Multi-AZ, Read Replicas, Multi-Region.
-- In-memory Database: ElastiCache.
-- Key/Value Database: DynamoDB (serverless) & DAX (cache for DynamoDB).
-- Warehouse - OLAP: Redshift (SQL).
-- Apache Hadoop Cluster: EMR.
-- Athena: query data on Amazon S3 (serverless & SQL).
-- QuickSight: dashboards on your data (serverless).
-- DocumentDB: "Aurora for MongoDB" (JSON - NoSQL database).
-- Amazon QLDB: Financial Transactions Ledger (immutable journal, cryptographically verifiable).
-- Amazon Managed Blockchain: managed Hyperledger Fabric & Ethereum blockchains.
-- Glue: Managed ETL (Extract Transform Load) and Data Catalog service.
-- Database Migration Service: DMS.
-- Neptune: Graph database.
+[Databases](Database/README.md)
 
 # 9. Other Compute Services: ECS, Lambda, Batch, Lightsail
 
@@ -909,22 +673,22 @@
 
 [AWS Cloud Development Kit](AWS%20Cloud%20Development%20Kit.md)
 
-## 10.4. AWS Elastic Beanstalk Overview
+## 10.3. AWS Elastic Beanstalk Overview
 
 - **Elastic Beanstalk is a Platform as a Service (PaaS).**
 - **You only manage data and applications.**
 - **AWS Elastic Beanstalk makes it even easier for developers to quickly deploy and manage applications in the AWS Cloud.**
 - [AWS Elastic Beanstalk](AWS%20Elastic%20Beanstalk.md)
 
-## 10.5. AWS CI/CD
+## 10.4. AWS CI/CD
 
 [AWS CI/CD](AWS%20CICD.md)
 
-## 10.6. AWS Systems Manager (SSM)
+## 10.5. AWS Systems Manager (SSM)
 
 - **AWS Systems Manager gives you visibility and control of your infrastructure on AWS. It is used for patching systems at scale.** [AWS Systems Manager](AWS%20Systems%20Manager.md)
 
-## 10.7. AWS OpsWorks
+## 10.6. AWS OpsWorks
 
 - Chef & Puppet help you perform server configuration automatically, or repetitive actions.
 - They work great with EC2 & On-Premises VM.
@@ -934,11 +698,11 @@
   - EC2 Instances, Databases, Load Balancers, EBS volumes...
 - Tip: Chef or Puppet needed => AWS OpsWorks.
 
-## 10.8. AWS Amplify
+## 10.7. AWS Amplify
 
 - [AWS Amplify](AWS%20Amplify.md)
 
-## 10.9. Deployment - Summary
+## 10.8. Deployment - Summary
 
 - CloudFormation: (AWS only):
   - Infrastructure as Code, works with almost all of AWS resources.
@@ -1474,119 +1238,7 @@
 
 # 17. Machine Learning
 
-## 17.1. Amazon Rekognition
-
-- **Amazon Rekognition makes it easy to add image and video analysis to your applications using proven, highly scalable, deep learning technology that requires no machine learning expertise to use.**
-- Find objects, people, text, scenes in images and videos using ML.
-- Facial analysis and facial search to do user verification, people counting.
-- Create a database of "familiar faces" or compare against celebrities.
-- Use cases:
-  - Labeling.
-  - Content Moderation.
-  - Text Detection.
-  - Face Detection and Analysis (gender, age range, emotions...).
-  - Face Search and Verification.
-  - Celebrity Recognition.
-  - Pathing (ex: for sports game analysis).
-
-## 17.2. Amazon Transcribe
-
-- **Amazon Transcribe is an AWS service that makes it easy for customers to convert speech-to-text.**
-- Automatically convert speech to text.
-- Uses a deep learning process called automatic speech recognition (ASR) to convert speech to text quickly and accurately.
-- Use cases:
-  - Transcribe customer service calls.
-  - Automate closed captioning and subtitling.
-  - Generate metadata for media assets to create a fully searchable archive.
-
-## 17.3. Amazon Polly
-
-- **Amazon Polly is a service that turns text into lifelike speech.**
-- Turn text into lifelike speech using deep learning.
-- Allowing you to create applications that talk.
-
-## 17.4. Amazon Translate
-
-- **Amazon Translate is a neural machine translation service that delivers fast, high-quality, and affordable language translation.**
-- Natural and accurate **language translation**.
-- Amazon Translate allows you to **localize content** - such as websites and applications - for **international users**, and to easily translate large volumes of text efficiently.
-
-## 17.5. Amazon Lex & Connect
-
-- **Amazon Lex is a service for building conversational interfaces into any application using voice and text. Lex provides the advanced deep learning functionalities of automatic speech recognition (ASR) for converting speech to text, and natural language understanding (NLU) to recognize the intent of the text, to enable you to build applications with highly engaging user experiences and lifelike conversational interactions.**
-- **Amazon Lex:** (same technology that powers Alexa).
-  - Automatic Speech Recognition (ASR) to convert speech to text.
-  - Natural Language Understanding to recognize the intent of text, callers.
-  - Helps build chatbots, call center bots.
-- **Amazon Connect is a self-service, cloud-based contact center service that makes it easy for any business to deliver better customer service at lower cost. It does not provide speech-to-text conversion or natural language understanding.**
-- **Amazon Connect:**
-  - Receive calls, create contact flows, cloud-based virtual contact center.
-  - Can integrate with other CRM systems or AWS.
-  - No upfront payments, 80% cheaper than traditional contact center solutions.
-
-## 17.6. Amazon Comprehend
-
-- **Amazon Comprehend is a natural language processing (NLP) service that uses machine learning to find meaning and insights in text.**
-- For **Natural Language Processing - NLP**.
-- Fully managed and serverless service.
-- Uses machine learning to find insights and relationships in text:
-  - Language of the text.
-  - Extracts key phrases, places, people, brands, or events.
-  - Understands how positive or negative the text is.
-  - Analyzes text using tokenization and parts of speech.
-  - Automatically organizes a collection of text files by topic.
-- Sample use cases:
-  - Analyze customer interactions (emails) to find what leads to a positive or negative experience.
-  - Create and groups articles by topics that Comprehend will uncover.
-
-## 17.7. Amazon SageMaker
-
-- **Amazon SageMaker is a fully managed service that provides every developer and data scientist with the ability to build, train, and deploy machine learning (ML) models quickly. SageMaker removes the heavy lifting from each step of the machine learning process to make it easier to develop high quality models.**
-- Fully managed service for developers / data scientists to build ML models.
-- Typically, difficult to do all the processes in one place + provision servers.
-- Machine learning process (simplified): predicting your exam score.
-
-## 17.8. Amazon Forecast
-
-- Fully managed service that uses ML to deliver highly accurate forecasts.
-- Example: predict the future sales of a raincoat.
-- 50% more accurate than looking at the data itself.
-- Reduce forecasting time from months to hours.
-- Use cases: Product Demand Planning, Financial Planning, Resource Planning, ...
-
-## 17.9. Amazon Kendra
-
-- **Amazon Kendra is a highly accurate and easy to use enterprise search service that's powered by machine learning.**
-- Fully managed **document search service** powered by Machine Learning.
-- Extract answers from within a document (text, pdf, HTML, PowerPoint, MS Word, FAQs...).
-- Natural language search capabilities.
-- Learn from user interactions/feedback to promote preferred results **(Incremental Learning)**.
-- Ability to manually fine-tune search results (importance of data, freshness, custom, ...).
-
-## 17.10. Amazon Personalize
-
-- **Amazon Personalize is a machine learning service that makes it easy for developers to create individualized recommendations for customers using their applications.**
-- Fully managed ML-service to build apps with real-time personalized recommendations.
-- Example: personalized product recommendations/re-ranking, customized direct marketing.
-  - Example: User bought gardening tools, provide recommendations on the next one to buy.
-- Same technology used by Amazon.com.
-- Integrates into existing websites, applications, SMS, email marketing systems, ...
-- Implement in days, not months (you don't need to build, train, and deploy ML solutions).
-- Use cases: retail stores, media and entertainment...
-
-## 17.11. AWS Machine Learning - Summary
-
-- Rekognition: face detection, labeling, celebrity recognition.
-- Transcribe: audio to text (ex: subtitles).
-- Polly: text to audio.
-- Translate: translations.
-- Lex: build conversational bots - chatbots.
-- Connect: cloud contact center.
-- Comprehend: natural language processing.
-- SageMaker: machine learning for every developer and data scientist.
-- Forecast: build highly accurate forecasts.
-- Kendra: ML-powered search engine.
-- Personalize: real-time personalized recommendations.
+[Machine Learning](Machine%20Learning/README.md)
 
 # 18. Account Management, Billing & Support
 

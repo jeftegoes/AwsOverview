@@ -27,10 +27,15 @@
 
 # 2. Health Event Notifications
 
-- Use EventBridge to react to changes for AWS Health events in your AWS account.
+- Use [Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md) to react to changes for **AWS Health events** in your AWS account.
 - Example: receive email notifications when EC2 instances in your AWS account are scheduled for updates.
 - This is possible for Account events (resources that are affected in your account) and Public Events (Regional availability of a service).
-- Use cases: send notifications, capture event information, take corrective action...
+- **Use cases**
+  - Send notifications.
+  - capture event information.
+  - take corrective action.
+
+![Health Event Notifications](/Images/AWSHealthDashboardNotifications.png)
 
 # 3. Status Checks
 

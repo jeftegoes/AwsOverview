@@ -124,13 +124,15 @@
 
 # 13. Multi Region (Cross-Region Actions)
 
-- Actions in your pipeline can be in different regions.
+- **Actions in your pipeline can be in different regions**
   - Example: deploy a Lambda function through CloudFormation into multiple regions.
-- S3 Artifact Stores must be defined in each region where you have actions.
+- **S3 Artifact Stores must be defined in each region where you have actions**
   - CodePipeline must have read/write access into every **artifact buckets**.
   - If you use the console default **artifact buckets** are configured, else you must create them.
 - CodePipeline handles the copying of input artifacts from one AWS Region to the other Regions when performing **cross-region actions**.
   - In your **cross-region actions**, only reference the name of the input artifacts.
+
+![AWS CodePipeline - Multi Region](/Images/AWSCodePipelineMultiRegion.png)
 
 # 14. Pipeline executions
 
