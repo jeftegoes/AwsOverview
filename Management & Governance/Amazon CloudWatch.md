@@ -15,6 +15,7 @@
 - [10. Logs Insights](#10-logs-insights)
 - [11. Logs - S3 Export](#11-logs---s3-export)
 - [12. Logs Subscriptions](#12-logs-subscriptions)
+  - [12.1. Scenario with HIDS](#121-scenario-with-hids)
 - [13. CloudWatch Logs Metric Filter](#13-cloudwatch-logs-metric-filter)
 - [14. All kind of Logs](#14-all-kind-of-logs)
   - [14.1. AWS Managed Logs](#141-aws-managed-logs)
@@ -165,7 +166,15 @@
 
 - Get a real-time log events from CloudWatch Logs for processing and analysis.
 - Send to Kinesis Data Streams, Kinesis Data Firehose, or Lambda.
-- Subscription Filter - filter which logs are events delivered to your destination.
+- **Subscription Filter:** Filter which logs are events delivered to your destination.
+
+![Amazon CloudWatch Logs Subscriptions](/Images/AmazonCloudWatchLogsSubscriptions.png)
+
+## 12.1. Scenario with HIDS
+
+- HIDS = Host-based intrusion detection system.
+
+![Amazon CloudWatch Logs Subscriptions with HIDS](/Images/AmazonCloudWatchLogsSubscriptionsHIDS.png)
 
 # 13. CloudWatch Logs Metric Filter
 
@@ -217,7 +226,7 @@
 - Make sure IAM permissions are correct.
 - The CloudWatch log agent can be setup on-premises too.
 
-![Amazon CloudWatch Logs Agent](Images/AmazonCloudWatchAgentLog.png)
+![Amazon CloudWatch Logs Agent](/Images/AmazonCloudWatchLogsAgent.png)
 
 ## 15.1. Logs Agent & Unified Agent
 
@@ -282,7 +291,7 @@
   - **Datapoints to Alarm:** Is the number of data points within the Evaluation Periods that must be breaching to cause the alarm to go to the ALARM state.
     - The breaching data points don't have to be consecutive, but they must all be within the last number of data points equal to **Evaluation Period**.
 
-![Evaluating an alarm](Images/CloudWatchEvaluatingAlarm.png)
+![Evaluating an alarm](/Images/CloudWatchEvaluatingAlarm.png)
 
 ## 17.4. EC2 Instance Recovery
 

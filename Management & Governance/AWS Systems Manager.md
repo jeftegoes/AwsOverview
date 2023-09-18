@@ -10,20 +10,20 @@
 - [3. SSM - Documents](#3-ssm---documents)
 - [4. SSM - Run Command](#4-ssm---run-command)
 - [5. Automation](#5-automation)
-- [6. SSM - Parameter Store](#6-ssm---parameter-store)
-- [7. SSM Parameter Store Hierarchy](#7-ssm-parameter-store-hierarchy)
-- [8. Parameters Policies (for advanced parameters)](#8-parameters-policies-for-advanced-parameters)
-- [9. Patch Manager](#9-patch-manager)
-  - [9.1. Patch Baseline \& Patch Group](#91-patch-baseline--patch-group)
-  - [9.2. Patch Manager Patch Baselines](#92-patch-manager-patch-baselines)
-- [10. SSM - Maintenance Windows](#10-ssm---maintenance-windows)
-- [11. SSM - Session Manager](#11-ssm---session-manager)
-- [12. SSM - Session Manager](#12-ssm---session-manager)
-- [13. Systems Manager - Default Host Management Configuration](#13-systems-manager---default-host-management-configuration)
-- [14. Systems Manager - Hybrid Environments](#14-systems-manager---hybrid-environments)
-- [15. IoT Greengrass Instance Activation](#15-iot-greengrass-instance-activation)
-- [16. Systems Manager - Compliance](#16-systems-manager---compliance)
-- [17. Systems Manager - OpsCenter](#17-systems-manager---opscenter)
+- [6. Parameter Store](#6-parameter-store)
+  - [6.1. Parameter Store Hierarchy](#61-parameter-store-hierarchy)
+  - [6.2. Parameters Policies (for advanced parameters)](#62-parameters-policies-for-advanced-parameters)
+- [7. Patch Manager](#7-patch-manager)
+  - [7.1. Patch Baseline \& Patch Group](#71-patch-baseline--patch-group)
+  - [7.2. Patch Manager Patch Baselines](#72-patch-manager-patch-baselines)
+- [8. SSM - Maintenance Windows](#8-ssm---maintenance-windows)
+- [9. Session Manager](#9-session-manager)
+- [10. SSM - Session Manager](#10-ssm---session-manager)
+- [11. Systems Manager - Default Host Management Configuration](#11-systems-manager---default-host-management-configuration)
+- [12. Systems Manager - Hybrid Environments](#12-systems-manager---hybrid-environments)
+- [13. IoT Greengrass Instance Activation](#13-iot-greengrass-instance-activation)
+- [14. Systems Manager - Compliance](#14-systems-manager---compliance)
+- [15. Systems Manager - OpsCenter](#15-systems-manager---opscenter)
 
 # 1. Introduction
 
@@ -46,7 +46,7 @@
 - If an instance can't be controlled with SSM, it's probably an issue with the **SSM Agent**!
 - Thanks to the **SSM Agent**, we can run commands, patch & configure our servers.
 
-![SSM Agent](Images/AWSSystemsManagerSSMAgent.png)
+![SSM Agent](/Images/AWSSystemsManagerSSMAgent.png)
 
 ## 1.2. Systems Manager - SSM Session Manager
 
@@ -102,7 +102,7 @@
 
 ![SSM - Automation](/Images/AWSSystemsManagerAutomation.png)
 
-# 6. SSM - Parameter Store
+# 6. Parameter Store
 
 - Secure storage for configuration and secrets.
 - Optional Seamless Encryption using KMS.
@@ -112,7 +112,7 @@
 - Notifications with Amazon EventBridge.
 - Integration with CloudFormation.
 
-# 7. SSM Parameter Store Hierarchy
+## 6.1. Parameter Store Hierarchy
 
 - /my-department/
   - my-app/
@@ -127,12 +127,12 @@
 - /aws/reference/secretsmanager/secret_ID_in_Secrets_Manager
 - /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 (public)
 
-# 8. Parameters Policies (for advanced parameters)
+## 6.2. Parameters Policies (for advanced parameters)
 
 - Allow to assign a TTL to a parameter (expiration date) to force updating or deleting sensitive data such as passwords.
 - Can assign multiple policies at a time.
 
-# 9. Patch Manager
+# 7. Patch Manager
 
 - Automates the process of patching managed instances.
 - OS updates, applications updates, security updates...
@@ -144,7 +144,7 @@
 
 ![Patch Manager](/Images/AWSSystemsManagerPatchManager.png)
 
-## 9.1. Patch Baseline & Patch Group
+## 7.1. Patch Baseline & Patch Group
 
 - **Patch Baseline**
   - Defines which patches should and shouldn't be installed on your instances.
@@ -158,7 +158,7 @@
   - An instance can only be in one Patch Group.
   - Patch Group can be registered with only one Patch Baseline.
 
-## 9.2. Patch Manager Patch Baselines
+## 7.2. Patch Manager Patch Baselines
 
 - **Pre-Defined Patch Baseline**
   - Managed by AWS for different Operating Systems (can't be modified).
@@ -168,7 +168,7 @@
   - Operating System, allowed patches, rejected patches...
   - Ability to specify custom and alternative patch repositories.
 
-# 10. SSM - Maintenance Windows
+# 8. SSM - Maintenance Windows
 
 - Defines a schedule for when to perform actions on your instances.
 - Example: OS patching, updating drivers, installing software...
@@ -178,7 +178,7 @@
   - Set of registered instances.
   - Set of registered tasks.
 
-# 11. SSM - Session Manager
+# 9. Session Manager
 
 - Allows you to start a secure shell on your EC2 and on-premises servers.
 - Access through AWS Console, AWS CLI, or Session Manager SDK.
@@ -188,7 +188,7 @@
 - Session log data can be sent to S3 or CloudWatch Logs.
 - CloudTrail can intercept `StartSession` events.
 
-# 12. SSM - Session Manager
+# 10. SSM - Session Manager
 
 - IAM Permissions
   - Control which users/groups can access Session Manager and which instances.
@@ -196,7 +196,7 @@
   - Access SSM + write to S3 + write to CloudWatch
 - Optionally, you can restrict commands a user can run in a session
 
-# 13. Systems Manager - Default Host Management Configuration
+# 11. Systems Manager - Default Host Management Configuration
 
 - When enabled, it automatically configure your EC2 instances as managed instances **without the use of EC2 Instance Profile**.
 - **Instance Identity Role:** A type of IAM Role **with no permissions** beyond identifying the EC2 instance to AWS Services (e.g., Systems Manager).
@@ -205,12 +205,12 @@
 - Automatically keeps the SSM Agent up to date.
 - Must be enabled per AWS Region.
 
-# 14. Systems Manager - Hybrid Environments
+# 12. Systems Manager - Hybrid Environments
 
 - You can setup Systems Manager to manage on-premises servers, IoT devices, edge devices, and virtual machines (e.g., VMs in other cloud providers).
 - In Systems Manager Console, EC2 instances use the prefix "i-" and hybrid managed nodes use the prefix "mi-"
 
-# 15. IoT Greengrass Instance Activation
+# 13. IoT Greengrass Instance Activation
 
 - Manage IoT Greengrass Core devices using SSM.
 - Install SSM Agent on Greengrass Core devices (registered as a managed node in SSM).
@@ -219,7 +219,7 @@
 - Supports all SSM Capabilities (Patch Manager, Session Manager, Run Command...).
 - Use cases: easily update and maintain OS and software updates across a fleet of Greengrass Core devices.
 
-# 16. Systems Manager - Compliance
+# 14. Systems Manager - Compliance
 
 - Scan your fleet of managed nodes for patch compliance and configuration inconsistencies.
 - Displays current data about:
@@ -229,7 +229,7 @@
 - Can collect and aggregate data from multiple accounts and regions.
 - Can send compliance data to Security Hub.
 
-# 17. Systems Manager - OpsCenter
+# 15. Systems Manager - OpsCenter
 
 - Allows you to view, investigate, and remediate issues in one place (no need to navigate across different AWS services).
 - Security issues (Security Hub), performance issues (DynamoDB throttle), failures (ASG failed launch instance)...

@@ -1229,7 +1229,7 @@
 
 # 15. VPC
 
-![AWS VPC](AWS%20VPC.md)
+![Amazon VPC](Networking%20&%20Content%20Delivery/Amazon%20VPC.md)
 
 # 16. Security & Compliance
 

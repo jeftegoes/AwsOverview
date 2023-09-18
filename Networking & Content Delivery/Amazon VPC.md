@@ -1,4 +1,4 @@
-# AWS VPC - Virtual Private Cloud<!-- omit in toc -->
+# Amazon VPC - Virtual Private Cloud<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -27,7 +27,7 @@
 - A **private subnet** is a subnet that is not accessible from the internet.
 - To define access to the internet and between subnets, we use **Route Tables**.
 
-![AWS VPC ](Images/AwsVPCDiagram.png)
+![Amazon VPC ](Images/AwsVPCDiagram.png)
 
 # 2. NAT Gateways
 
