@@ -1,4 +1,4 @@
-# AWS SNS - Simple Notification Service<!-- omit in toc -->
+# Amazon SNS - Simple Notification Service<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -24,7 +24,7 @@
 - 100,000 topics limit.
 - Many AWS services can send data directly to SNS for notifications.
 
-![AWS SNS Diagram](Images/AWSSNSDiagram.png)
+![Amazon SNS Diagram](/Images/AWSSNSDiagram.png)
 
 # 2. How to publish
 

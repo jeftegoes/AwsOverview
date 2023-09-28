@@ -87,15 +87,15 @@
 ## 1.1. Serverless in AWS
 
 - [AWS Lambda](AWS%20Lambda.md)
-- [DynamoDB](AWS%20DynamoDB.md)
-- [AWS Cognito](AWS%20Cognito.md)
+- [Amazon DynamoDB](/Database/Amazon%20DynamoDB.md)
+- [Amazon Cognito](/Security,%20Identity,%20&%20Compliance/Amazon%20Cognito.md)
 - AWS API Gateway
-- [Amazon S3](Amazon%20S3.md)
-- AWS SNS & SQS
+- [Amazon S3](/Storage/Amazon%20S3.md)
+- Amazon SNS & SQS
 - AWS Kinesis Data Firehose
 - Aurora Serverless
-- [Step Functions](AWS%20Step%20Functions.md)
-- Fargate
+- [Step Functions](/Application%20Integration/AWS%20Step%20Functions.md)
+- ECS/Fargate
 
 # 2. Why AWS Lambda?
 
@@ -162,7 +162,7 @@
 
 # 7. Lifecycle execution
 
-![Lifecycle execution](Images/LambdaLifecycle.png)
+![Lifecycle execution](/Images/LambdaLifecycle.png)
 
 # 8. Invocations types
 
@@ -208,7 +208,7 @@
 - You can use the Application Load Balancer (or an API Gateway).
 - The Lambda function must be registered in a target group.
 
-![Lambda integration with ALB](Images/LambdaIntegrationAlb.png)
+![Lambda integration with ALB](/Images/LambdaIntegrationAlb.png)
 
 ### 9.2.1. ALB to Lambda: HTTP to JSON
 
@@ -296,7 +296,7 @@
 
 ## 10.2. CloudWatch Events / EventBridge
 
-![CloudWatch Events / EventBridge](Images/CloudWatchEventsEventBridge.png)
+![CloudWatch Events / EventBridge](/Images/CloudWatchEventsEventBridge.png)
 
 ## 10.3. S3 Events Notifications
 
@@ -441,9 +441,9 @@
   - Amazon SNS
 - _Note: you can send events to a DLQ directly from SQS_
 
-![Event Source Mapping Kinesis Stream.png](Images/EventSourceMappingKinesisStream.png)
+![Event Source Mapping Kinesis Stream.png](/Images/EventSourceMappingKinesisStream.png)
 
-![Lambda Destinations for Asynchronous Invocation](Images/LambdaDestinationsForAsynchronousInvocation.png)
+![Lambda Destinations for Asynchronous Invocation](/Images/LambdaDestinationsForAsynchronousInvocation.png)
 
 - https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html
 - https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html
@@ -805,7 +805,7 @@ CMD ["app.lambdaHandler"]
 - **AllAtOnce:** immediate
   - Can create Pre & Post Traffic hooks to check the health of the Lambda function.
 
-![Canary deploy](Images/LambdaCanaryDeploy.png)
+![Canary deploy](/Images/LambdaCanaryDeploy.png)
 
 # 30. Function URL
 
@@ -820,7 +820,7 @@ CMD ["app.lambdaHandler"]
 - Create and configure using AWS Console or AWS API.
 - Throttle your function by using Reserved Concurrency.
 
-![Lambda Function URL](Images/LambdaFunctionURL.png)
+![Lambda Function URL](/Images/LambdaFunctionURL.png)
 
 ## 30.1. Function URL Security
 
@@ -838,7 +838,7 @@ CMD ["app.lambdaHandler"]
     - **Same account:** Identity-based Policy **OR** Resource-based Policy as ALLOW.
     - **Cross account:** Identity-based Policy **AND** Resource-based Policy as ALLOW.
 
-![Lambda secutiry options](Images/LambdaFunctionURLSecutiryOptions.png)
+![Lambda secutiry options](/Images/LambdaFunctionURLSecutiryOptions.png)
 
 # 31. Lambda and CodeGuru Profiling
 

@@ -885,7 +885,7 @@
 
 ## 13.3. Amazon SNS
 
-- **Is a highly available, durable, secure, fully managed pub/sub messaging service that enables you to decouple microservices, distributed systems, and serverless applications. It uses a push-based system.** [AWS SNS](AWS%20SNS.md)
+- **Is a highly available, durable, secure, fully managed pub/sub messaging service that enables you to decouple microservices, distributed systems, and serverless applications. It uses a push-based system.** [Amazon SNS](AWS%20SNS.md)
 
 ## 13.4. Amazon MQ
 

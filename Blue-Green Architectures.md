@@ -1,4 +1,4 @@
-# Disaster Recovery<!-- omit in toc -->
+# Blue-Green Architectures<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
