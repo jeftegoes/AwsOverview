@@ -1,4 +1,4 @@
-# Amazon GuardDuty<!-- omit in toc -->
+# Amazon Inspector<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -8,9 +8,9 @@
 
 # 1. Introduction
 
-- **Automated Security Assessments**.
+- **Automated Security Assessments.**
 - **For EC2 instances**
-  - Leveraging the [AWS System Manager (SSM)](AWS%20Systems%20Manager.md) agent.
+  - Leveraging the [AWS System Manager (SSM)](/Management%20&%20Governance/AWS%20Systems%20Manager.md) agent.
   - Analyze against **unintended network accessibility**.
   - Analyze the **running OS** against **known vulnerabilities**.
 - **For Containers push to Amazon ECR**
@@ -32,6 +32,6 @@
 # 3. Systems Manager
 
 - EC2 instance setup in Inspector requires:
-  - SSM Agent is running.
+  - **SSM Agent is running.**
   - Be an SSM Managed Instance (IAM Role or Default Host Management Config.).
   - Outbound 443 to Systems Manager endpoint.

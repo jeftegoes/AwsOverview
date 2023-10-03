@@ -5,25 +5,27 @@
 - [1. Introduction](#1-introduction)
 - [2. Steps To Make it Work](#2-steps-to-make-it-work)
 - [3. Primary Components](#3-primary-components)
-- [4. appspec.yml](#4-appspecyml)
-  - [4.1. List of lifecycle event hooks](#41-list-of-lifecycle-event-hooks)
-  - [4.2. Deployment Hooks Examples](#42-deployment-hooks-examples)
+- [4. Hooks](#4-hooks)
+  - [Examples](#examples)
+  - [4.1. appspec.yml](#41-appspecyml)
+  - [4.2. List of lifecycle event hooks](#42-list-of-lifecycle-event-hooks)
+  - [4.3. Deployment Hooks Examples](#43-deployment-hooks-examples)
 - [5. EC2/On-premises Platform](#5-ec2on-premises-platform)
   - [5.1. In-Place deployment](#51-in-place-deployment)
   - [5.2. Blue / Green Deployment](#52-blue--green-deployment)
   - [5.3. CodeDeploy Agent](#53-codedeploy-agent)
 - [6. Lambda Platform](#6-lambda-platform)
 - [7. ECS Platform](#7-ecs-platform)
-- [Deployment to EC2](#deployment-to-ec2)
-- [8. In-place](#8-in-place)
-  - [8.1. In-place Deployment Hooks](#81-in-place-deployment-hooks)
-- [9. Deploy to an ASG](#9-deploy-to-an-asg)
-- [10. Redeploy and Rollbacks](#10-redeploy-and-rollbacks)
-- [11. Troubleshooting](#11-troubleshooting)
-  - [11.1. Scenario 1](#111-scenario-1)
-  - [11.2. Scenario 2](#112-scenario-2)
-  - [11.3. Scenario 3](#113-scenario-3)
-  - [11.4. Scenario 4](#114-scenario-4)
+- [8. Deployment to EC2](#8-deployment-to-ec2)
+- [9. In-place](#9-in-place)
+  - [9.1. In-place Deployment Hooks](#91-in-place-deployment-hooks)
+- [10. Deploy to an ASG](#10-deploy-to-an-asg)
+- [11. Redeploy and Rollbacks](#11-redeploy-and-rollbacks)
+- [12. Troubleshooting](#12-troubleshooting)
+  - [12.1. Scenario 1](#121-scenario-1)
+  - [12.2. Scenario 2](#122-scenario-2)
+  - [12.3. Scenario 3](#123-scenario-3)
+  - [12.4. Scenario 4](#124-scenario-4)
 
 # 1. Introduction
 
@@ -61,7 +63,46 @@
 - **Service Role:** An IAM Role for CodeDeploy to perform operations on EC2 instances, ASGs, ELBs...
 - **Target Revision:** The most recent revision that you want to deploy to a Deployment Group.
 
-# 4. appspec.yml
+# 4. Hooks
+
+- The content in the `hooks` section of the `AppSpec.yml` file varies, depending on the compute platform for your deployment.
+- The `hooks` section for an **EC2/On-Premises** deployment contains mappings that link deployment lifecycle event hooks to one or more scripts.
+- The `hooks` section for a **Lambda or an Amazon ECS deployment** specifies Lambda validation functions to run during a deployment lifecycle event.
+- **If an event hook is not present, no operation is executed for that event.**
+- There is also a set of available environment variables for the hooks.
+- During each deployment lifecycle event, hook scripts can access the following environment variables:
+- `APPLICATION_NAME` - The name of the application in CodeDeploy that is part of the current deployment (for example, WordPress_App).
+- `DEPLOYMENT_ID` - The ID CodeDeploy has assigned to the current deployment (for example, d-AB1CDEF23).
+- `DEPLOYMENT_GROUP_NAME` - The name of the deployment group in CodeDeploy that is part of the current deployment (for example, WordPress_DepGroup).
+- `DEPLOYMENT_GROUP_ID` - The ID of the deployment group in CodeDeploy that is part of the current deployment (for example, b1a2189b-dd90-4ef5-8f40-4c1c5EXAMPLE).
+- `LIFECYCLE_EVENT` - The name of the current deployment lifecycle event (for example, AfterInstall).
+- These environment variables are local to each deployment lifecycle event.
+
+## Examples
+
+- The following script changes the listening port on an Apache HTTP server to 9090 instead of 80 if the value of `DEPLOYMENT_GROUP_NAME` is equal to Staging.
+- This script must be invoked during the `BeforeInstall` deployment lifecycle event:
+
+  ```
+  if [ "$DEPLOYMENT_GROUP_NAME" == "Staging" ]
+  then
+    sed -i -e 's/Listen 80/Listen 9090/g' /etc/httpd/conf/httpd.conf
+  fi
+  ```
+
+- The following script example changes the verbosity level of messages recorded in its error log from warning to debug if the value of the `DEPLOYMENT_GROUP_NAME` environment variable is equal to Staging.
+- This script must be invoked during the `BeforeInstall` deployment lifecycle event:
+
+  ```
+  if [ "$DEPLOYMENT_GROUP_NAME" == "Staging" ]
+  then
+      sed -i -e 's/LogLevel warn/LogLevel debug/g' /etc/httpd/conf/httpd.conf
+  fi
+  ```
+
+- **There is no such thing as custom environment variable in CodeDeploy.**
+
+## 4.1. appspec.yml
 
 - `files` - How to source and copy from S3 / GitHub to filesystem
   - `source`
@@ -90,19 +131,24 @@
     - `AfterAllowTraffic`
     - `BeforeAllowTraffic`
 
-## 4.1. List of lifecycle event hooks
+## 4.2. List of lifecycle event hooks
 
 - `Install` - During this deployment lifecycle event, the CodeDeploy agent copies the revision files from the temporary location to the final destination folder.
   - **This event is reserved for the CodeDeploy agent and cannot be used to run scripts.**
 
-## 4.2. Deployment Hooks Examples
+## 4.3. Deployment Hooks Examples
 
-- `BeforeInstall` - Used for preinstall tasks, such as decrypting files and creating a backup of the current version.
-- `AfterInstall` - Used for tasks such as configuring your application or changing file permissions.
-- `ApplicationStart` - Used to start services that stopped during ApplicationStop.
-- `ValidateService` - Used to verify the deployment was completed successfully.
-- `BeforeAllowTraffic` - Run tasks on EC2 instances before registered to the load balancer.
-  - Example: perform health checks on the application and fail the deployment if the health checks are not successful.
+- `BeforeInstall` - You can use this deployment lifecycle event for preinstall tasks, such as decrypting files and creating a backup of the current version.
+- `Install` - During this deployment lifecycle event, the CodeDeploy agent copies the revision files from the temporary location to the final destination folder. This event is reserved for the CodeDeploy agent and cannot be used to run scripts.
+- `AfterInstall` - You can use this deployment lifecycle event for tasks such as configuring your application or changing file permissions.
+- `ApplicationStart` - You typically use this deployment lifecycle event to restart services that were stopped during ApplicationStop.
+- `ValidateService` - This is the last deployment lifecycle event. It is used to verify the deployment was completed successfully.
+- `BeforeBlockTraffic` - You can use this deployment lifecycle event to run tasks on instances before they are deregistered from a load balancer.
+- `BlockTraffic` - During this deployment lifecycle event, internet traffic is blocked from accessing instances that are currently serving traffic. This event is reserved for the CodeDeploy agent and cannot be used to run scripts.
+- `AfterBlockTraffic` - You can use this deployment lifecycle event to run tasks on instances after they are deregistered from a load balancer.
+- `BeforeAllowTraffic` - You can use this deployment lifecycle event to run tasks on instances before they are registered with a load balancer.
+- `AllowTraffic` - During this deployment lifecycle event, internet traffic is allowed to access instances after a deployment. This event is reserved for the CodeDeploy agent and cannot be used to run scripts.
+- `AfterAllowTraffic` - You can use this deployment lifecycle event to run tasks on instances after they are registered with a load balancer.
 
 # 5. EC2/On-premises Platform
 
@@ -110,10 +156,10 @@
 - Perform in-place deployments or blue/green deployments.
 - Must run the **CodeDeploy Agent** on the target instances.
 - Define deployment speed:
-  - AllAtOnce: Most downtime.
-  - HalfAtATime: Reduced capacity by 50%.
-  - OneAtATime: Slowest, lowest availability impact.
-  - Custom: Define your.
+  - `AllAtOnce` - Most downtime.
+  - `HalfAtATime` - Reduced capacity by 50%.
+  - `OneAtATime` - Slowest, lowest availability impact.
+  - `Custom` - Define your.
 
 ## 5.1. In-Place deployment
 
@@ -153,7 +199,7 @@
   - `ECSCanary10Percent30Minutes`
 - `AllAtOnce` - Immediate.
 
-# Deployment to EC2
+# 8. Deployment to EC2
 
 - Define how to deploy the application using appspec.yml +
   Deployment Strategy
@@ -164,16 +210,16 @@
   deployment after each
   deployment phase
 
-# 8. In-place
+# 9. In-place
 
 - Use EC2 Tags or ASG to identify instances you want to deploy to.
 - With a Load Balancer: traffic is stopped before instance is updated, and started again after the instance is updated.
 
-## 8.1. In-place Deployment Hooks
+## 9.1. In-place Deployment Hooks
 
 - Hooks - one or more scripts to be run by CodeDeploy on each EC2 instance.
 
-# 9. Deploy to an ASG
+# 10. Deploy to an ASG
 
 - **In-place Deployment**
   - Updates existing EC2 instances.
@@ -183,7 +229,7 @@
   - Choose how long to keep the old EC2 instances (old ASG).
   - Must be using an ELB.
 
-# 10. Redeploy and Rollbacks
+# 11. Redeploy and Rollbacks
 
 - Rollback = redeploy a previously deployed revision of your application.
 - Deployments can be rolled back:
@@ -192,9 +238,9 @@
 - Disable Rollbacks - Do not perform rollbacks for this deployment.
 - **If a roll back happens, CodeDeploy redeploys the last known good revision as a new deployment (not a restored version).**
 
-# 11. Troubleshooting
+# 12. Troubleshooting
 
-## 11.1. Scenario 1
+## 12.1. Scenario 1
 
 - **Deployment Error: "InvalidSignatureException - Signature expired: [time] is now earlier than [time]"**
   - For CodeDeploy to perform its operations, it requires accurate time references.
@@ -202,7 +248,7 @@
 - Check log files to understand deployment issues:
   - For Amazon Linux, Ubuntu, and RHEL log files stored at `/opt/codedeploy-agent/deployment-root/deployment- logs/codedeploy-agent-deployments.log`.
 
-## 11.2. Scenario 2
+## 12.2. Scenario 2
 
 - **When the Deployment or all Lifecycle Events are skipped (EC2/On- Premises)**, you get one of the following errors:
   - "The overall deployment failed because too many individual instances failed deployment".
@@ -216,14 +262,18 @@
 
 ![Deployment failure](/Images/AWSCodeDeployDeploymentFailure.png)
 
-## 11.3. Scenario 3
+## 12.3. Scenario 3
 
 - If a CodeDeploy deployment to ASG is underway and a scale-out event occurs, the new instances will be updated with the application revision that was most recently deployed (not the application revision that is currently being deployed).
 - ASG will have EC2 instances hosting different versions of the application.
 - By default, CodeDeploy automatically starts a follow-on deployment to update any outdated EC2 instances.
 
-## 11.4. Scenario 4
+## 12.4. Scenario 4
 
 - Issue: failed AllowTraffic lifecycle event in Blue/Green Deployments with no error reported in the Deployment Logs:
 - **Reason:** incorrectly configured health checks in ELB.
 - **Resolution:** review and correct any errors in ELB health checks configuration.
+
+```
+
+```

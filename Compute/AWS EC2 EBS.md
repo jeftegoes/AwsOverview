@@ -81,6 +81,8 @@
 # 5. AMI Overview
 
 - AMI = Amazon Machine Image.
+  - **Golden AMI** is an AMI that you standardize through configuration, consistent security patching, and hardening.
+    - It also contains agents you approve for logging, security, performance monitoring, etc.
 - AMI are a **customization** of an EC2 instance.
   - You add your own software, configuration, operating system, monitoring...
   - Faster boot / configuration time because all your software is pre-packaged.

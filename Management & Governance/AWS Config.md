@@ -27,6 +27,13 @@
 - AWS Config is a per-region service.
 - Can be aggregated across regions and accounts.
 - Possibility of storing the configuration data into S3 (analyzed by Athena).
+- Evaluate your AWS resource configurations for desired settings.
+- Get a snapshot of the current configurations of the supported resources that are associated with your AWS account.
+- Retrieve configurations of one or more resources that exist in your account.
+- Retrieve historical configurations of one or more resources.
+- Receive a notification whenever a resource is created, modified, or deleted.
+- View relationships between resources.
+  - For example, you might want to find all resources that use a particular security group.
 
 # 2. Config Rules
 
@@ -55,7 +62,7 @@
 
 ## 2.3. Notifications
 
-- Use EventBridge to trigger notifications when AWS resources are non-compliant.
+- Use [Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md) to trigger notifications when AWS resources are non-compliant.
 - Ability to send configuration changes and compliance state notifications to SNS (all events - use SNS Filtering or filter at client-side).
 
 # 3. Configuration Recorder

@@ -11,7 +11,7 @@
 - [7. Manual Approval Stage](#7-manual-approval-stage)
 - [8. CloudFormation as a target](#8-cloudformation-as-a-target)
 - [9. CloudFormation integration](#9-cloudformation-integration)
-- [10. Best Practices](#10-best-practices)
+- [10. Best practices](#10-best-practices)
 - [11. EventBridge](#11-eventbridge)
 - [12. Invoke Action](#12-invoke-action)
 - [13. Multi Region (Cross-Region Actions)](#13-multi-region-cross-region-actions)
@@ -107,11 +107,14 @@
 - `CREATE_UPDATE` - Create or update an existing stack.
 - `DELETE_ONLY` - Delete a stack if it exists.
 
-# 10. Best Practices
+# 10. Best practices
 
 - One CodePipeline, One CodeDeploy, Parallel deploy to multiple Deployment Groups.
+  ![Multiple Deployment Groups](/Images/AWSCodePipelineBestPractices_1.png)
 - Parallel Actions using in a Stage using RunOrder.
+  ![Multiple Deployment Groups](/Images/AWSCodePipelineBestPractices_2.png)
 - Deploy to Pre-Prod before Deploying to Prod.
+  ![Multiple Deployment Groups](/Images/AWSCodePipelineBestPractices_3.png)
 
 # 11. EventBridge
 
