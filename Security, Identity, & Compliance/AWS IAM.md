@@ -223,7 +223,7 @@
 
 ## 13.1. Custom identity broker application
 
-![Custom Identity Federation Diagram](Images/AWSIAMCustomIdentityFederation.png)
+![Custom Identity Federation Diagram](/Images/AWSIAMCustomIdentityFederation.png)
 
 # 14. Shared Responsibility Model for IAM
 
@@ -240,7 +240,7 @@
 
 # 15. Identity-based policies and resource-based policies
 
-![Difference between both](Images/AWSIAMIdentityBasedVsResourceBasedPolicies.png)
+![Difference between both](/Images/AWSIAMIdentityBasedVsResourceBasedPolicies.png)
 
 # 16. Permissions boundary
 

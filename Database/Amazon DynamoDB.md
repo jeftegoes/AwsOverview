@@ -146,7 +146,7 @@
 
 - One Write Capacity Unit (WCU) represents one write per second for an item up to 1 KB in size.
 
-![WCU Formula](Images/DynamoDBWCUFormula.png)
+![WCU Formula](/Images/DynamoDBWCUFormula.png)
 
 - If the items are larger than 1 KB, more WCUs are consumed:
   - Example 1: we write 10 items per second, with item size 2 KB:
@@ -172,7 +172,7 @@
   - **Two (2) Eventually Consistent Reads** per second
 - For an item up to 4 **KB** in size.
 
-![WCU Formula](Images/DynamoDBRCUFormula.png)
+![WCU Formula](/Images/DynamoDBRCUFormula.png)
 
 - If the items are larger than 4 KB, more RCUs are consumed:
   - Example 1: 10 Strongly Consistent Reads per second, with item size 4 KB
@@ -392,7 +392,7 @@
 - DynamoDB has a feature called **"Conditional Writes"**.
 - Each item has an attribute that acts as a version number.
 
-![Optimistic Locking](Images/DynamoDBOptimisticLocking.png)
+![Optimistic Locking](/Images/DynamoDBOptimisticLocking.png)
 
 # 12. Accelerator - DAX
 
@@ -479,7 +479,7 @@
 
 # 17. Transactions
 
-![Transactions formulas](Images/DynamoDBTransactionsFormulas.png)
+![Transactions formulas](/Images/DynamoDBTransactionsFormulas.png)
 
 - Coordinated, all-or-nothing operations (add/update/delete) to multiple items across one or more tables.
 - Provides Atomicity, Consistency, Isolation, and Durability (ACID).

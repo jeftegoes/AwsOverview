@@ -111,7 +111,7 @@
 
 - One CodePipeline, One CodeDeploy, Parallel deploy to multiple Deployment Groups.
   ![Multiple Deployment Groups](/Images/AWSCodePipelineBestPractices_1.png)
-- Parallel Actions using in a Stage using RunOrder.
+- **Parallel Actions** using in a Stage using `RunOrder`.
   ![Multiple Deployment Groups](/Images/AWSCodePipelineBestPractices_2.png)
 - Deploy to Pre-Prod before Deploying to Prod.
   ![Multiple Deployment Groups](/Images/AWSCodePipelineBestPractices_3.png)

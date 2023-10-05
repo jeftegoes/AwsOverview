@@ -98,7 +98,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - That means the message has 30 seconds to be processed.
 - After the message visibility timeout is over, the message is "visible" in SQS.
 
-![SQS Visibility Timeout](Images/AWSSQSMessageVisibilityTimeout.png)
+![SQS Visibility Timeout](/Images/AWSSQSMessageVisibilityTimeout.png)
 
 - If a message is not processed within the visibility timeout, it will be processed **twice**.
 - A consumer could call the `ChangeMessageVisibility` API to get more time.
@@ -135,7 +135,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - Can set a default at queue level.
 - Can override the default on send using the `DelaySeconds` parameter.
 
-![SQS Delay Queue](Images/AWSSQSDelayQueue.png)
+![SQS Delay Queue](/Images/AWSSQSDelayQueue.png)
 
 # 11. Long Polling
 
@@ -172,7 +172,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
   - Content-based deduplication: will do a SHA-256 hash of the message body.
   - `MessageDeduplicationId` - Explicitly provide a Message Deduplication ID.
 
-![MessageDeduplicationId](Images/AWSSQSDeduplicationID.png)
+![MessageDeduplicationId](/Images/AWSSQSDeduplicationID.png)
 
 ## 14.2. Message Grouping
 

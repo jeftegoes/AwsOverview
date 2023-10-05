@@ -151,7 +151,7 @@
 
 ### 13.1.1. Segment documents
 
-![Segment documents](Images/AwsXRaySegmentDocuments.png)
+![Segment documents](/Images/AwsXRaySegmentDocuments.png)
 
 ## 13.2. Read APIs
 

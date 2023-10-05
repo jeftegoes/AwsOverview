@@ -29,7 +29,7 @@
 
 # 2. CDK in a diagram
 
-![CDK Diagram](Images/AWSCloudDevelopmentKitDiagram.png)
+![CDK Diagram](/Images/AWSCloudDevelopmentKitDiagram.png)
 
 # 3. CDK vs SAM
 

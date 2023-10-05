@@ -60,7 +60,7 @@
   - **Tiers:** Web Server Environment Tier & Worker Environment Tier.
   - You can create multiple environments (dev, test, prod, ...).
 
-![Elastic Beanstalk Workflow](Images/ElasticBeanstalkWorkflow.png)
+![Elastic Beanstalk Workflow](/Images/ElasticBeanstalkWorkflow.png)
 
 ## 3.1. Supported Platforms
 
@@ -97,7 +97,7 @@
 - Great for quick iterations in development environment.
 - No additional cost.
 
-![All at once deployment](Images/AwsElasticBeanstalkAllAtOnce.png)
+![All at once deployment](/Images/AwsElasticBeanstalkAllAtOnce.png)
 
 ## 4.2. Rolling
 
@@ -107,7 +107,7 @@
 - No additional cost.
 - Long deployment.
 
-![Rolling deployment](Images/AwsElasticBeanstalkRolling.png)
+![Rolling deployment](/Images/AwsElasticBeanstalkRolling.png)
 
 ## 4.3. Rolling with additional batches
 
@@ -119,7 +119,7 @@
 - Longer deployment.
 - Good for prod.
 
-![Rolling with additional batches deployment](Images/AwsElasticBeanstalkRollingAdditionalBatches.png)
+![Rolling with additional batches deployment](/Images/AwsElasticBeanstalkRollingAdditionalBatches.png)
 
 ## 4.4. Immutable
 
@@ -131,7 +131,7 @@
 - Quick rollback in case of failures (just terminate new ASG).
 - Great for prod.
 
-![Immutable deployment](Images/AwsElasticBeanstalkImmutable.png)
+![Immutable deployment](/Images/AwsElasticBeanstalkImmutable.png)
 
 ## 4.5. Blue / Green
 
@@ -142,7 +142,7 @@
 - Route 53 can be setup using weighted policies to redirect a little bit of traffic to the stage environment (CNAMEs).
 - Using Beanstalk, "swap URLs" when done with the environment test.
 
-![Immutable deployment](Images/AwsElasticBeanstalkBlueGreen.png)
+![Immutable deployment](/Images/AwsElasticBeanstalkBlueGreen.png)
 
 ## 4.6. Traffic Splitting
 
@@ -155,7 +155,7 @@
 - New instances are migrated from the temporary to the original ASG.
 - Old application version is then terminated.
 
-![Immutable deployment](Images/AwsElasticBeanstalkTrafficSplitting.png)
+![Immutable deployment](/Images/AwsElasticBeanstalkTrafficSplitting.png)
 
 ## 4.7. Details
 

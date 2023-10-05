@@ -49,7 +49,7 @@
   - You get billed for all the provisioned capacity.
   - You can increase the capacity of the drive over time.
 
-![EBS Volume diagram](Images/EBSVolumeDiagram.png)
+![EBS Volume diagram](/Images/EBSVolumeDiagram.png)
 
 # 3. EBS - Delete on Termination attribute
 
@@ -65,7 +65,7 @@
 - Not necessary to detach volume to do snapshot, **but recommended**.
 - Can copy snapshots across AZ or Region.
 
-![EBS Snapshot diagram](Images/EBSSnapshotDiagram.png)
+![EBS Snapshot diagram](/Images/EBSSnapshotDiagram.png)
 
 ## 4.1. Features
 
@@ -212,7 +212,7 @@
 - POSIX file system (~Linux) that has a standard file API.
 - File system scales automatically, pay-per-use, no capacity planning!
 
-![EFS diagram](Images/EFSDiagram.png)
+![EFS diagram](/Images/EFSDiagram.png)
 
 ## 8.1. EFS - Performance and Storage Classes
 

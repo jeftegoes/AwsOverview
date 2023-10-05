@@ -39,7 +39,7 @@
 - Helps relieve load in RDS.
 - Cache must have an invalidation strategy to make sure only the most current data is used in there.
 
-![Amazon ElastiCache Solution Architecture - DB Cache](Images/AWSElastiCacheSolutionArchitectureDbCache.png)
+![Amazon ElastiCache Solution Architecture - DB Cache](/Images/AWSElastiCacheSolutionArchitectureDbCache.png)
 
 ## 2.2. User Session Store
 
@@ -48,7 +48,7 @@
 - The user hits another instance of our application.
 - The instance retrieves the data and the user is already logged in.
 
-![Amazon ElastiCache Solution Architecture User Session Store](Images/AWSElastiCacheSolutionArchitectureUserSessionStore.png)
+![Amazon ElastiCache Solution Architecture User Session Store](/Images/AWSElastiCacheSolutionArchitectureUserSessionStore.png)
 
 # 3. Redis vs Memcached
 

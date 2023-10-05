@@ -62,7 +62,7 @@
 - Events are stored for 90 days in CloudTrail.
 - To keep events beyond this period, log them to S3 and use Athena.
 
-![Events Retention](Images/AWSCloudTrailEventsRetention.png)
+![Events Retention](/Images/AWSCloudTrailEventsRetention.png)
 
 # 5. DynamoDB information in CloudTrail
 
@@ -71,7 +71,7 @@
 
 # 6. Amazon EventBridge - Intercept API Calls
 
-![Intercept API Calls](Images/AmazonEventBridgeInterceptAPICalls.png)
+![Intercept API Calls](/Images/AmazonEventBridgeInterceptAPICalls.png)
 
 # 7. Amazon EventBridge + CloudTrail
 

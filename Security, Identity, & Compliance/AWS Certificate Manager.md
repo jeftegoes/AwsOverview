@@ -17,7 +17,7 @@
   - CloudFront Distributions.
   - APIs on API Gateway Auto Scaling group.
 
-![AWS Certificate Manager](Images/AWSCertificateManager.png)
+![AWS Certificate Manager](/Images/AWSCertificateManager.png)
 
 # 2. AWS Private Certificate Authority (CA)
 

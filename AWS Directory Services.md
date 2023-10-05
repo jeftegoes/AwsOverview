@@ -13,7 +13,7 @@
 - Objects are organized in trees.
 - A group of trees is a forest.
 
-![Microsoft Active Directory Basic Diagram](Images/MicrosoftActiveDirectoryBasicDiagram.png)
+![Microsoft Active Directory Basic Diagram](/Images/MicrosoftActiveDirectoryBasicDiagram.png)
 
 # 2. AWS Directory Services
 
@@ -28,4 +28,4 @@
   - AD-compatible managed directory on AWS.
   - Cannot be joined with on-premise AD.
 
-![AWS Directory Services Diagram](Images/AWSDirectoryServicesDiagram.png)
+![AWS Directory Services Diagram](/Images/AWSDirectoryServicesDiagram.png)

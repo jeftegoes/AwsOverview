@@ -113,15 +113,15 @@
 - **User based:**
   - **IAM policies:** Which API calls should be allowed for a specific user from IAM console.
 
-![S3 IAM Permissions](Images/S3IamPermissions.png)
-![EC2 instance access - IAM Roles](Images/S3IamRoles.png)
+![S3 IAM Permissions](/Images/S3IamPermissions.png)
+![EC2 instance access - IAM Roles](/Images/S3IamRoles.png)
 
 - **Resource Based:**
   - **Bucket Policies:** bucket wide rules from the S3 console - allows cross account.
   - **Object Access Control List (ACL):** finer grain (Can be disabled).
   - **Bucket Access Control List (ACL):** less common (Can be disabled).
 
-![S3 Use bucket policy](Images/S3UseBucketPolicy.png)
+![S3 Use bucket policy](/Images/S3UseBucketPolicy.png)
 
 - **Note:** An IAM principal can access an S3 object if:
   - The user IAM permissions **ALLOW** it **OR** the resource policy **ALLOWS** it.
@@ -169,7 +169,7 @@
       }
       ```
 
-![Example ](Images/AWSS3BucketPoliciesExample.png)
+![Example ](/Images/AWSS3BucketPoliciesExample.png)
 
 - **Use S3 bucket for policy to:**
   - Grant public access to the bucket.
@@ -457,7 +457,7 @@
 - Must set header `"x-amz-server-side-encryption": "AES256"`.
 - Enabled by default for new buckets and new objects.
 
-![Encryption SSE-S3](Images/S3EncryptionSSES3.png)
+![Encryption SSE-S3](/Images/S3EncryptionSSES3.png)
 
 ## 21.2. SSE-KMS
 
@@ -467,14 +467,14 @@
 - Object is encrypted server side.
 - Must set header `"x-amz-server-side-encryption": "aws:kms"`.
 
-![Encryption SSE-KMS](Images/S3EncryptionSSEKMS.png)
+![Encryption SSE-KMS](/Images/S3EncryptionSSEKMS.png)
 
 ### 21.2.1. SSE-KMS Limitation
 
 - If you use SSE-KMS, you may be impacted by the KMS limits.
   - **Upload and download files from Amazon S3, you need to leverage a KMS Key.**
 
-![Encryption SSE-KMS Limitaition](Images/S3EncryptionSSEKMSLimitation.png)
+![Encryption SSE-KMS Limitaition](/Images/S3EncryptionSSEKMSLimitation.png)
 
 - When you upload, it calls the `GenerateDataKey` KMS API.
 - When you download, it calls the `Decrypt` KMS API.
@@ -489,7 +489,7 @@
 - Encryption key must provided in HTTP headers, for every HTTP request made.
 - Must set header `"x-amz-server-side-encryption-customer-algorithm": "AES256"`.
 
-![Encryption SSE-C](Images/S3EncryptionSSEC.png)
+![Encryption SSE-C](/Images/S3EncryptionSSEC.png)
 
 | Name                                            | Description                                                                                                                                                                                                                             |
 | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -530,7 +530,7 @@
 - Different origins: http://www.example.com & http://other.example.com.
 - The requests won't be fulfilled unless the other origin allows for the requests, using **CORS Headers** (example: `Access-Control-Allow-Origin`).
 
-![CORS Diagram](Images/APIGatewayCORS.png)
+![CORS Diagram](/Images/APIGatewayCORS.png)
 
 ## 22.1. Amazon S3 - CORS
 

@@ -240,7 +240,7 @@
 - Clients can invalidate the cache with header: `Cache-Control: max-age=0` (with proper IAM authorization).
 - If you don't impose an `execute-api:InvalidateCache` policy (or choose the **Require Authorization** check box in the console), any client can invalidate the API cache.
 
-![API Gateway cache parameter](Images/APIGatewayCacheParameter.png)
+![API Gateway cache parameter](/Images/APIGatewayCacheParameter.png)
 
 - Role example:
   ```
@@ -371,7 +371,7 @@
 - Lambda must return an IAM policy for the user, result policy is cached.
 - **Authentication = External** | _Authorization = Lambda function_.
 
-![Lambda Authorizer Diagram](Images/APIGatewayLambdaAuthorizer.png)
+![Lambda Authorizer Diagram](/Images/APIGatewayLambdaAuthorizer.png)
 
 ## 17.4. Summary
 

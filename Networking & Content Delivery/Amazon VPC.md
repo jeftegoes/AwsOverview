@@ -27,7 +27,7 @@
 - A **private subnet** is a subnet that is not accessible from the internet.
 - To define access to the internet and between subnets, we use **Route Tables**.
 
-![Amazon VPC ](Images/AwsVPCDiagram.png)
+![Amazon VPC ](/Images/AwsVPCDiagram.png)
 
 # 2. NAT Gateways
 
@@ -117,7 +117,7 @@
 - **VPC Endpoint Gateway**: S3 and DynamoDB.
 - **VPC Endpoint Interface**: the rest.
 
-![VPC Endpoints diagram](Images/VPCEndpoints.png)
+![VPC Endpoints diagram](/Images/VPCEndpoints.png)
 
 # 8. Site to Site VPN & Direct Connect
 

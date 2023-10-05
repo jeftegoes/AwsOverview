@@ -49,11 +49,11 @@
 - **Top Level Domain (TLD):** .com, .us, .in, .gov, .org, ...
 - **Second Level Domain (SLD):** amazon.com, google.com, ...
 
-![Structure of URL](Images/StructureOfUrl.png)
+![Structure of URL](/Images/StructureOfUrl.png)
 
 ## 1.2. How DNS Works
 
-![DNS Route Traffic](Images/DNSRouteTraffic.png)
+![DNS Route Traffic](/Images/DNSRouteTraffic.png)
 
 # 2. Amazon Route 53
 

@@ -20,7 +20,7 @@
 - [9. Session Manager](#9-session-manager)
 - [10. SSM - Session Manager](#10-ssm---session-manager)
 - [11. Systems Manager - Default Host Management Configuration](#11-systems-manager---default-host-management-configuration)
-- [12. Systems Manager - Hybrid Environments](#12-systems-manager---hybrid-environments)
+- [12. Hybrid Environments](#12-hybrid-environments)
 - [13. IoT Greengrass Instance Activation](#13-iot-greengrass-instance-activation)
 - [14. Systems Manager - Compliance](#14-systems-manager---compliance)
 - [15. Systems Manager - OpsCenter](#15-systems-manager---opscenter)
@@ -205,10 +205,12 @@
 - Automatically keeps the SSM Agent up to date.
 - Must be enabled per AWS Region.
 
-# 12. Systems Manager - Hybrid Environments
+# 12. Hybrid Environments
 
 - You can setup Systems Manager to manage on-premises servers, IoT devices, edge devices, and virtual machines (e.g., VMs in other cloud providers).
-- In Systems Manager Console, EC2 instances use the prefix "i-" and hybrid managed nodes use the prefix "mi-"
+- In Systems Manager Console:
+  - EC2 instances use the prefix **"i-"**.
+  - Hybrid managed nodes use the prefix **"mi-"**.
 
 # 13. IoT Greengrass Instance Activation
 

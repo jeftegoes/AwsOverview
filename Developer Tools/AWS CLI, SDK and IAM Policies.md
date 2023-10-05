@@ -70,7 +70,7 @@
 - The IAM Instance Profile was assigned to the EC2 instance, but it still had access to all S3 buckets. Why?
   - The credentials chain is still giving priorities to the environment variables.
 
-![Scenario IAM Role and EC2 Instance Profile](Images/AWSCrendentialScenario.png)
+![Scenario IAM Role and EC2 Instance Profile](/Images/AWSCrendentialScenario.png)
 
 ## 7.1. AWS Credentials Best Practices
 

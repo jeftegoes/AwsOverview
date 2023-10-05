@@ -24,4 +24,4 @@
 - Others, like Amazon S3, Amazon Kinesis Data Streams, and Amazon DynamoDB, use AWS Lambda functions as event handlers.
 - The Lambda functions respond to new data by processing it and streaming it to your domain.
 
-![Sources](Images/AmazonOpenSearchOtherSources.png)
+![Sources](/Images/AmazonOpenSearchOtherSources.png)

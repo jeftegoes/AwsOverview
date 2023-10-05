@@ -35,7 +35,7 @@
 
 - Load balancers are servers that forward internet traffic to multiple servers (EC2 Instances) downstream.
 
-![Load Balance](Images/LoadBalanceDiagram.png)
+![Load Balance](/Images/LoadBalanceDiagram.png)
 
 ## 1.1. Why use a load balancer?
 
@@ -240,11 +240,11 @@
 
 - With Cross Zone Load Balancing: Each load balancer instance distributes evenly
   across all registered instances in all AZ.
-  ![With Cross Zone Load Balancing](Images/AWSELBWithCrossZone.png)
+  ![With Cross Zone Load Balancing](/Images/AWSELBWithCrossZone.png)
 
 - Without Cross Zone Load Balancing: Requests are distributed in the instances of the
   node of the Elastic Load Balancer.
-  ![Without Cross Zone Load Balancing](Images/AWSELBWithoutCrossZone.png)
+  ![Without Cross Zone Load Balancing](/Images/AWSELBWithoutCrossZone.png)
 
 - **Application Load Balancer:**
   - Always on (can't be disabled).

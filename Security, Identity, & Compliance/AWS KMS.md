@@ -262,9 +262,11 @@
 - Newer service, meant for storing secrets.
 - Capability to force **rotation of secrets** every X days.
 - Automate generation of secrets on rotation (uses Lambda).
-- Integration with [Amazon RDS](AWS%20RDS.md) (MySQL, PostgreSQL, Aurora).
+- Integration with [Amazon RDS](/Database/Amazon%20RDS.md) (MySQL, PostgreSQL, Aurora).
 - Secrets are encrypted using KMS.
 - Mostly meant for RDS integration.
+
+![Configure Rotation](/Images/AWSSecretManagerConfigureRotation.png)
 
 ## 7.1. AWS Secrets Manager - Multi-Region Secrets
 

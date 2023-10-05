@@ -1149,11 +1149,11 @@
 ## 16.12. Amazon Inspector
 
 - **Amazon Inspector is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS.**
-- **It helps you test the network accessibility of your Amazon EC2 instances and the security state of your applications running on the instances.** [Amazon Inspector](Amazon%20Inspector.md)
+- **It helps you test the network accessibility of your Amazon EC2 instances and the security state of your applications running on the instances.** [Amazon Inspector](Security,%20Identity,%20&%20Compliance/Amazon%20Inspector.md)
 
 ## 16.13. AWS Config
 
-- **AWS Config is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources.** [AWS Config](AWS%20Config.md)
+- **AWS Config provides a detailed view of the configuration of AWS resources in your AWS account. This includes how the resources are related to one another and how they were configured in the past so that you can see how the configurations and relationships change over time.** [AWS Config](Management%20&%20Governance/AWS%20Config.md)
 
 ## 16.14. Amazon Macie
 

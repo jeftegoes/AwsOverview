@@ -50,13 +50,13 @@
 - Feature: block users if their credentials are compromised elsewhere.
 - Login sends back a JSON Web Token (JWT).
 
-  ![Cognito User Pools Diagram](Images/AWSCognitoUserPoolsCUP.png)
+  ![Cognito User Pools Diagram](/Images/AWSCognitoUserPoolsCUP.png)
 
 ## 3.2. Integrations
 
 - CUP integrates with API Gateway and Application Load Balancer.
-  ![API Gateway](Images/AWSCognitoUserPoolsCUPApiGatewayIntegration.png)
-  ![Application Load Balancer](Images/AWSCognitoUserPoolsCUPApplicationLoadBalancer.png)
+  ![API Gateway](/Images/AWSCognitoUserPoolsCUPApiGatewayIntegration.png)
+  ![Application Load Balancer](/Images/AWSCognitoUserPoolsCUPApplicationLoadBalancer.png)
 
 ## 3.3. Lambda Triggers
 
@@ -140,7 +140,7 @@
   - The IAM policies applied to the credentials are defined in Cognito.
   - They can be customized based on the user_id for fine grained control.
 
-![Cognito Identity Pools](Images/AWSCognitoIdentityPoolsDiagram.png)
+![Cognito Identity Pools](/Images/AWSCognitoIdentityPoolsDiagram.png)
 
 ## 4.1. Developer Authenticated
 

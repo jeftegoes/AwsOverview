@@ -61,7 +61,7 @@
     - Determines **WHAT** to send to the next state.
     - With `OutputPath`, you can filter out unwanted information, and pass only the portion of JSON data that you care about.
 
-![Task states](Images/AWSStepFunctionsTaskStates.png)
+![Task states](/Images/AWSStepFunctionsTaskStates.png)
 
 # 4. Error Handling in Step Functions
 

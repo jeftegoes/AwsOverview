@@ -193,7 +193,7 @@
 
 ## 1.7. Monitoring
 
-![RDS Monitoring log options](Images/AWSRDSMonitoring.png)
+![RDS Monitoring log options](/Images/AWSRDSMonitoring.png)
 
 ## 1.8. RDS Proxy
 
@@ -207,7 +207,7 @@
 - Enforce IAM Authentication for DB, and securely store credentials in AWS Secrets Manager.
 - RDS Proxy is never publicly accessible (must be accessed from VPC).
 
-![RDS Proxy Diagram](Images/AWSRDSProxyDiagram.png)
+![RDS Proxy Diagram](/Images/AWSRDSProxyDiagram.png)
 
 ## 1.9. Enhanced Monitoring
 

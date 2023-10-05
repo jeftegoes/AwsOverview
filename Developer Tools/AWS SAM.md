@@ -43,7 +43,7 @@
     - `sam package`
     - `sam deploy`
 
-![SAM Deployment](Images/AWSSAMDeployment.png)
+![SAM Deployment](/Images/AWSSAMDeployment.png)
 
 ## 2.1. Example
 

@@ -221,7 +221,7 @@
 
 # 15. Elastic Beanstalk
 
-![Elastic Beanstalk Workflow](Images/ElasticBeanstalkWorkflow.png)
+![Elastic Beanstalk Workflow](/Images/ElasticBeanstalkWorkflow.png)
 
 # 16. API Gateway
 
