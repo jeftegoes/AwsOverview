@@ -147,7 +147,7 @@
   - Cache miss penalty that results in 3 round trips, noticeable delay for that request.
   - Stale data: data can be updated in the database and outdated in the cache.
 
-![Amazon ElastiCache Solution Architecture - DB Cache](Images/AWSElastiCacheSolutionArchitectureDbCache.png)
+![Amazon ElastiCache Solution Architecture - DB Cache](/Images/AWSElastiCacheSolutionArchitectureDbCache.png)
 
 ```
   // Pseudo code

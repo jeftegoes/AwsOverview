@@ -17,7 +17,7 @@
 
 # 3. AWS Storage Gateway
 
-[AWS Storage Gateway](AWS%20Storage%20Gateway.md)
+- **AWS Storage Gateway is a hybrid cloud storage service that gives you on-premises access to virtually unlimited cloud storage. Storage Gateway provides a standard set of storage protocols such as iSCSI, SMB, and NFS, which allow you to use AWS storage without rewriting your existing applications. It provides low-latency performance by caching frequently accessed data on premises, while storing data securely and durably in Amazon cloud storage services.** [AWS Storage Gateway](AWS%20Storage%20Gateway.md)
 
 # 4. Amazon S3 - Summary
 

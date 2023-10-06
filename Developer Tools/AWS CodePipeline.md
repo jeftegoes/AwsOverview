@@ -16,6 +16,7 @@
 - [12. Invoke Action](#12-invoke-action)
 - [13. Multi Region (Cross-Region Actions)](#13-multi-region-cross-region-actions)
 - [14. Pipeline executions](#14-pipeline-executions)
+- [15. Custom Actions](#15-custom-actions)
 
 # 1. Introduction
 
@@ -116,6 +117,31 @@
 - Deploy to Pre-Prod before Deploying to Prod.
   ![Multiple Deployment Groups](/Images/AWSCodePipelineBestPractices_3.png)
 
+- Example using `RunOrder`:
+  ```
+    [
+      {
+        "inputArtifacts": [
+          "An input artifact structure, if supported for the action category"
+        ],
+        "name": "ActionName",
+        "region": "Region",
+        "namespace": "source_namespace",
+        "actionTypeId": {
+          "category": "An action category",
+          "owner": "AWS",
+          "version": "1",
+          "provider": "A provider type for the action category"
+        },
+        "outputArtifacts": [
+          "An output artifact structure, if supported for the action category"
+        ],
+        "configuration": ["Configuration details appropriate to the provider type"],
+        "runOrder": "A positive integer that indicates the run order within the stage"
+      }
+    ]
+  ```
+
 # 11. EventBridge
 
 - EventBridge - Detect and react to changes in execution states (e.g., intercept failures at certain stages).
@@ -147,3 +173,13 @@
   - Succeeded
   - Superseded
   - Failed.
+
+# 15. Custom Actions
+
+- You can create custom actions for the following AWS CodePipeline action categories:
+  - A custom build action that builds or transforms the items.
+  - A custom deploy action that deploys items to one or more servers, websites, or repositories.
+  - A custom test action that configures and runs automated tests.
+  - A custom invoke action that runs functions.
+
+![Custom Actions](/Images/AWSCodePipelineCustomJobWorker.png)

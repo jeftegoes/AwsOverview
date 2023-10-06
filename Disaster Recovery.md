@@ -28,7 +28,7 @@
 - **RTO:** Recovery Time Objective.
   - Is when you recover from your disaster.
 
-![RPO & RTO](Images/DisasterRecoveryRpoRto.png)
+![RPO & RTO](/Images/DisasterRecoveryRpoRto.png)
 
 # 3. Disaster Recovery Strategies (Faster RTO)
 
@@ -37,11 +37,11 @@
 - Warm Standby.
 - Hot Site / Multi Site Approach.
 
-![Faster RTO](Images/DisasterRecoveryFasterRTO.png)
+![Faster RTO](/Images/DisasterRecoveryFasterRTO.png)
 
 ## 3.1. Backup and Restore (High RPO)
 
-![Backup and Restore](Images/DisasterRecoveryBackupAndRestore.png)
+![Backup and Restore](/Images/DisasterRecoveryBackupAndRestore.png)
 
 ## 3.2. Pilot Light
 
@@ -50,14 +50,14 @@
 - Very similar to Backup and Restore.
 - Faster than Backup and Restore as critical systems are already up.
 
-![Pilot Light](Images/DisasterRecoveryPilotLight.png)
+![Pilot Light](/Images/DisasterRecoveryPilotLight.png)
 
 ## 3.3. Warm Standby
 
 - Full system is up and running, but at minimum size.
 - Upon disaster, we can scale to production load.
 
-![Warm Standby](Images/DisasterRecoveryWarmStandby.png)
+![Warm Standby](/Images/DisasterRecoveryWarmStandby.png)
 
 ## 3.4. Multi Site / Hot Site Approach (Low RTO)
 
@@ -65,11 +65,11 @@
   - **Very expensive.**
 - Full Production Scale is running AWS and On Premise.
 
-![Multi Site / Hot Site Approach](Images/DisasterRecoveryMultiSiteHotSite.png)
+![Multi Site / Hot Site Approach](/Images/DisasterRecoveryMultiSiteHotSite.png)
 
 ### 3.4.1. All AWS Multi Region
 
-![Multi Site / Hot Site Approach all AWS](Images/DisasterRecoveryMultiSiteHotSiteAllAWS.png)
+![Multi Site / Hot Site Approach all AWS](/Images/DisasterRecoveryMultiSiteHotSiteAllAWS.png)
 
 # 4. Disaster Recovery Tips
 
