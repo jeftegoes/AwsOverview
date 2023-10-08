@@ -1,4 +1,4 @@
-# AWS ASG - Auto Scaling Groups<!-- omit in toc -->
+# Amazon ASG - Auto Scaling Groups<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -10,7 +10,8 @@
 - [6. Good metrics to scale on](#6-good-metrics-to-scale-on)
 - [7. Scaling Cooldowns](#7-scaling-cooldowns)
 - [8. Lifecycle Hooks](#8-lifecycle-hooks)
-- [9. SNS Notifications](#9-sns-notifications)
+  - [8.1. EventBridge Rule Integration](#81-eventbridge-rule-integration)
+- [9. ASG -\> SNS Notifications](#9-asg---sns-notifications)
 - [10. EventBridge Events](#10-eventbridge-events)
 - [11. Auto Scaling - Instance Refresh](#11-auto-scaling---instance-refresh)
 - [12. Scaling Strategies (Resume)](#12-scaling-strategies-resume)
@@ -99,7 +100,13 @@
 - Use cases: cleanup, log extraction, special health checks.
 - Integration with EventBridge, SNS, and SQS.
 
-# 9. SNS Notifications
+![Amazon ASG - Lifecycle Hooks](/Images/AmazonAsgLifecycleHooks.png)
+
+## 8.1. EventBridge Rule Integration
+
+![EventBridge Rule Integration](/Images/AmazonAsgEc2RuleLifecycleAction.png)
+
+# 9. ASG -> SNS Notifications
 
 - ASG supports sending SNS notifications for the following events:
   - `autoscaling:EC2_INSTANCE_LAUNCH`

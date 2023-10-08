@@ -340,7 +340,7 @@
 ## 6.4. Nodes & Containers Logging
 
 - You can capture node, pod, and containers logs and send them to CloudWatch Logs.
-- Use CloudWatch Agent to send metrics to CloudWatch.
+- Use **CloudWatch Agent** to send metrics to CloudWatch.
 - Use the Fluent Bit, or Fluentd log drivers to send logs to CloudWatch Logs.
 - Container logs are stored on a Node directory /var/log/containers.
 - Use CloudWatch Container Insights to get a dashboarding monitoring solution for nodes, pods, tasks, and services.
