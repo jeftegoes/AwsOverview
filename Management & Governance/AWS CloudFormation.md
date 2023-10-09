@@ -54,20 +54,21 @@
 - [11. CloudFormation - Cross vs Nested Stacks](#11-cloudformation---cross-vs-nested-stacks)
 - [12. Continue Rolling Back an Update](#12-continue-rolling-back-an-update)
 - [13. Custom Resources](#13-custom-resources)
-- [14. How to define a Custom Resource?](#14-how-to-define-a-custom-resource)
-- [15. Service Role](#15-service-role)
-- [16. SSM Parameter Type](#16-ssm-parameter-type)
-- [17. Dynamic References](#17-dynamic-references)
-  - [17.1. Dynamic Reference: ssm](#171-dynamic-reference-ssm)
-  - [17.2. Dynamic Reference: ssm-secure](#172-dynamic-reference-ssm-secure)
-  - [17.3. Dynamic Reference: secretsmanager](#173-dynamic-reference-secretsmanager)
-- [18. StackSets](#18-stacksets)
-  - [18.1. StackSet Operations](#181-stackset-operations)
-  - [18.2. StackSet Deployment Options](#182-stackset-deployment-options)
-  - [18.3. Permission Models for StackSet](#183-permission-models-for-stackset)
-  - [18.4. StackSets with AWS Organizations](#184-stacksets-with-aws-organizations)
-  - [18.5. StackSet Drift Detection](#185-stackset-drift-detection)
-- [19. Stack Policies](#19-stack-policies)
+  - [13.1. How to define a Custom Resource?](#131-how-to-define-a-custom-resource)
+  - [13.2. Use cases](#132-use-cases)
+- [14. Service Role](#14-service-role)
+- [15. SSM Parameter Type](#15-ssm-parameter-type)
+- [16. Dynamic References](#16-dynamic-references)
+  - [16.1. Dynamic Reference: ssm](#161-dynamic-reference-ssm)
+  - [16.2. Dynamic Reference: ssm-secure](#162-dynamic-reference-ssm-secure)
+  - [16.3. Dynamic Reference: secretsmanager](#163-dynamic-reference-secretsmanager)
+- [17. StackSets](#17-stacksets)
+  - [17.1. StackSet Operations](#171-stackset-operations)
+  - [17.2. StackSet Deployment Options](#172-stackset-deployment-options)
+  - [17.3. Permission Models for StackSet](#173-permission-models-for-stackset)
+  - [17.4. StackSets with AWS Organizations](#174-stacksets-with-aws-organizations)
+  - [17.5. StackSet Drift Detection](#175-stackset-drift-detection)
+- [18. Stack Policies](#18-stack-policies)
 
 # 1. Introduction Infrastructure as Code (IaC)
 
@@ -730,7 +731,7 @@
 # 13. Custom Resources
 
 - Enable you to write custom provision logic in templates that AWS CloudFormation runs anytime you create, update, delete stacks.
-- Defined in the template using AWS::CloudFormation::CustomResource or `Custom::MyCustomResourceTypeName` (recommended).
+- Defined in the template using `AWS::CloudFormation::CustomResource` or `Custom::MyCustomResourceTypeName` (recommended).
 - Two types:
   - Amazon SNS-backed Custom Resources.
   - AWS Lambda-backed Custom Resources.
@@ -741,12 +742,14 @@
   - Fetch an AMI id.
   - Anything you want...!
 
-# 14. How to define a Custom Resource?
+## 13.1. How to define a Custom Resource?
 
-- `ServiceToken` specifies where CloudFormation sends requests to, such as Lambda ARN or SNS ARN (required & must be in the same region).
+- `ServiceToken` specifies where CloudFormation sends requests to, such as **Lambda ARN** or **SNS ARN** (required & must be in the same region).
 - Input data parameters (optional).
 
-# 15. Service Role
+## 13.2. Use cases
+
+# 14. Service Role
 
 - IAM role that allows CloudFormation to create/update/delete stack resources on your behalf.
 - By default, CloudFormation uses a temporary session that it generates from your user credentials.
@@ -755,7 +758,7 @@
   - But you don't want to give the user all the required permissions to create the stack resources.
 - Give ability to users to create/update/delete the stack resources even if they don't have permissions to work with the resources in the stack.
 
-# 16. SSM Parameter Type
+# 15. SSM Parameter Type
 
 - Reference parameters in Systems Manager Parameter Store.
 - Specify SSM parameter key as the value.
@@ -769,7 +772,7 @@
   - `AWS::SSM::Parameter::Value<AWS-Specific Parameter>`
   - `AWS::SSM::Parameter::Value<List<AWS-Specific Parameter>>`
 
-# 17. Dynamic References
+# 16. Dynamic References
 
 - Reference external values stored in SSM Parameter Store and AWS Secrets Manager within CloudFormation templates.
 - CloudFormation retrieves the value of the specified reference during stack and change set operations.
@@ -781,14 +784,14 @@
 - Up to 60 dynamic references in a template.
 - `{{resolve:service-name:reference-key}}`
 
-## 17.1. Dynamic Reference: ssm
+## 16.1. Dynamic Reference: ssm
 
 - Reference values stored in SSM Parameter Store of type `String` and `StringList`.
 - If no version specified, CloudFormation uses the latest version.
 - Doesn't support public SSM parameters (e.g., Amazon Linux 2 AMI).
 - `{{resolve:ssm:parameter-name:version}}`
 
-## 17.2. Dynamic Reference: ssm-secure
+## 16.2. Dynamic Reference: ssm-secure
 
 - Reference values stored in SSM Parameter Store of type `SecureString`.
 - For example: passwords, license keys, etc...
@@ -797,14 +800,14 @@
 - [Only use with supported resources](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/dynamic-references.html#template-parameters-dynamic-patterns-resources)
 - `{{resolve:ssm-secure:parameter-name:version}}`
 
-## 17.3. Dynamic Reference: secretsmanager
+## 16.3. Dynamic Reference: secretsmanager
 
 - Retrieve entire secrets or secret values stored in AWS Secrets Manager.
 - For example: database credentials, passwords, 3rd party API keys, etc...
 - To update a secret, you must update the resource containing the secretsmanager dynamic reference (one of the resource properties).
 - `{{resolve:secretsmanager:secret-id:secret-string:json-key:version-stage:version-id}}`
 
-# 18. StackSets
+# 17. StackSets
 
 - Create, update, or delete stacks across **multiple accounts and regions** with a single operation.
 - Administrator account to create StackSets.
@@ -815,7 +818,7 @@
 
 ![CloudFormation StackSet](/Images/AWSCloudFormationStackSet.png)
 
-## 18.1. StackSet Operations
+## 17.1. StackSet Operations
 
 - **Create StackSet**
   - Provide template + target accounts/regions.
@@ -828,7 +831,7 @@
 - **Delete StackSet**
   - Must delete all stack instances within StackSet to delete it.
 
-## 18.2. StackSet Deployment Options
+## 17.2. StackSet Deployment Options
 
 - **Deployment Order**
   - Order of regions where stacks are deployed.
@@ -842,7 +845,7 @@
 - **Retain Stacks**
   - Used when deleting StackSet to keep stacks and their resources running when removed from StackSet.
 
-## 18.3. Permission Models for StackSet
+## 17.3. Permission Models for StackSet
 
 - Self-managed Permissions
   - Create the IAM roles (with established trusted relationship) in both administrator and target accounts.
@@ -853,13 +856,13 @@
   - Must **enable all features** in AWS Organizations.
   - Ability to deploy to accounts added to your organization in the future (Automatic Deployments).
 
-## 18.4. StackSets with AWS Organizations
+## 17.4. StackSets with AWS Organizations
 
 - Ability to **automatically** deploy Stack instances to new Accounts in an Organization.
 - Can delegate StackSets administration to member accounts in AWS Organization.
 - Trusted access with AWS Organizations must be enabled before delegated administrators can deploy to accounts managed by Organizations.
 
-## 18.5. StackSet Drift Detection
+## 17.5. StackSet Drift Detection
 
 - Performs drift detection on the stack associated with each stack instance in the StackSet.
 - If the current state of a resource in a stack varies from the expected state:
@@ -870,7 +873,7 @@
 - Changes made through CloudFormation to a stack directly (not at the StackSet level), aren't considered drifted.
 - You can stop drift detection on a StackSet.
 
-# 19. Stack Policies
+# 18. Stack Policies
 
 - During a CloudFormation Stack update, all update actions are allowed on all resources (default).
 - **A Stack Policy is a JSON document that defines the update actions that are allowed on specific resources during Stack updates.**

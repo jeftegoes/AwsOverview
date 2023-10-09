@@ -10,7 +10,6 @@
 - [6. Good metrics to scale on](#6-good-metrics-to-scale-on)
 - [7. Scaling Cooldowns](#7-scaling-cooldowns)
 - [8. Lifecycle Hooks](#8-lifecycle-hooks)
-  - [8.1. EventBridge Rule Integration](#81-eventbridge-rule-integration)
 - [9. ASG -\> SNS Notifications](#9-asg---sns-notifications)
 - [10. EventBridge Events](#10-eventbridge-events)
 - [11. Auto Scaling - Instance Refresh](#11-auto-scaling---instance-refresh)
@@ -102,10 +101,6 @@
 
 ![Amazon ASG - Lifecycle Hooks](/Images/AmazonAsgLifecycleHooks.png)
 
-## 8.1. EventBridge Rule Integration
-
-![EventBridge Rule Integration](/Images/AmazonAsgEc2RuleLifecycleAction.png)
-
 # 9. ASG -> SNS Notifications
 
 - ASG supports sending SNS notifications for the following events:
@@ -121,6 +116,8 @@
   - EC2 Instance Terminating, EC2 Instance Terminate Successful/Unsuccessful.
   - EC2 Auto Scaling Instance Refresh Checkpoint Reached.
   - EC2 Auto Scaling Instance Refresh Started, Succeeded, Failed, Cancelled.
+
+![EventBridge Rule Integration](/Images/AmazonAsgEc2RuleLifecycleAction.png)
 
 # 11. Auto Scaling - Instance Refresh
 

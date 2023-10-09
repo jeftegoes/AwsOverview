@@ -690,13 +690,7 @@
 
 ## 10.6. AWS OpsWorks
 
-- Chef & Puppet help you perform server configuration automatically, or repetitive actions.
-- They work great with EC2 & On-Premises VM.
-- AWS OpsWorks = Managed Chef & Puppet.
-- It's an alternative to [AWS System Manager](AWS%20Systems%20Manager.md).
-- Only provision standard AWS resources:
-  - EC2 Instances, Databases, Load Balancers, EBS volumes...
-- Tip: Chef or Puppet needed => AWS OpsWorks.
+[AWS OpsWorks](Management%20&%20Governance/AWS%20OpsWorks.md)
 
 ## 10.7. AWS Amplify
 
