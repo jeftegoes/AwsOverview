@@ -117,7 +117,9 @@
 - **VPC Endpoint Gateway**: S3 and DynamoDB.
 - **VPC Endpoint Interface**: the rest.
 
-![VPC Endpoints diagram](/Images/VPCEndpoints.png)
+![VPC Endpoints Diagram](/Images/VPCEndpoints.png)
+
+![VPC Endpoints Console](/Images/VPCEndpointsConsole.png)
 
 # 8. Site to Site VPN & Direct Connect
 
