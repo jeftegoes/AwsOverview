@@ -21,10 +21,11 @@
     - [2.7.1. Simple](#271-simple)
     - [2.7.2. Weighted](#272-weighted)
     - [2.7.3. Latency-based](#273-latency-based)
-    - [2.7.4. Geolocation](#274-geolocation)
-    - [2.7.5. Geoproximity](#275-geoproximity)
-    - [2.7.6. IP-based Routing](#276-ip-based-routing)
-    - [2.7.7. Multi-Value](#277-multi-value)
+    - [2.7.4. Failover (Active-Passive)](#274-failover-active-passive)
+    - [2.7.5. Geolocation](#275-geolocation)
+    - [2.7.6. Geoproximity](#276-geoproximity)
+    - [2.7.7. IP-based Routing](#277-ip-based-routing)
+    - [2.7.8. Multi-Value](#278-multi-value)
   - [2.8. Traffic flow](#28-traffic-flow)
   - [2.9. Domain Registar vs DNS Service](#29-domain-registar-vs-dns-service)
     - [2.9.1. 3rd Party Registrar with Amazon Route 53](#291-3rd-party-registrar-with-amazon-route-53)
@@ -221,7 +222,9 @@
 - Germany users may be directed to the US (if that's the lowest latency).
 - Can be associated with Health Checks (has a failover capability).
 
-### 2.7.4. Geolocation
+### 2.7.4. Failover (Active-Passive)
+
+### 2.7.5. Geolocation
 
 - Different from Latency-based!
 - **This routing is based on user location.**
@@ -230,7 +233,7 @@
 - Use cases: website localization, restrict content distribution, load balancing, ...
 - Can be associated with Health Checks.
 
-### 2.7.5. Geoproximity
+### 2.7.6. Geoproximity
 
 - Route traffic to your resources based on the geographic location of users and resources.
 - Ability **to shift more traffic to resources based** on the defined bias.
@@ -242,14 +245,14 @@
   - Non-AWS resources (specify Latitude and Longitude).
 - You must use Route 53 **Traffic Flow** to use this feature.
 
-### 2.7.6. IP-based Routing
+### 2.7.7. IP-based Routing
 
 - Routing is based on clients' IP addresses.
 - You provide a list of CIDRs for your clients and the corresponding endpoints/locations (user-IP-to-endpoint mappings).
 - Use cases: Optimize performance, reduce network costs...
 - Example: route end users from a particular ISP to a specific endpoint.
 
-### 2.7.7. Multi-Value
+### 2.7.8. Multi-Value
 
 - Use when routing traffic to multiple resources.
 - Route 53 return multiple values/resources.

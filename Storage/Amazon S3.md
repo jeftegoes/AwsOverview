@@ -130,6 +130,8 @@
 
 ## 5.1. Bucket Policies
 
+- S3 bucket policy allows for securing access to objects in buckets so that only users with the necessary permissions can access them.
+  - Even authenticated users can be restricted from accessing Amazon S3 resources if they lack the appropriate permissions.
 - **JSON based policies:**
   - An S3 bucket policy statement is composed of several elements, and the following are required to create a valid policy:
     - `Effect` - The effect can be Allow or Deny.
