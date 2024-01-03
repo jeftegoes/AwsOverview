@@ -21,7 +21,7 @@
   - [14.1. AWS Managed Logs](#141-aws-managed-logs)
 - [15. Logs for EC2](#15-logs-for-ec2)
   - [15.1. Logs Agent \& Unified Agent](#151-logs-agent--unified-agent)
-  - [15.2. Unified Agent - Metrics](#152-unified-agent---metrics)
+    - [15.1.1. Unified Agent - Metrics](#1511-unified-agent---metrics)
 - [16. Logs Metric Filter](#16-logs-metric-filter)
 - [17. CloudWatch Alarms](#17-cloudwatch-alarms)
   - [17.1. Alarm Targets](#171-alarm-targets)
@@ -231,15 +231,15 @@
 ## 15.1. Logs Agent & Unified Agent
 
 - For virtual servers (EC2 instances, on-premise servers...).
-- **CloudWatch Logs Agent:**
+- **CloudWatch Logs Agent**
   - Old version of the agent.
   - Can only send to CloudWatch Logs.
-- **CloudWatch Unified Agent:**
+- **CloudWatch Unified Agent**
   - Collect additional system-level metrics such as RAM, processes, etc...
   - Collect logs to send to CloudWatch Logs.
   - Centralized configuration using SSM Parameter Store.
 
-## 15.2. Unified Agent - Metrics
+### 15.1.1. Unified Agent - Metrics
 
 - Collected directly on your Linux server / EC2 instance:
   - **CPU:** (active, guest, idle, system, user, steal).

@@ -84,6 +84,8 @@
 - This feature is built using industry-standard algorithms: SHA-256 for hashing and SHA-256 with RSA for digital signing.
 - This makes it computationally infeasible to modify, delete or forge CloudTrail log files without detection. You can use the AWS CLI to validate the files in the location where CloudTrail delivered them.
 
+![Log file validation parameter](/Images/AWSCloudTrailLogFileValidationParameter.png)
+
 ## 8.1. Digest file
 
 - When you enable log file integrity validation, CloudTrail creates a hash for every log file that it delivers.

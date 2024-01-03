@@ -51,7 +51,7 @@
 
 ## 3.1. Targets
 
-- You can select the following types of targets when using EventBridge as a part of your Trusted Advisor workflow:
+- You can select the following types of targets when using [Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md) as a part of your Trusted Advisor workflow:
   - AWS Lambda functions
   - Amazon Kinesis streams
   - Amazon Simple Queue Service queues
