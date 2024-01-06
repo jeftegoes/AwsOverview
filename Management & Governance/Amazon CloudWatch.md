@@ -168,13 +168,14 @@
 - Send to Kinesis Data Streams, Kinesis Data Firehose, or Lambda.
 - **Subscription Filter:** Filter which logs are events delivered to your destination.
 
-![Amazon CloudWatch Logs Subscriptions](/Images/AmazonCloudWatchLogsSubscriptions.png)
+  ![Amazon CloudWatch Logs Subscriptions](/Images/AmazonCloudWatchLogsSubscriptions.png)
+  ![Amazon CloudWatch Logs Subscriptions](/Images/AmazonCloudWatchSubscriptionFilters.png)
 
 ## 12.1. Scenario with HIDS
 
 - HIDS = Host-based intrusion detection system.
 
-![Amazon CloudWatch Logs Subscriptions with HIDS](/Images/AmazonCloudWatchLogsSubscriptionsHIDS.png)
+  ![Amazon CloudWatch Logs Subscriptions with HIDS](/Images/AmazonCloudWatchLogsSubscriptionsHIDS.png)
 
 # 13. CloudWatch Logs Metric Filter
 

@@ -22,7 +22,7 @@
 - The dashboard displays **relevant and timely information** to help you manage events in progress and **provides proactive** notification to help you plan for **scheduled activities**.
 - **Can aggregate data from an entire AWS Organization.**
 - Global service.
-- Shows how AWS outages directly impact you & your AWS resources.
+- Shows how AWS outages directly impact you and your AWS resources.
 - Alert, remediation, proactive, scheduled activities.
 
 # 2. Health Event Notifications

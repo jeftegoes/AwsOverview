@@ -9,7 +9,8 @@
   - [2.1. Policies](#21-policies)
 - [3. SSM - Documents](#3-ssm---documents)
 - [4. SSM - Run Command](#4-ssm---run-command)
-- [5. Automation](#5-automation)
+- [5. Systems Manager Automation](#5-systems-manager-automation)
+  - [5.1. Automation Runbook](#51-automation-runbook)
 - [6. Parameter Store](#6-parameter-store)
   - [6.1. Parameter Store Hierarchy](#61-parameter-store-hierarchy)
   - [6.2. Parameters Policies (for advanced parameters)](#62-parameters-policies-for-advanced-parameters)
@@ -86,21 +87,28 @@
 - Send notifications to SNS about command statues (In progress, Success, Failed...).
 - Can be invoked using EventBridge.
 
-# 5. Automation
+# 5. Systems Manager Automation
 
-- Simplifies common maintenance and deployment tasks of EC2 instances and other AWS resources.
-- Example: restart instances, create an AMI, EBS snapshot.
-- **Automation Runbook**
-  - SSM Documents of type Automation.
-  - Defines actions preformed on your EC2 instances or AWS resources.
-  - Pre-defined runbooks (AWS) or create custom runbooks.
+- Simplifies common maintenance and deployment tasks of Amazon EC2 instances and other AWS resources.
+- **Automation** enables you to do the following:
+  - Build Automation workflows to configure and manage instances and AWS resources.
+  - Create custom workflows or use pre-defined workflows maintained by AWS.
+  - Receive notifications about Automation tasks and workflows by using Amazon CloudWatch Events.
+  - Monitor Automation progress and execution details by using the Amazon EC2 or the AWS Systems Manager console.
+
+![SSM - Automation](/Images/AWSSystemsManagerAutomation.png)
+
+## 5.1. Automation Runbook
+
+- SSM Documents of type Automation.
+- Defines actions preformed on your EC2 instances or AWS resources.
+- Pre-defined runbooks (AWS) or create custom runbooks.
+
 - **Can be triggered**
   - Manually using AWS Console, AWS CLI or SDK.
   - By Amazon EventBridge.
   - On a schedule using Maintenance Windows.
   - By AWS Config for rules remediations.
-
-![SSM - Automation](/Images/AWSSystemsManagerAutomation.png)
 
 # 6. Parameter Store
 

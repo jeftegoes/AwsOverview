@@ -81,7 +81,7 @@
 # 5. Aggregators
 
 - The aggregator is created in one central aggregator account.
-- Aggregates rules, resources, etc... across multiple accounts & regions.
+- Aggregates rules, resources, etc... across multiple accounts and regions.
 - If using AWS Organizations, no need for individual Authorization.
 - Rules are created in each individual source AWS account.
 - Can deploy rules to multiple target accounts using CloudFormation StackSets.

@@ -1,4 +1,4 @@
-# AWS EC2 - Elastic Compute Cloud<!-- omit in toc -->
+# Amazon EC2 - Elastic Compute Cloud<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -356,5 +356,7 @@
   - Data security on your instance
 
 # 11. VM Import/Export
+
+- The VM Import/Export enables you to easily import virtual machine images from your existing environment to Amazon EC2 instances and export them back to your on-premises environment.
 
 ![VM Import/Export](/Images/AmazonEC2VMImportExport.png)

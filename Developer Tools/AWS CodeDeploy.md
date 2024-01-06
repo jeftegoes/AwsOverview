@@ -6,10 +6,10 @@
 - [2. Steps To Make it Work](#2-steps-to-make-it-work)
 - [3. Primary Components](#3-primary-components)
 - [4. Hooks](#4-hooks)
-  - [Examples](#examples)
-  - [4.1. appspec.yml](#41-appspecyml)
-  - [4.2. List of lifecycle event hooks](#42-list-of-lifecycle-event-hooks)
-  - [4.3. Deployment Hooks Examples](#43-deployment-hooks-examples)
+  - [4.1. Examples](#41-examples)
+  - [4.2. appspec.yml](#42-appspecyml)
+  - [4.3. List of lifecycle event hooks](#43-list-of-lifecycle-event-hooks)
+  - [4.4. Deployment Hooks Examples](#44-deployment-hooks-examples)
 - [5. EC2/On-premises Platform](#5-ec2on-premises-platform)
   - [5.1. In-Place deployment](#51-in-place-deployment)
   - [5.2. Blue / Green Deployment](#52-blue--green-deployment)
@@ -78,7 +78,7 @@
 - `LIFECYCLE_EVENT` - The name of the current deployment lifecycle event (for example, AfterInstall).
 - These environment variables are local to each deployment lifecycle event.
 
-## Examples
+## 4.1. Examples
 
 - The following script changes the listening port on an Apache HTTP server to 9090 instead of 80 if the value of `DEPLOYMENT_GROUP_NAME` is equal to Staging.
 - This script must be invoked during the `BeforeInstall` deployment lifecycle event:
@@ -102,7 +102,7 @@
 
 - **There is no such thing as custom environment variable in CodeDeploy.**
 
-## 4.1. appspec.yml
+## 4.2. appspec.yml
 
 - `files` - How to source and copy from S3 / GitHub to filesystem
   - `source`
@@ -131,12 +131,12 @@
     - `AfterAllowTraffic`
     - `BeforeAllowTraffic`
 
-## 4.2. List of lifecycle event hooks
+## 4.3. List of lifecycle event hooks
 
 - `Install` - During this deployment lifecycle event, the CodeDeploy agent copies the revision files from the temporary location to the final destination folder.
   - **This event is reserved for the CodeDeploy agent and cannot be used to run scripts.**
 
-## 4.3. Deployment Hooks Examples
+## 4.4. Deployment Hooks Examples
 
 - `BeforeInstall` - You can use this deployment lifecycle event for preinstall tasks, such as decrypting files and creating a backup of the current version.
 - `Install` - During this deployment lifecycle event, the CodeDeploy agent copies the revision files from the temporary location to the final destination folder. This event is reserved for the CodeDeploy agent and cannot be used to run scripts.
