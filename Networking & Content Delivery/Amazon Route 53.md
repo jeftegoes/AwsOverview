@@ -224,6 +224,8 @@
 
 ### 2.7.4. Failover (Active-Passive)
 
+![Amazon Route53 Failover Policie](/Images/AmazonRoute53FailoverPolicie.png)
+
 ### 2.7.5. Geolocation
 
 - Different from Latency-based!
