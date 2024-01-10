@@ -56,6 +56,7 @@
 - [13. Custom Resources](#13-custom-resources)
   - [13.1. How to define a Custom Resource?](#131-how-to-define-a-custom-resource)
   - [13.2. Use cases](#132-use-cases)
+    - [13.2.1. Non-empty S3 bucket](#1321-non-empty-s3-bucket)
 - [14. Service Role](#14-service-role)
 - [15. SSM Parameter Type](#15-ssm-parameter-type)
 - [16. Dynamic References](#16-dynamic-references)
@@ -748,6 +749,13 @@
 - Input data parameters (optional).
 
 ## 13.2. Use cases
+
+### 13.2.1. Non-empty S3 bucket
+
+- You can't delete a non-empty S3 bucket.
+- To delete a non-empty S3 bucket, you must first delete all the objects inside it.
+
+![AWS CloudFormation Custom Resource Non-empty S3 bucket case](/Images/AWSCloudFormationCustomResourceNonEmptyS3Bucket.png)
 
 # 14. Service Role
 

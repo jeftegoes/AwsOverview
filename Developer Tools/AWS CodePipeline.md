@@ -16,7 +16,7 @@
 - [12. Invoke Action](#12-invoke-action)
 - [13. Multi Region (Cross-Region Actions)](#13-multi-region-cross-region-actions)
 - [14. Pipeline executions](#14-pipeline-executions)
-- [15. Custom Actions](#15-custom-actions)
+- [15. Custom Actions (Job Worker)](#15-custom-actions-job-worker)
 
 # 1. Introduction
 
@@ -174,7 +174,7 @@
   - Superseded
   - Failed.
 
-# 15. Custom Actions
+# 15. Custom Actions (Job Worker)
 
 - You can create custom actions for the following AWS CodePipeline action categories:
   - A custom build action that builds or transforms the items.
