@@ -29,20 +29,20 @@
 
 - Library of over 190 managed rules.
 - Ready-to-use rules that are managed by AWS and AWS Marketplace Sellers.
-- **Baseline Rule Groups:** General protection from common threats
+- **Baseline Rule Groups:** General protection from common threats:
   - `AWSManagedRulesCommonRuleSet`
   - `AWSManagedRulesAdminProtectionRuleSet`
   - ...
-- **Use-case Specific Rule Groups:** Protection for many AWS WAF use cases
+- **Use-case Specific Rule Groups:** Protection for many AWS WAF use cases:
   - `AWSManagedRulesSQLiRuleSet`
   - `AWSManagedRulesWindowsRuleSet`
   - `AWSManagedRulesPHPRuleSet`
   - `AWSManagedRulesWordPressRuleSet`
   - ...
-- **IP Reputation Rule Groups:** Block requests based on source (e.g., malicious IPs).
+- **IP Reputation Rule Groups:** Block requests based on source (e.g., malicious IPs):
   - `AWSManagedRulesAmazonIpReputationList`
   - `AWSManagedRulesAnonymousIpList`
-- **Bot Control Managed Rule Group:** Block and manage requests from bots
+- **Bot Control Managed Rule Group:** Block and manage requests from bots:
   - `AWSManagedRulesBotControlRuleSet`
 
 # 3. Logging

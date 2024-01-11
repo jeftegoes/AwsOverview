@@ -14,6 +14,7 @@
 - [7. Organizational Rules](#7-organizational-rules)
   - [7.1. Custom rules](#71-custom-rules)
 - [8. Organizational Rules vs. Conformance Packs](#8-organizational-rules-vs-conformance-packs)
+- [9. Managed Rules](#9-managed-rules)
 
 # 1. Introduction
 
@@ -123,3 +124,9 @@
 | Evaluation Type  | Evaluate resources against predefined rules that are defined and enforced at Organization level | Evaluate resources against predefined rules that are defined and enforced at the Account level |
 | Rules Count      | One rule                                                                                        | Many rules at a time                                                                           |
 | Compliance Level | Managed at the Organizational level                                                             | Managed at the Account level                                                                   |
+
+# 9. Managed Rules
+
+- AWS Config provides **AWS managed rules**, which are predefined, customizable rules that AWS Config uses to evaluate whether your AWS resources comply with common best practices.
+
+![AWS Managed Rules](/Images/AWSConfigManagedRules.png)
