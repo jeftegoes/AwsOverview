@@ -796,12 +796,16 @@ CMD ["app.lambdaHandler"]
 
 - **CodeDeploy** can help you automate traffic shift for Lambda aliases.
 - Feature is integrated within the SAM framework `routing-config`.
-- **Linear:** grow traffic every N minutes until 100%
-  - `CodeDeployDefault.LambdaLinear10PercentEvery3Minutes` - Shifts 10 percent of traffic every three minutes until all traffic is shifted.
-  - `CodeDeployDefault.LambdaLinear10PercentEvery10Minutes` - Shifts 10 percent of traffic every 10 minutes until all traffic is shifted.
-- **Canary:** try X percent then 100%
-  - `CodeDeployDefault.LambdaCanary10Percent5Minutes` - Shifts 10 percent of traffic in the first increment. The remaining 90 percent is deployed five minutes later.
-  - `CodeDeployDefault.LambdaCanary10Percent30Minutes` - Shifts 10 percent of traffic in the first increment. The remaining 90 percent is deployed 30 minutes later.
+- **Linear:** Grow traffic every N minutes until 100%
+  - `CodeDeployDefault.LambdaLinear10PercentEvery3Minutes`
+    - Shifts 10 percent of traffic every three minutes until all traffic is shifted.
+  - `CodeDeployDefault.LambdaLinear10PercentEvery10Minutes`
+    - Shifts 10 percent of traffic every 10 minutes until all traffic is shifted.
+- **Canary:** Try X percent then 100%
+  - `CodeDeployDefault.LambdaCanary10Percent5Minutes`
+    - Shifts 10 percent of traffic in the first increment. The remaining 90 percent is deployed five minutes later.
+  - `CodeDeployDefault.LambdaCanary10Percent30Minutes`
+    - Shifts 10 percent of traffic in the first increment. The remaining 90 percent is deployed 30 minutes later.
 - **AllAtOnce:** immediate
   - Can create Pre & Post Traffic hooks to check the health of the Lambda function.
 

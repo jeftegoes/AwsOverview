@@ -10,6 +10,7 @@
 - [4. Layer, Instance, \& App](#4-layer-instance--app)
 - [5. Scaling](#5-scaling)
 - [6. Deployment \& Customization](#6-deployment--customization)
+- [7. AutoHealing](#7-autohealing)
 
 # 1. Introduction
 
@@ -81,3 +82,11 @@
   - Redeployment.
   - Version Control.
   - Code Reuse.
+
+# 7. AutoHealing
+
+- The `initiated_by` field is only populated when the instance is in the **requested**, **terminating**, or **stopping** states.
+- The `initiated_by` field can contain one of the following values.
+  - `user` - A user requested the instance state change by using either the API or AWS Management Console.
+  - `auto-scaling` - The AWS OpsWorks Stacks automatic scaling feature initiated the instance state change.
+  - `auto-healing` - The AWS OpsWorks Stacks automatic healing feature initiated the instance state change.

@@ -14,7 +14,7 @@
   - [3.5. Service Auto Scaling](#35-service-auto-scaling)
     - [3.5.1. Auto Scaling EC2 Instances](#351-auto-scaling-ec2-instances)
   - [3.6. Logging](#36-logging)
-    - [3.6.1. With "awslogs" driver](#361-with-awslogs-driver)
+    - [3.6.1. With "awslogs" Log Driver](#361-with-awslogs-log-driver)
     - [3.6.2. Sidecar Container](#362-sidecar-container)
   - [3.7. Rolling Updates](#37-rolling-updates)
   - [3.8. Task Definitions](#38-task-definitions)
@@ -134,11 +134,12 @@
 
 ## 3.6. Logging
 
-### 3.6.1. With "awslogs" driver
+### 3.6.1. With "awslogs" Log Driver
 
 - Containers can send application logs directly to CloudWatch Logs.
-- You need to turn on `awslogs` log driver (for CW Logs).
+- You need to turn on `awslogs` log driver (for Amazon CloudWatch Logs).
 - Configure `logConfiguration` parameters in your Task Definition.
+  ![Task Definition logConfiguration](/Images/AmazonECSAwsLogsLogDriver.png)
 - **Fargate Launch Type**
   - Task Execution Role must have the required permissions.
   - Supports **awslogs, splunk, awsfirelens** log drivers.

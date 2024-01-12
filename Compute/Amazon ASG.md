@@ -23,6 +23,7 @@
   - [15.3. Instance Reuse Policy](#153-instance-reuse-policy)
 - [16. AWS Application Auto Scaling](#16-aws-application-auto-scaling)
   - [16.1. Integrated AWS Services](#161-integrated-aws-services)
+- [17. Terraform details](#17-terraform-details)
 
 # 1. Introduction
 
@@ -227,3 +228,21 @@
 - SageMaker - Endpoint Variants
 - Spot Fleet - Requests
 - Custom Resources
+
+# 17. Terraform details
+
+- If you plan to launch an Auto Scaling group of EC2 instances, you can configure the `AWS::AutoScaling::AutoScalingGroup` resource type reference in your CloudFormation template to define an Amazon EC2 Auto Scaling group with the specified name and attributes.
+- You can add an `UpdatePolicy` attribute to your Auto Scaling group to perform rolling updates (or replace the group) when a change has been made to the group.
+- To specify how AWS CloudFormation handles replacement updates for an Auto Scaling group, use the `AutoScalingReplacingUpdate` policy.
+- This policy enables you to specify whether AWS CloudFormation replaces an Auto Scaling group with a new one or replaces only the instances in the Auto Scaling group.
+  ```
+    UpdatePolicy:
+      AutoScalingReplacingUpdate:
+        WillReplace: true
+  ```
+- During replacement, AWS CloudFormation retains the old group until it finishes creating the new one.
+  1. If the update fails, AWS CloudFormation can roll back to the old Auto Scaling group and delete the new Auto Scaling group.
+  2. While AWS CloudFormation creates the new group, it doesn't detach or attach any instances.
+  3. After successfully creating the new Auto Scaling group, AWS CloudFormation deletes the old Auto Scaling group during the cleanup process.
+- When you set the `WillReplace` parameter, remember to specify a matching CreationPolicy.
+  - If the minimum number of instances (specified by the `MinSuccessfulInstancesPercent` property) doesn't signal success within the Timeout period (specified in the CreationPolicy policy), the replacement update fails, and AWS CloudFormation rolls back to the old Auto Scaling group.
