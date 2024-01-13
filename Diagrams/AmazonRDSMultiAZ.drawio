@@ -1,0 +1,44 @@
+<mxfile host="Electron" modified="2024-01-12T03:20:14.265Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="N7qSfO5cF4EB8gS9GnbQ" version="22.1.16" type="device">
+  <diagram name="Page-1" id="R-JKi_KaviQPUkAOKYdO">
+    <mxGraphModel dx="877" dy="681" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="-TW24p6iPXKCouzMh_Ao-1" value="Application" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.client;" vertex="1" parent="1">
+          <mxGeometry x="370" y="277.77" width="138" height="134.46" as="geometry" />
+        </mxCell>
+        <mxCell id="-TW24p6iPXKCouzMh_Ao-2" value="RDS DB instance standby&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;(sa-east-1b)" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.rds_db_instance_standby_multi_az;fillColor=#2E73B8;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="720" y="390" width="49.5" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="-TW24p6iPXKCouzMh_Ao-3" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.rds_db_instance_read_replica;fillColor=#2E73B8;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="620" y="690" width="49.5" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="-TW24p6iPXKCouzMh_Ao-9" value="SYNC replication" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="-TW24p6iPXKCouzMh_Ao-4" target="-TW24p6iPXKCouzMh_Ao-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-TW24p6iPXKCouzMh_Ao-4" value="RDS Master DB instance&lt;br&gt;(sa-east-1a)" style="outlineConnect=0;dashed=0;verticalLabelPosition=top;verticalAlign=bottom;align=center;html=1;shape=mxgraph.aws3.rds_db_instance;fillColor=#2E73B8;gradientColor=none;labelPosition=center;" vertex="1" parent="1">
+          <mxGeometry x="720" y="230" width="49.5" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="-TW24p6iPXKCouzMh_Ao-5" value="One DNS name&lt;br&gt;&lt;b&gt;automatic failover&lt;/b&gt;" style="shape=crossbar;whiteSpace=wrap;html=1;rounded=1;direction=south;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="610" y="190" width="60" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="-TW24p6iPXKCouzMh_Ao-7" value="Reads" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;exitX=0.25;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="-TW24p6iPXKCouzMh_Ao-5" target="-TW24p6iPXKCouzMh_Ao-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="288" />
+              <mxPoint x="530" y="288" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-TW24p6iPXKCouzMh_Ao-8" value="Writes" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="-TW24p6iPXKCouzMh_Ao-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="640" y="403" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="640" y="403" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

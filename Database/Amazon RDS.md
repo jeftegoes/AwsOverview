@@ -9,8 +9,9 @@
   - [1.4. Read Replicas for read scalability](#14-read-replicas-for-read-scalability)
     - [1.4.1. Use Cases](#141-use-cases)
     - [1.4.2. Network Cost](#142-network-cost)
-  - [1.5. Multi AZ (Disaster Recovery)](#15-multi-az-disaster-recovery)
-    - [1.5.1. From Single-AZ to Multi-AZ](#151-from-single-az-to-multi-az)
+  - [1.5. Disaster Recovery](#15-disaster-recovery)
+    - [1.5.1. Multi AZ](#151-multi-az)
+    - [1.5.2. From Single-AZ to Multi-AZ](#152-from-single-az-to-multi-az)
   - [1.6. Security - Encryption](#16-security---encryption)
     - [1.6.1. TDE - Transparent Data Encryption](#161-tde---transparent-data-encryption)
     - [1.6.2. Encryption Operations](#162-encryption-operations)
@@ -101,7 +102,15 @@
 - In AWS there's a network cost when data goes from one AZ to another.
 - **For RDS Read Replicas within the same region, you don't pay that fee.**
 
-## 1.5. Multi AZ (Disaster Recovery)
+## 1.5. Disaster Recovery
+
+|                   | RTO    | RPO    | COST   | SCOPE         |
+| ----------------- | ------ | ------ | ------ | ------------- |
+| Automated Backups | Good   | Better | Low    | Single Region |
+| Manual Snapshots  | Better | Good   | Medium | Cross-Region  |
+| Read Replicas     | Best   | Best   | High   | Cross-Region  |
+
+### 1.5.1. Multi AZ
 
 - **SYNC** replication.
 - One DNS name - automatic app failover to standby.
@@ -112,7 +121,9 @@
 - Multi-AZ replication is free.
 - Note: The Read Replicas be setup as Multi-AZ for Disaster Recovery (DR).
 
-### 1.5.1. From Single-AZ to Multi-AZ
+  ![Multi AZ](/Images/AmazonRDSMultiAZ.png)
+
+### 1.5.2. From Single-AZ to Multi-AZ
 
 - Zero downtime operation (no need to stop the DB).
 - Just click on "modify" for the database.
@@ -120,6 +131,7 @@
   - A snapshot is taken.
   - A new DB is restored from the snapshot in a new AZ.
   - Synchronization is established between the two databases.
+    ![Single AZ](/Images/AmazonRDSSingleAZ.png)
 
 ## 1.6. Security - Encryption
 
