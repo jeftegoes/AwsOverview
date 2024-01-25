@@ -148,10 +148,22 @@
   - Uses **CloudWatch Unified Agent & ECS Container Agent**.
   - Enable logging using `ECS_AVAILABLE_LOGGING_DRIVERS` in `/etc/ecs/ecs.config`
   - Container EC2 instances must have permissions.
+    ![awslogs driver](/Images/AmazonECSAwsLogsLogDriver.png)
+  ```
+    "logConfiguration": {
+      "logDriver": "awslog",
+      "options": {
+        "awslogs-group": "/ecs/fargate-task-definition",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    }
+  ```
 
 ### 3.6.2. Sidecar Container
 
 - Using a sidecar container which is responsible for collecting logs from all other containers and files on the file system and send the logs to a log storage (e.g., CloudWatch Logs).
+  ![Sidecar Container](/Images/AmazonECSSidecarContainer.png)
 
 ## 3.7. Rolling Updates
 

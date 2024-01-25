@@ -445,9 +445,7 @@
 - **It's integrated with AWS Lambda so that you create triggers that automatically respond to events in real-time.**
 - You need to define an **Event Source Mapping** to read from a DynamoDB Streams.
 - You need to ensure the Lambda function has the appropriate permissions.
-- **Your Lambda function is invoked synchronously.**
-
-  [AWS Lambda](AWS%20Lambda.md)
+- **Your [AWS Lambda](AWS%20Lambda.md) function is invoked synchronously.**
 
 # 14. Global Tables
 

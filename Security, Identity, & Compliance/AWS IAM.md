@@ -46,6 +46,9 @@
 
 # 3. IAM: Policies Structure
 
+![IAM - Policies](/Images/IAMPoliciesInheritance.png)
+![IAM - Policies](/Images/IAMPoliciesStructure.PNG)
+
 - Consists of:
   - **Version**: policy language version, always include "YYYY-MM-DD".
   - **Id**: an identifier for the policy (optional).
@@ -57,9 +60,7 @@
     - **Action**: list of actions this policy allows or denies.
     - **Resource**: list of resources to which the actions applied to.
     - **Condition**: conditions for when this policy is in effect (optional).
-
-![IAM - Policies](/Images/IAMPoliciesInheritance.png)
-![IAM - Policies](/Images/IAMPoliciesStructure.PNG)
+- **Remember that you can't modify these AWS-managed policies.**
 
 # 4. Policy variations
 

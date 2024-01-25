@@ -1,0 +1,53 @@
+<mxfile host="Electron" modified="2024-01-16T18:53:09.728Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="l8Z5rhGpqM9b1UsVUjhM" version="22.1.16" type="device">
+  <diagram name="Page-1" id="NXUg2jte4Kn1GbPxdCD9">
+    <mxGraphModel dx="1098" dy="988" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="CMAPopOh779qbCKZ9shv-1" value="ECS Service" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;strokeWidth=2;strokeColor=#d77a00;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="280" y="290" width="320" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="CMAPopOh779qbCKZ9shv-14" value="logs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CMAPopOh779qbCKZ9shv-3" target="CMAPopOh779qbCKZ9shv-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CMAPopOh779qbCKZ9shv-3" value="Sidecar Container&lt;br&gt;(Logs Container)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.container_2;labelPosition=center;spacingLeft=0;" vertex="1" parent="1">
+          <mxGeometry x="490" y="470.5" width="77.42" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="CMAPopOh779qbCKZ9shv-4" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fargate;" vertex="1" parent="1">
+          <mxGeometry x="280" y="290" width="51" height="51" as="geometry" />
+        </mxCell>
+        <mxCell id="CMAPopOh779qbCKZ9shv-5" value="CloudWatch Logs" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.cloudwatch_logs;" vertex="1" parent="1">
+          <mxGeometry x="730" y="466.5" width="78" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="CMAPopOh779qbCKZ9shv-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CMAPopOh779qbCKZ9shv-6" target="CMAPopOh779qbCKZ9shv-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CMAPopOh779qbCKZ9shv-6" value="Container B" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.container_1;" vertex="1" parent="1">
+          <mxGeometry x="312" y="471.31" width="73.49" height="47.46" as="geometry" />
+        </mxCell>
+        <mxCell id="CMAPopOh779qbCKZ9shv-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CMAPopOh779qbCKZ9shv-9" target="CMAPopOh779qbCKZ9shv-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="594" />
+              <mxPoint x="440" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CMAPopOh779qbCKZ9shv-9" value="Container C" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.container_1;" vertex="1" parent="1">
+          <mxGeometry x="312" y="570" width="73.49" height="47.46" as="geometry" />
+        </mxCell>
+        <mxCell id="CMAPopOh779qbCKZ9shv-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CMAPopOh779qbCKZ9shv-10" target="CMAPopOh779qbCKZ9shv-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="393" />
+              <mxPoint x="440" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CMAPopOh779qbCKZ9shv-10" value="Container A" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.container_1;" vertex="1" parent="1">
+          <mxGeometry x="312" y="368.77" width="73.49" height="47.46" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
