@@ -40,7 +40,6 @@
 - [16. Lambda Logging \& Monitoring](#16-lambda-logging--monitoring)
   - [16.1. Lambda Tracing with X-Ray](#161-lambda-tracing-with-x-ray)
 - [17. Customization At The Edge](#17-customization-at-the-edge)
-  - [17.1. CloudFront Functions \& Lambda@Edge - Use Cases](#171-cloudfront-functions--lambdaedge---use-cases)
   - [17.2. CloudFront Functions](#172-cloudfront-functions)
   - [17.3. Lambda@Edge](#173-lambdaedge)
   - [17.4. CloudFront Functions vs. Lambda@Edge](#174-cloudfront-functions-vs-lambdaedge)
@@ -514,19 +513,6 @@
 - Use case: customize the CDN content.
 - Pay only for what you use.
 - Fully serverless.
-
-## 17.1. CloudFront Functions & Lambda@Edge - Use Cases
-
-- Website Security and Privacy.
-- Dynamic Web Application at the Edge.
-- Search Engine Optimization (SEO).
-- Intelligently Route Across Origins and Data Centers.
-- Bot Mitigation at the Edge.
-- Real-time Image Transformation.
-- A/B Testing.
-- User Authentication and Authorization.
-- User Prioritization.
-- User Tracking and Analytics.
 
 ## 17.2. CloudFront Functions
 
