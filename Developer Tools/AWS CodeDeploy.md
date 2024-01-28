@@ -7,9 +7,9 @@
 - [3. Primary Components](#3-primary-components)
 - [4. Hooks](#4-hooks)
   - [4.1. Examples](#41-examples)
-  - [4.2. appspec.yml](#42-appspecyml)
+  - [4.2. Sections appspec.yml](#42-sections-appspecyml)
+    - [4.2.1. Example](#421-example)
   - [4.3. List of lifecycle event hooks](#43-list-of-lifecycle-event-hooks)
-  - [4.4. Deployment Hooks Examples](#44-deployment-hooks-examples)
 - [5. EC2/On-premises Platform](#5-ec2on-premises-platform)
   - [5.1. In-Place deployment](#51-in-place-deployment)
   - [5.2. Blue / Green Deployment](#52-blue--green-deployment)
@@ -65,7 +65,7 @@
 
 # 4. Hooks
 
-- The content in the `hooks` section of the `AppSpec.yml` file varies, depending on the compute platform for your deployment.
+- The content in the `hooks` section of the `appspec.yml` file varies, depending on the compute platform for your deployment.
 - The `hooks` section for an **EC2/On-Premises** deployment contains mappings that link deployment lifecycle event hooks to one or more scripts.
 - The `hooks` section for a **Lambda or an Amazon ECS deployment** specifies Lambda validation functions to run during a deployment lifecycle event.
 - **If an event hook is not present, no operation is executed for that event.**
@@ -102,7 +102,7 @@
 
 - **There is no such thing as custom environment variable in CodeDeploy.**
 
-## 4.2. appspec.yml
+## 4.2. Sections appspec.yml
 
 - `files` - How to source and copy from S3 / GitHub to filesystem
   - `source`
@@ -131,15 +131,36 @@
     - `AfterAllowTraffic`
     - `BeforeAllowTraffic`
 
+### 4.2.1. Example
+
+```
+  version: 0.0
+  os: linux
+  files:
+    - source: app
+      destination: /var/www
+    - source: deploy-scripts/webapi.service
+      destination: /etc/systemd/system
+  hooks:
+    BeforeInstall:
+      - location: deploy-scripts/before_install.sh
+        timeout: 120
+        runas: root
+    ApplicationStop:
+      - location: deploy-scripts/stop_app.sh
+        timeout: 120
+        runas: root
+    ApplicationStart:
+      - location: deploy-scripts/start_app.sh
+        timeout: 120
+        runas: root
+```
+
 ## 4.3. List of lifecycle event hooks
 
+- `BeforeInstall` - You can use this deployment lifecycle event for preinstall tasks, such as decrypting files and creating a backup of the current version.
 - `Install` - During this deployment lifecycle event, the CodeDeploy agent copies the revision files from the temporary location to the final destination folder.
   - **This event is reserved for the CodeDeploy agent and cannot be used to run scripts.**
-
-## 4.4. Deployment Hooks Examples
-
-- `BeforeInstall` - You can use this deployment lifecycle event for preinstall tasks, such as decrypting files and creating a backup of the current version.
-- `Install` - During this deployment lifecycle event, the CodeDeploy agent copies the revision files from the temporary location to the final destination folder. This event is reserved for the CodeDeploy agent and cannot be used to run scripts.
 - `AfterInstall` - You can use this deployment lifecycle event for tasks such as configuring your application or changing file permissions.
 - `ApplicationStart` - You typically use this deployment lifecycle event to restart services that were stopped during ApplicationStop.
 - `ValidateService` - This is the last deployment lifecycle event. It is used to verify the deployment was completed successfully.
@@ -201,14 +222,9 @@
 
 # 8. Deployment to EC2
 
-- Define how to deploy the application using appspec.yml +
-  Deployment Strategy
-- Will do In
-  -place update to
-  your fleet of EC2 instances
-- Can use hooks to verify the
-  deployment after each
-  deployment phase
+- Define how to deploy the application using appspec.yml + Deployment Strategy.
+- Will do In-place update to your fleet of EC2 instances.
+- Can use hooks to verify the deployment after each deployment phase.
 
 # 9. In-place
 
@@ -273,7 +289,3 @@
 - Issue: failed AllowTraffic lifecycle event in Blue/Green Deployments with no error reported in the Deployment Logs:
 - **Reason:** incorrectly configured health checks in ELB.
 - **Resolution:** review and correct any errors in ELB health checks configuration.
-
-```
-
-```

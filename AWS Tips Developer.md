@@ -159,13 +159,13 @@
 
 # 8. Files
 
-- buildspec.yml - CodeBuild.
-- appspec.yml - CodeDeploy.
-- env.yml - Elastic Beanstalk.
+- `buildspec.yml` - CodeBuild.
+- `appspec.yml` - CodeDeploy.
+- `env.yml` - Elastic Beanstalk.
   - .config - Configuration files are YAML- or JSON-formatted documents with a **.config** file extension that you place in a folder named **.ebextensions**.
-- amplify.yml - Use the test step to run any test commands at build time.
-- Dockerrun.aws.json - Is used to generate the ECS task definition in EBS.
-- xray-daemon.config - You can run the daemon by setting an option in the Elastic Beanstalk console or with a configuration file.
+- `amplify.yml` - Use the test step to run any test commands at build time.
+- `Dockerrun.aws.json` - Is used to generate the ECS task definition in EBS.
+- `xray-daemon.config` - You can run the daemon by setting an option in the Elastic Beanstalk console or with a configuration file.
 
 # 9. PartiQL
 

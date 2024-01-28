@@ -748,6 +748,8 @@
 - `ServiceToken` specifies where CloudFormation sends requests to, such as **Lambda ARN** or **SNS ARN** (required & must be in the same region).
 - Input data parameters (optional).
 
+![AWS CloudFormation Custom Resources](/Images/AWSCloudFormationCustomResources.png)
+
 ## 13.2. Use cases
 
 ### 13.2.1. Non-empty S3 bucket

@@ -4,9 +4,10 @@
 
 - [1. Introduction](#1-introduction)
   - [1.1. Checks examples](#11-checks-examples)
-- [2. Monitoring](#2-monitoring)
-- [3. Integrations](#3-integrations)
-  - [3.1. Targets](#31-targets)
+- [2. Support Plans](#2-support-plans)
+- [3. Monitoring](#3-monitoring)
+- [4. Integrations](#4-integrations)
+  - [4.1. Targets](#41-targets)
 
 # 1. Introduction
 
@@ -39,17 +40,30 @@
   - ASG Multi-AZ, RDS Multi-AZ, ELB configuration...
 - **Service Limits.**
 
-# 2. Monitoring
+# 2. Support Plans
+
+| 7 CORE CHECKS                                 | FULL CHECKS                                           |
+| --------------------------------------------- | ----------------------------------------------------- |
+| **Basic & Developer Support plan**            | **Business & Enterprise Support plan**                |
+| S3 Bucket Permissions                         | Full Checks available on the 5 categories             |
+| Security Groups – Specific Ports Unrestricted | Ability to set CloudWatch alarms when reaching limits |
+| IAM Use (one IAM user minimum)                | Programmatic Access using AWS Support API             |
+| MFA on Root Account                           |                                                       |
+| EBS Public Snapshots                          |                                                       |
+| RDS Public Snapshots                          |                                                       |
+| Service Limits                                |                                                       |
+
+# 3. Monitoring
 
 ![Trusted Advisor - Monitoring](/Images/AWSTrustedAdvisorMonitoring.png)
 
-# 3. Integrations
+# 4. Integrations
 
 - You can use [Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md) to detect and react to changes in the status of Trusted Advisor checks.
 - Then, based on the rules that you create, EventBridge invokes one or more target actions when a check status changes to the value you specify in a rule.
 - Depending on the type of status change, you might want to send notifications, capture status information, take corrective action, initiate events, or take other actions.
 
-## 3.1. Targets
+## 4.1. Targets
 
 - You can select the following types of targets when using [Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md) as a part of your Trusted Advisor workflow:
   - AWS Lambda functions
