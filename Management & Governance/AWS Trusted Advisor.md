@@ -46,7 +46,7 @@
 | --------------------------------------------- | ----------------------------------------------------- |
 | **Basic & Developer Support plan**            | **Business & Enterprise Support plan**                |
 | S3 Bucket Permissions                         | Full Checks available on the 5 categories             |
-| Security Groups – Specific Ports Unrestricted | Ability to set CloudWatch alarms when reaching limits |
+| Security Groups - Specific Ports Unrestricted | Ability to set CloudWatch alarms when reaching limits |
 | IAM Use (one IAM user minimum)                | Programmatic Access using AWS Support API             |
 | MFA on Root Account                           |                                                       |
 | EBS Public Snapshots                          |                                                       |

@@ -23,9 +23,11 @@
   - [1.9. Enhanced Monitoring](#19-enhanced-monitoring)
 - [2. Amazon Aurora](#2-amazon-aurora)
   - [2.1. Aurora High Availability and Read Scaling](#21-aurora-high-availability-and-read-scaling)
-  - [2.2. Global Aurora](#22-global-aurora)
-  - [2.3. Features of Aurora](#23-features-of-aurora)
-  - [2.4. Aurora Security](#24-aurora-security)
+  - [2.2. Auto Scaling](#22-auto-scaling)
+  - [2.3. Global Aurora](#23-global-aurora)
+  - [2.4. Unplanned Failover](#24-unplanned-failover)
+  - [2.5. Features of Aurora](#25-features-of-aurora)
+  - [2.6. Aurora Security](#26-aurora-security)
 - [3. Amazon Aurora Serverless](#3-amazon-aurora-serverless)
 - [4. MySQL error log](#4-mysql-error-log)
 - [5. Amazon Aurora vs Amazon Aurora Serverless](#5-amazon-aurora-vs-amazon-aurora-serverless)
@@ -251,7 +253,11 @@
 - Master + up to 15 Aurora Read Replicas serve reads.
 - **Support for Cross Region Replication.**
 
-## 2.2. Global Aurora
+## 2.2. Auto Scaling
+
+![Auto Scaling](/Images/AmazonAuroraAutoScaling.png)
+
+## 2.3. Global Aurora
 
 - **Aurora Cross Region Read Replicas**
   - Useful for disaster recovery.
@@ -264,7 +270,13 @@
   - Promoting another region (for disaster recovery) has an RTO of < 1 minute.
   - **Typical cross-region replication takes less than 1 second.**
 
-## 2.3. Features of Aurora
+![Global Aurora](/Images/AmazonAuroraGlobal.png)
+
+## 2.4. Unplanned Failover
+
+![Unplanned Failover](/Images/AmazonAuroraUnplannedFailover.png)
+
+## 2.5. Features of Aurora
 
 - Automatic fail-over.
 - Backup and Recovery.
@@ -276,7 +288,7 @@
 - Routine Maintenance.
 - Backtrack: restore data at any point of time without using backups.
 
-## 2.4. Aurora Security
+## 2.6. Aurora Security
 
 - Similar to RDS because uses the same engines.
 - Encryption at rest using KMS.

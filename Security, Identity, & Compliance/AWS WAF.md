@@ -1,4 +1,4 @@
-# AWS WAF - Web Application Firewall<!-- omit in toc -->
+# AWS WAF - AWS Web Application Firewall<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -12,12 +12,12 @@
 # 1. Introduction
 
 - Protects your web applications from common web exploits (Layer 7).
-- Deploy on [ALB](AWS%20ELB%20and%20ASG.md) (localized rules).
-- Deploy on [API Gateway](AWS%20API%20Gateway.md) (rules running at the regional or edge level).
-- Deploy on [CloudFront](AWS%20CloudFront.md) (rules globally on edge locations).
+- Deploy on [ALB](/Compute/AWS%20ELB.md) (localized rules).
+- Deploy on [API Gateway](/Networking%20&%20Content%20Delivery/AWS%20API%20Gateway.md) (rules running at the regional or edge level).
+- Deploy on [CloudFront](/Networking%20&%20Content%20Delivery/AWS%20CloudFront.md) (rules globally on edge locations).
   - Used to front other solutions: CLB, EC2 instances, custom origins, S3 websites.
 - Deploy on AppSync (protect your GraphQL APIs).
-- WAF is not for DDoS protection.
+- **WAF is not for DDoS protection.**
 - Define Web ACL (Web Access Control List):
   - Rules can include **IP addresses**, HTTP headers, HTTP body, or URI strings.
   - Protects from common attack - **SQL injection** and Cross-Site Scripting (XSS).
@@ -50,7 +50,13 @@
 - You can send your logs to an:
   - Amazon CloudWatch Logs log group - 5 MB per second.
   - Amazon Simple Storage Service (Amazon S3) bucket - 5 minutes interval.
+    - Your bucket names for AWS WAF logging must start with `aws-waf-logs-` and can end with any suffix you want.
+    - For example, `aws-waf-logs-DOC-EXAMPLE-BUCKET-SUFFIX`.
   - Amazon Kinesis Data Firehose - limited by Firehose quotas.
+  - **AWS WAF supports encryption with Amazon S3 buckets for key type Amazon S3 key (SSE-S3) and AWS Key Management Service (SSE-KMS) AWS KMS keys.**
+  - **AWS WAF doesn't support encryption for AWS Key Management Service keys that are managed by AWS.**
+
+![AWS WAF Integrations](/Images/AWSWAFIntegrations.png)
 
 # 4. AWS Firewall Manager
 

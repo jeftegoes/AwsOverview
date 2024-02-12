@@ -1966,6 +1966,8 @@
 
 - KMS Key Management Service
 - KVM Kernel-based Virtual Machine
+- KDS Kinesis Data Streams
+- KDF Kinesis Data Firehose
 
 ## 24.11. L
 
