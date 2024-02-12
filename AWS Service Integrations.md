@@ -11,3 +11,14 @@
 - Amazon Aurora > Lambda (Helth Check)
 - Amazon Kinesis Firehose > Amazon S3
 - EC2 Instance > Amazon CloudWatch Logs > Metric Filters > Amazon CloudWatch Alarm > SNS (Monitoring)
+- ALB/NLB/CLB > Amazon S3
+- CloudTrail Logs > Amazon S3/Amazon CloudWatch Logs
+- VPC Flow Logs > Amazon S3/Amazon CloudWatch Logs
+- Route 53 > Amazon S3/Amazon CloudWatch Logs
+- CloudFront Access Logs > Amazon CloudWatch S3
+- AWS Config > Amazon EventBridge > Lambda/SNS/SQS
+- Amazon Inspector > Amazon EventBridge/AWS Security Hub
+
+# 2. Impossible integrations
+
+- Amazon EventBridge > Amazon S3

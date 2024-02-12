@@ -11,6 +11,7 @@
 
 # 1. Introduction
 
+- Scans your AWS infrastructure, compares with AWS best practices.
 - No need to install anything - high level AWS account assessment.
 - **Analyze your AWS accounts and provides recommendations:**
   - Cost optimization.

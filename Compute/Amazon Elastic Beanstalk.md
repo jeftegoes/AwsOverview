@@ -1,4 +1,4 @@
-# AWS Elastic Beanstalk <!-- omit in toc -->
+# Amazon Elastic Beanstalk <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

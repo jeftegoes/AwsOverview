@@ -7,6 +7,7 @@
 - [3. Config Rules](#3-config-rules)
   - [3.1. AWS Config Resource](#31-aws-config-resource)
   - [3.2. Remediations](#32-remediations)
+    - [3.2.1. Required Tags](#321-required-tags)
   - [3.3. Notifications](#33-notifications)
 - [4. Configuration Recorder](#4-configuration-recorder)
 - [5. Aggregators](#5-aggregators)
@@ -63,8 +64,14 @@
 
 - Automate remediation of non-compliant resources using SSM Automation Documents.
 - Use AWS-Managed Automation Documents or create custom Automation Documents.
-  - Tip: you can create custom Automation Documents that invokes Lambda function.
+  - Tip: You can create custom Automation Documents that invokes Lambda function.
 - You can set **Remediation Retries** if the resource is still non-compliant after auto- remediation.
+  ![Config Rules Remediations](/Images/AWSConfigRulesRemediations.png)
+
+### 3.2.1. Required Tags
+
+- Checks if your resources have the tags that you specify.
+  [Required Tags](https://docs.aws.amazon.com/config/latest/developerguide/required-tags.html)
 
 ## 3.3. Notifications
 
