@@ -7,26 +7,21 @@
 - [3. EBS - Delete on Termination attribute](#3-ebs---delete-on-termination-attribute)
 - [4. EBS Snapshots](#4-ebs-snapshots)
   - [4.1. Features](#41-features)
-- [5. AMI Overview](#5-ami-overview)
-  - [5.1. AMI Process (from an EC2 instance)](#51-ami-process-from-an-ec2-instance)
-  - [5.2. EC2 Image Builder](#52-ec2-image-builder)
-  - [5.3. Cross-Account AMI Sharing](#53-cross-account-ami-sharing)
-  - [5.4. Cross-Account AMI Copy](#54-cross-account-ami-copy)
-- [6. EC2 Instance Store](#6-ec2-instance-store)
-- [7. EBS Volume Types](#7-ebs-volume-types)
-  - [7.1. EBS Volume Types Use cases](#71-ebs-volume-types-use-cases)
-    - [7.1.1. General Purpose SSD](#711-general-purpose-ssd)
-    - [7.1.2. Provisioned IOPS (PIOPS) SSD](#712-provisioned-iops-piops-ssd)
-    - [7.1.3. Hard Disk Drives (HDD)](#713-hard-disk-drives-hdd)
-    - [7.1.4. EBS Multi-Attach - io1/io2 family](#714-ebs-multi-attach---io1io2-family)
-- [8. EFS - Elastic File System](#8-efs---elastic-file-system)
-  - [8.1. EFS - Performance and Storage Classes](#81-efs---performance-and-storage-classes)
-  - [8.2. EBS vs EFS - Elastic Block Storage](#82-ebs-vs-efs---elastic-block-storage)
-  - [8.3. EBS vs EFS - Elastic File System](#83-ebs-vs-efs---elastic-file-system)
-- [9. Shared Responsibility Model for EC2 Storage](#9-shared-responsibility-model-for-ec2-storage)
-- [10. Amazon FSx - Overview](#10-amazon-fsx---overview)
-- [11. Amazon FSx for Windows File Server](#11-amazon-fsx-for-windows-file-server)
-- [12. Amazon FSx for Lustre](#12-amazon-fsx-for-lustre)
+- [5. EC2 Instance Store](#5-ec2-instance-store)
+- [6. EBS Volume Types](#6-ebs-volume-types)
+  - [6.1. EBS Volume Types Use cases](#61-ebs-volume-types-use-cases)
+    - [6.1.1. General Purpose SSD](#611-general-purpose-ssd)
+    - [6.1.2. Provisioned IOPS (PIOPS) SSD](#612-provisioned-iops-piops-ssd)
+    - [6.1.3. Hard Disk Drives (HDD)](#613-hard-disk-drives-hdd)
+    - [6.1.4. EBS Multi-Attach - io1/io2 family](#614-ebs-multi-attach---io1io2-family)
+- [7. EFS - Elastic File System](#7-efs---elastic-file-system)
+  - [7.1. EFS - Performance and Storage Classes](#71-efs---performance-and-storage-classes)
+  - [7.2. EBS vs EFS - Elastic Block Storage](#72-ebs-vs-efs---elastic-block-storage)
+  - [7.3. EBS vs EFS - Elastic File System](#73-ebs-vs-efs---elastic-file-system)
+- [8. Shared Responsibility Model for EC2 Storage](#8-shared-responsibility-model-for-ec2-storage)
+- [9. Amazon FSx - Overview](#9-amazon-fsx---overview)
+- [10. Amazon FSx for Windows File Server](#10-amazon-fsx-for-windows-file-server)
+- [11. Amazon FSx for Lustre](#11-amazon-fsx-for-lustre)
 
 # 1. Introduction
 
@@ -78,56 +73,7 @@
 - **Fast Snapshot Restore (FSR)**
   - Force full initialization of snapshot to have no latency on the first use ($$$).
 
-# 5. AMI Overview
-
-- AMI = Amazon Machine Image.
-  - **Golden AMI** is an AMI that you standardize through configuration, consistent security patching, and hardening.
-    - It also contains agents you approve for logging, security, performance monitoring, etc.
-- AMI are a **customization** of an EC2 instance.
-  - You add your own software, configuration, operating system, monitoring...
-  - Faster boot / configuration time because all your software is pre-packaged.
-- AMI are built for a **specific region** (and can be copied across regions).
-- You can launch EC2 instances from:
-  - **A Public AMI:** AWS provided.
-  - **Your own AMI:** you make and maintain them yourself.
-  - **An AWS Marketplace AMI:** an AMI someone else made (and potentially sells).
-
-## 5.1. AMI Process (from an EC2 instance)
-
-- Start an EC2 instance and customize it.
-- Stop the instance (for data integrity).
-- Build an AMI - this will also create EBS snapshots.
-- Launch instances from other AMIs.
-
-## 5.2. EC2 Image Builder
-
-- Used to automate the creation of Virtual Machines or container images.
-- Automate the creation, maintain, validate and test **EC2 AMIs**.
-- Can be run on a schedule (weekly, whenever packages are updated, etc...).
-- Free service (only pay for the underlying resources).
-- Steps:
-  1. EC2 Image Builder
-     1. Create
-  2. Builder EC2 Instance
-     1. Create
-  3. New AMI
-  4. Test EC2 Instance
-
-## 5.3. Cross-Account AMI Sharing
-
-- You can share an AMI with another AWS account.
-- Sharing an AMI does not affect the ownership of the AMI.
-- You can only share AMIs that have unencrypted volumes and volumes that are encrypted with a customer managed key.
-- If you share an AMI with encrypted volumes, you must also share any customer managed keys used to encrypt them.
-
-## 5.4. Cross-Account AMI Copy
-
-- If you copy an AMI that has been shared with your account, you are the owner of the target AMI in your account.
-- The owner of the source AMI must grant you read permissions for the storage that backs the AMI (EBS Snapshot).
-- If the shared AMI has encrypted snapshots, the owner must share the key or keys with you as well.
-- Can encrypt the AMI with your own CMK while copying.
-
-# 6. EC2 Instance Store
+# 5. EC2 Instance Store
 
 - EBS volumes are **network drives** with good but "limited" performance.
 - **If you need a high-performance hardware disk, use EC2 Instance Store**.
@@ -137,7 +83,7 @@
 - Risk of data loss if hardware fails.
 - Backups and Replication are your responsibility.
 
-# 7. EBS Volume Types
+# 6. EBS Volume Types
 
 - **EBS Volumes come in 6 types:**
   - **gp2 / gp3 (SSD)**: General purpose SSD volume that balances price and performance for a wide variety of workloads.
@@ -148,9 +94,9 @@
 - When in doubt always consult the AWS documentation - it's good!
 - **Only gp2/gp3 and io1/io2 can be used as boot volumes.**
 
-## 7.1. EBS Volume Types Use cases
+## 6.1. EBS Volume Types Use cases
 
-### 7.1.1. General Purpose SSD
+### 6.1.1. General Purpose SSD
 
 - Cost effective storage, low-latency.
 - System boot volumes, Virtual desktops, Development and test environments.
@@ -163,7 +109,7 @@
   - Size of the volume and IOPS are linked, max IOPS is 16,000.
   - 3 IOPS per GB, means at 5,334 GB we are at the max IOPS.
 
-### 7.1.2. Provisioned IOPS (PIOPS) SSD
+### 6.1.2. Provisioned IOPS (PIOPS) SSD
 
 - Critical business applications with sustained IOPS performance.
 - Or applications that need more than 16,000 IOPS.
@@ -177,7 +123,7 @@
   - Max PIOPS: 256,000 with an IOPS:GiB ratio of 1,000:1.
 - Supports EBS Multi-attach.
 
-### 7.1.3. Hard Disk Drives (HDD)
+### 6.1.3. Hard Disk Drives (HDD)
 
 - Cannot be a boot volume.
 - 125 GiB to 16 TiB.
@@ -189,7 +135,7 @@
   - Scenarios where lowest cost is important.
   - **Max throughput** 250 MiB/s - max IOPS 250.
 
-### 7.1.4. EBS Multi-Attach - io1/io2 family
+### 6.1.4. EBS Multi-Attach - io1/io2 family
 
 - Attach the same EBS volume to multiple EC2 instances in the same AZ.
 - Each instance has full read & write permissions to the volume.
@@ -199,7 +145,7 @@
 - **Up to 16 EC2 Instances at a time.**
 - Must use a file system that's cluster-aware (not XFS, EX4, etc...).
 
-# 8. EFS - Elastic File System
+# 7. EFS - Elastic File System
 
 - Managed NFS (network file system) that **can be mounted on many EC2**.
 - EFS works with EC2 instances in **multi-AZ**.
@@ -214,7 +160,7 @@
 
 ![EFS diagram](/Images/EFSDiagram.png)
 
-## 8.1. EFS - Performance and Storage Classes
+## 7.1. EFS - Performance and Storage Classes
 
 - **EFS Scale:**
   - 1000s of concurrent NFS clients, 10 GB+ /s throughput.
@@ -233,7 +179,7 @@
   - One Zone: One AZ, great for dev, backup enabled by default, compatible with IA (EFS One Zone-IA).
 - Over 90% in cost savings.
 
-## 8.2. EBS vs EFS - Elastic Block Storage
+## 7.2. EBS vs EFS - Elastic Block Storage
 
 - **EBS volumes:**
   - Can be attached to only one instance at a time.
@@ -246,7 +192,7 @@
   - EBS backups use IO and you shouldn't run them while your application is handling a lot of traffic.
 - Root EBS Volumes of instances get terminated by default if the EC2 instance gets terminated (you can disable that).
 
-## 8.3. EBS vs EFS - Elastic File System
+## 7.3. EBS vs EFS - Elastic File System
 
 - Mounting 100s of instances across AZ.
 - EFS share website files (WordPress).
@@ -255,7 +201,7 @@
 - Can leverage EFS-IA for cost savings.
 - Remember: EFS vs EBS vs Instance Store.
 
-# 9. Shared Responsibility Model for EC2 Storage
+# 8. Shared Responsibility Model for EC2 Storage
 
 - AWS:
   - Infrastructure.
@@ -268,7 +214,7 @@
   - Responsibility of any data on the drives.
   - Understanding the risk of using EC2 Instance Store.
 
-# 10. Amazon FSx - Overview
+# 9. Amazon FSx - Overview
 
 - Launch 3rd party high-performance file systems on AWS.
 - Fully managed service.
@@ -277,7 +223,7 @@
   - FSx for Windows File Server.
   - FSx for NetApp ONTAP.
 
-# 11. Amazon FSx for Windows File Server
+# 10. Amazon FSx for Windows File Server
 
 - A fully managed, highly reliable, and scalable Windows native shared file system.
 - Built on Windows File Server.
@@ -285,7 +231,7 @@
 - Integrated with Microsoft Active Directory.
 - Can be accessed from AWS or your on-premise infrastructure.
 
-# 12. Amazon FSx for Lustre
+# 11. Amazon FSx for Lustre
 
 - A fully managed, high-performance, scalable file storage for **High Performance Computing (HPC)**.
 - The name Lustre is derived from "Linux" and "cluster".

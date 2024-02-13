@@ -34,6 +34,14 @@
   - [10.9. AWS License Manager](#109-aws-license-manager)
   - [10.10. Shared Responsibility Model for EC2](#1010-shared-responsibility-model-for-ec2)
 - [11. VM Import/Export](#11-vm-importexport)
+- [12. Instance Migration between AZ](#12-instance-migration-between-az)
+- [13. AMI Overview](#13-ami-overview)
+  - [13.1. AMI Process (from an EC2 instance)](#131-ami-process-from-an-ec2-instance)
+  - [13.2. EC2 Image Builder](#132-ec2-image-builder)
+  - [13.3. Cross-Account AMI Sharing](#133-cross-account-ami-sharing)
+    - [13.3.1. AMI Sharing with KMS Encryption](#1331-ami-sharing-with-kms-encryption)
+  - [13.4. Cross-Account AMI Copy](#134-cross-account-ami-copy)
+    - [AMI Copy with KMS Encryption](#ami-copy-with-kms-encryption)
 
 # 1. Introduction
 
@@ -360,3 +368,71 @@
 - The VM Import/Export enables you to easily import virtual machine images from your existing environment to Amazon EC2 instances and export them back to your on-premises environment.
 
 ![VM Import/Export](/Images/AmazonEC2VMImportExport.png)
+
+# 12. Instance Migration between AZ
+
+- Remember **between AZ**.
+  ![EC2 Instance Migration between AZ](/Images/AmazonEC2MigrationBetweenAZ.png)
+
+# 13. AMI Overview
+
+- AMI = Amazon Machine Image.
+  - **Golden AMI** is an AMI that you standardize through configuration, consistent security patching, and hardening.
+    - It also contains agents you approve for logging, security, performance monitoring, etc.
+- AMI are a **customization** of an EC2 instance.
+  - You add your own software, configuration, operating system, monitoring...
+  - Faster boot / configuration time because all your software is pre-packaged.
+- AMI are built for a **specific region** (and can be copied across regions).
+- You can launch EC2 instances from:
+  - **A Public AMI:** AWS provided.
+  - **Your own AMI:** you make and maintain them yourself.
+  - **An AWS Marketplace AMI:** an AMI someone else made (and potentially sells).
+
+## 13.1. AMI Process (from an EC2 instance)
+
+- Start an EC2 instance and customize it.
+- Stop the instance (for data integrity).
+- Build an AMI - this will also create EBS snapshots.
+- Launch instances from other AMIs.
+
+## 13.2. EC2 Image Builder
+
+- Used to automate the creation of Virtual Machines or container images.
+- Automate the creation, maintain, validate and test **EC2 AMIs**.
+- Can be run on a schedule (weekly, whenever packages are updated, etc...).
+- Free service (only pay for the underlying resources).
+- Steps:
+  1. EC2 Image Builder
+     1. Create
+  2. Builder EC2 Instance
+     1. Create
+  3. New AMI
+  4. Test EC2 Instance
+
+## 13.3. Cross-Account AMI Sharing
+
+- You can share an AMI with another AWS account.
+- Sharing an AMI does not affect the ownership of the AMI.
+- You can only share AMIs that have:
+  1. Unencrypted volumes.
+  2. Volumes that are encrypted with a customer managed key.
+- If you share an AMI with encrypted volumes,** you must also share any customer managed keys used to encrypt them**.
+
+![Cross-Account AMI Sharing](/Images/AmazonEC2CrossAccountAMISharing.png)
+
+### 13.3.1. AMI Sharing with KMS Encryption
+
+![AMI Sharing with KMS Encryption](/Images/AmazonEC2AMISharingWithKMSEncryption.png)
+
+## 13.4. Cross-Account AMI Copy
+
+- If you copy an AMI that has been shared with your account, you are the owner of the target AMI in your account.
+- The owner of the source AMI must grant you read permissions for the storage that backs the AMI (EBS Snapshot).
+- If the shared AMI has encrypted snapshots, the owner must share the key or keys with you as well.
+- Can encrypt the AMI with your own CMK while copying.
+
+![Cross-Account AMI Copy](/Images/AmazonEC2CrossAccountAMICopy.png)
+
+### AMI Copy with KMS Encryption
+
+![AMI Copy with KMS Encryption](/Images/AmazonEC2CrossAccountAMICopyWithKMSEncryption.png)

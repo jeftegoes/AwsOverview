@@ -72,6 +72,8 @@
 ## 2.1. KMS Keys Types
 
 - **KMS Keys is the new name of KMS Customer Master Key (CMK).**
+  - AWS KMS is replacing the term customer master key (CMK) with AWS KMS key and KMS key. The concept has not changed. To prevent breaking changes, AWS KMS is keeping some variations of this term.
+  - https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html
 - **Symmetric (AES-256 keys)**
   - Single encryption key that is used to Encrypt and Decrypt.
   - AWS services that are integrated with KMS use Symmetric CMKs.
