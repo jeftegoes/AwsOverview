@@ -7,11 +7,12 @@
   - [1.2. Benefits of AWS CloudFormation](#12-benefits-of-aws-cloudformation)
   - [1.3. How CloudFormation Works](#13-how-cloudformation-works)
   - [1.4. Deploying CloudFormation templates](#14-deploying-cloudformation-templates)
+  - [1.5. Building Blocks](#15-building-blocks)
 - [2. YAML](#2-yaml)
   - [2.1. Template anatomy](#21-template-anatomy)
   - [2.2. Resources](#22-resources)
     - [2.2.1. How do I find resources documentation?](#221-how-do-i-find-resources-documentation)
-    - [2.2.2. FAQ for resources](#222-faq-for-resources)
+    - [2.2.2. Extras](#222-extras)
   - [2.3. Parameters](#23-parameters)
     - [2.3.1. When should you use a parameter?](#231-when-should-you-use-a-parameter)
     - [2.3.2. Parameters Settings](#232-parameters-settings)
@@ -79,7 +80,7 @@
   - in another AWS account.
   - Within the same region if everything was deleted.
 - Wouldn't it be great, if all our infrastructure was... code?
-- That code would be deployed and create / update / delete our infrastructure
+- That code would be deployed and create / update / delete our infrastructure.
 
 ## 1.1. What is CloudFormation
 
@@ -123,15 +124,31 @@
 - Stacks are identified by a name.
 - Deleting a stack deletes every single artifact that was created by CloudFormation.
 
+![How CloudFormation Works](/Images/AWSCloudformationDiagram.png)
+
 ## 1.4. Deploying CloudFormation templates
 
 - Manual way:
-  - Editing templates in the CloudFormation Designer
-  - Using the console to input parameters, etc
+  - Editing templates in the CloudFormation Designer.
+  - Using the console to input parameters, etc.
 - Automated way:
-  - Editing templates in a YAML file
-  - Using the AWS CLI (Command Line Interface) to deploy the templates
-  - Recommended way when you fully want to automate your flow
+  - Editing templates in a YAML file.
+  - Using the AWS CLI (Command Line Interface) to deploy the templates.
+  - Recommended way when you fully want to automate your flow.
+
+## 1.5. Building Blocks
+
+- **Template's components**
+  - `AWSTemplateFormatVersion`: Identifies the capabilities of the template "2010-09-09".
+  - Description: Comments about the template.
+  - Resources: Your AWS resources declared in the template.
+  - Parameters: The dynamic inputs for your template.
+  - Mappings: The static variables for your template.
+  - Outputs: References to what has been created.
+  - Conditionals: List of conditions to perform resource creation.
+- **Templates helpers**
+  - References.
+  - Functions.
 
 # 2. YAML
 
@@ -142,7 +159,7 @@
 - Nested objects.
 - Support Arrays.
 - Multi line strings.
-- Comments.
+- Can include comments.
 
 ## 2.1. Template anatomy
 
@@ -179,13 +196,13 @@
 
 ## 2.2. Resources
 
-- Resources are the core of your CloudFormation template (MANDATORY).
+- Resources are the core of your CloudFormation template.
 - They represent the different AWS Components that will be created and configured.
 - Resources are declared and can reference each other.
 - AWS figures out creation, updates and deletes of resources for us.
-- There are over ~224 types of resources.
+- There are over ~700 types of resources.
 - Resource types identifiers are of the form:
-  - `Type: AWS::aws-product-name::data-type-name`
+  - `Type: service-provider::service-name::data-type-name`
   - Example:
     ```
       Resources:
@@ -202,15 +219,12 @@
 - [All the resources can be found here](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
 - [Example here (for an EC2 instance)](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html)
 
-### 2.2.2. FAQ for resources
+### 2.2.2. Extras
 
-- Can I create a dynamic amount of resources?
-  - No, you can't.
-    - Everything in the CloudFormation template has to be declared.
-  - You can't perform code generation there.
+- You can create a dynamic amount of resources using CloudFormation Macros and Transform.
 - Is every AWS Service supported?
   - Almost. Only a select few niches are not there yet.
-  - You can work around that using AWS Lambda Custom Resources.
+  - You can work around that using **AWS CloudFormation Custom Resources**.
 
 ## 2.3. Parameters
 
@@ -722,7 +736,7 @@
 
 - A stack goes into the `UPDATE_ROLLBACK_FAILED` state when CloudFormation can't roll back all changes during an update.
 - A resource can't return to its original state, causing the rollback to fail.
-- Example: roll back to an old database instance that was deleted outside CloudFormation.
+- Example: Roll back to an old database instance that was deleted outside CloudFormation.
 - Solutions:
   - Fix the errors manually outside of CloudFormation and then continue update rollback the stack.
   - Skip the resources that can't rollback successfully (CloudFormation will mark the failed resources as `UPDATE_COMPLETE`).

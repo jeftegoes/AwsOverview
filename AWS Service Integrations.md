@@ -26,6 +26,7 @@
 - AWS Config > Amazon EventBridge > Lambda/SNS/SQS
 - Amazon Inspector > Amazon EventBridge/AWS Security Hub
 - SDK/CLI/Console/IAM Users & IAM Roles > AWS CloudTrail > Amazon S3/Amazon CloudWatch Logs
+- AWS CloudFormation > Amazon S3
 
 # 2. Impossible integrations
 
