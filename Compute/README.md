@@ -17,6 +17,7 @@
   - [3.8. Multi AZ in AWS](#38-multi-az-in-aws)
     - [3.8.1. ELB and ASG - Summary](#381-elb-and-asg---summary)
 - [4. AWS Elastic Beanstalk](#4-aws-elastic-beanstalk)
+  - [4.1. Elastic Beanstalk Summary:](#41-elastic-beanstalk-summary)
 - [5. Lambda](#5-lambda)
   - [5.1. Lambda Summary](#51-lambda-summary)
 
@@ -146,6 +147,11 @@
 - **You only manage data and applications.**
 - **AWS Elastic Beanstalk makes it even easier for developers to quickly deploy and manage applications in the AWS Cloud.**
 - [AWS Elastic Beanstalk](Amazon%20Elastic%20Beanstalk.md)
+
+## 4.1. Elastic Beanstalk Summary:
+
+- Platform as a Service (PaaS), limited to certain programming languages or Docker.
+- Deploy code consistently with a known architecture: ex, ALB + EC2 + RDS.
 
 # 5. Lambda
 

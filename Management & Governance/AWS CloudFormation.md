@@ -20,8 +20,8 @@
     - [2.3.4. Concept: Pseudo Parameters](#234-concept-pseudo-parameters)
     - [2.3.5. Systems Manager parameter](#235-systems-manager-parameter)
   - [2.4. Mappings](#24-mappings)
-    - [2.4.1. When would you use Mappings vs Parameters?](#241-when-would-you-use-mappings-vs-parameters)
-    - [2.4.2. Fn::FindInMap Accessing Mapping Values](#242-fnfindinmap-accessing-mapping-values)
+    - [2.4.1. Accessing Mapping Values Fn::FindInMap](#241-accessing-mapping-values-fnfindinmap)
+    - [2.4.2. When would you use Mappings vs Parameters?](#242-when-would-you-use-mappings-vs-parameters)
   - [2.5. Outputs](#25-outputs)
     - [2.5.1. Example](#251-example)
     - [2.5.2. Cross Stack Reference](#252-cross-stack-reference)
@@ -31,13 +31,14 @@
 - [3. Intrinsic Functions](#3-intrinsic-functions)
   - [3.1. Fn::Ref](#31-fnref)
   - [3.2. Fn::GetAtt](#32-fngetatt)
-  - [3.3. Fn::FindInMap - Accessing Mapping Values](#33-fnfindinmap---accessing-mapping-values)
+  - [3.3. Fn::FindInMap](#33-fnfindinmap)
   - [3.4. Fn::ImportValue](#34-fnimportvalue)
-  - [3.5. Fn::Join](#35-fnjoin)
-  - [3.6. Fn::Sub](#36-fnsub)
-  - [3.7. Condition Functions](#37-condition-functions)
-  - [3.8. Fn::GetAZs](#38-fngetazs)
-  - [3.9. Fn::Select](#39-fnselect)
+  - [3.5. Fn::Base64](#35-fnbase64)
+  - [3.6. Fn::Join](#36-fnjoin)
+  - [3.7. Fn::Sub](#37-fnsub)
+  - [3.8. Condition Functions](#38-condition-functions)
+  - [3.9. Fn::GetAZs](#39-fngetazs)
+  - [3.10. Fn::Select](#310-fnselect)
 - [4. Rollbacks](#4-rollbacks)
 - [5. Stack Notifications](#5-stack-notifications)
 - [6. ChangeSets](#6-changesets)
@@ -59,18 +60,19 @@
   - [13.2. Use cases](#132-use-cases)
     - [13.2.1. Non-empty S3 bucket](#1321-non-empty-s3-bucket)
 - [14. Service Role](#14-service-role)
-- [15. SSM Parameter Type](#15-ssm-parameter-type)
-- [16. Dynamic References](#16-dynamic-references)
-  - [16.1. Dynamic Reference: ssm](#161-dynamic-reference-ssm)
-  - [16.2. Dynamic Reference: ssm-secure](#162-dynamic-reference-ssm-secure)
-  - [16.3. Dynamic Reference: secretsmanager](#163-dynamic-reference-secretsmanager)
-- [17. StackSets](#17-stacksets)
-  - [17.1. StackSet Operations](#171-stackset-operations)
-  - [17.2. StackSet Deployment Options](#172-stackset-deployment-options)
-  - [17.3. Permission Models for StackSet](#173-permission-models-for-stackset)
-  - [17.4. StackSets with AWS Organizations](#174-stacksets-with-aws-organizations)
-  - [17.5. StackSet Drift Detection](#175-stackset-drift-detection)
-- [18. Stack Policies](#18-stack-policies)
+- [15. CloudFormation Capabilities](#15-cloudformation-capabilities)
+- [16. SSM Parameter Type](#16-ssm-parameter-type)
+- [17. Dynamic References](#17-dynamic-references)
+  - [17.1. Dynamic Reference: ssm](#171-dynamic-reference-ssm)
+  - [17.2. Dynamic Reference: ssm-secure](#172-dynamic-reference-ssm-secure)
+  - [17.3. Dynamic Reference: secretsmanager](#173-dynamic-reference-secretsmanager)
+- [18. StackSets](#18-stacksets)
+  - [18.1. StackSet Operations](#181-stackset-operations)
+  - [18.2. StackSet Deployment Options](#182-stackset-deployment-options)
+  - [18.3. Permission Models for StackSet](#183-permission-models-for-stackset)
+  - [18.4. StackSets with AWS Organizations](#184-stacksets-with-aws-organizations)
+  - [18.5. StackSet Drift Detection](#185-stackset-drift-detection)
+- [19. Stack Policies](#19-stack-policies)
 
 # 1. Introduction Infrastructure as Code (IaC)
 
@@ -252,13 +254,13 @@
 
 - Parameters can be controlled by all these settings:
   - Type:
-    - String
-    - Number
-    - CommaDelimitedList
-    - List<Type>
-    - AWS Parameter (to help catch invalid values - match against existing values in the AWS Account)
+    - `String`
+    - `Number`
+    - `CommaDelimitedList`
+    - `List<Type>`
+    - `AWS-Specific` Parameter (to help catch invalid values - match against existing values in the AWS Account)
+    - [SSM Parameter Store](AWS%20Systems%20Manager.md)
   - Description
-  - Constraints
   - ConstraintDescription (String)
   - Min/MaxLength
   - Min/MaxValue
@@ -290,16 +292,16 @@
 ### 2.3.4. Concept: Pseudo Parameters
 
 - AWS offers us pseudo parameters in any CloudFormation template.
-- These can be used at any time and are enabled by default
-
-| Reference Value       | Example Return Value                                               |
-| --------------------- | ------------------------------------------------------------------ |
-| AWS::AccountId        | 1234567890 (ID Account AWS)                                        |
-| AWS::NotificationARNs | [arn:aws:sns:us-east-1:123456789012:MyTopic]                       |
-| AWS::NoValue          | Does not return a value                                            |
-| AWS::Region           | us-east-2                                                          |
-| AWS::StackId          | rn:aws:cloudformation:us-east-1:123456789012:stack/MyStack/1c2fa62 |
-| AWS::StackName        | MyStack                                                            |
+- These can be used at any time and are enabled by default.
+- Important pseudo parameters:
+  | Reference Value | Example Return Value |
+  | --------------------- | ------------------------------------------------------------------ |
+  | AWS::AccountId | 1234567890 (ID Account AWS) |
+  | AWS::Region | us-east-2 |
+  | AWS::StackId | rn:aws:cloudformation:us-east-1:123456789012:stack/MyStack/1c2fa62 |
+  | AWS::StackName | MyStack |
+  | AWS::NotificationARNs | [arn:aws:sns:us-east-1:123456789012:MyTopic] |
+  | AWS::NoValue | Does not return a value |
 
 ### 2.3.5. Systems Manager parameter
 
@@ -318,8 +320,8 @@
     aws ssm put-parameter --name myEC2TypeDev --type String --value "t2.small"
 
     Parameters:
-      InstanceType :
-        Type : 'AWS::SSM::Parameter::Value<String>'
+      InstanceType:
+        Type: 'AWS::SSM::Parameter::Value<String>'
         Default: myEC2TypeDev
   ```
 
@@ -364,18 +366,7 @@
           "HVM64": "ami-06cd52961ce9f0d85"
   ```
 
-### 2.4.1. When would you use Mappings vs Parameters?
-
-- Mappings are great when you know in advance all the values that can be taken and that they can be deduced from variables such as:
-  - Region
-  - Availability Zone
-  - AWS Account
-  - Environment (dev vs prod)
-  - Etc...
-- They allow safer control over the template.
-- Use parameters when the values are really user specific.
-
-### 2.4.2. Fn::FindInMap Accessing Mapping Values
+### 2.4.1. Accessing Mapping Values Fn::FindInMap
 
 - We use `Fn::FindInMap` to return a named value from a specific key:
   - `!FindInMap [ MapName, TopLevelKey, SecondLevelKey ]`
@@ -407,15 +398,23 @@
           InstanceType: m1.small
   ```
 
+### 2.4.2. When would you use Mappings vs Parameters?
+
+- Mappings are great when you know in advance all the values that can be taken and that they can be deduced from variables such as:
+  - Region.
+  - Availability Zone.
+  - AWS Account.
+  - Environment (dev vs prod).
+  - Etc...
+- They allow safer control over the template.
+- Use parameters when the values are really user specific.
+
 ## 2.5. Outputs
 
-- The Outputs section declares optional outputs values that we can import into other stacks (if you export them first)!
+- The Outputs section declares **optional** outputs values that we can import into other stacks (if you export them first)!
 - You can also view the outputs in the AWS Console or in using the AWS CLI.
 - They're very useful for example if you define a network CloudFormation, and output the variables such as VPC ID and your Subnet IDs.
 - It's the best way to perform some collaboration cross stack, as you let expert handle their own part of the stack.
-- You can't delete a CloudFormation Stack if its outputs are being referenced by another CloudFormation stack.
-- You can use the Export Output Values to export the name of the resource output for a cross-stack reference.
-  - **For each AWS account, export names must be unique within a region.**
 
 ### 2.5.1. Example
 
@@ -435,7 +434,8 @@
 
 - We then create a second template that leverages that security group.
 - For this, we use the `Fn::ImportValue` function.
-- You can't delete the underlying stack until all the references are deleted too.
+- You can't delete a CloudFormation Stack if its outputs are being referenced by another CloudFormation stack.
+  - You can't delete the underlying stack until all the references are deleted too.
 - Example:
   ```
     Outputs:
@@ -456,6 +456,9 @@
           SecurityGroups:
             - !ImportValue SSHMyBeautifulSecurityGroup
   ```
+- You can use the Export Output Values to export the name of the resource output for a cross-stack reference.
+  - **For each AWS account, export names must be unique within a region.**
+  -
 
 ## 2.6. Conditions
 
@@ -501,19 +504,26 @@
 
 - `Ref`
 - `Fn::GetAtt`
-- `Fn::GetAZs`
-- `Fn::Select`
 - `Fn::FindInMap`
 - `Fn::ImportValue`
 - `Fn::Join`
 - `Fn::Sub`
+- `Fn::ForEach`
+- `Fn::ToJsonString`
+- `Fn::Base64`
+- `Fn::Cidr`
+- `Fn::GetAZs`
+- `Fn::Select`
+- `Fn::Split`
+- `Fn::Transform`
+- `Fn::Length`
 - Condition Functions (`Fn::If`, `Fn::Not`, `Fn::Equals`, etc...).
 
 ## 3.1. Fn::Ref
 
 - The `Fn::Ref` function can be leveraged to reference.
-  - Parameters => returns the value of the parameter.
-  - Resources => returns the physical ID of the underlying resource (ex: EC2 ID).
+  - **Parameters** => returns the value of the parameter.
+  - **Resources** => returns the physical ID of the underlying resource (e.g., EC2 ID).
 - The shorthand for this in YAML is `!Ref`.
 
 ## 3.2. Fn::GetAtt
@@ -548,17 +558,21 @@
 
   ```
 
-## 3.3. Fn::FindInMap - Accessing Mapping Values
+## 3.3. Fn::FindInMap
 
 - We use `Fn::FindInMap` to return a named value from a specific key.
-- `!FindInMap [ MapName, TopLevelKey, SecondLevelKey ]`.
+  - `!FindInMap [ MapName, TopLevelKey, SecondLevelKey ]`.
 
 ## 3.4. Fn::ImportValue
 
 - Import values that are exported in other templates.
 - For this, we use the `Fn::ImportValue` function.
 
-## 3.5. Fn::Join
+## 3.5. Fn::Base64
+
+- Convert `String` to it's `Base64` representation.
+
+## 3.6. Fn::Join
 
 - Join values with a delimiter.
 - This creates "a:b:c".
@@ -567,7 +581,7 @@
     !Join [ ":", [ a, b, c ] ]
   ```
 
-## 3.6. Fn::Sub
+## 3.7. Fn::Sub
 
 - `Fn::Sub`, or `!Sub` as a shorthand, is used to substitute variables from a text.
   - It's a very handy function that will allow you to fully customize your templates.
@@ -580,7 +594,7 @@
       - Domain: !Ref RootDomainName
   ```
 
-## 3.7. Condition Functions
+## 3.8. Condition Functions
 
 - The logical ID is for you to choose.
   - It's how you name condition.
@@ -591,22 +605,24 @@
   - `Fn::Not`
   - `Fn::Or`
 
-## 3.8. Fn::GetAZs
+## 3.9. Fn::GetAZs
 
 - Returns an array that lists Availability Zones for a specified region in alphabetical order.
 
-## 3.9. Fn::Select
+## 3.10. Fn::Select
 
 - Returns a single object from a list of objects by index.
 
 # 4. Rollbacks
 
-- **Stack Creation Fails:**
+- **Stack Creation Fails**
   - Default: everything rolls back (gets deleted). We can look at the log.
   - Option to disable rollback and troubleshoot what happened.
-- **Stack Update Fails:**
+- **Stack Update Fails**
   - The stack automatically rolls back to the previous known working state.
   - Ability to see in the log what happened and error messages.
+- **IMPORTANT!** Fix resources manually then issue `ContinueUpdateRollback` API from Console.
+  - Or from the CLI using `continue-update-rollback` API call.
 
 # 5. Stack Notifications
 
@@ -776,13 +792,27 @@
 # 14. Service Role
 
 - IAM role that allows CloudFormation to create/update/delete stack resources on your behalf.
+- Give ability to users to create/update/delete the stack resources even if they don't have permissions to work with the resources in the stack.
 - By default, CloudFormation uses a temporary session that it generates from your user credentials.
 - Use cases:
   - You want to achieve the least privilege principle.
   - But you don't want to give the user all the required permissions to create the stack resources.
-- Give ability to users to create/update/delete the stack resources even if they don't have permissions to work with the resources in the stack.
+- User must have `iam:PassRole` permissions.
 
-# 15. SSM Parameter Type
+![Service Role](/Images/AWSCloudFormationServiceRole.png)
+
+# 15. CloudFormation Capabilities
+
+- `CAPABILITY_NAMED_IAM` and `CAPABILITY_IAM`.
+  - Necessary to enable when you CloudFormation template is creating or updating IAM resources (IAM User, Role, Group, Policy, Access Keys, Instance Profile...).
+  - Specify `CAPABILITY_NAMED_IAM` if the resources are named.
+- `CAPABILITY_AUTO_EXPAND`
+  - Necessary when your CloudFormation template includes Macros or Nested Stacks (stacks within stacks) to perform dynamic transformations.
+  - You're acknowledging that your template may change before deploying.
+- `InsufficientCapabilitiesException`
+  - Exception that will be thrown by CloudFormation if the capabilities haven't been acknowledge when deploying a template (security measure).
+
+# 16. SSM Parameter Type
 
 - Reference parameters in Systems Manager Parameter Store.
 - Specify SSM parameter key as the value.
@@ -796,7 +826,7 @@
   - `AWS::SSM::Parameter::Value<AWS-Specific Parameter>`
   - `AWS::SSM::Parameter::Value<List<AWS-Specific Parameter>>`
 
-# 16. Dynamic References
+# 17. Dynamic References
 
 - Reference external values stored in SSM Parameter Store and AWS Secrets Manager within CloudFormation templates.
 - CloudFormation retrieves the value of the specified reference during stack and change set operations.
@@ -808,14 +838,14 @@
 - Up to 60 dynamic references in a template.
 - `{{resolve:service-name:reference-key}}`
 
-## 16.1. Dynamic Reference: ssm
+## 17.1. Dynamic Reference: ssm
 
 - Reference values stored in SSM Parameter Store of type `String` and `StringList`.
 - If no version specified, CloudFormation uses the latest version.
 - Doesn't support public SSM parameters (e.g., Amazon Linux 2 AMI).
 - `{{resolve:ssm:parameter-name:version}}`
 
-## 16.2. Dynamic Reference: ssm-secure
+## 17.2. Dynamic Reference: ssm-secure
 
 - Reference values stored in SSM Parameter Store of type `SecureString`.
 - For example: passwords, license keys, etc...
@@ -824,14 +854,14 @@
 - [Only use with supported resources](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/dynamic-references.html#template-parameters-dynamic-patterns-resources)
 - `{{resolve:ssm-secure:parameter-name:version}}`
 
-## 16.3. Dynamic Reference: secretsmanager
+## 17.3. Dynamic Reference: secretsmanager
 
 - Retrieve entire secrets or secret values stored in AWS Secrets Manager.
 - For example: database credentials, passwords, 3rd party API keys, etc...
 - To update a secret, you must update the resource containing the secretsmanager dynamic reference (one of the resource properties).
 - `{{resolve:secretsmanager:secret-id:secret-string:json-key:version-stage:version-id}}`
 
-# 17. StackSets
+# 18. StackSets
 
 - Create, update, or delete stacks across **multiple accounts and regions** with a single operation.
 - Administrator account to create StackSets.
@@ -842,7 +872,7 @@
 
 ![CloudFormation StackSet](/Images/AWSCloudFormationStackSet.png)
 
-## 17.1. StackSet Operations
+## 18.1. StackSet Operations
 
 - **Create StackSet**
   - Provide template + target accounts/regions.
@@ -855,7 +885,7 @@
 - **Delete StackSet**
   - Must delete all stack instances within StackSet to delete it.
 
-## 17.2. StackSet Deployment Options
+## 18.2. StackSet Deployment Options
 
 - **Deployment Order**
   - Order of regions where stacks are deployed.
@@ -869,7 +899,7 @@
 - **Retain Stacks**
   - Used when deleting StackSet to keep stacks and their resources running when removed from StackSet.
 
-## 17.3. Permission Models for StackSet
+## 18.3. Permission Models for StackSet
 
 - Self-managed Permissions
   - Create the IAM roles (with established trusted relationship) in both administrator and target accounts.
@@ -880,13 +910,13 @@
   - Must **enable all features** in AWS Organizations.
   - Ability to deploy to accounts added to your organization in the future (Automatic Deployments).
 
-## 17.4. StackSets with AWS Organizations
+## 18.4. StackSets with AWS Organizations
 
 - Ability to **automatically** deploy Stack instances to new Accounts in an Organization.
 - Can delegate StackSets administration to member accounts in AWS Organization.
 - Trusted access with AWS Organizations must be enabled before delegated administrators can deploy to accounts managed by Organizations.
 
-## 17.5. StackSet Drift Detection
+## 18.5. StackSet Drift Detection
 
 - Performs drift detection on the stack associated with each stack instance in the StackSet.
 - If the current state of a resource in a stack varies from the expected state:
@@ -897,7 +927,7 @@
 - Changes made through CloudFormation to a stack directly (not at the StackSet level), aren't considered drifted.
 - You can stop drift detection on a StackSet.
 
-# 18. Stack Policies
+# 19. Stack Policies
 
 - During a CloudFormation Stack update, all update actions are allowed on all resources (default).
 - **A Stack Policy is a JSON document that defines the update actions that are allowed on specific resources during Stack updates.**

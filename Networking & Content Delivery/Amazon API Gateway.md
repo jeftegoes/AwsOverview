@@ -1,4 +1,4 @@
-# AWS API Gateway<!-- omit in toc -->
+# Amazon API Gateway<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
