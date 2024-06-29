@@ -623,6 +623,7 @@
   - Ability to see in the log what happened and error messages.
 - **IMPORTANT!** Fix resources manually then issue `ContinueUpdateRollback` API from Console.
   - Or from the CLI using `continue-update-rollback` API call.
+- CloudFormation to continue the stack rollback and can help resolve the `UPDATE_ROLLBACK_FAILED` state.
 
 # 5. Stack Notifications
 
