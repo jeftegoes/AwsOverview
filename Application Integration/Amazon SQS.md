@@ -1,4 +1,4 @@
-# AWS SQS - Simple Queue Service<!-- omit in toc -->
+# Amazon SQS - Simple Queue Service<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

@@ -649,15 +649,15 @@
 
 ## 9.1. Amazon SQS - Standard Queue
 
-- **Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications. It uses a pull-based system.** [AWS SQS](AWS%20SQS.md)
+- **Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications. It uses a pull-based system.** [Amazon SQS](/Application%20Integration/Amazon%20SQS.md)
 
 ## 9.2. Amazon Kinesis
 
-- **Amazon Kinesis makes it easy to collect, process, and analyze real-time, streaming data so you can get timely insights and react quickly to new information. Kinesis offers four services: Data Firehose, Data Analytics, Data Streams, Video Streams.** [AWS Kinesis](AWS%20Kinesis.md)
+- **Amazon Kinesis makes it easy to collect, process, and analyze real-time, streaming data so you can get timely insights and react quickly to new information. Kinesis offers four services: Data Firehose, Data Analytics, Data Streams, Video Streams.** [Amazon Kinesis](/Analytics/Amazon%20Kinesis.md)
 
 ## 9.3. Amazon SNS
 
-- **Is a highly available, durable, secure, fully managed pub/sub messaging service that enables you to decouple microservices, distributed systems, and serverless applications. It uses a push-based system.** [Amazon SNS](AWS%20SNS.md)
+- **Is a highly available, durable, secure, fully managed pub/sub messaging service that enables you to decouple microservices, distributed systems, and serverless applications. It uses a push-based system.** [Amazon SNS](/Application%20Integration/Amazon%20SNS.md.md)
 
 ## 9.4. Amazon MQ
 
