@@ -56,10 +56,16 @@
   - Statements consists of:
     - **Sid**: an identifier for the statement (optional).
     - **Effect**: whether the statement allows or denies access (Allow, Deny).
-    - **Principal**: account/user/role to which this policy applied to.
-    - **Action**: list of actions this policy allows or denies.
-    - **Resource**: list of resources to which the actions applied to.
-    - **Condition**: conditions for when this policy is in effect (optional).
+    - **Principal**
+      - Definition: The entity that is allowed or denied access by the policy.
+      - Purpose: Specifies "who" the policy applies to. This could be an IAM user, a role, an AWS service, or another AWS account.
+      - Example: In an S3 bucket policy, the Principal field specifies which users or accounts can access the bucket.
+    - **Action**: List of actions this policy allows or denies.
+    - **Resource**
+      - Definition: The AWS resource to which the policy applies.
+      - Purpose: Specifies what resource(s) the policy will affect. For example, an S3 bucket, an IAM user, an EC2 instance, or a Lambda function.
+      - Example: In a policy granting access to an S3 bucket, the Resource field defines the ARN (Amazon Resource Name) of the bucket or objects in it.
+    - **Condition**: Conditions for when this policy is in effect (optional).
 - **Remember that you can't modify these AWS-managed policies.**
 
 # 4. Policy variations
@@ -92,8 +98,15 @@
 
 ## 4.2. Policy Condition
 
-- The `Condition` element (or Condition block) lets you specify conditions for when a policy is in effect, like so - `"Condition" : { "StringEquals" : { "aws:username" : "johndoe" }}`.
-  - This can not be used to address the requirements of the given use-case.
+- The `Condition` element (or Condition block) lets you specify conditions for when a policy is in effect, like so
+  ```json
+    "Condition" : {
+      "StringEquals" : {
+        "aws:username" : "johndoe"
+      }
+    }
+  ```
+- This can not be used to address the requirements of the given use-case.
 
 ## 4.3. Policy Resource
 
