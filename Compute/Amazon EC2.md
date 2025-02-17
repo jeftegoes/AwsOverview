@@ -6,18 +6,17 @@
 - [2. Sizing \& configuration options](#2-sizing--configuration-options)
 - [3. User Data](#3-user-data)
 - [4. EC2 Instance Types - Overview](#4-ec2-instance-types---overview)
-  - [4.1. General Purpose](#41-general-purpose)
-  - [4.2. Compute Optimized](#42-compute-optimized)
-  - [4.3. Memory Optimized](#43-memory-optimized)
-  - [4.4. Storage Optimized](#44-storage-optimized)
-  - [4.5. Accelerated Computing](#45-accelerated-computing)
+  - [4.1. General Purpose - m](#41-general-purpose---m)
+  - [4.2. Compute Optimized - c](#42-compute-optimized---c)
+  - [4.3. Memory Optimized - r](#43-memory-optimized---r)
+  - [4.4. Storage Optimized - i](#44-storage-optimized---i)
+  - [4.5. Accelerated Computing - p](#45-accelerated-computing---p)
   - [4.6. EC2 Instance Types: example](#46-ec2-instance-types-example)
     - [4.6.1. Burstable performance instances](#461-burstable-performance-instances)
 - [5. Introduction to Security Groups](#5-introduction-to-security-groups)
-  - [5.1. Security Groups Deeper Dive](#51-security-groups-deeper-dive)
-  - [5.2. Security Groups Good to know](#52-security-groups-good-to-know)
-  - [5.3. To access S3 into VPC](#53-to-access-s3-into-vpc)
-  - [5.4. To acess S3 with IAM Roles](#54-to-acess-s3-with-iam-roles)
+  - [5.1. Security Groups Good to know](#51-security-groups-good-to-know)
+  - [5.2. To access S3 into VPC](#52-to-access-s3-into-vpc)
+  - [5.3. To acess S3 with IAM Roles](#53-to-acess-s3-with-iam-roles)
 - [6. Classic Ports to know](#6-classic-ports-to-know)
 - [7. How to SSH into your EC2 Instance](#7-how-to-ssh-into-your-ec2-instance)
 - [8. Elastic IP](#8-elastic-ip)
@@ -30,7 +29,7 @@
   - [10.5. Dedicated Hosts](#105-dedicated-hosts)
   - [10.6. Dedicated Instances](#106-dedicated-instances)
   - [10.7. Capacity Reservations](#107-capacity-reservations)
-  - [10.8. Which purchasing option is right for me? (Correlation with Hotel)](#108-which-purchasing-option-is-right-for-me-correlation-with-hotel)
+  - [10.8. Which purchase option is better? (Correlation with Hotel)](#108-which-purchase-option-is-better-correlation-with-hotel)
   - [10.9. AWS License Manager](#109-aws-license-manager)
   - [10.10. Shared Responsibility Model for EC2](#1010-shared-responsibility-model-for-ec2)
 - [11. VM Import/Export](#11-vm-importexport)
@@ -62,8 +61,8 @@
 - How much storage space:
   - Network-attached **(EBS & EFS)**.
   - Hardware **(EC2 Instance Store)**.
-- Network card: Speed of the card, Public IP address.
-- Firewall rules: **Security group**.
+- **Network card:** Speed of the card, Public IP address.
+- **Firewall rules: Security group.**
 - Bootstrap script (configure at first launch): EC2 User Data.
 
 # 3. User Data
@@ -71,12 +70,12 @@
 - It is possible to bootstrap our instances using an **EC2 User Data** script.
 - **Bootstrapping** means launching commands when a machine starts.
 - That script is **only run once** at the instance **first start**.
-- EC2 User Data is used to automate boot tasks such as:
+- **EC2 User Data** is used to automate boot tasks such as:
   - Installing updates.
   - Installing software.
   - Downloading common files from the internet.
   - Anything you can think of.
-- The EC2 User Data Script runs with the root user.
+- The **EC2 User Data** Script runs with the **root user**.
 
 # 4. EC2 Instance Types - Overview
 
@@ -86,8 +85,15 @@
     - **m:** instance class.
     - _5:_ generation (AWS improves them over time).
     - `2xlarge:` size within the instance class.
+- **General types**
+  - General Purpose - m
+  - Compute Optimized - c
+  - Memory Optimized - r
+  - Accelerated Computing - p
+  - Storage Optimized - i
+  - HPC Optimized - hpc
 
-## 4.1. General Purpose
+## 4.1. General Purpose - m
 
 - Great for a diversity of workloads such as web servers or code repositories.
 - Balance between:
@@ -95,7 +101,7 @@
   - Memory.
   - Networking.
 
-## 4.2. Compute Optimized
+## 4.2. Compute Optimized - c
 
 - **AWS Compute Optimizer recommends optimal AWS resources for your workloads to reduce costs and improve performance by using machine learning to analyze historical utilization metrics.**
 - Great for compute-intensive tasks that require high performance processors:
@@ -103,28 +109,29 @@
   - Media transcoding.
   - High performance web servers.
   - High performance computing (HPC).
+  - Scientific modeling & machine learning.
   - Dedicated gaming servers.
 
-## 4.3. Memory Optimized
+## 4.3. Memory Optimized - r
 
 - Fast performance for workloads that process large data sets in memory.
-- Use cases:
+- **Use cases**
   - High performance, relational/non-relational databases.
   - Distributed web scale cache stores.
   - In-memory databases optimized for BI (business intelligence).
   - Applications performing real-time processing of big unstructured data.
 
-## 4.4. Storage Optimized
+## 4.4. Storage Optimized - i
 
 - Great for storage-intensive tasks that require high, sequential read and write access to large data sets on local storage.
-- Use cases:
+- **Use cases**
   - High frequency online transaction processing (OLTP) systems.
   - Relational & NoSQL databases.
   - Cache for in-memory databases (for example, Redis).
   - Data warehousing applications.
   - Distributed file systems.
 
-## 4.5. Accelerated Computing
+## 4.5. Accelerated Computing - p
 
 - Accelerated computing instances use hardware accelerators, or co-processors, to perform functions, such:
   - Floating point number calculations.
@@ -135,55 +142,50 @@
 
 ## 4.6. EC2 Instance Types: example
 
-| Instance    | vCPU | Mem (GiB) | Storage          | Network performance | EBS Banwidth () |
-| ----------- | ---- | --------- | ---------------- | ------------------- | --------------- |
-| t2.micro    | 1    | 1         | EBS-Only         | Low to Moderate     |                 |
-| t2.xlarge   | 4    | 16        | EBS-Only         | Moderate            |                 |
-| c5d.4xlarge | 16   | 32        | 1 x 400 NVMe SSD | Up to 10 Gbps       | 4,750           |
-| r5.16xlarge | 64   | 512       | EBS-Only         | 20 Gbps             | 13,600          |
-| m5.8xlarge  | 32   | 128       | EBS-Only         | 10 Gbps             | 6,800           |
+| Instance    | vCPU | Mem (GiB) | Storage          | Network performance | EBS Banwidth (Mbps) |
+| ----------- | ---- | --------- | ---------------- | ------------------- | ------------------- |
+| t2.micro    | 1    | 1         | EBS-Only         | Low to Moderate     |                     |
+| t2.xlarge   | 4    | 16        | EBS-Only         | Moderate            |                     |
+| c5d.4xlarge | 16   | 32        | 1 x 400 NVMe SSD | Up to 10 Gbps       | 4,750               |
+| r5.16xlarge | 64   | 512       | EBS-Only         | 20 Gbps             | 13,600              |
+| m5.8xlarge  | 32   | 128       | EBS-Only         | 10 Gbps             | 6,800               |
 
 - **t2.micro is part of the AWS free tier (up to 750 hours per month).**
+- https://instances.vantage.sh/
 
 ### 4.6.1. Burstable performance instances
 
-- Which are T3, T3a, and T2 instances, are designed to provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload.
+- T3, T3a, and T2 instances, are designed to provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload.
   - Burstable performance instances are the only instance types that use credits for CPU usage.
 
 # 5. Introduction to Security Groups
 
 - Security Groups are the fundamental of network security in AWS.
 - They control how traffic is allowed into or out of our EC2 Instances.
-
   ![Security Group diagram](/Images/SecurityGroupBasicDiagram.png)
-
 - Security groups only contain **allow** rules.
 - Security groups rules can reference by IP or by security group.
-
-## 5.1. Security Groups Deeper Dive
-
-- Security groups are acting as a "firewall" on EC2 instances.
+- Security groups are acting as a **firewall** on EC2 instances.
 - They regulate:
-
   - Access to Ports.
-  - Authorised IP ranges IPv4 and IPv6.
+  - Authorised IP ranges - IPv4 and IPv6.
   - Control of inbound network (from other to the instance).
   - Control of outbound network (from the instance to other).
+    ![Security Group Deeper Dive Diagram](/Images/SecurityGroupDeeperDiveDiagram.png)
 
-  ![Security Group Deeper Dive Diagram](/Images/SecurityGroupDeeperDiveDiagram.png)
-
-## 5.2. Security Groups Good to know
+## 5.1. Security Groups Good to know
 
 - Can be attached to multiple instances.
 - Locked down to a region / VPC combination.
 - Does live "outside" the EC2 - if traffic is blocked the EC2 instance won't see it.
 - **It's good to maintain one separate security group for SSH access.**
-- If your application is not accessible (time out), then it's a security group issue.
-- If your application gives a "connection refused" error, then it's an application error or it's not launched.
+- **Troubleshoot**
+  - If your application is not accessible (time out), then it's a security group issue.
+  - If your application gives a "connection refused" error, then it's an application error or it's not launched.
 - All inbound traffic is **blocked** by default.
 - All outbound traffic is **authorised** by default.
 
-## 5.3. To access S3 into VPC
+## 5.2. To access S3 into VPC
 
 ![EC2 Access S3](/Images/AWSEC2AccessS3.png)
 
@@ -192,24 +194,23 @@
 - Alternatively, you can also create a **VPC endpoint** so your private subnet would be able to connect to S3.
 - [Amazon VPC](/Networking%20&%20Content%20Delivery/Amazon%20VPC.md)
 
-## 5.4. To acess S3 with IAM Roles
+## 5.3. To acess S3 with IAM Roles
 
 ![Scenario IAM Role and EC2 Instance Profile](/Images/AWSCrendentialScenario.png)
 
 # 6. Classic Ports to know
 
-- 22 = SSH (Secure Shell) - log into a Linux instance.
-- 21 = FTP (File Transfer Protocol) - upload files into a file share.
-- 22 = SFTP (Secure File Transfer Protocol) - upload files using SSH.
+- 22 = SSH (Secure Shell) - Log into a Linux instance.
+- 21 = FTP (File Transfer Protocol) - Upload files into a file share.
+- 22 = SFTP (Secure File Transfer Protocol) - Upload files using SSH.
 - 80 = HTTP - access unsecured websites.
 - 443 = HTTPS - access secured websites.
-- 3389 = RDP (Remote Desktop Protocol) - log into a Windows instance.
+- 3389 = RDP (Remote Desktop Protocol) - Log into a Windows instance.
 
 # 7. How to SSH into your EC2 Instance
 
 - Windows:
 
-  - We'll learn how to SSH into your EC2 instance using Windows.
   - Configure pem file
     ![Permission Propertie Aws PemFile](/Images/PermissionPropertieAwsPemFile.png)
   - Command
@@ -236,8 +237,8 @@
 
 # 10. EC2 Instances Purchasing Options
 
-- **On-Demand Instances:** Short workload, predictable pricing.
-- **Reserved:** (MINIMUM 1 year)
+- **On-Demand Instances:** Short workload, predictable pricing, pay by second.
+- **Reserved (1 & 3 years)**
   - **Reserved Instances:** Long workloads.
   - **Convertible Reserved Instances:** Long workloads with flexible instances.
   - **Scheduled Reserved Instances:** Example - every Thursday between 3 and 6 pm.
@@ -258,7 +259,7 @@
 
 ## 10.2. Reserved Instances
 
-- Up to **72% Confirm...** discount compared to On-demand.
+- Up to **72%** discount compared to On-demand.
 - Your reserve a specific instance attributes **(Instance, type, region, tenancy, OS)**.
 - Reservation period: **1 year** = + discount | **3 years** = +++ discount.
 - Payment options: **No Upfront** = + | **partial upfront** = ++ | **All upfront** = +++ discount.
@@ -274,7 +275,7 @@
 - You can buy and sell in the Reserved Instance Marketplace.
 - **Convertible Reserved Instance**
   - Can change the EC2 instance type, instance family, OS, scope and tenancy.
-  - Up to **66% confirm...** discount.
+  - Up to **66%** discount.
 - Scheduled Reserved Instances
   - Launch within time window you reserve.
   - When you require a fraction of day / week / month.
@@ -327,18 +328,19 @@
 - Reserve **On-Demand** instances capacity in a specific AZ for any duration.
 - You always have access to EC2 capacity when you need it.
 - **No time commitment** (create/cancel anytime), **no billing discounts**.
-- Combine with Regional Reserved Instances and Savings Plans to benefit from billing discounts.
+- Combine with **Regional Reserved Instances** and **Savings Plans** to benefit from billing discounts.
 - You're charged at On-Demand rate whether you run instances or not.
 - Suitable for short-term, uninterrupted workloads that needs to be in a specific AZ.
 
-## 10.8. Which purchasing option is right for me? (Correlation with Hotel)
+## 10.8. Which purchase option is better? (Correlation with Hotel)
 
-- **On demand:** coming and staying in resort whenever we like, we pay the full price.
-- **Reserved:** like planning ahead and if we plan to stay for a long time, we may get a good discount.
-- **Savings Plans:** pay a certain amount per hour for certain period and stay in any room type (e.g, King, Suite, Sea View, ...).
-- **Spot instances:** the hotel allows people to bid for the empty rooms and the highest bidder keeps the rooms. You can get kicked out at any time.
+- **On demand:** Coming and staying in resort whenever we like, we pay the full price.
+- **Reserved:** Like planning ahead and if we plan to stay for a long time, we may get a good discount.
+- **Savings Plans:** Pay a certain amount per hour for certain period and stay in any room type (e.g, King, Suite, Sea View, ...).
+- **Spot instances:** The hotel allows people to bid for the empty rooms and the highest bidder keeps the rooms.
+  - You can get kicked out at any time.
 - **Dedicated Hosts:** We book an entire building of the resort.
-- **Capacity Reservations:** you book a room for a period with full price even you don't stay in it.
+- **Capacity Reservations:** You book a room for a period with full price even you don't stay in it.
 
 ## 10.9. AWS License Manager
 

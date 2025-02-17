@@ -654,7 +654,6 @@
 
 # 9. User Data in EC2 for CloudFormation
 
-- Let's learn how to write the same EC2 user-data script in our CloudFormation template.
 - The important thing to pass is the entire script through the function
   `Fn::Base64`.
 - Good to know, user data script log is in /var/log/cloud-init-output.log

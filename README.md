@@ -2001,6 +2001,8 @@
 
 # 23. Commands AWS CLI
 
+- Configure AWS CLI to access the environment
+  - aws configure
 - List of all profiles
   - aws configure list-profiles
 - See specific profile
