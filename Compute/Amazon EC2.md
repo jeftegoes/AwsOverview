@@ -25,29 +25,33 @@
   - [9.1. Cluster](#91-cluster)
   - [9.2. Cluster](#92-cluster)
   - [9.3. Partition](#93-partition)
-- [10. EC2 Instance Connect](#10-ec2-instance-connect)
-- [11. EC2 Instances Purchasing Options](#11-ec2-instances-purchasing-options)
-  - [11.1. On Demand](#111-on-demand)
-  - [11.2. Reserved Instances](#112-reserved-instances)
-  - [11.3. Savings Plans](#113-savings-plans)
-  - [11.4. Spot Instances](#114-spot-instances)
-    - [11.4.1. Requests](#1141-requests)
-    - [11.4.2. Spot Fleets](#1142-spot-fleets)
-  - [11.5. Dedicated Hosts](#115-dedicated-hosts)
-  - [11.6. Dedicated Instances](#116-dedicated-instances)
-  - [11.7. Capacity Reservations](#117-capacity-reservations)
-  - [11.8. Which purchase option is better? (Correlation with Hotel)](#118-which-purchase-option-is-better-correlation-with-hotel)
-  - [11.9. AWS License Manager](#119-aws-license-manager)
-  - [11.10. Shared Responsibility Model for EC2](#1110-shared-responsibility-model-for-ec2)
-- [12. VM Import/Export](#12-vm-importexport)
-- [13. AMI Overview](#13-ami-overview)
-  - [13.1. AMI Process (from an EC2 instance)](#131-ami-process-from-an-ec2-instance)
-  - [13.2. EC2 Image Builder](#132-ec2-image-builder)
-  - [13.3. Instance Migration between AZ](#133-instance-migration-between-az)
-  - [13.4. Cross-Account AMI Sharing](#134-cross-account-ami-sharing)
-    - [13.4.1. AMI Sharing with KMS Encryption](#1341-ami-sharing-with-kms-encryption)
-  - [13.5. Cross-Account AMI Copy](#135-cross-account-ami-copy)
-    - [13.5.1. AMI Copy with KMS Encryption](#1351-ami-copy-with-kms-encryption)
+- [10. Elastic Network Interfaces (ENI)](#10-elastic-network-interfaces-eni)
+- [11. EC2 Hibernate](#11-ec2-hibernate)
+  - [11.1. Introducing EC2 Hibernate](#111-introducing-ec2-hibernate)
+  - [11.2. Good to know](#112-good-to-know)
+- [12. EC2 Instance Connect](#12-ec2-instance-connect)
+- [13. EC2 Instances Purchasing Options](#13-ec2-instances-purchasing-options)
+  - [13.1. On Demand](#131-on-demand)
+  - [13.2. Reserved Instances](#132-reserved-instances)
+  - [13.3. Savings Plans](#133-savings-plans)
+  - [13.4. Spot Instances](#134-spot-instances)
+    - [13.4.1. Requests](#1341-requests)
+    - [13.4.2. Spot Fleets](#1342-spot-fleets)
+  - [13.5. Dedicated Hosts](#135-dedicated-hosts)
+  - [13.6. Dedicated Instances](#136-dedicated-instances)
+  - [13.7. Capacity Reservations](#137-capacity-reservations)
+  - [13.8. Which purchase option is better? (Correlation with Hotel)](#138-which-purchase-option-is-better-correlation-with-hotel)
+  - [13.9. AWS License Manager](#139-aws-license-manager)
+  - [13.10. Shared Responsibility Model for EC2](#1310-shared-responsibility-model-for-ec2)
+- [14. VM Import/Export](#14-vm-importexport)
+- [15. AMI Overview](#15-ami-overview)
+  - [15.1. AMI Process (from an EC2 instance)](#151-ami-process-from-an-ec2-instance)
+  - [15.2. EC2 Image Builder](#152-ec2-image-builder)
+  - [15.3. Instance Migration between AZ](#153-instance-migration-between-az)
+  - [15.4. Cross-Account AMI Sharing](#154-cross-account-ami-sharing)
+    - [15.4.1. AMI Sharing with KMS Encryption](#1541-ami-sharing-with-kms-encryption)
+  - [15.5. Cross-Account AMI Copy](#155-cross-account-ami-copy)
+    - [15.5.1. AMI Copy with KMS Encryption](#1551-ami-copy-with-kms-encryption)
 
 # 1. Introduction
 
@@ -291,7 +295,50 @@
 - EC2 instances get access to the partition information as metadata.
 - Use cases: HDFS, HBase, Cassandra, Kafka.
 
-# 10. EC2 Instance Connect
+# 10. Elastic Network Interfaces (ENI)
+
+- Logical component in a VPC that represents a virtual network card.
+- The ENI can have the following attributes:
+  - Primary private IPv4, one or more secondary IPv4.
+  - One Elastic IP (IPv4) per private IPv4.
+  - One Public IPv4.
+  - One or more security groups.
+  - A MAC address.
+- You can create ENI independently and attach them on the fly (move them) on EC2 instances for failover.
+- Bound to a specific availability zone (AZ).
+
+# 11. EC2 Hibernate
+
+- We know we can stop, terminate instances.
+  - **Stop** - the data on disk (EBS) is kept intact in the next start.
+  - **Terminate** - any EBS volumes (root) also set-up to be destroyed is lost.
+- **On start, the following happens**
+  - First start: the OS boots & the EC2 User Data script is run.
+  - Following starts: the OS boots up.
+  - Then your application starts, caches get warmed up, and that can take time!
+
+## 11.1. Introducing EC2 Hibernate
+
+- The in-memory (RAM) state is preserved
+- The instance boot is much faster! (the OS is not stopped / restarted).
+- Under the hood: the RAM state is written to a file in the root EBS volume.
+- The root EBS volume must be encrypted.
+- Use cases:
+  - Long-running processing
+  - Saving the RAM state
+  - Services that take time to initialize
+
+## 11.2. Good to know
+
+- Supported Instance Families - C3, C4, C5, I3, M3, M4, R3, R4, T2, T3, ...
+- Instance RAM Size - must be less than 150 GB.
+- Instance Size - not supported for bare metal instances.
+- AMI - Amazon Linux 2, Linux AMI, Ubuntu, RHEL, CentOS & Windows...
+- Root Volume - must be EBS, encrypted, not instance store, and large.
+- Available for On-Demand, Reserved and Spot Instances.
+- **An instance can NOT be hibernated more than 60 days.**
+
+# 12. EC2 Instance Connect
 
 - Connect to your EC2 instance within your browser.
 - No need to use your key file that was downloaded.
@@ -299,7 +346,7 @@
 - **Works only out-of-the-box with Amazon Linux 2.**
 - Need to make sure the port 22 is still opened!
 
-# 11. EC2 Instances Purchasing Options
+# 13. EC2 Instances Purchasing Options
 
 - **On-Demand Instances:** Short workload, predictable pricing, pay by second.
 - **Reserved (1 & 3 years)**
@@ -312,7 +359,7 @@
 - **Dedicated Instances:** No other customers will share your hardware.
 - **Capacity Reservations:** Reserve capacity in a specific AZ for any duration.
 
-## 11.1. On Demand
+## 13.1. On Demand
 
 - Pay for what you use:
   - Linux or Windows - billing per second, after the first minute.
@@ -321,7 +368,7 @@
 - No long-term commitment.
 - Recommended for **short-term** and **un-interrupted workloads**, where you can't predict how the application will behave.
 
-## 11.2. Reserved Instances
+## 13.2. Reserved Instances
 
 - Up to **72%** discount compared to On-demand.
 - Your reserve a specific instance attributes **(Instance, type, region, tenancy, OS)**.
@@ -345,7 +392,7 @@
   - When you require a fraction of day / week / month.
   - Commitment for 1 year only.
 
-## 11.3. Savings Plans
+## 13.3. Savings Plans
 
 - Get a discount based on long-term usage (up to 72% - same as RIs).
 - Commit to a certain type of usage ($10/hour for 1 or 3 years).
@@ -356,7 +403,7 @@
   - OS (e.g., Linux, Windows).
   - Tenancy (Host, Dedicated, Default).
 
-## 11.4. Spot Instances
+## 13.4. Spot Instances
 
 - Can get a **discount of up to 90%** compared to On-demand.
 - Instances that you can "lose" at any point of time if your max price is less than the current spot price.
@@ -369,7 +416,7 @@
   - Workloads with a flexible start and end time.
 - **Not suitable for critical jobs or databases.**
 
-### 11.4.1. Requests
+### 13.4.1. Requests
 
 - Define **max spot price** and get the instance while **current spot price < max**.
   - The hourly spot price varies based on offer and capacity.
@@ -379,7 +426,7 @@
   - In rare situations, the instance may be reclaimed.
 - Used for batch jobs, data analysis, or workloads that are resilient to failures.
 
-### 11.4.2. Spot Fleets
+### 13.4.2. Spot Fleets
 
 - Spot Fleets = set of Spot Instances + (optional) On-Demand Instances
 - The Spot Fleet will try to meet the target capacity with price constraints.
@@ -393,7 +440,7 @@
   - `priceCapacityOptimized` (recommended): pools with highest capacity available, then select the pool with the lowest price (best choice for most workloads).
 - _Spot Fleets allow us to automatically request Spot Instances with the lowest price._
 
-## 11.5. Dedicated Hosts
+## 13.5. Dedicated Hosts
 
 - **An Amazon EC2 Dedicated Host is a physical server with EC2 instance capacity fully dedicated to your use. Dedicated Hosts can help you address compliance requirements and reduce costs by allowing you to use your existing server-bound software licenses.**
 - A physical server with EC2 instance capacity fully dedicated to your use.
@@ -405,13 +452,13 @@
 - Useful for software that have complicated licensing model (BYOL - Bring Your Own License).
 - Or for companies that have strong regulatory or compliance needs.
 
-## 11.6. Dedicated Instances
+## 13.6. Dedicated Instances
 
 - Instances running on hardware that's dedicated to you.
 - May share hardware with other instances in same account.
 - No control over instance placement (can move hardware after Stop / Start).
 
-## 11.7. Capacity Reservations
+## 13.7. Capacity Reservations
 
 - Reserve **On-Demand** instances capacity in a specific AZ for any duration.
 - You always have access to EC2 capacity when you need it.
@@ -420,7 +467,7 @@
 - You're charged at On-Demand rate whether you run instances or not.
 - Suitable for short-term, uninterrupted workloads that needs to be in a specific AZ.
 
-## 11.8. Which purchase option is better? (Correlation with Hotel)
+## 13.8. Which purchase option is better? (Correlation with Hotel)
 
 - **On demand:** Coming and staying in resort whenever we like, we pay the full price.
 - **Reserved:** Like planning ahead and if we plan to stay for a long time, we may get a good discount.
@@ -430,7 +477,7 @@
 - **Dedicated Hosts:** We book an entire building of the resort.
 - **Capacity Reservations:** You book a room for a period with full price even you don't stay in it.
 
-## 11.9. AWS License Manager
+## 13.9. AWS License Manager
 
 - AWS License Manager makes it easier to manage your software licenses from vendors such as Microsoft, SAP, Oracle, and IBM across AWS and on-premises environments.
 - AWS License Manager lets administrators create customized licensing rules that mirror the terms of their licensing agreements.
@@ -439,7 +486,7 @@
 - Administrators gain control and visibility of all their licenses with the AWS License Manager dashboard and reduce the risk of non-compliance, misreporting, and additional costs due to licensing overages.
 - Independent software vendors (ISVs) can also use AWS License Manager to easily distribute and track licenses.
 
-## 11.10. Shared Responsibility Model for EC2
+## 13.10. Shared Responsibility Model for EC2
 
 - AWS:
   - Infrastructure (global network security)
@@ -453,13 +500,13 @@
   - IAM Roles assigned to EC2ASDASD\_\_& IAM user access management
   - Data security on your instance
 
-# 12. VM Import/Export
+# 14. VM Import/Export
 
 - The VM Import/Export enables you to easily import virtual machine images from your existing environment to Amazon EC2 instances and export them back to your on-premises environment.
 
 ![VM Import/Export](/Images/AmazonEC2VMImportExport.png)
 
-# 13. AMI Overview
+# 15. AMI Overview
 
 - AMI = Amazon Machine Image.
   - **Golden AMI** is an AMI that you standardize through configuration, consistent security patching, and hardening.
@@ -473,14 +520,14 @@
   - **Your own AMI:** you make and maintain them yourself.
   - **An AWS Marketplace AMI:** an AMI someone else made (and potentially sells).
 
-## 13.1. AMI Process (from an EC2 instance)
+## 15.1. AMI Process (from an EC2 instance)
 
 - Start an EC2 instance and customize it.
 - Stop the instance (for data integrity).
 - Build an AMI - this will also create EBS snapshots.
 - Launch instances from other AMIs.
 
-## 13.2. EC2 Image Builder
+## 15.2. EC2 Image Builder
 
 - Used to automate the creation of Virtual Machines or container images.
 - Automate the creation, maintain, validate and test **EC2 AMIs**.
@@ -494,12 +541,12 @@
   3. New AMI
   4. Test EC2 Instance
 
-## 13.3. Instance Migration between AZ
+## 15.3. Instance Migration between AZ
 
 - Remember **between AZ**.
   ![EC2 Instance Migration between AZ](/Images/AmazonEC2MigrationBetweenAZ.png)
 
-## 13.4. Cross-Account AMI Sharing
+## 15.4. Cross-Account AMI Sharing
 
 - You can share an AMI with another AWS account.
 - Sharing an AMI does **not affect the ownership** of the AMI.
@@ -510,11 +557,11 @@
 
 ![Cross-Account AMI Sharing](/Images/AmazonEC2CrossAccountAMISharing.png)
 
-### 13.4.1. AMI Sharing with KMS Encryption
+### 15.4.1. AMI Sharing with KMS Encryption
 
 ![AMI Sharing with KMS Encryption](/Images/AmazonEC2AMISharingWithKMSEncryption.png)
 
-## 13.5. Cross-Account AMI Copy
+## 15.5. Cross-Account AMI Copy
 
 - If you copy an AMI that has been shared with your account, you are the owner of the target AMI in your account.
 - The owner of the source AMI must grant you read permissions for the storage that backs the **AMI (EBS Snapshot)**.
@@ -523,7 +570,7 @@
 
 ![Cross-Account AMI Copy](/Images/AmazonEC2CrossAccountAMICopy.png)
 
-### 13.5.1. AMI Copy with KMS Encryption
+### 15.5.1. AMI Copy with KMS Encryption
 
 - Cross-Region / Cross-Account Encrypted AMI Copy
   ![AMI Copy with KMS Encryption](/Images/AmazonEC2CrossAccountAMICopyWithKMSEncryption.png)

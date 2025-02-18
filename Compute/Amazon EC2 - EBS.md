@@ -1,4 +1,4 @@
-# AWS EC2 EBS - Elastic Block Storage<!-- omit in toc -->
+# Amazon EC2 EBS - Elastic Block Storage<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
