@@ -172,35 +172,38 @@
   - [19.10. AWS Knowledge Center](#1910-aws-knowledge-center)
 - [20. AWS Cloud Map](#20-aws-cloud-map)
 - [21. AWS Limits (Quotas)](#21-aws-limits-quotas)
-- [22. AWS related Abbreviations \& Acronyms](#22-aws-related-abbreviations--acronyms)
-  - [22.1. A](#221-a)
-  - [22.2. B](#222-b)
-  - [22.3. C](#223-c)
-  - [22.4. D](#224-d)
-  - [22.5. E](#225-e)
-  - [22.6. F](#226-f)
-  - [22.7. H](#227-h)
-  - [22.8. I](#228-i)
-  - [22.9. J](#229-j)
-  - [22.10. K](#2210-k)
-  - [22.11. L](#2211-l)
-  - [22.12. M](#2212-m)
-  - [22.13. N](#2213-n)
-  - [22.14. O](#2214-o)
-  - [22.15. P](#2215-p)
-  - [22.16. Q](#2216-q)
-  - [22.17. R](#2217-r)
-  - [22.18. S](#2218-s)
-  - [22.19. T](#2219-t)
-  - [22.20. V](#2220-v)
-  - [22.21. W](#2221-w)
-- [23. Commands AWS CLI](#23-commands-aws-cli)
-  - [23.1. DynamoDB](#231-dynamodb)
-  - [23.2. S3](#232-s3)
-  - [23.3. Lambda](#233-lambda)
-  - [23.4. ECS](#234-ecs)
-  - [23.5. Systems Manager](#235-systems-manager)
-- [24. Credits](#24-credits)
+- [22. Private vs Public IP (IPv4)](#22-private-vs-public-ip-ipv4)
+  - [22.1. Private vs Public IP (IPv4) Fundamental Differences](#221-private-vs-public-ip-ipv4-fundamental-differences)
+- [23. AWS charges for IPv4 addresses](#23-aws-charges-for-ipv4-addresses)
+- [24. AWS related Abbreviations \& Acronyms](#24-aws-related-abbreviations--acronyms)
+  - [24.1. A](#241-a)
+  - [24.2. B](#242-b)
+  - [24.3. C](#243-c)
+  - [24.4. D](#244-d)
+  - [24.5. E](#245-e)
+  - [24.6. F](#246-f)
+  - [24.7. H](#247-h)
+  - [24.8. I](#248-i)
+  - [24.9. J](#249-j)
+  - [24.10. K](#2410-k)
+  - [24.11. L](#2411-l)
+  - [24.12. M](#2412-m)
+  - [24.13. N](#2413-n)
+  - [24.14. O](#2414-o)
+  - [24.15. P](#2415-p)
+  - [24.16. Q](#2416-q)
+  - [24.17. R](#2417-r)
+  - [24.18. S](#2418-s)
+  - [24.19. T](#2419-t)
+  - [24.20. V](#2420-v)
+  - [24.21. W](#2421-w)
+- [25. Commands AWS CLI](#25-commands-aws-cli)
+  - [25.1. DynamoDB](#251-dynamodb)
+  - [25.2. S3](#252-s3)
+  - [25.3. Lambda](#253-lambda)
+  - [25.4. ECS](#254-ecs)
+  - [25.5. Systems Manager](#255-systems-manager)
+- [26. Credits](#26-credits)
 
 # 1. Traditionally, how to build infrastructure
 
@@ -1798,9 +1801,47 @@
 
 [AWS Limits](AWS%20Limits.md)
 
-# 22. AWS related Abbreviations & Acronyms
+# 22. Private vs Public IP (IPv4)
 
-## 22.1. A
+- Networking has two sorts of IPs. IPv4 and IPv6:
+  - IPv4: 1.160.10.240
+  - IPv6: 3ffe:1900:4545:3:200:f8ff:fe21:67cf
+- IPv4 is still the most common format used online.
+- IPv6 is newer and solves problems for the Internet of Things (IoT).
+- IPv4 allows for **3.7 billion** different addresses in the public space.
+- IPv4: [0-255].[0-255].[0-255].[0-255].
+
+## 22.1. Private vs Public IP (IPv4) Fundamental Differences
+
+- **Public IP**
+  - Public IP means the machine can be identified on the internet (WWW).
+  - Must be unique across the whole web (not two machines can have the same public IP).
+  - Can be geo-located easily.
+- **Private IP**
+  - Private IP means the machine can only be identified on a private network only.
+  - The IP must be unique across the private network.
+  - BUT two different private networks (two companies) can have the same IPs.
+  - Machines connect to WWW using a NAT + internet gateway (a proxy).
+  - Only a specified range of IPs can be used as private IP.
+
+# 23. AWS charges for IPv4 addresses
+
+- Starting February 1st 2024, there's a charge for all Public IPv4 created in your account.
+  - $0.005 per hour of Public IPv4 (~ $3.6 per month).
+- For new accounts in AWS, you have a free tier for the EC2 service: 750 hours of Public IPv4 per month for the first 12 months.
+- **For all other services there is no free tier.**
+- **What about IPv6?**
+  - Unfortunately, many Internet Service Provider (ISP) around the world don't support IPv6.
+  - You can test IPv6 by going to https://test-ipv6.com/
+  - If you use IPv6, you're on your own (security groups, networking...) but you can do it!
+- **How to troubleshoot charges?**
+  - Go into your AWS Bill
+  - Look into the AWS Public IP Insights service
+  - Nice article here: https://repost.aws/articles/ARknH_OR0cTvqoTfJrVGaB8A/why-am-i-seeing-charges-for-public-ipv4-addresses-when-i-am-under-the-aws-free-tier
+
+# 24. AWS related Abbreviations & Acronyms
+
+## 24.1. A
 
 - AWS Amazon Web Services
 - Amazon ES = Amazon Elasticsearch Service
@@ -1817,11 +1858,11 @@
 - ADFS Active Directory Federation Service
 - AVX Advanced Vector Extensions
 
-## 22.2. B
+## 24.2. B
 
 - BYOL Bring Your Own License
 
-## 22.3. C
+## 24.3. C
 
 - CDN Content Delivery Network
 - CRC Cyclic Redundancy Check
@@ -1831,7 +1872,7 @@
 - CRR Cross Region Replication
 - CI/CD Continuous Integration/Continuous Deployment
 
-## 22.4. D
+## 24.4. D
 
 - DMS Database Migration Service
 - DNS Domain Name System
@@ -1839,7 +1880,7 @@
 - DoS Denial of Service
 - DaaS Desktop as-a-Service
 
-## 22.5. E
+## 24.5. E
 
 - EC2 Elastic Compute Cloud
 - ECS EC2 Container Service
@@ -1857,12 +1898,12 @@
 - ENI Elastic Network Interface
 - ECU EC2 Compute Unit
 
-## 22.6. F
+## 24.6. F
 
 - FIFO First In First Out
 - FaaS Function as-a-Service
 
-## 22.7. H
+## 24.7. H
 
 - HPC High-Performance Compute
 - HVM Hardware Virtual Machine
@@ -1870,7 +1911,7 @@
 - HTTPS HTTP Secure
 - HDK Hardware Development Kit
 
-## 22.8. I
+## 24.8. I
 
 - IAM Identity & Access Management
 - iOT Internet Of Things
@@ -1883,23 +1924,23 @@
 - IPSec Internet Protocol Security
 - IaaS Infrastructure-as-a-Service
 
-## 22.9. J
+## 24.9. J
 
 - JSON JavaScript Object Notation
 
-## 22.10. K
+## 24.10. K
 
 - KMS Key Management Service
 - KVM Kernel-based Virtual Machine
 - KDS Kinesis Data Streams
 - KDF Kinesis Data Firehose
 
-## 22.11. L
+## 24.11. L
 
 - LB Load Balancer
 - LCU Load Balancer Capacity Unit
 
-## 22.12. M
+## 24.12. M
 
 - MFA Multi-Factor Authentication
 - MSTSC Microsoft Terminal Service Client
@@ -1908,7 +1949,7 @@
 - ML Machine Learning
 - MPLS Multi Protocol Label Switching
 
-## 22.13. N
+## 24.13. N
 
 - NACL Network Access Control List
 - NLP Natural Language Processing
@@ -1917,25 +1958,25 @@
 - NAT Network Address Translation
 - NVMe Non-Volatile Memory Express
 
-## 22.14. O
+## 24.14. O
 
 - OLTP Online Transaction Processing
 - OLAP Online Analytics Processing
 - OCI Open Container Initiative
 - OVA Open Virtualization Format
 
-## 22.15. P
+## 24.15. P
 
 - PCI DSS Payment Card Industry Data Security Standard
 - PVM Para Virtual Machine
 - PV ParaVirtual
 - PaaS Platform as a Service
 
-## 22.16. Q
+## 24.16. Q
 
 - QLDB Quantum Ledger Database
 
-## 22.17. R
+## 24.17. R
 
 - RAIDRedundant Array of Independent Disk
 - RDS Relational Database Service
@@ -1945,7 +1986,7 @@
 - RIE Runtime Interface Emulator
 - RCU Read Capacity Units
 
-## 22.18. S
+## 24.18. S
 
 - SSEServer Side Encryption
 - S3 Simple Storage Service
@@ -1973,7 +2014,7 @@
 - STS Security Token Service
 - SNI Server Name Indication
 
-## 22.19. T
+## 24.19. T
 
 - TAM Technical Account Managers
 - TTL Time To Live
@@ -1984,7 +2025,7 @@
 - TPS Transaction Per Second
 - TCP Transmission Control Protocol
 
-## 22.20. V
+## 24.20. V
 
 - VPC Virtual Private Cloud
 - VM Virtual Machine
@@ -1994,12 +2035,12 @@
 - VDI Virtual Desktop Infrastructure
 - VPG Virtual Private Gateway
 
-## 22.21. W
+## 24.21. W
 
 - WAFWeb Application Firewall
 - WCU Write Capacity Units
 
-# 23. Commands AWS CLI
+# 25. Commands AWS CLI
 
 - Configure AWS CLI to access the environment
   - aws configure
@@ -2014,7 +2055,7 @@
 - See encoded errors using STS command line:
   - aws sts decode-authorization-message --encoded-message `<code_encoded>`
 
-## 23.1. DynamoDB
+## 25.1. DynamoDB
 
 - List all itens of table (Projection expression)
   - aws dynamodb scan --table-name `<table_name>`
@@ -2024,28 +2065,28 @@
 - List all content of table (F ilter expression)
   - aws dynamodb scan --table-name DemoTTL --filter-expression "`<attribute_fields_or_columns>` = :u" --expression-attribute-values '{":u": {"S":"`<content>`"}}'
 
-## 23.2. S3
+## 25.2. S3
 
 - List all itens of bucket with pagination
   - aws s3api list-objects --bucket `<bucket_name>` --page-size 100 --max-items 5
 
-## 23.3. Lambda
+## 25.3. Lambda
 
 - List all funcions
   - aws lambda list-functions
 - Invoke a synchronous or asynchronous lambda function.
   - aws lambda invoke --function-name `<lambda_name>` --invocation-type `<invocation_type>` response.json # `invocation_type` like: `Event` or `RequestResponse`
 
-## 23.4. ECS
+## 25.4. ECS
 
 - There is no option to delete a task definition on the AWS console. But, you can deregister (delete) a task definition by executing the following command.
   - aws ecs deregister-task-definition --task-definition `<name_task_definition:"revision>`
 
-## 23.5. Systems Manager
+## 25.5. Systems Manager
 
 - Create parameter
   - aws ssm put-parameter --name myEC2TypeDev --type String --value "t2.small"
 
-# 24. Credits
+# 26. Credits
 
 - Much of this content extracted from Stephane Maarek's courses, **for personal study**, at several points has personal considerations and comments.

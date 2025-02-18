@@ -226,7 +226,7 @@
 
 - When an ECS task is started with EC2 Launch Type, ECS must determine where to place it, with the constraints of CPU and memory (RAM).
 - Similarly, when a service scales in, ECS needs to determine which task to terminate.
-- You can define:
+- **You can define**
   - **Task Placement Strategy.**
   - **Task Placement Constraints.**
 - **Note:** only for ECS Tasks with EC2 Launch Type **(Fargate not supported)**.
@@ -235,11 +235,10 @@
 
 - Task Placement Strategies are a **best effort**.
 - When Amazon ECS places a task, it uses the following process to select the appropriate EC2 Container instance:
-
-1. Identify which instances that satisfy the **CPU, memory, and port** requirements.
-2. Identify which instances that satisfy the **Task Placement Constraints**.
-3. Identify which instances that satisfy the **Task Placement Strategies**.
-4. Select the instances.
+  1. Identify which instances that satisfy the **CPU, memory, and port** requirements.
+  2. Identify which instances that satisfy the **Task Placement Constraints**.
+  3. Identify which instances that satisfy the **Task Placement Strategies**.
+  4. Select the instances.
 
 ### 3.12.2. Task Placement Strategies
 

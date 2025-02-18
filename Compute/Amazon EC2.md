@@ -19,28 +19,35 @@
   - [5.3. To acess S3 with IAM Roles](#53-to-acess-s3-with-iam-roles)
 - [6. Classic Ports to know](#6-classic-ports-to-know)
 - [7. How to SSH into your EC2 Instance](#7-how-to-ssh-into-your-ec2-instance)
-- [8. Elastic IP](#8-elastic-ip)
-- [9. EC2 Instance Connect](#9-ec2-instance-connect)
-- [10. EC2 Instances Purchasing Options](#10-ec2-instances-purchasing-options)
-  - [10.1. On Demand](#101-on-demand)
-  - [10.2. Reserved Instances](#102-reserved-instances)
-  - [10.3. Savings Plans](#103-savings-plans)
-  - [10.4. Spot Instances](#104-spot-instances)
-  - [10.5. Dedicated Hosts](#105-dedicated-hosts)
-  - [10.6. Dedicated Instances](#106-dedicated-instances)
-  - [10.7. Capacity Reservations](#107-capacity-reservations)
-  - [10.8. Which purchase option is better? (Correlation with Hotel)](#108-which-purchase-option-is-better-correlation-with-hotel)
-  - [10.9. AWS License Manager](#109-aws-license-manager)
-  - [10.10. Shared Responsibility Model for EC2](#1010-shared-responsibility-model-for-ec2)
-- [11. VM Import/Export](#11-vm-importexport)
-- [12. AMI Overview](#12-ami-overview)
-  - [12.1. AMI Process (from an EC2 instance)](#121-ami-process-from-an-ec2-instance)
-  - [12.2. EC2 Image Builder](#122-ec2-image-builder)
-  - [12.3. Instance Migration between AZ](#123-instance-migration-between-az)
-  - [12.4. Cross-Account AMI Sharing](#124-cross-account-ami-sharing)
-    - [12.4.1. AMI Sharing with KMS Encryption](#1241-ami-sharing-with-kms-encryption)
-  - [12.5. Cross-Account AMI Copy](#125-cross-account-ami-copy)
-    - [12.5.1. AMI Copy with KMS Encryption](#1251-ami-copy-with-kms-encryption)
+- [8. Elastic IPs](#8-elastic-ips)
+  - [8.1. Private vs Public IP (IPv4)](#81-private-vs-public-ip-ipv4)
+- [9. Placement Groups](#9-placement-groups)
+  - [9.1. Cluster](#91-cluster)
+  - [9.2. Cluster](#92-cluster)
+  - [9.3. Partition](#93-partition)
+- [10. EC2 Instance Connect](#10-ec2-instance-connect)
+- [11. EC2 Instances Purchasing Options](#11-ec2-instances-purchasing-options)
+  - [11.1. On Demand](#111-on-demand)
+  - [11.2. Reserved Instances](#112-reserved-instances)
+  - [11.3. Savings Plans](#113-savings-plans)
+  - [11.4. Spot Instances](#114-spot-instances)
+    - [11.4.1. Requests](#1141-requests)
+    - [11.4.2. Spot Fleets](#1142-spot-fleets)
+  - [11.5. Dedicated Hosts](#115-dedicated-hosts)
+  - [11.6. Dedicated Instances](#116-dedicated-instances)
+  - [11.7. Capacity Reservations](#117-capacity-reservations)
+  - [11.8. Which purchase option is better? (Correlation with Hotel)](#118-which-purchase-option-is-better-correlation-with-hotel)
+  - [11.9. AWS License Manager](#119-aws-license-manager)
+  - [11.10. Shared Responsibility Model for EC2](#1110-shared-responsibility-model-for-ec2)
+- [12. VM Import/Export](#12-vm-importexport)
+- [13. AMI Overview](#13-ami-overview)
+  - [13.1. AMI Process (from an EC2 instance)](#131-ami-process-from-an-ec2-instance)
+  - [13.2. EC2 Image Builder](#132-ec2-image-builder)
+  - [13.3. Instance Migration between AZ](#133-instance-migration-between-az)
+  - [13.4. Cross-Account AMI Sharing](#134-cross-account-ami-sharing)
+    - [13.4.1. AMI Sharing with KMS Encryption](#1341-ami-sharing-with-kms-encryption)
+  - [13.5. Cross-Account AMI Copy](#135-cross-account-ami-copy)
+    - [13.5.1. AMI Copy with KMS Encryption](#1351-ami-copy-with-kms-encryption)
 
 # 1. Introduction
 
@@ -222,12 +229,69 @@
   2. Set the AWS Region you wish to import to.
   3. Import the public SSH key into the new Region.
 
-# 8. Elastic IP
+# 8. Elastic IPs
 
-- An Elastic IP address is a reserved public IP address that you can assign to any EC2 instance in a particular region, until you choose to release it.
-- To allocate an Elastic IP address to your account in a particular region, see Allocate an Elastic IP address.
+- When you stop and then start an EC2 instance, it can change its public IP.
+- If you need to have a fixed public IP for your instance, you need an **Elastic IP**.
+- An Elastic IP is a public IPv4 IP you own as long as you don't delete it.
+- You can attach it to one instance at a time.
+- With an Elastic IP address, you can mask the failure of an instance or software by rapidly remapping the address to another instance in your account.
+- **You can only have 5 Elastic IP in your account (you can ask AWS to increase that).**
+- Overall, try to avoid using Elastic IP:
+  - They often reflect poor architectural decisions.
+  - Instead, use a random public IP and register a DNS name to it.
+  - Or, as we'll see later, use a Load Balancer and don't use a public IP.
 
-# 9. EC2 Instance Connect
+## 8.1. Private vs Public IP (IPv4)
+
+- By default, your EC2 machine comes with:
+  - A private IP for the internal AWS Network.
+  - A public IP, for the WWW.
+- When we are doing SSH into our EC2 machines:
+  - We can't use a private IP, because we are not in the same network.
+  - We can only use the public IP.
+- If your machine is stopped and then started, the public IP can change.
+
+# 9. Placement Groups
+
+- Sometimes you want control over the EC2 Instance placement strategy.
+- That strategy can be defined using placement groups.
+- When you create a placement group, you specify one of the following strategies for the group:
+  - **Cluster:** clusters instances into a low-latency group in a single Availability Zone.
+  - **Spread:** spreads instances across underlying hardware (max 7 instances per group per AZ).
+  - **Partition:** spreads instances across many different partitions (which rely on different sets of racks) within an AZ. Scales to 100s of EC2 instances per group (Hadoop, Cassandra, Kafka).
+
+## 9.1. Cluster
+
+- **Pros:** Great network (10 Gbps bandwidth between instances with Enhanced Networking enabled - recommended).
+- **Cons:** If the AZ fails, all instances fails at the same time.
+- Use case:
+  - Big Data job that needs to complete fast.
+  - Application that needs extremely low latency and high network throughput.
+
+## 9.2. Cluster
+
+- **Pros**
+  - Can span across Availability Zones (AZ).
+  - Reduced risk is simultaneous failure.
+  - EC2 Instances are on different physical hardware.
+- **Cons**
+  - Limited to 7 instances per AZ per placement group.
+- **Use case**
+  - Application that needs to maximize high availability.
+  - Critical Applications where each instance must be isolated from failure from each other.
+
+## 9.3. Partition
+
+- Up to 7 partitions per AZ.
+- Can span across multiple AZs in the same region.
+- Up to 100s of EC2 instances.
+- The instances in a partition do not share racks with the instances in the other partitions.
+- A partition failure can affect many EC2 but won't affect other partitions.
+- EC2 instances get access to the partition information as metadata.
+- Use cases: HDFS, HBase, Cassandra, Kafka.
+
+# 10. EC2 Instance Connect
 
 - Connect to your EC2 instance within your browser.
 - No need to use your key file that was downloaded.
@@ -235,7 +299,7 @@
 - **Works only out-of-the-box with Amazon Linux 2.**
 - Need to make sure the port 22 is still opened!
 
-# 10. EC2 Instances Purchasing Options
+# 11. EC2 Instances Purchasing Options
 
 - **On-Demand Instances:** Short workload, predictable pricing, pay by second.
 - **Reserved (1 & 3 years)**
@@ -248,7 +312,7 @@
 - **Dedicated Instances:** No other customers will share your hardware.
 - **Capacity Reservations:** Reserve capacity in a specific AZ for any duration.
 
-## 10.1. On Demand
+## 11.1. On Demand
 
 - Pay for what you use:
   - Linux or Windows - billing per second, after the first minute.
@@ -257,7 +321,7 @@
 - No long-term commitment.
 - Recommended for **short-term** and **un-interrupted workloads**, where you can't predict how the application will behave.
 
-## 10.2. Reserved Instances
+## 11.2. Reserved Instances
 
 - Up to **72%** discount compared to On-demand.
 - Your reserve a specific instance attributes **(Instance, type, region, tenancy, OS)**.
@@ -267,8 +331,8 @@
   | | Regional Reserved Instances | Zonal Reserved Instances |
   | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
   | Ability to reserve capacity | A regional Reserved Instance does not reserve capacity. | A zonal Reserved Instance reserves capacity in the specified Availability Zone. |
-  | Availability Zone flexibility | The Reserved Instance discount applies to instance usage in any Availability Zone in the specified Region. | No Availability Zone flexibility—the Reserved Instance discount applies to instance usage in the specified Availability Zone only. |
-  | Instance size flexibility | The Reserved Instance discount applies to instance usage within the instance family, regardless of size. Only supported on Amazon Linux/Unix Reserved Instances with default tenancy. For more information, see Instance size flexibility determined by normalization factor. | No instance size flexibility—the Reserved Instance discount applies to instance usage for the specified instance type and size only. |
+  | Availability Zone flexibility | The Reserved Instance discount applies to instance usage in any Availability Zone in the specified Region. | No Availability Zone flexibility: the Reserved Instance discount applies to instance usage in the specified Availability Zone only. |
+  | Instance size flexibility | The Reserved Instance discount applies to instance usage within the instance family, regardless of size. Only supported on Amazon Linux/Unix Reserved Instances with default tenancy. For more information, see Instance size flexibility determined by normalization factor. | No instance size flexibility: the Reserved Instance discount applies to instance usage for the specified instance type and size only. |
   | Queuing a purchase | You can queue purchases for regional Reserved Instances. | You can't queue purchases for zonal Reserved Instances. |
 
 - Recommended for steady-state usage applications (think database).
@@ -281,7 +345,7 @@
   - When you require a fraction of day / week / month.
   - Commitment for 1 year only.
 
-## 10.3. Savings Plans
+## 11.3. Savings Plans
 
 - Get a discount based on long-term usage (up to 72% - same as RIs).
 - Commit to a certain type of usage ($10/hour for 1 or 3 years).
@@ -292,7 +356,7 @@
   - OS (e.g., Linux, Windows).
   - Tenancy (Host, Dedicated, Default).
 
-## 10.4. Spot Instances
+## 11.4. Spot Instances
 
 - Can get a **discount of up to 90%** compared to On-demand.
 - Instances that you can "lose" at any point of time if your max price is less than the current spot price.
@@ -305,7 +369,31 @@
   - Workloads with a flexible start and end time.
 - **Not suitable for critical jobs or databases.**
 
-## 10.5. Dedicated Hosts
+### 11.4.1. Requests
+
+- Define **max spot price** and get the instance while **current spot price < max**.
+  - The hourly spot price varies based on offer and capacity.
+  - If the current spot price > your max price you can choose to **stop** or **terminate** your instance with a 2 minutes grace period.
+- Other strategy: **Spot Block**
+  - "block" spot instance during a specified time frame (1 to 6 hours) without interruptions.
+  - In rare situations, the instance may be reclaimed.
+- Used for batch jobs, data analysis, or workloads that are resilient to failures.
+
+### 11.4.2. Spot Fleets
+
+- Spot Fleets = set of Spot Instances + (optional) On-Demand Instances
+- The Spot Fleet will try to meet the target capacity with price constraints.
+  - Define possible launch pools: instance type (m5.large), OS, Availability Zone.
+  - Can have multiple launch pools, so that the fleet can choose.
+  - Spot Fleet stops launching instances when reaching capacity or max cost.
+- **Strategies to allocate Spot Instances**
+  - `lowestPrice`: from the pool with the lowest price (cost optimization, short workload).
+  - `diversified`: distributed across all pools (great for availability, long workloads).
+  - `capacityOptimized`: pool with the optimal capacity for the number of instances.
+  - `priceCapacityOptimized` (recommended): pools with highest capacity available, then select the pool with the lowest price (best choice for most workloads).
+- _Spot Fleets allow us to automatically request Spot Instances with the lowest price._
+
+## 11.5. Dedicated Hosts
 
 - **An Amazon EC2 Dedicated Host is a physical server with EC2 instance capacity fully dedicated to your use. Dedicated Hosts can help you address compliance requirements and reduce costs by allowing you to use your existing server-bound software licenses.**
 - A physical server with EC2 instance capacity fully dedicated to your use.
@@ -317,13 +405,13 @@
 - Useful for software that have complicated licensing model (BYOL - Bring Your Own License).
 - Or for companies that have strong regulatory or compliance needs.
 
-## 10.6. Dedicated Instances
+## 11.6. Dedicated Instances
 
 - Instances running on hardware that's dedicated to you.
 - May share hardware with other instances in same account.
 - No control over instance placement (can move hardware after Stop / Start).
 
-## 10.7. Capacity Reservations
+## 11.7. Capacity Reservations
 
 - Reserve **On-Demand** instances capacity in a specific AZ for any duration.
 - You always have access to EC2 capacity when you need it.
@@ -332,7 +420,7 @@
 - You're charged at On-Demand rate whether you run instances or not.
 - Suitable for short-term, uninterrupted workloads that needs to be in a specific AZ.
 
-## 10.8. Which purchase option is better? (Correlation with Hotel)
+## 11.8. Which purchase option is better? (Correlation with Hotel)
 
 - **On demand:** Coming and staying in resort whenever we like, we pay the full price.
 - **Reserved:** Like planning ahead and if we plan to stay for a long time, we may get a good discount.
@@ -342,7 +430,7 @@
 - **Dedicated Hosts:** We book an entire building of the resort.
 - **Capacity Reservations:** You book a room for a period with full price even you don't stay in it.
 
-## 10.9. AWS License Manager
+## 11.9. AWS License Manager
 
 - AWS License Manager makes it easier to manage your software licenses from vendors such as Microsoft, SAP, Oracle, and IBM across AWS and on-premises environments.
 - AWS License Manager lets administrators create customized licensing rules that mirror the terms of their licensing agreements.
@@ -351,7 +439,7 @@
 - Administrators gain control and visibility of all their licenses with the AWS License Manager dashboard and reduce the risk of non-compliance, misreporting, and additional costs due to licensing overages.
 - Independent software vendors (ISVs) can also use AWS License Manager to easily distribute and track licenses.
 
-## 10.10. Shared Responsibility Model for EC2
+## 11.10. Shared Responsibility Model for EC2
 
 - AWS:
   - Infrastructure (global network security)
@@ -365,13 +453,13 @@
   - IAM Roles assigned to EC2ASDASD\_\_& IAM user access management
   - Data security on your instance
 
-# 11. VM Import/Export
+# 12. VM Import/Export
 
 - The VM Import/Export enables you to easily import virtual machine images from your existing environment to Amazon EC2 instances and export them back to your on-premises environment.
 
 ![VM Import/Export](/Images/AmazonEC2VMImportExport.png)
 
-# 12. AMI Overview
+# 13. AMI Overview
 
 - AMI = Amazon Machine Image.
   - **Golden AMI** is an AMI that you standardize through configuration, consistent security patching, and hardening.
@@ -385,14 +473,14 @@
   - **Your own AMI:** you make and maintain them yourself.
   - **An AWS Marketplace AMI:** an AMI someone else made (and potentially sells).
 
-## 12.1. AMI Process (from an EC2 instance)
+## 13.1. AMI Process (from an EC2 instance)
 
 - Start an EC2 instance and customize it.
 - Stop the instance (for data integrity).
 - Build an AMI - this will also create EBS snapshots.
 - Launch instances from other AMIs.
 
-## 12.2. EC2 Image Builder
+## 13.2. EC2 Image Builder
 
 - Used to automate the creation of Virtual Machines or container images.
 - Automate the creation, maintain, validate and test **EC2 AMIs**.
@@ -406,12 +494,12 @@
   3. New AMI
   4. Test EC2 Instance
 
-## 12.3. Instance Migration between AZ
+## 13.3. Instance Migration between AZ
 
 - Remember **between AZ**.
   ![EC2 Instance Migration between AZ](/Images/AmazonEC2MigrationBetweenAZ.png)
 
-## 12.4. Cross-Account AMI Sharing
+## 13.4. Cross-Account AMI Sharing
 
 - You can share an AMI with another AWS account.
 - Sharing an AMI does **not affect the ownership** of the AMI.
@@ -422,11 +510,11 @@
 
 ![Cross-Account AMI Sharing](/Images/AmazonEC2CrossAccountAMISharing.png)
 
-### 12.4.1. AMI Sharing with KMS Encryption
+### 13.4.1. AMI Sharing with KMS Encryption
 
 ![AMI Sharing with KMS Encryption](/Images/AmazonEC2AMISharingWithKMSEncryption.png)
 
-## 12.5. Cross-Account AMI Copy
+## 13.5. Cross-Account AMI Copy
 
 - If you copy an AMI that has been shared with your account, you are the owner of the target AMI in your account.
 - The owner of the source AMI must grant you read permissions for the storage that backs the **AMI (EBS Snapshot)**.
@@ -435,7 +523,7 @@
 
 ![Cross-Account AMI Copy](/Images/AmazonEC2CrossAccountAMICopy.png)
 
-### 12.5.1. AMI Copy with KMS Encryption
+### 13.5.1. AMI Copy with KMS Encryption
 
 - Cross-Region / Cross-Account Encrypted AMI Copy
   ![AMI Copy with KMS Encryption](/Images/AmazonEC2CrossAccountAMICopyWithKMSEncryption.png)
