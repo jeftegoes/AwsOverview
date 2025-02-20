@@ -23,7 +23,7 @@
 
 # 1. EC2 - Elastic Compute Cloud
 
-[AWS EC2](AWS%20EC2.md)
+[AWS EC2](Amazon%20EC2.md)
 
 ## 1.1. EC2 - Summary
 
@@ -36,7 +36,7 @@
 
 # 2. AWS EC2 EBS Elastic Block Storage
 
-[AWS EBS](AWS%20EC2%20EBS.md)
+[AWS EBS](Amazon%20EC2%20-%20EBS.md)
 
 ## 2.1. EC2 EBS Summary
 
@@ -107,12 +107,12 @@
 
 ## 3.6. AWS ELB - Elastic Load Balancing
 
-[AWS ELB and ASG](AWS%20ELB%20and%20ASG.md)
+[AWS ELB](AWS%20ELB.md)
 
 ## 3.7. AWS ASG - Auto Scaling Groups
 
 - **Auto Scaling in EC2 allows you to have the right number of instances to handle the application load. Auto Scaling in DynamoDB automatically adjusts read and write throughput capacity, in response to dynamically changing request volumes, with zero downtime. These are both examples of horizontal scaling.**
-- **For each Auto Scaling Group, there's a Cooldown Period after each scaling activity. In this period, the ASG doesn't launch or terminate EC2 instances. This gives time to metrics to stabilize. The default value for the Cooldown Period is 300 seconds (5 minutes).** [AWS ASG](AWS%20ELB%20and%20ASG.md)
+- **For each Auto Scaling Group, there's a Cooldown Period after each scaling activity. In this period, the ASG doesn't launch or terminate EC2 instances. This gives time to metrics to stabilize. The default value for the Cooldown Period is 300 seconds (5 minutes).** [AWS ASG](Amazon%20ASG.md)
 
 ## 3.8. Multi AZ in AWS
 
@@ -155,7 +155,7 @@
 
 # 5. Lambda
 
-[Lambda](/AWS%20Lambda.md)
+[Lambda](AWS%20Lambda.md)
 
 ## 5.1. Lambda Summary
 
