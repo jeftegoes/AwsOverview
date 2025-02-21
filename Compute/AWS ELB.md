@@ -10,18 +10,19 @@
 - [3. Health Checks](#3-health-checks)
   - [3.1. Settings](#31-settings)
 - [4. Types of load balancer on AWS](#4-types-of-load-balancer-on-aws)
-  - [4.1. Classic Load Balancers (v1)](#41-classic-load-balancers-v1)
-  - [4.2. Application Load Balancer (v2)](#42-application-load-balancer-v2)
-    - [4.2.1. Target Groups](#421-target-groups)
-      - [4.2.1.1. Weighting](#4211-weighting)
-    - [4.2.2. Good to Know](#422-good-to-know)
-    - [4.2.3. Access Logs](#423-access-logs)
-    - [4.2.4. Request tracing](#424-request-tracing)
-    - [4.2.5. Listener Rules](#425-listener-rules)
-  - [4.3. Network Load Balancer (v2)](#43-network-load-balancer-v2)
+  - [4.1. Load Balancer Security Groups](#41-load-balancer-security-groups)
+  - [4.2. Classic Load Balancers (v1)](#42-classic-load-balancers-v1)
+  - [4.3. Application Load Balancer (v2)](#43-application-load-balancer-v2)
     - [4.3.1. Target Groups](#431-target-groups)
-  - [4.4. Gateway Load Balancer](#44-gateway-load-balancer)
+      - [4.3.1.1. Weighting](#4311-weighting)
+    - [4.3.2. Good to Know](#432-good-to-know)
+    - [4.3.3. Access Logs](#433-access-logs)
+    - [4.3.4. Request tracing](#434-request-tracing)
+    - [4.3.5. Listener Rules](#435-listener-rules)
+  - [4.4. Network Load Balancer (v2)](#44-network-load-balancer-v2)
     - [4.4.1. Target Groups](#441-target-groups)
+  - [4.5. Gateway Load Balancer](#45-gateway-load-balancer)
+    - [4.5.1. Target Groups](#451-target-groups)
 - [5. Sticky Sessions (Session Affinity)](#5-sticky-sessions-session-affinity)
   - [5.1. Sticky Sessions - Cookie Names](#51-sticky-sessions---cookie-names)
 - [6. Cross-Zone Load Balancing](#6-cross-zone-load-balancing)
@@ -33,7 +34,7 @@
 
 # 1. Introduction
 
-- Load balancers are servers that forward internet traffic to multiple servers (EC2 Instances) downstream.
+- Load balancers are servers that forward internet traffic to multiple servers (e.g., EC2 Instances) downstream.
 
 ![Load Balance](/Images/LoadBalanceDiagram.png)
 
@@ -111,13 +112,21 @@
 - Overall, it is recommended to use the newer generation load balancers as they provide more features.
 - Some load balancers can be setup as **internal** (private) or **external** (public) ELBs.
 
-## 4.1. Classic Load Balancers (v1)
+## 4.1. Load Balancer Security Groups
+
+![Load Balancer Security Groups](/Images/Compute/LoadBalancerSecurityGroups.png)
+
+- Load Balancer Security Group: Allowing HTTP (80) / HTTPS (443).
+- Application Security Group: Allow traffic **ONLY** from Load Balancer.
+
+## 4.2. Classic Load Balancers (v1)
 
 - Supports TCP (Layer 4), HTTP & HTTPS (Layer 7).
 - Health checks are TCP or HTTP based.
 - Fixed hostname XXX.region.elb.amazonaws.com.
+  ![Classic Load Balancers ](/Images/Compute/ClassicLoadBalancers.png)
 
-## 4.2. Application Load Balancer (v2)
+## 4.3. Application Load Balancer (v2)
 
 - **Application Load Balancer provides a static DNS name but it does NOT provide a static IP.**
 - **The reason being that AWS wants your Elastic Load Balancer to be accessible using a static endpoint, even if the underlying infrastructure that AWS manages changes.**
@@ -126,15 +135,15 @@
 - Load balancing to multiple applications on the same machine (ex: containers).
 - Support for HTTP/2 and WebSocket.
 - Support redirects (from HTTP to HTTPS for example).
-- Routing tables to different target groups:
-  - Routing based on path in URL (example.com/users and example.com/posts).
-  - Routing based on hostname in URL (one.example.com and other.example.com).
-  - Routing based on URL Path, Query String, Headers (example.com/users?id=123&order=false).
+- **Routing tables to different target groups**
+  - Routing based on path in URL (`example.com/users` and `example.com/posts`).
+  - Routing based on hostname in URL (`one.example.com` and `other.example.com`).
+  - Routing based on URL Path, Query String, Headers (`example.com/users?id=123&order=false`).
 - ALB are a great fit for micro services & container-based application (example: Docker & Amazon ECS).
 - Has a port mapping feature to redirect to a dynamic port in ECS.
 - In comparison, we'd need multiple Classic Load Balancer per application.
 
-### 4.2.1. Target Groups
+### 4.3.1. Target Groups
 
 - EC2 instances (can be managed by an Auto Scaling Group) - HTTP.
 - ECS tasks (managed by ECS itself) - HTTP.
@@ -143,33 +152,33 @@
 - ALB can route to multiple target groups.
 - Health checks are at the target group level.
 
-#### 4.2.1.1. Weighting
+#### 4.3.1.1. Weighting
 
 - Specify weight for each Target Group on a single Rule.
 - Example: multiple versions of your app, blue/green deployment.
 - Allows you to control the distribution of the traffic to your applications.
 
-### 4.2.2. Good to Know
+### 4.3.2. Good to Know
 
 - Fixed hostname (XXX.region.elb.amazonaws.com).
 - The application servers don't see the IP of the client directly.
   - The true IP of the client is inserted in the header `X-Forwarded-For`.
   - We can also get Port (`X-Forwarded-Port`) and proto (`X-Forwarded-Proto`).
 
-### 4.2.3. Access Logs
+### 4.3.3. Access Logs
 
 - Elastic Load Balancing provides **access logs** that capture detailed information about requests sent to your load balancer.
 - Each log contains information such as the time the request was received, the client's IP address, latencies, request paths, and server responses.
 - You can use these access logs to analyze traffic patterns and troubleshoot issues.
 - Access logging is an optional feature of Elastic Load Balancing that is **disabled by default**.
 
-### 4.2.4. Request tracing
+### 4.3.4. Request tracing
 
 - You can use request tracing to track HTTP requests.
 - The load balancer adds a header with a trace identifier to each request it receives.
 - Request tracing will not help you to analyze latency specific data.
 
-### 4.2.5. Listener Rules
+### 4.3.5. Listener Rules
 
 - Processed in order (with Default Rule).
 - Supported Actions (forward, redirect, fixed-response).
@@ -181,7 +190,7 @@
   - `http-header`
   - `query-string`
 
-## 4.3. Network Load Balancer (v2)
+## 4.4. Network Load Balancer (v2)
 
 - Network load balancers (Layer 4) allow to:
   - **Forward TCP & UDP traffic to your instances.**
@@ -191,14 +200,14 @@
 - NLB are used for extreme performance, TCP or UDP traffic.
 - Not included in the AWS free tier.
 
-### 4.3.1. Target Groups
+### 4.4.1. Target Groups
 
 - EC2 instances.
 - IP Addresses - must be private IPs.
 - Application Load Balancer.
 - Health Checks support the **TCP, HTTP and HTTPS Protocols**.
 
-## 4.4. Gateway Load Balancer
+## 4.5. Gateway Load Balancer
 
 - Deploy, scale, and manage a fleet of 3rd party network virtual appliances in AWS.
 - Example: Firewalls, Intrusion Detection and Prevention Systems, Deep Packet Inspection Systems, payload manipulation, ...
@@ -208,7 +217,7 @@
   - **Load Balancer:** Distributes traffic to your virtual appliances.
 - Uses the **GENEVE** protocol on port **6081**.
 
-### 4.4.1. Target Groups
+### 4.5.1. Target Groups
 
 - EC2 instances.
 - IP Addresses - must be private IPs.

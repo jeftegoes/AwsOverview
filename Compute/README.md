@@ -65,8 +65,8 @@
 ## 3.1. Vertical Scalability
 
 - Vertical Scalability means increasing the size of the instance.
-- For example, your application runs on a t2.micro.
-  - Scaling that application vertically means running it on a t2.large.
+- For example, your application runs on a `t2.micro`.
+  - Scaling that application vertically means running it on a `t2.large`.
 - Vertical scalability is very common for **NON** distributed systems, such as a database.
 - RDS, ElastiCache are services that can scale vertically.
 - There's usually a limit to how much you can vertically scale (hardware limit).
@@ -81,7 +81,7 @@
 ## 3.3. High Availability
 
 - High Availability usually goes **hand in hand with Horizontal Scaling**.
-- High availability means running your application / system in at least 2 data centers (Availability Zones).
+- High availability means running your application / system in at least 2 data centers (== Availability Zones).
 - The goal of high availability is to survive a data center loss (disaster).
 - The high availability can be passive (for RDS Multi AZ for example).
 - The high availability can be active (for horizontal scaling).
@@ -89,8 +89,8 @@
 ## 3.4. High Availability and Scalability for EC2
 
 - **Vertical Scaling:** Increase instance size (= scale up / down).
-  - From: t2.nano - 0.5G of RAM, 1 vCPU.
-  - To: u-12tb1.metal - 12.3 TB of RAM, 448 vCPUs.
+  - From: `t2.nano` - 0.5G of RAM, 1 vCPU.
+  - To: `u-12tb1.metal` - 12.3 TB of RAM, 448 vCPUs.
 - **Horizontal Scaling:** Increase number of instances (= scale out / in).
   - Auto Scaling Group.
   - Load Balancer.
