@@ -11,19 +11,21 @@
   - [3.1. Settings](#31-settings)
 - [4. Types of load balancer on AWS](#4-types-of-load-balancer-on-aws)
   - [4.1. Load Balancer Security Groups](#41-load-balancer-security-groups)
-  - [4.2. Classic Load Balancers (v1)](#42-classic-load-balancers-v1)
-  - [4.3. Application Load Balancer (v2)](#43-application-load-balancer-v2)
-  - [4.4. Application Load Balancer - HTTP Based Traffic](#44-application-load-balancer---http-based-traffic)
-    - [4.4.1. Target Groups](#441-target-groups)
-      - [4.4.1.1. Weighting](#4411-weighting)
-    - [4.4.2. Good to Know](#442-good-to-know)
-    - [4.4.3. Access Logs](#443-access-logs)
-    - [4.4.4. Request tracing](#444-request-tracing)
-    - [4.4.5. Listener Rules](#445-listener-rules)
-  - [4.5. Network Load Balancer (v2)](#45-network-load-balancer-v2)
+  - [4.2. Classic Load Balancers](#42-classic-load-balancers)
+  - [4.3. Application Load Balancer](#43-application-load-balancer)
+    - [4.3.1. HTTP Based Traffic](#431-http-based-traffic)
+    - [4.3.2. Target Groups](#432-target-groups)
+      - [4.3.2.1. Query Strings/Parameters Routing](#4321-query-stringsparameters-routing)
+      - [4.3.2.2. Weighting](#4322-weighting)
+    - [4.3.3. Good to Know](#433-good-to-know)
+    - [4.3.4. Access Logs](#434-access-logs)
+    - [4.3.5. Request tracing](#435-request-tracing)
+    - [4.3.6. Listener Rules](#436-listener-rules)
+  - [4.4. Network Load Balancer (v2)](#44-network-load-balancer-v2)
+    - [4.4.1. Based Traffic](#441-based-traffic)
+    - [4.4.2. Target Groups](#442-target-groups)
+  - [4.5. Gateway Load Balancer](#45-gateway-load-balancer)
     - [4.5.1. Target Groups](#451-target-groups)
-  - [4.6. Gateway Load Balancer](#46-gateway-load-balancer)
-    - [4.6.1. Target Groups](#461-target-groups)
 - [5. Sticky Sessions (Session Affinity)](#5-sticky-sessions-session-affinity)
   - [5.1. Sticky Sessions - Cookie Names](#51-sticky-sessions---cookie-names)
 - [6. Cross-Zone Load Balancing](#6-cross-zone-load-balancing)
@@ -120,14 +122,14 @@
 - Load Balancer Security Group: Allowing HTTP (80) / HTTPS (443).
 - Application Security Group: Allow traffic **ONLY** from Load Balancer.
 
-## 4.2. Classic Load Balancers (v1)
+## 4.2. Classic Load Balancers
 
 - Supports TCP (Layer 4), HTTP & HTTPS (Layer 7).
 - Health checks are TCP or HTTP based.
 - Fixed hostname XXX.region.elb.amazonaws.com.
   ![Classic Load Balancers ](/Images/Compute/ClassicLoadBalancers.png)
 
-## 4.3. Application Load Balancer (v2)
+## 4.3. Application Load Balancer
 
 - **Application Load Balancer provides a static DNS name but it does NOT provide a static IP.**
 - **The reason being that AWS wants your Elastic Load Balancer to be accessible using a static endpoint, even if the underlying infrastructure that AWS manages changes.**
@@ -144,11 +146,11 @@
 - Has a port mapping feature to redirect to a dynamic port in ECS.
 - In comparison, we'd need multiple Classic Load Balancer per application.
 
-## 4.4. Application Load Balancer - HTTP Based Traffic
+### 4.3.1. HTTP Based Traffic
 
 ![Application Load Balancer HTTP Based Traffic](/Images/Compute/ApplicationLoadBalancerHTTPBasedTraffic.png)
 
-### 4.4.1. Target Groups
+### 4.3.2. Target Groups
 
 - EC2 instances (can be managed by an Auto Scaling Group) - HTTP.
 - ECS tasks (managed by ECS itself) - HTTP.
@@ -157,33 +159,37 @@
 - ALB can route to multiple target groups.
 - Health checks are at the target group level.
 
-#### 4.4.1.1. Weighting
+#### 4.3.2.1. Query Strings/Parameters Routing
+
+![Query Strings/Parameters Routing](/Images/Compute/ApplicationLoadBalancerQueryStringsParametersRouting.png)
+
+#### 4.3.2.2. Weighting
 
 - Specify weight for each Target Group on a single Rule.
 - Example: multiple versions of your app, blue/green deployment.
 - Allows you to control the distribution of the traffic to your applications.
 
-### 4.4.2. Good to Know
+### 4.3.3. Good to Know
 
 - Fixed hostname (XXX.region.elb.amazonaws.com).
 - The application servers don't see the IP of the client directly.
   - The true IP of the client is inserted in the header `X-Forwarded-For`.
   - We can also get Port (`X-Forwarded-Port`) and proto (`X-Forwarded-Proto`).
 
-### 4.4.3. Access Logs
+### 4.3.4. Access Logs
 
 - Elastic Load Balancing provides **access logs** that capture detailed information about requests sent to your load balancer.
 - Each log contains information such as the time the request was received, the client's IP address, latencies, request paths, and server responses.
 - You can use these access logs to analyze traffic patterns and troubleshoot issues.
 - Access logging is an optional feature of Elastic Load Balancing that is **disabled by default**.
 
-### 4.4.4. Request tracing
+### 4.3.5. Request tracing
 
 - You can use request tracing to track HTTP requests.
 - The load balancer adds a header with a trace identifier to each request it receives.
 - Request tracing will not help you to analyze latency specific data.
 
-### 4.4.5. Listener Rules
+### 4.3.6. Listener Rules
 
 - Processed in order (with Default Rule).
 - Supported Actions (forward, redirect, fixed-response).
@@ -195,7 +201,7 @@
   - `http-header`
   - `query-string`
 
-## 4.5. Network Load Balancer (v2)
+## 4.4. Network Load Balancer (v2)
 
 - Network load balancers (Layer 4) allow to:
   - **Forward TCP & UDP traffic to your instances.**
@@ -205,24 +211,28 @@
 - NLB are used for extreme performance, TCP or UDP traffic.
 - Not included in the AWS free tier.
 
-### 4.5.1. Target Groups
+### 4.4.1. Based Traffic
+
+![Network Load Balancer TCP Based Traffic](/Images/Compute/ApplicationLoadBalancerHTTPBasedTraffic.png)
+
+### 4.4.2. Target Groups
 
 - EC2 instances.
 - IP Addresses - must be private IPs.
 - Application Load Balancer.
 - Health Checks support the **TCP, HTTP and HTTPS Protocols**.
 
-## 4.6. Gateway Load Balancer
+## 4.5. Gateway Load Balancer
 
 - Deploy, scale, and manage a fleet of 3rd party network virtual appliances in AWS.
 - Example: Firewalls, Intrusion Detection and Prevention Systems, Deep Packet Inspection Systems, payload manipulation, ...
 - Operates at Layer 3 (Network Layer) - IP Packets.
-- Combines the following functions:.
+- **Combines the following functions**
   - **Transparent Network Gateway:** Single entry/exit for all traffic.
   - **Load Balancer:** Distributes traffic to your virtual appliances.
 - Uses the **GENEVE** protocol on port **6081**.
 
-### 4.6.1. Target Groups
+### 4.5.1. Target Groups
 
 - EC2 instances.
 - IP Addresses - must be private IPs.
@@ -230,43 +240,46 @@
 # 5. Sticky Sessions (Session Affinity)
 
 - It is possible to implement stickiness so that the same client is always redirected to the same instance behind a load balancer.
-- This works for Classic Load Balancers & Application Load Balancers.
-- The "cookie" used for stickiness has an expiration date you control.
+- **This works for**
+  - Classic Load Balancer.
+  - Application Load Balancer.
+  - Network Load Balancer.
+- For both CLB & ALB, the "cookie" used for stickiness has an expiration date you control.
 - Use case: make sure the user doesn't lose his session data.
 - Enabling stickiness may bring imbalance to the load over the backend EC2 instances.
 
 ## 5.1. Sticky Sessions - Cookie Names
 
-- **Application-based Cookies:**
-  - **Custom cookie:**
+- **Application-based Cookies**
+  - **Custom cookie**
     - Generated by the target.
     - Can include any custom attributes required by the application.
     - Cookie name must be specified individually for each target group.
-    - Don't use **AWSALB, AWSALBAPP, or AWSALBTG** (reserved for use by the ELB).
-  - **Application cookie:**
+    - Don't use `AWSALB`, `AWSALBAPP`, or `AWSALBTG` (reserved for use by the ELB).
+  - **Application cookie**
     - Generated by the load balancer.
-    - Cookie name is AWSALBAPP.
-- **Duration-based Cookies:**
+    - Cookie name is `AWSALBAPP`.
+- **Duration-based Cookies**
   - Cookie generated by the load balancer.
-  - Cookie name is **AWSALB** for ALB, **AWSELB** for CLB.
+  - Cookie name is `AWSALB` for ALB, `AWSELB` for CLB.
 
 # 6. Cross-Zone Load Balancing
 
 - With Cross Zone Load Balancing: Each load balancer instance distributes evenly
   across all registered instances in all AZ.
-  ![With Cross Zone Load Balancing](/Images/AWSELBWithCrossZone.png)
+  ![With Cross Zone Load Balancing](/Images/Compute/AWSELBWithCrossZone.png)
 
 - Without Cross Zone Load Balancing: Requests are distributed in the instances of the
   node of the Elastic Load Balancer.
-  ![Without Cross Zone Load Balancing](/Images/AWSELBWithoutCrossZone.png)
+  ![Without Cross Zone Load Balancing](/Images/Compute/AWSELBWithoutCrossZone.png)
 
-- **Application Load Balancer:**
+- **Application Load Balancer**
   - Always on (can't be disabled).
   - No charges for inter AZ data.
-- **Network Load Balancer:**
+- **Network Load Balancer**
   - Disabled by default.
   - You pay charges ($) for inter AZ data if enabled.
-- **Classic Load Balancer:**
+- **Classic Load Balancer**
   - Disabled by default.
   - No charges for inter AZ data if enabled.
 
@@ -297,25 +310,25 @@
 - SNI solves the problem of loading **multiple SSL certificates onto one web server** (to serve multiple websites).
 - It's a "newer" protocol, and requires the client to **indicate** the hostname of the target server in the initial SSL handshake.
 - The server will then find the correct certificate, or return the default one.
-- Note:
+- **Note**
   - Only works for ALB & NLB (newer generation), CloudFront.
   - Does not work for CLB (older gen).
 
 ## 7.3. Elastic Load Balancers - SSL Certificates
 
-- **Classic Load Balancer (v1):**
+- **Classic Load Balancer (v1)**
   - Support only one SSL certificate.
   - Must use multiple CLB for multiple hostname with multiple SSL certificates.
-- **Application Load Balancer (v2):**
+- **Application Load Balancer (v2)**
   - Supports multiple listeners with multiple SSL certificates.
   - Uses Server Name Indication (SNI) to make it work.
-- **Network Load Balancer (v2):**
+- **Network Load Balancer (v2)**
   - Supports multiple listeners with multiple SSL certificates.
   - Uses Server Name Indication (SNI) to make it work.
 
 # 8. Connection Draining
 
-- **Feature naming:**
+- **Feature naming**
   - Connection Draining - for CLB.
   - Deregistration Delay - for ALB & NLB.
 - Time to complete "in-flight requests" while the instance is de-registering or unhealthy.

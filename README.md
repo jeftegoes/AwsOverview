@@ -845,7 +845,7 @@
   - Size constraints, **geo-match (block countries)**.
   - Rate-based rules (to count occurrences of events) - for DDoS protection.
 
-[AWS WAF](AWS%20WAF.md)
+[AWS WAF](/Security,%20Identity,%20&%20Compliance/AWS%20WAF.md)
 
 ## 12.5. Penetration Testing on AWS Cloud
 
@@ -880,12 +880,12 @@
 
 ## 12.7. AWS KMS (Key Management Service)
 
-- [AWS KMS](AWS%20KMS.md)
+- [AWS KMS](/Security,%20Identity,%20&%20Compliance/AWS%20KMS.md)
 
 ## 12.8. AWS Certificate Manager (ACM)
 
 - **AWS Certificate Manager is a service that lets you easily provision, manage, and deploy public and private Secure Sockets Layer/Transport Layer Security (SSL/TLS) certificates for use with AWS services and your internal connected resources.**
-  [AWS ACM](AWS%20ACM.md)
+  [AWS ACM](/Security,%20Identity,%20&%20Compliance/AWS%20Certificate%20Manager.md)
 
 ## 12.9. AWS Secrets Manager
 
@@ -906,20 +906,7 @@
 
 ## 12.11. Amazon GuardDuty
 
-- **Amazon GuardDuty is a threat detection service that continuously monitors for malicious activity and unauthorized behavior to protect your AWS accounts and workloads.**
-- Intelligent Threat discovery to Protect AWS Account.
-- Uses Machine Learning algorithms, anomaly detection, 3rd party data.
-- One click to enable (30 days trial), no need to install software.
-- Input data includes:
-  - CloudTrail Events Logs - unusual API calls, unauthorized deployments.
-    - CloudTrail Management Events - create VPC subnet, create trail, ...
-    - CloudTrail S3 Data Events - get object, list objects, delete object, ...
-  - VPC Flow Logs - unusual internal traffic, unusual IP address.
-  - DNS Logs - compromised EC2 instances sending encoded data within DNS queries.
-  - Kubernetes Audit Logs - suspicious activities and potential EKS cluster compromises.
-- Can setup CloudWatch Event rules to be notified in case of findings.
-- CloudWatch Events rules can target AWS Lambda or SNS.
-- Can protect against CryptoCurrency attacks (has a dedicated "finding" for it).
+- **Amazon GuardDuty is a threat detection service that continuously monitors for malicious activity and unauthorized behavior to protect your AWS accounts and workloads.** [Amazon GuardDuty](/Security,%20Identity,%20&%20Compliance/Amazon%20GuardDuty.md)
 
 ## 12.12. Amazon Inspector
 

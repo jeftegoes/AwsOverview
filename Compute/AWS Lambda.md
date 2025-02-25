@@ -85,25 +85,25 @@
 
 ## 1.1. Serverless in AWS
 
-- [AWS Lambda](AWS%20Lambda.md)
+- [AWS Lambda](/Compute/AWS%20Lambda.md)
 - [Amazon DynamoDB](/Database/Amazon%20DynamoDB.md)
 - [Amazon Cognito](/Security,%20Identity,%20&%20Compliance/Amazon%20Cognito.md)
-- AWS API Gateway
+- [Amazon API Gateway](/Networking%20&%20Content%20Delivery/Amazon%20API%20Gateway.md)
 - [Amazon S3](/Storage/Amazon%20S3.md)
 - Amazon SNS & SQS
 - AWS Kinesis Data Firehose
 - Aurora Serverless
 - [Step Functions](/Application%20Integration/AWS%20Step%20Functions.md)
-- ECS/Fargate
+- [ECS/Fargate](/Containers/Amazon%20ECS.md)
 
 # 2. Why AWS Lambda?
 
-- Amazon EC2:
+- **Amazon EC2**
   - Virtual Servers in the Cloud.
   - Limited by RAM and CPU.
   - Continuously running.
   - Scaling means intervention to add / remove servers.
-- Amazon Lambda:
+- **Amazon Lambda**
   - Virtual **functions** - no servers to manage!
   - Limited by time - **short executions**.
   - Run **on-demand**.

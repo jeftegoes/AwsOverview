@@ -29,7 +29,7 @@
 
 - In real-life, the load on your websites and application can change.
 - In the cloud, you can create and get rid of servers very quickly.
-- The goal of an Auto Scaling Group (ASG) is to:
+- **The goal of an Auto Scaling Group (ASG) is to**
   - Scale out (add EC2 instances) to match an increased load.
   - Scale in (remove EC2 instances) to match a decreased load.
   - Ensure we have a minimum and a maximum number of machines running.
@@ -57,7 +57,7 @@
 - It is possible to scale an ASG based on CloudWatch alarms.
 - An alarm monitors a metric (such as **Average CPU**, or a **custom metric**).
 - Metrics such as Average CPU are computed for the overall ASG instances.
-- Based on the alarm:
+- **Based on the alarm**
   - We can create scale-out policies (increase the number of instances).
   - We can create scale-in policies (decrease the number of instances).
 
@@ -135,7 +135,7 @@
     - When a CloudWatch alarm is triggered (example CPU > 70%), then add 2 units
     - When a CloudWatch alarm is triggered (example CPU < 30%), then remove 1
 - Target Tracking Scaling
-  - Example: I want the average ASG CPU to stay at around 40%
+  - Example: I want the **average** ASG CPU to stay at around 40%
 - Scheduled Scaling
   - Anticipate a scaling based on known usage patterns
   - Example: increase the min. capacity to 10 at 5 pm on Fridays
