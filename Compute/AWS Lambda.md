@@ -8,72 +8,76 @@
 - [3. Benefits of AWS Lambda](#3-benefits-of-aws-lambda)
 - [4. Language support](#4-language-support)
 - [5. Function resource names](#5-function-resource-names)
-- [6. Pricing: example](#6-pricing-example)
-- [7. Lifecycle execution](#7-lifecycle-execution)
-- [8. Invocations types](#8-invocations-types)
-- [9. Synchronous Invocations](#9-synchronous-invocations)
-  - [9.1. Services](#91-services)
-  - [9.2. Lambda Integration with ALB](#92-lambda-integration-with-alb)
-    - [9.2.1. ALB to Lambda: HTTP to JSON](#921-alb-to-lambda-http-to-json)
-    - [9.2.2. ALB Multi-Header Values](#922-alb-multi-header-values)
-  - [9.3. Lambda@Edge](#93-lambdaedge)
-    - [9.3.1. Lambda@Edge: Global application](#931-lambdaedge-global-application)
-    - [9.3.2. Lambda@Edge: Use Cases](#932-lambdaedge-use-cases)
-- [10. Asynchronous Invocations](#10-asynchronous-invocations)
+- [6. Examples](#6-examples)
+  - [6.1. Thumbnail creation](#61-thumbnail-creation)
+  - [6.2. CRON Job](#62-cron-job)
+- [7. Pricing](#7-pricing)
+- [8. Lifecycle execution](#8-lifecycle-execution)
+- [9. Invocations types](#9-invocations-types)
+- [10. Synchronous Invocations](#10-synchronous-invocations)
   - [10.1. Services](#101-services)
-  - [10.2. CloudWatch Events / EventBridge](#102-cloudwatch-events--eventbridge)
-  - [10.3. S3 Events Notifications](#103-s3-events-notifications)
-    - [10.3.1. Simple S3 Event Pattern - Metadata Sync](#1031-simple-s3-event-pattern---metadata-sync)
-- [11. Lambda - Event Source Mapping](#11-lambda---event-source-mapping)
-  - [11.1. Streams \& Lambda (Kinesis \& DynamoDB)](#111-streams--lambda-kinesis--dynamodb)
-  - [11.2. Streams \& Lambda - Error Handling](#112-streams--lambda---error-handling)
-  - [11.3. Lambda - Event Source Mapping SQS \& SQS FIFO](#113-lambda---event-source-mapping-sqs--sqs-fifo)
-  - [11.4. Queues \& Lambda](#114-queues--lambda)
-  - [11.5. Lambda Event Mapper Scaling](#115-lambda-event-mapper-scaling)
-- [12. Event and Context Objects](#12-event-and-context-objects)
-  - [12.1. Event Object](#121-event-object)
-  - [12.2. Context Object](#122-context-object)
-- [13. Lambda - Destinations](#13-lambda---destinations)
-- [14. Lambda Execution Role (IAM Role)](#14-lambda-execution-role-iam-role)
-  - [14.1. Lambda Resource Based Policies](#141-lambda-resource-based-policies)
-- [15. Lambda Environment Variables](#15-lambda-environment-variables)
-- [16. Lambda Logging \& Monitoring](#16-lambda-logging--monitoring)
-  - [16.1. Lambda Tracing with X-Ray](#161-lambda-tracing-with-x-ray)
-- [17. Customization At The Edge](#17-customization-at-the-edge)
-  - [17.2. CloudFront Functions](#172-cloudfront-functions)
-  - [17.3. Lambda@Edge](#173-lambdaedge)
-  - [17.4. CloudFront Functions vs. Lambda@Edge](#174-cloudfront-functions-vs-lambdaedge)
-  - [17.5. CloudFront Functions vs. Lambda@Edge - Use Cases](#175-cloudfront-functions-vs-lambdaedge---use-cases)
-- [18. Lambda in VPC](#18-lambda-in-vpc)
-  - [18.1. Lambda in VPC - Internet Access](#181-lambda-in-vpc---internet-access)
-- [19. Lambda Function Configuration](#19-lambda-function-configuration)
-  - [19.1. Lambda Execution Context](#191-lambda-execution-context)
-  - [19.2. Lambda Functions /tmp space](#192-lambda-functions-tmp-space)
-- [20. File Systems Mounting](#20-file-systems-mounting)
-- [21. Lambda Concurrency and Throttling](#21-lambda-concurrency-and-throttling)
-  - [21.1. Lambda Concurrency Issue](#211-lambda-concurrency-issue)
-  - [21.2. Concurrency and Asynchronous Invocations](#212-concurrency-and-asynchronous-invocations)
-  - [21.3. Cold Starts and Provisioned Concurrency](#213-cold-starts-and-provisioned-concurrency)
-  - [21.4. Reserved and Provisioned Concurrency](#214-reserved-and-provisioned-concurrency)
-- [22. Lambda Function Dependencies](#22-lambda-function-dependencies)
-- [23. Lambda and CloudFormation](#23-lambda-and-cloudformation)
-  - [23.1. Inline](#231-inline)
-  - [23.2. Through S3](#232-through-s3)
-    - [23.2.1. through S3 Multiple accounts](#2321-through-s3-multiple-accounts)
-- [24. Lambda Layers](#24-lambda-layers)
-- [25. Custom Runtimes](#25-custom-runtimes)
-- [26. Lambda Container Images](#26-lambda-container-images)
-  - [26.1. Prerequisites](#261-prerequisites)
-  - [26.2. Lambda Container Images](#262-lambda-container-images)
-- [27. Versions](#27-versions)
-- [28. Aliases](#28-aliases)
-- [29. Lambda and CodeDeploy](#29-lambda-and-codedeploy)
-- [30. Function URL](#30-function-url)
-  - [30.1. Function URL Security](#301-function-url-security)
-- [31. Lambda and CodeGuru Profiling](#31-lambda-and-codeguru-profiling)
-- [32. AWS Lambda Limits to Know - per region](#32-aws-lambda-limits-to-know---per-region)
-- [33. AWS Lambda Best Practices](#33-aws-lambda-best-practices)
-- [34. Error creating a lambda function via CLI](#34-error-creating-a-lambda-function-via-cli)
+  - [10.2. Lambda Integration with ALB](#102-lambda-integration-with-alb)
+    - [10.2.1. ALB to Lambda: HTTP to JSON](#1021-alb-to-lambda-http-to-json)
+    - [10.2.2. ALB Multi-Header Values](#1022-alb-multi-header-values)
+  - [10.3. Lambda@Edge](#103-lambdaedge)
+    - [10.3.1. Lambda@Edge: Global application](#1031-lambdaedge-global-application)
+    - [10.3.2. Lambda@Edge: Use Cases](#1032-lambdaedge-use-cases)
+- [11. Asynchronous Invocations](#11-asynchronous-invocations)
+  - [11.1. Services](#111-services)
+  - [11.2. CloudWatch Events / EventBridge](#112-cloudwatch-events--eventbridge)
+  - [11.3. S3 Events Notifications](#113-s3-events-notifications)
+    - [11.3.1. Simple S3 Event Pattern - Metadata Sync](#1131-simple-s3-event-pattern---metadata-sync)
+- [12. Lambda - Event Source Mapping](#12-lambda---event-source-mapping)
+  - [12.1. Streams \& Lambda (Kinesis \& DynamoDB)](#121-streams--lambda-kinesis--dynamodb)
+  - [12.2. Streams \& Lambda - Error Handling](#122-streams--lambda---error-handling)
+  - [12.3. Lambda - Event Source Mapping SQS \& SQS FIFO](#123-lambda---event-source-mapping-sqs--sqs-fifo)
+  - [12.4. Queues \& Lambda](#124-queues--lambda)
+  - [12.5. Lambda Event Mapper Scaling](#125-lambda-event-mapper-scaling)
+- [13. Event and Context Objects](#13-event-and-context-objects)
+  - [13.1. Event Object](#131-event-object)
+  - [13.2. Context Object](#132-context-object)
+- [14. Lambda - Destinations](#14-lambda---destinations)
+- [15. Lambda Execution Role (IAM Role)](#15-lambda-execution-role-iam-role)
+  - [15.1. Lambda Resource Based Policies](#151-lambda-resource-based-policies)
+- [16. Lambda Environment Variables](#16-lambda-environment-variables)
+- [17. Lambda Logging \& Monitoring](#17-lambda-logging--monitoring)
+  - [17.1. Lambda Tracing with X-Ray](#171-lambda-tracing-with-x-ray)
+- [18. Customization At The Edge](#18-customization-at-the-edge)
+  - [18.1. CloudFront Functions](#181-cloudfront-functions)
+  - [18.2. Lambda@Edge](#182-lambdaedge)
+  - [18.3. CloudFront Functions vs. Lambda@Edge](#183-cloudfront-functions-vs-lambdaedge)
+  - [18.4. CloudFront Functions vs. Lambda@Edge - Use Cases](#184-cloudfront-functions-vs-lambdaedge---use-cases)
+- [19. Lambda in VPC](#19-lambda-in-vpc)
+  - [19.1. Lambda in VPC - Internet Access](#191-lambda-in-vpc---internet-access)
+- [20. Lambda Function Configuration](#20-lambda-function-configuration)
+  - [20.1. Lambda Execution Context](#201-lambda-execution-context)
+  - [20.2. Lambda Functions /tmp space](#202-lambda-functions-tmp-space)
+- [21. File Systems Mounting](#21-file-systems-mounting)
+- [22. Lambda Concurrency and Throttling](#22-lambda-concurrency-and-throttling)
+  - [22.1. Lambda Concurrency Issue](#221-lambda-concurrency-issue)
+  - [22.2. Concurrency and Asynchronous Invocations](#222-concurrency-and-asynchronous-invocations)
+  - [22.3. Cold Starts and Provisioned Concurrency](#223-cold-starts-and-provisioned-concurrency)
+  - [22.4. Reserved and Provisioned Concurrency](#224-reserved-and-provisioned-concurrency)
+- [23. SnapStart](#23-snapstart)
+- [24. Lambda Function Dependencies](#24-lambda-function-dependencies)
+- [25. Lambda and CloudFormation](#25-lambda-and-cloudformation)
+  - [25.1. Inline](#251-inline)
+  - [25.2. Through S3](#252-through-s3)
+    - [25.2.1. through S3 Multiple accounts](#2521-through-s3-multiple-accounts)
+- [26. Lambda Layers](#26-lambda-layers)
+- [27. Custom Runtimes](#27-custom-runtimes)
+- [28. Lambda Container Images](#28-lambda-container-images)
+  - [28.1. Prerequisites](#281-prerequisites)
+  - [28.2. Lambda Container Images](#282-lambda-container-images)
+- [29. Versions](#29-versions)
+- [30. Aliases](#30-aliases)
+- [31. Lambda and CodeDeploy](#31-lambda-and-codedeploy)
+- [32. Function URL](#32-function-url)
+  - [32.1. Function URL Security](#321-function-url-security)
+- [33. Lambda and CodeGuru Profiling](#33-lambda-and-codeguru-profiling)
+- [34. AWS Lambda Limits to Know - per region](#34-aws-lambda-limits-to-know---per-region)
+- [35. AWS Lambda Best Practices](#35-aws-lambda-best-practices)
+- [36. Error creating a lambda function via CLI](#36-error-creating-a-lambda-function-via-cli)
 
 # 1. What's serverless?
 
@@ -111,29 +115,28 @@
 
 # 3. Benefits of AWS Lambda
 
-- Easy Pricing:
+- **Easy Pricing**
   - Pay per request and compute time.
   - Free tier of 1,000,000 AWS Lambda requests and 400,000 GBs of compute time.
 - Integrated with the whole AWS suite of services.
-- **Event-Driven**: functions get invoked by AWS when needed.
+- **Event-Driven**: Functions get invoked by AWS when needed.
 - Integrated with many programming languages.
-- Easy monitoring through Amazon CloudWatch.
+- Easy monitoring through [Amazon CloudWatch](/Management%20&%20Governance/Amazon%20CloudWatch.md).
 - Easy to get more resources per functions (up to 10GB of RAM!).
 - Increasing RAM will also improve CPU and network!
 
 # 4. Language support
 
-- Node.js (JavaScript)
-- Python
-- Java (Java 8 compatible)
-- C# (.NET Core)
-- Golang
-- C# / Powershell
-- Ruby
-- Custom Runtime API (community supported, example Rust)
-- Lambda Container Image
-  - The container image must implement the Lambda Runtime API
-  - ECS / Fargate is preferred for running arbitrary Docker images
+- Node.js (JavaScript).
+- Python.
+- Java.
+- C# (.NET Core) / Powershell.
+- Golang.
+- Ruby.
+- Custom Runtime API (community supported, example Rust).
+- **Lambda Container Image**
+  - The container image must implement the Lambda Runtime API.
+  - ECS / Fargate is preferred for running arbitrary Docker images.
 
 # 5. Function resource names
 
@@ -146,10 +149,20 @@
     - `arn:aws:lambda:us-west-2:123456789012:function:myFunction` `$LATEST`
     - `arn:aws:lambda:us-west-2:123456789012:function:myFunction*`
 
-# 6. Pricing: example
+# 6. Examples
 
-- You can find overall pricing information here: https://aws.amazon.com/lambda/pricing/
-- Pay per **calls**:
+## 6.1. Thumbnail creation
+
+![Thumbnail creation](/Images/Compute/AWSLambdaThumbnail.png)
+
+## 6.2. CRON Job
+
+![CRON Job](/Images/Compute/AWSLambdaCromJob.png)
+
+# 7. Pricing
+
+- You can find overall pricing information [here](https://aws.amazon.com/lambda/pricing/).
+- Pay per **calls**
   - First 1,000,000 requests are free.
   - $0.20 per 1 million requests thereafter ($0.0000002 per request).
 - Pay per **duration**: (in increment of 1 ms)
@@ -159,11 +172,11 @@
   - After that $1.00 for 600,000 GB-seconds.
 - It is usually **very cheap** to run AWS Lambda so it's **very popular**.
 
-# 7. Lifecycle execution
+# 8. Lifecycle execution
 
 ![Lifecycle execution](/Images/LambdaLifecycle.png)
 
-# 8. Invocations types
+# 9. Invocations types
 
 - In the Invoke API, you have 3 options to choose from for the InvocationType:
   - `RequestResponse` (default) - Invoke the function **synchronously**.
@@ -173,7 +186,7 @@
     - The API response only includes a status code.
   - `DryRun` - Validate parameter values and verify that the user or role has permission to invoke the function.
 
-# 9. Synchronous Invocations
+# 10. Synchronous Invocations
 
 - Synchronous:
   - CLI.
@@ -181,11 +194,11 @@
   - API Gateway.
   - Application Load Balancer.
 - Results is returned right away.
-- Error handling must happen client side (retries, [exponential backoff](AWS%20Limits.md), etc...).
+- Error handling must happen client side (retries, [exponential backoff](/AWS%20Limits.md), etc...).
 
 ![Lambda Synchronous Invocations](/Images/LambdaSynchronousInvocations.png)
 
-## 9.1. Services
+## 10.1. Services
 
 - User Invoked:
   - Elastic Load Balancing (Application Load Balancer).
@@ -193,7 +206,7 @@
   - Amazon CloudFront (Lambda@Edge).
   - Amazon S3 Batch.
 - Service Invoked:
-  - DynamoDB > Streams [DynamoDB Streams and AWS Lambda](AWS%20DynamoDB.md)
+  - DynamoDB > Streams [DynamoDB Streams and AWS Lambda](/Database/Amazon%20DynamoDB.md)
   - Amazon Cognito.
   - AWS Step Functions.
 - Other Services:
@@ -201,7 +214,7 @@
   - Amazon Alexa.
   - Amazon Kinesis Data Firehose.
 
-## 9.2. Lambda Integration with ALB
+## 10.2. Lambda Integration with ALB
 
 - To expose a Lambda function as an HTTP(S) endpoint...
 - You can use the Application Load Balancer (or an API Gateway).
@@ -209,7 +222,7 @@
 
 ![Lambda integration with ALB](/Images/LambdaIntegrationAlb.png)
 
-### 9.2.1. ALB to Lambda: HTTP to JSON
+### 10.2.1. ALB to Lambda: HTTP to JSON
 
 - Basic example:
 
@@ -220,14 +233,14 @@
   }
   ```
 
-### 9.2.2. ALB Multi-Header Values
+### 10.2.2. ALB Multi-Header Values
 
 - ALB can support multi header values (ALB setting).
 - When you enable multi-value headers, HTTP headers and query string parameters that are sent with multiple values are shown as arrays within the AWS Lambda event and response objects.
 
 ![Lambda ALB Multi-Header values](/Images/LambdaALBMultiHeaderValues.png)
 
-## 9.3. Lambda@Edge
+## 10.3. Lambda@Edge
 
 - You have deployed a CDN using CloudFront.
   - What if you wanted to run a global AWS Lambda alongside?
@@ -245,11 +258,11 @@
   - Before CloudFront forwards the response to the viewer (viewer response).
 - You can also generate responses to viewers without ever sending the request to the origin.
 
-### 9.3.1. Lambda@Edge: Global application
+### 10.3.1. Lambda@Edge: Global application
 
 ![Lambda@Edge Global Application](/Images/Lambda@EdgeGlobalApplication.png)
 
-### 9.3.2. Lambda@Edge: Use Cases
+### 10.3.2. Lambda@Edge: Use Cases
 
 - Website Security and Privacy.
 - Dynamic Web Application at the Edge.
@@ -262,7 +275,7 @@
 - User Prioritization.
 - User Tracking and Analytics.
 
-# 10. Asynchronous Invocations
+# 11. Asynchronous Invocations
 
 - S3, SNS, CloudWatch Events...
 - The events are placed in an **Event Queue**.
@@ -278,7 +291,7 @@
 
 ![Lambda Asynchronous Invocations](/Images/LambdaAsynchronousInvocations2.png)
 
-## 10.1. Services
+## 11.1. Services
 
 - Amazon Simple Storage Service (S3).
 - Amazon Simple Notification Service (SNS).
@@ -293,11 +306,11 @@
   - AWS IoT.
   - AWS IoT Events.
 
-## 10.2. CloudWatch Events / EventBridge
+## 11.2. CloudWatch Events / EventBridge
 
 ![CloudWatch Events / EventBridge](/Images/CloudWatchEventsEventBridge.png)
 
-## 10.3. S3 Events Notifications
+## 11.3. S3 Events Notifications
 
 - S3 events:
   - S3:ObjectCreated
@@ -312,9 +325,9 @@
 
 ![S3 Events Notifications](/Images/S3EventsNotifications.png)
 
-### 10.3.1. Simple S3 Event Pattern - Metadata Sync
+### 11.3.1. Simple S3 Event Pattern - Metadata Sync
 
-# 11. Lambda - Event Source Mapping
+# 12. Lambda - Event Source Mapping
 
 - Kinesis Data Streams.
 - SQS & SQS FIFO queue.
@@ -322,7 +335,7 @@
 - Common denominator: records need to be polled from the source.
 - Your Lambda function is invoked synchronously.
 
-## 11.1. Streams & Lambda (Kinesis & DynamoDB)
+## 12.1. Streams & Lambda (Kinesis & DynamoDB)
 
 - An event source mapping creates an iterator for each shard, processes items in order.
 - Start with new items, from the beginning or from timestamp.
@@ -336,7 +349,7 @@
 
 - https://aws.amazon.com/blogs/compute/new-aws-lambda-scaling-controls-for-kinesis-and-dynamodb-event-sources/
 
-## 11.2. Streams & Lambda - Error Handling
+## 12.2. Streams & Lambda - Error Handling
 
 - By default, if your function returns an error, the entire batch is reprocessed until the function succeeds, or the items in the batch expire.
 - To ensure in-order processing, processing for the affected shard is paused until the error is resolved.
@@ -346,7 +359,7 @@
   - Split the batch on error (to work around Lambda timeout issues).
 - Discarded events can go to a **Destination**.
 
-## 11.3. Lambda - Event Source Mapping SQS & SQS FIFO
+## 12.3. Lambda - Event Source Mapping SQS & SQS FIFO
 
 - Event Source Mapping will poll SQS (**Long Polling**).
 - Specify batch size (1-10 messages).
@@ -355,7 +368,7 @@
   - Set-up on the SQS queue, not Lambda (DLQ for Lambda is only for async invocations).
   - Or use a Lambda destination for failures.
 
-## 11.4. Queues & Lambda
+## 12.4. Queues & Lambda
 
 - Lambda also supports in-order processing for FIFO (first-in, first-out) queues, scaling up to the number of active message groups.
 - For standard queues, items aren't necessarily processed in order.
@@ -365,7 +378,7 @@
 - Lambda deletes items from the queue after they're processed successfully.
 - You can configure the source queue to send items to a dead-letter queue if they can't be processed.
 
-## 11.5. Lambda Event Mapper Scaling
+## 12.5. Lambda Event Mapper Scaling
 
 - **Kinesis Data Streams & DynamoDB Streams:**
   - One Lambda invocation per stream shard
@@ -377,9 +390,9 @@
   - Messages with the same GroupID will be processed in order
   - The Lambda function scales to the number of active message groups
 
-# 12. Event and Context Objects
+# 13. Event and Context Objects
 
-## 12.1. Event Object
+## 13.1. Event Object
 
 - JSON-formatted document contains data for the function to process.
 - Contains information from the invoking service (e.g., EventBridge, custom, ...).
@@ -408,7 +421,7 @@
   }
   ```
 
-## 12.2. Context Object
+## 13.2. Context Object
 
 - Provides methods and properties that provide information about the invocation, function, and runtime environment.
 - Passed to your function by Lambda at runtime.
@@ -426,7 +439,7 @@
     }
   ```
 
-# 13. Lambda - Destinations
+# 14. Lambda - Destinations
 
 - Nov 2019: Can configure to send result to a **destination**.
 - Asynchronous invocations - can define destinations for successful and failed event:
@@ -447,7 +460,7 @@
 - https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html
 - https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html
 
-# 14. Lambda Execution Role (IAM Role)
+# 15. Lambda Execution Role (IAM Role)
 
 - Grants the Lambda function permissions to AWS services / resources.
 - Sample managed policies for Lambda:
@@ -460,7 +473,7 @@
 - **When you use an event source mapping to invoke your function, Lambda uses the execution role to read event data.**
 - Best practice: Create one Lambda Execution Role per function.
 
-## 14.1. Lambda Resource Based Policies
+## 15.1. Lambda Resource Based Policies
 
 - Use resource-based policies to give other accounts and AWS services permission to use your Lambda resources.
 - Similar to S3 bucket policies for S3 bucket.
@@ -469,7 +482,7 @@
   - OR if the resource-based policy authorizes (e.g. service access).
 - When an AWS service like Amazon S3 calls your Lambda function, the resource-based policy gives it access.
 
-# 15. Lambda Environment Variables
+# 16. Lambda Environment Variables
 
 - Environment variable = key / value pair in "String" form.
 - Adjust the function behavior without updating code.
@@ -478,7 +491,7 @@
 - Helpful to store secrets (encrypted by KMS).
 - Secrets can be encrypted by the Lambda service key, or your own CMK.
 
-# 16. Lambda Logging & Monitoring
+# 17. Lambda Logging & Monitoring
 
 - CloudWatch Logs:
   - AWS Lambda execution logs are stored in Amazon CloudWatch Logs.
@@ -490,7 +503,7 @@
   - Async Delivery Failures.
   - Iterator Age (Kinesis & DynamoDB Streams).
 
-## 16.1. Lambda Tracing with X-Ray
+## 17.1. Lambda Tracing with X-Ray
 
 - Enable in Lambda configuration **(Active Tracing)**.
 - Runs the X-Ray daemon for you.
@@ -502,10 +515,10 @@
   - `AWS_XRAY_CONTEXT_MISSING` - By default, LOG_ERROR
   - `AWS_XRAY_DAEMON_ADDRESS` - The X-Ray Daemon IP_ADDRESS:PORT
 
-# 17. Customization At The Edge
+# 18. Customization At The Edge
 
 - Many modern applications execute some form of the logic at the edge.
-- **Edge Function:**
+- **Edge Function**
   - A code that you write and attach to CloudFront distributions.
   - Runs close to your users to minimize latency.
 - CloudFront provides two types: **CloudFront Functions** & **Lambda@Edge**.
@@ -514,17 +527,17 @@
 - Pay only for what you use.
 - Fully serverless.
 
-## 17.2. CloudFront Functions
+## 18.1. CloudFront Functions
 
 - Lightweight functions written in JavaScript.
 - For high-scale, latency-sensitive CDN customizations.
 - Sub-ms startup times, **millions of requests/second**.
 - Used to change Viewer requests and responses:
-  - **Viewer Request:** after CloudFront receives a request from a viewer.
-  - **Viewer Response:** before CloudFront forwards the response to the viewer.
+  - **Viewer Request:** After CloudFront receives a request from a viewer.
+  - **Viewer Response:** Before CloudFront forwards the response to the viewer.
 - Native feature of CloudFront (manage code entirely within CloudFront).
 
-## 17.3. Lambda@Edge
+## 18.2. Lambda@Edge
 
 - Lambda functions written in NodeJS or Python.
 - Scales to **1000s of requests/second**.
@@ -535,7 +548,7 @@
   - **Viewer Response:** Before CloudFront forwards the response to the viewer.
 - Author your functions in one AWS Region (us-east-1), then CloudFront replicates to its locations.
 
-## 17.4. CloudFront Functions vs. Lambda@Edge
+## 18.3. CloudFront Functions vs. Lambda@Edge
 
 |                                    | CloudFront Functions                      | Lambda@Edge                                       |
 | ---------------------------------- | ----------------------------------------- | ------------------------------------------------- |
@@ -549,7 +562,7 @@
 | Access to the Request Body         | No                                        | Yes                                               |
 | Pricing                            | Free tier available, 1/6th price of @Edge | No free tier, charged per request & duration      |
 
-## 17.5. CloudFront Functions vs. Lambda@Edge - Use Cases
+## 18.4. CloudFront Functions vs. Lambda@Edge - Use Cases
 
 | CloudFront Functions                                                                               | Lambda@Edge                                                                       |
 | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
@@ -561,7 +574,7 @@
 | Request authentication & authorization                                                             |                                                                                   |
 | Create and validate user-generated tokens (e.g., JWT) to allow/deny requests                       |                                                                                   |
 
-# 18. Lambda in VPC
+# 19. Lambda in VPC
 
 - By default, your Lambda function is launched outside your own VPC (in an AWS-owned VPC).
 - Therefore it cannot access resources in your VPC (RDS, ElastiCache, internal ELB...).
@@ -569,14 +582,14 @@
 - Lambda will create an ENI (Elastic Network Interface) in your subnets.
 - **AWSLambdaVPCAccessExecutionRole**
 
-## 18.1. Lambda in VPC - Internet Access
+## 19.1. Lambda in VPC - Internet Access
 
 - A Lambda function in your VPC does not have internet access.
 - Deploying a Lambda function in a public subnet does not give it internet access or a public IP.
 - Deploying a Lambda function in a private subnet gives it internet access if you have a NAT Gateway / Instance.
 - You can use VPC endpoints to privately access AWS services without a NAT.
 
-# 19. Lambda Function Configuration
+# 20. Lambda Function Configuration
 
 - **RAM:**
   - From 128MB to 10GB in 1MB increments
@@ -586,7 +599,7 @@
 - **If your application is CPU-bound (computation heavy), increase RAM.**
 - **Timeout:** default 3 seconds, maximum is 900 seconds (15 minutes)
 
-## 19.1. Lambda Execution Context
+## 20.1. Lambda Execution Context
 
 - The **execution context** is a temporary runtime environment that initializes any external dependencies of your lambda code.
 - Great for database connections, HTTP clients, SDK clients...
@@ -594,7 +607,7 @@
 - The next function invocation can "re-use" the context to execution time and save time in initializing connections objects.
 - The **execution context** includes the _/tmp_ directory.
 
-## 19.2. Lambda Functions /tmp space
+## 20.2. Lambda Functions /tmp space
 
 - If your Lambda function needs to download a big file to work...
 - If your Lambda function needs disk space to perform operations...
@@ -603,34 +616,36 @@
 - The directory content remains when the **execution context** is frozen, providing transient cache that can be used for multiple invocations (helpful to checkpoint your work).
 - For permanent persistence of object (non temporary), use S3.
 
-# 20. File Systems Mounting
+# 21. File Systems Mounting
 
 - Lambda functions can access EFS file systems if they are running in a VPC.
 - Configure Lambda to mount EFS file systems to local directory during initialization.
 - Must leverage EFS Access Points.
 - Limitations: watch out for the EFS connection limits (one function instance = one connection) and connection burst limits.
 
-# 21. Lambda Concurrency and Throttling
+# 22. Lambda Concurrency and Throttling
 
 - Concurrency limit: **up to 1000** concurrent executions.
 - Can set a **reserved concurrency** at the function level (=limit).
 - Each invocation over the concurrency limit will trigger a "Throttle".
-- Throttle behavior:
+- **Throttle behavior**
   - If synchronous invocation => return ThrottleError - 429.
   - If asynchronous invocation => retry automatically and then go to DLQ.
 - If you need a higher limit, open a support ticket.
 
-## 21.1. Lambda Concurrency Issue
+## 22.1. Lambda Concurrency Issue
 
 - If you don't reserve (=limit) concurrency, the following can happen:
 
-## 21.2. Concurrency and Asynchronous Invocations
+![AWS Lambda Concurrency Issue](/Images/Compute/AWSLambdaConcurrencyIssue.png)
+
+## 22.2. Concurrency and Asynchronous Invocations
 
 - If the function doesn't have enough concurrency available to process all events, additional requests are throttled.
 - For throttling errors (429) and system errors (500-series), Lambda returns the event to the queue and attempts to run the function again for up to 6 hours.
 - The retry interval increases exponentially from 1 second after the first attempt to a maximum of 5 minutes.
 
-## 21.3. Cold Starts and Provisioned Concurrency
+## 22.3. Cold Starts and Provisioned Concurrency
 
 - **Cold Start**
   - New instance => code is loaded and code outside the handler run (init).
@@ -644,13 +659,22 @@
   - Note: cold starts in VPC have been dramatically reduced in Oct & Nov 2019.
   - https://aws.amazon.com/blogs/compute/announcing-improved-vpc-networking-for-aws-lambda-functions/
 
-![AWS Lambda Function Cold Start](/Images/AWSLambdaFunctionColdStart.png)
+![AWS Lambda Function Cold Start](/Images/Compute/AWSLambdaFunctionColdStart.png)
 
-## 21.4. Reserved and Provisioned Concurrency
+## 22.4. Reserved and Provisioned Concurrency
 
 https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
 
-# 22. Lambda Function Dependencies
+# 23. SnapStart
+
+- Improves your Lambda functions performance up to 10x at no extra cost for Java, Python & .NET.
+- When enabled, function is invoked from a pre-initialized state (no function initialization from scratch).
+- **When you publish a new version**
+  - Lambda initializes your function.
+  - Takes a snapshot of memory and disk state of the initialized function.
+  - Snapshot is cached for low-latency access.
+
+# 24. Lambda Function Dependencies
 
 - If your Lambda function depends on external libraries: for example AWS X-Ray SDK, Database Clients, etc...
 - You need to install the packages alongside your code and zip it together:
@@ -661,9 +685,9 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
 - Native libraries work: they need to be compiled on Amazon Linux.
 - AWS SDK comes by default with every Lambda function.
 
-# 23. Lambda and CloudFormation
+# 25. Lambda and CloudFormation
 
-## 23.1. Inline
+## 25.1. Inline
 
 - Inline functions are very simple.
 - Use the `Code.ZipFile` property.
@@ -681,7 +705,7 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
                 print("Event: %s" % json.dumps(event))
   ```
 
-## 23.2. Through S3
+## 25.2. Through S3
 
 - You must store the Lambda zip in S3.
 - You must refer the S3 zip location in the CloudFormation code:
@@ -700,13 +724,13 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
           S3Key: !Sub '${QSS3KeyPrefix}functions/packages/MyFunction/lambda.zip'
   ```
 
-### 23.2.1. through S3 Multiple accounts
+### 25.2.1. through S3 Multiple accounts
 
-# 24. Lambda Layers
+# 26. Lambda Layers
 
 - Externalize Dependencies to re-use them.
 
-# 25. Custom Runtimes
+# 27. Custom Runtimes
 
 - You can implement an AWS Lambda runtime in any programming language.
 - A runtime is a program that runs a Lambda function's handler method when the function is invoked.
@@ -717,7 +741,7 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
 - C++ and Rust
   - **Take note that this programming language is not natively supported yet in Lambda, which is why the use of a Custom Runtime is essential.**
 
-# 26. Lambda Container Images
+# 28. Lambda Container Images
 
 - AWS provides a set of open-source base images that you can use to create your container image.
   - These base images include a **runtime interface client** to manage the interaction between Lambda and your function code.
@@ -729,7 +753,7 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
 - Test the containers locally using the **Lambda Runtime Interface Emulator**.
 - Unified workflow to build apps.
 
-## 26.1. Prerequisites
+## 28.1. Prerequisites
 
 1. The container image must **implement the Lambda Runtime API**.
    - The AWS open-source **runtime interface clients** implement the API.
@@ -742,7 +766,7 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
 5. Lambda provides multi-architecture base images. However, the image you build for your function must target only one of the architectures.
    - Lambda does not support functions that use multi-architecture container images.
 
-## 26.2. Lambda Container Images
+## 28.2. Lambda Container Images
 
 - Example: build from the base images provided by AWS:
 
@@ -760,7 +784,7 @@ RUN npm install
 CMD ["app.lambdaHandler"]
 ```
 
-# 27. Versions
+# 29. Versions
 
 - When you work on a Lambda function, we work on `$LATEST`.
 - When we're ready to publish a Lambda function, we create a version.
@@ -770,7 +794,7 @@ CMD ["app.lambdaHandler"]
 - Version = code + configuration (nothing can be changed - immutable).
 - Each version of the lambda function can be accessed.
 
-# 28. Aliases
+# 30. Aliases
 
 - Aliases are "pointers" to Lambda function versions.
 - We can define a "dev", "test", "prod" aliases and have them point at different lambda versions.
@@ -780,7 +804,7 @@ CMD ["app.lambdaHandler"]
 - Aliases have their own ARNs.
 - **Aliases cannot reference aliases.**
 
-# 29. Lambda and CodeDeploy
+# 31. Lambda and CodeDeploy
 
 - **CodeDeploy** can help you automate traffic shift for Lambda aliases.
 - Feature is integrated within the SAM framework `routing-config`.
@@ -799,7 +823,7 @@ CMD ["app.lambdaHandler"]
 
 ![Canary deploy](/Images/LambdaCanaryDeploy.png)
 
-# 30. Function URL
+# 32. Function URL
 
 - **Dedicated** HTTP(S) endpoint for your Lambda function.
 - A unique URL endpoint is generated for you (never changes).
@@ -814,7 +838,7 @@ CMD ["app.lambdaHandler"]
 
 ![Lambda Function URL](/Images/LambdaFunctionURL.png)
 
-## 30.1. Function URL Security
+## 32.1. Function URL Security
 
 - **Resource-based Policy**
   - Authorize other accounts / specific CIDR / IAM principals.
@@ -832,7 +856,7 @@ CMD ["app.lambdaHandler"]
 
 ![Lambda secutiry options](/Images/LambdaFunctionURLSecutiryOptions.png)
 
-# 31. Lambda and CodeGuru Profiling
+# 33. Lambda and CodeGuru Profiling
 
 - Gain insights into runtime performance of your Lambda functions using CodeGuru Profiler.
 - CodeGuru creates a Profiler Group for your Lambda function.
@@ -843,21 +867,21 @@ CMD ["app.lambdaHandler"]
   - Environment variables to your function.
   - `AmazonCodeGuruProfilerAgentAccess` policy to your function.
 
-# 32. AWS Lambda Limits to Know - per region
+# 34. AWS Lambda Limits to Know - per region
 
-- **Execution:**
+- **Execution**
   - Memory allocation: 128 MB - 10GB (1 MB increments).
   - Maximum execution time: 900 seconds (15 minutes).
   - Environment variables (4 KB).
-  - Disk capacity in the "function container" (in /tmp): 512 MB to 10GB.
+  - Disk capacity in the "function container" (in `/tmp`): 512 MB to 10GB.
   - Concurrency executions: 1000 (can be increased).
-- **Deployment:**
-  - Lambda function deployment size (compressed .zip): 50 MB.
+- **Deployment**
+  - Lambda function deployment size (compressed `.zip`): 50 MB.
   - Size of uncompressed deployment (code + dependencies): 250 MB.
-  - Can use the /tmp directory to load other files at startup.
+  - Can use the `/tmp `directory to load other files at startup.
   - Size of environment variables: 4 KB.
 
-# 33. AWS Lambda Best Practices
+# 35. AWS Lambda Best Practices
 
 - Perform heavy-duty work outside of your function handler:
   - Connect to databases outside of your function handler.
@@ -873,7 +897,7 @@ CMD ["app.lambdaHandler"]
 - **Avoid using recursive code, never have a Lambda function call itself.**
 - Take advantage of **Execution Context** reuse to improve the performance of your function.
 
-# 34. Error creating a lambda function via CLI
+# 36. Error creating a lambda function via CLI
 
 - `InvalidParameterValueException` - Will be returned if one of the parameters in the request is invalid.
   - For example, if you provided an IAM role in the `CreateFunction` API which AWS Lambda is unable to assume.

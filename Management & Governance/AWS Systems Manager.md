@@ -146,7 +146,7 @@
 - OS updates, applications updates, security updates...
 - Supports both EC2 instances and on-premises servers.
 - Supports Linux, macOS, and Windows.
-- Patch on-demand or on a schedule using Maintenance Windows.
+- Patch on-demand or on a schedule using **Maintenance Windows**.
 - Scan instances and generate patch compliance report (missing patches).
 - Patch compliance report can be sent to S3.
 
@@ -180,7 +180,7 @@
 
 - Defines a schedule for when to perform actions on your instances.
 - Example: OS patching, updating drivers, installing software...
-- Maintenance Window contains:
+- **Maintenance Window contains**
   - Schedule.
   - Duration.
   - Set of registered instances.
@@ -191,6 +191,7 @@
 - Allows you to start a secure shell on your EC2 and on-premises servers.
 - Access through AWS Console, AWS CLI, or Session Manager SDK.
 - **Does not need SSH access, bastion hosts, or SSH keys.**
+- No port 22 needed (better security).
 - Supports Linux, macOS, and Windows.
 - Log connections to your instances and executed commands.
 - Session log data can be sent to S3 or CloudWatch Logs.

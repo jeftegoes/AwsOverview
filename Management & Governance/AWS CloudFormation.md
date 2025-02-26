@@ -5,9 +5,10 @@
 - [1. Introduction Infrastructure as Code (IaC)](#1-introduction-infrastructure-as-code-iac)
   - [1.1. What is CloudFormation](#11-what-is-cloudformation)
   - [1.2. Benefits of AWS CloudFormation](#12-benefits-of-aws-cloudformation)
-  - [1.3. How CloudFormation Works](#13-how-cloudformation-works)
-  - [1.4. Deploying CloudFormation templates](#14-deploying-cloudformation-templates)
-  - [1.5. Building Blocks](#15-building-blocks)
+  - [1.3. CloudFormation + Infrastructure Composer](#13-cloudformation--infrastructure-composer)
+  - [1.4. How CloudFormation Works](#14-how-cloudformation-works)
+  - [1.5. Deploying CloudFormation templates](#15-deploying-cloudformation-templates)
+  - [1.6. Building Blocks](#16-building-blocks)
 - [2. YAML](#2-yaml)
   - [2.1. Template anatomy](#21-template-anatomy)
   - [2.2. Resources](#22-resources)
@@ -89,9 +90,9 @@
 - CloudFormation is a declarative way of outlining your AWS Infrastructure, for any resources (most of them are supported).
 - For example, within a CloudFormation template, you say:
   - I want a security group.
-  - I want two [EC2](AWS%20EC2.md) machines using this security group.
-  - I want two Elastic IPs for these [EC2](AWS%20EC2.md) machines.
-  - I want an [S3](Amazon%20S3.md) bucket.
+  - I want two [EC2](/Compute/Amazon%20EC2.md) machines using this security group.
+  - I want two Elastic IPs for these [EC2](/Compute/Amazon%20EC2.md) machines.
+  - I want an [S3](/Storage/Amazon%20S3.md) bucket.
   - I want a load balancer (ELB) in front of these machines.
 - Then CloudFormation creates those for you, in the right order, with the exact configuration that you specify.
 
@@ -118,7 +119,13 @@
   - Leverage existing templates on the web!
   - Leverage the documentation.
 
-## 1.3. How CloudFormation Works
+## 1.3. CloudFormation + Infrastructure Composer
+
+- Example: WordPress CloudFormation Stack.
+- We can see all the resources.
+- We can see the relations between the components.
+
+## 1.4. How CloudFormation Works
 
 - Templates have to be uploaded in S3 and then referenced in CloudFormation.
 - To update a template, we can't edit previous ones.
@@ -128,7 +135,7 @@
 
 ![How CloudFormation Works](/Images/AWSCloudformationDiagram.png)
 
-## 1.4. Deploying CloudFormation templates
+## 1.5. Deploying CloudFormation templates
 
 - Manual way:
   - Editing templates in the CloudFormation Designer.
@@ -138,7 +145,7 @@
   - Using the AWS CLI (Command Line Interface) to deploy the templates.
   - Recommended way when you fully want to automate your flow.
 
-## 1.5. Building Blocks
+## 1.6. Building Blocks
 
 - **Template's components**
   - `AWSTemplateFormatVersion`: Identifies the capabilities of the template "2010-09-09".
