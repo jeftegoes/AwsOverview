@@ -8,8 +8,8 @@
   - [2.2. Security](#22-security)
   - [2.3. Producers](#23-producers)
   - [2.4. Consumers](#24-consumers)
-    - [Scaling Consumers](#scaling-consumers)
-    - [2.4.1. Consumers Types](#241-consumers-types)
+    - [2.4.1. Scaling Consumers](#241-scaling-consumers)
+    - [2.4.2. Consumers Types](#242-consumers-types)
   - [2.5. AWS Lambda](#25-aws-lambda)
 - [3. Kinesis Client Library (KCL)](#3-kinesis-client-library-kcl)
 - [4. Kinesis Adapter](#4-kinesis-adapter)
@@ -99,7 +99,7 @@
 - Custom Consumer (AWS SDK) - Classic or Enhanced Fan-Out
 - Kinesis Client Library (KCL): Library to simplify reading from data stream
 
-### Scaling Consumers
+### 2.4.1. Scaling Consumers
 
 - `GetRecords.IteratorAgeMilliseconds` (CloudWatch Metric).
   - The difference between current time and when the last record of the `GetRecords` call was written to the stream.
@@ -107,7 +107,7 @@
   - `IteratorAgeMilliseconds` = 0, then records being read are completely caught up with the Stream.
   - `IteratorAgeMilliseconds` > 0 means we're not processing the records fast enough.
 
-### 2.4.1. Consumers Types
+### 2.4.2. Consumers Types
 
 | Shared (Classic) Fan-out Consumer - pull                                 | Enhanced Fan-out Consumer - push                                      |
 | ------------------------------------------------------------------------ | --------------------------------------------------------------------- |
@@ -218,12 +218,7 @@
 
 ## 7.1. Kinesis Data Analytics for Apache Flink
 
-- Use Flink (Java, Scala or SQL) to process and analyze streaming data.
-- Run any Apache Flink application on a managed cluster on AWS:
-  - Provisioning compute resources, parallel computation, automatic scaling.
-  - Application backups (implemented as checkpoints and snapshots).
-  - Use any Apache Flink programming features.
-  - Flink does not read from Firehose (use Kinesis Analytics for SQL instead).
+[Amazon Managed Service for Apache Flink](/Analytics/Amazon%20Managed%20Service%20for%20Apache%20Flink.md)
 
 # 8. Ordering data into
 

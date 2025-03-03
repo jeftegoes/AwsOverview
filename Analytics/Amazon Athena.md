@@ -8,13 +8,12 @@
 
 # 1. Introduction
 
-- **Serverless** query service to analyze data stored in [AWS S3](Amazon%20S3.md).
+- **Serverless** query service to analyze data stored in [Amazon S3](/Storage/Amazon%20S3.md).
 - Uses standard SQL language to query the files (built on Presto).
 - Supports CSV, JSON, ORC, Avro, and Parquet.
 - Pricing: $5.00 per TB of data scanned.
 - Commonly used with Amazon Quicksight for reporting/dashboards.
 - **Use cases:** Business intelligence / analytics / reporting, analyze & query VPC Flow Logs, ELB Logs, **CloudTrail trails**, etc...
-- **Exam Tip:** Analyze data in S3 using serverless SQL, use Athena.
 
 # 2. Performance Improvement
 
@@ -37,5 +36,5 @@
 # 3. Federated Query
 
 - Allows you to run SQL queries across data stored in relational, non-relational, object, and custom data sources (AWS or on-premises).
-- Uses Data Source Connectors that run on AWS Lambda to run Federated Queries (e.g., [CloudWatch Logs](Amazon%20CloudWatch.md), [DynamoDB](AWS%20DynamoDB.md), [RDS](AWS%20RDS.md), ...).
-- Store the results back in [Amazon S3](Amazon%20S3.md).
+- Uses Data Source Connectors that run on AWS Lambda to run Federated Queries (e.g., [CloudWatch Logs](/Management%20&%20Governance/Amazon%20CloudWatch.md), [DynamoDB](/Database/Amazon%20DynamoDB.md), [RDS](/Database/Amazon%20RDS.md), ...).
+- Store the results back in [Amazon S3](/Storage/Amazon%20S3.md).

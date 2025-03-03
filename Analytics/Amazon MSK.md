@@ -1,4 +1,4 @@
-# Amazon Managed Streaming for Apache Kafka (Amazon MSK)<!-- omit in toc -->
+# Amazon Managed Streaming for Apache Kafka (Amazon MSK) <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
