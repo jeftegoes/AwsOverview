@@ -35,7 +35,6 @@
 - [7. Other Compute Services: ECS, Batch, Lightsail](#7-other-compute-services-ecs-batch-lightsail)
   - [7.1. ECS - Elastic Container Service, Fargate and ECR - Elastic Container Registry](#71-ecs---elastic-container-service-fargate-and-ecr---elastic-container-registry)
   - [7.2. AWS Batch](#72-aws-batch)
-  - [7.3. Batch vs Lambda](#73-batch-vs-lambda)
   - [7.4. Amazon Lightsail](#74-amazon-lightsail)
   - [7.5. Other Compute - Summary](#75-other-compute---summary)
 - [8. Global Infrastructure](#8-global-infrastructure)
@@ -434,31 +433,11 @@
 
 ## 7.1. ECS - Elastic Container Service, Fargate and ECR - Elastic Container Registry
 
-[AWS ECS, Fargate and ECR](AWS%20ECS.md)
+[AWS ECS, Fargate and ECR](/Containers/Amazon%20ECS.md)
 
 ## 7.2. AWS Batch
 
-- **Fully managed** batch processing at **any scale**.
-- Efficiently run 100,000s of computing batch jobs on AWS.
-- A "batch" job is a job with a start and an end (opposed to continuous).
-- Batch will dynamically launch **EC2 instances** or **Spot Instances**.
-- AWS Batch provisions the right amount of compute / memory.
-- You submit or schedule batch jobs and AWS Batch does the rest!
-- Batch jobs are defined as **Docker images** and **run on ECS**.
-- Helpful for cost optimizations and focusing less on the infrastructure.
-
-## 7.3. Batch vs Lambda
-
-- Lambda:
-  - Time limit.
-  - Limited runtimes.
-  - Limited temporary disk space.
-  - Serverless.
-- Batch:
-  - No time limit.
-  - Any runtime as long as it's packaged as a Docker image.
-  - Rely on EBS / instance store for disk space.
-  - Relies on EC2 (can be managed by AWS).
+[text](/Compute/AWS%20Batch.md)
 
 ## 7.4. Amazon Lightsail
 
@@ -546,20 +525,20 @@
 
 ## 8.7. AWS Outposts
 
-- Hybrid Cloud: businesses that keep an on-premises infrastructure alongside a cloud infrastructure.
+- **Hybrid Cloud:** Businesses that keep an on-premises infrastructure alongside a cloud infrastructure.
 - Therefore, two ways of dealing with IT systems:
   - One for the AWS cloud (using the AWS console, CLI, and AWS APIs).
   - One for their on-premises infrastructure.
-- AWS Outposts are "server racks" that offers the same AWS infrastructure, services, APIs & tools to build your own applications on-premises just as in the cloud.
-- AWS will setup and manage "Outposts Racks" within your on-premises infrastructure and you can start leveraging AWS services on-premises.
-- You are responsible for the Outposts Rack physical security.
-- Benefits:
-  - Low-latency access to on-premises systems
-  - Local data processing
-  - Data residency
-  - Easier migration from on-premises to the cloud
-  - Fully managed service
-- Some services that work on Outposts:
+- **AWS Outposts are "server racks"** that offers the same AWS infrastructure, services, APIs & tools to build your own applications on-premises just as in the cloud.
+- **AWS will setup and manage "Outposts Racks"** within your on-premises infrastructure and you can start leveraging AWS services on-premises.
+- _You are responsible for the Outposts Rack physical security._
+- **Benefits**
+  - Low-latency access to on-premises systems.
+  - Local data processing.
+  - Data residency.
+  - Easier migration from on-premises to the cloud.
+  - Fully managed service.
+- **Some services that work on Outposts**
   - Amazon EC2
   - Amazon EBS
   - Amazon S3
@@ -1299,22 +1278,7 @@
 
 ## 18.12. Amazon AppFlow
 
-- Amazon AppFlow is a fully managed integration service that enables you to securely transfer data between Software-as-a-Service (SaaS) applications like Salesforce, SAP, Zendesk, Slack, and ServiceNow, and AWS services like Amazon S3 and Amazon Redshift, in just a few clicks.
-- With AppFlow, you can run data flows at enterprise scale at the frequency you choose - on a schedule, in response to a business event, or on demand.
-- You can configure data transformation capabilities like filtering and validation to generate rich, ready-to-use data as part of the flow itself, without additional steps.
-- AppFlow automatically encrypts data in motion, and allows users to restrict data from flowing over the public Internet for SaaS applications that are integrated with AWS PrivateLink, reducing exposure to security threats.
-- Benefits:
-  - Integrate with a few clicks
-    - Anyone can use AppFlow to integrate applications in a few minutes - no more waiting days or weeks to code custom connectors.
-    - Features like data pagination, error logging, and network connection retries are included by default so there's no coding or management.
-    - With Appflow, data flow quality is built in, and you can enrich the flow of data through mapping, merging, masking, filtering, and validation as part of the flow itself.
-  - Transfer data at massive scale
-    - AppFlow easily scales up without the need to plan or provision resources, so you can move large volumes of data without breaking it down into multiple batches.
-    - AppFlow can run up to 100 GB per flow, which enables you to easily transfer millions of Salesforce records or Zendesk events or Marketo responses or other data - all while running a single flow.
-  - Automate data security
-    - All data flowing through AppFlow is encrypted at rest and in transit, and you can encrypt data with AWS keys, or bring your own custom keys.
-    - With AppFlow, you can use your existing Identity and Access Management (IAM) policies to enforce fine-grained permissions, rather than creating new policies.
-    - For SaaS integrations with AWS PrivateLink enabled, data is secured from the public internet by default.
+[Amazon AppFlow](/Application%20Integration/Amazon%20AppFlow.md)
 
 ## 18.13. AWS CloudSearch
 
