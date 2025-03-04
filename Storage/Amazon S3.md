@@ -56,6 +56,7 @@
 - [26. S3 Object Lambda](#26-s3-object-lambda)
 - [27. S3 Object Lock](#27-s3-object-lock)
 - [28. Shared Responsibility Model for S3](#28-shared-responsibility-model-for-s3)
+- [29. Summary](#29-summary)
 
 # 1. Introduction
 
@@ -627,14 +628,28 @@
 
 # 28. Shared Responsibility Model for S3
 
-- Aws:
+- **Aws**
   - Infrastructure (global security, durability, availability, sustain concurrent loss of data in two facilities)
   - Configuration and vulnerability analysis
   - Compliance validation
-- You:
+- **You**
   - S3 Versioning
   - S3 Bucket Policies
   - S3 Replication Setup
   - Logging and Monitoring
   - S3 Storage Classes
   - Data encryption at rest and in transit
+
+# 29. Summary
+
+- S3 is a... key / value store for objects.
+- Great for bigger objects, not so great for many small objects.
+- Serverless, scales infinitely, max object size is 5 TB, versioning capability.
+- **Tiers:** S3 Standard, S3 Infrequent Access, S3 Intelligent, S3 Glacier + lifecycle policy.
+- **Features:** Versioning, Encryption, Replication, MFA-Delete, Access Logs...
+- **Security:** IAM, Bucket Policies, ACL, Access Points, Object Lambda, CORS, Object/Vault Lock.
+- **Encryption:** SSE-S3, SSE-KMS, SSE-C, client-side, TLS in transit, default encryption.
+- **Batch operations** on objects using S3 Batch, listing files using S3 Inventory.
+- **Performance:** Multi-part upload, S3 Transfer Acceleration, S3 Select.
+- **Automation:** S3 Event Notifications (SNS, SQS, Lambda, EventBridge).
+- **Use Cases:** static files, key value store for big files, website hosting.

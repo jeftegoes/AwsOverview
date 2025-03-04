@@ -1,37 +1,28 @@
-# Amazon RDS - Relational Database Service<!-- omit in toc -->
+# Amazon RDS - Relational Database Service <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-  - [1.1. Advantage over using RDS versus deploying DB on EC2](#11-advantage-over-using-rds-versus-deploying-db-on-ec2)
-  - [1.2. Backups](#12-backups)
-  - [1.3. Storage Auto Scaling](#13-storage-auto-scaling)
-  - [1.4. Read Replicas for read scalability](#14-read-replicas-for-read-scalability)
-    - [1.4.1. Use Cases](#141-use-cases)
-    - [1.4.2. Network Cost](#142-network-cost)
-  - [1.5. Disaster Recovery](#15-disaster-recovery)
-    - [1.5.1. Multi AZ](#151-multi-az)
-    - [1.5.2. From Single-AZ to Multi-AZ](#152-from-single-az-to-multi-az)
-  - [1.6. Security - Encryption](#16-security---encryption)
-    - [1.6.1. TDE - Transparent Data Encryption](#161-tde---transparent-data-encryption)
-    - [1.6.2. Encryption Operations](#162-encryption-operations)
-    - [1.6.3. Network \& IAM](#163-network--iam)
-    - [1.6.4. IAM Authentication](#164-iam-authentication)
-    - [1.6.5. Security - Summary](#165-security---summary)
-  - [1.7. Monitoring](#17-monitoring)
-  - [1.8. RDS Proxy](#18-rds-proxy)
-  - [1.9. Enhanced Monitoring](#19-enhanced-monitoring)
-- [2. Amazon Aurora](#2-amazon-aurora)
-  - [2.1. Aurora High Availability and Read Scaling](#21-aurora-high-availability-and-read-scaling)
-  - [2.2. Auto Scaling](#22-auto-scaling)
-  - [2.3. Global Aurora](#23-global-aurora)
-  - [2.4. Unplanned Failover](#24-unplanned-failover)
-  - [2.5. Features of Aurora](#25-features-of-aurora)
-  - [2.6. Aurora Security](#26-aurora-security)
-- [3. Amazon Aurora Serverless](#3-amazon-aurora-serverless)
-- [4. MySQL error log](#4-mysql-error-log)
-- [5. Amazon Aurora vs Amazon Aurora Serverless](#5-amazon-aurora-vs-amazon-aurora-serverless)
-- [6. CloudFormation](#6-cloudformation)
+- [2. Advantage over using RDS versus deploying DB on EC2](#2-advantage-over-using-rds-versus-deploying-db-on-ec2)
+- [3. Backups](#3-backups)
+- [4. Storage Auto Scaling](#4-storage-auto-scaling)
+- [5. Read Replicas for read scalability](#5-read-replicas-for-read-scalability)
+  - [5.1. Use Cases](#51-use-cases)
+  - [5.2. Network Cost](#52-network-cost)
+- [6. Disaster Recovery](#6-disaster-recovery)
+  - [6.1. Multi AZ](#61-multi-az)
+  - [6.2. From Single-AZ to Multi-AZ](#62-from-single-az-to-multi-az)
+- [7. Security - Encryption](#7-security---encryption)
+  - [7.1. TDE - Transparent Data Encryption](#71-tde---transparent-data-encryption)
+  - [7.2. Encryption Operations](#72-encryption-operations)
+  - [7.3. Network \& IAM](#73-network--iam)
+  - [7.4. IAM Authentication](#74-iam-authentication)
+  - [7.5. Security - Summary](#75-security---summary)
+- [8. Monitoring](#8-monitoring)
+- [9. RDS Proxy](#9-rds-proxy)
+- [10. Enhanced Monitoring](#10-enhanced-monitoring)
+- [11. CloudFormation](#11-cloudformation)
+- [12. Summary](#12-summary)
 
 # 1. Introduction
 
@@ -45,7 +36,7 @@
   - Microsoft SQL Server.
   - Aurora (AWS Proprietary database).
 
-## 1.1. Advantage over using RDS versus deploying DB on EC2
+# 2. Advantage over using RDS versus deploying DB on EC2
 
 - RDS is a managed service:
   - Automated provisioning, OS patching.
@@ -58,7 +49,7 @@
   - Storage backed by EBS (gp2 or io1).
 - BUT you can't SSH into your instances.
 
-## 1.2. Backups
+# 3. Backups
 
 - Backups are automatically enabled in RDS.
 - **Automated backups:**
@@ -70,7 +61,7 @@
   - Manually triggered by the user.
   - Retention of backup for as long as you want.
 
-## 1.3. Storage Auto Scaling
+# 4. Storage Auto Scaling
 
 - Helps you increase storage on your RDS DB instance dynamically.
 - When RDS detects you are running out of free database storage, it scales automatically.
@@ -83,7 +74,7 @@
 - Useful for applications with **unpredictable workloads**.
 - Supports all RDS database engines (MariaDB, MySQL, PostgreSQL, SQL Server, Oracle).
 
-## 1.4. Read Replicas for read scalability
+# 5. Read Replicas for read scalability
 
 - Up to 5 Read Replicas.
 - Within AZ, Cross AZ or Cross Region.
@@ -91,7 +82,7 @@
 - Replicas can be promoted to their own DB.
 - Applications must update the connection string to leverage read replicas.
 
-### 1.4.1. Use Cases
+## 5.1. Use Cases
 
 - You have a production database that is taking on normal load.
 - You want to run a reporting application to run some analytics.
@@ -99,12 +90,12 @@
 - The production application is unaffected.
 - Read replicas are used for SELECT (=read) only kind of statements (not INSERT, UPDATE, DELETE).
 
-### 1.4.2. Network Cost
+## 5.2. Network Cost
 
 - In AWS there's a network cost when data goes from one AZ to another.
 - **For RDS Read Replicas within the same region, you don't pay that fee.**
 
-## 1.5. Disaster Recovery
+# 6. Disaster Recovery
 
 |                   | RTO    | RPO    | COST   | SCOPE         |
 | ----------------- | ------ | ------ | ------ | ------------- |
@@ -112,7 +103,7 @@
 | Manual Snapshots  | Better | Good   | Medium | Cross-Region  |
 | Read Replicas     | Best   | Best   | High   | Cross-Region  |
 
-### 1.5.1. Multi AZ
+## 6.1. Multi AZ
 
 - **SYNC** replication.
 - One DNS name - automatic app failover to standby.
@@ -125,7 +116,7 @@
 
   ![Multi AZ](/Images/AmazonRDSMultiAZ.png)
 
-### 1.5.2. From Single-AZ to Multi-AZ
+## 6.2. From Single-AZ to Multi-AZ
 
 - Zero downtime operation (no need to stop the DB).
 - Just click on "modify" for the database.
@@ -135,7 +126,7 @@
   - Synchronization is established between the two databases.
     ![Single AZ](/Images/AmazonRDSSingleAZ.png)
 
-## 1.6. Security - Encryption
+# 7. Security - Encryption
 
 - At rest encryption:
   - Possibility to encrypt the master & read replicas with AWS KMS - AES-256 encryption.
@@ -148,14 +139,14 @@
     - PostgreSQL: rds.force_ssl=1 in the AWS RDS Console (Parameter Groups).
     - MySQL: Within the DB: `GRANT USAGE ON *.* TO 'mysqluser'@'%' REQUIRE SSL;`
 
-### 1.6.1. TDE - Transparent Data Encryption
+## 7.1. TDE - Transparent Data Encryption
 
 - Amazon RDS supports using Transparent Data Encryption (TDE) to encrypt stored data on your DB instances running Microsoft SQL Server or Oracle.
 - TDE automatically encrypts data before it is written to storage, and automatically decrypts data when the data is read from storage.
 - At rest encryption:
   - Transparent Data Encryption (TDE) available for Oracle and SQL Server.
 
-### 1.6.2. Encryption Operations
+## 7.2. Encryption Operations
 
 - Encrypting RDS backups:
   - Snapshots of un-encrypted RDS databases are un-encrypted.
@@ -167,7 +158,7 @@
   - Restore the database from the encrypted snapshot.
   - Migrate applications to the new database, and delete the old database.
 
-### 1.6.3. Network & IAM
+## 7.3. Network & IAM
 
 - Network Security:
   - RDS databases are usually deployed within a private subnet, not in a public one.
@@ -177,7 +168,7 @@
   - Traditional Username and Password can be used to login into the database.
   - IAM-based authentication can be used to login into RDS MySQL & PostgreSQL.
 
-### 1.6.4. IAM Authentication
+## 7.4. IAM Authentication
 
 - IAM database authentication works with:
   - MySQL.
@@ -189,7 +180,7 @@
   - IAM to centrally manage users instead of DB.
   - Can leverage IAM Roles and EC2 Instance profiles for easy integration.
 
-### 1.6.5. Security - Summary
+## 7.5. Security - Summary
 
 - Encryption at rest:
   - Is done only when you first create the DB instance.
@@ -205,11 +196,11 @@
   - No manual OS patching.
   - No way to audit the underlying instance.
 
-## 1.7. Monitoring
+# 8. Monitoring
 
 ![RDS Monitoring log options](/Images/AWSRDSMonitoring.png)
 
-## 1.8. RDS Proxy
+# 9. RDS Proxy
 
 - Fully managed database proxy for RDS.
 - Allows apps to pool and share DB connections established with the database.
@@ -223,106 +214,14 @@
 
 ![RDS Proxy Diagram](/Images/AWSRDSProxyDiagram.png)
 
-## 1.9. Enhanced Monitoring
+# 10. Enhanced Monitoring
 
 - Amazon RDS provides metrics in real-time for the operating system (OS) that your DB instance runs on.
 - You can view the metrics for your DB instance using the console or consume the Enhanced Monitoring JSON output from CloudWatch Logs in a monitoring system of your choice.
 - By default, **Enhanced Monitoring metrics are stored in the CloudWatch Logs for 30 days**.
 - To modify the amount of time the metrics are stored in the CloudWatch Logs, change the retention for the `RDSOSMetrics` log group in the CloudWatch console.
 
-# 2. Amazon Aurora
-
-- **Amazon Aurora is a MySQL and PostgreSQL-compatible relational database built for the cloud, that combines the performance and availability of traditional enterprise databases with the simplicity and cost-effectiveness of open source databases. It is a proprietary technology from AWS.**
-- Aurora is a proprietary technology from AWS (not open sourced).
-- **PostgreSQL and MySQL** are both supported as Aurora DB (that means your drivers will work as if Aurora was a Postgres or MySQL database).
-- Aurora is "AWS cloud optimized" and claims 5x performance improvement over MySQL on RDS, over 3x the performance of Postgres on RDS.
-- Aurora storage automatically grows in increments of 10GB, up to 128 TB.
-- Aurora can have 15 replicas while MySQL has 5, and the replication process is faster (sub 10 ms replica lag).
-- Failover in Aurora is instantaneous. It's HA (High Availability) native.
-- Aurora costs more than RDS (20% more) - but is more efficient.
-
-## 2.1. Aurora High Availability and Read Scaling
-
-- 6 copies of your data across 3 AZ:
-  - 4 copies out of 6 needed for writes.
-  - 3 copies out of 6 need for reads.
-  - Self healing with peer-to-peer replication.
-  - Storage is striped across 100s of volumes.
-- One Aurora Instance takes writes (master).
-- Automated failover for master in less than 30 seconds.
-- Master + up to 15 Aurora Read Replicas serve reads.
-- **Support for Cross Region Replication.**
-
-## 2.2. Auto Scaling
-
-![Auto Scaling](/Images/AmazonAuroraAutoScaling.png)
-
-## 2.3. Global Aurora
-
-- **Aurora Cross Region Read Replicas**
-  - Useful for disaster recovery.
-  - Simple to put in place.
-- **Aurora Global Database (recommended)**
-  - 1 Primary Region (read / write).
-  - Up to 5 secondary (read-only) regions, replication lag is less than 1 second.
-  - Up to 16 Read Replicas per secondary region.
-  - Helps for decreasing latency.
-  - Promoting another region (for disaster recovery) has an RTO of < 1 minute.
-  - **Typical cross-region replication takes less than 1 second.**
-
-![Global Aurora](/Images/AmazonAuroraGlobal.png)
-
-## 2.4. Unplanned Failover
-
-![Unplanned Failover](/Images/AmazonAuroraUnplannedFailover.png)
-
-## 2.5. Features of Aurora
-
-- Automatic fail-over.
-- Backup and Recovery.
-- Isolation and security.
-- Industry compliance.
-- Push-button scaling.
-- Automated Patching with Zero Downtime.
-- Advanced Monitoring.
-- Routine Maintenance.
-- Backtrack: restore data at any point of time without using backups.
-
-## 2.6. Aurora Security
-
-- Similar to RDS because uses the same engines.
-- Encryption at rest using KMS.
-- Automated backups, snapshots and replicas are also encrypted.
-- Encryption in flight using SSL (same process as MySQL or Postgres).
-- Possibility to authenticate using IAM token (same method as RDS).
-- You are responsible for protecting the instance with security groups.
-- You can't SSH.
-
-# 3. Amazon Aurora Serverless
-
-- The Aurora Serverless is an auto-scaling, on-demand configuration designed for Amazon Aurora RDS.
-- It can start, shut and scale capacity automatically, according to individual application's requirements.
-- This service allows you to run cloud-powered databases without the need to manage database capacity.
-
-# 4. MySQL error log
-
-- You can monitor the MySQL logs directly through the Amazon RDS console, Amazon RDS API, AWS CLI, or AWS SDKs.
-- You can also access MySQL logs by directing the logs to a database table in the main database and querying that table.
-- You can use the mysqlbinlog utility to download a binary log.
-
-# 5. Amazon Aurora vs Amazon Aurora Serverless
-
-| Amazon Aurora Highlights         | Amazon Aurora Serverless Highlights                       |
-| -------------------------------- | --------------------------------------------------------- |
-| MySQL Compatibility              | API Integration                                           |
-| Better performance               | Compatible with cloud functions for Google, Azure and IBM |
-| Easy read scalability            | Lower charges                                             |
-| High speed                       | Auto-scaling                                              |
-| Low latency read replica         | Openwhisk                                                 |
-| Higher IOPS cost                 |                                                           |
-| Better cost-to-performance ratio |                                                           |
-
-# 6. CloudFormation
+# 11. CloudFormation
 
 - `RDS::DBInstance`
   - `EngineVersion`- The version number of the database engine to use.
@@ -330,3 +229,17 @@
     - By default, minor engine upgrades are applied automatically.
   - `AllowMajorVersionUpgrade` - A value that indicates whether major version upgrades are allowed.
     - Changing this parameter doesn't result in an outage and the change is asynchronously applied as soon as possible.
+
+# 12. Summary
+
+- Managed PostgreSQL / MySQL / Oracle / SQL Server / DB2 / MariaDB / Custom.
+- Provisioned RDS Instance Size and EBS Volume Type & Size.
+- Auto-scaling capability for Storage.
+- Support for Read Replicas and Multi AZ.
+- Security through IAM, Security Groups, KMS , SSL in transit.
+- Automated Backup with Point in time restore feature (up to 35 days).
+- Manual DB Snapshot for longer-term recovery.
+- Managed and Scheduled maintenance (with downtime).
+- Support for IAM Authentication, integration with Secrets Manager.
+- RDS Custom for access to and customize the underlying instance (Oracle & SQL Server).
+- **Use case:** Store relational datasets (RDBMS / OLTP), perform SQL queries, transactions.

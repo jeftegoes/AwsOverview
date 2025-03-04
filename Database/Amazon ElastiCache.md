@@ -1,4 +1,4 @@
-# Amazon ElastiCache<!-- omit in toc -->
+# Amazon ElastiCache <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -20,6 +20,7 @@
 - [7. Cache Evictions and Time-to-live (TTL)](#7-cache-evictions-and-time-to-live-ttl)
 - [8. Final words of wisdom](#8-final-words-of-wisdom)
 - [9. Amazon MemoryDB for Redis](#9-amazon-memorydb-for-redis)
+- [10. Summary](#10-summary)
 
 # 1. Amazon ElastiCache Overview
 
@@ -196,3 +197,15 @@
 - Durable in-memory data storage with Multi-AZ transactional log.
 - Scale seamlessly from 10s GBs to 100s TBs of storage.
 - Use cases: web and mobile apps, online gaming, media streaming, ...
+
+# 10. Summary
+
+- Managed Redis / Memcached (similar offering as RDS, but for caches).
+- In-memory data store, sub-millisecond latency.
+- Select an ElastiCache instance type (e.g., cache.m6g.large).
+- Support for Clustering (Redis) and Multi AZ, Read Replicas (sharding).
+- Security through IAM, Security Groups, KMS, Redis Auth.
+- Backup / Snapshot / Point in time restore feature.
+- Managed and Scheduled maintenance.
+- **Requires some application code changes to be leveraged.**
+- **Use Case:** Key/Value store, Frequent reads, less writes, cache results for DB queries, store session data for websites, cannot use SQL.
