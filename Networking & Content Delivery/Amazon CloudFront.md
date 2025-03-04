@@ -1,4 +1,4 @@
-# AWS CloudFront<!-- omit in toc -->
+# Amazon CloudFront<!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -31,23 +31,21 @@
 
 # 1. Introduction
 
-- **CloudFront uses Edge Location to cache content, and therefore bring more of your content closer to your viewers to improve read performance.**
-- **You can use AWS WAF web access control lists (web ACLs) to help minimize the effects of a distributed denial of service (DDoS) attack. For additional protection against DDoS attacks, AWS also provides AWS Shield Standard and AWS Shield Advanced.**
 - Content Delivery Network (CDN).
 - **Improves read performance, content is cached at the edge.**
 - Improves users experience.
 - 216 Point of Presence globally (edge locations).
-- DDoS protection (because worldwide), integration with Shield, AWS Web Application Firewall.
+- **DDoS protection (because worldwide), integration with Shield, AWS Web Application Firewall.**
 
 ## 1.1. Origins
 
-- **S3 bucket:**
+- **S3 bucket**
   - For distributing files and caching them at the edge.
-  - Enhanced security with CloudFront Origin Access Control (OAC).
+  - Enhanced security with CloudFront **Origin Access Control (OAC)**.
     - OAC is replacing Origin Access Identity (OAI).
     - You want to enforce users to access the website only through CloudFront.
   - CloudFront can be used as an ingress (to upload files to S3).
-- **Custom Origin (HTTP):**
+- **Custom Origin (HTTP)**
   - Application Load Balancer.
   - EC2 instance.
   - S3 website (must first enable the bucket as a static S3 website).
@@ -61,11 +59,11 @@
 
 # 2. CloudFront vs S3 Cross Region Replication
 
-- CloudFront:
+- **CloudFront**
   - Global Edge network.
   - Files are cached for a TTL (maybe a day).
   - **Great for static content that must be available everywhere.**
-- S3 Cross Region Replication:
+- **S3 Cross Region Replication**
   - Must be setup for each region you want replication to happen.
   - Files are updated in near real-time.
   - Read only.
@@ -225,12 +223,11 @@
 
 ## 6.1. Price Classes
 
-- You can reduce the number of edge locations for cost reduction.
+- You can reduce the number of edge locations for **cost reduction**.
 - Three price classes:
-
-1. Price Class All: all regions - best performance.
-2. Price Class 200: most regions, but excludes the most expensive regions.
-3. Price Class 100: only the least expensive regions.
+  1. Price Class All: all regions - best performance.
+  2. Price Class 200: most regions, but excludes the most expensive regions.
+  3. Price Class 100: only the least expensive regions.
 
 # 7. Multiple Origin
 

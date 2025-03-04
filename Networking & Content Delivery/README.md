@@ -4,11 +4,22 @@
 
 - [1. Route 53](#1-route-53)
 - [2. Amazon API Gateway](#2-amazon-api-gateway)
+- [3. Amazon CloudFront](#3-amazon-cloudfront)
+- [4. AWS Global Accelerator](#4-aws-global-accelerator)
 
 # 1. Route 53
 
-[AWS Route 53](AWS%20Route%2053.md)
+[Amazon Route 53](Amazon%20Route%2053.md)
 
 # 2. Amazon API Gateway
 
-[AWS API Gateway](/AWS%20API%20Gateway.md)
+[Amazon API Gateway](Amazon%20API%20Gateway.md)
+
+# 3. Amazon CloudFront
+
+- **CloudFront uses Edge Location to cache content, and therefore bring more of your content closer to your viewers to improve read performance.**
+- **You can use AWS WAF web access control lists (web ACLs) to help minimize the effects of a distributed denial of service (DDoS) attack. For additional protection against DDoS attacks, AWS also provides AWS Shield Standard and AWS Shield Advanced.** [Amazon CloudFront](Amazon%20CloudFront.md)
+
+# 4. AWS Global Accelerator
+
+[AWS Global Accelerator](AWS%20Global%20Accelerator.md)

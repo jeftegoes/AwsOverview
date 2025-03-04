@@ -35,21 +35,20 @@
 - [7. Other Compute Services: ECS, Batch, Lightsail](#7-other-compute-services-ecs-batch-lightsail)
   - [7.1. ECS - Elastic Container Service, Fargate and ECR - Elastic Container Registry](#71-ecs---elastic-container-service-fargate-and-ecr---elastic-container-registry)
   - [7.2. AWS Batch](#72-aws-batch)
-  - [7.4. Amazon Lightsail](#74-amazon-lightsail)
-  - [7.5. Other Compute - Summary](#75-other-compute---summary)
+  - [7.3. Amazon Lightsail](#73-amazon-lightsail)
+  - [7.4. Other Compute - Summary](#74-other-compute---summary)
 - [8. Global Infrastructure](#8-global-infrastructure)
   - [8.1. Why make a global application?](#81-why-make-a-global-application)
   - [8.2. Global AWS Infrastructure](#82-global-aws-infrastructure)
   - [8.3. Global Applications in AWS](#83-global-applications-in-aws)
   - [8.4. AWS CloudFront](#84-aws-cloudfront)
   - [8.5. AWS Global Accelerator](#85-aws-global-accelerator)
-  - [8.6. AWS Global Accelerator vs CloudFront](#86-aws-global-accelerator-vs-cloudfront)
-  - [8.7. AWS Outposts](#87-aws-outposts)
-  - [8.8. AWS WaveLength](#88-aws-wavelength)
-  - [8.9. AWS Local Zones](#89-aws-local-zones)
-  - [8.10. Global Applications Architecture](#810-global-applications-architecture)
+  - [8.6. AWS Outposts](#86-aws-outposts)
+  - [8.7. AWS WaveLength](#87-aws-wavelength)
+  - [8.8. AWS Local Zones](#88-aws-local-zones)
+  - [8.9. Global Applications Architecture](#89-global-applications-architecture)
+  - [8.10. Global Applications in AWS - Summary](#810-global-applications-in-aws---summary)
   - [8.11. Global Applications in AWS - Summary](#811-global-applications-in-aws---summary)
-  - [8.12. Global Applications in AWS - Summary](#812-global-applications-in-aws---summary)
 - [9. Cloud Integration](#9-cloud-integration)
   - [9.1. Amazon SQS - Standard Queue](#91-amazon-sqs---standard-queue)
   - [9.2. Amazon Kinesis](#92-amazon-kinesis)
@@ -439,7 +438,7 @@
 
 [text](/Compute/AWS%20Batch.md)
 
-## 7.4. Amazon Lightsail
+## 7.3. Amazon Lightsail
 
 - **Amazon Lightsail is designed to be the easiest way to launch and manage a virtual private server with AWS. Lightsail plans include everything you need to jumpstart your project - a virtual machine, SSD- based storage, data transfer, DNS management, and a static IP address - for a low, predictable price. It can be used to create a simple web application, a website or a dev/test environment.**
 - Virtual servers, storage, databases, and networking.
@@ -453,7 +452,7 @@
   - Dev / Test environment.
 - Has high availability but no auto-scaling, limited AWS integrations.
 
-## 7.5. Other Compute - Summary
+## 7.4. Other Compute - Summary
 
 - Docker: container technology to run applications.
 - ECS: run Docker containers on EC2 instances.
@@ -501,29 +500,13 @@
 
 ## 8.4. AWS CloudFront
 
-[AWS CloudFront](AWS%20CloudFront.md)
+[AWS CloudFront](/Networking%20&%20Content%20Delivery/Amazon%20CloudFront.md)
 
 ## 8.5. AWS Global Accelerator
 
-- Improve global application availability and performance using the AWS global network.
-- Leverage the AWS internal network to optimize the route to your application (60% improvement).
-- 2 Anycast IP are created for your application and traffic is sent through Edge Locations.
-- The Edge locations send the traffic to your application.
+[AWS Global Accelerator](Networking%20&%20Content%20Delivery/AWS%20Global%20Accelerator.md)
 
-## 8.6. AWS Global Accelerator vs CloudFront
-
-- They both use the AWS global network and its edge locations around the world.
-- Both services integrate with AWS Shield for DDoS protection.
-- CloudFront - Content Delivery Network:
-  - Improves performance for your cacheable content (such as images and videos).
-  - Content is served at the edge.
-- Global Accelerator:
-  - No caching, proxying packets at the edge to applications running in one or more AWS Regions.
-  - Improves performance for a wide range of applications over TCP or UDP.
-  - Good for HTTP use cases that require static IP addresses.
-  - Good for HTTP use cases that required deterministic, fast regional failover.
-
-## 8.7. AWS Outposts
+## 8.6. AWS Outposts
 
 - **Hybrid Cloud:** Businesses that keep an on-premises infrastructure alongside a cloud infrastructure.
 - Therefore, two ways of dealing with IT systems:
@@ -547,7 +530,7 @@
   - Amazon RDS
   - Amazon EMR
 
-## 8.8. AWS WaveLength
+## 8.7. AWS WaveLength
 
 - **AWS Wavelength is an AWS Infrastructure offering optimized for mobile edge computing applications. Wavelength combines the high bandwidth and ultra-low latency of 5G networks with AWS compute and storage services to enable developers to innovate and build a whole new class of applications.**
 - WaveLength Zones are infrastructure deployments embedded within the telecommunications providers datacenters at the edge of the 5G networks.
@@ -559,7 +542,7 @@
 - No additional charges or service agreements.
 - Use cases: Smart Cities, ML-assisted diagnostics, Connected Vehicles, Interactive Live Video Streams, AR/VR, Real-time Gaming, ...
 
-## 8.9. AWS Local Zones
+## 8.8. AWS Local Zones
 
 - Places AWS compute, storage, database, and other selected AWS services closer to end users to run latency-sensitive applications
 - Extend your VPC to more locations - "Extension of an AWS Region"
@@ -568,14 +551,14 @@
   - AWS Region: N. Virginia (us-east-1)
   - AWS Local Zones: Boston, Chicago, Dallas, Houston, Miami, ...
 
-## 8.10. Global Applications Architecture
+## 8.9. Global Applications Architecture
 
 - Single Region, Single AZ.
 - Single Region, Multi AZ.
 - Multi Region, Active-Passive.
 - Multi Region, Active-Active.
 
-## 8.11. Global Applications in AWS - Summary
+## 8.10. Global Applications in AWS - Summary
 
 - Global DNS: Route 53
   - Great to route users to the closest deployment with least latency.
@@ -588,7 +571,7 @@
 - AWS Global Accelerator
   - Improve global application availability and performance using the AWS global network.
 
-## 8.12. Global Applications in AWS - Summary
+## 8.11. Global Applications in AWS - Summary
 
 - AWS Outposts
   - Deploy Outposts Racks in your own Data Centers to extend AWS services
