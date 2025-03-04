@@ -44,7 +44,7 @@
 
 ## 1.3. Diagram
 
-![MyTodoList](/Images/Serverless%20Solution%20Architect/MobileApplicationMyTodoList.png)
+![MyTodoList](/Images/Solution%20Architect/MobileApplicationMyTodoList.png)
 
 # 2. Serverless hosted website: MyBlog.com
 
@@ -70,7 +70,7 @@
 
 ## 2.3. Diagram
 
-![MyBlog](/Images/Serverless%20Solution%20Architect/WebsiteMyBlog.png)
+![MyBlog](/Images/Solution%20Architect/WebsiteMyBlog.png)
 
 # 3. Micro Services architecture
 
@@ -112,7 +112,7 @@
 
 ## 4.2. Solution
 
-![Software Updates Offloading](/Images/Serverless%20Solution%20Architect/SoftwareUpdatesOffloading.png)
+![Software Updates Offloading](/Images/Solution%20Architect/SoftwareUpdatesOffloading.png)
 
 ## 4.3. Why CloudFront?
 
