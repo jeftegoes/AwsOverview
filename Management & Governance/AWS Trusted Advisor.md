@@ -1,4 +1,4 @@
-# AWS Trusted Advisor<!-- omit in toc -->
+# AWS Trusted Advisor <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -13,12 +13,13 @@
 
 - Scans your AWS infrastructure, compares with AWS best practices.
 - No need to install anything - high level AWS account assessment.
-- **Analyze your AWS accounts and provides recommendations:**
+- **Analyze your AWS accounts and provides recommendation on 6 categories**
   - Cost optimization.
   - Performance.
   - Security.
   - Fault tolerance.
   - Service limits.
+  - Operational Excellence.
 - Core Checks and recommendations - all customers.
 - Can enable weekly email notification from the console.
 - Full Trusted Advisor - Available for **Business & Enterprise** support plans.

@@ -132,26 +132,24 @@
 - [19. AWS Architecting \& Ecosystem](#19-aws-architecting--ecosystem)
   - [19.1. Well Architected Framework General - Guiding Principles](#191-well-architected-framework-general---guiding-principles)
   - [19.2. AWS Cloud Best Practices - Design Principles](#192-aws-cloud-best-practices---design-principles)
-  - [19.3. Well Architected Framework 6 Pillars](#193-well-architected-framework-6-pillars)
-    - [19.3.1. Operational Excellence](#1931-operational-excellence)
-      - [19.3.1.1. Operational Excellence AWS Services](#19311-operational-excellence-aws-services)
-    - [19.3.2. Security](#1932-security)
-      - [19.3.2.1. Security AWS Services](#19321-security-aws-services)
-    - [19.3.3. Reliability](#1933-reliability)
-      - [19.3.3.1. Reliability AWS Services](#19331-reliability-aws-services)
-    - [19.3.4. Performance Efficiency](#1934-performance-efficiency)
-      - [19.3.4.1. Performance Efficiency AWS Services](#19341-performance-efficiency-aws-services)
-    - [19.3.5. Cost Optimization](#1935-cost-optimization)
-      - [19.3.5.1. Cost Optimization AWS Services](#19351-cost-optimization-aws-services)
-    - [19.3.6. Sustainability](#1936-sustainability)
-      - [19.3.6.1. Sustainability AWS Services](#19361-sustainability-aws-services)
-  - [19.4. AWS Well-Architected Tool](#194-aws-well-architected-tool)
-  - [19.5. AWS Right Sizing](#195-aws-right-sizing)
-  - [19.6. AWS Ecosystem - Free resources](#196-aws-ecosystem---free-resources)
-  - [19.7. AWS Marketplace](#197-aws-marketplace)
-  - [19.8. AWS Training](#198-aws-training)
-  - [19.9. AWS Professional Services \& Partner Network](#199-aws-professional-services--partner-network)
-  - [19.10. AWS Knowledge Center](#1910-aws-knowledge-center)
+    - [19.2.1. Operational Excellence](#1921-operational-excellence)
+      - [19.2.1.1. Operational Excellence AWS Services](#19211-operational-excellence-aws-services)
+    - [19.2.2. Security](#1922-security)
+      - [19.2.2.1. Security AWS Services](#19221-security-aws-services)
+    - [19.2.3. Reliability](#1923-reliability)
+      - [19.2.3.1. Reliability AWS Services](#19231-reliability-aws-services)
+    - [19.2.4. Performance Efficiency](#1924-performance-efficiency)
+      - [19.2.4.1. Performance Efficiency AWS Services](#19241-performance-efficiency-aws-services)
+    - [19.2.5. Cost Optimization](#1925-cost-optimization)
+      - [19.2.5.1. Cost Optimization AWS Services](#19251-cost-optimization-aws-services)
+    - [19.2.6. Sustainability](#1926-sustainability)
+      - [19.2.6.1. Sustainability AWS Services](#19261-sustainability-aws-services)
+  - [19.3. AWS Right Sizing](#193-aws-right-sizing)
+  - [19.4. AWS Ecosystem - Free resources](#194-aws-ecosystem---free-resources)
+  - [19.5. AWS Marketplace](#195-aws-marketplace)
+  - [19.6. AWS Training](#196-aws-training)
+  - [19.7. AWS Professional Services \& Partner Network](#197-aws-professional-services--partner-network)
+  - [19.8. AWS Knowledge Center](#198-aws-knowledge-center)
 - [20. AWS Cloud Map](#20-aws-cloud-map)
 - [21. AWS Limits (Quotas)](#21-aws-limits-quotas)
 - [22. Private vs Public IP (IPv4)](#22-private-vs-public-ip-ipv4)
@@ -1244,14 +1242,7 @@
 
 ## 19.1. Well Architected Framework General - Guiding Principles
 
-- Stop guessing your capacity needs.
-- Test systems at production scale.
-- Automate to make architectural experimentation easier.
-- Allow for evolutionary architectures.
-  - Design based on changing requirements.
-- Drive architectures using data.
-- Improve through game days.
-  - Simulate applications for flash sale days.
+[White Papers & Architectures](White%20Papers%20&%20Architectures.md)
 
 ## 19.2. AWS Cloud Best Practices - Design Principles
 
@@ -1266,18 +1257,7 @@
   - Don't use just EC2.
   - Use managed services, databases, serverless, etc!
 
-## 19.3. Well Architected Framework 6 Pillars
-
-1. Operational Excellence.
-2. Security.
-3. Reliability.
-4. Performance Efficiency.
-5. Cost Optimization.
-6. Sustainability.
-
-- They are not something to balance, or trade-offs, they're a synergy.
-
-### 19.3.1. Operational Excellence
+### 19.2.1. Operational Excellence
 
 - Includes the ability to run and monitor systems to deliver business value and to continually improve supporting processes and procedures.
 - Design Principles:
@@ -1288,7 +1268,7 @@
   - **Anticipate failure**.
   - **Learn from all operational failures**.
 
-#### 19.3.1.1. Operational Excellence AWS Services
+#### 19.2.1.1. Operational Excellence AWS Services
 
 - Prepare:
   - AWS CloudFormation
@@ -1306,7 +1286,7 @@
   - AWS CodeDeploy
   - AWS CodePipeline
 
-### 19.3.2. Security
+### 19.2.2. Security
 
 - Includes the ability to protect information, systems, and assets while delivering business value through risk assessments and mitigation strategies.
 - Design Principles:
@@ -1319,7 +1299,7 @@
   - **Prepare for security events** - Run incident response simulations and use tools with automation to increase your speed for detection, investigation, and recovery.
   - **Shared Responsibility Model**.
 
-#### 19.3.2.1. Security AWS Services
+#### 19.2.2.1. Security AWS Services
 
 - Identity and Access Management:
   - IAM
@@ -1347,7 +1327,7 @@
   - AWS CloudFormation
   - Amazon CloudWatch Events
 
-### 19.3.3. Reliability
+### 19.2.3. Reliability
 
 - Ability of a system to recover from infrastructure or service disruptions, dynamically acquire computing resources to meet demand, and mitigate disruptions such as misconfigurations or transient network issues.
 - Design Principles:
@@ -1357,7 +1337,7 @@
   - **Stop guessing capacity** - Maintain the optimal level to satisfy demand without over or under provisioning - Use Auto Scaling.
   - **Manage change in automation** - Use automation to make changes to infrastructure.
 
-#### 19.3.3.1. Reliability AWS Services
+#### 19.2.3.1. Reliability AWS Services
 
 - Foundations:
   - IAM
@@ -1376,7 +1356,7 @@
   - Amazon S3 Glacier
   - Amazon Route 53
 
-### 19.3.4. Performance Efficiency
+### 19.2.4. Performance Efficiency
 
 - Includes the ability to use computing resources efficiently to meet system requirements, and to maintain that efficiency as demand changes and technologies evolve.
 - Design Principles:
@@ -1386,7 +1366,7 @@
   - **Experiment more often** - Easy to carry out comparative testing.
   - **Mechanical sympathy** - Be aware of all AWS services.
 
-#### 19.3.4.1. Performance Efficiency AWS Services
+#### 19.2.4.1. Performance Efficiency AWS Services
 
 - Selection:
   - AWS Auto Scaling
@@ -1405,7 +1385,7 @@
   - AWS Snowball
   - Amazon CloudFront
 
-### 19.3.5. Cost Optimization
+### 19.2.5. Cost Optimization
 
 - Includes the ability to run systems to deliver business value at the lowest price point.
 - Design Principles:
@@ -1415,7 +1395,7 @@
   - **Analyze and attribute expenditure** - Accurate identification of system usage and costs, helps measure return on investment (ROI)- Make sure to use tags.
   - **Use managed and application level services to reduce cost of ownership** - As managed services operate at cloud scale, they can offer a lower cost per transaction or service.
 
-#### 19.3.5.1. Cost Optimization AWS Services
+#### 19.2.5.1. Cost Optimization AWS Services
 
 - Expenditure Awareness:
   - AWS Budgets
@@ -1433,7 +1413,7 @@
   - AWS Trusted Advisor
   - AWS Cost and Usage Report
 
-### 19.3.6. Sustainability
+### 19.2.6. Sustainability
 
 - The sustainability pillar focuses on minimizing the environmental impacts of running cloud workloads.
 - Design Principles:
@@ -1444,7 +1424,7 @@
   - **Use managed services** - Shared services reduce the amount of infrastructure; Managed services help automate sustainability best practices as moving infrequent accessed data to cold storage and adjusting compute capacity.
   - **Reduce the downstream impact of your cloud workloads** - Reduce the amount of energy or resources required to use your services and reduce the need for your customers to upgrade their devices.
 
-#### 19.3.6.1. Sustainability AWS Services
+#### 19.2.6.1. Sustainability AWS Services
 
 - EC2 Auto Scaling, Serverless Offering (Lambda, Fargate).
 - Cost Explorer, AWS Graviton 2, EC2 T instances, @Spot Instances.
@@ -1453,17 +1433,7 @@
 - Amazon Data Lifecycle Manager.
 - Read Local, Write Global: RDS Read Replicas, Aurora Global DB, DynamoDB Global Table, CloudFront.
 
-## 19.4. AWS Well-Architected Tool
-
-- Free tool to **review your architectures** against the 6 pillars Well-Architected Framework and **adopt architectural best practices**.
-- How does it work?
-  - Select your workload and answer questions.
-  - Review your answers against the 6 pillars.
-  - Obtain advice: get videos and documentations, generate a report, see the results in a dashboard.
-- Let's have a look: https://console.aws.amazon.com/wellarchitected
-  - https://aws.amazon.com/blogs/aws/new-aws-well-architected-tool-review-workloads-against-best-practices/
-
-## 19.5. AWS Right Sizing
+## 19.3. AWS Right Sizing
 
 - EC2 has many instance types, but choosing the most powerful instance type isn't the best choice, because the cloud is **elastic**.
 - Right sizing is the process of matching instance types and sizes to your workload performance and capacity requirements **at the lowest possible cost**.
@@ -1474,7 +1444,7 @@
   - **Continuously after the cloud onboarding process (requirements change over time)**.
 - CloudWatch, Cost Explorer, Trusted Advisor, 3rd party tools can help.
 
-## 19.6. AWS Ecosystem - Free resources
+## 19.4. AWS Ecosystem - Free resources
 
 - **AWS Blogs:** https://aws.amazon.com/blogs/aws/
 - **AWS Forums (community):** https://forums.aws.amazon.com/index.jspa
@@ -1490,7 +1460,7 @@
     - https://aws.amazon.com/solutions/implementations/aws-landing-zone/
     - "Replaced" by AWS Control Tower
 
-## 19.7. AWS Marketplace
+## 19.5. AWS Marketplace
 
 - Digital catalog with thousands of software listings from **independent software vendors** (3rd party).
 - Example:
@@ -1501,7 +1471,7 @@
 - If you buy through the AWS Marketplace, it goes into your AWS bill.
 - You can **sell your own solutions** on the AWS Marketplace.
 
-## 19.8. AWS Training
+## 19.6. AWS Training
 
 - AWS Digital (online) and Classroom Training (in-person or virtual).
 - AWS Private Training (for your organization).
@@ -1509,7 +1479,7 @@
 - Training and Certification for the Enterprise.
 - AWS Academy: helps universities teach AWS.
 
-## 19.9. AWS Professional Services & Partner Network
+## 19.7. AWS Professional Services & Partner Network
 
 - The AWS Professional Services organization is a global team of experts
 - They work alongside your team and a chosen member of the APN
@@ -1521,7 +1491,7 @@
   customer success in specialized solution areas.
 - AWS Navigate Program: help Partners become better Partners
 
-## 19.10. AWS Knowledge Center
+## 19.8. AWS Knowledge Center
 
 - Contains the most frequent & common questions and requests
   - https://aws.amazon.com/premiumsupport/knowledge-center/
