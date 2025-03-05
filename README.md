@@ -157,35 +157,13 @@
 - [22. Private vs Public IP (IPv4)](#22-private-vs-public-ip-ipv4)
   - [22.1. Private vs Public IP (IPv4) Fundamental Differences](#221-private-vs-public-ip-ipv4-fundamental-differences)
 - [23. AWS charges for IPv4 addresses](#23-aws-charges-for-ipv4-addresses)
-- [24. AWS related Abbreviations \& Acronyms](#24-aws-related-abbreviations--acronyms)
-  - [24.1. A](#241-a)
-  - [24.2. B](#242-b)
-  - [24.3. C](#243-c)
-  - [24.4. D](#244-d)
-  - [24.5. E](#245-e)
-  - [24.6. F](#246-f)
-  - [24.7. H](#247-h)
-  - [24.8. I](#248-i)
-  - [24.9. J](#249-j)
-  - [24.10. K](#2410-k)
-  - [24.11. L](#2411-l)
-  - [24.12. M](#2412-m)
-  - [24.13. N](#2413-n)
-  - [24.14. O](#2414-o)
-  - [24.15. P](#2415-p)
-  - [24.16. Q](#2416-q)
-  - [24.17. R](#2417-r)
-  - [24.18. S](#2418-s)
-  - [24.19. T](#2419-t)
-  - [24.20. V](#2420-v)
-  - [24.21. W](#2421-w)
-- [25. Commands AWS CLI](#25-commands-aws-cli)
-  - [25.1. DynamoDB](#251-dynamodb)
-  - [25.2. S3](#252-s3)
-  - [25.3. Lambda](#253-lambda)
-  - [25.4. ECS](#254-ecs)
-  - [25.5. Systems Manager](#255-systems-manager)
-- [26. Credits](#26-credits)
+- [24. Commands AWS CLI](#24-commands-aws-cli)
+  - [24.1. DynamoDB](#241-dynamodb)
+  - [24.2. S3](#242-s3)
+  - [24.3. Lambda](#243-lambda)
+  - [24.4. ECS](#244-ecs)
+  - [24.5. Systems Manager](#245-systems-manager)
+- [25. Credits](#25-credits)
 
 # 1. Traditionally, how to build infrastructure
 
@@ -1208,21 +1186,11 @@
 
 ## 18.7. AWS Backup
 
-- **AWS Backup is a centralized backup service that makes it easy and cost-effective for you to backup your application data across AWS services in the AWS Cloud**
-- **CloudEndure Disaster Recovery minimizes downtime and data loss by providing fast, reliable recovery into AWS of your physical, virtual, and cloud-based servers.**
-- Fully-managed service to centrally manage and automate backups across AWS services.
-- On-demand and scheduled backups.
-- Supports PITR (Point-in-time Recovery).
-- Retention Periods, Lifecycle Management, Backup Policies, ...
-- Cross-Region Backup.
-- Cross-Account Backup (using AWS Organizations).
+[AWS Backup](/Storage/AWS%20Backup.md)
 
 ### 18.7.1. Disaster Recovery Strategies
 
-- Backup and Restore (Cheapest)
-- Pilot Light
-- Multi-Site / Hot-Site
-- Warm Standby
+[Disaster Recovery Strategies](Disaster%20Recovery.md)
 
 ## 18.8. AWS Elastic Disaster Recovery (DRS)
 
@@ -1608,208 +1576,7 @@
   - Look into the AWS Public IP Insights service
   - Nice article here: https://repost.aws/articles/ARknH_OR0cTvqoTfJrVGaB8A/why-am-i-seeing-charges-for-public-ipv4-addresses-when-i-am-under-the-aws-free-tier
 
-# 24. AWS related Abbreviations & Acronyms
-
-## 24.1. A
-
-- AWS Amazon Web Services
-- Amazon ES = Amazon Elasticsearch Service
-- AMI Amazon Machine Image
-- API Application Programming Interface
-- AI Artificial Intelligence
-- ACL Access Control List
-- ALB Application Load Balancer
-- ARN Amazon Resource Name
-- AZ Availability Zone
-- ACM AWS Certificate Management
-- ASG Auto Scaling Group
-- AES Advanced Encryption System
-- ADFS Active Directory Federation Service
-- AVX Advanced Vector Extensions
-
-## 24.2. B
-
-- BYOL Bring Your Own License
-
-## 24.3. C
-
-- CDN Content Delivery Network
-- CRC Cyclic Redundancy Check
-- CLI Command Line Interface
-- CIDR Classless Inter-Domain Routing
-- CORS Cross Origin Resource Sharing
-- CRR Cross Region Replication
-- CI/CD Continuous Integration/Continuous Deployment
-
-## 24.4. D
-
-- DMS Database Migration Service
-- DNS Domain Name System
-- DDoS Distributed Denial of Service
-- DoS Denial of Service
-- DaaS Desktop as-a-Service
-
-## 24.5. E
-
-- EC2 Elastic Compute Cloud
-- ECS EC2 Container Service
-- ECR Elastic Container Registry
-- EFS Elastic File System
-- EI Elastic Inference
-- ENA Elastic Network Adapter
-- EKS Elastic Kubernetes Service
-- EBS Elastic Block Store
-- EMR Elastic MapReduce
-- ELB Elastic Load Balancing
-- EFA Elastic Fabric Adapter
-- EIP Elastic IP
-- EDA Electronic Design Automation
-- ENI Elastic Network Interface
-- ECU EC2 Compute Unit
-
-## 24.6. F
-
-- FIFO First In First Out
-- FaaS Function as-a-Service
-
-## 24.7. H
-
-- HPC High-Performance Compute
-- HVM Hardware Virtual Machine
-- HTTP Hypertext Transfer Protocol
-- HTTPS HTTP Secure
-- HDK Hardware Development Kit
-
-## 24.8. I
-
-- IAM Identity & Access Management
-- iOT Internet Of Things
-- S3 IA S3 Infrequent Access
-- iSCSI Internet Small Computer Storage Interface
-- IOPS Input/Output Operation Per Second
-- IGW Internet Gateway
-- ICMP Internet Control Message Protocol
-- IP Internet Protocol
-- IPSec Internet Protocol Security
-- IaaS Infrastructure-as-a-Service
-
-## 24.9. J
-
-- JSON JavaScript Object Notation
-
-## 24.10. K
-
-- KMS Key Management Service
-- KVM Kernel-based Virtual Machine
-- KDS Kinesis Data Streams
-- KDF Kinesis Data Firehose
-
-## 24.11. L
-
-- LB Load Balancer
-- LCU Load Balancer Capacity Unit
-
-## 24.12. M
-
-- MFA Multi-Factor Authentication
-- MSTSC Microsoft Terminal Service Client
-- MPP Massive Parallel Processing
-- MITM Man in the Middle Attack
-- ML Machine Learning
-- MPLS Multi Protocol Label Switching
-
-## 24.13. N
-
-- NACL Network Access Control List
-- NLP Natural Language Processing
-- NFS Network File System
-- NS Name Server
-- NAT Network Address Translation
-- NVMe Non-Volatile Memory Express
-
-## 24.14. O
-
-- OLTP Online Transaction Processing
-- OLAP Online Analytics Processing
-- OCI Open Container Initiative
-- OVA Open Virtualization Format
-
-## 24.15. P
-
-- PCI DSS Payment Card Industry Data Security Standard
-- PVM Para Virtual Machine
-- PV ParaVirtual
-- PaaS Platform as a Service
-
-## 24.16. Q
-
-- QLDB Quantum Ledger Database
-
-## 24.17. R
-
-- RAIDRedundant Array of Independent Disk
-- RDS Relational Database Service
-- RRS Reduced Redundancy Storage
-- RI Reserved Instance
-- RAM Random-access Memory
-- RIE Runtime Interface Emulator
-- RCU Read Capacity Units
-
-## 24.18. S
-
-- SSEServer Side Encryption
-- S3 Simple Storage Service
-- S3 RTC S3 Replication Time Control
-- SRR Same Region Replication
-- SMS Server Migration Service
-- SWF Simple Workflow Service
-- SES Simple Email Service
-- SNS Simple Notification Service
-- SQS Simple Queue Service
-- SES Simple Email Service
-- SLA Service Level Agreement
-- SSL Secure Socket Layer
-- SOA Start of Authority
-- SDK Software Development Kit
-- SSH Secure Shell
-- SAR Serverless Application Repository
-- SRD Scalable Reliable Datagrams
-- SSO Single Sign-On
-- SAML Security Assertion Markup Language
-- SaaS Software-as-a-Service
-- SaaS Security-as-a-Service
-- SCP Service Control Policies
-- SCA Storage Class Analysis
-- STS Security Token Service
-- SNI Server Name Indication
-
-## 24.19. T
-
-- TAM Technical Account Managers
-- TTL Time To Live
-- TLS Transport Layer Security
-- TPM Trusted Platform Module
-- TME Total Memory Encryption
-- TPM Technical Program Manager
-- TPS Transaction Per Second
-- TCP Transmission Control Protocol
-
-## 24.20. V
-
-- VPC Virtual Private Cloud
-- VM Virtual Machine
-- VTL Virtual Tape Library
-- VPN Virtual Private Network
-- VLAN Virtual Local Area Network
-- VDI Virtual Desktop Infrastructure
-- VPG Virtual Private Gateway
-
-## 24.21. W
-
-- WAFWeb Application Firewall
-- WCU Write Capacity Units
-
-# 25. Commands AWS CLI
+# 24. Commands AWS CLI
 
 - Configure AWS CLI to access the environment
   - aws configure
@@ -1824,7 +1591,7 @@
 - See encoded errors using STS command line:
   - aws sts decode-authorization-message --encoded-message `<code_encoded>`
 
-## 25.1. DynamoDB
+## 24.1. DynamoDB
 
 - List all itens of table (Projection expression)
   - aws dynamodb scan --table-name `<table_name>`
@@ -1834,28 +1601,28 @@
 - List all content of table (F ilter expression)
   - aws dynamodb scan --table-name DemoTTL --filter-expression "`<attribute_fields_or_columns>` = :u" --expression-attribute-values '{":u": {"S":"`<content>`"}}'
 
-## 25.2. S3
+## 24.2. S3
 
 - List all itens of bucket with pagination
   - aws s3api list-objects --bucket `<bucket_name>` --page-size 100 --max-items 5
 
-## 25.3. Lambda
+## 24.3. Lambda
 
 - List all funcions
   - aws lambda list-functions
 - Invoke a synchronous or asynchronous lambda function.
   - aws lambda invoke --function-name `<lambda_name>` --invocation-type `<invocation_type>` response.json # `invocation_type` like: `Event` or `RequestResponse`
 
-## 25.4. ECS
+## 24.4. ECS
 
 - There is no option to delete a task definition on the AWS console. But, you can deregister (delete) a task definition by executing the following command.
   - aws ecs deregister-task-definition --task-definition `<name_task_definition:"revision>`
 
-## 25.5. Systems Manager
+## 24.5. Systems Manager
 
 - Create parameter
   - aws ssm put-parameter --name myEC2TypeDev --type String --value "t2.small"
 
-# 26. Credits
+# 25. Credits
 
 - Much of this content extracted from Stephane Maarek's courses, **for personal study**, at several points has personal considerations and comments.

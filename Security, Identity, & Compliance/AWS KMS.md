@@ -275,7 +275,7 @@
 - Replicate Secrets across multiple AWS Regions.
 - Secrets Manager keeps read replicas in sync with the primary Secret.
 - Ability to promote a read replica Secret to a standalone Secret.
-- Use cases: multi-region apps, disaster recovery strategies, multi-region DB...
+- **Use cases:** multi-region apps, disaster recovery strategies, multi-region DB...
 
 ## 7.2. Secrets Manager CloudFormation Integration RDS & Aurora
 

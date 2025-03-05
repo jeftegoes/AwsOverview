@@ -1,4 +1,4 @@
-# AWS Database Migration Service<!-- omit in toc -->
+# AWS Database Migration Service <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -6,14 +6,17 @@
 - [2. DMS Sources and Targets](#2-dms-sources-and-targets)
 - [3. AWS Schema Conversion Tool (SCT)](#3-aws-schema-conversion-tool-sct)
 - [4. Multi-AZ Deployment](#4-multi-az-deployment)
-- [5. Replication Task Monitoring](#5-replication-task-monitoring)
-- [6. CloudWatch Metrics](#6-cloudwatch-metrics)
+- [5. RDS \& Aurora MySQL Migrations](#5-rds--aurora-mysql-migrations)
+- [6. RDS \& Aurora PostgreSQL Migrations](#6-rds--aurora-postgresql-migrations)
+- [7. On-Premise strategy with AWS](#7-on-premise-strategy-with-aws)
+- [8. Replication Task Monitoring](#8-replication-task-monitoring)
+- [9. CloudWatch Metrics](#9-cloudwatch-metrics)
 
 # 1. Introduction
 
 - Quickly and securely migrate databases to AWS, resilient, self healing.
 - The source database remains available during the migration.
-- Supports:
+- **Supports**
   - Homogeneous migrations: ex Oracle to Oracle.
   - Heterogeneous migrations: ex Microsoft SQL Server to Aurora.
 - Continuous Data Replication using CDC.
@@ -25,12 +28,12 @@
   - On-Premises and EC2 instances databases: Oracle, MS SQL Server, MySQL, MariaDB, PostgreSQL, MongoDB, SAP, DB2.
   - Azure: Azure SQL Database.
   - Amazon RDS: all including Aurora.
-  - [Amazon S3](Amazon%20S3.md)
+  - [Amazon S3](/Storage/Amazon%20S3.md)
   - DocumentDB
 - **TARGETS**
   - On-Premises and EC2 instances databases: Oracle, MS SQL Server, MySQL, MariaDB, PostgreSQL, SAP.
   - Amazon RDS.
-  - Redshift, DynamoDB, [Amazon S3](Amazon%20S3.md)
+  - Redshift, DynamoDB, [Amazon S3](/Storage/Amazon%20S3.md)
   - OpenSearch Service.
   - Kinesis Data Streams.
   - Apache Kafka.
@@ -50,12 +53,54 @@
 # 4. Multi-AZ Deployment
 
 - When Multi-AZ Enabled, DMS provisions and maintains a synchronously stand replica in a different AZ.
-- Advantages:
+- **Advantages**
   - Provides Data Redundancy.
   - Eliminates I/O freezes.
   - Minimizes latency spikes.
 
-# 5. Replication Task Monitoring
+# 5. RDS & Aurora MySQL Migrations
+
+- RDS MySQL to Aurora MySQL.
+  - **Option 1:** DB Snapshots from RDS MySQL restored as MySQL Aurora DB.
+  - **Option 2:** Create an Aurora Read Replica from your RDS MySQL, and when the replication lag is 0, promote it as its own DB cluster (can take time and cost $).
+- External MySQL to Aurora MySQL
+  - **Option 1**
+    - Use Percona XtraBackup to create a file backup in Amazon S3.
+    - Create an Aurora MySQL DB from Amazon S3.
+  - **Option 2**
+    - Create an Aurora MySQL DB.
+    - Use the mysqldump utility to migrate MySQL into Aurora (slower than S3 method).
+- Use DMS if both databases are up and running.
+
+# 6. RDS & Aurora PostgreSQL Migrations
+
+- RDS PostgreSQL to Aurora PostgreSQL.
+  - **Option 1:** DB Snapshots from RDS PostgreSQL restored as PostgreSQL Aurora DB.
+  - **Option 2:** Create an Aurora Read Replica from your RDS PostgreSQL, and when the replication lag is 0, promote it as its own DB cluster (can take time and cost $).
+- External PostgreSQL to Aurora PostgreSQL.
+  - Create a backup and put it in Amazon S3.
+  - Import it using the aws_s3 Aurora extension.
+- Use DMS if both databases are up and running.
+
+# 7. On-Premise strategy with AWS
+
+- **Ability to download Amazon Linux 2 AMI as a VM (.iso format)**
+  - VMWare, KVM, VirtualBox (Oracle VM), Microsoft Hyper-V.
+- **VM Import / Export**
+  - Migrate existing applications into EC2.
+  - Create a DR repository strategy for your on-premises VMs.
+  - Can export back the VMs from EC2 to on-premises.
+- **AWS Application Discovery Service**
+  - Gather information about your on-premises servers to plan a migration.
+  - Server utilization and dependency mappings.
+  - Track with AWS Migration Hub.
+- **AWS Database Migration Service (DMS)**
+  - Replicate On-premise => AWS , AWS => AWS, AWS => On-premise.
+  - Works with various database technologies (Oracle, MySQL, DynamoDB, etc..).
+- **AWS Server Migration Service (SMS)**
+  - Incremental replication of on-premises live servers to AWS.
+
+# 8. Replication Task Monitoring
 
 - **Task Status**
   - Indicates the condition of the Task (e.g., Creating, Running, Stopped...).
@@ -64,7 +109,7 @@
   - Includes the current state of the tables (e.g., Before load, Table completed...).
   - Number of inserts, deletions, and updates for each table.
 
-# 6. CloudWatch Metrics
+# 9. CloudWatch Metrics
 
 - **Host Metrics**
   - Performance and utilization statistics for the replication host.

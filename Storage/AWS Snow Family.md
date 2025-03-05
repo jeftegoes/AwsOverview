@@ -1,4 +1,4 @@
-# AWS Snow Family<!-- omit in toc -->
+# AWS Snow Family <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
