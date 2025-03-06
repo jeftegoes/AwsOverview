@@ -21,7 +21,7 @@
   - [7.2. EBS vs EFS - Elastic Block Storage](#72-ebs-vs-efs---elastic-block-storage)
   - [7.3. EBS vs EFS - Elastic File System](#73-ebs-vs-efs---elastic-file-system)
 - [8. Shared Responsibility Model for EC2 Storage](#8-shared-responsibility-model-for-ec2-storage)
-- [9. Amazon FSx - Overview](#9-amazon-fsx---overview)
+- [9. Amazon FSx](#9-amazon-fsx)
 - [10. Amazon FSx for Windows File Server](#10-amazon-fsx-for-windows-file-server)
 - [11. Amazon FSx for Lustre](#11-amazon-fsx-for-lustre)
 
@@ -240,7 +240,7 @@
   - Responsibility of any data on the drives.
   - Understanding the risk of using EC2 Instance Store.
 
-# 9. Amazon FSx - Overview
+# 9. Amazon FSx
 
 - Launch 3rd party high-performance file systems on AWS.
 - Fully managed service.

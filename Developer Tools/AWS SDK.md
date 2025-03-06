@@ -3,7 +3,7 @@
 ## Contents <!-- omit in toc -->
 
 - [1. What's the AWS SDK?](#1-whats-the-aws-sdk)
-- [2. AWS SDK Overview](#2-aws-sdk-overview)
+- [2. AWS SDK](#2-aws-sdk)
 
 # 1. What's the AWS SDK?
 
@@ -18,7 +18,7 @@
   - IoT Device SDKs (Embedded C, Arduino, ...)
 - Example: AWS CLI is built on AWS SDK for Python.
 
-# 2. AWS SDK Overview
+# 2. AWS SDK
 
 - We have to use the AWS SDK when coding against AWS Services such as DynamoDB.
 - Fun fact... the AWS CLI uses the Python SDK (boto3).

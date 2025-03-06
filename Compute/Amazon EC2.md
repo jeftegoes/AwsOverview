@@ -5,7 +5,7 @@
 - [1. Introduction](#1-introduction)
 - [2. Sizing \& configuration options](#2-sizing--configuration-options)
 - [3. User Data](#3-user-data)
-- [4. EC2 Instance Types - Overview](#4-ec2-instance-types---overview)
+- [4. EC2 Instance Types](#4-ec2-instance-types)
   - [4.1. General Purpose - m](#41-general-purpose---m)
   - [4.2. Compute Optimized - c](#42-compute-optimized---c)
   - [4.3. Memory Optimized - r](#43-memory-optimized---r)
@@ -44,7 +44,7 @@
   - [13.9. AWS License Manager](#139-aws-license-manager)
   - [13.10. Shared Responsibility Model for EC2](#1310-shared-responsibility-model-for-ec2)
 - [14. VM Import/Export](#14-vm-importexport)
-- [15. AMI Overview](#15-ami-overview)
+- [15. AMI](#15-ami)
   - [15.1. AMI Process (from an EC2 instance)](#151-ami-process-from-an-ec2-instance)
   - [15.2. EC2 Image Builder](#152-ec2-image-builder)
   - [15.3. Instance Migration between AZ](#153-instance-migration-between-az)
@@ -89,7 +89,7 @@
   - Anything you can think of.
 - The **EC2 User Data** Script runs with the **root user**.
 
-# 4. EC2 Instance Types - Overview
+# 4. EC2 Instance Types
 
 - You can use different types of EC2 instances that are optimised for different use cases (https://aws.amazon.com/ec2/instance-types/).
 - AWS has the following naming convention:
@@ -507,7 +507,7 @@
 
 ![VM Import/Export](/Images/AmazonEC2VMImportExport.png)
 
-# 15. AMI Overview
+# 15. AMI
 
 - AMI = Amazon Machine Image.
   - **Golden AMI** is an AMI that you standardize through configuration, consistent security patching, and hardening.

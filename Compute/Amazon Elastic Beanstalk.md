@@ -3,7 +3,7 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Developer problems on AWS](#1-developer-problems-on-aws)
-- [2. Overview](#2-overview)
+- [2. Introduction](#2-introduction)
 - [3. Components](#3-components)
   - [3.1. Supported Platforms](#31-supported-platforms)
 - [4. Deployment options for updates](#4-deployment-options-for-updates)
@@ -41,7 +41,7 @@
 - All the developers want is for their code to run!
 - Possibly, consistently across different applications and environments.
 
-# 2. Overview
+# 2. Introduction
 
 - Elastic Beanstalk is a developer centric view of deploying an application on AWS.
 - It uses all the component's we've seen before: EC2, ASG, ELB, RDS, ...

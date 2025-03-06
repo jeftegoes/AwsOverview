@@ -39,7 +39,7 @@
   - [17.3. Lambda Authorizer (formerly Custom Authorizers)](#173-lambda-authorizer-formerly-custom-authorizers)
   - [17.4. Summary](#174-summary)
 - [18. HTTP API vs REST API](#18-http-api-vs-rest-api)
-- [19. WebSocket API - Overview](#19-websocket-api---overview)
+- [19. WebSocket API](#19-websocket-api)
   - [19.1. Routing](#191-routing)
 - [20. Architecture](#20-architecture)
 
@@ -400,7 +400,7 @@
 
 [Full list here](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html)
 
-# 19. WebSocket API - Overview
+# 19. WebSocket API
 
 - What's WebSocket?
   - Two-way interactive communication between a user's browser and a server.

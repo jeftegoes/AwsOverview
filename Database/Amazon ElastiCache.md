@@ -2,7 +2,7 @@
 
 ## Contents <!-- omit in toc -->
 
-- [1. Amazon ElastiCache Overview](#1-amazon-elasticache-overview)
+- [1. Introduction](#1-introduction)
 - [2. Solution Architecture](#2-solution-architecture)
   - [2.1. DB Cache](#21-db-cache)
   - [2.2. User Session Store](#22-user-session-store)
@@ -22,7 +22,7 @@
 - [9. Amazon MemoryDB for Redis](#9-amazon-memorydb-for-redis)
 - [10. Summary](#10-summary)
 
-# 1. Amazon ElastiCache Overview
+# 1. Introduction
 
 - The same way RDS is to get managed Relational Databases...
 - ElastiCache is to get managed Redis or Memcached.

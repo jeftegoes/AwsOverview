@@ -35,7 +35,7 @@
   - [4.1. Lifecycle Policies](#41-lifecycle-policies)
   - [4.2. Amazon ECR public](#42-amazon-ecr-public)
 - [5. AWS Copilot](#5-aws-copilot)
-- [6. Amazon EKS Overview](#6-amazon-eks-overview)
+- [6. Amazon EKS](#6-amazon-eks)
   - [6.1. Node Types](#61-node-types)
   - [6.2. Data Volumes](#62-data-volumes)
   - [6.3. Control Plane Logging](#63-control-plane-logging)
@@ -47,14 +47,14 @@
 
 # 2. Docker Containers Management on AWS
 
-- **Amazon Elastic Container Service (Amazon ECS):**
+- **Amazon Elastic Container Service (Amazon ECS)**
   - Amazon's own container platform.
-- **Amazon Elastic Kubernetes Service (Amazon EKS):**
+- **Amazon Elastic Kubernetes Service (Amazon EKS)**
   - Amazon's managed Kubernetes (open source).
-- **AWS Fargate:**
+- **AWS Fargate**
   - Amazon's own Serverless container platform.
   - Works with ECS and with EKS.
-- **Amazon Elastic Container Registry (Amazon ECR):**
+- **Amazon Elastic Container Registry (Amazon ECR)**
   - Store container images.
 
 # 3. ECS
@@ -74,7 +74,7 @@
 - Launch Docker containers on AWS.
 - **You do not provision the infrastructure (no EC2 instances to manage).**
 - **It's all Serverless!**
-- You just create task definitions
+- You just create **task definitions**.
 - AWS just runs ECS Tasks for you based on the CPU / RAM you need.
 - To scale, just increase the number of tasks.
   - Simple - no more EC2 instances.
@@ -101,10 +101,10 @@
 ## 3.4. Data Volumes (EFS)
 
 - Mount EFS file systems onto ECS tasks.
-- Works for both **EC2** and **Fargate** launch types.
+- Works for both [Amazon EC2](/Compute/Amazon%20EC2.md) and **Fargate** launch types.
 - Tasks running in any AZ will share the same data in the EFS file system.
 - **Fargate + EFS = Serverless.**
-- Use cases: Persistent multi-AZ shared storage for your containers.
+- **Use cases:** Persistent multi-AZ shared storage for your containers.
 - **Note: Amazon S3 cannot be mounted as a file system.**
 
 ## 3.5. Service Auto Scaling
@@ -130,7 +130,6 @@
   - Used to automatically provision and scale the infrastructure for your ECS Tasks.
   - Capacity Provider paired with an Auto Scaling Group.
   - Add EC2 Instances when you're missing capacity (CPU, RAM...).
-  -
 
 ## 3.6. Logging
 
@@ -276,8 +275,8 @@
 
 - ECR = Elastic Container Registry.
 - Store and manage Docker images on AWS.
-- **Private** and **Public** repository (Amazon ECR Public Gallery <https://gallery.ecr.aws>).
-- Fully integrated with ECS, backed by Amazon S3.
+- **Private** and **Public** repository (Amazon ECR Public Gallery https://gallery.ecr.aws).
+- Fully integrated with ECS, backed by [Amazon S3](/Storage/Amazon%20S3.md).
 - Access is controlled through IAM (permission errors => policy).
 - Supports image vulnerability scanning, versioning, image tags, image lifecycle, ...
 
@@ -303,7 +302,7 @@
 - Deploy to multiple environments.
 - Troubleshooting, logs, health status...
 
-# 6. Amazon EKS Overview
+# 6. Amazon EKS
 
 - Amazon EKS = Amazon Elastic **Kubernetes** Service.
 - It is a way to launch **managed Kubernetes clusters on AWS**.
