@@ -27,8 +27,8 @@
 - The same way RDS is to get managed Relational Databases...
 - ElastiCache is to get managed Redis or Memcached.
 - Caches are in-memory databases with really high performance, low latency.
-- Helps make your application stateless.
 - Helps **reduce load off databases for read intensive workloads**.
+- Helps make your application stateless.
 - AWS takes care of OS maintenance / patching, optimizations, setup, configuration, monitoring, failure recovery and backups.
 - **Using ElastiCache involves heavy application code changes.**
 
@@ -53,12 +53,13 @@
 
 # 3. Redis vs Memcached
 
-- REDIS:
+- **Redis**
   - **Multi AZ** with Auto-Failover.
   - **Read Replicas** to scale reads and have **high availability**.
   - Data Durability using AOF persistence.
   - **Backup and restore features.**
-- MEMCACHED:
+  - Supports Sets and Sorted Sets.
+- **Memcached**
   - Multi-node for partitioning of data (sharding).
   - **No high availability (replication).**
   - **Non persistent.**
@@ -67,14 +68,13 @@
 
 # 4. Cache Security
 
-- All caches in ElastiCache:
-  - **Do not support IAM authentication.**
-  - IAM policies on ElastiCache are only used for AWS API-level security.
-- **Redis AUTH:**
+- ElastiCache supports IAM Authentication for Redis.
+- IAM policies on ElastiCache are only used for AWS API-level security.
+- **Redis AUTH**
   - You can set a "password/token" when you create a Redis cluster.
   - This is an extra level of security for your cache (on top of security groups).
   - Support SSL in flight encryption.
-- Memcached:
+- **Memcached**
   - Supports SASL-based authentication (advanced).
 
 # 5. Replication

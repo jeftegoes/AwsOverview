@@ -10,14 +10,15 @@
   - [5.1. NoSQL data example: JSON](#51-nosql-data-example-json)
 - [6. Databases and Shared Responsibility on AWS](#6-databases-and-shared-responsibility-on-aws)
 - [7. Amazon RDS - Relational Database Service](#7-amazon-rds---relational-database-service)
-- [8. Amazon DynamoDB](#8-amazon-dynamodb)
-- [9. ElastiCache](#9-elasticache)
-- [10. DocumentDB](#10-documentdb)
-- [11. Amazon Neptune](#11-amazon-neptune)
-- [12. Amazon QLDB](#12-amazon-qldb)
-- [13. Amazon Managed Blockchain](#13-amazon-managed-blockchain)
-- [14. AWS Database Migration Service (DMS)](#14-aws-database-migration-service-dms)
-- [15. Databases Summary in AWS](#15-databases-summary-in-aws)
+- [8. Amazon Autora](#8-amazon-autora)
+- [9. Amazon DynamoDB](#9-amazon-dynamodb)
+- [10. ElastiCache](#10-elasticache)
+- [11. DocumentDB](#11-documentdb)
+- [12. Amazon Neptune](#12-amazon-neptune)
+- [13. Amazon QLDB](#13-amazon-qldb)
+- [14. Amazon Managed Blockchain](#14-amazon-managed-blockchain)
+- [15. AWS Database Migration Service (DMS)](#15-aws-database-migration-service-dms)
+- [16. Databases Summary in AWS](#16-databases-summary-in-aws)
 
 # 1. Introduction
 
@@ -106,27 +107,31 @@
 
 - **Amazon Relational Database Service (Amazon RDS) is a SQL managed service that makes it easy to set up, operate, and scale a relational database in the cloud. It is suited for OLTP workloads.** [Amazon RDS](Amazon%20RDS.md)
 
-# 8. Amazon DynamoDB
+# 8. Amazon Autora
+
+- **Amazon Aurora is a MySQL and PostgreSQL-compatible relational database built for the cloud, that combines the performance and availability of traditional enterprise databases with the simplicity and cost-effectiveness of open source databases. It is a proprietary technology from AWS.** [Amazon Aurora](Amazon%20Aurora.md)
+
+# 9. Amazon DynamoDB
 
 - **DynamoDB is a fast and flexible non-relational database service for any scale. It can scale with no downtime, it can process millions of requests per second, and is fast and consistent in performance.** [Amazon DynamoDB](Amazon%20DynamoDB.md)
 
-# 9. ElastiCache
+# 10. ElastiCache
 
 - **Amazon ElastiCache is a web service that makes it easy to deploy and run Memcached or Redis protocol-compliant server nodes in the cloud. ElastiCache caches are in-memory databases with high performance, low latency. They help reduce load off databases for read intensive workloads.** [Amazon ElastiCache](Amazon%20ElastiCache.md)
 
-# 10. DocumentDB
+# 11. DocumentDB
 
 - **Amazon DocumentDB (with MongoDB compatibility) is a fast, calable, highly available, and fully managed document database service that supports MongoDB workloads.** [Amazon DocumentDB](Amazon%20DocumentDB.md)
 
-# 11. Amazon Neptune
+# 12. Amazon Neptune
 
 - **Amazon Neptune is a fast, reliable, fully-managed graph database service that makes it easy to build and run applications that work with highly connected datasets. It can be used for knowledge graphs, fraud detection, recommendations engines, social networking, etc.** [Amazon Netptune](Amazon%20Neptune.md)
 
-# 12. Amazon QLDB
+# 13. Amazon QLDB
 
 - **Amazon QLDB is a fully managed ledger database that provides a transparent, immutable, and cryptographically verifiable transaction log owned by a central trusted authority. Amazon QLDB tracks each and every application data change and maintains a complete and verifiable history of changes over time.** [Amazon QLDB](Amazon%20QLDB.md)
 
-# 13. Amazon Managed Blockchain
+# 14. Amazon Managed Blockchain
 
 - **Amazon Managed Blockchain is a fully managed service that makes it easy to create and manage scalable blockchain networks using the popular open source frameworks Hyperledger Fabric and Ethereum. It allows multiple parties to execute transactions without the need of a trusted, central authority.**
 - Blockchain makes it possible to build applications where multiple parties can execute transactions without the need for a trusted, central authority.
@@ -135,11 +140,11 @@
   - Or create your own scalable private network
 - Compatible with the frameworks Hyperledger Fabric & Ethereum
 
-# 14. AWS Database Migration Service (DMS)
+# 15. AWS Database Migration Service (DMS)
 
 - **AWS Database Migration Service helps you migrate databases to AWS quickly and securely. The source database remains fully operational during the migration, minimizing downtime to applications that rely on the database.** [AWS Database Migration Service](AWS%20Database%20Migration%20Service.md)
 
-# 15. Databases Summary in AWS
+# 16. Databases Summary in AWS
 
 - Relational Databases: OLTP, RDS and Aurora (SQL).
 - Differences between Multi-AZ, Read Replicas, Multi-Region.

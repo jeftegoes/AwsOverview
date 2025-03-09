@@ -3,31 +3,36 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. Aurora High Availability and Read Scaling](#2-aurora-high-availability-and-read-scaling)
+- [2. High Availability and Read Scaling](#2-high-availability-and-read-scaling)
 - [3. Auto Scaling](#3-auto-scaling)
-- [4. Global Aurora](#4-global-aurora)
-- [5. Unplanned Failover](#5-unplanned-failover)
-- [6. Features of Aurora](#6-features-of-aurora)
-- [7. Aurora Security](#7-aurora-security)
-- [8. Amazon Aurora Serverless](#8-amazon-aurora-serverless)
-- [9. MySQL error log](#9-mysql-error-log)
-- [10. Amazon Aurora vs Amazon Aurora Serverless](#10-amazon-aurora-vs-amazon-aurora-serverless)
-- [11. Summary](#11-summary)
+- [4. Custom Endpoints](#4-custom-endpoints)
+- [5. Global Aurora](#5-global-aurora)
+- [6. Machine Learning](#6-machine-learning)
+- [7. Unplanned Failover](#7-unplanned-failover)
+- [8. Features of Aurora](#8-features-of-aurora)
+- [9. Aurora Security](#9-aurora-security)
+- [10. Amazon Aurora Serverless](#10-amazon-aurora-serverless)
+- [11. MySQL error log](#11-mysql-error-log)
+- [12. Amazon Aurora vs Amazon Aurora Serverless](#12-amazon-aurora-vs-amazon-aurora-serverless)
+- [13. Backups](#13-backups)
+  - [13.1. Restore options](#131-restore-options)
+- [14. Database Cloning](#14-database-cloning)
+- [15. Aurora Security](#15-aurora-security)
+- [16. Summary](#16-summary)
 
 # 1. Introduction
 
-- **Amazon Aurora is a MySQL and PostgreSQL-compatible relational database built for the cloud, that combines the performance and availability of traditional enterprise databases with the simplicity and cost-effectiveness of open source databases. It is a proprietary technology from AWS.**
 - Aurora is a proprietary technology from AWS (not open sourced).
 - **PostgreSQL and MySQL** are both supported as Aurora DB (that means your drivers will work as if Aurora was a Postgres or MySQL database).
 - Aurora is "AWS cloud optimized" and claims 5x performance improvement over MySQL on RDS, over 3x the performance of Postgres on RDS.
 - Aurora storage automatically grows in increments of 10GB, up to 128 TB.
-- Aurora can have 15 replicas while MySQL has 5, and the replication process is faster (sub 10 ms replica lag).
+- Aurora can have up to 15 replicas and the replication process is faster than MySQL (sub 10 ms replica lag).
 - Failover in Aurora is instantaneous. It's HA (High Availability) native.
-- Aurora costs more than RDS (20% more) - but is more efficient.
+- Aurora costs more than RDS (20% more), but is more efficient.
 
-# 2. Aurora High Availability and Read Scaling
+# 2. High Availability and Read Scaling
 
-- 6 copies of your data across 3 AZ:
+- **6 copies of your data across 3 AZ**
   - 4 copies out of 6 needed for writes.
   - 3 copies out of 6 need for reads.
   - Self healing with peer-to-peer replication.
@@ -41,7 +46,13 @@
 
 ![Auto Scaling](/Images/AmazonAuroraAutoScaling.png)
 
-# 4. Global Aurora
+# 4. Custom Endpoints
+
+- Define a subset of Aurora Instances as a Custom Endpoint.
+- **Example:** Run analytical queries on specific replicas.
+- The Reader Endpoint is generally not used after defining Custom Endpoints.
+
+# 5. Global Aurora
 
 - **Aurora Cross Region Read Replicas**
   - Useful for disaster recovery.
@@ -56,11 +67,21 @@
 
 ![Global Aurora](/Images/AmazonAuroraGlobal.png)
 
-# 5. Unplanned Failover
+# 6. Machine Learning
+
+- Enables you to add ML-based predictions to your applications via SQL.
+- Simple, optimized, and secure integration between Aurora and AWS ML services.
+- Supported services.
+  - [Amazon SageMaker](/Machine%20Learning/README.md) (use with any ML model).
+  - [Amazon Comprehend](/Machine%20Learning/README.md) (for sentiment analysis).
+- You don't need to have ML experience.
+- **Use cases:** fraud detection, ads targeting, sentiment analysis, product recommendations.
+
+# 7. Unplanned Failover
 
 ![Unplanned Failover](/Images/AmazonAuroraUnplannedFailover.png)
 
-# 6. Features of Aurora
+# 8. Features of Aurora
 
 - Automatic fail-over.
 - Backup and Recovery.
@@ -70,9 +91,9 @@
 - Automated Patching with Zero Downtime.
 - Advanced Monitoring.
 - Routine Maintenance.
-- Backtrack: restore data at any point of time without using backups.
+- **Backtrack:** Restore data at any point of time without using backups.
 
-# 7. Aurora Security
+# 9. Aurora Security
 
 - Similar to RDS because uses the same engines.
 - Encryption at rest using KMS.
@@ -82,19 +103,24 @@
 - You are responsible for protecting the instance with security groups.
 - You can't SSH.
 
-# 8. Amazon Aurora Serverless
+# 10. Amazon Aurora Serverless
 
 - The Aurora Serverless is an auto-scaling, on-demand configuration designed for Amazon Aurora RDS.
 - It can start, shut and scale capacity automatically, according to individual application's requirements.
 - This service allows you to run cloud-powered databases without the need to manage database capacity.
+- Automated database instantiation and auto.
+- Scaling based on actual usage.
+- Good for infrequent, intermittent or unpredictable workloads.
+- No capacity planning needed.
+- Pay per second, can be more cost-effective.
 
-# 9. MySQL error log
+# 11. MySQL error log
 
 - You can monitor the MySQL logs directly through the Amazon RDS console, Amazon RDS API, AWS CLI, or AWS SDKs.
 - You can also access MySQL logs by directing the logs to a database table in the main database and querying that table.
 - You can use the mysqlbinlog utility to download a binary log.
 
-# 10. Amazon Aurora vs Amazon Aurora Serverless
+# 12. Amazon Aurora vs Amazon Aurora Serverless
 
 | Amazon Aurora Highlights         | Amazon Aurora Serverless Highlights                       |
 | -------------------------------- | --------------------------------------------------------- |
@@ -106,15 +132,54 @@
 | Higher IOPS cost                 |                                                           |
 | Better cost-to-performance ratio |                                                           |
 
-# 11. Summary
+# 13. Backups
+
+- **Automated backups**
+  - 1 to 35 days (cannot be disabled).
+  - Point-in-time recovery in that timeframe.
+- **Manual DB Snapshots**
+  - Manually triggered by the user.
+  - Retention of backup for as long as you want.
+
+## 13.1. Restore options
+
+- Aurora backup or a snapshot creates a new database.
+- **Restoring MySQL Aurora cluster from S3**
+  - Create a backup of your on-premises database using Percona XtraBackup.
+  - Store the backup file on Amazon S3.
+  - Restore the backup file onto a new Aurora cluster running MySQL.
+
+# 14. Database Cloning
+
+- Create a new Aurora DB Cluster from an existing one.
+- Faster than snapshot & restore.
+- Uses **copy-on-write** protocol.
+  - Initially, the new DB cluster uses the same data volume as the original DB cluster (fast and efficient - no copying is needed).
+  - When updates are made to the new DB cluster data, then additional storage is allocated and data is copied to be separated
+- Very fast & cost-effective.
+- **Useful to create a "staging" database from a "production" database without impacting the production database.**
+
+# 15. Aurora Security
+
+- **At-rest encryption**
+  - Database master & replicas encryption using AWS KMS – must be defined as launch time.
+  - If the master is not encrypted, the read replicas cannot be encrypted.
+  - To encrypt an un-encrypted database, go through a DB snapshot & restore as encrypted.
+- **In-flight encryption:** TLS-ready by default, use the AWS TLS root certificates client-side.
+- **IAM Authentication:** IAM roles to connect to your database (instead of username/pw).
+- **Security Groups:** Control Network access to your RDS / Aurora DB.
+- **No SSH available** except on RDS Custom.
+- **Audit Logs can be enabled** and sent to CloudWatch Logs for longer retention.
+
+# 16. Summary
 
 - Compatible API for PostgreSQL / MySQL, separation of storage and compute.
-- Storage: data is stored in 6 replicas, across 3 AZ - highly available, self-healing, auto-scaling.
+- Storage: Data is stored in 6 replicas, across 3 AZ - highly available, self-healing, auto-scaling.
 - Compute: Cluster of DB Instance across multiple AZ, auto-scaling of Read Replicas.
 - Cluster: Custom endpoints for writer and reader DB instances.
 - Same security / monitoring / maintenance features as RDS.
 - Know the backup & restore options for Aurora.
-- **Aurora Serverless** - For unpredictable / intermittent workloads, no capacity planning.
+- **Aurora Serverless:** For unpredictable / intermittent workloads, no capacity planning.
 - **Aurora Global:** Up to 16 DB Read Instances in each region, < 1 second storage replication.
 - **Aurora Machine Learning:** Perform ML using SageMaker & Comprehend on Aurora.
 - **Aurora Database Cloning:** New cluster from existing one, faster than restoring a snapshot.

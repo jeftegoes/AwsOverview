@@ -5,6 +5,7 @@
 - [1. Introduction](#1-introduction)
 - [2. Advantage over using RDS versus deploying DB on EC2](#2-advantage-over-using-rds-versus-deploying-db-on-ec2)
 - [3. Backups](#3-backups)
+  - [3.1. Restore options](#31-restore-options)
 - [4. Storage Auto Scaling](#4-storage-auto-scaling)
 - [5. Read Replicas for read scalability](#5-read-replicas-for-read-scalability)
   - [5.1. Use Cases](#51-use-cases)
@@ -12,17 +13,19 @@
 - [6. Disaster Recovery](#6-disaster-recovery)
   - [6.1. Multi AZ](#61-multi-az)
   - [6.2. From Single-AZ to Multi-AZ](#62-from-single-az-to-multi-az)
-- [7. Security - Encryption](#7-security---encryption)
-  - [7.1. TDE - Transparent Data Encryption](#71-tde---transparent-data-encryption)
-  - [7.2. Encryption Operations](#72-encryption-operations)
-  - [7.3. Network \& IAM](#73-network--iam)
-  - [7.4. IAM Authentication](#74-iam-authentication)
-  - [7.5. Security - Summary](#75-security---summary)
-- [8. Monitoring](#8-monitoring)
-- [9. RDS Proxy](#9-rds-proxy)
-- [10. Enhanced Monitoring](#10-enhanced-monitoring)
-- [11. CloudFormation](#11-cloudformation)
-- [12. Summary](#12-summary)
+- [7. RDS Custom](#7-rds-custom)
+- [8. Security - Encryption](#8-security---encryption)
+  - [8.1. TDE - Transparent Data Encryption](#81-tde---transparent-data-encryption)
+  - [8.2. Encryption Operations](#82-encryption-operations)
+  - [8.3. Network \& IAM](#83-network--iam)
+  - [8.4. IAM Authentication](#84-iam-authentication)
+  - [8.5. Security - Summary](#85-security---summary)
+- [9. Monitoring](#9-monitoring)
+- [10. Proxy](#10-proxy)
+- [11. Enhanced Monitoring](#11-enhanced-monitoring)
+- [12. CloudFormation](#12-cloudformation)
+- [13. RDS](#13-rds)
+- [14. Summary](#14-summary)
 
 # 1. Introduction
 
@@ -34,11 +37,12 @@
   - MariaDB.
   - Oracle.
   - Microsoft SQL Server.
+  - IBM DB2.
   - Aurora (AWS Proprietary database).
 
 # 2. Advantage over using RDS versus deploying DB on EC2
 
-- RDS is a managed service:
+- **RDS is a managed service**
   - Automated provisioning, OS patching.
   - Continuous backups and restore to specific timestamp (Point in Time Restore)!
   - Monitoring dashboards.
@@ -52,14 +56,23 @@
 # 3. Backups
 
 - Backups are automatically enabled in RDS.
-- **Automated backups:**
+- **Automated backups**
   - Daily full backup of the database (during the maintenance window).
   - Transaction logs are backed-up by RDS every 5 minutes.
   - => ability to restore to any point in time (from oldest backup to 5 minutes ago).
-  - 7 days retention (can be increased to 35 days).
-- **DB Snapshots:**
+  - 1 to 35 days of retention, set 0 to disable automated backups.
+- **Manual DB Snapshots**
   - Manually triggered by the user.
   - Retention of backup for as long as you want.
+- **Trick:** In a stopped RDS database, you will still pay for storage. If you plan on stopping it for a long time, you should snapshot & restore instead.
+
+## 3.1. Restore options
+
+- Restoring a RDS backup or a snapshot creates a new database.
+- **Restoring MySQL RDS database from S3**
+  - Create a backup of your on-premises database.
+  - Store it on Amazon S3 (object storage).
+  - Restore the backup file onto a new RDS instance running MySQL.
 
 # 4. Storage Auto Scaling
 
@@ -67,7 +80,7 @@
 - When RDS detects you are running out of free database storage, it scales automatically.
 - Avoid manually scaling your database storage.
 - You have to set **Maximum Storage Threshold** (maximum limit for DB storage).
-- Automatically modify storage if:
+- **Automatically modify storage if**
   - Free storage is less than 10% of allocated storage.
   - Low-storage lasts at least 5 minutes.
   - 6 hours have passed since last modification.
@@ -76,7 +89,7 @@
 
 # 5. Read Replicas for read scalability
 
-- Up to 5 Read Replicas.
+- Up to 15 Read Replicas.
 - Within AZ, Cross AZ or Cross Region.
 - Replication is **ASYNC**, so reads are eventually consistent.
 - Replicas can be promoted to their own DB.
@@ -120,13 +133,27 @@
 
 - Zero downtime operation (no need to stop the DB).
 - Just click on "modify" for the database.
-- The following happens internally:
-  - A snapshot is taken.
-  - A new DB is restored from the snapshot in a new AZ.
-  - Synchronization is established between the two databases.
-    ![Single AZ](/Images/AmazonRDSSingleAZ.png)
+- The following happens internally
+  1. A snapshot is taken.
+  2. A new DB is restored from the snapshot in a new AZ.
+  3. Synchronization is established between the two databases.
+     ![Single AZ](/Images/AmazonRDSSingleAZ.png)
 
-# 7. Security - Encryption
+# 7. RDS Custom
+
+- **Managed Oracle and Microsoft SQL Server Database with OS and database customization.**
+- RDS: Automates setup, operation, and scaling of database in AWS.
+- Custom: Access to the underlying database and OS so you can.
+  - Configure settings.
+  - Install patches.
+  - Enable native features.
+  - Access the underlying EC2 Instance using **SSH** or **SSM Session Manager**.
+- **De-activate Automation Mode** to perform your customization, better to take a DB snapshot before.
+- **RDS vs. RDS Custom**
+  - **RDS:** Entire database and the OS to be managed by AWS.
+  - **RDS Custom:** Full admin access to the underlying OS and the database.
+
+# 8. Security - Encryption
 
 - At rest encryption:
   - Possibility to encrypt the master & read replicas with AWS KMS - AES-256 encryption.
@@ -139,14 +166,14 @@
     - PostgreSQL: rds.force_ssl=1 in the AWS RDS Console (Parameter Groups).
     - MySQL: Within the DB: `GRANT USAGE ON *.* TO 'mysqluser'@'%' REQUIRE SSL;`
 
-## 7.1. TDE - Transparent Data Encryption
+## 8.1. TDE - Transparent Data Encryption
 
 - Amazon RDS supports using Transparent Data Encryption (TDE) to encrypt stored data on your DB instances running Microsoft SQL Server or Oracle.
 - TDE automatically encrypts data before it is written to storage, and automatically decrypts data when the data is read from storage.
 - At rest encryption:
   - Transparent Data Encryption (TDE) available for Oracle and SQL Server.
 
-## 7.2. Encryption Operations
+## 8.2. Encryption Operations
 
 - Encrypting RDS backups:
   - Snapshots of un-encrypted RDS databases are un-encrypted.
@@ -158,7 +185,7 @@
   - Restore the database from the encrypted snapshot.
   - Migrate applications to the new database, and delete the old database.
 
-## 7.3. Network & IAM
+## 8.3. Network & IAM
 
 - Network Security:
   - RDS databases are usually deployed within a private subnet, not in a public one.
@@ -168,7 +195,7 @@
   - Traditional Username and Password can be used to login into the database.
   - IAM-based authentication can be used to login into RDS MySQL & PostgreSQL.
 
-## 7.4. IAM Authentication
+## 8.4. IAM Authentication
 
 - IAM database authentication works with:
   - MySQL.
@@ -180,7 +207,7 @@
   - IAM to centrally manage users instead of DB.
   - Can leverage IAM Roles and EC2 Instance profiles for easy integration.
 
-## 7.5. Security - Summary
+## 8.5. Security - Summary
 
 - Encryption at rest:
   - Is done only when you first create the DB instance.
@@ -196,32 +223,32 @@
   - No manual OS patching.
   - No way to audit the underlying instance.
 
-# 8. Monitoring
+# 9. Monitoring
 
 ![RDS Monitoring log options](/Images/AWSRDSMonitoring.png)
 
-# 9. RDS Proxy
+# 10. Proxy
 
 - Fully managed database proxy for RDS.
 - Allows apps to pool and share DB connections established with the database.
-- Improving database efficiency by reducing the stress on database resources (e.g., CPU, RAM) and minimize open connections (and timeouts).
+- **Improving database efficiency by reducing the stress on database resources (e.g., CPU, RAM) and minimize open connections (and timeouts)**.
 - Serverless, autoscaling, highly available (multi-AZ).
-- Reduced RDS & Aurora failover time by up 66%.
+- **Reduced RDS & Aurora failover time by up 66%.**
 - Supports RDS (MySQL, PostgreSQL, MariaDB) and Aurora (MySQL, PostgreSQL).
 - No code changes required for most apps.
-- Enforce IAM Authentication for DB, and securely store credentials in AWS Secrets Manager.
-- RDS Proxy is never publicly accessible (must be accessed from VPC).
+- **Enforce IAM Authentication for DB, and securely store credentials in AWS Secrets Manager.**
+- **RDS Proxy is never publicly accessible (must be accessed from VPC).**
 
 ![RDS Proxy Diagram](/Images/AWSRDSProxyDiagram.png)
 
-# 10. Enhanced Monitoring
+# 11. Enhanced Monitoring
 
 - Amazon RDS provides metrics in real-time for the operating system (OS) that your DB instance runs on.
 - You can view the metrics for your DB instance using the console or consume the Enhanced Monitoring JSON output from CloudWatch Logs in a monitoring system of your choice.
 - By default, **Enhanced Monitoring metrics are stored in the CloudWatch Logs for 30 days**.
 - To modify the amount of time the metrics are stored in the CloudWatch Logs, change the retention for the `RDSOSMetrics` log group in the CloudWatch console.
 
-# 11. CloudFormation
+# 12. CloudFormation
 
 - `RDS::DBInstance`
   - `EngineVersion`- The version number of the database engine to use.
@@ -230,7 +257,19 @@
   - `AllowMajorVersionUpgrade` - A value that indicates whether major version upgrades are allowed.
     - Changing this parameter doesn't result in an outage and the change is asynchronously applied as soon as possible.
 
-# 12. Summary
+# 13. RDS
+
+- **At-rest encryption**
+  - Database master & replicas encryption using AWS KMS – must be defined as launch time.
+  - If the master is not encrypted, the read replicas cannot be encrypted.
+  - To encrypt an un-encrypted database, go through a DB snapshot & restore as encrypted.
+- **In-flight encryption:** TLS-ready by default, use the AWS TLS root certificates client-side.
+- **IAM Authentication:** IAM roles to connect to your database (instead of username/pw).
+- **Security Groups:** Control Network access to your RDS / Aurora DB.
+- **No SSH available** except on RDS Custom.
+- **Audit Logs can be enabled** and sent to CloudWatch Logs for longer retention.
+
+# 14. Summary
 
 - Managed PostgreSQL / MySQL / Oracle / SQL Server / DB2 / MariaDB / Custom.
 - Provisioned RDS Instance Size and EBS Volume Type & Size.
