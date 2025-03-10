@@ -1,4 +1,4 @@
-# Amazon Inspector<!-- omit in toc -->
+# Amazon Inspector <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

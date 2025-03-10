@@ -20,6 +20,8 @@
   - [4.1. Elastic Beanstalk Summary:](#41-elastic-beanstalk-summary)
 - [5. Lambda](#5-lambda)
   - [5.1. Lambda Summary](#51-lambda-summary)
+- [6. AWS Batch](#6-aws-batch)
+- [7. Summary](#7-summary)
 
 # 1. EC2 - Elastic Compute Cloud
 
@@ -160,12 +162,20 @@
 ## 5.1. Lambda Summary
 
 - Lambda is Serverless, Function as a Service, seamless scaling, reactive.
-- Lambda Billing:
+- **Lambda Billing**
   - By the time run x by the RAM provisioned.
   - By the number of invocations.
-- Language Support: many programming languages except (arbitrary) Docker.
-- Invocation time: up to 15 minutes.
-- Use cases:
+- **Language Support:** Many programming languages except (arbitrary) Docker.
+- **Invocation time:** up to 15 minutes.
+- **Use cases**
   - Create Thumbnails for images uploaded onto S3.
   - Run a Serverless cron job.
 - API Gateway: expose Lambda functions as HTTP API.
+
+# 6. AWS Batch
+
+[text](AWS%20Batch.md)
+
+# 7. Summary
+
+- Batch: run batch jobs on AWS across managed EC2 instances.

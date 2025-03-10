@@ -15,12 +15,14 @@
   - [5.4. ElastiCache for Redis - Auto Scaling](#54-elasticache-for-redis---auto-scaling)
   - [5.5. ElastiCache - Redis Connection Endpoints](#55-elasticache---redis-connection-endpoints)
 - [6. Caching Implementation Considerations](#6-caching-implementation-considerations)
-  - [6.1. Lazy Loading / Cache-Aside / Lazy Population](#61-lazy-loading--cache-aside--lazy-population)
-  - [6.2. Write Through - Add or Update cache when database is updated](#62-write-through---add-or-update-cache-when-database-is-updated)
+  - [6.1. Patterns for ElastiCache](#61-patterns-for-elasticache)
+  - [6.2. Lazy Loading / Cache-Aside / Lazy Population](#62-lazy-loading--cache-aside--lazy-population)
+  - [6.3. Write Through - Add or Update cache when database is updated](#63-write-through---add-or-update-cache-when-database-is-updated)
 - [7. Cache Evictions and Time-to-live (TTL)](#7-cache-evictions-and-time-to-live-ttl)
 - [8. Final words of wisdom](#8-final-words-of-wisdom)
 - [9. Amazon MemoryDB for Redis](#9-amazon-memorydb-for-redis)
-- [10. Summary](#10-summary)
+- [10. Use Case](#10-use-case)
+- [11. Summary](#11-summary)
 
 # 1. Introduction
 
@@ -68,7 +70,7 @@
 
 # 4. Cache Security
 
-- ElastiCache supports IAM Authentication for Redis.
+- ElastiCache supports **IAM Authentication for Redis**.
 - IAM policies on ElastiCache are only used for AWS API-level security.
 - **Redis AUTH**
   - You can set a "password/token" when you create a Redis cluster.
@@ -138,7 +140,17 @@
   - Example: Key value caching, or caching of aggregations results.
 - Which caching design pattern is the most appropriate?
 
-## 6.1. Lazy Loading / Cache-Aside / Lazy Population
+## 6.1. Patterns for ElastiCache
+
+- **Lazy Loading**
+  - All the read data is cached, data can become stale in cache.
+- **Write Through**
+  - Adds or update data in the cache when written to a DB (no stale data).
+- **Session Store**
+  - Store temporary session data in a cache (using TTL features).
+- **Quote: There are only two hard things in Computer Science: Cache invalidation and naming things.**
+
+## 6.2. Lazy Loading / Cache-Aside / Lazy Population
 
 - Lazy Loading would load data into the cache only when necessary (actively requested data from the database).
 - Pros:
@@ -160,7 +172,7 @@
   }
 ```
 
-## 6.2. Write Through - Add or Update cache when database is updated
+## 6.3. Write Through - Add or Update cache when database is updated
 
 - Pros:
   - Data in cache is never stale, reads are quick.
@@ -198,7 +210,13 @@
 - Scale seamlessly from 10s GBs to 100s TBs of storage.
 - Use cases: web and mobile apps, online gaming, media streaming, ...
 
-# 10. Summary
+# 10. Use Case
+
+- Gaming Leaderboards are computationally complex.
+- **Redis Sorted sets** guarantee both uniqueness and element ordering.
+- Each time a new element added, it's ranked in real time, then added in correct order.
+
+# 11. Summary
 
 - Managed Redis / Memcached (similar offering as RDS, but for caches).
 - In-memory data store, sub-millisecond latency.

@@ -1,4 +1,4 @@
-# Amazon EventBridge (Default event bus)<!-- omit in toc -->
+# Amazon EventBridge (Default event bus) <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -8,6 +8,7 @@
 - [4. Schema Registry](#4-schema-registry)
 - [5. Resource-based Policy](#5-resource-based-policy)
 - [6. Amazon EventBridge vs CloudWatch Events](#6-amazon-eventbridge-vs-cloudwatch-events)
+- [7. Security](#7-security)
 
 # 1. Introduction
 
@@ -78,3 +79,9 @@
 - Event Bridge has the Schema Registry capability.
 - EventBridge has a different name to mark the new capabilities.
 - Over time, the CloudWatch Events name will be replaced with EventBridge.
+
+# 7. Security
+
+- When a rule runs, it needs permissions on the target.
+- **Resource-based policy:** Lambda, SNS, SQS, S3 buckets, API Gateway...
+- **IAM role:** EC2 Auto Scaling, Systems Manager Run Command, ECS task...

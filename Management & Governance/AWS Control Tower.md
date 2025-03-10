@@ -1,11 +1,12 @@
-# AWS Control Tower<!-- omit in toc -->
+# AWS Control Tower <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
 - [2. Account Factory](#2-account-factory)
 - [3. Policy Violations](#3-policy-violations)
-  - [3.1. Guardrails Levels](#31-guardrails-levels)
+  - [3.1. Guardrail](#31-guardrail)
+    - [3.1.1. Guardrails Levels](#311-guardrails-levels)
 - [4. Landing Zone](#4-landing-zone)
 - [5. Account Factory - Customization (AFC)](#5-account-factory---customization-afc)
 - [6. Customizations for AWS Control Tower (CfCT)](#6-customizations-for-aws-control-tower-cfct)
@@ -16,13 +17,14 @@
 # 1. Introduction
 
 - Easy way to **set up and govern a secure and compliant multi-account AWS environment** based on best practices.
-- Benefits:
+- AWS Control Tower uses [AWS Organizations](AWS%20Organizations.md) to create accounts.
+- **Benefits**
   - Automate the set up of your environment in a few clicks.
   - Automate ongoing policy management using guardrails.
   - Detect policy violations and remediate them.
   - Monitor compliance through an interactive dashboard.
-- AWS Control Tower runs on top of AWS Organizations:
-  - It automatically sets up AWS Organizations to organize accounts and implement SCPs (Service Control Policies).
+- AWS Control Tower runs on top of [AWS Organizations](AWS%20Organizations.md):
+  - It automatically sets up [AWS Organizations](AWS%20Organizations.md) to organize accounts and implement SCPs (Service Control Policies).
 
 # 2. Account Factory
 
@@ -32,23 +34,24 @@
 
 # 3. Policy Violations
 
-- Guardrail
-  - Provides ongoing governance for your Control Tower environment (AWS Accounts).
-  - **Preventive:** Using SCPs (e.g., Disallow Creation of Access Keys for the Root User).
-  - **Detective:** - Using AWS Config (e.g., Detect Whether MFA for the Root User is Enabled).
-  - Example: identify non-compliant resources (e.g., untagged resources).
+## 3.1. Guardrail
 
-## 3.1. Guardrails Levels
+- Provides ongoing governance for your Control Tower environment (AWS Accounts).
+- **Preventive:** Using SCPs (e.g., Disallow Creation of Access Keys for the Root User).
+- **Detective:** - Using AWS Config (e.g., Detect Whether MFA for the Root User is Enabled).
+- **Example:** Identify non-compliant resources (e.g., untagged resources).
+
+### 3.1.1. Guardrails Levels
 
 - **Mandatory**
   - Automatically enabled and enforced by AWS Control Tower.
-  - Example: Disallow public Read access to the Log Archive account.
+  - **Example:** Disallow public Read access to the Log Archive account.
 - **Strongly Recommended**
   - Based on AWS best practices (optional).
-  - Example: Enable encryption for EBS volumes attached to EC2 instances.
+  - **Example:** Enable encryption for EBS volumes attached to EC2 instances.
 - **Elective**
   - Commonly used by enterprises (optional).
-  - Example: Disallow delete actions without MFA in S3 buckets.
+  - **Example:** Disallow delete actions without MFA in S3 buckets.
 
 # 4. Landing Zone
 

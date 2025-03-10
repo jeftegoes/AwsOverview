@@ -1,4 +1,4 @@
-# AWS IAM Identity Center (successor to AWS Single Sign-On)<!-- omit in toc -->
+# AWS IAM Identity Center (successor to AWS Single Sign-On) <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -30,8 +30,8 @@
   - Provide required URLs, certificates, and metadata.
 - **Attribute-Based Access Control (ABAC)**
   - Fine-grained permissions based on users' attributes stored in IAM Identity Center Identity Store.
-  - Example: cost center, title, locale...
-  - Use case: Define permissions once, then modify AWS access by changing the attributes.
+  - **Example:** Cost center, title, locale...
+  - **Use case:** Define permissions once, then modify AWS access by changing the attributes.
 
 # 3. External IdPs
 

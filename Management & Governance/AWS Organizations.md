@@ -1,26 +1,42 @@
-# AWS Organizations<!-- omit in toc -->
+# AWS Organizations <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
+  - [1.1. Advantages](#11-advantages)
 - [2. OrganizationAccountAccessRole](#2-organizationaccountaccessrole)
 - [3. Multi account strategies](#3-multi-account-strategies)
 - [4. Feature Modes](#4-feature-modes)
 - [5. Reserved Instances](#5-reserved-instances)
 - [6. Moving Accounts](#6-moving-accounts)
 - [7. Service Control Policies (SCP)](#7-service-control-policies-scp)
+- [8. Resource Policies \& aws:PrincipalOrgID](#8-resource-policies--awsprincipalorgid)
 
 # 1. Introduction
 
 - Global service.
 - Allows to manage **multiple AWS accounts**.
 - The main account is the master account.
-- Cost Benefits:
+- Member accounts can only be part of one organization.
+- **Shared reserved instances and Savings Plans discounts across accounts.**
+- **Cost Benefits**
   - **Consolidated Billing** across all accounts - single payment method.
   - Pricing benefits from **aggregated usage** (volume discount for EC2, S3...).
   - **Pooling of Reserved EC2 instances** for optimal savings.
 - API is available to **automate AWS account creation**.
 - **Restrict account privileges using Service Control Policies (SCP)**.
+
+## 1.1. Advantages
+
+- Multi Account vs One Account Multi VPC.
+- Use tagging standards for billing purposes.
+- Enable CloudTrail on all accounts, send logs to central S3 account.
+- Send CloudWatch Logs to central logging account.
+- Establish Cross Account Roles for Admin purposes.
+- **Security: Service Control Policies (SCP)**
+  - IAM policies applied to OU or Accounts to restrict Users and Roles.
+  - They do not apply to the management account (full admin power).
+  - Must have an explicit allow from the root through each OU in the direct path to the target account (does not allow anything by default – like IAM).
 
 # 2. OrganizationAccountAccessRole
 
@@ -81,3 +97,7 @@
 - Use cases:
   - Restrict access to certain services (for example: can't use EMR).
   - Enforce PCI compliance by explicitly disabling services.
+
+# 8. Resource Policies & aws:PrincipalOrgID
+
+- `aws:PrincipalOrgID` can be used in any resource policies to restrict access to accounts that are member of an AWS Organization.

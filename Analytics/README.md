@@ -6,7 +6,8 @@
 - [2. AWS Glue](#2-aws-glue)
 - [3. Amazon EMR](#3-amazon-emr)
 - [4. Amazon QuickSight](#4-amazon-quicksight)
-- [5. Analytics Summary in AWS](#5-analytics-summary-in-aws)
+- [5. Amazon Kinesis](#5-amazon-kinesis)
+- [6. Analytics Summary in AWS](#6-analytics-summary-in-aws)
 
 # 1. Amazon Athena
 
@@ -24,7 +25,11 @@
 
 - **Amazon QuickSight is a fast, cloud-powered business intelligence (BI) service that makes it easy for you to deliver insights to everyone in your organization. You can create and publish interactive dashboards.** [Amazon QuickSight](Amazon%20QuickSight.md)
 
-# 5. Analytics Summary in AWS
+# 5. Amazon Kinesis
+
+- **Amazon Kinesis makes it easy to collect, process, and analyze real-time, streaming data so you can get timely insights and react quickly to new information. Kinesis offers four services: Data Firehose, Data Analytics, Data Streams, Video Streams.** [Amazon Kinesis](Amazon%20Kinesis.md)
+
+# 6. Analytics Summary in AWS
 
 - Athena: query data on Amazon S3 (serverless & SQL).
 - Glue: Managed ETL (Extract Transform Load) and Data Catalog service.

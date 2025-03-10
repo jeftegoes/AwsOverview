@@ -1,4 +1,4 @@
-# Amazon GuardDuty<!-- omit in toc -->
+# Amazon GuardDuty <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

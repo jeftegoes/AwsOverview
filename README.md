@@ -34,27 +34,21 @@
 - [6. Databases](#6-databases)
 - [7. Other Compute Services: ECS, Batch, Lightsail](#7-other-compute-services-ecs-batch-lightsail)
   - [7.1. ECS - Elastic Container Service, Fargate and ECR - Elastic Container Registry](#71-ecs---elastic-container-service-fargate-and-ecr---elastic-container-registry)
-  - [7.2. AWS Batch](#72-aws-batch)
-  - [7.3. Amazon Lightsail](#73-amazon-lightsail)
-  - [7.4. Other Compute - Summary](#74-other-compute---summary)
+  - [7.2. Amazon Lightsail](#72-amazon-lightsail)
+  - [7.3. Other Compute - Summary](#73-other-compute---summary)
 - [8. Global Infrastructure](#8-global-infrastructure)
   - [8.1. Why make a global application?](#81-why-make-a-global-application)
   - [8.2. Global AWS Infrastructure](#82-global-aws-infrastructure)
   - [8.3. Global Applications in AWS](#83-global-applications-in-aws)
-  - [8.4. AWS CloudFront](#84-aws-cloudfront)
-  - [8.5. AWS Global Accelerator](#85-aws-global-accelerator)
-  - [8.6. AWS Outposts](#86-aws-outposts)
-  - [8.7. AWS WaveLength](#87-aws-wavelength)
-  - [8.8. AWS Local Zones](#88-aws-local-zones)
-  - [8.9. Global Applications Architecture](#89-global-applications-architecture)
-  - [8.10. Global Applications in AWS - Summary](#810-global-applications-in-aws---summary)
-  - [8.11. Global Applications in AWS - Summary](#811-global-applications-in-aws---summary)
-- [9. Cloud Integration](#9-cloud-integration)
-  - [9.1. Amazon SQS - Standard Queue](#91-amazon-sqs---standard-queue)
-  - [9.2. Amazon Kinesis](#92-amazon-kinesis)
-  - [9.3. Amazon SNS](#93-amazon-sns)
-  - [9.4. Amazon MQ](#94-amazon-mq)
-  - [9.5. Integration - Summary](#95-integration---summary)
+  - [8.4. AWS Outposts](#84-aws-outposts)
+  - [8.5. AWS WaveLength](#85-aws-wavelength)
+  - [8.6. AWS Local Zones](#86-aws-local-zones)
+  - [8.7. Global Applications Architecture](#87-global-applications-architecture)
+  - [8.8. Global Applications in AWS - Summary](#88-global-applications-in-aws---summary)
+  - [8.9. Global Applications in AWS - Summary](#89-global-applications-in-aws---summary)
+- [9. Application Integration](#9-application-integration)
+  - [9.1. Amazon MQ](#91-amazon-mq)
+  - [9.2. Integration - Summary](#92-integration---summary)
 - [10. Cloud Monitoring](#10-cloud-monitoring)
   - [10.1. Amazon CloudWatch Metrics](#101-amazon-cloudwatch-metrics)
     - [10.1.1. Important Metrics](#1011-important-metrics)
@@ -73,22 +67,17 @@
     - [12.1.2. Example, for S3](#1212-example-for-s3)
   - [12.2. DDOS Protection on AWS](#122-ddos-protection-on-aws)
   - [12.3. AWS Shield](#123-aws-shield)
-  - [12.4. AWS WAF - Web Application Firewall](#124-aws-waf---web-application-firewall)
-  - [12.5. Penetration Testing on AWS Cloud](#125-penetration-testing-on-aws-cloud)
-  - [12.6. Data at rest vs. Data in transit](#126-data-at-rest-vs-data-in-transit)
-  - [12.7. AWS KMS (Key Management Service)](#127-aws-kms-key-management-service)
-  - [12.8. AWS Certificate Manager (ACM)](#128-aws-certificate-manager-acm)
-  - [12.9. AWS Secrets Manager](#129-aws-secrets-manager)
-  - [12.10. AWS Artifact (not really a service)](#1210-aws-artifact-not-really-a-service)
-  - [12.11. Amazon GuardDuty](#1211-amazon-guardduty)
-  - [12.12. Amazon Inspector](#1212-amazon-inspector)
-  - [12.13. AWS Config](#1213-aws-config)
-  - [12.14. Amazon Macie](#1214-amazon-macie)
-  - [12.15. AWS Security Hub](#1215-aws-security-hub)
-  - [12.16. Amazon Detective](#1216-amazon-detective)
-  - [12.17. AWS Abuse](#1217-aws-abuse)
-  - [12.18. Root user privileges](#1218-root-user-privileges)
-  - [12.19. Summary: Security \& Compliance](#1219-summary-security--compliance)
+  - [12.4. Penetration Testing on AWS Cloud](#124-penetration-testing-on-aws-cloud)
+  - [12.5. Data at rest vs. Data in transit](#125-data-at-rest-vs-data-in-transit)
+  - [12.6. AWS Secrets Manager](#126-aws-secrets-manager)
+  - [12.7. AWS Artifact (not really a service)](#127-aws-artifact-not-really-a-service)
+  - [12.8. AWS Config](#128-aws-config)
+  - [12.9. Amazon Macie](#129-amazon-macie)
+  - [12.10. AWS Security Hub](#1210-aws-security-hub)
+  - [12.11. Amazon Detective](#1211-amazon-detective)
+  - [12.12. AWS Abuse](#1212-aws-abuse)
+  - [12.13. Root user privileges](#1213-root-user-privileges)
+  - [12.14. Summary: Security \& Compliance](#1214-summary-security--compliance)
 - [13. Machine Learning](#13-machine-learning)
 - [14. Account Management, Billing \& Support](#14-account-management-billing--support)
   - [14.1. AWS Organizations](#141-aws-organizations)
@@ -105,63 +94,58 @@
     - [14.3.8. Savings Plan](#1438-savings-plan)
   - [14.4. AWS Compute Optimizer](#144-aws-compute-optimizer)
   - [14.5. Billing and Costing Tools](#145-billing-and-costing-tools)
-- [15. AWS STS - Security Token Service](#15-aws-sts---security-token-service)
-- [16. AWS Directory Services](#16-aws-directory-services)
-- [17. Advanced Identity](#17-advanced-identity)
-  - [17.1. Amazon Cognito](#171-amazon-cognito)
-  - [17.2. AWS Organizations](#172-aws-organizations)
-  - [17.3. AWS IAM Identity Center (Successor to AWS Single Sign-On)](#173-aws-iam-identity-center-successor-to-aws-single-sign-on)
-  - [17.4. Advanced Identity - Summary](#174-advanced-identity---summary)
-- [18. Other AWS Services](#18-other-aws-services)
-  - [18.1. Amazon WorkSpaces](#181-amazon-workspaces)
-  - [18.2. Amazon AppStream 2.0](#182-amazon-appstream-20)
-    - [18.2.1. Amazon AppStream 2.0 vs WorkSpaces](#1821-amazon-appstream-20-vs-workspaces)
-  - [18.3. Amazon Sumerian](#183-amazon-sumerian)
-  - [18.4. AWS IoT Core](#184-aws-iot-core)
-  - [18.5. Amazon Elastic Transcoder](#185-amazon-elastic-transcoder)
-  - [18.6. AWS Device Farm](#186-aws-device-farm)
-  - [18.7. AWS Backup](#187-aws-backup)
-    - [18.7.1. Disaster Recovery Strategies](#1871-disaster-recovery-strategies)
-  - [18.8. AWS Elastic Disaster Recovery (DRS)](#188-aws-elastic-disaster-recovery-drs)
-  - [18.9. AWS DataSync](#189-aws-datasync)
-  - [18.10. AWS Fault Injection Simulator (FIS)](#1810-aws-fault-injection-simulator-fis)
-  - [18.11. AWS Step Functions](#1811-aws-step-functions)
-  - [18.12. Amazon AppFlow](#1812-amazon-appflow)
-  - [18.13. AWS CloudSearch](#1813-aws-cloudsearch)
-  - [18.14. Amazon SES - Simple Email Service](#1814-amazon-ses---simple-email-service)
-- [19. AWS Architecting \& Ecosystem](#19-aws-architecting--ecosystem)
-  - [19.1. Well Architected Framework General - Guiding Principles](#191-well-architected-framework-general---guiding-principles)
-  - [19.2. AWS Cloud Best Practices - Design Principles](#192-aws-cloud-best-practices---design-principles)
-    - [19.2.1. Operational Excellence](#1921-operational-excellence)
-      - [19.2.1.1. Operational Excellence AWS Services](#19211-operational-excellence-aws-services)
-    - [19.2.2. Security](#1922-security)
-      - [19.2.2.1. Security AWS Services](#19221-security-aws-services)
-    - [19.2.3. Reliability](#1923-reliability)
-      - [19.2.3.1. Reliability AWS Services](#19231-reliability-aws-services)
-    - [19.2.4. Performance Efficiency](#1924-performance-efficiency)
-      - [19.2.4.1. Performance Efficiency AWS Services](#19241-performance-efficiency-aws-services)
-    - [19.2.5. Cost Optimization](#1925-cost-optimization)
-      - [19.2.5.1. Cost Optimization AWS Services](#19251-cost-optimization-aws-services)
-    - [19.2.6. Sustainability](#1926-sustainability)
-      - [19.2.6.1. Sustainability AWS Services](#19261-sustainability-aws-services)
-  - [19.3. AWS Right Sizing](#193-aws-right-sizing)
-  - [19.4. AWS Ecosystem - Free resources](#194-aws-ecosystem---free-resources)
-  - [19.5. AWS Marketplace](#195-aws-marketplace)
-  - [19.6. AWS Training](#196-aws-training)
-  - [19.7. AWS Professional Services \& Partner Network](#197-aws-professional-services--partner-network)
-  - [19.8. AWS Knowledge Center](#198-aws-knowledge-center)
-- [20. AWS Cloud Map](#20-aws-cloud-map)
-- [21. AWS Limits (Quotas)](#21-aws-limits-quotas)
-- [22. Private vs Public IP (IPv4)](#22-private-vs-public-ip-ipv4)
-  - [22.1. Private vs Public IP (IPv4) Fundamental Differences](#221-private-vs-public-ip-ipv4-fundamental-differences)
-- [23. AWS charges for IPv4 addresses](#23-aws-charges-for-ipv4-addresses)
-- [24. Commands AWS CLI](#24-commands-aws-cli)
-  - [24.1. DynamoDB](#241-dynamodb)
-  - [24.2. S3](#242-s3)
-  - [24.3. Lambda](#243-lambda)
-  - [24.4. ECS](#244-ecs)
-  - [24.5. Systems Manager](#245-systems-manager)
-- [25. Credits](#25-credits)
+- [15. AWS Directory Services](#15-aws-directory-services)
+- [16. Security, Identity, \& Compliance](#16-security-identity--compliance)
+- [17. Other AWS Services](#17-other-aws-services)
+  - [17.1. Amazon WorkSpaces](#171-amazon-workspaces)
+  - [17.2. Amazon AppStream 2.0](#172-amazon-appstream-20)
+    - [17.2.1. Amazon AppStream 2.0 vs WorkSpaces](#1721-amazon-appstream-20-vs-workspaces)
+  - [17.3. Amazon Sumerian](#173-amazon-sumerian)
+  - [17.4. AWS IoT Core](#174-aws-iot-core)
+  - [17.5. Amazon Elastic Transcoder](#175-amazon-elastic-transcoder)
+  - [17.6. AWS Device Farm](#176-aws-device-farm)
+  - [17.7. AWS Backup](#177-aws-backup)
+    - [17.7.1. Disaster Recovery Strategies](#1771-disaster-recovery-strategies)
+  - [17.8. AWS Elastic Disaster Recovery (DRS)](#178-aws-elastic-disaster-recovery-drs)
+  - [17.9. AWS DataSync](#179-aws-datasync)
+  - [17.10. AWS Fault Injection Simulator (FIS)](#1710-aws-fault-injection-simulator-fis)
+  - [17.11. AWS Step Functions](#1711-aws-step-functions)
+  - [17.12. Amazon AppFlow](#1712-amazon-appflow)
+  - [17.13. AWS CloudSearch](#1713-aws-cloudsearch)
+  - [17.14. Amazon SES - Simple Email Service](#1714-amazon-ses---simple-email-service)
+- [18. AWS Architecting \& Ecosystem](#18-aws-architecting--ecosystem)
+  - [18.1. Well Architected Framework General - Guiding Principles](#181-well-architected-framework-general---guiding-principles)
+  - [18.2. AWS Cloud Best Practices - Design Principles](#182-aws-cloud-best-practices---design-principles)
+    - [18.2.1. Operational Excellence](#1821-operational-excellence)
+      - [18.2.1.1. Operational Excellence AWS Services](#18211-operational-excellence-aws-services)
+    - [18.2.2. Security](#1822-security)
+      - [18.2.2.1. Security AWS Services](#18221-security-aws-services)
+    - [18.2.3. Reliability](#1823-reliability)
+      - [18.2.3.1. Reliability AWS Services](#18231-reliability-aws-services)
+    - [18.2.4. Performance Efficiency](#1824-performance-efficiency)
+      - [18.2.4.1. Performance Efficiency AWS Services](#18241-performance-efficiency-aws-services)
+    - [18.2.5. Cost Optimization](#1825-cost-optimization)
+      - [18.2.5.1. Cost Optimization AWS Services](#18251-cost-optimization-aws-services)
+    - [18.2.6. Sustainability](#1826-sustainability)
+      - [18.2.6.1. Sustainability AWS Services](#18261-sustainability-aws-services)
+  - [18.3. AWS Right Sizing](#183-aws-right-sizing)
+  - [18.4. AWS Ecosystem - Free resources](#184-aws-ecosystem---free-resources)
+  - [18.5. AWS Marketplace](#185-aws-marketplace)
+  - [18.6. AWS Training](#186-aws-training)
+  - [18.7. AWS Professional Services \& Partner Network](#187-aws-professional-services--partner-network)
+  - [18.8. AWS Knowledge Center](#188-aws-knowledge-center)
+- [19. AWS Cloud Map](#19-aws-cloud-map)
+- [20. AWS Limits (Quotas)](#20-aws-limits-quotas)
+- [21. Private vs Public IP (IPv4)](#21-private-vs-public-ip-ipv4)
+  - [21.1. Private vs Public IP (IPv4) Fundamental Differences](#211-private-vs-public-ip-ipv4-fundamental-differences)
+- [22. AWS charges for IPv4 addresses](#22-aws-charges-for-ipv4-addresses)
+- [23. Commands AWS CLI](#23-commands-aws-cli)
+  - [23.1. DynamoDB](#231-dynamodb)
+  - [23.2. S3](#232-s3)
+  - [23.3. Lambda](#233-lambda)
+  - [23.4. ECS](#234-ecs)
+  - [23.5. Systems Manager](#235-systems-manager)
+- [24. Credits](#24-credits)
 
 # 1. Traditionally, how to build infrastructure
 
@@ -410,11 +394,7 @@
 
 [AWS ECS, Fargate and ECR](/Containers/Amazon%20ECS.md)
 
-## 7.2. AWS Batch
-
-[text](/Compute/AWS%20Batch.md)
-
-## 7.3. Amazon Lightsail
+## 7.2. Amazon Lightsail
 
 - **Amazon Lightsail is designed to be the easiest way to launch and manage a virtual private server with AWS. Lightsail plans include everything you need to jumpstart your project - a virtual machine, SSD- based storage, data transfer, DNS management, and a static IP address - for a low, predictable price. It can be used to create a simple web application, a website or a dev/test environment.**
 - Virtual servers, storage, databases, and networking.
@@ -428,7 +408,7 @@
   - Dev / Test environment.
 - Has high availability but no auto-scaling, limited AWS integrations.
 
-## 7.4. Other Compute - Summary
+## 7.3. Other Compute - Summary
 
 - Docker: container technology to run applications.
 - ECS: run Docker containers on EC2 instances.
@@ -436,7 +416,6 @@
   - Run Docker containers without provisioning the infrastructure.
   - Serverless offering (no EC2 instances).
 - ECR: Private Docker Images Repository.
-- Batch: run batch jobs on AWS across managed EC2 instances.
 - Lightsail: predictable & low pricing for simple application & DB stacks.
 
 # 8. Global Infrastructure
@@ -474,15 +453,7 @@
 - **AWS Global Accelerator:**
   - Improve global application availability and performance using the AWS global network
 
-## 8.4. AWS CloudFront
-
-[AWS CloudFront](/Networking%20&%20Content%20Delivery/Amazon%20CloudFront.md)
-
-## 8.5. AWS Global Accelerator
-
-[AWS Global Accelerator](Networking%20&%20Content%20Delivery/AWS%20Global%20Accelerator.md)
-
-## 8.6. AWS Outposts
+## 8.4. AWS Outposts
 
 - **Hybrid Cloud:** Businesses that keep an on-premises infrastructure alongside a cloud infrastructure.
 - Therefore, two ways of dealing with IT systems:
@@ -506,7 +477,7 @@
   - Amazon RDS
   - Amazon EMR
 
-## 8.7. AWS WaveLength
+## 8.5. AWS WaveLength
 
 - **AWS Wavelength is an AWS Infrastructure offering optimized for mobile edge computing applications. Wavelength combines the high bandwidth and ultra-low latency of 5G networks with AWS compute and storage services to enable developers to innovate and build a whole new class of applications.**
 - WaveLength Zones are infrastructure deployments embedded within the telecommunications providers datacenters at the edge of the 5G networks.
@@ -518,7 +489,7 @@
 - No additional charges or service agreements.
 - Use cases: Smart Cities, ML-assisted diagnostics, Connected Vehicles, Interactive Live Video Streams, AR/VR, Real-time Gaming, ...
 
-## 8.8. AWS Local Zones
+## 8.6. AWS Local Zones
 
 - Places AWS compute, storage, database, and other selected AWS services closer to end users to run latency-sensitive applications
 - Extend your VPC to more locations - "Extension of an AWS Region"
@@ -527,14 +498,14 @@
   - AWS Region: N. Virginia (us-east-1)
   - AWS Local Zones: Boston, Chicago, Dallas, Houston, Miami, ...
 
-## 8.9. Global Applications Architecture
+## 8.7. Global Applications Architecture
 
 - Single Region, Single AZ.
 - Single Region, Multi AZ.
 - Multi Region, Active-Passive.
 - Multi Region, Active-Active.
 
-## 8.10. Global Applications in AWS - Summary
+## 8.8. Global Applications in AWS - Summary
 
 - Global DNS: Route 53
   - Great to route users to the closest deployment with least latency.
@@ -547,7 +518,7 @@
 - AWS Global Accelerator
   - Improve global application availability and performance using the AWS global network.
 
-## 8.11. Global Applications in AWS - Summary
+## 8.9. Global Applications in AWS - Summary
 
 - AWS Outposts
   - Deploy Outposts Racks in your own Data Centers to extend AWS services
@@ -558,8 +529,9 @@
   - Bring AWS resources (compute, database, storage, ...) closer to your users
   - Good for latency-sensitive applications
 
-# 9. Cloud Integration
+# 9. Application Integration
 
+- [Application Integration](Application%20Integration/README.md)
 - When we start deploying multiple applications, they will inevitably need to communicate with one another.
 - There are two patterns of application communication:
   1. Synchronous communications (application to application).
@@ -572,19 +544,7 @@
   - using Kinesis: real-time data streaming model.
 - These services can scale independently from our application!
 
-## 9.1. Amazon SQS - Standard Queue
-
-- **Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications. It uses a pull-based system.** [Amazon SQS](/Application%20Integration/Amazon%20SQS.md)
-
-## 9.2. Amazon Kinesis
-
-- **Amazon Kinesis makes it easy to collect, process, and analyze real-time, streaming data so you can get timely insights and react quickly to new information. Kinesis offers four services: Data Firehose, Data Analytics, Data Streams, Video Streams.** [Amazon Kinesis](/Analytics/Amazon%20Kinesis.md)
-
-## 9.3. Amazon SNS
-
-- **Is a highly available, durable, secure, fully managed pub/sub messaging service that enables you to decouple microservices, distributed systems, and serverless applications. It uses a push-based system.** [Amazon SNS](/Application%20Integration/Amazon%20SNS.md.md)
-
-## 9.4. Amazon MQ
+## 9.1. Amazon MQ
 
 - **Amazon MQ is a managed message broker service for Apache ActiveMQ and RabbitMQ that makes it easy to set up and operate message brokers in the cloud.**
 - SQS, SNS are "cloud-native" services, and they're using proprietary protocols from AWS.
@@ -595,18 +555,8 @@
 - Amazon MQ runs on a dedicated machine (not serverless).
 - Amazon MQ has both queue feature (SQS) and topic features (SNS).
 
-## 9.5. Integration - Summary
+## 9.2. Integration - Summary
 
-- SQS:
-  - Queue service in AWS.
-  - Multiple Producers, messages are kept up to 14 days.
-  - Multiple Consumers share the read and delete messages when done.
-  - Used to decouple applications in AWS.
-- SNS:
-  - Notification service in AWS.
-  - Subscribers: Email, Lambda, SQS, HTTP, Mobile...
-  - Multiple Subscribers, send all messages to all of them.
-  - No message retention.
 - Kinesis: real-time data streaming, persistence and analysis.
 - Amazon MQ: managed Apache MQ in the cloud (MQTT, AMQP protocols).
 - **When using SQS or SNS, you apply the "decouple your applications" principle. This means that IT systems should be designed in a way that reduces interdependencies-a change or a failure in one component should not cascade to other components.**
@@ -755,21 +705,7 @@
   - 24/7 access to AWS DDoS response team (DRP).
   - Protect against higher fees during usage spikes due to DDoS.
 
-## 12.4. AWS WAF - Web Application Firewall
-
-- **AWS WAF is a web application firewall that helps protect your web applications or APIs against common web exploits that may affect availability, compromise security, or consume excessive resources.**
-- Protects your web applications from common web exploits (Layer 7).
-- **Layer 7 is HTTP** (vs Layer 4 is TCP).
-- Deploy on **Application Load Balancer, API Gateway, CloudFront**.
-- Define Web ACL (Web Access Control List):
-  - Rules can include IP addresses, HTTP headers, HTTP body, or URI strings.
-  - Protects from common attack - **SQL injection** and **Cross-Site Scripting (XSS)**.
-  - Size constraints, **geo-match (block countries)**.
-  - Rate-based rules (to count occurrences of events) - for DDoS protection.
-
-[AWS WAF](/Security,%20Identity,%20&%20Compliance/AWS%20WAF.md)
-
-## 12.5. Penetration Testing on AWS Cloud
+## 12.4. Penetration Testing on AWS Cloud
 
 - AWS customers are welcome to carry out security assessments or penetration tests against their AWS infrastructure **without prior approval for 8 services**:
   - Amazon EC2 instances, NAT Gateways, and Elastic Load Balancers.
@@ -790,7 +726,7 @@
 - For any other simulated events, contact aws-security-simulated-event@amazon.com.
 - Read more: https://aws.amazon.com/security/penetration-testing/.
 
-## 12.6. Data at rest vs. Data in transit
+## 12.5. Data at rest vs. Data in transit
 
 - **At rest:** data stored or archived on a device.
   - On a hard disk, on a RDS instance, in S3 Glacier Deep Archive, etc.
@@ -800,16 +736,7 @@
 - We want to encrypt data in both states to protect it!
 - For this we leverage **encryption keys**.
 
-## 12.7. AWS KMS (Key Management Service)
-
-- [AWS KMS](/Security,%20Identity,%20&%20Compliance/AWS%20KMS.md)
-
-## 12.8. AWS Certificate Manager (ACM)
-
-- **AWS Certificate Manager is a service that lets you easily provision, manage, and deploy public and private Secure Sockets Layer/Transport Layer Security (SSL/TLS) certificates for use with AWS services and your internal connected resources.**
-  [AWS ACM](/Security,%20Identity,%20&%20Compliance/AWS%20Certificate%20Manager.md)
-
-## 12.9. AWS Secrets Manager
+## 12.6. AWS Secrets Manager
 
 - Newer service, meant for storing secrets.
 - Capability to force **rotation of secrets** every X days.
@@ -818,7 +745,7 @@
 - Secrets are encrypted using KMS.
 - Mostly meant for RDS integration.
 
-## 12.10. AWS Artifact (not really a service)
+## 12.7. AWS Artifact (not really a service)
 
 - **AWS Artifact is your go-to, central resource for compliance-related information that matters to you.**
 - Portal that provides customers with on-demand access to AWS compliance documentation and AWS agreements.
@@ -826,25 +753,16 @@
 - **Artifact Agreements** - Allows you to review, accept, and track the status of AWS agreements such as the Business Associate Addendum (BAA) or the Health Insurance Portability and Accountability Act (HIPAA) for an individual account or in your organization.
 - Can be used to support internal audit or compliance.
 
-## 12.11. Amazon GuardDuty
-
-- **Amazon GuardDuty is a threat detection service that continuously monitors for malicious activity and unauthorized behavior to protect your AWS accounts and workloads.** [Amazon GuardDuty](/Security,%20Identity,%20&%20Compliance/Amazon%20GuardDuty.md)
-
-## 12.12. Amazon Inspector
-
-- **Amazon Inspector is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS.**
-- **It helps you test the network accessibility of your Amazon EC2 instances and the security state of your applications running on the instances.** [Amazon Inspector](Security,%20Identity,%20&%20Compliance/Amazon%20Inspector.md)
-
-## 12.13. AWS Config
+## 12.8. AWS Config
 
 - **AWS Config provides a detailed view of the configuration of AWS resources in your AWS account. This includes how the resources are related to one another and how they were configured in the past so that you can see how the configurations and relationships change over time.** [AWS Config](Management%20&%20Governance/AWS%20Config.md)
 
-## 12.14. Amazon Macie
+## 12.9. Amazon Macie
 
 - Amazon Macie is a fully managed data security and data privacy service that uses **machine learning and pattern matching to discover and protect your sensitive data in AWS**.
 - Macie helps identify and alert you to **sensitive data, such as personally identifiable information (PII)**.
 
-## 12.15. AWS Security Hub
+## 12.10. AWS Security Hub
 
 - **AWS Security Hub provides you with a comprehensive view of your security state within AWS and your compliance with security standards and best practices.**
 - Central security tool to manage security across several AWS accounts and automate security checks.
@@ -859,7 +777,7 @@
   - AWS Partner Network Solutions.
 - Must first enable the AWS Config Service.
 
-## 12.16. Amazon Detective
+## 12.11. Amazon Detective
 
 - GuardDuty, Macie, and Security Hub are used to identify potential
   security issues, or findings.
@@ -868,7 +786,7 @@
 - **Automatically collects and processes events** from VPC Flow Logs, CloudTrail, and GuardDuty to create a unified view.
 - Produces visualizations with details and context to get to the root cause.
 
-## 12.17. AWS Abuse
+## 12.12. AWS Abuse
 
 - **Report suspected AWS resources used for abusive or illegal purposes**.
 - Abusive & prohibited behaviors are:
@@ -880,7 +798,7 @@
   - **Distributing malware** - AWS resources distributing softwares to harm computers or machines.
 - Contact the AWS Abuse team: AWS abuse form, or abuse@amazonaws.com.
 
-## 12.18. Root user privileges
+## 12.13. Root user privileges
 
 - Root user = Account Owner (created when the account is created).
 - Has complete access to all AWS services and resources.
@@ -897,17 +815,13 @@
   - Edit or delete an Amazon S3 bucket policy that includes an invalid VPC ID or VPC endpoint ID.
   - Sign up for GovCloud.
 
-## 12.19. Summary: Security & Compliance
+## 12.14. Summary: Security & Compliance
 
 - Shared Responsibility on AWS
 - Shield: Automatic DDoS Protection + 24/7 support for advanced
-- WAF: Firewall to filter incoming requests based on rules
-- KMS: Encryption keys managed by AWS
 - CloudHSM: Hardware encryption, we manage encryption keys
 - AWS Certificate Manager: provision, manage, and deploy SSL/TLS Certificates
 - Artifact: Get access to compliance reports such as PCI, ISO, etc...
-- GuardDuty: Find malicious behavior with VPC, DNS & CloudTrail Logs
-- Inspector: For EC2 only, install agent and find vulnerabilities
 - Config: Track config changes and compliance against rules
 - Macie: Find sensitive data (ex: PII data) in Amazon S3 buckets
 - CloudTrail: Track API calls made by users within account
@@ -1084,43 +998,17 @@
 
 [Billing and Costing Tools](Cloud%20Financial%20Management/README.md)
 
-# 15. AWS STS - Security Token Service
+# 15. AWS Directory Services
 
-[AWS STS](AWS%20STS.md)
+[AWS Directory Services](/Security,%20Identity,%20&%20Compliance/AWS%20Directory%20Services.md)
 
-# 16. AWS Directory Services
+# 16. Security, Identity, & Compliance
 
-[AWS Directory Services](AWS%20Directory%20Services.md)
+[Security, Identity, & Compliance](/Security,%20Identity,%20&%20Compliance/README.md)
 
-# 17. Advanced Identity
+# 17. Other AWS Services
 
-## 17.1. Amazon Cognito
-
-- **Amazon Cognito lets you add user sign-up, sign-in, and access control to your web and mobile apps quickly and easily.** [AWS Cognito](AWS%20Cognito.md)
-
-## 17.2. AWS Organizations
-
-- Organizations helps you to centrally manage billing; control access, compliance, and security; and share resources across your AWS accounts.
-
-## 17.3. AWS IAM Identity Center (Successor to AWS Single Sign-On)
-
-[AWS IAM Identity Center](AWS%20IAM%20Identity%20Center.md)
-
-## 17.4. Advanced Identity - Summary
-
-- IAM:
-  - Identity and Access Management inside your AWS account.
-  - For users that you trust and belong to your company.
-  - **IAM Roles are sets of permissions making AWS service requests, which will be used by AWS services, but they do not provide temporary security credentials.**
-- Organizations: manage multiple AWS accounts.
-- Security Token Service (STS): temporary, limited-privileges credentials to access AWS resources.
-- Cognito: create a database of users for your mobile & web applications.
-- Directory Services: integrate Microsoft Active Directory in AWS.
-- Single Sign-On (SSO): one login for multiple AWS accounts & applications.
-
-# 18. Other AWS Services
-
-## 18.1. Amazon WorkSpaces
+## 17.1. Amazon WorkSpaces
 
 - **Amazon WorkSpaces is a fully managed, secure cloud desktop service. You can use Amazon WorkSpaces to provision either Windows or Linux desktops in just a few minutes and quickly scale to provide thousands of desktops to workers across the globe.**
 - Managed Desktop as a Service (DaaS) solution to easily provision Windows or Linux desktops.
@@ -1129,14 +1017,14 @@
 - Secured data - integrates with KMS.
 - Pay-as-you-go service with monthly or hourly rates.
 
-## 18.2. Amazon AppStream 2.0
+## 17.2. Amazon AppStream 2.0
 
 - **Amazon AppStream 2.0 is a fully managed non-persistent application and desktop streaming service that provides users instant access to their desktop applications from anywhere.**
 - Desktop Application Streaming Service.
 - Deliver to any computer, without acquiring, provisioning infrastructure.
 - The application is delivered from within a web browser.
 
-### 18.2.1. Amazon AppStream 2.0 vs WorkSpaces
+### 17.2.1. Amazon AppStream 2.0 vs WorkSpaces
 
 - **Workspaces:**
   - Fully managed VDI and desktop available.
@@ -1147,7 +1035,7 @@
   - Works with any device (that has a web browser).
   - Allow to configure an instance type per application type (CPU, RAM, GPU).
 
-## 18.3. Amazon Sumerian
+## 17.3. Amazon Sumerian
 
 - **Amazon Sumerian is a managed service that lets you create and run 3D, Augmented Reality (AR) and Virtual Reality (VR) applications. You can build immersive and interactive scenes that run on AR and VR, mobile devices, and your web browser.**
 - Create and run virtual reality (VR), augmented reality (AR), and 3D applications.
@@ -1155,7 +1043,7 @@
 - Ready-to-use templates and assets - no programming or 3D expertise required.
 - Accessible via a web-browser URLs or on popular hardware for AR/VR.
 
-## 18.4. AWS IoT Core
+## 17.4. AWS IoT Core
 
 - **AWS IoT Core, is serverless and lets you connect billions of devices to the AWS Cloud, lets you securely connect IoT devices to the AWS Cloud and other devices without the need to provision or manage servers.**
 - IoT stands for "Internet of Things" - the network of internet-connected devices that are able to collect and transfer data.
@@ -1165,7 +1053,7 @@
 - Integrates with a lot of AWS services (Lambda, S3, SageMaker, etc.).
 - Build IoT applications that gather, process, analyze, and act on data.
 
-## 18.5. Amazon Elastic Transcoder
+## 17.5. Amazon Elastic Transcoder
 
 - **Amazon Elastic Transcoder is media transcoding in the cloud. It is used to convert media files from their source format into versions that will play back on devices like smartphones, tablets, and PCs.**
 - Elastic Transcoder is used to convert media files stored in S3 into media files in the formats required by consumer playback devices (phones etc..)
@@ -1175,29 +1063,29 @@
   - Cost effective - duration-based pricing model.
   - Fully managed & secure, pay for what you use.
 
-## 18.6. AWS Device Farm
+## 17.6. AWS Device Farm
 
 - **AWS Device Farm is an application testing service that lets you improve the quality of your web and mobile apps by testing them across an extensive range of desktop browsers and real mobile devices; without having to provision and manage any testing infrastructure.**
 - Fully-managed service that tests your web and mobile apps against desktop browsers, real mobile devices, and tablets.
 - Run tests concurrently on multiple devices (speed up execution).
 - Ability to configure device settings (GPS, language, Wi-Fi, Bluetooth, ...).
 
-## 18.7. AWS Backup
+## 17.7. AWS Backup
 
 [AWS Backup](/Storage/AWS%20Backup.md)
 
-### 18.7.1. Disaster Recovery Strategies
+### 17.7.1. Disaster Recovery Strategies
 
 [Disaster Recovery Strategies](Disaster%20Recovery.md)
 
-## 18.8. AWS Elastic Disaster Recovery (DRS)
+## 17.8. AWS Elastic Disaster Recovery (DRS)
 
 - Used to be named "CloudEndure Disaster Recovery".
 - Quickly and easily recover your physical, virtual, and cloud-based servers into AWS.
 - Example: protect your most critical databases (including Oracle, MySQL, and SQL Server), enterprise apps (SAP), protect your data from ransomware attacks, ...
 - Continuous block-level replication for your servers.
 
-## 18.9. AWS DataSync
+## 17.9. AWS DataSync
 
 - Move large amount of data from on-premises to AWS.
   - On-premises / other cloud to AWS (NFS, SMB, HDFS, S3 API) - needs agent.
@@ -1213,7 +1101,7 @@
 
 ![AWS DataSync](/Images/AwsDataSyncDiagram.png)
 
-## 18.10. AWS Fault Injection Simulator (FIS)
+## 17.10. AWS Fault Injection Simulator (FIS)
 
 - A fully managed service for running fault injection experiments on AWS workloads.
 - Based on **Chaos Engineering** - stressing an application by creating disruptive events (e.g., sudden increase in CPU or memory), observing how the system responds, and implementing improvements.
@@ -1221,30 +1109,30 @@
 - Supports the following AWS services: EC2, ECS, EKS, RDS...
 - Use pre-built templates that generate the desired disruptions.
 
-## 18.11. AWS Step Functions
+## 17.11. AWS Step Functions
 
 - **AWS Step Functions is a low-code visual workflow service used to orchestrate AWS services, automate business processes, and build Serverless applications. It manages failures, retries, parallelization, service integrations, ...** [AWS Step Functions](AWS%20Step%20Functions.md)
 
-## 18.12. Amazon AppFlow
+## 17.12. Amazon AppFlow
 
 [Amazon AppFlow](/Application%20Integration/Amazon%20AppFlow.md)
 
-## 18.13. AWS CloudSearch
+## 17.13. AWS CloudSearch
 
 - Amazon CloudSearch is a managed service in the AWS Cloud that makes it simple and cost-effective to set up, manage, and scale a search solution for your website or application.
 - Amazon CloudSearch supports 34 languages and popular search features such as highlighting, autocomplete, and geospatial search.
 
-## 18.14. Amazon SES - Simple Email Service
+## 17.14. Amazon SES - Simple Email Service
 
-- **Fully managed service to send emails securely, globally and at scale.** [AWS SES](Amazon%20SES.md)
+- **Fully managed service to send emails securely, globally and at scale.** [AWS SES](/Business%20Applications/Amazon%20SES.md)
 
-# 19. AWS Architecting & Ecosystem
+# 18. AWS Architecting & Ecosystem
 
-## 19.1. Well Architected Framework General - Guiding Principles
+## 18.1. Well Architected Framework General - Guiding Principles
 
 [White Papers & Architectures](White%20Papers%20&%20Architectures.md)
 
-## 19.2. AWS Cloud Best Practices - Design Principles
+## 18.2. AWS Cloud Best Practices - Design Principles
 
 - **Scalability:** vertical & horizontal.
 - **Disposable Resources:** servers should be disposable & easily configured.
@@ -1257,7 +1145,7 @@
   - Don't use just EC2.
   - Use managed services, databases, serverless, etc!
 
-### 19.2.1. Operational Excellence
+### 18.2.1. Operational Excellence
 
 - Includes the ability to run and monitor systems to deliver business value and to continually improve supporting processes and procedures.
 - Design Principles:
@@ -1268,7 +1156,7 @@
   - **Anticipate failure**.
   - **Learn from all operational failures**.
 
-#### 19.2.1.1. Operational Excellence AWS Services
+#### 18.2.1.1. Operational Excellence AWS Services
 
 - Prepare:
   - AWS CloudFormation
@@ -1286,7 +1174,7 @@
   - AWS CodeDeploy
   - AWS CodePipeline
 
-### 19.2.2. Security
+### 18.2.2. Security
 
 - Includes the ability to protect information, systems, and assets while delivering business value through risk assessments and mitigation strategies.
 - Design Principles:
@@ -1299,7 +1187,7 @@
   - **Prepare for security events** - Run incident response simulations and use tools with automation to increase your speed for detection, investigation, and recovery.
   - **Shared Responsibility Model**.
 
-#### 19.2.2.1. Security AWS Services
+#### 18.2.2.1. Security AWS Services
 
 - Identity and Access Management:
   - IAM
@@ -1327,7 +1215,7 @@
   - AWS CloudFormation
   - Amazon CloudWatch Events
 
-### 19.2.3. Reliability
+### 18.2.3. Reliability
 
 - Ability of a system to recover from infrastructure or service disruptions, dynamically acquire computing resources to meet demand, and mitigate disruptions such as misconfigurations or transient network issues.
 - Design Principles:
@@ -1337,7 +1225,7 @@
   - **Stop guessing capacity** - Maintain the optimal level to satisfy demand without over or under provisioning - Use Auto Scaling.
   - **Manage change in automation** - Use automation to make changes to infrastructure.
 
-#### 19.2.3.1. Reliability AWS Services
+#### 18.2.3.1. Reliability AWS Services
 
 - Foundations:
   - IAM
@@ -1356,7 +1244,7 @@
   - Amazon S3 Glacier
   - Amazon Route 53
 
-### 19.2.4. Performance Efficiency
+### 18.2.4. Performance Efficiency
 
 - Includes the ability to use computing resources efficiently to meet system requirements, and to maintain that efficiency as demand changes and technologies evolve.
 - Design Principles:
@@ -1366,7 +1254,7 @@
   - **Experiment more often** - Easy to carry out comparative testing.
   - **Mechanical sympathy** - Be aware of all AWS services.
 
-#### 19.2.4.1. Performance Efficiency AWS Services
+#### 18.2.4.1. Performance Efficiency AWS Services
 
 - Selection:
   - AWS Auto Scaling
@@ -1385,7 +1273,7 @@
   - AWS Snowball
   - Amazon CloudFront
 
-### 19.2.5. Cost Optimization
+### 18.2.5. Cost Optimization
 
 - Includes the ability to run systems to deliver business value at the lowest price point.
 - Design Principles:
@@ -1395,7 +1283,7 @@
   - **Analyze and attribute expenditure** - Accurate identification of system usage and costs, helps measure return on investment (ROI)- Make sure to use tags.
   - **Use managed and application level services to reduce cost of ownership** - As managed services operate at cloud scale, they can offer a lower cost per transaction or service.
 
-#### 19.2.5.1. Cost Optimization AWS Services
+#### 18.2.5.1. Cost Optimization AWS Services
 
 - Expenditure Awareness:
   - AWS Budgets
@@ -1413,7 +1301,7 @@
   - AWS Trusted Advisor
   - AWS Cost and Usage Report
 
-### 19.2.6. Sustainability
+### 18.2.6. Sustainability
 
 - The sustainability pillar focuses on minimizing the environmental impacts of running cloud workloads.
 - Design Principles:
@@ -1424,7 +1312,7 @@
   - **Use managed services** - Shared services reduce the amount of infrastructure; Managed services help automate sustainability best practices as moving infrequent accessed data to cold storage and adjusting compute capacity.
   - **Reduce the downstream impact of your cloud workloads** - Reduce the amount of energy or resources required to use your services and reduce the need for your customers to upgrade their devices.
 
-#### 19.2.6.1. Sustainability AWS Services
+#### 18.2.6.1. Sustainability AWS Services
 
 - EC2 Auto Scaling, Serverless Offering (Lambda, Fargate).
 - Cost Explorer, AWS Graviton 2, EC2 T instances, @Spot Instances.
@@ -1433,7 +1321,7 @@
 - Amazon Data Lifecycle Manager.
 - Read Local, Write Global: RDS Read Replicas, Aurora Global DB, DynamoDB Global Table, CloudFront.
 
-## 19.3. AWS Right Sizing
+## 18.3. AWS Right Sizing
 
 - EC2 has many instance types, but choosing the most powerful instance type isn't the best choice, because the cloud is **elastic**.
 - Right sizing is the process of matching instance types and sizes to your workload performance and capacity requirements **at the lowest possible cost**.
@@ -1444,7 +1332,7 @@
   - **Continuously after the cloud onboarding process (requirements change over time)**.
 - CloudWatch, Cost Explorer, Trusted Advisor, 3rd party tools can help.
 
-## 19.4. AWS Ecosystem - Free resources
+## 18.4. AWS Ecosystem - Free resources
 
 - **AWS Blogs:** https://aws.amazon.com/blogs/aws/
 - **AWS Forums (community):** https://forums.aws.amazon.com/index.jspa
@@ -1460,7 +1348,7 @@
     - https://aws.amazon.com/solutions/implementations/aws-landing-zone/
     - "Replaced" by AWS Control Tower
 
-## 19.5. AWS Marketplace
+## 18.5. AWS Marketplace
 
 - Digital catalog with thousands of software listings from **independent software vendors** (3rd party).
 - Example:
@@ -1471,7 +1359,7 @@
 - If you buy through the AWS Marketplace, it goes into your AWS bill.
 - You can **sell your own solutions** on the AWS Marketplace.
 
-## 19.6. AWS Training
+## 18.6. AWS Training
 
 - AWS Digital (online) and Classroom Training (in-person or virtual).
 - AWS Private Training (for your organization).
@@ -1479,7 +1367,7 @@
 - Training and Certification for the Enterprise.
 - AWS Academy: helps universities teach AWS.
 
-## 19.7. AWS Professional Services & Partner Network
+## 18.7. AWS Professional Services & Partner Network
 
 - The AWS Professional Services organization is a global team of experts
 - They work alongside your team and a chosen member of the APN
@@ -1491,12 +1379,12 @@
   customer success in specialized solution areas.
 - AWS Navigate Program: help Partners become better Partners
 
-## 19.8. AWS Knowledge Center
+## 18.8. AWS Knowledge Center
 
 - Contains the most frequent & common questions and requests
   - https://aws.amazon.com/premiumsupport/knowledge-center/
 
-# 20. AWS Cloud Map
+# 19. AWS Cloud Map
 
 - A fully managed resource discovery service.
 - Creates a map of the backend services/resources that your applications depend on
@@ -1504,11 +1392,11 @@
 - Integrated health checking (stop sending traffic to unhealthy endpoints).
 - Your applications can query AWS Cloud Map using AWS SDK, API, or DNS.
 
-# 21. AWS Limits (Quotas)
+# 20. AWS Limits (Quotas)
 
 [AWS Limits](AWS%20Limits.md)
 
-# 22. Private vs Public IP (IPv4)
+# 21. Private vs Public IP (IPv4)
 
 - Networking has two sorts of IPs. IPv4 and IPv6:
   - IPv4: 1.160.10.240
@@ -1518,7 +1406,7 @@
 - IPv4 allows for **3.7 billion** different addresses in the public space.
 - IPv4: [0-255].[0-255].[0-255].[0-255].
 
-## 22.1. Private vs Public IP (IPv4) Fundamental Differences
+## 21.1. Private vs Public IP (IPv4) Fundamental Differences
 
 - **Public IP**
   - Public IP means the machine can be identified on the internet (WWW).
@@ -1531,7 +1419,7 @@
   - Machines connect to WWW using a NAT + internet gateway (a proxy).
   - Only a specified range of IPs can be used as private IP.
 
-# 23. AWS charges for IPv4 addresses
+# 22. AWS charges for IPv4 addresses
 
 - Starting February 1st 2024, there's a charge for all Public IPv4 created in your account.
   - $0.005 per hour of Public IPv4 (~ $3.6 per month).
@@ -1546,7 +1434,7 @@
   - Look into the AWS Public IP Insights service
   - Nice article here: https://repost.aws/articles/ARknH_OR0cTvqoTfJrVGaB8A/why-am-i-seeing-charges-for-public-ipv4-addresses-when-i-am-under-the-aws-free-tier
 
-# 24. Commands AWS CLI
+# 23. Commands AWS CLI
 
 - Configure AWS CLI to access the environment
   - aws configure
@@ -1561,7 +1449,7 @@
 - See encoded errors using STS command line:
   - aws sts decode-authorization-message --encoded-message `<code_encoded>`
 
-## 24.1. DynamoDB
+## 23.1. DynamoDB
 
 - List all itens of table (Projection expression)
   - aws dynamodb scan --table-name `<table_name>`
@@ -1571,28 +1459,28 @@
 - List all content of table (F ilter expression)
   - aws dynamodb scan --table-name DemoTTL --filter-expression "`<attribute_fields_or_columns>` = :u" --expression-attribute-values '{":u": {"S":"`<content>`"}}'
 
-## 24.2. S3
+## 23.2. S3
 
 - List all itens of bucket with pagination
   - aws s3api list-objects --bucket `<bucket_name>` --page-size 100 --max-items 5
 
-## 24.3. Lambda
+## 23.3. Lambda
 
 - List all funcions
   - aws lambda list-functions
 - Invoke a synchronous or asynchronous lambda function.
   - aws lambda invoke --function-name `<lambda_name>` --invocation-type `<invocation_type>` response.json # `invocation_type` like: `Event` or `RequestResponse`
 
-## 24.4. ECS
+## 23.4. ECS
 
 - There is no option to delete a task definition on the AWS console. But, you can deregister (delete) a task definition by executing the following command.
   - aws ecs deregister-task-definition --task-definition `<name_task_definition:"revision>`
 
-## 24.5. Systems Manager
+## 23.5. Systems Manager
 
 - Create parameter
   - aws ssm put-parameter --name myEC2TypeDev --type String --value "t2.small"
 
-# 25. Credits
+# 24. Credits
 
 - Much of this content extracted from Stephane Maarek's courses, **for personal study**, at several points has personal considerations and comments.

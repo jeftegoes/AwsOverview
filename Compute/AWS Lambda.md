@@ -475,9 +475,9 @@
 
 ## 15.1. Lambda Resource Based Policies
 
-- Use resource-based policies to give other accounts and AWS services permission to use your Lambda resources.
+- Use **resource-based policies** to give other accounts and AWS services permission to use your Lambda resources.
 - Similar to S3 bucket policies for S3 bucket.
-- An IAM principal can access Lambda:
+- **An IAM principal can access Lambda**
   - If the IAM policy attached to the principal authorizes it (e.g. user access).
   - OR if the resource-based policy authorizes (e.g. service access).
 - When an AWS service like Amazon S3 calls your Lambda function, the resource-based policy gives it access.
