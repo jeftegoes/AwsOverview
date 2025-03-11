@@ -66,18 +66,16 @@
     - [12.1.1. Example, for RDS](#1211-example-for-rds)
     - [12.1.2. Example, for S3](#1212-example-for-s3)
   - [12.2. DDOS Protection on AWS](#122-ddos-protection-on-aws)
-  - [12.3. AWS Shield](#123-aws-shield)
-  - [12.4. Penetration Testing on AWS Cloud](#124-penetration-testing-on-aws-cloud)
-  - [12.5. Data at rest vs. Data in transit](#125-data-at-rest-vs-data-in-transit)
-  - [12.6. AWS Secrets Manager](#126-aws-secrets-manager)
-  - [12.7. AWS Artifact (not really a service)](#127-aws-artifact-not-really-a-service)
-  - [12.8. AWS Config](#128-aws-config)
-  - [12.9. Amazon Macie](#129-amazon-macie)
-  - [12.10. AWS Security Hub](#1210-aws-security-hub)
-  - [12.11. Amazon Detective](#1211-amazon-detective)
-  - [12.12. AWS Abuse](#1212-aws-abuse)
-  - [12.13. Root user privileges](#1213-root-user-privileges)
-  - [12.14. Summary: Security \& Compliance](#1214-summary-security--compliance)
+  - [12.3. Penetration Testing on AWS Cloud](#123-penetration-testing-on-aws-cloud)
+  - [12.4. Data at rest vs. Data in transit](#124-data-at-rest-vs-data-in-transit)
+  - [12.5. AWS Artifact (not really a service)](#125-aws-artifact-not-really-a-service)
+  - [12.6. AWS Config](#126-aws-config)
+  - [12.7. Amazon Macie](#127-amazon-macie)
+  - [12.8. AWS Security Hub](#128-aws-security-hub)
+  - [12.9. Amazon Detective](#129-amazon-detective)
+  - [12.10. AWS Abuse](#1210-aws-abuse)
+  - [12.11. Root user privileges](#1211-root-user-privileges)
+  - [12.12. Summary: Security \& Compliance](#1212-summary-security--compliance)
 - [13. Machine Learning](#13-machine-learning)
 - [14. Account Management, Billing \& Support](#14-account-management-billing--support)
   - [14.1. AWS Organizations](#141-aws-organizations)
@@ -685,27 +683,9 @@
 
 ## 12.2. DDOS Protection on AWS
 
-- DDOS = Distributed Denial-of-Service
-- **AWS Shield Standard:** protects against DDOS attack for your website and applications, for all customers at no additional costs
-- **AWS Shield Advanced:** 24/7 premium DDoS protection
-- **AWS WAF:** Filter specific requests based on rules
-- **CloudFront and Route 53:**
-  - Availability protection using global edge network
-  - Combined with AWS Shield, provides attack mitigation at the edge
-- Be ready to scale - leverage **AWS Auto Scaling**
+[AWS WAF & Shield](/Security,%20Identity,%20&%20Compliance/AWS%20WAF.md)
 
-## 12.3. AWS Shield
-
-- **AWS Shield Standard:**
-  - Free service that is activated for every AWS customer.
-  - Provides protection from attacks such as SYN/UDP Floods, Reflection attacks and other layer 3/layer 4 attacks.
-- **AWS Shield Advanced:**
-  - Optional DDoS mitigation service ($3,000 per month per organization).
-  - Protect against more sophisticated attack on Amazon EC2, Elastic Load Balancing (ELB), Amazon CloudFront, AWS Global Accelerator, and Route 53.
-  - 24/7 access to AWS DDoS response team (DRP).
-  - Protect against higher fees during usage spikes due to DDoS.
-
-## 12.4. Penetration Testing on AWS Cloud
+## 12.3. Penetration Testing on AWS Cloud
 
 - AWS customers are welcome to carry out security assessments or penetration tests against their AWS infrastructure **without prior approval for 8 services**:
   - Amazon EC2 instances, NAT Gateways, and Elastic Load Balancers.
@@ -726,7 +706,7 @@
 - For any other simulated events, contact aws-security-simulated-event@amazon.com.
 - Read more: https://aws.amazon.com/security/penetration-testing/.
 
-## 12.5. Data at rest vs. Data in transit
+## 12.4. Data at rest vs. Data in transit
 
 - **At rest:** data stored or archived on a device.
   - On a hard disk, on a RDS instance, in S3 Glacier Deep Archive, etc.
@@ -736,16 +716,7 @@
 - We want to encrypt data in both states to protect it!
 - For this we leverage **encryption keys**.
 
-## 12.6. AWS Secrets Manager
-
-- Newer service, meant for storing secrets.
-- Capability to force **rotation of secrets** every X days.
-- Automate generation of secrets on rotation (uses Lambda).
-- Integration with Amazon RDS (MySQL, PostgreSQL, Aurora).
-- Secrets are encrypted using KMS.
-- Mostly meant for RDS integration.
-
-## 12.7. AWS Artifact (not really a service)
+## 12.5. AWS Artifact (not really a service)
 
 - **AWS Artifact is your go-to, central resource for compliance-related information that matters to you.**
 - Portal that provides customers with on-demand access to AWS compliance documentation and AWS agreements.
@@ -753,16 +724,16 @@
 - **Artifact Agreements** - Allows you to review, accept, and track the status of AWS agreements such as the Business Associate Addendum (BAA) or the Health Insurance Portability and Accountability Act (HIPAA) for an individual account or in your organization.
 - Can be used to support internal audit or compliance.
 
-## 12.8. AWS Config
+## 12.6. AWS Config
 
 - **AWS Config provides a detailed view of the configuration of AWS resources in your AWS account. This includes how the resources are related to one another and how they were configured in the past so that you can see how the configurations and relationships change over time.** [AWS Config](Management%20&%20Governance/AWS%20Config.md)
 
-## 12.9. Amazon Macie
+## 12.7. Amazon Macie
 
 - Amazon Macie is a fully managed data security and data privacy service that uses **machine learning and pattern matching to discover and protect your sensitive data in AWS**.
 - Macie helps identify and alert you to **sensitive data, such as personally identifiable information (PII)**.
 
-## 12.10. AWS Security Hub
+## 12.8. AWS Security Hub
 
 - **AWS Security Hub provides you with a comprehensive view of your security state within AWS and your compliance with security standards and best practices.**
 - Central security tool to manage security across several AWS accounts and automate security checks.
@@ -777,7 +748,7 @@
   - AWS Partner Network Solutions.
 - Must first enable the AWS Config Service.
 
-## 12.11. Amazon Detective
+## 12.9. Amazon Detective
 
 - GuardDuty, Macie, and Security Hub are used to identify potential
   security issues, or findings.
@@ -786,7 +757,7 @@
 - **Automatically collects and processes events** from VPC Flow Logs, CloudTrail, and GuardDuty to create a unified view.
 - Produces visualizations with details and context to get to the root cause.
 
-## 12.12. AWS Abuse
+## 12.10. AWS Abuse
 
 - **Report suspected AWS resources used for abusive or illegal purposes**.
 - Abusive & prohibited behaviors are:
@@ -798,7 +769,7 @@
   - **Distributing malware** - AWS resources distributing softwares to harm computers or machines.
 - Contact the AWS Abuse team: AWS abuse form, or abuse@amazonaws.com.
 
-## 12.13. Root user privileges
+## 12.11. Root user privileges
 
 - Root user = Account Owner (created when the account is created).
 - Has complete access to all AWS services and resources.
@@ -815,7 +786,7 @@
   - Edit or delete an Amazon S3 bucket policy that includes an invalid VPC ID or VPC endpoint ID.
   - Sign up for GovCloud.
 
-## 12.14. Summary: Security & Compliance
+## 12.12. Summary: Security & Compliance
 
 - Shared Responsibility on AWS
 - Shield: Automatic DDoS Protection + 24/7 support for advanced

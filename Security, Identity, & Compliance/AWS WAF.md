@@ -1,31 +1,41 @@
-# AWS WAF - AWS Web Application Firewall<!-- omit in toc -->
+# AWS WAF - Web Application Firewall <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. Managed Rules](#2-managed-rules)
-- [3. Logging](#3-logging)
-- [4. AWS Firewall Manager](#4-aws-firewall-manager)
-- [5. WAF vs. Firewall Manager vs. Shield](#5-waf-vs-firewall-manager-vs-shield)
-- [6. Security Policies](#6-security-policies)
+- [2. Fixed IP while using WAF with a Load Balancer](#2-fixed-ip-while-using-waf-with-a-load-balancer)
+- [3. Managed Rules](#3-managed-rules)
+- [4. Logging](#4-logging)
+- [5. AWS Firewall Manager](#5-aws-firewall-manager)
+- [6. WAF vs. Firewall Manager vs. Shield](#6-waf-vs-firewall-manager-vs-shield)
+- [7. Security Policies](#7-security-policies)
+- [8. AWS Shield](#8-aws-shield)
+  - [8.1. Protect from DDoS attack](#81-protect-from-ddos-attack)
 
 # 1. Introduction
 
 - Protects your web applications from common web exploits (Layer 7).
-- Deploy on [ALB](/Compute/AWS%20ELB.md) (localized rules).
-- Deploy on [API Gateway](/Networking%20&%20Content%20Delivery/AWS%20API%20Gateway.md) (rules running at the regional or edge level).
-- Deploy on [CloudFront](/Networking%20&%20Content%20Delivery/AWS%20CloudFront.md) (rules globally on edge locations).
-  - Used to front other solutions: CLB, EC2 instances, custom origins, S3 websites.
-- Deploy on AppSync (protect your GraphQL APIs).
+- **Deploy on**
+  - [Application Load Balancer](/Compute/AWS%20ELB.md).
+  - [API Gateway](/Networking%20&%20Content%20Delivery/AWS%20API%20Gateway.md).
+  - [CloudFront](/Networking%20&%20Content%20Delivery/AWS%20CloudFront.md).
+  - AppSync GraphQL API.
+  - Cognito User Pool.
 - **WAF is not for DDoS protection.**
-- Define Web ACL (Web Access Control List):
-  - Rules can include **IP addresses**, HTTP headers, HTTP body, or URI strings.
-  - Protects from common attack - **SQL injection** and Cross-Site Scripting (XSS).
-  - Size constraints, Geo match.
-  - Rate-based rules (to count occurrences of events).
-- Rule Actions: Count | Allow | Block | CAPTCHA.
+- Define Web ACL (Web Access Control List) Rules:
+  - **IP Set: up to 10,000 IP addresses** - use multiple Rules for more IPs.
+  - HTTP headers, HTTP body, or URI strings Protects from common attack - **SQL injection** and **Cross-Site Scripting (XSS)**.
+  - Size constraints, **geo-match (block countries)**.
+  - **Rate-based rules** (to count occurrences of events) - **for DDoS protection**.
+- Web ACL are Regional except for CloudFront.
+- A rule group is **a reusable set of rules that you can add to a web ACL**.
 
-# 2. Managed Rules
+# 2. Fixed IP while using WAF with a Load Balancer
+
+- WAF does not support the Network Load Balancer (Layer 4).
+- We can use Global Accelerator for fixed IP and WAF on the ALB.
+
+# 3. Managed Rules
 
 - Library of over 190 managed rules.
 - Ready-to-use rules that are managed by AWS and AWS Marketplace Sellers.
@@ -45,7 +55,7 @@
 - **Bot Control Managed Rule Group:** Block and manage requests from bots:
   - `AWSManagedRulesBotControlRuleSet`
 
-# 3. Logging
+# 4. Logging
 
 - You can send your logs to an:
   - Amazon CloudWatch Logs log group - 5 MB per second.
@@ -58,7 +68,7 @@
 
 ![AWS WAF Integrations](/Images/AWSWAFIntegrations.png)
 
-# 4. AWS Firewall Manager
+# 5. AWS Firewall Manager
 
 - **Manage rules in all accounts of an AWS Organization.**
 - Security policy: common set of security rules:
@@ -70,7 +80,7 @@
   - Policies are created at the region level.
 - **Rules are applied to new resources as they are created (good for compliance) across all and future accounts in your Organization.**
 
-# 5. WAF vs. Firewall Manager vs. Shield
+# 6. WAF vs. Firewall Manager vs. Shield
 
 - **WAF, Shield and Firewall Manager are used together for comprehensive protection.**
 - Define your Web ACL rules in WAF.
@@ -79,7 +89,7 @@
 - Shield Advanced adds additional features on top of AWS WAF, such as dedicated support from the Shield Response Team (SRT) and advanced reporting.
 - If you're prone to frequent DDoS attacks, consider purchasing Shield Advanced.
 
-# 6. Security Policies
+# 7. Security Policies
 
 - **Policy Type: AWS WAF**
   - Enforce applying WebACLs to all ALBs in all accounts in AWS Organization.
@@ -101,3 +111,18 @@
   - **Import Existing Firewalls:** Import existing firewalls using Resource Sets.
 - **Policy Type: Route 53 Resolver DNS Firewall**
   - Manage associations between Resolver DNS Firewall Rule Groups and VPCs in all accounts in AWS Organization.
+
+# 8. AWS Shield
+
+## 8.1. Protect from DDoS attack
+
+- **DDoS:** Distributed Denial of Service - many requests at the same time.
+- **AWS Shield Standard**
+  - Free service that is activated for every AWS customer.
+  - Provides protection from attacks such as SYN/UDP Floods, Reflection attacks and other layer 3/layer 4 attacks.
+- **AWS Shield Advanced**
+  - Optional DDoS mitigation service ($3,000 per month per organization).
+  - Protect against more sophisticated attack on Amazon EC2, Elastic Load Balancing (ELB), Amazon CloudFront, AWS Global Accelerator, and Route 53.
+  - 24/7 access to AWS DDoS response team (DRP).
+  - Protect against higher fees during usage spikes due to DDoS.
+  - Shield Advanced automatic application layer DDoS mitigation automatically creates, evaluates and deploys AWS WAF rules to mitigate layer 7 attacks.

@@ -202,10 +202,10 @@
 
 ## 3.10. Environment Variables
 
-- Environment Variable:
-  - **Hardcoded** - e.g., URLs.
-  - **SSM Parameter Store** - sensitive variables (e.g., API keys, shared configs).
-  - **Secrets Manager** - sensitive variables (e.g., DB passwords).
+- **Environment Variable**
+  - **Hardcoded:** - e.g., URLs.
+  - **SSM Parameter Store:** - Sensitive variables (e.g., API keys, shared configs).
+  - **AWS Secrets Manager:** - Sensitive variables (e.g., DB passwords).
 - Environment Files (bulk) - Amazon S3.
 
 ## 3.11. Data Volumes (Bind Mounts)

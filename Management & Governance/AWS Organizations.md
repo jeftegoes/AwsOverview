@@ -36,7 +36,7 @@
 - **Security: Service Control Policies (SCP)**
   - IAM policies applied to OU or Accounts to restrict Users and Roles.
   - They do not apply to the management account (full admin power).
-  - Must have an explicit allow from the root through each OU in the direct path to the target account (does not allow anything by default – like IAM).
+  - Must have an explicit allow from the root through each OU in the direct path to the target account (does not allow anything by default - like IAM).
 
 # 2. OrganizationAccountAccessRole
 

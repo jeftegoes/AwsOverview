@@ -3,44 +3,43 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Why encryption?](#1-why-encryption)
-  - [1.1. Encryption in flight (SSL)](#11-encryption-in-flight-ssl)
+  - [1.1. Encryption in flight (SSL / TLS)](#11-encryption-in-flight-ssl--tls)
   - [1.2. Server side encryption at rest](#12-server-side-encryption-at-rest)
   - [1.3. Client side encryption](#13-client-side-encryption)
 - [2. AWS KMS (Key Management Service)](#2-aws-kms-key-management-service)
   - [2.1. KMS Keys Types](#21-kms-keys-types)
-  - [2.2. Types of KMS Keys](#22-types-of-kms-keys)
-  - [2.3. Key Policies](#23-key-policies)
-  - [2.4. Copying Snapshots across accounts](#24-copying-snapshots-across-accounts)
-  - [2.5. How does KMS work? API - Encrypt and Decrypt](#25-how-does-kms-work-api---encrypt-and-decrypt)
-  - [2.6. Envelope Encryption](#26-envelope-encryption)
-    - [2.6.1. Encrypt](#261-encrypt)
-    - [2.6.2. Decrypt](#262-decrypt)
-    - [2.6.3. Encryption SDK](#263-encryption-sdk)
-    - [2.6.4. Diagram](#264-diagram)
-  - [2.7. KMS Symmetric - API Summary](#27-kms-symmetric---api-summary)
+    - [2.1.1. Types of KMS Keys](#211-types-of-kms-keys)
+    - [2.1.2. Automatic Key rotation](#212-automatic-key-rotation)
+  - [2.2. Key Policies](#22-key-policies)
+  - [2.3. Copying Snapshots across accounts](#23-copying-snapshots-across-accounts)
+  - [2.4. Multi-Region Keys](#24-multi-region-keys)
+    - [2.4.1. DynamoDB Global Tables and KMS Multi-Region Keys Client-Side encryption](#241-dynamodb-global-tables-and-kms-multi-region-keys-client-side-encryption)
+    - [2.4.2. Global Aurora and KMS Multi-Region Keys](#242-global-aurora-and-kms-multi-region-keys)
+  - [2.5. S3 Replication Encryption Considerations](#25-s3-replication-encryption-considerations)
+  - [2.6. AMI Sharing Process Encrypted via KMS](#26-ami-sharing-process-encrypted-via-kms)
+  - [2.7. How does KMS work? API - Encrypt and Decrypt](#27-how-does-kms-work-api---encrypt-and-decrypt)
+  - [2.8. Envelope Encryption](#28-envelope-encryption)
+    - [2.8.1. Encrypt](#281-encrypt)
+    - [2.8.2. Decrypt](#282-decrypt)
+    - [2.8.3. Encryption SDK](#283-encryption-sdk)
+    - [2.8.4. Diagram](#284-diagram)
+  - [2.9. KMS Symmetric - API Summary](#29-kms-symmetric---api-summary)
 - [3. Request Quotas](#3-request-quotas)
 - [4. S3 Bucket Key for SSE-KMS encryption](#4-s3-bucket-key-for-sse-kms-encryption)
 - [5. CloudHSM](#5-cloudhsm)
   - [5.1. Diagram](#51-diagram)
   - [5.2. High Availability](#52-high-availability)
   - [5.3. Integration with AWS Services](#53-integration-with-aws-services)
-- [6. SSM Parameter Store](#6-ssm-parameter-store)
-  - [6.1. Store Hierarchy](#61-store-hierarchy)
-  - [6.2. Parameters Policies (for advanced parameters)](#62-parameters-policies-for-advanced-parameters)
-- [7. AWS Secrets Manager](#7-aws-secrets-manager)
-  - [7.1. AWS Secrets Manager - Multi-Region Secrets](#71-aws-secrets-manager---multi-region-secrets)
-  - [7.2. Secrets Manager CloudFormation Integration RDS \& Aurora](#72-secrets-manager-cloudformation-integration-rds--aurora)
-  - [7.3. SSM Parameter Store vs Secrets Manager](#73-ssm-parameter-store-vs-secrets-manager)
-- [8. CloudWatch Logs - Encryption](#8-cloudwatch-logs---encryption)
-- [9. CodeBuild Security](#9-codebuild-security)
-- [10. AWS Nitro Enclaves](#10-aws-nitro-enclaves)
+- [6. CloudWatch Logs - Encryption](#6-cloudwatch-logs---encryption)
+- [7. CodeBuild Security](#7-codebuild-security)
+- [8. AWS Nitro Enclaves](#8-aws-nitro-enclaves)
 
 # 1. Why encryption?
 
-## 1.1. Encryption in flight (SSL)
+## 1.1. Encryption in flight (SSL / TLS)
 
 - Data is encrypted before sending and decrypted after receiving.
-- SSL certificates help with encryption (HTTPS).
+- SSL/TLS certificates help with encryption (HTTPS).
 - Encryption in flight ensures no MITM (man in the middle attack) can happen.
 
 ## 1.2. Server side encryption at rest
@@ -78,23 +77,27 @@
   - Single encryption key that is used to Encrypt and Decrypt.
   - AWS services that are integrated with KMS use Symmetric CMKs.
   - You never get access to the KMS Key unencrypted (must call KMS API to use).
+  - [AES Encryption and Decryption Online](https://www.devglan.com/online-tools/aes-encryption-decryption)
 - **Asymmetric (RSA & ECC key pairs)**
   - Public (Encrypt) and Private Key (Decrypt) pair.
   - Used for Encrypt/Decrypt, or Sign/Verify operations.
   - The public key is downloadable, but you can't access the Private Key unencrypted.
-  - Use case: encryption outside of AWS by users who can't call the KMS API.
+  - **Use case:** Encryption outside of AWS by users who can't call the KMS API.
+  - [RSA Encryption and Decryption Online](https://www.devglan.com/online-tools/rsa-encryption-decryption)
 
-## 2.2. Types of KMS Keys
+### 2.1.1. Types of KMS Keys
 
-- Types of KMS Keys:
-  - AWS Owned Keys (free): SSE-S3, SSE-SQS, SSE-DDB (default key).
-  - AWS Managed Key: **free** (aws/service-name, example: aws/rds or aws/ebs).
-  - Customer managed keys created in KMS.
-  - Customer managed keys imported (must be symmetric key).
-- **Automatic Key rotation**
-  - AWS-managed KMS Key: automatic every 1 year.
-  - Customer-managed KMS Key: (must be enabled) automatic every 1 year.
-  - Imported KMS Key: only manual rotation possible using alias.
+- AWS Owned Keys (free): SSE-S3, SSE-SQS, SSE-DDB (default key).
+- AWS Managed Key: **Free** (aws/service-name, example: aws/rds or aws/ebs).
+- Customer managed keys created in KMS: **$1 / month**.
+- Customer managed keys imported: **$1 / month**.
+- +pay for API call to KMS ($0.03 / 10000 calls).
+
+### 2.1.2. Automatic Key rotation
+
+- AWS-managed KMS Key: Automatic every 1 year.
+- Customer-managed KMS Key: (must be enabled) automatic every 1 year.
+- Imported KMS Key: Only manual rotation possible using alias.
 
 | Type of KMS key      | Can view KMS key metadata | Can manage KMS key | Used only for my AWS account | Automatic rotation                            | Pricing                                                             |
 | -------------------- | ------------------------- | ------------------ | ---------------------------- | --------------------------------------------- | ------------------------------------------------------------------- |
@@ -102,10 +105,10 @@
 | AWS managed key      | Yes                       | No                 | Yes                          | Required. Every year (approximately 365 days) | No monthly fee Per-use fee (some AWS services pay this fee for you) |
 | AWS owned key        | No                        | No                 | No                           | Varies                                        | No fees                                                             |
 
-## 2.3. Key Policies
+## 2.2. Key Policies
 
 - Control access to KMS keys, "similar" to S3 bucket policies.
-- Difference: you cannot control access without them.
+- **Difference:** You cannot control access without them.
 - **Default KMS Key Policy**
   - Created if you don't provide a specific KMS Key Policy.
   - Complete access to the key to the root user = entire AWS account.
@@ -114,7 +117,7 @@
   - Define who can administer the key.
   - Useful for cross-account access of your KMS key.
 
-## 2.4. Copying Snapshots across accounts
+## 2.3. Copying Snapshots across accounts
 
 1. Create a Snapshot, encrypted with your own KMS Key (Customer Managed Key).
 2. Attach a KMS Key Policy to authorize cross-account access.
@@ -122,11 +125,54 @@
 4. (in target) Create a copy of the Snapshot, encrypt it with a CMK in your account.
 5. Create a volume from the snapshot KMS Key Policy.
 
-## 2.5. How does KMS work? API - Encrypt and Decrypt
+## 2.4. Multi-Region Keys
+
+- Identical KMS keys in different AWS Regions that can be used interchangeably.
+- Multi-Region keys have the same key ID, key material, automatic rotation...
+- Encrypt in one Region and decrypt in other Regions.
+- No need to re-encrypt or making cross-Region API calls.
+- KMS Multi-Region are NOT global (Primary + Replicas).
+- Each Multi-Region key is managed **independently**.
+- **Use cases:** Global client-side encryption, encryption on Global DynamoDB, Global Aurora.
+
+### 2.4.1. DynamoDB Global Tables and KMS Multi-Region Keys Client-Side encryption
+
+- We can encrypt specific attributes client-side in our DynamoDB table using the **Amazon DynamoDB Encryption Client**.
+- Combined with Global Tables, the client-side encrypted data is replicated to other regions.
+- If we use a multi-region key, replicated in the same region as the DynamoDB Global table, then clients in these regions can use low-latency API calls to KMS in their region to decrypt the data client-side.
+- Using client-side encryption we can protect specific fields and guarantee only decryption if the client has access to an API key.
+
+### 2.4.2. Global Aurora and KMS Multi-Region Keys
+
+- We can encrypt specific attributes client-side in our Aurora table using the **AWS Encryption SDK**.
+- Combined with Aurora Global Tables, the client-side encrypted data is replicated to other regions.
+- If we use a multi-region key, replicated in the same region as the Global Aurora DB, then clients in these regions can use low-latency API calls to KMS in their region to decrypt the data client-side.
+- Using client-side encryption we can protect specific fields and guarantee only decryption if the client has access to an API key, **we can protect specific fields even from database admins**.
+
+## 2.5. S3 Replication Encryption Considerations
+
+- **Unencrypted objects and objects encrypted with SSE-S3 are replicated by default**.
+- Objects encrypted with SSE-C (customer provided key) can be replicated.
+- **For objects encrypted with SSE-KMS**, you need to enable the option.
+  - Specify which KMS Key to encrypt the objects within the target bucket.
+  - Adapt the KMS Key Policy for the target key.
+  - An IAM Role with kms:Decrypt for the source KMS Key and kms:Encrypt for the target KMS Key.
+  - You might get KMS throttling errors, in which case you can ask for a Service Quotas increase.
+- **You can use multi-region AWS KMS Keys, but they are currently treated as independent keys by Amazon S3 (the object will still be decrypted and then encrypted).**
+
+## 2.6. AMI Sharing Process Encrypted via KMS
+
+1. AMI in Source Account is encrypted with KMS Key from Source Account.
+2. Must modify the image attribute to add a Launch Permission which corresponds to the specified target AWS account.
+3. Must share the KMS Keys used to encrypted the snapshot the AMI references with the target account / IAM Role.
+4. The IAM Role/User in the target account must have the permissions to DescribeKey, ReEncrypted, CreateGrant, Decrypt.
+5. When launching an EC2 instance from the AMI, optionally the target account can specify a new KMS key in its own account to re-encrypt the volumes.
+
+## 2.7. How does KMS work? API - Encrypt and Decrypt
 
 ![Encrypt and Decrypt](/Images/AWSKMSEncryptDecrypt.png)
 
-## 2.6. Envelope Encryption
+## 2.8. Envelope Encryption
 
 - KMS Encrypt API call has a **limit of 4 KB**.
 - If you want to encrypt >4 KB, we need to use Envelope Encryption.
@@ -135,7 +181,7 @@
 
 ![Envelope Encryption diagram](/Images/AWSKMSEncryptDecryptEnvelope.png)
 
-### 2.6.1. Encrypt
+### 2.8.1. Encrypt
 
 - It is recommended that you use the following pattern to encrypt data locally in your application:
 
@@ -143,14 +189,14 @@
 2. Use the plaintext data key (returned in the Plaintext field of the response) to encrypt data locally, then erase the plaintext data key from memory.
 3. Store the encrypted data key (returned in the CiphertextBlob field of the response) alongside the locally encrypted data.
 
-### 2.6.2. Decrypt
+### 2.8.2. Decrypt
 
 - To decrypt data locally:
 
 1. Use the Decrypt operation to decrypt the encrypted data key. The operation returns a plaintext copy of the data key.
 2. Use the plaintext data key to decrypt data locally, then erase the plaintext data key from memory.
 
-### 2.6.3. Encryption SDK
+### 2.8.3. Encryption SDK
 
 - The AWS Encryption SDK implemented Envelope Encryption for us.
 - The Encryption SDK also exists as a CLI tool we can install.
@@ -160,11 +206,11 @@
   - Helps with reducing the number of calls to KMS with a security trade-off.
   - Use LocalCryptoMaterialsCache (max age, max bytes, max number of messages).
 
-### 2.6.4. Diagram
+### 2.8.4. Diagram
 
 - The SDK encrypts the data encryption key and stores it (encrypted) as part of the returned ciphertext.
 
-## 2.7. KMS Symmetric - API Summary
+## 2.9. KMS Symmetric - API Summary
 
 - `Encrypt` - Encrypt **up to 4 KB** of data through KMS.
 - `GenerateDataKey`
@@ -228,75 +274,7 @@
 - Configure KMS Custom Key Store with CloudHSM
 - Example: EBS, S3, RDS ...
 
-# 6. SSM Parameter Store
-
-- Secure storage for configuration and secrets.
-- Optional Seamless Encryption using KMS.
-- Serverless, scalable, durable, easy SDK.
-- Version tracking of configurations / secrets.
-- Security through IAM.
-- Notifications with Amazon EventBridge.
-- Integration with CloudFormation.
-
-## 6.1. Store Hierarchy
-
-- Examples:
-- /my-department/
-  - my-app/
-    - dev/
-      - db-url
-      - db-password
-    - prod/
-      - db-url
-      - db-password
-  - other-app/
-- /other-department/
-- /aws/reference/secretsmanager/secret_ID_in_Secrets_Manager
-- /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 (public)
-
-## 6.2. Parameters Policies (for advanced parameters)
-
-- Allow to assign a TTL to a parameter (expiration date) to force updating or deleting sensitive data such as passwords.
-- Can assign multiple policies at a time.
-
-# 7. AWS Secrets Manager
-
-- Newer service, meant for storing secrets.
-- Capability to force **rotation of secrets** every X days.
-- Automate generation of secrets on rotation (uses Lambda).
-- Integration with [Amazon RDS](/Database/Amazon%20RDS.md) (MySQL, PostgreSQL, Aurora).
-- Secrets are encrypted using KMS.
-- Mostly meant for RDS integration.
-
-![Configure Rotation](/Images/AWSSecretManagerConfigureRotation.png)
-
-## 7.1. AWS Secrets Manager - Multi-Region Secrets
-
-- Replicate Secrets across multiple AWS Regions.
-- Secrets Manager keeps read replicas in sync with the primary Secret.
-- Ability to promote a read replica Secret to a standalone Secret.
-- **Use cases:** multi-region apps, disaster recovery strategies, multi-region DB...
-
-## 7.2. Secrets Manager CloudFormation Integration RDS & Aurora
-
-- ManageMasterUserPassword - creates admin secret implicitly.
-- RDS, Aurora will manage the secret in Secrets Manager and its rotation.
-
-## 7.3. SSM Parameter Store vs Secrets Manager
-
-- **Secrets Manager ($$$)**
-  - Automatic rotation of secrets with AWS Lambda.
-  - Lambda function is provided for RDS, Redshift, DocumentDB.
-  - KMS encryption is mandatory.
-  - Can integration with CloudFormation.
-- **SSM Parameter Store ($)**
-  - Simple API.
-  - No secret rotation (can enable rotation using Lambda triggered by CW Events).
-  - KMS encryption is optional.
-  - Can integration with CloudFormation.
-  - Can pull a Secrets Manager secret using the SSM Parameter Store API.
-
-# 8. CloudWatch Logs - Encryption
+# 6. CloudWatch Logs - Encryption
 
 - You can encrypt CloudWatch logs with KMS keys.
 - Encryption is enabled at the log group level, by associating a CMK with a log group, either when you create the log group or after it exists.
@@ -305,7 +283,7 @@
   - `associate-kms-key`: if the log group already exists.
   - `create-log-group`: if the log group doesn't exist yet.
 
-# 9. CodeBuild Security
+# 7. CodeBuild Security
 
 - To access resources in your VPC, make sure you specify a VPC configuration for your CodeBuild.
 - Secrets in CodeBuild:
@@ -314,7 +292,7 @@
   - Environment variables can reference parameter store parameters.
   - Environment variables can reference secrets manager secrets.
 
-# 10. AWS Nitro Enclaves
+# 8. AWS Nitro Enclaves
 
 - Process highly sensitive data in an isolated compute environment
   - Personally Identifiable Information (PII), healthcare, financial, ...

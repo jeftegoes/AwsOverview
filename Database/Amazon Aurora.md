@@ -162,7 +162,7 @@
 # 15. Aurora Security
 
 - **At-rest encryption**
-  - Database master & replicas encryption using AWS KMS – must be defined as launch time.
+  - Database master & replicas encryption using AWS KMS - must be defined as launch time.
   - If the master is not encrypted, the read replicas cannot be encrypted.
   - To encrypt an un-encrypted database, go through a DB snapshot & restore as encrypted.
 - **In-flight encryption:** TLS-ready by default, use the AWS TLS root certificates client-side.

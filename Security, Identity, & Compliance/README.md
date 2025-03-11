@@ -35,8 +35,7 @@
 
 # 6. AWS Certificate Manager (ACM)
 
-- **AWS Certificate Manager is a service that lets you easily provision, manage, and deploy public and private Secure Sockets Layer/Transport Layer Security (SSL/TLS) certificates for use with AWS services and your internal connected resources.**
-  [AWS ACM](AWS%20Certificate%20Manager.md)
+- **AWS Certificate Manager is a service that lets you easily provision, manage, and deploy public and private Secure Sockets Layer/Transport Layer Security (SSL/TLS) certificates for use with AWS services and your internal connected resources.** [AWS ACM](AWS%20Certificate%20Manager.md)
 
 # 7. Amazon GuardDuty
 
