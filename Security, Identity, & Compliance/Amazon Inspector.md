@@ -4,7 +4,7 @@
 
 - [1. Introduction](#1-introduction)
 - [2. What does AWS Inspector evaluate?](#2-what-does-aws-inspector-evaluate)
-- [3. Systems Manager](#3-systems-manager)
+- [3. Systems Manager Integration](#3-systems-manager-integration)
 
 # 1. Introduction
 
@@ -32,7 +32,7 @@
 - Network reachability (EC2).
 - A risk score is associated with all vulnerabilities for prioritization.
 
-# 3. Systems Manager
+# 3. Systems Manager Integration
 
 - **EC2 instance setup in Inspector requires**
   - **SSM Agent is running.**

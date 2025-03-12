@@ -1,4 +1,4 @@
-# AWS CI/CD - CodeCommit, CodePipeline, CodeBuild, CodeDeploy, CodeStar, CodeArtifact, CodeGuru, Cloud9<!-- omit in toc -->
+# AWS CI/CD - CodeCommit, CodePipeline, CodeBuild, CodeDeploy, CodeStar, CodeArtifact, CodeGuru, Cloud9 <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -135,8 +135,8 @@
 
 ## 4.6. Cross-Region Replication
 
-- Use case: achieve lower latency pulls for global developers, backups...
-  - us-east-1 > us-east-2
+- **Use case:** Achieve lower latency pulls for global developers, backups...
+  - `us-east-1` > `us-east-2`
 
 ## 4.7. Branch Security
 

@@ -3,12 +3,17 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. S3 Use cases](#2-s3-use-cases)
+- [2. Use cases](#2-use-cases)
 - [3. Buckets](#3-buckets)
 - [4. Objects](#4-objects)
 - [5. Security](#5-security)
   - [5.1. Bucket Policies](#51-bucket-policies)
-  - [5.2. Bucket settings for Block Public Access](#52-bucket-settings-for-block-public-access)
+  - [5.2. Examples](#52-examples)
+    - [5.2.1. Public Access - Use Bucket Policy](#521-public-access---use-bucket-policy)
+    - [5.2.2. User Access to S3 - IAM permissions](#522-user-access-to-s3---iam-permissions)
+    - [5.2.3. EC2 instance access - Use IAM Roles](#523-ec2-instance-access---use-iam-roles)
+    - [5.2.4. Cross-Account Access - Use Bucket Policy](#524-cross-account-access---use-bucket-policy)
+  - [5.3. Bucket settings for Block Public Access](#53-bucket-settings-for-block-public-access)
 - [6. Static Website Hosting](#6-static-website-hosting)
 - [7. Versioning](#7-versioning)
 - [8. Replication (CRR \& SRR)](#8-replication-crr--srr)
@@ -65,7 +70,7 @@
 - Many websites use Amazon S3 as a backbone.
 - Many AWS services use Amazon S3 as an integration as well.
 
-# 2. S3 Use cases
+# 2. Use cases
 
 - Backup and storage.
 - Disaster Recovery.
@@ -83,7 +88,7 @@
 - Buckets must have a **globally unique name (across all regions all accounts)**.
 - Buckets are defined at the region level.
 - S3 looks like a global service but buckets are created in a region.
-- Naming convention:
+- **Naming convention**
   - No uppercase, no underscore.
   - 3-63 characters long.
   - Not an IP.
@@ -94,14 +99,14 @@
 # 4. Objects
 
 - Objects (files) have a Key.
-- The **key** is the **FULL** path:
+- The `key` is the **FULL** path:
   - s3://my-bucket/**my_file.txt**
   - s3://my-bucket/**my_folder1/another_folder/my_file.txt**
 - The key is composed of **prefix** + _object name_
   - s3://my-bucket/**my_folder1/another_folder/**_my_file.txt_
 - There's no concept of "directories" within buckets (although the UI will trick you to think otherwise).
 - Just keys with very long names that contain slashes ("/").
-- Object values are the content of the body:
+- **Object values are the content of the body**
   - Max Object Size is 5TB (5000GB).
   - If uploading more than 5GB, must use "multi-part upload".
 - **Metadata** (List of text key / value pairs - system or user metadata).
@@ -110,29 +115,22 @@
 
 # 5. Security
 
-- **User based:**
+- **User based**
   - **IAM policies:** Which API calls should be allowed for a specific user from IAM console.
-
-![S3 IAM Permissions](/Images/S3IamPermissions.png)
-![EC2 instance access - IAM Roles](/Images/S3IamRoles.png)
-
-- **Resource Based:**
-  - **Bucket Policies:** bucket wide rules from the S3 console - allows cross account.
-  - **Object Access Control List (ACL):** finer grain (Can be disabled).
-  - **Bucket Access Control List (ACL):** less common (Can be disabled).
-
-![S3 Use bucket policy](/Images/S3UseBucketPolicy.png)
-
+- **Resource Based**
+  - **Bucket Policies:** Bucket wide rules from the S3 console - allows cross account.
+  - **Object Access Control List (ACL):** Finer grain (Can be disabled).
+  - **Bucket Access Control List (ACL):** Less common (Can be disabled).
 - **Note:** An IAM principal can access an S3 object if:
   - The user IAM permissions **ALLOW** it **OR** the resource policy **ALLOWS** it.
   - **AND** there's no explicit **DENY**.
-- **Encryption:** encrypt objects in Amazon S3 using encryption keys.
+- **Encryption:** Encrypt objects in Amazon S3 using encryption keys.
 
 ## 5.1. Bucket Policies
 
 - S3 bucket policy allows for securing access to objects in buckets so that only users with the necessary permissions can access them.
   - Even authenticated users can be restricted from accessing Amazon S3 resources if they lack the appropriate permissions.
-- **JSON based policies:**
+- **JSON based policies**
   - An S3 bucket policy statement is composed of several elements, and the following are required to create a valid policy:
     - `Effect` - The effect can be Allow or Deny.
     - `Action` - The specific API action for which you are granting or denying permission.
@@ -170,15 +168,29 @@
         ]
       }
       ```
-
-![Example ](/Images/AWSS3BucketPoliciesExample.png)
-
+      ![Example ](/Images/AWSS3BucketPoliciesExample.png)
 - **Use S3 bucket for policy to:**
   - Grant public access to the bucket.
   - Force objects to be encrypted at upload.
   - Grant access to another account (Cross Account).
 
-## 5.2. Bucket settings for Block Public Access
+## 5.2. Examples
+
+### 5.2.1. Public Access - Use Bucket Policy
+
+![S3 Use bucket policy](/Images/S3UseBucketPolicy.png)
+
+### 5.2.2. User Access to S3 - IAM permissions
+
+![S3 IAM Permissions](/Images/S3IamPermissions.png)
+
+### 5.2.3. EC2 instance access - Use IAM Roles
+
+![EC2 instance access - IAM Roles](/Images/S3IamRoles.png)
+
+### 5.2.4. Cross-Account Access - Use Bucket Policy
+
+## 5.3. Bucket settings for Block Public Access
 
 ![Settings for Block Public Access](/Images/EditBlockPublicAccess.PNG)
 

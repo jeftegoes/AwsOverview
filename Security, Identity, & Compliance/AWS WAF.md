@@ -6,7 +6,6 @@
 - [2. Fixed IP while using WAF with a Load Balancer](#2-fixed-ip-while-using-waf-with-a-load-balancer)
 - [3. Managed Rules](#3-managed-rules)
 - [4. Logging](#4-logging)
-- [5. AWS Firewall Manager](#5-aws-firewall-manager)
 - [6. WAF vs. Firewall Manager vs. Shield](#6-waf-vs-firewall-manager-vs-shield)
 - [7. Security Policies](#7-security-policies)
 - [8. AWS Shield](#8-aws-shield)
@@ -67,18 +66,6 @@
   - **AWS WAF doesn't support encryption for AWS Key Management Service keys that are managed by AWS.**
 
 ![AWS WAF Integrations](/Images/AWSWAFIntegrations.png)
-
-# 5. AWS Firewall Manager
-
-- **Manage rules in all accounts of an AWS Organization.**
-- Security policy: common set of security rules:
-  - WAF rules (Application Load Balancer, API Gateways, CloudFront).
-  - AWS Shield Advanced (ALB, CLB, NLB, Elastic IP, CloudFront).
-  - Security Groups for EC2, Application Load BAlancer and ENI resources in VPC.
-  - AWS Network Firewall (VPC Level).
-  - Amazon Route 53 Resolver DNS Firewall.
-  - Policies are created at the region level.
-- **Rules are applied to new resources as they are created (good for compliance) across all and future accounts in your Organization.**
 
 # 6. WAF vs. Firewall Manager vs. Shield
 

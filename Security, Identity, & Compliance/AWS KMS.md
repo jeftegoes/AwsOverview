@@ -156,7 +156,7 @@
 - **For objects encrypted with SSE-KMS**, you need to enable the option.
   - Specify which KMS Key to encrypt the objects within the target bucket.
   - Adapt the KMS Key Policy for the target key.
-  - An IAM Role with kms:Decrypt for the source KMS Key and kms:Encrypt for the target KMS Key.
+  - An IAM Role with `kms:Decrypt` for the source KMS Key and `kms:Encrypt` for the target KMS Key.
   - You might get KMS throttling errors, in which case you can ask for a Service Quotas increase.
 - **You can use multi-region AWS KMS Keys, but they are currently treated as independent keys by Amazon S3 (the object will still be decrypted and then encrypted).**
 
@@ -201,7 +201,7 @@
 - The AWS Encryption SDK implemented Envelope Encryption for us.
 - The Encryption SDK also exists as a CLI tool we can install.
 - Implementations for Java, Python, C, JavaScript.
-- Feature - Data Key Caching:
+- **Feature - Data Key Caching**
   - Re-use data keys instead of creating new ones for each encryption.
   - Helps with reducing the number of calls to KMS with a security trade-off.
   - Use LocalCryptoMaterialsCache (max age, max bytes, max number of messages).

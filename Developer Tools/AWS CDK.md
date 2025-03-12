@@ -1,4 +1,4 @@
-# AWS CDK - Cloud Development Kit<!-- omit in toc -->
+# AWS CDK - Cloud Development Kit <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -76,7 +76,7 @@
 
 - Can be called **Patterns**, which represents multiple related resources.
 - Helps you complete common tasks in AWS.
-- Examples:
+- **Examples**
   - **aws-apigateway.LambdaRestApi** represents an API Gateway backed by a Lambda function.
   - **aws-ecs-patterns.ApplicationLoadBalancerFargateService** which represents an architecture that includes a Fargate cluster with Application Load Balancer.
 
@@ -107,10 +107,10 @@
 
 - To test CDK apps, use **CDK Assertions Module** combined with popular test frameworks such as Jest (JavaScript) or Pytest (Python).
 - Verify we have specific resources, rules, conditions, parameters...
-- Two types of tests:
+- **Two types of tests**
   - **Fine-grained Assertions (common):** Test specific aspects of the CloudFormation template (e.g., check if a resource has this property with this value)
   - **Snapshot Tests:** Test the synthesized CloudFormation template against a previously stored baseline template
-- To import a template
+- **To import a template**
   - Template.fromStack(MyStack) : stack built in CDK
   - Template.fromString(mystring) : stack build outside CDK
 

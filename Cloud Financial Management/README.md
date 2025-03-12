@@ -83,7 +83,7 @@
 
 # 4. Billing Alarms in CloudWatch
 
-- Billing data metric is stored in CloudWatch us-east-1.
+- Billing data metric is stored in CloudWatch `sa-east-1`.
 - Billing data are for overall worldwide AWS costs.
 - It's for actual cost, not for projected costs.
 - Intended a simple alarm (not as powerful as AWS Budgets).
@@ -172,12 +172,12 @@
 
 # 8. Billing and Costing Tools - Summary
 
-- **Compute Optimizer:** recommends resources, configurations to reduce cost.
-- **Pricing Calculator:** cost of services on AWS.
-- **Billing Dashboard:** high level overview + free tier dashboard.
-- **Cost Allocation Tags:** tag resources to create detailed reports.
-- **Cost and Usage Reports:** most comprehensive billing dataset.
+- **Compute Optimizer:** Recommends resources, configurations to reduce cost.
+- **Pricing Calculator:** Cost of services on AWS.
+- **Billing Dashboard:** High level overview + free tier dashboard.
+- **Cost Allocation Tags:** Tag resources to create detailed reports.
+- **Cost and Usage Reports:** Most comprehensive billing dataset.
 - **Cost Explorer:** View current usage (detailed) and forecast usage.
-- **Billing Alarms:** in us-east-1 - track overall and per-service billing.
-- **Budgets:** more advanced - track usage, costs, RI, and get alerts.
-- **Savings Plans:** easy way to save based on long-term usage of AWS.
+- **Billing Alarms:** In `sa-east-1` - track overall and per-service billing.
+- **Budgets:** More advanced - track usage, costs, RI, and get alerts.
+- **Savings Plans:** Easy way to save based on long-term usage of AWS.

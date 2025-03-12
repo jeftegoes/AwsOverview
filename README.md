@@ -302,7 +302,7 @@
 ## 2.10. AWS Regions
 
 - AWS has Regions all around the world.
-- Names can be us-east-1, eu-west-3...
+- Names can be `us-east-1`, `eu-west-3`...
 - A region is a cluster of data centers.
 - Most AWS services are region-scoped.
 
@@ -683,7 +683,7 @@
 
 ## 12.2. DDOS Protection on AWS
 
-[AWS WAF & Shield](/Security,%20Identity,%20&%20Compliance/AWS%20WAF.md)
+- [AWS WAF & Shield](/Security,%20Identity,%20&%20Compliance/AWS%20WAF.md)
 
 ## 12.3. Penetration Testing on AWS Cloud
 
@@ -730,8 +730,7 @@
 
 ## 12.7. Amazon Macie
 
-- Amazon Macie is a fully managed data security and data privacy service that uses **machine learning and pattern matching to discover and protect your sensitive data in AWS**.
-- Macie helps identify and alert you to **sensitive data, such as personally identifiable information (PII)**.
+[Amazon Macie](/Security,%20Identity,%20&%20Compliance/Amazon%20Macie.md)
 
 ## 12.8. AWS Security Hub
 
