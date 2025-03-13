@@ -400,7 +400,7 @@
 - Simpler alternative to using EC2, RDS, ELB, EBS, Route 53...
 - Great for people with little cloud experience!
 - Can setup notifications and monitoring of your Lightsail resources.
-- Use cases:
+- **Use cases**
   - Simple web applications (has templates for LAMP, Nginx, MEAN, Node.js...).
   - Websites (templates for WordPress, Magento, Plesk, Joomla).
   - Dev / Test environment.
@@ -485,7 +485,7 @@
 - Traffic doesn't leave the Communication Service Provider's (CSP) network.
 - High-bandwidth and secure connection to the parent AWS Region.
 - No additional charges or service agreements.
-- Use cases: Smart Cities, ML-assisted diagnostics, Connected Vehicles, Interactive Live Video Streams, AR/VR, Real-time Gaming, ...
+- **Use cases:** Smart Cities, ML-assisted diagnostics, Connected Vehicles, Interactive Live Video Streams, AR/VR, Real-time Gaming, ...
 
 ## 8.6. AWS Local Zones
 

@@ -94,7 +94,7 @@
 - The SCP does not affect service-linked roles.
   - Service-linked roles enable other AWS services to integrate with AWS Organizations and can't be restricted by SCPs.
 - SCP must have an explicit Allow (does not allow anything by default).
-- Use cases:
+- **Use cases**
   - Restrict access to certain services (for example: can't use EMR).
   - Enforce PCI compliance by explicitly disabling services.
 

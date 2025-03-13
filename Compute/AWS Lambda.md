@@ -317,7 +317,7 @@
   - S3:ObjectRemoved
   - S3:ObjectRestore
   - S3:Replication...
-- Object name filtering possible (\*.jpg).
+- Object name filtering possible `.jpg`.
 - Use case: generate thumbnails of images uploaded to S3.
 - S3 event notifications typically deliver events in seconds but can sometimes take a minute or longer.
 - If two writes are made to a single non- versioned object at the same time, it is possible that only a single event notification will be sent

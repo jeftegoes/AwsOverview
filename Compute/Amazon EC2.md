@@ -294,7 +294,7 @@
 - The instances in a partition do not share racks with the instances in the other partitions.
 - A partition failure can affect many EC2 but won't affect other partitions.
 - EC2 instances get access to the partition information as metadata.
-- Use cases: HDFS, HBase, Cassandra, Kafka.
+- **Use cases:** HDFS, HBase, Cassandra, Kafka.
 
 # 10. Elastic Network Interfaces (ENI)
 
@@ -324,7 +324,7 @@
 - The instance boot is much faster! (the OS is not stopped / restarted).
 - Under the hood: the RAM state is written to a file in the root EBS volume.
 - The root EBS volume must be encrypted.
-- Use cases:
+- **Use cases:**
   - Long-running processing
   - Saving the RAM state
   - Services that take time to initialize

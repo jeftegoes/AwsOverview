@@ -128,7 +128,7 @@
 - Example: predict the future sales of a raincoat.
 - 50% more accurate than looking at the data itself.
 - Reduce forecasting time from months to hours.
-- Use cases: Product Demand Planning, Financial Planning, Resource Planning, ...
+- **Use cases:** Product Demand Planning, Financial Planning, Resource Planning, ...
 
 # 9. Amazon Kendra
 
@@ -148,7 +148,7 @@
 - Same technology used by Amazon.com.
 - Integrates into existing websites, applications, SMS, email marketing systems, ...
 - Implement in days, not months (you don't need to build, train, and deploy ML solutions).
-- Use cases: retail stores, media and entertainment...
+- **Use cases:** retail stores, media and entertainment...
 
 # 11. Amazon Textract
 

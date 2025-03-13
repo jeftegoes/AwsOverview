@@ -13,4 +13,4 @@
 - Supports DomainKeys Identified Mail (DKIM) and Sender Policy Framework (SPF).
 - Flexible IP deployment: shared, dedicated, and customer-owned IPs.
 - Send emails using your application using AWS Console, APIs, or SMTP.
-- Use cases: transactional, marketing and bulk email communications.
+- **Use cases:** Transactional, marketing and bulk email communications.

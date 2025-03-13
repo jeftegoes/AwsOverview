@@ -209,7 +209,7 @@
 - **Read Request Units (RRU)** - throughput for reads (same as RCU).
 - **Write Request Units (WRU)** - throughput for writes (same as WCU).
 - 2.5x more expensive than provisioned capacity (use with care).
-- Use cases: unknown workloads, unpredictable application traffic, ...
+- **Use cases:** Unknown workloads, unpredictable application traffic, ...
 
 # 7. DynamoDB Basic APIs
 
@@ -425,7 +425,7 @@
   - Read by **AWS Lambda**.
   - Read by **Kinesis Client Library applications**.
 - Data Retention for up to 24 hours.
-- Use cases:
+- **Use cases:**
   - React to changes in real-time (welcome email to users).
   - Analytics.
   - Insert into derivative tables.
@@ -464,7 +464,7 @@
 - Expired items, that haven't been deleted, appears in reads/queries/scans (if you don't want them, filter them out).
 - Expired items are deleted from both LSIs and GSIs.
 - A delete operation for each expired item enters the DynamoDB Streams (can help recover expired items).
-- Use cases: reduce stored data by keeping only current items, adhere to regulatory obligations, ...
+- **Use cases:** reduce stored data by keeping only current items, adhere to regulatory obligations, ...
 
 # 16. DynamoDB CLI - Good to Know
 
@@ -489,7 +489,7 @@
 - Two operations: (up to 25 unique items or up to 4 MB of data):
   - `TransactGetItems` - one or more `GetItem` operations.
   - `TransactWriteItems` - one or more `PutItem`, `UpdateItem`, and `DeleteItem` operations.
-- Use cases: financial transactions, managing orders, multiplayer games, ...
+- **Use cases:** financial transactions, managing orders, multiplayer games, ...
 
 ## 17.1. Capacity Computations
 

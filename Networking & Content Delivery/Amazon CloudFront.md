@@ -161,7 +161,7 @@
 ## 3.5. Cache Behaviors
 
 - Configure different settings for a given URL path pattern.
-- Example: one specific cache behavior to **Images/\*.jpg** files on your origin web server.
+- Example: one specific cache behavior to `Images/*.jpg` files on your origin web server.
 - Route to different kind of origins/origin groups based on the content type or path pattern:
   - /Images/\*
   - /api/\*

@@ -97,7 +97,7 @@
   - Define a script to run on the instances as they start.
 - You can perform some actions before the instance is terminated (Terminating state).
   - Pause the instances before they're terminated for troubleshooting.
-- Use cases: cleanup, log extraction, special health checks.
+- **Use cases:** Cleanup, log extraction, special health checks.
 - Integration with EventBridge, SNS, and SQS.
 
 ![Amazon ASG - Lifecycle Hooks](/Images/AmazonAsgLifecycleHooks.png)

@@ -66,7 +66,7 @@
   - 80 TB of HDD capacity for block volume and S3 compatible object storage
 - Snowball Edge Compute Optimized
   - 42 TB of HDD capacity for block volume and S3 compatible object storage
-- Use cases: large data cloud migrations, DC decommission, disaster recovery
+- **Use cases:** Large data cloud migrations, DC decommission, disaster recovery
 - **Snowball Edge is best-suited to move petabytes of data and offers computing capabilities. Be careful, it's recommended to use a fleet of Snowballs to move less than 10PBs of data. Over this quantity, it's better-suited to use Snowmobile.**
 
 ## 2.3. AWS Snowmobile

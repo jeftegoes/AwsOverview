@@ -173,7 +173,7 @@
 - EFS works with EC2 instances in **multi-AZ**.
 - Highly available, scalable, expensive (3x gp2), pay per use, no capacity planning.
   ![EFS diagram](/Images/EFSDiagram.png)
-- Use cases: content management, web serving, data sharing, Wordpress.
+- **Use cases:** Content management, web serving, data sharing, Wordpress.
 - Uses NFSv4.1 protocol.
 - Uses security group to control access to EFS.
 - **Compatible with Linux based AMI (not Windows).**

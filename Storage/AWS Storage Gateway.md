@@ -12,7 +12,7 @@
 
 - Bridge between on-premise data and cloud data in S3.
 - **Hybrid storage service to allow on- premises to seamlessly use the AWS Cloud.**
-- Use cases: disaster recovery, backup & restore, tiered storage.
+- **Use cases:** Disaster recovery, backup & restore, tiered storage.
 - Types of Storage Gateway:
   - File Gateway.
   - Volume Gateway.

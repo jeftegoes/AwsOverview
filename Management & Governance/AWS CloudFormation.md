@@ -773,7 +773,7 @@
 - Two types:
   - Amazon SNS-backed Custom Resources.
   - AWS Lambda-backed Custom Resources.
-- Use cases:
+- **Use cases**
   - An AWS resource is not covered yet (new service for example).
   - An on-premises resource.
   - Running a Lambda function to empty an S3 bucket before being deleted.
@@ -801,7 +801,7 @@
 - IAM role that allows CloudFormation to create/update/delete stack resources on your behalf.
 - Give ability to users to create/update/delete the stack resources even if they don't have permissions to work with the resources in the stack.
 - By default, CloudFormation uses a temporary session that it generates from your user credentials.
-- Use cases:
+- **Use cases:**
   - You want to achieve the least privilege principle.
   - But you don't want to give the user all the required permissions to create the stack resources.
 - User must have `iam:PassRole` permissions.

@@ -141,7 +141,7 @@
   - Subnet IDs.
   - Security Group IDs.
 - Then your build can access resources in your VPC (e.g., RDS, ElastiCache, EC2, ALB, ...).
-- Use cases: integration tests, data query, internal load balancers, ...
+- **Use cases:** Integration tests, data query, internal load balancers, ...
 
 # 8. Environment Variables
 
@@ -202,7 +202,7 @@
 ## 15.1. CodeBuild Service Role
 
 - Allows CodeBuild to access AWS resources on your behalf (assign the required permissions).
-- Use cases:
+- **Use cases:**
   - Download code from CodeCommit repository.
   - Fetch parameters from SSM Parameter Store.
   - Upload build artifacts to S3 bucket.

@@ -115,15 +115,15 @@
 
 - Stage variables are like environment variables for API Gateway.
 - Use them to change often changing configuration values.
-- They can be used in:
+- **They can be used in**
   - Lambda function ARN.
   - HTTP Endpoint.
   - Parameter mapping templates.
-- Use cases:
+- **Use cases**
   - Configure HTTP endpoints your stages talk to (dev, test, prod...).
   - Pass configuration parameters to AWS Lambda through mapping templates.
 - Stage variables are passed to the "context" object in AWS Lambda.
-- Examples:
+- **Examples**
   - A full URI without protocol - `http://${stageVariables.<variable_name>}`
   - A full domain - `http://${stageVariables.<variable_name>}/resource/operation`
   - A subdomain - `http://${stageVariables.<variable_name>}.example.com/resource/operation`

@@ -228,7 +228,7 @@
 - SSM Agent can be installed manually or deployed as a Greengrass Component (pre-built software module that you deploy directly to Greengrass Core devices).
 - You must add permissions to the Token Exchange Role (IAM Role for the IoT core device) to communicate with Systems Manager.
 - Supports all SSM Capabilities (Patch Manager, Session Manager, Run Command...).
-- Use cases: easily update and maintain OS and software updates across a fleet of Greengrass Core devices.
+- **Use cases:** Easily update and maintain OS and software updates across a fleet of Greengrass Core devices.
 
 # 14. Systems Manager - Compliance
 

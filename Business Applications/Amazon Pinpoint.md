@@ -11,7 +11,7 @@
 - Ability to segment and personalize messages with the right content to customers.
 - Possibility to receive replies.
 - Scales to billions of messages per day.
-- Use cases: run campaigns by sending marketing, bulk, transactional SMS messages.
+- **Use cases:** Run campaigns by sending marketing, bulk, transactional SMS messages.
 - **Versus Amazon SNS or Amazon SES**
   - In SNS & SES you managed each message's audience, content, and delivery schedule.
   - In Amazon Pinpoint, you create message templates, delivery schedules, highly-targeted segments, and full campaigns.

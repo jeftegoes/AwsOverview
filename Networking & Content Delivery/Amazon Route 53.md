@@ -231,7 +231,7 @@
 - **This routing is based on user location.**
 - Specify location by Continent, Country or by US State (if there's overlapping, most precise location selected).
 - Should create a **"Default"** record (in case there's no match on location).
-- Use cases: website localization, restrict content distribution, load balancing, ...
+- **Use cases:** website localization, restrict content distribution, load balancing, ...
 - Can be associated with Health Checks.
 
 ### 2.7.6. Geoproximity

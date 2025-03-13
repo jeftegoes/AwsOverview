@@ -217,7 +217,7 @@
 - **Fargate Tasks** - using ephemeral storage
   - Data are tied to the container(s) using them
   - 20 GiB - 200 GiB (default 20 GiB)
-- Use cases:
+- **Use cases**
   - Share ephemeral data between multiple containers
   - "Sidecar" container pattern, where the "sidecar" container used to send metrics/logs to other destinations (separation of conerns).
 
