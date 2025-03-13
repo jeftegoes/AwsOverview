@@ -40,11 +40,11 @@
     - [17.1.1. Sample multipart upload calls](#1711-sample-multipart-upload-calls)
   - [17.2. S3 Transfer Acceleration](#172-s3-transfer-acceleration)
 - [18. Byte-Range Fetches](#18-byte-range-fetches)
-- [19. S3 Batch Operations](#19-s3-batch-operations)
-- [20. S3 - Storage Lens](#20-s3---storage-lens)
+- [19. Batch Operations](#19-batch-operations)
+- [20. Storage Lens](#20-storage-lens)
   - [20.1. Default Dashboard](#201-default-dashboard)
   - [20.2. Metrics](#202-metrics)
-  - [20.3. Storage Lens - Free vs. Paid](#203-storage-lens---free-vs-paid)
+  - [20.3. Free vs. Paid](#203-free-vs-paid)
 - [21. S3 Select \& Glacier Select](#21-s3-select--glacier-select)
 - [22. S3 User-Defined Object Metadata \& S3 Object Tags](#22-s3-user-defined-object-metadata--s3-object-tags)
 - [23. Object Encryption](#23-object-encryption)
@@ -439,7 +439,7 @@ TODO: DIAGRAM
 - Can be used to speed up downloads.
 - Can be used to retrieve only partial data (for example the head of a file).
 
-# 19. S3 Batch Operations
+# 19. Batch Operations
 
 - Perform bulk operations on existing S3 objects with a single request, example:
   - Modify object metadata & properties.
@@ -452,7 +452,7 @@ TODO: DIAGRAM
 - S3 Batch Operations manages retries, tracks progress, sends completion notifications, generate reports...
 - **You can use S3 Inventory to get object list and use Athena to query and filter your objects.**
 
-# 20. S3 - Storage Lens
+# 20. Storage Lens
 
 - Understand, analyze, and optimize storage across entire AWS Organization.
 - Discover anomalies, identify cost efficiencies, and apply data protection best practices across entire AWS Organization (30 days usage & activity metrics).
@@ -472,33 +472,33 @@ TODO: DIAGRAM
 - **Summary Metrics**
   - General insights about your S3 storage.
   - StorageBytes, ObjectCount...
-  - **Use cases:** identify the fastest-growing (or not used) buckets and prefixes.
+  - **Use cases:** Identify the fastest-growing (or not used) buckets and prefixes.
 - **Cost-Optimization Metrics**
-  - Provide insights to manage and optimize your storage costs
+  - Provide insights to manage and optimize your storage costs.
   - NonCurrentVersionStorageBytes, IncompleteMultipartUploadStorageBytes...
-  - **Use cases:** identify buckets with incomplete multipart uploaded older than 7 days, Identify which objects could be transitioned to lower-cost storage class.
+  - **Use cases:** Identify buckets with incomplete multipart uploaded older than 7 days, Identify which objects could be transitioned to lower-cost storage class.
 - **Data-Protection Metrics**
-  - Provide insights for data protection features
+  - Provide insights for data protection features.
   - VersioningEnabledBucketCount, MFADeleteEnabledBucketCount, SSEKMSEnabledBucketCount, CrossRegionReplicationRuleCount...
-  - **Use cases:** identify buckets that aren't following data-protection best practices
+  - **Use cases:** Identify buckets that aren't following data-protection best practices.
 - **Access-management Metrics**
-  - Provide insights for S3 Object Ownership
+  - Provide insights for S3 Object Ownership.
   - ObjectOwnershipBucketOwnerEnforcedBucketCount...
-  - **Use cases:** identify which Object Ownership settings your buckets use
+  - **Use cases:** Identify which Object Ownership settings your buckets use.
 - **Event Metrics**
-  - Provide insights for S3 Event Notifications
-  - EventNotificationEnabledBucketCount (identify which buckets have S3 Event Notifications configured)
+  - Provide insights for S3 Event Notifications.
+  - EventNotificationEnabledBucketCount (identify which buckets have S3 Event Notifications configured).
 - **Performance Metrics**
-  - Provide insights for S3 Transfer Acceleration
-  - TransferAccelerationEnabledBucketCount (identify which buckets have S3 Transfer Acceleration enabled)
+  - Provide insights for S3 Transfer Acceleration.
+  - TransferAccelerationEnabledBucketCount (identify which buckets have S3 Transfer Acceleration enabled).
 - **Activity Metrics**
-  - Provide insights about how your storage is requested
+  - Provide insights about how your storage is requested.
   - AllRequests, GetRequests, PutRequests, ListRequests, BytesDownloaded...
 - **Detailed Status Code Metrics**
   - Provide insights for HTTP status codes.
   - `200OKStatusCount`, `403ForbiddenErrorCount`, `404NotFoundErrorCount`...
 
-## 20.3. Storage Lens - Free vs. Paid
+## 20.3. Free vs. Paid
 
 - **Free Metrics**
   - Automatically available for all customers.

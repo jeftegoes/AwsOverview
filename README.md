@@ -45,7 +45,6 @@
   - [8.6. AWS Local Zones](#86-aws-local-zones)
   - [8.7. Global Applications Architecture](#87-global-applications-architecture)
   - [8.8. Global Applications in AWS - Summary](#88-global-applications-in-aws---summary)
-  - [8.9. Global Applications in AWS - Summary](#89-global-applications-in-aws---summary)
 - [9. Application Integration](#9-application-integration)
   - [9.1. Amazon MQ](#91-amazon-mq)
   - [9.2. Integration - Summary](#92-integration---summary)
@@ -504,19 +503,6 @@
 - Multi Region, Active-Active.
 
 ## 8.8. Global Applications in AWS - Summary
-
-- Global DNS: Route 53
-  - Great to route users to the closest deployment with least latency.
-  - Great for disaster recovery strategies.
-- Global Content Delivery Network (CDN): CloudFront
-  - Replicate part of your application to AWS Edge Locations - decrease latency.
-  - Cache common requests - improved user experience and decreased latency.
-- S3 Transfer Acceleration
-  - Accelerate global uploads & downloads into Amazon S3.
-- AWS Global Accelerator
-  - Improve global application availability and performance using the AWS global network.
-
-## 8.9. Global Applications in AWS - Summary
 
 - AWS Outposts
   - Deploy Outposts Racks in your own Data Centers to extend AWS services
