@@ -1,4 +1,4 @@
-# AWS Storage Gateway<!-- omit in toc -->
+# AWS Storage Gateway <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

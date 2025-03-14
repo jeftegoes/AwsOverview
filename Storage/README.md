@@ -39,3 +39,5 @@
 - Snow Family: Import data onto S3 through a physical device, edge computing.
 - OpsHub: desktop application to manage Snow Family devices.
 - Storage Gateway: Hybrid solution to extend on-premises storage to S3.
+- FSx for Windows: Network File System for Windows servers.
+- FSx for Lustre: High Performance Computing Linux file system.

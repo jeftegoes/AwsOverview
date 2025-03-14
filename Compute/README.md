@@ -1,4 +1,4 @@
-# Compute<!-- omit in toc -->
+# Compute <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -53,8 +53,6 @@
   - Lost if our instance is stopped / terminated.
 - EFS: network file system, can be attached to 100s of instances in a region.
 - EFS-IA: cost-optimized storage class for infrequent accessed files.
-- FSx for Windows: Network File System for Windows servers.
-- FSx for Lustre: High Performance Computing Linux file system.
 
 # 3. Scalability and High Availability
 

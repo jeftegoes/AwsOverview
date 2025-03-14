@@ -21,9 +21,6 @@
   - [7.2. EBS vs EFS - Elastic Block Storage](#72-ebs-vs-efs---elastic-block-storage)
   - [7.3. EBS vs EFS - Elastic File System](#73-ebs-vs-efs---elastic-file-system)
 - [8. Shared Responsibility Model for EC2 Storage](#8-shared-responsibility-model-for-ec2-storage)
-- [9. Amazon FSx](#9-amazon-fsx)
-- [10. Amazon FSx for Windows File Server](#10-amazon-fsx-for-windows-file-server)
-- [11. Amazon FSx for Lustre](#11-amazon-fsx-for-lustre)
 
 # 1. Introduction
 
@@ -229,37 +226,13 @@
 
 # 8. Shared Responsibility Model for EC2 Storage
 
-- AWS:
+- **AWS**
   - Infrastructure.
   - Replication for data for EBS volumes & EFS drives.
   - Replacing faulty hardware.
   - Ensuring their employees cannot access your data.
-- You:
+- **You**
   - Setting up backup / snapshot procedures.
   - Setting up data encryption.
   - Responsibility of any data on the drives.
   - Understanding the risk of using EC2 Instance Store.
-
-# 9. Amazon FSx
-
-- Launch 3rd party high-performance file systems on AWS.
-- Fully managed service.
-- Products:
-  - FSx for Lustre.
-  - FSx for Windows File Server.
-  - FSx for NetApp ONTAP.
-
-# 10. Amazon FSx for Windows File Server
-
-- A fully managed, highly reliable, and scalable Windows native shared file system.
-- Built on Windows File Server.
-- Supports SMB protocol & Windows NTFS.
-- Integrated with Microsoft Active Directory.
-- Can be accessed from AWS or your on-premise infrastructure.
-
-# 11. Amazon FSx for Lustre
-
-- A fully managed, high-performance, scalable file storage for **High Performance Computing (HPC)**.
-- The name Lustre is derived from "Linux" and "cluster".
-- Machine Learning, Analytics, Video Processing, Financial Modeling, ...
-- Scales up to 100s GB/s, millions of IOPS, sub-ms latencies.
