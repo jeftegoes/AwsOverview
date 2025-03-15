@@ -42,8 +42,8 @@
 - Video Processing, Financial Modeling, Electronic Design Automation.
 - Scales up to 100s GB/s, millions of IOPS, sub-ms latencies.
 - **Storage Options**
-  - SSD – low-latency, IOPS intensive workloads, small & random file operations.
-  - HDD – throughput-intensive workloads, large & sequential file operations.
+  - **SSD:** Low-latency, IOPS intensive workloads, small & random file operations.
+  - **HDD:** Throughput-intensive workloads, large & sequential file operations.
 - **Seamless integration with S3**
   - Can "read S3" as a file system (through FSx).
   - Can write the output of the computations back to S3 (through FSx).
@@ -53,7 +53,7 @@
 
 - **Scratch File System**
   - Temporary storage.
-  - Data is not replicated (doesn’t persist if file server fails).
+  - Data is not replicated (doesn't persist if file server fails).
   - High burst (6x faster, 200MBps per TiB).
   - **Usage:** Short-term processing, optimize costs.
 - **Persistent File System**
@@ -83,7 +83,7 @@
 - Managed OpenZFS file system on AWS.
 - File System compatible with NFS (v3, v4, v4.1, v4.2).
 - Move workloads running on ZFS to AWS.
-- Works with:
+- **Works with**
   - Linux.
   - Windows.
   - MacOS.

@@ -12,7 +12,6 @@
   - [4.1. Snow Family - Edge Computing](#41-snow-family---edge-computing)
 - [5. Solution Architecture: Snowball into Glacier](#5-solution-architecture-snowball-into-glacier)
 - [6. AWS OpsHub](#6-aws-opshub)
-- [7. Hybrid Cloud for Storage](#7-hybrid-cloud-for-storage)
 
 # 1. AWS Snow Family
 
@@ -125,16 +124,3 @@
   - Launching and managing instances running on Snow Family Devices.
 - Monitor device metrics (storage capacity, active instances on your device).
 - Launch compatible AWS services on your devices (ex: Amazon EC2 instances, AWS DataSync, Network File System (NFS)).
-
-# 7. Hybrid Cloud for Storage
-
-- **AWS is pushing for "hybrid cloud"**
-  - Part of your infrastructure is on-premises.
-  - Part of your infrastructure is on the cloud.
-- **This can be due to**
-  - Long cloud migrations.
-  - Security requirements.
-  - Compliance requirements.
-  - IT strategy.
-- S3 is a proprietary storage technology (unlike EFS / NFS), so how do you expose the S3 data on-premise?
-  - AWS Storage Gateway!

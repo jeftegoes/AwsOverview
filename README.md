@@ -10,9 +10,9 @@
 - [2. What is Cloud Computing?](#2-what-is-cloud-computing)
   - [2.1. You've been using some Cloud services](#21-youve-been-using-some-cloud-services)
   - [2.2. The Deployment Models of the Cloud](#22-the-deployment-models-of-the-cloud)
-    - [2.2.1. Private Cloud:](#221-private-cloud)
-    - [2.2.2. Public Cloud:](#222-public-cloud)
-    - [2.2.3. Hybrid Cloud:](#223-hybrid-cloud)
+    - [2.2.1. Private Cloud](#221-private-cloud)
+    - [2.2.2. Public Cloud](#222-public-cloud)
+    - [2.2.3. Hybrid Cloud](#223-hybrid-cloud)
   - [2.3. The Five Characteristics of Cloud Computing](#23-the-five-characteristics-of-cloud-computing)
   - [2.4. Six Advantages of Cloud Computing](#24-six-advantages-of-cloud-computing)
   - [2.5. Problems solved by the Cloud](#25-problems-solved-by-the-cloud)
@@ -199,18 +199,18 @@
 
 ## 2.2. The Deployment Models of the Cloud
 
-### 2.2.1. Private Cloud:
+### 2.2.1. Private Cloud
 
 - Cloud services used by a single organization, not exposed to the public.
 - Complete control.
 - Security for sensitive applications.
 - Meet specific business needs.
 
-### 2.2.2. Public Cloud:
+### 2.2.2. Public Cloud
 
 - Cloud resources owned and operated by a third-party cloud service provider delivered over the Internet.
 
-### 2.2.3. Hybrid Cloud:
+### 2.2.3. Hybrid Cloud
 
 - Keep some servers on premises and extend some capabilities to the Cloud.
 - Control over sensitive assets in your private infrastructure.
@@ -282,9 +282,9 @@
 
 - AWS has 3 pricing fundamentals, following the pay-as-you-go pricing
   model
-  - Compute:
+  - **Compute**
     - Pay for compute time
-  - Storage:
+  - **Storage**
     - Pay for data stored in the Cloud
   - Data transfer **OUT** of the Cloud:
     - Data transfer IN is free
@@ -1043,19 +1043,7 @@
 
 ## 17.9. AWS DataSync
 
-- Move large amount of data from on-premises to AWS.
-  - On-premises / other cloud to AWS (NFS, SMB, HDFS, S3 API) - needs agent.
-  - AWS to AWS (different storage service) - no agent needed.
-- Can synchronize to:
-  - Amazon S3 (any storage classes - including Glacier).
-  - Amazon EFS.
-  - Amazon FSx for Windows.
-- Replication tasks can be scheduled hourly, daily, weekly.
-  - The replication tasks are **incremental** after the first full load.
-- File permissions and metada are preserved (NFS POSIX, SMB).
-- One agent task can use 10 Gbps, can setup a bandwidth limit.
-
-![AWS DataSync](/Images/AwsDataSyncDiagram.png)
+[text](/Migration%20&%20Transfer/AWS%20DataSync.md)
 
 ## 17.10. AWS Fault Injection Simulator (FIS)
 
@@ -1067,7 +1055,7 @@
 
 ## 17.11. AWS Step Functions
 
-- **AWS Step Functions is a low-code visual workflow service used to orchestrate AWS services, automate business processes, and build Serverless applications. It manages failures, retries, parallelization, service integrations, ...** [AWS Step Functions](AWS%20Step%20Functions.md)
+- **AWS Step Functions is a low-code visual workflow service used to orchestrate AWS services, automate business processes, and build Serverless applications. It manages failures, retries, parallelization, service integrations, ...** [AWS Step Functions](/Application%20Integration/)
 
 ## 17.12. Amazon AppFlow
 

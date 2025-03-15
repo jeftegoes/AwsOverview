@@ -6,7 +6,7 @@
 - [2. AWS Snow Family](#2-aws-snow-family)
 - [3. AWS Storage Gateway](#3-aws-storage-gateway)
 - [4. AWS Backup](#4-aws-backup)
-- [5. Amazon S3 - Summary](#5-amazon-s3---summary)
+- [5. Summary](#5-summary)
 
 # 1. Amazon S3
 
@@ -25,19 +25,17 @@
 - **AWS Backup is a centralized backup service that makes it easy and cost-effective for you to backup your application data across AWS services in the AWS Cloud**
 - **CloudEndure Disaster Recovery minimizes downtime and data loss by providing fast, reliable recovery into AWS of your physical, virtual, and cloud-based servers.** [AWS Backup](AWS%20Backup.md)
 
-# 5. Amazon S3 - Summary
+# 5. Summary
 
-- Buckets vs Objects: Global unique name, tied to a region.
-- S3 security: IAM policy, S3 Bucket Policy (public access), S3 Encryption.
-- S3 Websites: Host a static website on Amazon S3.
-- S3 Versioning: Multiple versions for files, prevent accidental deletes.
-- S3 Access Logs: Log requests made within your S3 bucket.
-- S3 Replication: Same-region or cross-region, must enable versioning.
-- S3 Storage Classes: Standard, IA, 1Z-IA, Intelligent, Glacier, Glacier Deep Archive.
-- S3 Lifecycle Rules: Transition objects between classes.
-- S3 Glacier Vault Lock / S3 Object Lock: WORM (Write Once Read Many).
-- Snow Family: Import data onto S3 through a physical device, edge computing.
-- OpsHub: desktop application to manage Snow Family devices.
-- Storage Gateway: Hybrid solution to extend on-premises storage to S3.
-- FSx for Windows: Network File System for Windows servers.
-- FSx for Lustre: High Performance Computing Linux file system.
+- **S3:** Object Storage.
+- **S3 Glacier:** Object Archival.
+- **EBS volumes:** Network storage for one EC2 instance at a time.
+- **Instance Storage:** Physical storage for your EC2 instance (high IOPS).
+- EFS: Network File System for Linux instances, POSIX filesystem.
+- **FSx for Windows:** Network File System for Windows servers.
+- **FSx for Lustre:** High Performance Computing Linux file system.
+- **FSx for NetApp ONTAP:** High OS Compatibility.
+- **FSx for OpenZFS:** Managed ZFS file system.
+- **Storage Gateway:** S3 & FSx File Gateway, Volume Gateway (cache & stored), Tape Gateway.
+- **Snowcone / Snowball / Snowmobile:** to move large amount of data to the cloud, physically.
+- **Database:** for specific workloads, usually with indexing and querying.
