@@ -1,4 +1,4 @@
-# Amazon SQS - Simple Queue Service<!-- omit in toc -->
+# Amazon SQS - Simple Queue Service <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -25,10 +25,8 @@
 
 - When we start deploying multiple applications, they will inevitably need to communicate with one another.
 - There are two patterns of application communication.
-
-1. Synchronous communications (application to application).
-2. Asynchronous / Event based (application to queue to application).
-
+  1. Synchronous communications (application to application).
+  2. Asynchronous / Event based (application to queue to application).
 - Synchronous between applications can be problematic if there are sudden spikes of traffic.
 - What if you need to suddenly encode 1000 videos but usually it's 10?
 - In that case, it's better to **decouple** your applications using:
@@ -45,9 +43,8 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 
 - Oldest offering (over 10 years old).
 - Fully managed service, used to **decouple applications**.
-- Attributes:
-  - Unlimited throughput.
-  - Unlimited number of messages in queue.
+- **Attributes**
+  - Unlimited throughput, unlimited number of messages in queue.
   - Default retention of messages: 4 days, maximum of 14 days.
   - Low latency (<10 ms on publish and receive).
   - Limitation of 256KB per message sent.
@@ -59,17 +56,17 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - Produced to SQS using the SDK (SendMessage API).
 - The message is **persisted** in SQS until a consumer deletes it.
 - Message retention: default 4 days, up to 14 days.
-- Example: send an order to be processed
-  - Order id
-  - Customer id
-  - Any attributes you want
-- SQS standard: unlimited throughput.
+- **Example:** Send an order to be processed.
+  - Order id.
+  - Customer id.
+  - Any attributes you want.
+- **SQS standard:** Unlimited throughput.
 
 # 4. Consuming Messages
 
-- Consumers (running on [EC2 instances](AWS%20EC2.md), servers, or [AWS Lambda](AWS%20Lambda.md))...
+- Consumers (running on [EC2 instances](/Compute/Amazon%20EC2.md), servers, or [AWS Lambda](/Compute/AWS%20Lambda.md))...
 - Poll SQS for messages (receive up to 10 messages at a time).
-- Process the messages (example: insert the message into an [RDS database](AWS%20RDS.md)).
+- Process the messages (example: insert the message into an [RDS database](/Database/Amazon%20RDS.md)).
 - Delete the messages using the DeleteMessage API.
 
 # 5. Multiple EC2 Instances Consumers
@@ -82,7 +79,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 
 # 6. Security
 
-- **Encryption:**
+- **Encryption**
   - In-flight encryption using HTTPS API.
   - At-rest encryption using KMS keys.
   - Client-side encryption if the client wants to perform encryption/decryption itself.
@@ -93,13 +90,11 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 
 # 7. Message Visibility Timeout
 
-- After a message is polled by a consumer, it becomes invisible to other consumers.
-- By default, the "message visibility timeout" is 30 seconds.
+- After a message is polled by a consumer, it becomes **invisible** to other consumers.
+- By default, the "message visibility timeout" is **30 seconds**.
 - That means the message has 30 seconds to be processed.
 - After the message visibility timeout is over, the message is "visible" in SQS.
-
-![SQS Visibility Timeout](/Images/AWSSQSMessageVisibilityTimeout.png)
-
+  ![SQS Visibility Timeout](/Images/AWSSQSMessageVisibilityTimeout.png)
 - If a message is not processed within the visibility timeout, it will be processed **twice**.
 - A consumer could call the `ChangeMessageVisibility` API to get more time.
 - If visibility timeout is high (hours), and consumer crashes, re-processing will take time.
@@ -109,8 +104,9 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 
 - FIFO = First In First Out (ordering of messages in the queue).
 - Limited throughput: 300 msg/s without batching, 3000 msg/s with.
-- Exactly-once send capability (by removing duplicates).
+- Exactly-once send capability (by removing duplicates using Deduplication ID).
 - Messages are processed in order by the consumer.
+- Ordering by Message Group ID (all messages in the same group are ordered) - mandatory parameter.
 
 # 9. Dead Letter Queue (DLQ)
 
@@ -141,7 +137,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 
 - When a consumer requests messages from the queue, it can optionally "wait" for messages to arrive if there are none in the queue.
 - This is called Long Polling.
-- **LongPolling decreases the number of API calls made to SQS while increasing the efficiency and latency of your application**.
+- **LongPolling decreases the number of API calls made to SQS while increasing the efficiency and latency of your application.**
 - The wait time can be between 1 sec to 20 sec (20 sec preferable).
 - Long Polling is preferable to Short Polling.
 - Long polling can be enabled at the queue level or at the API level using `ReceiveMessageWaitTimeSeconds`.

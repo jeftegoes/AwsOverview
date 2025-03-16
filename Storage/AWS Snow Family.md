@@ -51,6 +51,7 @@
 - Use Snowcone where Snowball does not fit (space-constrained environment).
 - Must provide your own battery / cables.
 - Can be sent back to AWS offline, or connect it to internet and use AWS DataSync to send data.
+  ![AWS Snowcone](/Images/Storage/AWSSnowcone.jpg)
 
 ## 2.2. Snowball Edge (for data transfers)
 
@@ -64,6 +65,7 @@
   - 42 TB of HDD capacity for block volume and S3 compatible object storage.
 - **Use cases:** Large data cloud migrations, DC decommission, disaster recovery.
 - **Snowball Edge is best-suited to move petabytes of data and offers computing capabilities. Be careful, it's recommended to use a fleet of Snowballs to move less than 10PBs of data. Over this quantity, it's better-suited to use Snowmobile.**
+  ![AWS Snowball Edge](/Images/Storage/AWSSnowballEdge.jpg)
 
 ## 2.3. AWS Snowmobile
 

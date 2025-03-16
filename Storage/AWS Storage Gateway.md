@@ -5,7 +5,7 @@
 - [1. Hybrid Cloud for Storage](#1-hybrid-cloud-for-storage)
 - [2. AWS Storage Gateway](#2-aws-storage-gateway)
 - [3. Types of Storage Gateway](#3-types-of-storage-gateway)
-  - [3.1. File Gateway](#31-file-gateway)
+  - [3.1. Amazon S3 File Gateway](#31-amazon-s3-file-gateway)
     - [3.1.1. RefreshCache API](#311-refreshcache-api)
     - [3.1.2. Automating Cache Refresh](#312-automating-cache-refresh)
   - [3.2. Amazon FSx File Gateway](#32-amazon-fsx-file-gateway)
@@ -45,7 +45,7 @@
 
 # 3. Types of Storage Gateway
 
-## 3.1. File Gateway
+## 3.1. Amazon S3 File Gateway
 
 - Configured S3 buckets are accessible using the NFS and SMB protocol.
 - **Most recently used data is cached in the file gateway.**
