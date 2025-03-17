@@ -1,4 +1,4 @@
-# AWS Kinesis<!-- omit in toc -->
+# Amazon Kinesis <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -38,22 +38,22 @@
 
 # 2. Kinesis Data Streams
 
-- Retention between 1 day to 365 days.
-  - Default 24 hours.
-- Ability to reprocess (replay) data.
-- Once data is inserted in Kinesis, it can't be deleted (immutability).
-- Data that shares the same partition goes to the same shard (ordering).
-- Producers: AWS SDK, Kinesis Producer Library (KPL), Kinesis Agent.
-- Consumers:
-  - Write your own: Kinesis Client Library (KCL), AWS SDK.
-  - Managed: AWS Lambda, Kinesis Data Firehose, Kinesis Data Analytics.
+- Retention between up to 365 days.
+- Ability to reprocess (replay) data by consumers.
+- Data can't be deleted from Kinesis (until it expires).
+- Data up to 1MB (typical use case is lot of "small" real-time data).
+- Data ordering guarantee for data with the same "Partition ID".
+- At-rest KMS encryption, in-flight HTTPS encryption.
+- Kinesis Producer Library (KPL) to write an optimized producer application.
+- Kinesis Client Library (KCL) to write an optimized consumer application.
 
 ## 2.1. Capacity Modes
 
 - **Provisioned mode**
-  - You choose the number of shards provisioned, scale manually or using API.
+  - Choose number of shards.
   - Each shard gets 1MB/s in (or 1000 records per second).
-  - Each shard gets 2MB/s out (classic or enhanced fan-out consumer).
+  - Each shard gets 2MB/s out.
+  - Scale manually to increase or decrease the number of shards.
   - You pay per shard provisioned per hour.
 - **On-demand mode**
   - No need to provision or manage the capacity.
@@ -92,12 +92,12 @@
 
 ## 2.4. Consumers
 
-- Get data records from data streams and process them
-- AWS Lambda
-- Kinesis Data Analytics
-- Kinesis Data Firehose
-- Custom Consumer (AWS SDK) - Classic or Enhanced Fan-Out
-- Kinesis Client Library (KCL): Library to simplify reading from data stream
+- Get data records from data streams and process them.
+- AWS Lambda.
+- Kinesis Data Analytics.
+- Kinesis Data Firehose.
+- Custom Consumer (AWS SDK) - Classic or Enhanced Fan-Out.
+- Kinesis Client Library (KCL): Library to simplify reading from data stream.
 
 ### 2.4.1. Scaling Consumers
 
@@ -175,31 +175,27 @@
 
 # 6. Kinesis Data Firehose
 
-- Fully Managed Service, no administration, automatic scaling, serverless.
-  - AWS:
-    - Redshift
-    - Amazon S3
-    - OpenSearch (Elasticsearch)
-  - 3rd party partner: Splunk / MongoDB / DataDog / NewRelic / ...
-  - Custom: send to any HTTP endpoint.
-- Pay for data going through Firehose.
-- **Near Real Time.**
-  - 60 seconds latency minimum for non full batches.
-  - Or minimum 1 MB of data at a time.
-- Supports many data formats, conversions, transformations, compression.
-- Supports custom data transformations using AWS Lambda.
-- Can send failed or all data to a backup S3 bucket.
+- **Note:** Used to be called "Kinesis Data Firehose".
+- Fully Managed Service.
+  - Amazon Redshift / Amazon S3 / Amazon OpenSearch Service.
+  - **3rd party:** Splunk / MongoDB / Datadog / NewRelic / ...
+  - Custom HTTP Endpoint.
+- Automatic scaling, serverless, pay for what you use.
+- **Near Real-Time** with buffering capability based on size / time.
+- Supports CSV, JSON, Parquet, Avro, Raw Text, Binary data.
+- Conversions to Parquet / ORC, compressions with gzip / snappy.
+- Custom data transformations using AWS Lambda (ex: CSV to JSON).
 
 ## 6.1. Kinesis Data Streams vs Firehose
 
-| Kinesis Data Streams                       | Kinesis Data Firehose                                                         |
-| ------------------------------------------ | ----------------------------------------------------------------------------- |
-| Streaming service for ingest at scale      | Load streaming data into S3 / Redshift / OpenSearch / 3rd party / custom HTTP |
-| Write custom code (producer / consumer)    | Fully managed                                                                 |
-| Real-time (~200 ms)                        | Near real-time (buffer time min. 60 sec)                                      |
-| Manage scaling (shard splitting / merging) | Automatic scaling                                                             |
-| Data storage for 1 to 365 days             | No data storage                                                               |
-| Supports replay capability                 | Doesn't support replay capability                                             |
+| Kinesis Data Streams                    | Kinesis Data Firehose                                                         |
+| --------------------------------------- | ----------------------------------------------------------------------------- |
+| Streaming service for ingest at scale   | Load streaming data into S3 / Redshift / OpenSearch / 3rd party / custom HTTP |
+| Write custom code (producer / consumer) | Fully managed                                                                 |
+| Real-time (~200 ms)                     | Near real-time (buffer time min. 60 sec)                                      |
+| Provisioned / On-Demand mode            | Automatic scaling                                                             |
+| Data storage up to 365 days             | No data storage                                                               |
+| Supports replay capability              | Doesn't support replay capability                                             |
 
 # 7. Kinesis Data Analytics (SQL application)
 

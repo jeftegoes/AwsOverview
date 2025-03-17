@@ -2,44 +2,29 @@
 
 ## Contents <!-- omit in toc -->
 
-- [1. Introduction](#1-introduction)
-- [2. What's a queue?](#2-whats-a-queue)
-  - [2.1. Standard Queue](#21-standard-queue)
-- [3. Producing Messages](#3-producing-messages)
-- [4. Consuming Messages](#4-consuming-messages)
-- [5. Multiple EC2 Instances Consumers](#5-multiple-ec2-instances-consumers)
-- [6. Security](#6-security)
-- [7. Message Visibility Timeout](#7-message-visibility-timeout)
-- [8. FIFO Queue](#8-fifo-queue)
-- [9. Dead Letter Queue (DLQ)](#9-dead-letter-queue-dlq)
-  - [9.1. Redrive to Source](#91-redrive-to-source)
-- [10. Delay Queue](#10-delay-queue)
-- [11. Long Polling](#11-long-polling)
-- [12. SQS Extended Client](#12-sqs-extended-client)
-- [13. Must know API](#13-must-know-api)
-- [14. SQS FIFO](#14-sqs-fifo)
-  - [14.1. Deduplication](#141-deduplication)
-  - [14.2. Message Grouping](#142-message-grouping)
+- [1. What's a queue?](#1-whats-a-queue)
+  - [1.1. Standard Queue](#11-standard-queue)
+- [2. Producing Messages](#2-producing-messages)
+- [3. Consuming Messages](#3-consuming-messages)
+- [4. Multiple EC2 Instances Consumers](#4-multiple-ec2-instances-consumers)
+- [5. Security](#5-security)
+- [6. Message Visibility Timeout](#6-message-visibility-timeout)
+- [7. FIFO Queue](#7-fifo-queue)
+- [8. Dead Letter Queue (DLQ)](#8-dead-letter-queue-dlq)
+  - [8.1. Redrive to Source](#81-redrive-to-source)
+- [9. Delay Queue](#9-delay-queue)
+- [10. Long Polling](#10-long-polling)
+- [11. SQS Extended Client](#11-sqs-extended-client)
+- [12. Must know API](#12-must-know-api)
+- [13. SQS FIFO](#13-sqs-fifo)
+  - [13.1. Deduplication](#131-deduplication)
+  - [13.2. Message Grouping](#132-message-grouping)
 
-# 1. Introduction
-
-- When we start deploying multiple applications, they will inevitably need to communicate with one another.
-- There are two patterns of application communication.
-  1. Synchronous communications (application to application).
-  2. Asynchronous / Event based (application to queue to application).
-- Synchronous between applications can be problematic if there are sudden spikes of traffic.
-- What if you need to suddenly encode 1000 videos but usually it's 10?
-- In that case, it's better to **decouple** your applications using:
-  - SQS: queue model.
-  - SNS: pub/sub model.
-  - Kinesis: real-time streaming model.
-- These services can scale independently from our application!
-
-# 2. What's a queue?
+# 1. What's a queue?
 
 Producer > Send messages > SQS Queue < Poll messages < Consumer
 
-## 2.1. Standard Queue
+## 1.1. Standard Queue
 
 - Oldest offering (over 10 years old).
 - Fully managed service, used to **decouple applications**.
@@ -51,7 +36,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - Can have duplicate messages (at least once delivery, occasionally).
 - Can have out of order messages (best effort ordering).
 
-# 3. Producing Messages
+# 2. Producing Messages
 
 - Produced to SQS using the SDK (SendMessage API).
 - The message is **persisted** in SQS until a consumer deletes it.
@@ -62,14 +47,14 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
   - Any attributes you want.
 - **SQS standard:** Unlimited throughput.
 
-# 4. Consuming Messages
+# 3. Consuming Messages
 
 - Consumers (running on [EC2 instances](/Compute/Amazon%20EC2.md), servers, or [AWS Lambda](/Compute/AWS%20Lambda.md))...
 - Poll SQS for messages (receive up to 10 messages at a time).
 - Process the messages (example: insert the message into an [RDS database](/Database/Amazon%20RDS.md)).
 - Delete the messages using the DeleteMessage API.
 
-# 5. Multiple EC2 Instances Consumers
+# 4. Multiple EC2 Instances Consumers
 
 - Consumers receive and process messages in parallel.
 - At least once delivery.
@@ -77,7 +62,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - Consumers delete messages after processing them.
 - We can scale consumers horizontally to improve throughput of processing.
 
-# 6. Security
+# 5. Security
 
 - **Encryption**
   - In-flight encryption using HTTPS API.
@@ -88,7 +73,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
   - Useful for cross-account access to SQS queues.
   - Useful for allowing other services (SNS, S3...) to write to an SQS queue.
 
-# 7. Message Visibility Timeout
+# 6. Message Visibility Timeout
 
 - After a message is polled by a consumer, it becomes **invisible** to other consumers.
 - By default, the "message visibility timeout" is **30 seconds**.
@@ -100,7 +85,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - If visibility timeout is high (hours), and consumer crashes, re-processing will take time.
 - If visibility timeout is too low (seconds), we may get duplicates.
 
-# 8. FIFO Queue
+# 7. FIFO Queue
 
 - FIFO = First In First Out (ordering of messages in the queue).
 - Limited throughput: 300 msg/s without batching, 3000 msg/s with.
@@ -108,7 +93,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - Messages are processed in order by the consumer.
 - Ordering by Message Group ID (all messages in the same group are ordered) - mandatory parameter.
 
-# 9. Dead Letter Queue (DLQ)
+# 8. Dead Letter Queue (DLQ)
 
 - If a consumer fails to process a message within the Visibility Timeout... the message goes back to the queue!
 - We can set a threshold of how many times a message can go back to the queue.
@@ -119,12 +104,12 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - Make sure to process the messages in the DLQ before they expire:
   - Good to set a retention of 14 days in the DLQ.
 
-## 9.1. Redrive to Source
+## 8.1. Redrive to Source
 
 - Feature to help consume messages in the DLQ to understand what is wrong with them.
 - When our code is fixed, we can redrive the messages from the DLQ back into the source queue (or any other queue) in batches without writing custom code.
 
-# 10. Delay Queue
+# 9. Delay Queue
 
 - Delay a message (consumers don't see it immediately) up to 15 minutes.
 - Default is 0 seconds (message is available right away).
@@ -133,7 +118,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 
 ![SQS Delay Queue](/Images/AWSSQSDelayQueue.png)
 
-# 11. Long Polling
+# 10. Long Polling
 
 - When a consumer requests messages from the queue, it can optionally "wait" for messages to arrive if there are none in the queue.
 - This is called Long Polling.
@@ -142,12 +127,12 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - Long Polling is preferable to Short Polling.
 - Long polling can be enabled at the queue level or at the API level using `ReceiveMessageWaitTimeSeconds`.
 
-# 12. SQS Extended Client
+# 11. SQS Extended Client
 
 - Message size limit is 256KB, how to send large messages, e.g. 1GB?
   - Using the SQS Extended Client (Java Library).
 
-# 13. Must know API
+# 12. Must know API
 
 - `CreateQueue` - Creates a new standard or FIFO queue (MessageRetentionPeriod).
 - `DeleteQueue` - Deletes the queue specified by the QueueUrl, regardless of the queue's contents. When you delete a queue, any messages in the queue are no longer available.
@@ -159,9 +144,9 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - `RemovePermission` - Revokes any permissions in the queue policy that matches the specified Label parameter.
 - Batch APIs for `SendMessage`, `DeleteMessage`, `ChangeMessageVisibility` helps decrease your costs.
 
-# 14. SQS FIFO
+# 13. SQS FIFO
 
-## 14.1. Deduplication
+## 13.1. Deduplication
 
 - De-duplication interval is 5 minutes.
 - Two de-duplication methods:
@@ -170,7 +155,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 
 ![MessageDeduplicationId](/Images/AWSSQSDeduplicationID.png)
 
-## 14.2. Message Grouping
+## 13.2. Message Grouping
 
 - If you specify the same value of MessageGroupID in an SQS FIFO queue, you can only have one consumer, and all the messages are in order.
 - To get ordering at the level of a subset of messages, specify different values for MessageGroupID.

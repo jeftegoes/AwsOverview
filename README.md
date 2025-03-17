@@ -46,8 +46,7 @@
   - [8.7. Global Applications Architecture](#87-global-applications-architecture)
   - [8.8. Global Applications in AWS - Summary](#88-global-applications-in-aws---summary)
 - [9. Application Integration](#9-application-integration)
-  - [9.1. Amazon MQ](#91-amazon-mq)
-  - [9.2. Integration - Summary](#92-integration---summary)
+  - [9.1. Integration - Summary](#91-integration---summary)
 - [10. Cloud Monitoring](#10-cloud-monitoring)
   - [10.1. Amazon CloudWatch Metrics](#101-amazon-cloudwatch-metrics)
     - [10.1.1. Important Metrics](#1011-important-metrics)
@@ -106,10 +105,8 @@
   - [17.8. AWS Elastic Disaster Recovery (DRS)](#178-aws-elastic-disaster-recovery-drs)
   - [17.9. AWS DataSync](#179-aws-datasync)
   - [17.10. AWS Fault Injection Simulator (FIS)](#1710-aws-fault-injection-simulator-fis)
-  - [17.11. AWS Step Functions](#1711-aws-step-functions)
-  - [17.12. Amazon AppFlow](#1712-amazon-appflow)
-  - [17.13. AWS CloudSearch](#1713-aws-cloudsearch)
-  - [17.14. Amazon SES - Simple Email Service](#1714-amazon-ses---simple-email-service)
+  - [17.11. AWS CloudSearch](#1711-aws-cloudsearch)
+  - [17.12. Amazon SES - Simple Email Service](#1712-amazon-ses---simple-email-service)
 - [18. AWS Architecting \& Ecosystem](#18-aws-architecting--ecosystem)
   - [18.1. Well Architected Framework General - Guiding Principles](#181-well-architected-framework-general---guiding-principles)
   - [18.2. AWS Cloud Best Practices - Design Principles](#182-aws-cloud-best-practices---design-principles)
@@ -515,35 +512,9 @@
 
 # 9. Application Integration
 
-- [Application Integration](Application%20Integration/README.md)
-- When we start deploying multiple applications, they will inevitably need to communicate with one another.
-- There are two patterns of application communication:
-  1. Synchronous communications (application to application).
-  2. Asynchronous / Event based (application to queue to application).
-- Synchronous between applications can be problematic if there are sudden spikes of traffic.
-- What if you need to suddenly encode 1000 videos but usually it's 10?
-- In that case, it's better to decouple your applications:
-  - using SQS: queue model.
-  - using SNS: pub/sub model.
-  - using Kinesis: real-time data streaming model.
-- These services can scale independently from our application!
+[Application Integration](/Application%20Integration/README.md)
 
-## 9.1. Amazon MQ
-
-- **Amazon MQ is a managed message broker service for Apache ActiveMQ and RabbitMQ that makes it easy to set up and operate message brokers in the cloud.**
-- SQS, SNS are "cloud-native" services, and they're using proprietary protocols from AWS.
-- Traditional applications running from on-premise may use open protocols such as: MQTT, AMQP, STOMP, Openwire, WSS.
-- When migrating to the cloud, instead of re-engineering the application to use SQS and SNS, we can use Amazon MQ.
-- Amazon MQ = managed Apache ActiveMQ.
-- Amazon MQ doesn't "scale" as much as SQS / SNS.
-- Amazon MQ runs on a dedicated machine (not serverless).
-- Amazon MQ has both queue feature (SQS) and topic features (SNS).
-
-## 9.2. Integration - Summary
-
-- Kinesis: real-time data streaming, persistence and analysis.
-- Amazon MQ: managed Apache MQ in the cloud (MQTT, AMQP protocols).
-- **When using SQS or SNS, you apply the "decouple your applications" principle. This means that IT systems should be designed in a way that reduces interdependencies-a change or a failure in one component should not cascade to other components.**
+## 9.1. Integration - Summary
 
 # 10. Cloud Monitoring
 
@@ -1053,20 +1024,12 @@
 - Supports the following AWS services: EC2, ECS, EKS, RDS...
 - Use pre-built templates that generate the desired disruptions.
 
-## 17.11. AWS Step Functions
-
-- **AWS Step Functions is a low-code visual workflow service used to orchestrate AWS services, automate business processes, and build Serverless applications. It manages failures, retries, parallelization, service integrations, ...** [AWS Step Functions](/Application%20Integration/)
-
-## 17.12. Amazon AppFlow
-
-[Amazon AppFlow](/Application%20Integration/Amazon%20AppFlow.md)
-
-## 17.13. AWS CloudSearch
+## 17.11. AWS CloudSearch
 
 - Amazon CloudSearch is a managed service in the AWS Cloud that makes it simple and cost-effective to set up, manage, and scale a search solution for your website or application.
 - Amazon CloudSearch supports 34 languages and popular search features such as highlighting, autocomplete, and geospatial search.
 
-## 17.14. Amazon SES - Simple Email Service
+## 17.12. Amazon SES - Simple Email Service
 
 - **Fully managed service to send emails securely, globally and at scale.** [AWS SES](/Business%20Applications/Amazon%20SES.md)
 

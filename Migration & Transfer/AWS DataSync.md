@@ -7,10 +7,10 @@
 # 1. Introduction
 
 - **Move large amount of data to and from**
-  - On-premises / other cloud to AWS (NFS, SMB, HDFS, S3 API...) – needs agent.
-  - AWS to AWS (different storage services) – no agent needed.
+  - On-premises / other cloud to AWS (NFS, SMB, HDFS, S3 API...) - needs agent.
+  - AWS to AWS (different storage services) - no agent needed.
 - **Can synchronize to**
-  - Amazon S3 (any storage classes – including Glacier).
+  - Amazon S3 (any storage classes - including Glacier).
   - Amazon EFS.
   - Amazon FSx (Windows, Lustre, NetApp, OpenZFS...).
 - Replication tasks can be scheduled hourly, daily, weekly.

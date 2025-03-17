@@ -1,4 +1,4 @@
-# AWS DynamoDB<!-- omit in toc -->
+# AWS DynamoDB <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -77,7 +77,7 @@
 # 3. Amazon DynamoDB
 
 - Fully managed, highly available with replication across multiple AZs.
-- **NoSQL database - not a relational database.**
+- NoSQL database - not a relational database - with transaction support.
 - Scales to massive workloads, distributed **serverless** database.
 - Millions of requests per seconds, trillions of row, 100s of TB of storage.
 - Fast and consistent in performance (low latency on retrieval).
