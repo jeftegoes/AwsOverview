@@ -171,22 +171,22 @@
 - **Subscription Filter:** Filter which logs are events delivered to your destination.
 - Get a real-time log events from CloudWatch Logs for processing and analysis.
 - Send to Kinesis Data Streams, Kinesis Data Firehose, or Lambda.
-  ![Amazon CloudWatch Logs Subscriptions](/Images/AmazonCloudWatchLogsSubscriptions.png)
-  ![Amazon CloudWatch Logs Subscriptions](/Images/AmazonCloudWatchSubscriptionFilters.png)
+  ![Amazon CloudWatch Logs Subscriptions](/Images/Management%20&%20Governance/AmazonCloudWatchLogsSubscriptions.png)
+  ![Amazon CloudWatch Logs Subscriptions](/Images/Management%20&%20Governance/AmazonCloudWatchSubscriptionFilters.png)
 
 ## 12.1. Scenario with HIDS
 
 - HIDS = Host-based intrusion detection system.
-  ![Amazon CloudWatch Logs Subscriptions with HIDS](/Images/AmazonCloudWatchLogsSubscriptionsHIDS.png)
+  ![Amazon CloudWatch Logs Subscriptions with HIDS](/Images/Management%20&%20Governance/AmazonCloudWatchLogsSubscriptionsHIDS.png)
 
 ## 12.2. Cross-Account Subscription
 
 - Send log events to resources in a different AWS account (KDS, KDF).
-  ![Cross-Account Subscription](/Images/AmazonCloudWatchLogsSubscriptionsCrossAccount.png)
+  ![Cross-Account Subscription](/Images/Management%20&%20Governance/AmazonCloudWatchLogsSubscriptionsCrossAccount.png)
 
 # 13. CloudWatch Logs Aggregation Multi-Account & Multi Region
 
-![Logs Aggregation Multi-Account & Multi Region](/Images/AmazonCloudWatchLogsAggregation.png)
+![Logs Aggregation Multi-Account & Multi Region](/Images/Management%20&%20Governance/AmazonCloudWatchLogsAggregation.png)
 
 # 14. CloudWatch Logs Metric Filter
 
@@ -196,11 +196,11 @@
   - Metric filters can be used to trigger alarms.
 - **Filters do not retroactively filter data. Filters only publish the metric data points for events that happen after the filter was created.**
   - Ability to specify up to 3 Dimensions for the Metric Filter (optional).
-    ![CloudWatch Logs Metric Filter](/Images/AmazonCloudWatchLogsMetricFilter.png)
+    ![CloudWatch Logs Metric Filter](/Images/Management%20&%20Governance/AmazonCloudWatchLogsMetricFilter.png)
 
 # 15. CloudWatch cross-account observability
 
-![CloudWatch cross-account observability](/Images/AmazonCloudWatchCrossAccountObservability.png)
+![CloudWatch cross-account observability](/Images/Management%20&%20Governance/AmazonCloudWatchCrossAccountObservability.png)
 
 # 16. All kind of Logs
 
@@ -243,7 +243,7 @@
 - Make sure IAM permissions are correct.
 - The CloudWatch log agent can be setup on-premises too.
 
-![Amazon CloudWatch Logs Agent](/Images/AmazonCloudWatchLogsAgent.png)
+![Amazon CloudWatch Logs Agent](/Images/Management%20&%20Governance/AmazonCloudWatchLogsAgent.png)
 
 ## 17.1. Logs Agent & Unified Agent
 
@@ -308,7 +308,7 @@
   - **Datapoints to Alarm:** Is the number of data points within the Evaluation Periods that must be breaching to cause the alarm to go to the ALARM state.
     - The breaching data points don't have to be consecutive, but they must all be within the last number of data points equal to **Evaluation Period**.
 
-![Evaluating an alarm](/Images/CloudWatchEvaluatingAlarm.png)
+![Evaluating an alarm](/Images/Management%20&%20Governance/CloudWatchEvaluatingAlarm.png)
 
 ## 19.4. EC2 Instance Recovery
 
