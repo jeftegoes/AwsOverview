@@ -49,14 +49,15 @@
 - Federated Identities: users from Facebook, Google, SAML...
 - Feature: block users if their credentials are compromised elsewhere.
 - Login sends back a JSON Web Token (JWT).
-
-  ![Cognito User Pools Diagram](/Images/AWSCognitoUserPoolsCUP.png)
+  ![Cognito User Pools Diagram](/Images/Security,%20Identity,%20&%20Compliance/AWSCognitoUserPoolsCUP.png)
 
 ## 3.2. Integrations
 
-- CUP integrates with API Gateway and Application Load Balancer.
-  ![API Gateway](/Images/AWSCognitoUserPoolsCUPApiGatewayIntegration.png)
-  ![Application Load Balancer](/Images/AWSCognitoUserPoolsCUPApplicationLoadBalancer.png)
+- **CUP integrates with:**
+  - **API Gateway**
+    ![API Gateway](/Images/Security,%20Identity,%20&%20Compliance/AWSCognitoUserPoolsCUPApiGatewayIntegration.png)
+  - **Application Load Balancer**  
+    ![Application Load Balancer](/Images/Security,%20Identity,%20&%20Compliance/AWSCognitoUserPoolsCUPApplicationLoadBalancer.png)
 
 ## 3.3. Lambda Triggers
 
@@ -130,7 +131,8 @@
 # 4. Cognito Identity Pools (Federated Identities)
 
 - **Get identities for "users" so they obtain temporary AWS credentials.**
-- Your identity pool (e.g identity source) can include:
+- Users source can be Cognito User Pools, 3rd party logins, etc...
+- **Your identity pool (e.g identity source) can include**
   - Public Providers (Login with Amazon, Facebook, Google, Apple).
   - Users in an Amazon Cognito user pool.
   - OpenID Connect Providers & SAML Identity Providers.
@@ -140,7 +142,7 @@
   - The IAM policies applied to the credentials are defined in Cognito.
   - They can be customized based on the user_id for fine grained control.
 
-![Cognito Identity Pools](/Images/AWSCognitoIdentityPoolsDiagram.png)
+![Cognito Identity Pools](/Images/Security,%20Identity,%20&%20Compliance/AWSCognitoIdentityPoolsDiagram.png)
 
 ## 4.1. Developer Authenticated
 

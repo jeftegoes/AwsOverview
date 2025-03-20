@@ -1,4 +1,4 @@
-# Amazon CloudWatch - Monitoring, Troubleshooting and Audit<!-- omit in toc -->
+# Amazon CloudWatch <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -79,7 +79,7 @@
 - Up to 10 dimensions per metric.
 - Metrics have **timestamps**.
 - Can create CloudWatch dashboards of metrics.
-- Can create CloudWatch Custom Metrics (for the RAM for example).
+- Can create **CloudWatch Custom Metrics** (for the RAM for example).
 
 # 4. EC2 Detailed monitoring
 
@@ -126,10 +126,10 @@
 
 # 9. Logs
 
-- **Log groups:** arbitrary name, usually representing an application.
-- **Log stream:** instances within application / log files / containers.
-- Can define log expiration policies (never expire, 30 days, etc..).
-- **CloudWatch Logs can send logs to:**
+- **Log groups:** Arbitrary name, usually representing an application.
+- **Log stream:** Instances within application / log files / containers.
+- Can define log expiration policies (never expire, 1 day to 10 years...)
+- **CloudWatch Logs can send logs to**
   - Amazon S3 (exports).
   - Kinesis Data Streams.
   - Kinesis Data Firehose.
@@ -142,18 +142,18 @@
 
 - SDK, CloudWatch Logs Agent, CloudWatch Unified Agent.
 - Elastic Beanstalk: collection of logs from application.
-- ECS: collection from containers.
-- AWS Lambda: collection from function logs.
-- VPC Flow Logs: VPC specific logs.
+- **ECS:** Collection from containers.
+- **AWS Lambda:** Collection from function logs.
+- **VPC Flow Logs:** VPC specific logs.
 - API Gateway.
 - CloudTrail based on filter.
-- Route53: Log DNS queries.
+- **Route53:** Log DNS queries.
 
 # 10. Logs Insights
 
 - Search and analyze log data stored in CloudWatch Logs.
 - Example: find a specific IP inside a log, count occurrences of "ERROR" in your logs...
-- Provides a purpose-built query language:
+- **Provides a purpose-built query language**
   - Automatically discovers fields from AWS services and JSON log events.
   - Fetch desired event fields, filter based on conditions, calculate aggregate statistics, sort events, limit number of events...
   - Can save queries and add them to CloudWatch Dashboards.

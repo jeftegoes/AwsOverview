@@ -36,8 +36,10 @@
 - [11. Optimistic Locking](#11-optimistic-locking)
 - [12. Accelerator - DAX](#12-accelerator---dax)
   - [12.1. Use cases for DAX](#121-use-cases-for-dax)
-- [13. Streams](#13-streams)
-  - [13.1. DynamoDB Streams and AWS Lambda](#131-dynamodb-streams-and-aws-lambda)
+- [13. Stream Processing](#13-stream-processing)
+  - [13.1. DynamoDB Streams](#131-dynamodb-streams)
+  - [13.2. Kinesis Data Streams (newer)](#132-kinesis-data-streams-newer)
+  - [13.3. DynamoDB Streams and AWS Lambda](#133-dynamodb-streams-and-aws-lambda)
 - [14. Global Tables](#14-global-tables)
 - [15. Time To Live (TTL)](#15-time-to-live-ttl)
 - [16. DynamoDB CLI - Good to Know](#16-dynamodb-cli---good-to-know)
@@ -94,7 +96,7 @@
 - Each table can have an infinite number of items (= rows).
 - Each item has **attributes** (can be added over time - can be null).
 - Maximum size of an item is **400KB**.
-- Data types supported are:
+- **Data types supported are**
   - **Scalar Types:** String, Number, Binary, Boolean, Null.
   - **Document Types:** List, Map.
   - **Set Types:** String Set, Number Set, Binary Set.t
@@ -109,7 +111,7 @@
 - **Option 2: Partition Key + Sort Key (HASH + RANGE)**
   - The combination must be unique for each item.
   - Data is grouped by partition key.
-  - Example: users-games table, "User_ID" for Partition Key and "Game_ID" for Sort Key.
+  - **Example:** Users-games table, "User_ID" for Partition Key and "Game_ID" for Sort Key.
 - What is the best Partition Key to maximize data distribution?
   - movie_id
   - producer_name
@@ -124,13 +126,13 @@
 - **Provisioned Mode (default)**
   - You specify the number of reads/writes per second.
   - You need to plan capacity beforehand.
-  - Pay for provisioned Read Capacity Units (RCU) & Write Capacity Units (WCU).
-  - Possibility to add auto-scaling mode for RCU & WCU.
+  - Pay for **provisioned** Read Capacity Units (RCU) & Write Capacity Units (WCU).
+  - Possibility to add **auto-scaling** mode for RCU & WCU.
 - **On-Demand Mode**
   - Read/writes automatically scale up/down with your workloads.
   - No capacity planning needed.
   - Pay for what you use, more expensive ($$$).
-  - Great for unpredictable workloads, steep sudden spikes.
+  - Great for **unpredictable** workloads, **steep sudden spikes**.
 - You can switch between different modes once every 24 hours.
 
 ## 6.1. R/W Capacity Modes - Provisioned
@@ -417,30 +419,42 @@
   - Applications that are read-intensive, but are also cost-sensitive.
   - Applications that require repeated reads against a large set of data.
 
-# 13. Streams
+# 13. Stream Processing
 
 - Ordered stream of item-level modifications (create/update/delete) in a table.
-- Stream records can be:
+- **Stream records can be**
   - Sent to **Kinesis Data Streams**.
   - Read by **AWS Lambda**.
   - Read by **Kinesis Client Library applications**.
 - Data Retention for up to 24 hours.
-- **Use cases:**
+- **Use cases**
   - React to changes in real-time (welcome email to users).
   - Analytics.
   - Insert into derivative tables.
   - Insert into ElasticSearch.
   - Implement cross-region replication.
 - Ability to choose the information that will be written to the stream:
-  - **KEYS_ONLY** - only the key attributes of the modified item.
-  - **NEW_IMAGE** - the entire item, as it appears after it was modified.
-  - **OLD_IMAGE** - the entire item, as it appeared before it was modified.
+  - **KEYS_ONLY** - Only the key attributes of the modified item.
+  - **NEW_IMAGE** - The entire item, as it appears after it was modified.
+  - **OLD_IMAGE** - The entire item, as it appeared before it was modified.
   - **NEW_AND_OLD_IMAGES** - both the new and the old images of the item.
 - DynamoDB Streams are made of shards, just like Kinesis Data Streams.
 - You don't provision shards, this is automated by AWS.
 - **Records are not retroactively populated in a stream after enabling it.**
 
-## 13.1. DynamoDB Streams and AWS Lambda
+## 13.1. DynamoDB Streams
+
+- 24 hours retention.
+- Limited # of consumers.
+- Process using AWS Lambda Triggers, or DynamoDB Stream Kinesis adapter.
+
+## 13.2. Kinesis Data Streams (newer)
+
+- 1 year retention.
+- High # of consumers.
+- Process using AWS Lambda, Kinesis Data Analytics, Kineis Data Firehose, AWS Glue Streaming ETL...
+
+## 13.3. DynamoDB Streams and AWS Lambda
 
 - **DynamoDB Streams allows you to capture a time-ordered sequence of item-level modifications in a DynamoDB table.**
 - **It's integrated with AWS Lambda so that you create triggers that automatically respond to events in real-time.**
@@ -450,9 +464,9 @@
 
 # 14. Global Tables
 
-- Make a DynamoDB table accessible with low latency in multiple-regions.
+- Make a DynamoDB table accessible with **low latency** in multiple-regions.
 - Active-Active replication.
-- Applications can READ and WRITE to the table in any region.
+- Applications can **READ** and **WRITE** to the table in any region.
 - Must enable DynamoDB Streams as a pre-requisite.
 
 # 15. Time To Live (TTL)
@@ -464,7 +478,7 @@
 - Expired items, that haven't been deleted, appears in reads/queries/scans (if you don't want them, filter them out).
 - Expired items are deleted from both LSIs and GSIs.
 - A delete operation for each expired item enters the DynamoDB Streams (can help recover expired items).
-- **Use cases:** reduce stored data by keeping only current items, adhere to regulatory obligations, ...
+- **Use cases:** Reduce stored data by keeping only current items, adhere to regulatory obligations, ...
 
 # 16. DynamoDB CLI - Good to Know
 
@@ -589,7 +603,7 @@
 
 # 23. Backups for disaster recovery
 
-- DynamoDB offers two built-in backup methods:
+- **DynamoDB offers two built-in backup methods**
   - **Continuous backups using point-in-time recovery (PITR)**
     - Optionally enabled for the last 35 days.
     - Point-in-time recovery to any time within the backup window.

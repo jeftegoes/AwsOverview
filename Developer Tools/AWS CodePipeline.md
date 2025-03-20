@@ -1,24 +1,33 @@
-# AWS CodePipeline<!-- omit in toc -->
+# AWS CodePipeline <!-- omit in toc -->
 
 # Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. How pipeline executions are started](#2-how-pipeline-executions-are-started)
-- [3. Artifacts](#3-artifacts)
-- [4. Troubleshooting](#4-troubleshooting)
-- [5. Events vs.Webhooks vs. Polling](#5-events-vswebhooks-vs-polling)
-- [6. Action types constraints for artifacts](#6-action-types-constraints-for-artifacts)
-- [7. Manual Approval Stage](#7-manual-approval-stage)
-- [8. CloudFormation as a target](#8-cloudformation-as-a-target)
-- [9. CloudFormation integration](#9-cloudformation-integration)
-- [10. Best practices](#10-best-practices)
-- [11. EventBridge](#11-eventbridge)
-- [12. Invoke Action](#12-invoke-action)
-- [13. Multi Region (Cross-Region Actions)](#13-multi-region-cross-region-actions)
-- [14. Pipeline executions](#14-pipeline-executions)
-- [15. Custom Actions (Job Worker)](#15-custom-actions-job-worker)
+- [2. Details](#2-details)
+- [3. How pipeline executions are started](#3-how-pipeline-executions-are-started)
+- [4. Artifacts](#4-artifacts)
+- [5. Troubleshooting](#5-troubleshooting)
+- [6. Events vs.Webhooks vs. Polling](#6-events-vswebhooks-vs-polling)
+- [7. Action types constraints for artifacts](#7-action-types-constraints-for-artifacts)
+- [8. Manual Approval Stage](#8-manual-approval-stage)
+- [9. CloudFormation as a target](#9-cloudformation-as-a-target)
+- [10. CloudFormation integration](#10-cloudformation-integration)
+- [11. Best practices](#11-best-practices)
+- [12. EventBridge](#12-eventbridge)
+- [13. Invoke Action](#13-invoke-action)
+- [14. Multi Region (Cross-Region Actions)](#14-multi-region-cross-region-actions)
+- [15. Pipeline executions](#15-pipeline-executions)
+- [16. Custom Actions (Job Worker)](#16-custom-actions-job-worker)
 
 # 1. Introduction
+
+- Build serverless visual workflow to orchestrate your Lambda functions.
+- **Features:** Sequence, parallel, conditions, timeouts, error handling, ...
+- Can integrate with EC2, ECS, On-premises servers, API Gateway, SQS queues, etc...
+- Possibility of implementing human approval feature.
+- **Use cases:** Order fulfillment, data processing, web applications, any workflow.
+
+# 2. Details
 
 - Visual Workflow to orchestrate your CI/CD.
 - **Source:** CodeCommit, ECR, S3, Bitbucket, GitHub.
@@ -26,25 +35,25 @@
 - **Test:** CodeBuild, AWS Device Farm, 3rd party tools, ...
 - **Deploy:** CodeDeploy, Elastic Beanstalk, CloudFormation, ECS, S3, ...
 - **Invoke:** Lambda, Step Functions.
-- Consists of stages:
+- **Consists of stages**
   - Each stage can have sequential actions and/or parallel actions.
   - Example: Build -> Test -> Deploy -> Load Testing -> ...
   - Manual approval can be defined at any stage.
 
-# 2. How pipeline executions are started
+# 3. How pipeline executions are started
 
 - You can trigger an execution when you **change your source code** or **manually** start the pipeline.
 - You can also trigger an execution through an [Amazon CloudWatch](/Management%20&%20Governance/Amazon%20CloudWatch.md) Events rule that you schedule.
 
 ![CodePipeline](/Images/AWSCodePipeline.png)
 
-# 3. Artifacts
+# 4. Artifacts
 
 - Each pipeline stage can create `artifacts`.
 - `artifacts` - This element represents information about where CodeBuild can find the build output and how CodeBuild prepares it for uploading to the S3 output bucket.
   - Artifacts stored in an S3 bucket and passed on to the next stage.
 
-# 4. Troubleshooting
+# 5. Troubleshooting
 
 - For CodePipeline Pipeline/Action/Stage Execution State Changes.
 - Use **CloudWatch Events (Amazon EventBridge)**.
@@ -55,7 +64,7 @@
 - If pipeline can't perform an action, make sure the "IAM Service Role" attached does have enough IAM permissions (IAM Policy).
 - AWS CloudTrail can be used to audit AWS API calls.
 
-# 5. Events vs.Webhooks vs. Polling
+# 6. Events vs.Webhooks vs. Polling
 
 - Events
   - CodeCommit -> `event` -> EventBridge -> `trigger` -> CodePipeline
@@ -66,7 +75,7 @@
 - Polling
   - GitHub -> regular checks -> CodePipeline
 
-# 6. Action types constraints for artifacts
+# 7. Action types constraints for artifacts
 
 - **Owner**
   - **AWS:** For AWS services.
@@ -80,13 +89,13 @@
   - **Invoke:** Lambda.
   - **Deploy:** S3, CloudFormation, CodeDeploy, Elastic Beanstalk, OpsWorks, ECS, Service Catalog, ...
 
-# 7. Manual Approval Stage
+# 8. Manual Approval Stage
 
 - CodePipeline
   - CodeCommit -> `new commit` CodeBuild -> `trigger` > Manual Approval -> `deploy` -> CodeDeploy
 - **Important: Owner is "AWS", Action is "Manual".**
 
-# 8. CloudFormation as a target
+# 9. CloudFormation as a target
 
 - CloudFormation Deploy Action can be used to deploy AWS resources.
 - Example: deploy Lambda functions using CDK or SAM (alternative to CodeDeploy).
@@ -103,12 +112,12 @@
   - **Static:** Use template configuration file (recommended).
   - **Dynamic:** Use parameter overrides.
 
-# 9. CloudFormation integration
+# 10. CloudFormation integration
 
 - `CREATE_UPDATE` - Create or update an existing stack.
 - `DELETE_ONLY` - Delete a stack if it exists.
 
-# 10. Best practices
+# 11. Best practices
 
 - One CodePipeline, One CodeDeploy, Parallel deploy to multiple Deployment Groups.
   ![Multiple Deployment Groups](/Images/AWSCodePipelineBestPractices_1.png)
@@ -142,16 +151,16 @@
     ]
   ```
 
-# 11. EventBridge
+# 12. EventBridge
 
 - EventBridge - Detect and react to changes in execution states (e.g., intercept failures at certain stages).
 
-# 12. Invoke Action
+# 13. Invoke Action
 
 - **Lambda:** Invokes a Lambda function within a Pipeline.
 - **Step Functions:** Starts a State Machine within a Pipeline.
 
-# 13. Multi Region (Cross-Region Actions)
+# 14. Multi Region (Cross-Region Actions)
 
 - **Actions in your pipeline can be in different regions**
   - Example: deploy a Lambda function through CloudFormation into multiple regions.
@@ -163,7 +172,7 @@
 
 ![AWS CodePipeline - Multi Region](/Images/AWSCodePipelineMultiRegion.png)
 
-# 14. Pipeline executions
+# 15. Pipeline executions
 
 - Traverse pipeline stages in order.
 - Valid statuses for pipelines are:
@@ -174,7 +183,7 @@
   - Superseded
   - Failed.
 
-# 15. Custom Actions (Job Worker)
+# 16. Custom Actions (Job Worker)
 
 - You can create custom actions for the following AWS CodePipeline action categories:
   - A custom build action that builds or transforms the items.

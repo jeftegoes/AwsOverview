@@ -1,4 +1,4 @@
-# Amazon API Gateway<!-- omit in toc -->
+# Amazon API Gateway <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -95,7 +95,7 @@
   - Security through integration with AWS Certificate Manager (ACM):
   - If using Edge-Optimized endpoint, then the certificate must be in `us-east-1`.
   - If using Regional endpoint, the certificate must be in the API Gateway region.
-  - Must setup CNAME or A-alias record in Route 53.
+  - Must setup `CNAME` or `A-alias` record in Route 53.
 
 # 5. Deployment Stages
 
