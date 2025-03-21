@@ -32,8 +32,17 @@
 
 # 5. Summary
 
-- CloudFormation: (AWS only):
+- **CloudFormation: (AWS only)**
   - Infrastructure as Code, works with almost all of AWS resources.
   - Repeat across Regions & Accounts.
-- Systems Manager (hybrid): patch, configure and run commands at scale.
-- OpsWorks (hybrid): managed Chef and Puppet in AWS.
+- **Systems Manager (hybrid):** Patch, configure and run commands at scale.
+- **OpsWorks (hybrid):** Managed Chef and Puppet in AWS.
+- **CloudWatch**
+  - **Metrics:** Monitor the performance of AWS services and billing metrics.
+  - **Alarms:** Automate notification, perform EC2 action, notify to SNS based on metric.
+  - **Logs:** Collect log files from EC2 instances, servers, Lambda functions...
+  - **Events (or EventBridge):** React to events in AWS, or trigger a rule on a schedule.
+- **CloudTrail:** Audit API calls made within your AWS account.
+- **CloudTrail Insights:** Automated analysis of your CloudTrail Events.
+- **Service Health Dashboard:** Status of all AWS services across all regions.
+- **Personal Health Dashboard:** AWS events that impact your infrastructure.

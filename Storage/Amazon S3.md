@@ -333,7 +333,7 @@ TODO: DIAGRAM
 - For infrequently accessed object, move them to **Standard IA**.
 - For archive objects that you don't need fast access to, move them to **Glacier or Glacier Deep Archive**.
 - Moving objects can be automated using a **Lifecycle Rules**.
-- ![Amazon S3 Lifecycle Transitions.png](/Images/Storage/AmazonS3LifecycleTransitions.png)
+  ![Amazon S3 Lifecycle Transitions.png](/Images/Storage/AmazonS3LifecycleTransitions.png)
 
 # 12. Lifecycle Rules
 

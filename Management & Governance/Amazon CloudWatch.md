@@ -36,6 +36,12 @@
   - [20.1. Canary Blueprints](#201-canary-blueprints)
 - [21. CloudWatch Events (Will be replaced with Amazon EventBridge)](#21-cloudwatch-events-will-be-replaced-with-amazon-eventbridge)
 - [22. CloudWatch Evidently](#22-cloudwatch-evidently)
+- [23. Insights](#23-insights)
+  - [23.1. Container](#231-container)
+  - [23.2. Lambda](#232-lambda)
+  - [23.3. Contributor](#233-contributor)
+  - [23.4. Application](#234-application)
+  - [23.5. CloudWatch Insights and Operational Visibility](#235-cloudwatch-insights-and-operational-visibility)
 
 # 1. Why Monitoring is Important
 
@@ -152,7 +158,7 @@
 # 10. Logs Insights
 
 - Search and analyze log data stored in CloudWatch Logs.
-- Example: find a specific IP inside a log, count occurrences of "ERROR" in your logs...
+- **Example:** Find a specific IP inside a log, count occurrences of "ERROR" in your logs...
 - **Provides a purpose-built query language**
   - Automatically discovers fields from AWS services and JSON log events.
   - Fetch desired event fields, filter based on conditions, calculate aggregate statistics, sort events, limit number of events...
@@ -168,9 +174,9 @@
 
 # 12. Subscription Filter
 
-- **Subscription Filter:** Filter which logs are events delivered to your destination.
 - Get a real-time log events from CloudWatch Logs for processing and analysis.
 - Send to Kinesis Data Streams, Kinesis Data Firehose, or Lambda.
+- **Subscription Filter:** Filter which logs are events delivered to your destination.
   ![Amazon CloudWatch Logs Subscriptions](/Images/Management%20&%20Governance/AmazonCloudWatchLogsSubscriptions.png)
   ![Amazon CloudWatch Logs Subscriptions](/Images/Management%20&%20Governance/AmazonCloudWatchSubscriptionFilters.png)
 
@@ -242,8 +248,7 @@
 - You need to run a **CloudWatch Agent** on EC2 to push the log files you want.
 - Make sure IAM permissions are correct.
 - The CloudWatch log agent can be setup on-premises too.
-
-![Amazon CloudWatch Logs Agent](/Images/Management%20&%20Governance/AmazonCloudWatchLogsAgent.png)
+  ![Amazon CloudWatch Logs Agent](/Images/Management%20&%20Governance/AmazonCloudWatchLogsAgent.png)
 
 ## 17.1. Logs Agent & Unified Agent
 
@@ -265,7 +270,7 @@
   - **Netstat:** (number of TCP and UDP connections, net packets, bytes).
   - **Processes:** (total, dead, bloqued, idle, running, sleep).
   - **Swap Space:** (free, used, used %).
-  - Reminder: out-of-the box metrics for EC2 - disk, CPU, network (high level).
+  - **Reminder:** Out-of-the box metrics for EC2 - disk, CPU, network (high level).
 
 # 18. Logs Metric Filter
 
@@ -279,11 +284,11 @@
 
 - Alarms are used to trigger notifications for any metric.
 - Various options (sampling, %, max, min, etc...).
-- Alarm States:
+- **Alarm States**
   - OK
   - INSUFFICIENT_DATA
   - ALARM
-- Period:
+- **Period**
   - Length of time in seconds to evaluate the metric.
   - **High-Resolution Custom Metrics:** 10 sec, 30 sec or multiples of 60 sec.
 
@@ -296,7 +301,7 @@
 ## 19.2. Composite Alarms
 
 - CloudWatch Alarms are on a single metric.
-- Composite Alarms are monitoring the states of multiple other alarms.
+- **Composite Alarms are monitoring the states of multiple other alarms.**
 - AND and OR conditions.
 - Helpful to reduce "alarm noise" by creating complex composite alarms.
 
@@ -312,15 +317,16 @@
 
 ## 19.4. EC2 Instance Recovery
 
-- Status Check:
+- **Status Check**
   - Instance status = check the EC2 VM.
   - System status = check the underlying hardware.
-- Recovery: Same Private, Public, Elastic IP, metadata, placement group.
+  - Attached EBS status = check attached EBS volumes.
+- **Recovery:** Same Private, Public, Elastic IP, metadata, placement group.
 
 ## 19.5. CloudWatch Alarm: good to know
 
 - Alarms can be created based on CloudWatch Logs Metrics Filters.
-- To test alarms and notifications, set the alarm state to Alarm using CLI: `Amazon CloudWatch set-alarm-state --alarm-name "myalarm" --state-value ALARM --state-reason "testing purposes"`
+- To test alarms and notifications, set the alarm state to Alarm using CLI: `aws cloudwatch set-alarm-state --alarm-name "myalarm" --state-value ALARM --state-reason "testing purposes"`
 
 # 20. Synthetics Canary
 
@@ -364,3 +370,54 @@
 - Experiments (= A/B testing): compare multiple versions of the same feature.
 - Overrides: pre-define a variation for a specific user.
 - Store evaluation events in CloudWatch Logs or S3.
+
+# 23. Insights
+
+## 23.1. Container
+
+- Collect, aggregate, summarize metrics and logs from containers.
+- Available for containers on...
+  - Amazon Elastic Container Service (Amazon ECS).
+  - Amazon Elastic Kubernetes Services (Amazon EKS).
+  - Kubernetes platforms on EC2.
+  - Fargate (both for ECS and EKS).
+- **In Amazon EKS and Kubernetes, CloudWatch Insights is using a containerized version of the CloudWatch Agent to discover containers.**
+
+## 23.2. Lambda
+
+- Monitoring and troubleshooting solution for serverless applications running on AWS Lambda.
+- Collects, aggregates, and summarizes system-level metrics including CPU time, memory, disk, and network.
+- Collects, aggregates, and summarizes diagnostic information such as cold starts and Lambda worker shutdowns.
+- Lambda Insights is provided as a Lambda Layer.
+
+## 23.3. Contributor
+
+- Analyze log data and create time series that display contributor data.
+  - See metrics about the top-N contributors.
+  - The total number of unique contributors, and their usage.
+- This helps you find top talkers and understand who or what is impacting system performance.
+- Works for any AWS-generated logs (VPC, DNS, etc..)
+- For example, you can find bad hosts, **identify the heaviest network users**, or find the URLs that generate the most errors.
+- You can build your rules from scratch, or you can also use sample rules that AWS has created - **leverages your CloudWatch Logs**.
+- CloudWatch also provides built-in rules that you can use to analyze metrics from other AWS services.
+
+## 23.4. Application
+
+- **Provides automated dashboards that show potential problems with monitored applications, to help isolate ongoing issues.**
+- Your applications run on Amazon EC2 Instances with select technologies only (Java, .NET, Microsoft IIS Web Server, databases...).
+- And you can use other AWS resources such as Amazon EBS, RDS, ELB, ASG, Lambda, SQS, DynamoDB, S3 bucket, ECS, EKS, SNS, API Gateway...
+- Powered by SageMaker.
+- Enhanced visibility into your application health to reduce the time it will take you to troubleshoot and repair your applications.
+- Findings and alerts are sent to Amazon EventBridge and SSM OpsCenter.
+
+## 23.5. CloudWatch Insights and Operational Visibility
+
+- **CloudWatch Container Insights**
+  - ECS, EKS, Kubernetes on EC2, Fargate, needs agent for Kubernetes.
+  - Metrics and logs.
+- **CloudWatch Lambda Insights**
+  - Detailed metrics to troubleshoot serverless applications.
+- **CloudWatch Contributors Insights**
+  - Find "Top-N" Contributors through CloudWatch Logs.
+- **CloudWatch Application Insights**
+  - Automatic dashboard to troubleshoot your application and related AWS services.

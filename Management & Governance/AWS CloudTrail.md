@@ -4,7 +4,7 @@
 
 - [1. Introduction](#1-introduction)
 - [2. Events](#2-events)
-- [3. Insights Events](#3-insights-events)
+- [3. Insights](#3-insights)
 - [4. Events Retention](#4-events-retention)
 - [5. DynamoDB information in CloudTrail](#5-dynamodb-information-in-cloudtrail)
 - [6. Amazon EventBridge - Intercept API Calls](#6-amazon-eventbridge---intercept-api-calls)
@@ -25,28 +25,27 @@
 - Can put logs from CloudTrail into CloudWatch Logs or S3.
 - **A trail can be applied to All Regions (default) or a single Region.**
 - If a resource is deleted in AWS, investigate CloudTrail first!
-
-![AWS CloudTrail diagram](/Images/AWSCloudTrailDiagram.png)
+  ![AWS CloudTrail diagram](/Images/AWSCloudTrailDiagram.png)
 
 # 2. Events
 
 - Three kinds of events in AWS CloudTrail:
   - **Management Events**
     - Operations that are performed on resources in your AWS account.
-    - Examples:
+    - **Examples**
       - Configuring security (IAM `AttachRolePolicy`).
       - Configuring rules for routing data (Amazon EC2 `CreateSubnet`).
       - Setting up logging (AWS CloudTrail `CreateTrail`).
     - **By default, trails are configured to log management events.**
-    - Can separate **Read Events** (that don't modify resources) from Write Events (that may modify resources).
+    - Can separate **Read Events** (that don't modify resources) from **Write Events** (that may modify resources).
   - **Data Events**
     - **By default, data events are not logged (because high volume operations).**
     - Amazon S3 object-level activity (ex: `GetObject`, `DeleteObject`, `PutObject`): Can separate Read and Write Events.
     - AWS Lambda function execution activity (the Invoke API).
   - **Insights**
-    - Next section.
+    - Next topic.
 
-# 3. Insights Events
+# 3. Insights
 
 - **AWS CloudTrail Insights helps AWS users identify and respond to unusual activity associated with write API calls by continuously analyzing CloudTrail management events.**
 - Enable **CloudTrail Insights to detect unusual activity** in your account:
@@ -59,15 +58,13 @@
   - Anomalies appear in the CloudTrail console.
   - Event is sent to Amazon S3.
   - An EventBridge event is generated (for automation needs).
-
-![AWS CloudTrail Insights Events](/Images/AWSCloudTrailInsights.png)
+    ![AWS CloudTrail Insights Events](/Images/AWSCloudTrailInsights.png)
 
 # 4. Events Retention
 
 - Events are stored for 90 days in CloudTrail.
 - To keep events beyond this period, log them to [Amazon S3](/Storage/Amazon%20S3.md) and use [Amazon Athena](/Analytics/Amazon%20Athena.md).
-
-![Events Retention](/Images/AWSCloudTrailEventsRetention.png)
+  ![Events Retention](/Images/AWSCloudTrailEventsRetention.png)
 
 # 5. DynamoDB information in CloudTrail
 

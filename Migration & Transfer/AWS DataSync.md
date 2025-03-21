@@ -16,4 +16,4 @@
 - Replication tasks can be scheduled hourly, daily, weekly.
 - File permissions and metadata are preserved (NFS POSIX, SMB...).
 - One agent task can use 10 Gbps, can setup a bandwidth limit.
-  - ![AWS DataSync](/Images/AwsDataSyncDiagram.png)
+  ![AWS DataSync](/Images/AwsDataSyncDiagram.png)

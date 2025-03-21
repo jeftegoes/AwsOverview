@@ -48,16 +48,13 @@
 - [9. Application Integration](#9-application-integration)
   - [9.1. Integration - Summary](#91-integration---summary)
 - [10. Cloud Monitoring](#10-cloud-monitoring)
-  - [10.1. Amazon CloudWatch Metrics](#101-amazon-cloudwatch-metrics)
-    - [10.1.1. Important Metrics](#1011-important-metrics)
-  - [10.2. Amazon CloudWatch Alarms](#102-amazon-cloudwatch-alarms)
-  - [10.3. Amazon CloudWatch Logs](#103-amazon-cloudwatch-logs)
-  - [10.4. Amazon EventBridge](#104-amazon-eventbridge)
-  - [10.5. AWS CloudTrail](#105-aws-cloudtrail)
-  - [10.6. AWS X-Ray](#106-aws-x-ray)
-  - [10.7. Amazon CodeGuru](#107-amazon-codeguru)
-  - [10.8. AWS Health Dashboard](#108-aws-health-dashboard)
-  - [10.9. Monitoring Summary](#109-monitoring-summary)
+  - [10.1. Amazon CloudWatch Logs](#101-amazon-cloudwatch-logs)
+  - [10.2. Amazon EventBridge](#102-amazon-eventbridge)
+  - [10.3. AWS CloudTrail](#103-aws-cloudtrail)
+  - [10.4. AWS X-Ray](#104-aws-x-ray)
+  - [10.5. Amazon CodeGuru](#105-amazon-codeguru)
+  - [10.6. AWS Health Dashboard](#106-aws-health-dashboard)
+  - [10.7. Monitoring Summary](#107-monitoring-summary)
 - [11. VPC](#11-vpc)
 - [12. Security \& Compliance](#12-security--compliance)
   - [12.1. AWS Shared Responsibility Model](#121-aws-shared-responsibility-model)
@@ -518,79 +515,34 @@
 
 # 10. Cloud Monitoring
 
-## 10.1. Amazon CloudWatch Metrics
+## 10.1. Amazon CloudWatch Logs
 
 [Amazon CloudWatch](Management%20&%20Governance/Amazon%20CloudWatch.md)
 
-### 10.1.1. Important Metrics
-
-- EC2 instances: CPU Utilization, Status Checks, Network (not RAM).
-  - Default metrics every 5 minutes.
-  - Option for Detailed Monitoring ($$$): metrics every 1 minute.
-- EBS volumes: Disk Read/Writes.
-- S3 buckets: BucketSizeBytes, NumberOfObjects, AllRequests.
-- Billing:Total Estimated Charge (only in us-east-1).
-- Service Limits: how much you've been using a service API.
-- Custom metrics: push your own metrics.
-
-## 10.2. Amazon CloudWatch Alarms
-
-- **The CloudWatch Alarms feature allows you to watch CloudWatch metrics and to receive notifications when the metrics fall outside of the levels (high or low thresholds) that you configure.**
-- Alarms are used to trigger notifications for any metric
-- Alarms actions...
-  - Auto Scaling: increase or decrease EC2 instances "desired" count
-  - EC2 Actions: stop, terminate, reboot or recover an EC2 instance
-  - SNS notifications: send a notification into an SNS topic
-- Various options (sampling, %, max, min, etc...)
-- Can choose the period on which to evaluate an alarm
-- Example: create a billing alarm on the CloudWatch Billing metric
-- Alarm States: OK. INSUFFICIENT_DATA, ALARM
-
-## 10.3. Amazon CloudWatch Logs
-
-- CloudWatch Logs can collect log from:
-  - Elastic Beanstalk: collection of logs from application.
-  - ECS: collection from containers.
-  - AWS Lambda: collection from function logs.
-  - CloudTrail based on filter.
-  - CloudWatch log agents: on EC2 machines or on-premises servers.
-  - Route53: Log DNS queries.
-- Enables real-time monitoring of logs.
-- Adjustable CloudWatch Logs retention.
-
-## 10.4. Amazon EventBridge
+## 10.2. Amazon EventBridge
 
 [Amazon EventBridge](Application%20Integration/Amazon%20EventBridge.md)
 
-## 10.5. AWS CloudTrail
+## 10.3. AWS CloudTrail
 
 - **Is a web service that records activity made on your account and delivers log files to your Amazon S3 bucket. AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account.**
 - **Can record the history of events/API calls made within you AWS account, which will help determine who or what deleted the resource. You should investigate it first.** [AWS CloudTrail](Management%20&%20Governance/AWS%20CloudTrail.md)
 
-## 10.6. AWS X-Ray
+## 10.4. AWS X-Ray
 
 - **AWS X-Ray helps developers analyze and debug production, distributed applications, such as those built using a microservices architecture.** [AWS X-Ray](Developer%20Tools/AWS%20X-Ray.md)
 
-## 10.7. Amazon CodeGuru
+## 10.5. Amazon CodeGuru
 
 [Amazon CodeGuru](Developer%20Tools/AWS%20CICD.md)
 
-## 10.8. AWS Health Dashboard
+## 10.6. AWS Health Dashboard
 
 [AWS Health Dashboard](Management%20&%20Governance/AWS%20Health%20Dashboard.md)
 
-## 10.9. Monitoring Summary
+## 10.7. Monitoring Summary
 
-- CloudWatch:
-  - Metrics: monitor the performance of AWS services and billing metrics.
-  - Alarms: automate notification, perform EC2 action, notify to SNS based on metric.
-  - Logs: collect log files from EC2 instances, servers, Lambda functions...
-  - Events (or EventBridge): react to events in AWS, or trigger a rule on a schedule.
-- CloudTrail: audit API calls made within your AWS account.
-- CloudTrail Insights: automated analysis of your CloudTrail Events.
 - X-Ray: trace requests made through your distributed applications.
-- Service Health Dashboard: status of all AWS services across all regions.
-- Personal Health Dashboard: AWS events that impact your infrastructure.
 - Amazon CodeGuru: automated code reviews and application performance recommendation.
 
 # 11. VPC
