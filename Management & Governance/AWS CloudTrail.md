@@ -25,7 +25,7 @@
 - Can put logs from CloudTrail into CloudWatch Logs or S3.
 - **A trail can be applied to All Regions (default) or a single Region.**
 - If a resource is deleted in AWS, investigate CloudTrail first!
-  ![AWS CloudTrail diagram](/Images/AWSCloudTrailDiagram.png)
+  ![AWS CloudTrail diagram](/Images/Management%20&%20Governance/AWSCloudTrailDiagram.png)
 
 # 2. Events
 
@@ -58,13 +58,13 @@
   - Anomalies appear in the CloudTrail console.
   - Event is sent to Amazon S3.
   - An EventBridge event is generated (for automation needs).
-    ![AWS CloudTrail Insights Events](/Images/AWSCloudTrailInsights.png)
+    ![AWS CloudTrail Insights Events](/Images/Management%20&%20Governance/AWSCloudTrailInsights.png)
 
 # 4. Events Retention
 
 - Events are stored for 90 days in CloudTrail.
 - To keep events beyond this period, log them to [Amazon S3](/Storage/Amazon%20S3.md) and use [Amazon Athena](/Analytics/Amazon%20Athena.md).
-  ![Events Retention](/Images/AWSCloudTrailEventsRetention.png)
+  ![Events Retention](/Images/Management%20&%20Governance/AWSCloudTrailEventsRetention.png)
 
 # 5. DynamoDB information in CloudTrail
 
@@ -86,7 +86,7 @@
 - This feature is built using industry-standard algorithms: SHA-256 for hashing and SHA-256 with RSA for digital signing.
 - This makes it computationally infeasible to modify, delete or forge CloudTrail log files without detection. You can use the AWS CLI to validate the files in the location where CloudTrail delivered them.
 
-![Log file validation parameter](/Images/AWSCloudTrailLogFileValidationParameter.png)
+![Log file validation parameter](/Images/Management%20&%20Governance/AWSCloudTrailLogFileValidationParameter.png)
 
 ## 8.1. Digest file
 
