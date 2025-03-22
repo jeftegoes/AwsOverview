@@ -852,7 +852,7 @@ CMD ["app.lambdaHandler"]
 - Supports Resource-based Policies & CORS configurations.
 - Can be applied to any function alias or to `$LATEST` (can't be applied to other function versions).
 - Create and configure using AWS Console or AWS API.
-- Throttle your function by using Reserved Concurrency.
+- Throttle your function by using Reserved Concurrency. 
 
 ![Lambda Function URL](/Images/LambdaFunctionURL.png)
 

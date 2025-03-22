@@ -7,7 +7,8 @@
 - [3. AWS Systems Manager (SSM)](#3-aws-systems-manager-ssm)
 - [4. AWS Service Catalog](#4-aws-service-catalog)
   - [4.1. AWS Trusted Advisor](#41-aws-trusted-advisor)
-- [5. Summary](#5-summary)
+- [5. CloudWatch vs CloudTrail vs Config](#5-cloudwatch-vs-cloudtrail-vs-config)
+- [6. Summary](#6-summary)
 
 # 1. AWS OpsWorks
 
@@ -30,7 +31,22 @@
 - **AWS Trusted Advisor is an online tool that provides you real time guidance to help you provision your resources following AWS best practices, including performance, security, and fault tolerance, but also cost optimization and service limits.**
   [AWS Trusted Advisor](AWS%20Trusted%20Advisor.md)
 
-# 5. Summary
+# 5. CloudWatch vs CloudTrail vs Config
+
+- **CloudWatch**
+  - Performance monitoring (metrics, CPU, network, etc...) & dashboards.
+  - Events & Alerting.
+  - Log Aggregation & Analysis.
+- **CloudTrail**
+  - Record API calls made within your Account by everyone.
+  - Can define trails for specific resources.
+  - Global Service.
+- **Config**
+  - Record configuration changes.
+  - Evaluate resources against compliance rules.
+  - Get timeline of changes and compliance.
+
+# 6. Summary
 
 - **CloudFormation: (AWS only)**
   - Infrastructure as Code, works with almost all of AWS resources.
