@@ -1,4 +1,4 @@
-# AWS Config<!-- omit in toc -->
+# AWS Config <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -21,7 +21,7 @@
 
 - Helps with **auditing and recording compliance of your AWS resources**.
 - Helps record configurations and changes over time.
-- Questions that can be solved by AWS Config:
+- **Questions that can be solved by AWS Config:**
   - Is there unrestricted SSH access to my security groups?
   - Do my buckets have any public access?
   - How has my ALB configuration changed over time?
@@ -39,20 +39,19 @@
 # 2. S3 Integration
 
 - Possibility of storing the configuration data into S3 (analyzed by Athena).
-
-![S3 Integration](/Images/AWSConfigS3Integration.png)
+  ![S3 Integration](/Images/Management%20&%20Governance/AWSConfigS3Integration.png)
 
 # 3. Config Rules
 
 - Can use AWS managed config rules (over 75).
 - Can make custom config rules (must be defined in AWS Lambda).
-  - Ex: evaluate if each EBS disk is of type gp2.
-  - Ex: evaluate if each EC2 instance is t2.micro.
-- Rules can be evaluated / triggered:
+  - **Ex:** Evaluate if each EBS disk is of type gp2.
+  - **Ex:** Evaluate if each EC2 instance is t2.micro.
+- **Rules can be evaluated / triggered**
   - For each config change.
-  - And / or: at regular time intervals.
+  - **And / or:** At regular time intervals.
 - **AWS Config Rules does not prevent actions from happening (no deny).**
-- Pricing: no free tier, $0.003 per configuration item recorded per region, $0.001 per config rule evaluation per region.
+- **Pricing:** No free tier, $0.003 per configuration item recorded per region, $0.001 per config rule evaluation per region.
 
 ## 3.1. AWS Config Resource
 
@@ -64,9 +63,9 @@
 
 - Automate remediation of non-compliant resources using SSM Automation Documents.
 - Use AWS-Managed Automation Documents or create custom Automation Documents.
-  - Tip: You can create custom Automation Documents that invokes Lambda function.
-- You can set **Remediation Retries** if the resource is still non-compliant after auto- remediation.
-  ![Config Rules Remediations](/Images/AWSConfigRulesRemediations.png)
+  - **Tip:** You can create custom Automation Documents that invokes Lambda function.
+- You can set **Remediation Retries** if the resource is still non-compliant after auto-remediation.
+  ![Config Rules Remediations](/Images/Management%20&%20Governance/AWSConfigRulesRemediations.png)
 
 ### 3.2.1. Required Tags
 
@@ -93,8 +92,7 @@
 - If using AWS Organizations, no need for individual Authorization.
 - Rules are created in each individual source AWS account.
 - Can deploy rules to multiple target accounts using CloudFormation StackSets.
-
-![AWS Config Aggregators](/Images/AWSConfigAggregators.png)
+  ![AWS Config Aggregators](/Images/Management%20&%20Governance/AWSConfigAggregators.png)
 
 - **Accounts and regios**
   - Select the source accounts and regions from where you want to collect AWS Config data.
@@ -121,7 +119,7 @@
 
 ## 7.1. Custom rules
 
-![Custom rules](/Images/AWSConfigCustomRules.png)
+![Custom rules](/Images/Management%20&%20Governance/AWSConfigCustomRules.png)
 
 # 8. Organizational Rules vs. Conformance Packs
 
@@ -135,5 +133,4 @@
 # 9. Managed Rules
 
 - AWS Config provides **AWS managed rules**, which are predefined, customizable rules that AWS Config uses to evaluate whether your AWS resources comply with common best practices.
-
-![AWS Managed Rules](/Images/AWSConfigManagedRules.png)
+  ![AWS Managed Rules](/Images/Management%20&%20Governance/AWSConfigManagedRules.png)
