@@ -5,9 +5,9 @@
 - [1. Understanding CIDR](#1-understanding-cidr)
   - [1.1. Subnet Mask](#11-subnet-mask)
   - [1.2. Public vs. Private IP (IPv4)](#12-public-vs-private-ip-ipv4)
-  - [1.3. Default VPC Walkthrough](#13-default-vpc-walkthrough)
+  - [1.3. Default VPC](#13-default-vpc)
 - [2. VPC in AWS](#2-vpc-in-aws)
-- [3. VPC and Subnets Primer](#3-vpc-and-subnets-primer)
+- [3. Subnet](#3-subnet)
 - [4. NAT Gateways](#4-nat-gateways)
   - [4.1. NAT Gateway with High Availability](#41-nat-gateway-with-high-availability)
   - [4.2. NAT Gateway vs. NAT Instance](#42-nat-gateway-vs-nat-instance)
@@ -69,12 +69,13 @@
   - 192.168.0.0 - 192.168.255.255 (192.168.0.0/16) = e.g., home networks.
 - All the rest of the IP addresses on the Internet are Public.
 
-## 1.3. Default VPC Walkthrough
+## 1.3. Default VPC
 
 - All new AWS accounts have a default VPC.
 - New EC2 instances are launched into the default VPC if no subnet is specified.
 - Default VPC has Internet connectivity and all EC2 instances inside it have public IPv4 addresses.
 - We also get a public and a private IPv4 DNS names.
+  ![Default VPC](/Images/Networking%20&%20Content%20Delivery/AmazonVPCDefaultVPC.png)
 
 # 2. VPC in AWS
 
@@ -90,14 +91,23 @@
   - 192.168.0.0 - 192.168.255.255 (192.168.0.0/16)
 - **Your VPC CIDR should NOT overlap with your other networks (e.g., corporate).**
 
-# 3. VPC and Subnets Primer
+# 3. Subnet
 
-- **VPC - Virtual Private Cloud:** Private network to deploy your resources (regional resource).
 - **Subnets** allow you to partition your network inside your VPC (Availability Zone resource).
-- A **public subnet** is a subnet that is accessible from the internet.
-- A **private subnet** is a subnet that is not accessible from the internet.
-- To define access to the internet and between subnets, we use **Route Tables**.
-  ![Amazon VPC ](/Images/Networking%20&%20Content%20Delivery/AwsVPCDiagram.png)
+  ![Amazon VPC Subnets](/Images/Networking%20&%20Content%20Delivery/AmazonVPCDiagram.png)
+- AWS reserves 5 IP addresses (first 4 & last 1) in each subnet.
+- These 5 IP addresses are not available for use and can't be assigned to an EC2 instance.
+- **Example:** If CIDR block 10.0.0.0/24, then reserved IP addresses are:
+  - 10.0.0.0 - Network Address.
+  - 10.0.0.1 - reserved by AWS for the VPC router.
+  - 10.0.0.2 - reserved by AWS for mapping to Amazon-provided DNS.
+  - 10.0.0.3 - reserved by AWS for future use.
+  - 10.0.0.255 - Network Broadcast Address. AWS does not support broadcast in a VPC, therefore the address is reserved.
+- **ATENTION:** If you need 29 IP addresses for EC2 instances:
+  - You can't choose a subnet of size /27 (32 IP addresses, 32 - 5 = 27 < 29).
+  - You need to choose a subnet of size /26 (64 IP addresses, 64 - 5 = 59 > 29).
+- **Example**
+  ![Amazon VPC Subnets](/Images/Networking%20&%20Content%20Delivery/AmazonVPCSubnets.png)
 
 # 4. NAT Gateways
 
@@ -123,7 +133,13 @@
 
 # 5. Internet Gateway
 
-- **Internet Gateways** helps our VPC instances connect with the internet.
+- Allows resources (e.g., EC2 instances) in a VPC connect to the Internet.
+- It scales horizontally and is highly available and redundant.
+- Must be created separately from a VPC.
+- One VPC can only be attached to one IGW and vice versa.
+- **Internet Gateways on their own do not allow Internet access!**
+  - Route tables must also be edited!
+    ![Internet Gateway](/Images/Networking%20&%20Content%20Delivery/AmazonVPCInternetGateway.png)
 
 ## 5.1. Subnet
 
@@ -187,9 +203,9 @@
 - **VPC Endpoint Gateway**: S3 and DynamoDB.
 - **VPC Endpoint Interface**: the rest.
 
-![VPC Endpoints Diagram](/Images/Networking%20&%20Content%20Delivery/VPCEndpoints.png)
+![VPC Endpoints Diagram](/Images/Networking%20&%20Content%20Delivery/AmazonVPCEndpoints.png)
 
-![VPC Endpoints Console](/Images/Networking%20&%20Content%20Delivery/VPCEndpointsConsole.png)
+![VPC Endpoints Console](/Images/Networking%20&%20Content%20Delivery/AmazonVPCEndpointsConsole.png)
 
 # 10. Site to Site VPN & Direct Connect
 
