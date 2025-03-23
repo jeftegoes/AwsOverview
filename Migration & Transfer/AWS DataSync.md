@@ -9,6 +9,7 @@
 - **Move large amount of data to and from**
   - On-premises / other cloud to AWS (NFS, SMB, HDFS, S3 API...) - needs agent.
   - AWS to AWS (different storage services) - no agent needed.
+  - **ATTENTION! Except EBS**.
 - **Can synchronize to**
   - Amazon S3 (any storage classes - including Glacier).
   - Amazon EFS.
