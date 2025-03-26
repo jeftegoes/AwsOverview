@@ -45,7 +45,7 @@
 
 - Elastic Beanstalk is a developer centric view of deploying an application on AWS.
 - It uses all the component's we've seen before: EC2, ASG, ELB, RDS, ...
-- Managed service
+- **Managed service**
   - Automatically handles capacity provisioning, load balancing, scaling, application health monitoring, instance configuration, ...
   - Just the application code is the responsibility of the developer.
 - We still have full control over the configuration.
@@ -59,25 +59,24 @@
   - Collection of AWS resources running an application version (only one application version at a time).
   - **Tiers:** Web Server Environment Tier & Worker Environment Tier.
   - You can create multiple environments (dev, test, prod, ...).
-
-![Elastic Beanstalk Workflow](/Images/ElasticBeanstalkWorkflow.png)
+    ![Elastic Beanstalk Workflow](/Images/ElasticBeanstalkWorkflow.png)
 
 ## 3.1. Supported Platforms
 
-- Go
-- Java SE
-- Java with Tomcat
-- .NET Core on Linux
-- .NET on Windows Server
+- Go.
+- Java SE.
+- Java with Tomcat.
+- .NET Core on Linux.
+- .NET on Windows Server.
 - Node.js
-- PHP
-- Python
-- Ruby
-- Packer Builder
-- Single Container Docker
-- Multi-container Docker
-- Preconfigured Docker
-- If not supported, you can write your custom platform (advanced)
+- PHP.
+- Python.
+- Ruby.
+- Packer Builder.
+- Single Container Docker.
+- Multi-container Docker.
+- Preconfigured Docker.
+- If not supported, you can write your custom platform (advanced).
 
 # 4. Deployment options for updates
 
@@ -205,7 +204,7 @@
 
 - A zip file containing our code must be deployed to Elastic Beanstalk.
 - All the parameters set in the UI can be configured with code using files.
-- Requirements:
+- **Requirements**
   - In the .ebextensions / directory in the root of source code.
   - YAML / JSON format.
   - **.config** extensions (example: logging.config).
@@ -233,7 +232,6 @@
 
 - After creating an Elastic Beanstalk environment, you cannot change the Elastic Load Balancer type (only the configuration).
 - To migrate:
-
   1. Create a new environment with the same configuration except LB (can't clone).
   2. Deploy your application onto the new environment.
   3. Perform a CNAME swap or Route 53 update.

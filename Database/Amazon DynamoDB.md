@@ -193,11 +193,11 @@
 ### 6.1.5. Throttling
 
 - If we exceed provisioned RCUs or WCUs, we get `ProvisionedThroughputExceededException`.
-- Reasons:
+- **Reasons**
   - **Hot Keys** - one partition key is being read too many times (e.g., popular item).
   - **Hot Partitions.**
   - **Very large items**, RCU and WCU depends on size of items.
-- Solutions:
+- **Solutions**
   - **Exponential backoff** when exception is encountered (already in SDK).
   - **Distribute partition keys** as much as possible.
   - If RCU issue, we can **use DynamoDB Accelerator (DAX)**.

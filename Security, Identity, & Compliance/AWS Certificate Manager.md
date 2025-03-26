@@ -49,7 +49,7 @@
 
 - Create a **Custom Domain Name** in API Gateway.
 - **Edge-Optimized (default):** For global clients.
-  - The TLS Certificate must be in the same region as CloudFront, in `sa-east-1`.
+  - The TLS Certificate must be in the same region as CloudFront, in `us-east-1`.
 - **Regional**
   - The TLS Certificate must be imported on API Gateway, in the same region as the API Stage.
 
