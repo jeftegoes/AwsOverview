@@ -1,4 +1,4 @@
-# AWS S3 - Simples Storage Service <!-- omit in toc -->
+# AWS S3 - Simple Storage Service <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -63,11 +63,13 @@
 - [26. Access Logs](#26-access-logs)
   - [26.1. Access Logs WARNING](#261-access-logs-warning)
 - [27. Pre-Signed URLs](#27-pre-signed-urls)
-- [28. S3 - Access Points](#28-s3---access-points)
-- [29. S3 Object Lambda](#29-s3-object-lambda)
-- [30. S3 Object Lock](#30-s3-object-lock)
-- [31. Shared Responsibility Model for S3](#31-shared-responsibility-model-for-s3)
-- [32. Summary](#32-summary)
+- [28. S3 Glacier Vault Lock](#28-s3-glacier-vault-lock)
+- [29. S3 Object Lock](#29-s3-object-lock)
+- [30. S3 - Access Points](#30-s3---access-points)
+  - [30.1. Access Points - VPC Origin](#301-access-points---vpc-origin)
+- [31. S3 Object Lambda](#31-s3-object-lambda)
+- [32. Shared Responsibility Model for S3](#32-shared-responsibility-model-for-s3)
+- [33. Summary](#33-summary)
 
 # 1. Introduction
 
@@ -534,13 +536,13 @@ TODO: DIAGRAM
 
 # 23. Object Encryption
 
-- You can encrypt objects in S3 buckets using one of 4 methods:
-  - **Server-Side Encryption (SSE):**
-    - **Server-Side Encryption with Amazon S3-Managed Keys (SSE-S3):**
+- **We can encrypt objects in S3 buckets using one of 4 methods**
+  - **Server-Side Encryption (SSE)**
+    - **Server-Side Encryption with Amazon S3-Managed Keys (SSE-S3)**
       - Encrypts S3 objects using keys handled, managed, and owned by AWS.
-    - **Server-Side Encryption with KMS Keys stored in AWS KMS (SSE-KMS):**
+    - **Server-Side Encryption with KMS Keys stored in AWS KMS (SSE-KMS)**
       - Leverage AWS Key Management Service (AWS KMS) to manage encryption keys.
-    - **Server-Side Encryption with Customer-Provided Keys (SSE-C):**
+    - **Server-Side Encryption with Customer-Provided Keys (SSE-C)**
       - When you want to manage your own encryption keys.
 - **Client-Side Encryption.**
 
@@ -552,8 +554,7 @@ TODO: DIAGRAM
 - Encryption type is **AES-256**.
 - Must set header `"x-amz-server-side-encryption": "AES256"`.
 - Enabled by default for new buckets and new objects.
-
-![Encryption SSE-S3](/Images/S3EncryptionSSES3.png)
+  ![Encryption SSE-S3](/Images/S3EncryptionSSES3.png)
 
 ## 23.2. SSE-KMS
 
@@ -562,16 +563,13 @@ TODO: DIAGRAM
 - KMS advantages: user control + audit key usage using CloudTrail.
 - Object is encrypted server side.
 - Must set header `"x-amz-server-side-encryption": "aws:kms"`.
-
-![Encryption SSE-KMS](/Images/S3EncryptionSSEKMS.png)
+  ![Encryption SSE-KMS](/Images/S3EncryptionSSEKMS.png)
 
 ### 23.2.1. SSE-KMS Limitation
 
 - If you use SSE-KMS, you may be impacted by the KMS limits.
   - **Upload and download files from Amazon S3, you need to leverage a KMS Key.**
-
-![Encryption SSE-KMS Limitaition](/Images/S3EncryptionSSEKMSLimitation.png)
-
+    ![Encryption SSE-KMS Limitaition](/Images/S3EncryptionSSEKMSLimitation.png)
 - When you upload, it calls the `GenerateDataKey` KMS API.
 - When you download, it calls the `Decrypt` KMS API.
 - Count towards the KMS quota per second (5500, 10000, 30000 req/s based on region).
@@ -584,8 +582,7 @@ TODO: DIAGRAM
 - **HTTPS must be used.**
 - Encryption key must provided in HTTP headers, for every HTTP request made.
 - Must set header `"x-amz-server-side-encryption-customer-algorithm": "AES256"`.
-
-![Encryption SSE-C](/Images/S3EncryptionSSEC.png)
+  ![Encryption SSE-C](/Images/S3EncryptionSSEC.png)
 
 | Name                                            | Description                                                                                                                                                                                                                             |
 | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -603,9 +600,9 @@ TODO: DIAGRAM
 ## 23.5. Encryption in transit (SSL/TLS)
 
 - Encryption in flight is also called SSL/TLS.
-- Amazon S3 exposes two endpoints:
-  - HTTP Endpoint - non encrypted.
-  - HTTPS Endpoint - encryption in flight.
+- **Amazon S3 exposes two endpoints**
+  - **HTTP Endpoint:** Non encrypted.
+  - **HTTPS Endpoint:** Encryption in flight.
 - **HTTPS is recommended.**
 - **HTTPS is mandatory for SSE-C.**
 - Most clients would use the HTTPS endpoint by default.
@@ -613,20 +610,19 @@ TODO: DIAGRAM
 ## 23.6. Default Encryption vs Bucket Policies
 
 - **SSE-S3 encryption is automatically applied to new objects stored in S3 bucket.**
-- Optionally, you can "force encryption" using a bucket policy and refuse any API call to PUT an S3 object without encryption headers (SSE-KMS or SSE-C).
+- Optionally, we can "force encryption" using a bucket policy and refuse any API call to PUT an S3 object without encryption headers (SSE-KMS or SSE-C).
 - **Note: Bucket Policies are evaluated before "default encryption".**
 
 # 24. What is CORS?
 
 - **Cross-Origin Resource Sharing (CORS).**
 - **Origin = scheme (protocol) + host (domain) + port.**
-- example: https://www.example.com (implied port is 443 for HTTPS, 80 for HTTP).
+- **Example:** https://www.example.com (implied port is 443 for HTTPS, 80 for HTTP).
 - **Web Browser** based mechanism to allow requests to other origins while visiting the main origin.
-- Same origin: http://example.com/app1 & http://example.com/app2.
-- Different origins: http://www.example.com & http://other.example.com.
+- **Same origin:** http://example.com/app1 & http://example.com/app2.
+- **Different origins:** http://www.example.com & http://other.example.com.
 - The requests won't be fulfilled unless the other origin allows for the requests, using **CORS Headers** (example: `Access-Control-Allow-Origin`).
-
-![CORS Diagram](/Images/APIGatewayCORS.png)
+  ![CORS Diagram](/Images/APIGatewayCORS.png)
 
 ## 24.1. Amazon S3 - CORS
 
@@ -671,11 +667,11 @@ TODO: DIAGRAM
 
 # 25. MFA Delete
 
-- **MFA (Multi-Factor Authentication)** - force users to generate a code on a device (usually a mobile phone or hardware) before doing important operations on S3.
-- MFA will be required to:
+- **MFA (Multi-Factor Authentication)** - Force users to generate a code on a device (usually a mobile phone or hardware) before doing important operations on S3.
+- **MFA will be required to**
   - Permanently delete an object version.
   - Suspend Versioning on the bucket.
-- MFA won't be required to:
+- **MFA won't be required to**
   - Enable Versioning.
   - List deleted versions.
 - To use MFA Delete, **Versioning must be enabled** on the bucket.
@@ -702,32 +698,56 @@ TODO: DIAGRAM
   - **S3 Console:** 1 min up to 720 mins (12 hours)
   - **AWS CLI:** configure expiration with --expires-in parameter in seconds (default 3600 secs, max. 604800 secs ~ 168 hours).
 - Users given a pre-signed URL inherit the permissions of the user that generated the URL for GET / PUT.
-- Examples:
+- **Examples**
   - Allow only logged-in users to download a premium video from your S3 bucket.
   - Allow an ever-changing list of users to download files by generating URLs dynamically.
   - Allow temporarily a user to upload a file to a precise location in your S3 bucket.
 
-# 28. S3 - Access Points
+# 28. S3 Glacier Vault Lock
 
-- Each Access Point gets its own DNS and policy to limit who can access it:
-  - A specific IAM user / group.
-  - One policy per Access Point => **Easier to manage than complex bucket policies**.
+- Adopt a WORM (Write Once Read Many) model.
+- Create a Vault Lock Policy.
+- Lock the policy for future edits (can no longer be changed or deleted).
+- Helpful for compliance and data retention.
 
-# 29. S3 Object Lambda
+# 29. S3 Object Lock
+
+- Adopt a WORM (Write Once Read Many) model.
+- Block an object version deletion for a specified amount of time.
+- **Retention mode - Compliance**
+  - Object versions can't be overwritten or deleted by any user, including the root user.
+  - Objects retention modes can't be changed, and retention periods can't be shortened.
+- **Retention mode - Governance**
+  - Most users can't overwrite or delete an object version or alter its lock settings.
+  - Some users have special permissions to change the retention or delete the object.
+- **Retention Period:** protect the object for a fixed period, it can be extended.
+- **Legal Hold**
+  - Protect the object indefinitely, independent from retention period.
+  - Can be freely placed and removed using the s3:PutObjectLegalHold IAM permission.
+
+# 30. S3 - Access Points
+
+- Access Points simplify security management for S3 Buckets.
+- **Each Access Point has**
+  - Its own DNS name (Internet Origin or VPC Origin).
+  - An access point policy (similar to bucket policy) - manage security at scale.
+
+## 30.1. Access Points - VPC Origin
+
+- We can define the access point to be accessible only from within the VPC.
+- You must create a VPC Endpoint to access the Access Point (Gateway or Interface Endpoint).
+- The VPC Endpoint Policy must allow access to the target bucket and Access Point.
+
+# 31. S3 Object Lambda
 
 - Use AWS Lambda Functions to change the object before it is retrieved by the caller application.
 - Only one S3 bucket is needed, on top of which we create **S3 Access Point and S3 Object Lambda Access Points**.
-- **Use cases:**
+- **Use cases**
   - Redacting personally identifiable information for analytics or non- production environments.
   - Converting across data formats, such as converting XML to JSON.
   - Resizing and watermarking images on the fly using caller-specific details, such as the user who requested the object.
 
-# 30. S3 Object Lock
-
-- S3 Object Lock enables you to store objects using a "Write Once Read Many" (WORM) model.
-- S3 Object Lock can help prevent accidental or inappropriate deletion of data, it is not the right choice for the current scenario.
-
-# 31. Shared Responsibility Model for S3
+# 32. Shared Responsibility Model for S3
 
 - **Aws**
   - Infrastructure (global security, durability, availability, sustain concurrent loss of data in two facilities)
@@ -741,7 +761,7 @@ TODO: DIAGRAM
   - S3 Storage Classes
   - Data encryption at rest and in transit
 
-# 32. Summary
+# 33. Summary
 
 - S3 is a... key / value store for objects.
 - Great for bigger objects, not so great for many small objects.
