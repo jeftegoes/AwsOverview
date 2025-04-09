@@ -13,7 +13,7 @@
   - [4.5. Accelerated Computing - p](#45-accelerated-computing---p)
   - [4.6. EC2 Instance Types: example](#46-ec2-instance-types-example)
     - [4.6.1. Burstable performance instances](#461-burstable-performance-instances)
-- [5. Introduction to Security Groups](#5-introduction-to-security-groups)
+- [5. Security Groups](#5-security-groups)
   - [5.1. Security Groups Good to know](#51-security-groups-good-to-know)
   - [5.2. To access S3 into VPC](#52-to-access-s3-into-vpc)
   - [5.3. To acess S3 with IAM Roles](#53-to-acess-s3-with-iam-roles)
@@ -170,7 +170,7 @@
 - T3, T3a, and T2 instances, are designed to provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload.
   - Burstable performance instances are the only instance types that use credits for CPU usage.
 
-# 5. Introduction to Security Groups
+# 5. Security Groups
 
 - Security Groups are the fundamental of network security in AWS.
 - They control how traffic is allowed into or out of our EC2 Instances.

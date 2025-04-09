@@ -145,7 +145,7 @@
     - `Principal` - The user, account, service, or other entity that is allowed or denied access to the bucket or objects within the bucket.
     - `Resource` - The resource that's affected by the action.
       - You specify a resource using an Amazon Resource Name (ARN).
-      ```
+      ```json
       {
         "Version": "2012-10-17",
         "Statement": [
@@ -723,7 +723,7 @@ TODO: DIAGRAM
 - **Retention Period:** protect the object for a fixed period, it can be extended.
 - **Legal Hold**
   - Protect the object indefinitely, independent from retention period.
-  - Can be freely placed and removed using the s3:PutObjectLegalHold IAM permission.
+  - Can be freely placed and removed using the `s3:PutObjectLegalHold` IAM permission.
 
 # 30. S3 - Access Points
 

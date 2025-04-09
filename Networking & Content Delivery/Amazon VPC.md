@@ -13,15 +13,22 @@
   - [4.2. NAT Gateway vs. NAT Instance](#42-nat-gateway-vs-nat-instance)
 - [5. Internet Gateway](#5-internet-gateway)
   - [5.1. Subnet](#51-subnet)
-- [6. Network ACL and Security Groups](#6-network-acl-and-security-groups)
-  - [6.1. Network ACLs vs Security Groups](#61-network-acls-vs-security-groups)
-- [7. VPC Flow Logs](#7-vpc-flow-logs)
-- [8. VPC Peering](#8-vpc-peering)
-- [9. VPC Endpoints](#9-vpc-endpoints)
-- [10. Site to Site VPN \& Direct Connect](#10-site-to-site-vpn--direct-connect)
-- [11. Site-to-Site VPN](#11-site-to-site-vpn)
-- [12. Transit Gateway](#12-transit-gateway)
-- [13. VPC Closing Comments](#13-vpc-closing-comments)
+- [6. Bastion Hosts](#6-bastion-hosts)
+- [7. NAT Instance (outdated)](#7-nat-instance-outdated)
+  - [7.1. Comments](#71-comments)
+- [8. Network Access Control List (NACL)](#8-network-access-control-list-nacl)
+  - [8.1. Default NACL](#81-default-nacl)
+  - [8.2. Network ACLs vs Security Groups](#82-network-acls-vs-security-groups)
+- [9. Ephemeral Ports](#9-ephemeral-ports)
+- [10. VPC Flow Logs](#10-vpc-flow-logs)
+- [11. VPC Peering](#11-vpc-peering)
+- [12. VPC Endpoints (AWS PrivateLink)](#12-vpc-endpoints-aws-privatelink)
+  - [12.1. Types of Endpoints](#121-types-of-endpoints)
+  - [12.2. Gateway or Interface Endpoint for S3?](#122-gateway-or-interface-endpoint-for-s3)
+- [13. Site to Site VPN \& Direct Connect](#13-site-to-site-vpn--direct-connect)
+- [14. Site-to-Site VPN](#14-site-to-site-vpn)
+- [15. Transit Gateway](#15-transit-gateway)
+- [16. VPC Closing Comments](#16-vpc-closing-comments)
 
 # 1. Understanding CIDR
 
@@ -150,21 +157,56 @@
   - **But you can associate multiple subnets with the same subnet route table (1..N).**
 - A route table contains a set of rules, called routes, that are used to determine where network traffic from your subnet or gateway is directed. The route table in the instance's subnet should have a route defined to the Internet Gateway.
 
-# 6. Network ACL and Security Groups
+# 6. Bastion Hosts
+
+- We can use a Bastion Host to SSH into our private EC2 instances.
+- The bastion is in the public subnet which is then connected to all other private subnets.
+- **Bastion Host security group must allow** inbound from the internet on port 22 from restricted CIDR, for example the public CIDR of your corporation.
+- Security Group of the EC2 Instances must allow the Security Group of the Bastion Host, or the private IP of the Bastion host.
+
+# 7. NAT Instance (outdated)
+
+- NAT = Network Address Translation.
+- Allows EC2 instances in private subnets to connect to the Internet.
+- Must be launched in a public subnet.
+- **Must disable EC2 setting:** Source / destination Check.
+- Must have Elastic IP attached to it.
+- Route Tables must be configured to route traffic from private subnets to the NAT Instance.
+
+## 7.1. Comments
+
+- Pre-configured Amazon Linux AMI is available.
+  - Reached the end of standard support on December 31, 2020.
+- Not highly available / resilient setup out of the box.
+  - We need to create an ASG in multi-AZ + resilient user-data script.
+- Internet traffic bandwidth depends on EC2 instance type.
+- **We must manage Security Groups & rules:**
+  - **Inbound**
+    - Allow HTTP / HTTPS traffic coming from Private Subnets.
+    - Allow SSH from your home network (access is provided through Internet Gateway).
+  - **Outbound**
+    - Allow HTTP / HTTPS traffic to the Internet.
+
+# 8. Network Access Control List (NACL)
 
 - **A network access control list (NACL) is an optional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets.**
-- **They have both ALLOW and DENY rules.**
-- **NACL (Network ACL):**
-  - A firewall which controls traffic from and to subnet.
-  - Can have ALLOW and DENY rules.
-  - Are attached at the **Subnet** level.
-  - Rules only include IP addresses.
-- **Security Groups:**
-  - A firewall that controls traffic to and from **an ENI / an EC2 Instance**.
-  - Can have only ALLOW rules.
-  - Rules include IP addresses and other security groups.
+- NACL are like a firewall which control traffic from and to **subnets**.
+- One NACL per subnet, new subnets are assigned the Default NACL.
+- **We define NACL Rules**
+  - Rules have a number (1-32766), higher precedence with a lower number.
+  - First rule match will drive the decision.
+  - **Example:** If we define #100 ALLOW 10.0.0.10/32 and #200 DENY 10.0.0.10/32, the IP address will be allowed because 100 has a higher precedence over 200.
+  - The last rule is an asterisk (\*) and denies a request in case of no rule match.
+  - AWS recommends adding rules by increment of 100.
+- Newly created NACLs will deny everything.
+- NACL are a great way of blocking a specific IP address at the subnet level.
 
-## 6.1. Network ACLs vs Security Groups
+## 8.1. Default NACL
+
+- Accepts everything inbound/outbound with the subnets it's associated with.
+- Do NOT modify the Default NACL, instead create custom NACLs.
+
+## 8.2. Network ACLs vs Security Groups
 
 | Security group                                                                                                                                               | Network ACL                                                                                                                                                                            |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -176,7 +218,15 @@
 
 - https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html
 
-# 7. VPC Flow Logs
+# 9. Ephemeral Ports
+
+- For any two endpoints to establish a connection, they must use ports.
+- Clients connect to a defined port, and expect a response on an ephemeral port.
+- Different Operating Systems use different port ranges, examples:
+  - IANA & MS Windows 10 -> 49152 - 65535.
+  - Many Linux Kernels -> 32768 - 60999.
+
+# 10. VPC Flow Logs
 
 - Capture information about IP traffic going into your interfaces:
   - **VPC Flow** Logs.
@@ -189,25 +239,48 @@
 - Captures network information from AWS managed interfaces too: Elastic Load Balancers, ElastiCache, RDS, Aurora, etc...
 - VPC Flow logs data can go to S3 / CloudWatch Logs.
 
-# 8. VPC Peering
+# 11. VPC Peering
 
 - Connect two VPC, privately using AWS' network.
 - Make them behave as if they were in the same network.
 - Must not have overlapping CIDR (IP address range).
-- VPC Peering connection is not transitive (must be established for each VPC that need to communicate with one another).
+- VPC Peering connection is **NOT transitive** (must be established for each VPC that need to communicate with one another).
+- **We must update route tables in each VPC's subnets to ensure EC2 instances can communicate with each othe.**
+- We can create VPC Peering connection between VPCs in different **AWS accounts/regions**.
+- We can reference a security group in a peered VPC (works cross accounts – same region).
 
-# 9. VPC Endpoints
+# 12. VPC Endpoints (AWS PrivateLink)
 
-- Endpoints allow you to connect to AWS Services **using a private network** instead of the public www network.
-- This gives you enhanced security and lower latency to access AWS services.
-- **VPC Endpoint Gateway**: S3 and DynamoDB.
-- **VPC Endpoint Interface**: the rest.
+- Every AWS service is publicly exposed (public URL).
+- VPC Endpoints (powered by AWS PrivateLink) allows you to connect to AWS services using a **private network** instead of using the public Internet.
+- They're redundant and scale horizontally.
+- They remove the need of IGW, NATGW, ... to access AWS Services.
+- **In case of issues**
+  - Check DNS Setting Resolution in your VPC.
+  - Check Route Tables.
 
 ![VPC Endpoints Diagram](/Images/Networking%20&%20Content%20Delivery/AmazonVPCEndpoints.png)
 
 ![VPC Endpoints Console](/Images/Networking%20&%20Content%20Delivery/AmazonVPCEndpointsConsole.png)
 
-# 10. Site to Site VPN & Direct Connect
+## 12.1. Types of Endpoints
+
+- **Interface Endpoints (powered by PrivateLink)**
+  - Provisions an ENI (private IP address) as an entry point (must attach a Security Group).
+  - Supports most AWS services.
+  - $ per hour + $ per GB of data processed.
+- **Gateway Endpoints**
+  - Provisions a gateway and must be used as a target in a route table (does not use security groups).
+  - Supports both S3 and DynamoDB.
+  - Free.
+
+## 12.2. Gateway or Interface Endpoint for S3?
+
+- Gateway is most likely going to be preferred all.
+- **Cost:** Free for Gateway, $ for interface endpoint.
+- Interface Endpoint is preferred access is required from on-premises (Site to Site VPN or Direct Connect), a different VPC or a different region.
+
+# 13. Site to Site VPN & Direct Connect
 
 - **Site to Site VPN:**
   - Connect an on-premises VPN to AWS.
@@ -221,19 +294,19 @@
     - Takes at least a month to establish.
 - Note: **Site-to-site VPN** and **Direct Connect** cannot access **VPC endpoints**.
 
-# 11. Site-to-Site VPN
+# 14. Site-to-Site VPN
 
 - On-premises: must use a **Customer Gateway** (CGW)
 - AWS: must use a **Virtual Private Gateway** (VGW)
 
-# 12. Transit Gateway
+# 15. Transit Gateway
 
 - **Transit Gateway connects thousands of VPC and on-premises networks together in a single gateway.**
 - For having transitive peering between thousands of VPC and on-premises, hub-and-spoke (star) connection.
 - One single Gateway to provide this functionality.
 - Works with Direct Connect Gateway, VPN connections.
 
-# 13. VPC Closing Comments
+# 16. VPC Closing Comments
 
 - **VPC:** Virtual Private Cloud.
 - **Subnets:** Tied to an AZ, network partition of the VPC.

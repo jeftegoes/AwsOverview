@@ -42,7 +42,7 @@
 - **EC2 Enhanced Networking (SR-IOV)**
   - Higher bandwidth, higher PPS (packet per second), lower latency.
   - **Option 1:** **Elastic Network Adapter (ENA)** up to 100 Gbps.
-  - **Option 2:** Intel 82599 VF up to 10 Gbps – LEGACY.
+  - **Option 2:** Intel 82599 VF up to 10 Gbps - LEGACY.
 - **Elastic Fabric Adapter (EFA)**
   - Improved ENA for HPC, only works for Linux.
   - Great for inter-node communications, tightly coupled workloads.
