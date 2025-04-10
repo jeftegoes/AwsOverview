@@ -21,6 +21,7 @@
   - [8.2. Network ACLs vs Security Groups](#82-network-acls-vs-security-groups)
 - [9. Ephemeral Ports](#9-ephemeral-ports)
 - [10. VPC Flow Logs](#10-vpc-flow-logs)
+  - [10.1. Logs Syntax](#101-logs-syntax)
 - [11. VPC Peering](#11-vpc-peering)
 - [12. VPC Endpoints (AWS PrivateLink)](#12-vpc-endpoints-aws-privatelink)
   - [12.1. Types of Endpoints](#121-types-of-endpoints)
@@ -229,15 +230,21 @@
 # 10. VPC Flow Logs
 
 - Capture information about IP traffic going into your interfaces:
-  - **VPC Flow** Logs.
-  - **Subnet** Flow Logs.
-  - **Elastic Network Interface** Flow Logs.
-- Helps to monitor & troubleshoot connectivity issues. Example:
-  - Subnets to internet.
-  - Subnets to subnets.
-  - Internet to subnets.
-- Captures network information from AWS managed interfaces too: Elastic Load Balancers, ElastiCache, RDS, Aurora, etc...
-- VPC Flow logs data can go to S3 / CloudWatch Logs.
+  - VPC Flow Logs.
+  - Subnet Flow Logs.
+  - Elastic Network Interface (ENI) Flow Logs.
+- Helps to monitor & troubleshoot connectivity issues.
+- Flow logs data can go to S3, CloudWatch Logs, and Kinesis Data Firehose.
+- Captures network information from AWS managed interfaces too: ELB, RDS, ElastiCache, Redshift, WorkSpaces, NATGW, Transit Gateway...
+
+## 10.1. Logs Syntax
+
+- `srcaddr` & `dstaddr` - Help identify problematic IP.
+- `srcport` & `dstport` - Help identity problematic ports.
+- **Action** - Success or failure of the request due to Security Group / NACL.
+- Can be used for analytics on usage patterns, or malicious behavior.
+- **Query VPC flow logs using Athena on S3 or CloudWatch Logs Insights.**
+- **Flow Logs examples:** https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs- records-examples.htm
 
 # 11. VPC Peering
 
@@ -247,7 +254,7 @@
 - VPC Peering connection is **NOT transitive** (must be established for each VPC that need to communicate with one another).
 - **We must update route tables in each VPC's subnets to ensure EC2 instances can communicate with each othe.**
 - We can create VPC Peering connection between VPCs in different **AWS accounts/regions**.
-- We can reference a security group in a peered VPC (works cross accounts – same region).
+- We can reference a security group in a peered VPC (works cross accounts - same region).
 
 # 12. VPC Endpoints (AWS PrivateLink)
 
