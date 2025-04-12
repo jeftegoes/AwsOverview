@@ -26,10 +26,18 @@
 - [12. VPC Endpoints (AWS PrivateLink)](#12-vpc-endpoints-aws-privatelink)
   - [12.1. Types of Endpoints](#121-types-of-endpoints)
   - [12.2. Gateway or Interface Endpoint for S3?](#122-gateway-or-interface-endpoint-for-s3)
-- [13. Site to Site VPN \& Direct Connect](#13-site-to-site-vpn--direct-connect)
-- [14. Site-to-Site VPN](#14-site-to-site-vpn)
-- [15. Transit Gateway](#15-transit-gateway)
-- [16. VPC Closing Comments](#16-vpc-closing-comments)
+- [13. Site-to-Site VPN](#13-site-to-site-vpn)
+  - [13.1. Site-to-Site VPN Connections](#131-site-to-site-vpn-connections)
+- [14. AWS VPN CloudHub](#14-aws-vpn-cloudhub)
+- [15. Direct Connect (DX)](#15-direct-connect-dx)
+  - [15.1. Direct Connect Gateway](#151-direct-connect-gateway)
+    - [15.1.1. Connection Types](#1511-connection-types)
+  - [15.2. Encryption](#152-encryption)
+  - [15.3. Resiliency](#153-resiliency)
+- [16. Site-to-Site VPN connection as a backup](#16-site-to-site-vpn-connection-as-a-backup)
+- [17. Transit Gateway](#17-transit-gateway)
+  - [17.1. ransit Gateway: Site-to-Site VPN ECMP](#171-ransit-gateway-site-to-site-vpn-ecmp)
+- [18. VPC - Traffic Mirroring](#18-vpc---traffic-mirroring)
 
 # 1. Understanding CIDR
 
@@ -287,43 +295,99 @@
 - **Cost:** Free for Gateway, $ for interface endpoint.
 - Interface Endpoint is preferred access is required from on-premises (Site to Site VPN or Direct Connect), a different VPC or a different region.
 
-# 13. Site to Site VPN & Direct Connect
+# 13. Site-to-Site VPN
 
-- **Site to Site VPN:**
-  - Connect an on-premises VPN to AWS.
-  - The connection is automatically encrypted.
-  - Goes over the public internet.
-- **AWS Direct Connect is a cloud service solution that makes it easy to establish a dedicated private network connection from your premises to AWS.**
-  - **Direct Connect (DX):**
-    - Establish a physical connection between on-premises and AWS.
-    - The connection is private, secure and fast.
-    - Goes over a private network.
-    - Takes at least a month to establish.
-- Note: **Site-to-site VPN** and **Direct Connect** cannot access **VPC endpoints**.
+- **Virtual Private Gateway (VGW)**
+  - VPN concentrator on the AWS side of the VPN connection.
+  - VGW is created and attached to the VPC from which we want to create the Site-to-Site VPN connection.
+  - Possibility to customize the ASN (Autonomous System Number).
+- **Customer Gateway (CGW)**
+  - Software application or physical device on customer side of the VPN connection.
+  - https://docs.aws.amazon.com/vpn/latest/s2svpn/your-cgw.html#DevicesTested
 
-# 14. Site-to-Site VPN
+## 13.1. Site-to-Site VPN Connections
 
-- On-premises: must use a **Customer Gateway** (CGW)
-- AWS: must use a **Virtual Private Gateway** (VGW)
+- **Customer Gateway Device (On-premises)**
+  - **What IP address to use?**
+    - Public Internet-routable IP address for your Customer Gateway device.
+    - If it's behind a NAT device that's enabled for NAT traversal (NAT-T), use the public IP address of the NAT device.
+- **Important step:** Enable **Route Propagation** for the Virtual Private Gateway in the route table that is associated with your subnets.
+- If we need to ping your EC2 instances from on-premises, make sure we add the ICMP protocol on the inbound of your security groups.
 
-# 15. Transit Gateway
+# 14. AWS VPN CloudHub
 
-- **Transit Gateway connects thousands of VPC and on-premises networks together in a single gateway.**
-- For having transitive peering between thousands of VPC and on-premises, hub-and-spoke (star) connection.
-- One single Gateway to provide this functionality.
+- Provide secure communication between multiple sites, if we have multiple VPN connections.
+- Low-cost hub-and-spoke model for primary or secondary network connectivity between different locations (VPN only).
+- It's a VPN connection so it goes over the public Internet.
+- To set it up, connect multiple VPN connections on the same VGW, setup dynamic routing and configure route tables.
+
+# 15. Direct Connect (DX)
+
+- Provides a dedicated **private** connection from a remote network to your VPC.
+- Dedicated connection must be setup between your DC and AWS Direct Connect locations
+- We need to setup a Virtual Private Gateway on your VPC.
+- Access public resources (S3) and private (EC2) on same connection.
+- **Use Cases**
+  - Increase bandwidth throughput - working with large data sets - lower cost.
+  - More consistent network experience - applications using real-time data feeds.
+  - Hybrid Environments (on prem + cloud).
+- Supports both IPv4 and IPv6
+
+## 15.1. Direct Connect Gateway
+
+- If we want to setup a Direct Connect to one or more VPC in many different regions (same account), we must use a Direct Connect Gateway.
+
+### 15.1.1. Connection Types
+
+- **Dedicated Connections:** 1 Gbps, 10 Gbps and 100 Gbps capacity.
+  - Physical ethernet port dedicated to a customer.
+  - Request made to AWS first, then completed by AWS Direct Connect Partners.
+- **Hosted Connections:** 50 Mbps, 500 Mbps, to 10 Gbps.
+  - Connection requests are made via AWS Direct Connect Partners.
+  - Capacity can be **added or removed on demand**.
+  - 1, 2, 5, 10 Gbps available at select AWS Direct Connect Partners.
+- Lead times are often longer than 1 month to establish a new connection.
+
+## 15.2. Encryption
+
+- Data in transit is **not encrypted** but is private.
+- AWS Direct Connect + VPN provides an IPsec-encrypted private connection.
+- Good for an extra level of security, but slightly more complex to put in place.
+
+## 15.3. Resiliency
+
+- High Resiliency for Critical Workloads.
+  - One connection at multiple locations.
+- Maximum Resiliency for Critical Workloads.
+  - Maximum resilience is achieved by separate connections terminating on separate devices in more than one location.
+
+# 16. Site-to-Site VPN connection as a backup
+
+- In case Direct Connect fails, we can set up a backup Direct Connect connection (expensive), or a Site-to-Site VPN connection.
+
+# 17. Transit Gateway
+
+- **For having transitive peering between thousands of VPC and on-premises, hub-and-spoke (star) connection.**
+- Regional resource, can work cross-region.
+- Share cross-account using Resource Access Manager (RAM).
+- We can peer Transit Gateways across regions.
+- Route Tables: limit which VPC can talk with other VPC.
 - Works with Direct Connect Gateway, VPN connections.
+- Supports **IP Multicast** (not supported by any other AWS service).
 
-# 16. VPC Closing Comments
+## 17.1. ransit Gateway: Site-to-Site VPN ECMP
 
-- **VPC:** Virtual Private Cloud.
-- **Subnets:** Tied to an AZ, network partition of the VPC.
-- **Internet Gateway:** At the VPC level, provide Internet Access.
-- **NAT Gateway / Instances:** Give internet access to private subnets.
-- **NACL:** Stateless, subnet rules for inbound and outbound.
-- **Security Groups:** Stateful, operate at the EC2 instance level or ENI.
-- **VPC Peering:** Connect two VPC with non overlapping IP ranges, nontransitive.
-- **VPC Endpoints:** Provide private access to AWS Services within VPC.
-- **VPC Flow Logs:** Network traffic logs.
-- **Site to Site VPN:** VPN over public internet between on-premises DC and AWS.
-- **Direct Connect:** Direct private connection to AWS.
-- **Transit Gateway:** Connect thousands of VPC and on-premises networks together.
+- ECMP = Equal-cost multi-path routing.
+- Routing strategy to allow to forward a packet over multiple best path.
+- **Use case:** Create multiple Site-to-Site VPN connections to increase the bandwidth of your connection to AWS.
+
+# 18. VPC - Traffic Mirroring
+
+- Allows you to capture and inspect network traffic in your VPC.
+- Route the traffic to security appliances that you manage.
+- **Capture the traffic**
+  - **From (Source)** - ENIs.
+  - **To (Targets)** - an ENI or a Network Load Balancer.
+- Capture all packets or capture the packets of your interest (optionally, truncate packets).
+- Source and Target can be in the same VPC or different VPCs (VPC Peering).
+- **Use cases:** Content inspection, threat monitoring, troubleshooting, ...
