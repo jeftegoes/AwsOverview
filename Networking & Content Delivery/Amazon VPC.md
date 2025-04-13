@@ -38,6 +38,11 @@
 - [17. Transit Gateway](#17-transit-gateway)
   - [17.1. ransit Gateway: Site-to-Site VPN ECMP](#171-ransit-gateway-site-to-site-vpn-ecmp)
 - [18. VPC - Traffic Mirroring](#18-vpc---traffic-mirroring)
+- [19. What is IPv6?](#19-what-is-ipv6)
+  - [19.1. IPv6 in VPC](#191-ipv6-in-vpc)
+  - [19.2. IPv6 Troubleshooting](#192-ipv6-troubleshooting)
+  - [19.3. Egress-only Internet Gateway](#193-egress-only-internet-gateway)
+- [20. VPC Section Summary](#20-vpc-section-summary)
 
 # 1. Understanding CIDR
 
@@ -384,10 +389,74 @@
 # 18. VPC - Traffic Mirroring
 
 - Allows you to capture and inspect network traffic in your VPC.
-- Route the traffic to security appliances that you manage.
+- Route the traffic to security appliances that we manage.
 - **Capture the traffic**
   - **From (Source)** - ENIs.
   - **To (Targets)** - an ENI or a Network Load Balancer.
 - Capture all packets or capture the packets of your interest (optionally, truncate packets).
 - Source and Target can be in the same VPC or different VPCs (VPC Peering).
 - **Use cases:** Content inspection, threat monitoring, troubleshooting, ...
+
+# 19. What is IPv6?
+
+- IPv4 designed to provide 4.3 Billion addresses (they'll be exhausted soon).
+- IPv6 is the successor of IPv4.
+- IPv6 is designed to provide 3.4 x 10^38 unique IP addresses.
+- **Every IPv6 address in AWS is public** and Internet-routable (no private range).
+- Format -> x.x.x.x.x.x.x.x (x is hexadecimal, range can be from 0000 to ffff).
+- **Examples**
+  - 2001:db8:3333:4444:5555:6666:7777:8888
+  - 2001:db8:3333:4444:cccc:dddd:eeee:ffff
+  - :: -> all 8 segments are zero
+  - 2001:db8:: -> the last 6 segments are zero
+  - ::1234:5678 -> the first 6 segments are zero
+  - 2001:db8::1234:5678 -> the middle 4 segments are zero
+
+## 19.1. IPv6 in VPC
+
+- **IPv4 cannot be disabled for your VPC and subnets**
+- We can enable IPv6 (they're public IP addresses) to operate in dual-stack mode.
+- Your EC2 instances will get at least a private internal IPv4 and a public IPv6.
+- They can communicate using either IPv4 or IPv6 to the internet through an Internet Gateway EC2 Instance.
+
+## 19.2. IPv6 Troubleshooting
+
+- So, if we cannot launch an EC2 instance in your subnet.
+  - It's not because it cannot acquire an IPv6 (the space is very large).
+  - It's because there are no available IPv4 in your subnet.
+- **Solution:** Create a new IPv4 CIDR in your subnet.
+
+## 19.3. Egress-only Internet Gateway
+
+- **Used for IPv6 only.**
+- (similar to a NAT Gateway but for IPv6).
+- Allows instances in your VPC outbound connections over IPv6 while preventing the internet to initiate an IPv6 connection to your instances.
+- **You must update the Route Tables.**
+
+# 20. VPC Section Summary
+
+- **CIDR:** IP Range.
+- **VPC:** Virtual Private Cloud => we define a list of IPv4 & IPv6 CIDR.
+- **Subnets:** Tied to an AZ, we define a CIDR.
+- **Internet Gateway:** At the VPC level, provide IPv4 & IPv6 Internet Access.
+- **Route Tables:** Must be edited to add routes from subnets to the IGW, VPC Peering Connections, VPC Endpoints, ...
+- **Bastion Host:** Public EC2 instance to SSH into, that has SSH connectivity to EC2 instances in private subnets.
+- **NAT Instances:** Gives Internet access to EC2 instances in private subnets. Old, must be setup in a public subnet, disable Source / Destination check flag.
+- **NAT Gateway:** Managed by AWS, provides scalable Internet access to private EC2 instances, when the target is an IPv4 address.
+- **NACL:** Stateless, subnet rules for inbound and outbound, don't forget Ephemeral Ports.
+- **Security Groups:** Stateful, operate at the EC2 instance level.
+- **VPC Peering:** Connect two VPCs with non overlapping CIDR, non-transitive.
+- **VPC Endpoints:** Provide private access to AWS Services (S3, DynamoDB, CloudFormation, SSM) within a VPC.
+- **VPC Flow Logs:** Can be setup at the VPC / Subnet / ENI Level, for ACCEPT and REJECT traffic, helps identifying attacks, analyze using Athena or CloudWatch Logs Insights.
+- **Site-to-Site VPN:** Setup a Customer Gateway on DC, a Virtual Private Gateway on VPC, and site-to-site VPN over public Internet.
+- **AWS VPN CloudHub:** Hub-and-spoke VPN model to connect your sites.
+- **Direct Connect:** Setup a Virtual Private Gateway on VPC, and establish a direct private connection to an AWS Direct Connect Location.
+- **Direct Connect Gateway:** Setup a Direct Connect to many VPCs in different AWS regions.
+- **AWS PrivateLink / VPC Endpoint Services**
+  - Connect services privately from your service VPC to customers VPC.
+  - Doesn't need VPC Peering, public Internet, NAT Gateway, Route Tables.
+  - Must be used with Network Load Balancer & ENI.
+- **ClassicLink:** Connect EC2-Classic EC2 instances privately to your VPC.
+- **Transit Gateway:** Transitive peering connections for VPC, VPN & DX.
+- **Traffic Mirroring:** Copy network traffic from ENIs for further analysis.
+- **Egress-only Internet Gateway:** Like a NAT Gateway, but for IPv6 targets.
