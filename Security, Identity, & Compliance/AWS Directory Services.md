@@ -18,7 +18,7 @@
 
 # 2. AWS Directory Services
 
-- **AWS Directory Service makes it easy for you to setup and run directories in the AWS cloud, or connect your AWS resources with an existing on-premises Microsoft Active Directory.**
+- **AWS Directory Service makes it easy for we to setup and run directories in the AWS cloud, or connect your AWS resources with an existing on-premises Microsoft Active Directory.**
 - **AWS Managed Microsoft AD**
   - Create your own AD in AWS, manage users locally, supports MFA.
   - Establish "trust" connections with your on-premise AD.

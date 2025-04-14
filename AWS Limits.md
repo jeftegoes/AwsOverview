@@ -16,12 +16,12 @@
 # 2. Service Quotas (Service Limits)
 
 - Running On-Demand Standard Instances: 1152 vCPU.
-- You can request a service limit increase by **opening a ticket**.
-- You can request a service quota increase by using the **Service Quotas API**.
+- We can request a service limit increase by **opening a ticket**.
+- We can request a service quota increase by using the **Service Quotas API**.
 
 # 3. Exponential Backoff (any AWS service)
 
-- If you get **ThrottlingException** intermittently, use exponential backoff.
+- If we get **ThrottlingException** intermittently, use exponential backoff.
 - Retry mechanism already included in AWS SDK API calls.
 - Must implement yourself if using the AWS API as-is or in specific cases.
   - **Must only implement the retries on 5xx server errors and throttling.**

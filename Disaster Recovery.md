@@ -24,9 +24,9 @@
 # 2. RPO & RTO
 
 - **RPO:** Recovery Point Objective.
-  - How much of a data loss are you willing to accept in case of a disaster happens?
+  - How much of a data loss are we willing to accept in case of a disaster happens?
 - **RTO:** Recovery Time Objective.
-  - Is when you recover from your disaster.
+  - Is when we recover from your disaster.
 
 ![RPO & RTO](/Images/DisasterRecoveryRpoRto.png)
 

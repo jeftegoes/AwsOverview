@@ -55,7 +55,7 @@
 
 # 5. AWS Private Certificate Authority (CA)
 
-- Managed service allows you to create private Certificate Authorities (CA), including root and subordinaries CAs.
+- Managed service allows we to create private Certificate Authorities (CA), including root and subordinaries CAs.
 - Can issue and deploy end-entity X.509 certificates.
 - Certificates are trusted only by your Organization (not the public Internet).
 - Works for AWS services that are integrated with ACM.

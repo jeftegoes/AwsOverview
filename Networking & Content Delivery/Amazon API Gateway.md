@@ -375,27 +375,27 @@
 
 ## 17.4. Summary
 
-- IAM:
+- **IAM**
   - Great for users / roles already within your AWS account, + resource policy for cross account.
   - Handle authentication + authorization.
   - Leverages Signature v4.
-- Custom Authorizer (Lambda Authorizer):
+- **Custom Authorizer (Lambda Authorizer)**
   - Great for 3rd party tokens.
   - Very flexible in terms of what IAM policy is returned.
   - Handle Authentication verification + Authorization in the Lambda function.
   - Pay per Lambda invocation, results are cached.
-- Cognito User Pool:
-  - You manage your own user pool (can be backed by Facebook, Google login etc...)
+- **Cognito User Pool**
+  - We manage your own user pool (can be backed by Facebook, Google login etc...)
   - No need to write any custom code.
   - Must implement authorization in the backend.
 
 # 18. HTTP API vs REST API
 
-- HTTP APIs:
+- **HTTP APIs**
   - low-latency, cost-effective AWS Lambda proxy, HTTP proxy APIs and private integration (no data mapping).
   - Support OIDC and OAuth 2.0 authorization, and built-in support for CORS.
   - No usage plans and API keys.
-- REST APIs:
+- **REST APIs**
   - All features (except Native OpenID Connect / OAuth 2.0).
 
 [Full list here](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html)

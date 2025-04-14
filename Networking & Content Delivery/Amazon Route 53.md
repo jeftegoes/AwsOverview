@@ -168,7 +168,7 @@
 ### 2.6.2. Calculated Health Checks
 
 - Combine the results of multiple Health Checks into a single Health Check.
-- You can use **OR, AND, or NOT**.
+- We can use **OR, AND, or NOT**.
 - Can monitor up to 256 Child Health Checks.
 - Specify how many of the health checks need to pass to make the parent pass.
 - **Usage:** Perform maintenance to your website without causing all health checks to fail.
@@ -177,7 +177,7 @@
 
 - Route 53 health checkers are outside the VPC.
 - They can't access **private** endpoints (private VPC or on-premises resource).
-- You can create a **CloudWatch Metric** and associate a **CloudWatch Alarm**, then create a Health Check that checks the alarm itself.
+- We can create a **CloudWatch Metric** and associate a **CloudWatch Alarm**, then create a Health Check that checks the alarm itself.
 
 ## 2.7. Routing Policies
 

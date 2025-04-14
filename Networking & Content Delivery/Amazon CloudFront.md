@@ -143,7 +143,7 @@
 ## 3.3. Origin Request Policy
 
 - Specify values that you want to include in origin requests **without including them in the Cache Key (no duplicated cached content)**.
-- You can include:
+- **We can include**
   - **HTTP headers:** None - Whitelist - All viewer headers options.
   - **Cookies:** None - Whitelist - All.
   - **Query Strings:** None - Whitelist - All.
@@ -152,9 +152,9 @@
 
 ## 3.4. Cache invalidations
 
-- In case you update the back-end origin, CloudFront doesn't know about it and will only get the refreshed content after the TTL has expired.
-- However, you can force an entire or partial cache refresh (thus bypassing the TTL) by performing a **CloudFront Invalidation**.
-- You can invalidate all files (\*) or a special path (/Images/\*).
+- In case we update the back-end origin, CloudFront doesn't know about it and will only get the refreshed content after the TTL has expired.
+- However, we can force an entire or partial cache refresh (thus bypassing the TTL) by performing a **CloudFront Invalidation**.
+- We can invalidate all files (\*) or a special path (/Images/\*).
 
 ![Cache Invalidations](/Images/AWSCloudFrontCacheInvalidations.png)
 
@@ -170,7 +170,7 @@
 
 # 4. Geo Restriction
 
-- You can restrict who can access your distribution:
+- We can restrict who can access your distribution:
   - **Whitelist:** Allow your users to access your content only if they're in one of the countries on a list of approved countries.
   - **Blacklist:** Prevent your users from accessing your content if they're in one of the countries on a blacklist of banned countries.
 - The "country" is determined using a 3rd party Geo-IP database.

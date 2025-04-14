@@ -26,7 +26,7 @@
 - `AssumeRole` - Is useful for allowing existing IAM users to access AWS resources that they don't already have access to.
   - For example, the user might need access to resources **in another AWS account (cross account)**.
   - It is also useful as a means to temporarily gain privileged access—for example, to provide multi-factor authentication (MFA).
-  - You must call this API using existing IAM user credentials.
+  - We must call this API using existing IAM user credentials.
 - `AssumeRoleWithSAML` - Return credentials for users logged with SAML.
 - `AssumeRoleWithWebIdentity`
   - Return creds for users logged with an IdP (Facebook Login, Google Login, OIDC compatible...).

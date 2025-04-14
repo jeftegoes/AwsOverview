@@ -83,7 +83,7 @@
 
 ## 3.2. Discussions
 
-- You are free to design each micro-service the way you want.
+- We are free to design each micro-service the way we want.
 - **Synchronous patterns**
   - API Gateway.
   - Load Balancers.
@@ -98,8 +98,8 @@
   - Complexity of running multiple versions of multiple microservices simultaneously.
   - Proliferation of client-side code requirements to integrate with many separate services.
 - Some of the challenges are solved by Serverless patterns:
-  - API Gateway, Lambda scale automatically and you pay per usage.
-  - You can easily clone API, reproduce environments.
+  - API Gateway, Lambda scale automatically and we pay per usage.
+  - We can easily clone API, reproduce environments.
   - Generated client SDK through Swagger integration for the API Gateway.
 
 # 4. 4.Software updates offloading

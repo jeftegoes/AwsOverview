@@ -42,7 +42,10 @@
   - [19.1. IPv6 in VPC](#191-ipv6-in-vpc)
   - [19.2. IPv6 Troubleshooting](#192-ipv6-troubleshooting)
   - [19.3. Egress-only Internet Gateway](#193-egress-only-internet-gateway)
-- [20. VPC Section Summary](#20-vpc-section-summary)
+- [20. Network Protection on AWS](#20-network-protection-on-aws)
+  - [20.1. AWS Network Firewall](#201-aws-network-firewall)
+    - [20.1.1. Fine Grained Controls](#2011-fine-grained-controls)
+- [21. VPC Section Summary](#21-vpc-section-summary)
 
 # 1. Understanding CIDR
 
@@ -433,7 +436,40 @@
 - Allows instances in your VPC outbound connections over IPv6 while preventing the internet to initiate an IPv6 connection to your instances.
 - **You must update the Route Tables.**
 
-# 20. VPC Section Summary
+# 20. Network Protection on AWS
+
+- **To protect network on AWS, we've seen**
+  - Network Access Control Lists (NACLs).
+  - Amazon VPC security groups.
+  - AWS WAF (protect against malicious requests).
+  - AWS Shield & AWS Shield Advanced.
+  - AWS Firewall Manager (to manage them across accounts).
+- But what if we want to protect in a sophisticated way our entire VPC?
+
+## 20.1. AWS Network Firewall
+
+- Protect your entire Amazon VPC.
+- From Layer 3 to Layer 7 protection.
+- Any direction, you can inspect.
+  - VPC to VPC traffic.
+  - Outbound to internet.
+  - Inbound from internet.
+  - To / from Direct Connect & Site-to-Site VPN.
+- Internally, the AWS Network Firewall uses the AWS Gateway Load Balancer.
+- Rules can be centrally managed cross- account by AWS Firewall Manager to apply to many VPCs.
+
+### 20.1.1. Fine Grained Controls
+
+- Supports 1000s of rules.
+  - IP & port - example: 10,000s of IPs filtering.
+  - Protocol - example: block the SMB protocol for outbound communications.
+  - Stateful domain list rule groups: only allow outbound traffic to \*.mycorp.com or third-party software repo.
+  - General pattern matching using regex.
+- **Traffic filtering: Allow, drop, or alert for the traffic that matches the rules.**
+- **Active flow inspection** to protect against network threats with intrusion-prevention capabilities (like Gateway Load Balancer, but all managed by AWS).
+- Send logs of rule matches to Amazon S3, CloudWatch Logs, Kinesis Data Firehose.
+
+# 21. VPC Section Summary
 
 - **CIDR:** IP Range.
 - **VPC:** Virtual Private Cloud => we define a list of IPv4 & IPv6 CIDR.
