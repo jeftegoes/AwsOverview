@@ -36,7 +36,7 @@
   - [15.3. Resiliency](#153-resiliency)
 - [16. Site-to-Site VPN connection as a backup](#16-site-to-site-vpn-connection-as-a-backup)
 - [17. Transit Gateway](#17-transit-gateway)
-  - [17.1. ransit Gateway: Site-to-Site VPN ECMP](#171-ransit-gateway-site-to-site-vpn-ecmp)
+  - [17.1. Transit Gateway: Site-to-Site VPN ECMP](#171-transit-gateway-site-to-site-vpn-ecmp)
 - [18. VPC - Traffic Mirroring](#18-vpc---traffic-mirroring)
 - [19. What is IPv6?](#19-what-is-ipv6)
   - [19.1. IPv6 in VPC](#191-ipv6-in-vpc)
@@ -119,14 +119,15 @@
 
 - **Subnets** allow you to partition your network inside your VPC (Availability Zone resource).
   ![Amazon VPC Subnets](/Images/Networking%20&%20Content%20Delivery/AmazonVPCDiagram.png)
-- AWS reserves 5 IP addresses (first 4 & last 1) in each subnet.
+- **AWS reserves 5 IP addresses (first 4 & last 1) in each subnet.**
 - These 5 IP addresses are not available for use and can't be assigned to an EC2 instance.
-- **Example:** If CIDR block 10.0.0.0/24, then reserved IP addresses are:
-  - 10.0.0.0 - Network Address.
-  - 10.0.0.1 - reserved by AWS for the VPC router.
-  - 10.0.0.2 - reserved by AWS for mapping to Amazon-provided DNS.
-  - 10.0.0.3 - reserved by AWS for future use.
-  - 10.0.0.255 - Network Broadcast Address. AWS does not support broadcast in a VPC, therefore the address is reserved.
+- **Example**
+  - If CIDR block 10.0.0.0/24, then reserved IP addresses are:
+    - 10.0.0.0 - Network Address.
+    - 10.0.0.1 - reserved by AWS for the VPC router.
+    - 10.0.0.2 - reserved by AWS for mapping to Amazon-provided DNS.
+    - 10.0.0.3 - reserved by AWS for future use.
+    - 10.0.0.255 - Network Broadcast Address. AWS does not support broadcast in a VPC, therefore the address is reserved.
 - **ATENTION:** If you need 29 IP addresses for EC2 instances:
   - You can't choose a subnet of size /27 (32 IP addresses, 32 - 5 = 27 < 29).
   - You need to choose a subnet of size /26 (64 IP addresses, 64 - 5 = 59 > 29).
@@ -294,7 +295,7 @@
   - $ per hour + $ per GB of data processed.
 - **Gateway Endpoints**
   - Provisions a gateway and must be used as a target in a route table (does not use security groups).
-  - Supports both S3 and DynamoDB.
+  - **Supports both S3 and DynamoDB.**
   - Free.
 
 ## 12.2. Gateway or Interface Endpoint for S3?
@@ -332,7 +333,7 @@
 # 15. Direct Connect (DX)
 
 - Provides a dedicated **private** connection from a remote network to your VPC.
-- Dedicated connection must be setup between your DC and AWS Direct Connect locations
+- Dedicated connection must be setup between your DC (Datacenter) and AWS Direct Connect locations
 - We need to setup a Virtual Private Gateway on your VPC.
 - Access public resources (S3) and private (EC2) on same connection.
 - **Use Cases**
@@ -343,7 +344,7 @@
 
 ## 15.1. Direct Connect Gateway
 
-- If we want to setup a Direct Connect to one or more VPC in many different regions (same account), we must use a Direct Connect Gateway.
+- **If we want to setup a Direct Connect to one or more VPC in many different regions (same account), we must use a Direct Connect Gateway.**
 
 ### 15.1.1. Connection Types
 
@@ -379,11 +380,11 @@
 - Regional resource, can work cross-region.
 - Share cross-account using Resource Access Manager (RAM).
 - We can peer Transit Gateways across regions.
-- Route Tables: limit which VPC can talk with other VPC.
+- **Route Tables:** Limit which VPC can talk with other VPC.
 - Works with Direct Connect Gateway, VPN connections.
 - Supports **IP Multicast** (not supported by any other AWS service).
 
-## 17.1. ransit Gateway: Site-to-Site VPN ECMP
+## 17.1. Transit Gateway: Site-to-Site VPN ECMP
 
 - ECMP = Equal-cost multi-path routing.
 - Routing strategy to allow to forward a packet over multiple best path.
@@ -484,7 +485,7 @@
 - **VPC Peering:** Connect two VPCs with non overlapping CIDR, non-transitive.
 - **VPC Endpoints:** Provide private access to AWS Services (S3, DynamoDB, CloudFormation, SSM) within a VPC.
 - **VPC Flow Logs:** Can be setup at the VPC / Subnet / ENI Level, for ACCEPT and REJECT traffic, helps identifying attacks, analyze using Athena or CloudWatch Logs Insights.
-- **Site-to-Site VPN:** Setup a Customer Gateway on DC, a Virtual Private Gateway on VPC, and site-to-site VPN over public Internet.
+- **Site-to-Site VPN:** Setup a Customer Gateway on DC (Datacenter), a Virtual Private Gateway on VPC, and site-to-site VPN over public Internet.
 - **AWS VPN CloudHub:** Hub-and-spoke VPN model to connect your sites.
 - **Direct Connect:** Setup a Virtual Private Gateway on VPC, and establish a direct private connection to an AWS Direct Connect Location.
 - **Direct Connect Gateway:** Setup a Direct Connect to many VPCs in different AWS regions.

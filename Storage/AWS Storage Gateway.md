@@ -29,6 +29,8 @@
 # 2. AWS Storage Gateway
 
 - Bridge between on-premise data and cloud data in S3.
+  ![AWS Storage Gateway Diagram](/Images/Storage/AWSStorageGatewayDiagram.png)
+  ![AWS Storage Gateway](/Images//Storage/AWSStorageGateway.png)
 - **Hybrid storage service to allow on- premises to seamlessly use the AWS Cloud.**
 - **Use cases**
   - Disaster recovery.
@@ -41,8 +43,6 @@
   - Volume Gateway.
   - Tape Gateway.
 
-![AWS Storage Gateway](/Images/AWSStorageGateway.png)
-
 # 3. Types of Storage Gateway
 
 ## 3.1. Amazon S3 File Gateway
@@ -53,14 +53,14 @@
 - **Transition to S3 Glacier using a Lifecycle Policy.**
 - Bucket access using IAM roles for each File Gateway.
 - SMB Protocol has integration with Active Directory (AD) for user authentication.
+  ![AWS Storage Gateway - Amazon S3 File Gateway](/Images/Storage/AWSStorageGatewayAmazonS3FileGateway.png)
 
 ### 3.1.1. RefreshCache API
 
 - Storage Gateway updates the File Share Cache automatically when you write files to the File Gateway.
 - When you upload files directly to the S3 bucket, users connected to the File Gateway may not see the files on the File Share (accessing stale data).
 - You need to invoke the `RefreshCache` API.
-
-![AWS Storage Gateway RefreshCache API](/Images/AWSStorageGatewayRefreshCacheAPI.png)
+  ![AWS Storage Gateway RefreshCache API](/Images/Storage/AWSStorageGatewayRefreshCacheAPI.png)
 
 ### 3.1.2. Automating Cache Refresh
 
@@ -74,6 +74,7 @@
 - **Local cache for frequently accessed data.**
 - Windows native compatibility (SMB, NTFS, Active Directory...).
 - Useful for group file shares and home directories.
+  ![AWS Storage Gateway - Amazon FSx File Gateway](/Images/Storage/AWSStorageGatewayAmazonFSxFileGateway.png)
 
 ## 3.3. Volume Gateway
 
