@@ -149,30 +149,22 @@
       {
         "Version": "2012-10-17",
         "Statement": [
-            {
-              "Effect": "Allow",
-              "Principal": {
-                  "AWS": [
-                    "arn:aws:iam::1234567890:role/Developer"
-                  ]
-              },
-              "Action": [
-                  "s3:GetObject"
-              ],
-              "Resource": "arn:aws:s3:::jeftegoesdev/*"
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "AWS": ["arn:aws:iam::1234567890:role/Developer"]
             },
-            {
-              "Effect": "Allow",
-              "Principal": {
-                  "AWS": [
-                    "arn:aws:iam::1234567890:role/QA"
-                  ]
-              },
-              "Action": [
-                  "s3:GetObject"
-              ],
-              "Resource": "arn:aws:s3:::jeftegoesdev/qa/*"
-            }
+            "Action": ["s3:GetObject"],
+            "Resource": "arn:aws:s3:::jeftegoesdev/*"
+          },
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "AWS": ["arn:aws:iam::1234567890:role/QA"]
+            },
+            "Action": ["s3:GetObject"],
+            "Resource": "arn:aws:s3:::jeftegoesdev/qa/*"
+          }
         ]
       }
       ```
@@ -294,7 +286,8 @@ TODO: DIAGRAM
 - **Amazon S3 One Zone-Infrequent Access (S3 One Zone-IA)**
   - High durability (99.999999999%) in a single AZ; data lost when AZ is destroyed.
   - 99.5% Availability.
-  - **Use cases:** Storing secondary backup copies of on-premises data, or data you can recreate.
+  - **Use cases:** Storing secondary backup copies of on-premises data, or data you can re-create.
+- **S3 One Zone-IA** stores data in a **single Availability Zone (AZ)**, offering 20% lower storage costs, while **S3 Standard-IA** stores data across at least **three AZs**, providing higher durability and availability.
 
 ## 9.4. Amazon S3 Glacier Storage Classes
 

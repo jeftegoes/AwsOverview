@@ -25,6 +25,7 @@
 - Can setup **EventBridge rules** to be notified in case of findings.
 - EventBridge rules can target AWS Lambda or SNS.
 - **Can protect against CryptoCurrency attacks (has a dedicated "finding" for it).**
+  ![Amazon GuardDuty Diagram](/Images/Security,%20Identity,%20&%20Compliance/AmazonGuardDutyDiagram.png)
 
 # 2. Multi-Account Strategy
 
@@ -32,11 +33,11 @@
 - Associate the Member accounts with the Administrator account.
   - Through an AWS Organization.
   - Sending invitation through GuardDuty.
-- Administrator account can:
+- **Administrator account can**
   - Add and remove member accounts.
   - Manage GuardDuty within the associated member accounts.
   - Manage findings, suppression rules, trusted IP lists, threat lists.
-- In an AWS Organization, you can specify a member account as the Organization's **delegated administrator for GuardDuty.**
+- In an AWS Organization, you can specify a member account as the Organization's **delegated administrator for GuardDuty**.
 
 # 3. Findings Automated Response
 

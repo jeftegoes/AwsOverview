@@ -145,8 +145,7 @@
 
 - Using the Amazon Kinesis Adapter is the recommended way to consume streams from Amazon DynamoDB.
 - You can write applications for Kinesis Data Streams using the Kinesis Client Library (KCL).
-
-![Kinesis Adapter](/Images/AWSKinesisAdapter.png)
+  ![Kinesis Adapter](/Images/AWSKinesisAdapter.png)
 
 # 5. Kinesis Operation
 
@@ -185,6 +184,7 @@
 - Supports CSV, JSON, Parquet, Avro, Raw Text, Binary data.
 - Conversions to Parquet / ORC, compressions with gzip / snappy.
 - Custom data transformations using AWS Lambda (ex: CSV to JSON).
+  ![Amazon Data Firehose](/Images/Analytics/AmazonDataFirehose.png)
 
 ## 6.1. Kinesis Data Streams vs Firehose
 

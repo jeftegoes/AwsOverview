@@ -521,15 +521,16 @@
 - AMI are built for a **specific region** (and can be copied across regions).
 - You can launch EC2 instances from:
   - **A Public AMI:** AWS provided.
-  - **Your own AMI:** you make and maintain them yourself.
-  - **An AWS Marketplace AMI:** an AMI someone else made (and potentially sells).
+  - **Your own AMI:** You make and maintain them yourself.
+  - **An AWS Marketplace AMI:** An AMI someone else made (and potentially sells).
+- **ATTENTION!** When the new AMI is copied from Region A into Region B, it automatically creates a snapshot in Region B because AMIs are based on the underlying snapshots.
 
 ## 15.1. AMI Process (from an EC2 instance)
 
-- Start an EC2 instance and customize it.
-- Stop the instance (for data integrity).
-- Build an AMI - this will also create EBS snapshots.
-- Launch instances from other AMIs.
+1. Start an EC2 instance and customize it.
+2. Stop the instance (for data integrity).
+3. Build an AMI - this will also create EBS snapshots.
+4. Launch instances from other AMIs.
 
 ## 15.2. EC2 Image Builder
 
@@ -537,7 +538,7 @@
 - Automate the creation, maintain, validate and test **EC2 AMIs**.
 - Can be run on a schedule (weekly, whenever packages are updated, etc...).
 - Free service (only pay for the underlying resources).
-- Steps:
+- **Steps**
   1. EC2 Image Builder
      1. Create
   2. Builder EC2 Instance
