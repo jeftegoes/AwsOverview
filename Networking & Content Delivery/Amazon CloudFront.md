@@ -4,7 +4,8 @@
 
 - [1. Introduction](#1-introduction)
   - [1.1. Origins](#11-origins)
-  - [1.2. Restricting access to an Amazon S3 origin](#12-restricting-access-to-an-amazon-s3-origin)
+  - [1.2. CloudFront at a high level](#12-cloudfront-at-a-high-level)
+  - [1.3. Restricting access to an Amazon S3 origin](#13-restricting-access-to-an-amazon-s3-origin)
 - [2. CloudFront vs S3 Cross Region Replication](#2-cloudfront-vs-s3-cross-region-replication)
 - [3. Caching](#3-caching)
   - [3.1. Cache Key](#31-cache-key)
@@ -43,15 +44,22 @@
   - For distributing files and caching them at the edge.
   - Enhanced security with CloudFront **Origin Access Control (OAC)**.
     - OAC is replacing Origin Access Identity (OAI).
-    - You want to enforce users to access the website only through CloudFront.
+    - We want to enforce users to access the website only through CloudFront.
   - CloudFront can be used as an ingress (to upload files to S3).
+    ![Amazon CloudFront S3 as an Origin](/Images/Networking%20&%20Content%20Delivery/AmazonCloudFrontS3Origin.png)
 - **Custom Origin (HTTP)**
   - Application Load Balancer.
+    ![Amazon CloudFront ALB as an Origin](/Images/Networking%20&%20Content%20Delivery/AmazonCloudFrontALBOrigin.png)
   - EC2 instance.
+    ![Amazon CloudFront EC2 as an Origin](/Images/Networking%20&%20Content%20Delivery/AmazonCloudFrontEC2Origin.png)
   - S3 website (must first enable the bucket as a static S3 website).
-  - Any HTTP backend you want.
+  - Any HTTP backend we want.
 
-## 1.2. Restricting access to an Amazon S3 origin
+## 1.2. CloudFront at a high level
+
+![Amazon CloudFront High Level](/Images/Networking%20&%20Content%20Delivery/AmazonCloudFrontHighLevel.png)
+
+## 1.3. Restricting access to an Amazon S3 origin
 
 - All Amazon S3 buckets in all AWS Regions, including opt-in Regions launched after December 2022.
 - Amazon S3 server-side encryption with AWS KMS (SSE-KMS)
@@ -64,7 +72,7 @@
   - Files are cached for a TTL (maybe a day).
   - **Great for static content that must be available everywhere.**
 - **S3 Cross Region Replication**
-  - Must be setup for each region you want replication to happen.
+  - Must be setup for each region we want replication to happen.
   - Files are updated in near real-time.
   - Read only.
   - **Great for dynamic content that needs to be available at low-latency in few regions.**
@@ -73,15 +81,15 @@
 
 - The cache lives at each CloudFront **Edge Location**.
 - CloudFront identifies each object in the cache using the **Cache Key** (See next section).
-- You want to maximize the cache hit rate to minimize requests on the origin.
-- You can invalidate part of the cache using the **CreateInvalidation** API.
+- We want to maximize the cache hit rate to minimize requests on the origin.
+- We can invalidate part of the cache using the **CreateInvalidation** API.
 
 ## 3.1. Cache Key
 
 - A unique identifier for every object in the cache.
 - By default, consists of **hostname + resource portion of the URL**.
 - If you have an application that serves up content that varies based on user, device, language, location...
-- You can add other elements (HTTP headers, cookies, query strings) to the Cache Key using **CloudFront Cache Policies**.
+- We can add other elements (HTTP headers, cookies, query strings) to the Cache Key using **CloudFront Cache Policies**.
 
 ## 3.2. Cache Policy
 
@@ -142,7 +150,7 @@
 
 ## 3.3. Origin Request Policy
 
-- Specify values that you want to include in origin requests **without including them in the Cache Key (no duplicated cached content)**.
+- Specify values that we want to include in origin requests **without including them in the Cache Key (no duplicated cached content)**.
 - **We can include**
   - **HTTP headers:** None - Whitelist - All viewer headers options.
   - **Cookies:** None - Whitelist - All.
@@ -155,8 +163,7 @@
 - In case we update the back-end origin, CloudFront doesn't know about it and will only get the refreshed content after the TTL has expired.
 - However, we can force an entire or partial cache refresh (thus bypassing the TTL) by performing a **CloudFront Invalidation**.
 - We can invalidate all files (\*) or a special path (/Images/\*).
-
-![Cache Invalidations](/Images/AWSCloudFrontCacheInvalidations.png)
+  ![Cache Invalidations](/Images/Networking%20&%20Content%20Delivery/AmazonCloudFrontCacheInvalidations.png)
 
 ## 3.5. Cache Behaviors
 
@@ -178,11 +185,11 @@
 
 # 5. Signed URL / Signed Cookies
 
-- You want to distribute paid shared content to premium users over the world.
+- We want to distribute paid shared content to premium users over the world.
 - To **Restrict Viewer Access**, we can create a CloudFront Signed URL / Cookie.
 - How long should the URL be valid for?
   - Shared content (movie, music): Make it short (a few minutes).
-  - Private content (private to the user): You can make it last for years.
+  - Private content (private to the user): We can make it last for years.
 - Signed URL = access to individual files (one signed URL per file).
 - Signed Cookies = access to multiple files (one signed cookie for many files).
 
@@ -210,7 +217,7 @@
     - Need to manage keys using **the root account and the AWS console**.
     - Not recommended because you shouldn't use the root account for this.
 - In your CloudFront distribution, create one or more trusted key groups.
-- You generate your own public / private key:
+- **We generate your own public / private key**
   - The private key is used by your applications (e.g. EC2) to sign URLs.
   - The public key (uploaded) is used by CloudFront to verify URLs.
 
@@ -223,7 +230,7 @@
 
 ## 6.1. Price Classes
 
-- You can reduce the number of edge locations for **cost reduction**.
+- We can reduce the number of edge locations for **cost reduction**.
 - Three price classes:
   1. Price Class All: all regions - best performance.
   2. Price Class 200: most regions, but excludes the most expensive regions.
@@ -242,8 +249,7 @@
 - To increase high-availability and do failover.
 - Origin Group: one primary and one secondary origin.
 - If the primary origin fails, the second one is used.
-
-![CloudFront Origin Groups](/Images/AWSCloudFrontOriginGroups.png)
+  ![CloudFront Origin Groups](/Images/Networking%20&%20Content%20Delivery/AmazonCloudFrontOriginGroups.png)
 
 # 8. Field Level Encryption
 
@@ -252,15 +258,15 @@
 - Sensitive information encrypted at the edge close to user.
 - Uses asymmetric encryption.
 - Usage:
-  - Specify set of fields in POST requests that you want to be encrypted (up to 10 fields).
+  - Specify set of fields in POST requests that we want to be encrypted (up to 10 fields).
   - Specify the public key to encrypt them.
 
 # 9. Real Time Logs
 
 - Get real-time requests received by CloudFront sent to Kinesis Data Streams.
 - Monitor, analyze, and take actions based on content delivery performance.
-- Allows you to choose:
-  - Sampling Rate - percentage of requests for which you want to receive.
+- **Allows we to choose**
+  - Sampling Rate - percentage of requests for which we want to receive.
   - Specific fields and specific Cache Behaviors (path patterns).
 
 # 10. HTTPS for communication between viewers and CloudFront

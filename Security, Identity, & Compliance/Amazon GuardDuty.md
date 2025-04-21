@@ -3,12 +3,13 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. Multi-Account Strategy](#2-multi-account-strategy)
-- [3. Findings Automated Response](#3-findings-automated-response)
-  - [3.1. Findings](#31-findings)
-  - [3.2. Findings Types](#32-findings-types)
-- [4. Trusted and Threat IP Lists](#4-trusted-and-threat-ip-lists)
-- [5. CloudFormation](#5-cloudformation)
+- [2. Disable \& Suspend](#2-disable--suspend)
+- [3. Multi-Account Strategy](#3-multi-account-strategy)
+- [4. Findings Automated Response](#4-findings-automated-response)
+  - [4.1. Findings](#41-findings)
+  - [4.2. Findings Types](#42-findings-types)
+- [5. Trusted and Threat IP Lists](#5-trusted-and-threat-ip-lists)
+- [6. CloudFormation](#6-cloudformation)
 
 # 1. Introduction
 
@@ -27,7 +28,12 @@
 - **Can protect against CryptoCurrency attacks (has a dedicated "finding" for it).**
   ![Amazon GuardDuty Diagram](/Images/Security,%20Identity,%20&%20Compliance/AmazonGuardDutyDiagram.png)
 
-# 2. Multi-Account Strategy
+# 2. Disable & Suspend
+
+- **Disabling the service will delete all remaining data**, including your findings and configurations before relinquishing the service permissions and resetting the service.
+- We can **stop** Amazon GuardDuty from analyzing your data sources at any time by choosing to **suspend** the service in the general settings. This will immediately stop the service from analyzing data, but does not delete your existing findings or configurations.
+
+# 3. Multi-Account Strategy
 
 - You can manage multiple accounts in GuardDuty.
 - Associate the Member accounts with the Administrator account.
@@ -39,14 +45,14 @@
   - Manage findings, suppression rules, trusted IP lists, threat lists.
 - In an AWS Organization, you can specify a member account as the Organization's **delegated administrator for GuardDuty**.
 
-# 3. Findings Automated Response
+# 4. Findings Automated Response
 
 - Findings are potential security issue for malicious events happening in your AWS account.
 - Automate response to security issues revealed by GuardDuty Findings using EventBridge.
 - Send alerts to SNS (email, Lambda, Slack, Chime...).
 - Events are published to both the administrator account and the member account that it is originated from.
 
-## 3.1. Findings
+## 4.1. Findings
 
 - GuardDuty pulls independent streams of data directly from CloudTrail logs (management events, data events), VPC Flow Logs or EKS logs.
 - Each finding has a severity value between 0.1 to 8+ (High, Medium, Low).
@@ -58,7 +64,7 @@
   - **Artifact:** Describes a resource that is used in the malicious activity (e.g., DNS).
 - You can generate sample findings in GuardDuty to test your automations.
 
-## 3.2. Findings Types
+## 4.2. Findings Types
 
 - **EC2 Finding Types**
   - UnauthorizedAccess:EC2/SSHBruteForce
@@ -77,7 +83,7 @@
   - Policy:S3/AccountBlockPublicAccessDisabled
   - PenTest:S3/KaliLinux
 
-# 4. Trusted and Threat IP Lists
+# 5. Trusted and Threat IP Lists
 
 - Works only for public IP addresses.
 - **Trusted IP List**
@@ -89,7 +95,7 @@
   - Can be supplied by 3rd party threat intelligence or created custom for you.
 - In a multi-account GuardDuty setup, only the GuardDuty administrator account can manage those lists.
 
-# 5. CloudFormation
+# 6. CloudFormation
 
 - You can enable GuardDuty using a CloudFormation template.
 - If GuardDuty is already enabled, the CloudFormation Stack deployment fails.

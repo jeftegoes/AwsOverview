@@ -38,7 +38,7 @@
 - [17. Baseline Performance](#17-baseline-performance)
   - [17.1. Multi-Part upload:](#171-multi-part-upload)
     - [17.1.1. Sample multipart upload calls](#1711-sample-multipart-upload-calls)
-  - [17.2. S3 Transfer Acceleration](#172-s3-transfer-acceleration)
+  - [17.2. S3 Transfer Acceleration (S3TA)](#172-s3-transfer-acceleration-s3ta)
 - [18. Byte-Range Fetches](#18-byte-range-fetches)
 - [19. Batch Operations](#19-batch-operations)
 - [20. Storage Lens](#20-storage-lens)
@@ -421,9 +421,9 @@ TODO: DIAGRAM
   - 1000 individual `UploadPart` calls, each uploading a part of 100 MB, for a total size of 100 GB
   - A `CompleteMultipartUpload` call to finish the process.
 
-## 17.2. S3 Transfer Acceleration
+## 17.2. S3 Transfer Acceleration (S3TA)
 
-- **Amazon S3 Transfer Acceleration enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket. Transfer Acceleration takes advantage of Amazon CloudFront's globally distributed edge locations. As the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.**
+- **Amazon S3 Transfer Acceleration (S3TA) enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket. Transfer Acceleration takes advantage of Amazon CloudFront's globally distributed edge locations. As the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.**
 - Increase transfer speed by transferring file to an AWS edge location which will forward the data to the S3 bucket in the target region.
 - Compatible with multi-part upload.
 
@@ -713,7 +713,10 @@ TODO: DIAGRAM
 - **Retention mode - Governance**
   - Most users can't overwrite or delete an object version or alter its lock settings.
   - Some users have special permissions to change the retention or delete the object.
-- **Retention Period:** protect the object for a fixed period, it can be extended.
+- **Retention Period**
+  - Protect the object for a fixed period, it can be extended.
+  - When we apply a retention period to an object version explicitly, we specify a `Retain Until Date` for the object version.
+  - Different versions of a single object can have different retention modes and periods.
 - **Legal Hold**
   - Protect the object indefinitely, independent from retention period.
   - Can be freely placed and removed using the `s3:PutObjectLegalHold` IAM permission.

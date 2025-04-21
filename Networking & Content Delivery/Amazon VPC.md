@@ -27,7 +27,7 @@
   - [12.1. Types of Endpoints](#121-types-of-endpoints)
   - [12.2. Gateway or Interface Endpoint for S3?](#122-gateway-or-interface-endpoint-for-s3)
 - [13. Site-to-Site VPN](#13-site-to-site-vpn)
-  - [13.1. Site-to-Site VPN Connections](#131-site-to-site-vpn-connections)
+  - [13.1. Connections](#131-connections)
 - [14. AWS VPN CloudHub](#14-aws-vpn-cloudhub)
 - [15. Direct Connect (DX)](#15-direct-connect-dx)
   - [15.1. Direct Connect Gateway](#151-direct-connect-gateway)
@@ -314,7 +314,7 @@
   - Software application or physical device on customer side of the VPN connection.
   - https://docs.aws.amazon.com/vpn/latest/s2svpn/your-cgw.html#DevicesTested
 
-## 13.1. Site-to-Site VPN Connections
+## 13.1. Connections
 
 - **Customer Gateway Device (On-premises)**
   - **What IP address to use?**
@@ -322,6 +322,7 @@
     - If it's behind a NAT device that's enabled for NAT traversal (NAT-T), use the public IP address of the NAT device.
 - **Important step:** Enable **Route Propagation** for the Virtual Private Gateway in the route table that is associated with your subnets.
 - If we need to ping your EC2 instances from on-premises, make sure we add the ICMP protocol on the inbound of your security groups.
+  ![AWS Site-To-Site VPN Connections](/Images/Networking%20&%20Content%20Delivery/AWSSiteToSiteVPNConnections.png)
 
 # 14. AWS VPN CloudHub
 
@@ -360,7 +361,7 @@
 ## 15.2. Encryption
 
 - Data in transit is **not encrypted** but is private.
-- AWS Direct Connect + VPN provides an IPsec-encrypted private connection.
+- AWS Direct Connect plus (+) virtual private network (VPN) provides an **IPsec-encrypted** private connection.
 - Good for an extra level of security, but slightly more complex to put in place.
 
 ## 15.3. Resiliency

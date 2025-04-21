@@ -1,4 +1,4 @@
-# AWS ELB - Elastic Load Balancing<!-- omit in toc -->
+# AWS ELB - Elastic Load Balancing <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -139,7 +139,7 @@
 - Support for HTTP/2 and WebSocket.
 - Support redirects (from HTTP to HTTPS for example).
 - **Routing tables to different target groups**
-  - Routing based on path in URL (`example.com/users` and `example.com/posts`).
+  - Routing based on path (Path-based Routing) in URL (`example.com/users` and `example.com/posts`).
   - Routing based on hostname in URL (`one.example.com` and `other.example.com`).
   - Routing based on URL Path, Query String, Headers (`example.com/users?id=123&order=false`).
 - ALB are a great fit for micro services & container-based application (example: Docker & Amazon ECS).
