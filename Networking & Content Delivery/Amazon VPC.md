@@ -29,23 +29,18 @@
 - [13. Site-to-Site VPN](#13-site-to-site-vpn)
   - [13.1. Connections](#131-connections)
 - [14. AWS VPN CloudHub](#14-aws-vpn-cloudhub)
-- [15. Direct Connect (DX)](#15-direct-connect-dx)
-  - [15.1. Direct Connect Gateway](#151-direct-connect-gateway)
-    - [15.1.1. Connection Types](#1511-connection-types)
-  - [15.2. Encryption](#152-encryption)
-  - [15.3. Resiliency](#153-resiliency)
-- [16. Site-to-Site VPN connection as a backup](#16-site-to-site-vpn-connection-as-a-backup)
-- [17. Transit Gateway](#17-transit-gateway)
-  - [17.1. Transit Gateway: Site-to-Site VPN ECMP](#171-transit-gateway-site-to-site-vpn-ecmp)
-- [18. VPC - Traffic Mirroring](#18-vpc---traffic-mirroring)
-- [19. What is IPv6?](#19-what-is-ipv6)
-  - [19.1. IPv6 in VPC](#191-ipv6-in-vpc)
-  - [19.2. IPv6 Troubleshooting](#192-ipv6-troubleshooting)
-  - [19.3. Egress-only Internet Gateway](#193-egress-only-internet-gateway)
-- [20. Network Protection on AWS](#20-network-protection-on-aws)
-  - [20.1. AWS Network Firewall](#201-aws-network-firewall)
-    - [20.1.1. Fine Grained Controls](#2011-fine-grained-controls)
-- [21. VPC Section Summary](#21-vpc-section-summary)
+- [15. Site-to-Site VPN connection as a backup](#15-site-to-site-vpn-connection-as-a-backup)
+- [16. Transit Gateway](#16-transit-gateway)
+  - [16.1. Transit Gateway: Site-to-Site VPN ECMP](#161-transit-gateway-site-to-site-vpn-ecmp)
+- [17. VPC - Traffic Mirroring](#17-vpc---traffic-mirroring)
+- [18. What is IPv6?](#18-what-is-ipv6)
+  - [18.1. IPv6 in VPC](#181-ipv6-in-vpc)
+  - [18.2. IPv6 Troubleshooting](#182-ipv6-troubleshooting)
+  - [18.3. Egress-only Internet Gateway](#183-egress-only-internet-gateway)
+- [19. Network Protection on AWS](#19-network-protection-on-aws)
+  - [19.1. AWS Network Firewall](#191-aws-network-firewall)
+    - [19.1.1. Fine Grained Controls](#1911-fine-grained-controls)
+- [20. VPC Section Summary](#20-vpc-section-summary)
 
 # 1. Understanding CIDR
 
@@ -331,51 +326,11 @@
 - It's a VPN connection so it goes over the public Internet.
 - To set it up, connect multiple VPN connections on the same VGW, setup dynamic routing and configure route tables.
 
-# 15. Direct Connect (DX)
-
-- Provides a dedicated **private** connection from a remote network to your VPC.
-- Dedicated connection must be setup between your DC (Datacenter) and AWS Direct Connect locations
-- We need to setup a Virtual Private Gateway on your VPC.
-- Access public resources (S3) and private (EC2) on same connection.
-- **Use Cases**
-  - Increase bandwidth throughput - working with large data sets - lower cost.
-  - More consistent network experience - applications using real-time data feeds.
-  - Hybrid Environments (on prem + cloud).
-- Supports both IPv4 and IPv6
-
-## 15.1. Direct Connect Gateway
-
-- **If we want to setup a Direct Connect to one or more VPC in many different regions (same account), we must use a Direct Connect Gateway.**
-
-### 15.1.1. Connection Types
-
-- **Dedicated Connections:** 1 Gbps, 10 Gbps and 100 Gbps capacity.
-  - Physical ethernet port dedicated to a customer.
-  - Request made to AWS first, then completed by AWS Direct Connect Partners.
-- **Hosted Connections:** 50 Mbps, 500 Mbps, to 10 Gbps.
-  - Connection requests are made via AWS Direct Connect Partners.
-  - Capacity can be **added or removed on demand**.
-  - 1, 2, 5, 10 Gbps available at select AWS Direct Connect Partners.
-- Lead times are often longer than 1 month to establish a new connection.
-
-## 15.2. Encryption
-
-- Data in transit is **not encrypted** but is private.
-- AWS Direct Connect plus (+) virtual private network (VPN) provides an **IPsec-encrypted** private connection.
-- Good for an extra level of security, but slightly more complex to put in place.
-
-## 15.3. Resiliency
-
-- High Resiliency for Critical Workloads.
-  - One connection at multiple locations.
-- Maximum Resiliency for Critical Workloads.
-  - Maximum resilience is achieved by separate connections terminating on separate devices in more than one location.
-
-# 16. Site-to-Site VPN connection as a backup
+# 15. Site-to-Site VPN connection as a backup
 
 - In case Direct Connect fails, we can set up a backup Direct Connect connection (expensive), or a Site-to-Site VPN connection.
 
-# 17. Transit Gateway
+# 16. Transit Gateway
 
 - **For having transitive peering between thousands of VPC and on-premises, hub-and-spoke (star) connection.**
 - Regional resource, can work cross-region.
@@ -385,13 +340,13 @@
 - Works with Direct Connect Gateway, VPN connections.
 - Supports **IP Multicast** (not supported by any other AWS service).
 
-## 17.1. Transit Gateway: Site-to-Site VPN ECMP
+## 16.1. Transit Gateway: Site-to-Site VPN ECMP
 
 - ECMP = Equal-cost multi-path routing.
 - Routing strategy to allow to forward a packet over multiple best path.
 - **Use case:** Create multiple Site-to-Site VPN connections to increase the bandwidth of your connection to AWS.
 
-# 18. VPC - Traffic Mirroring
+# 17. VPC - Traffic Mirroring
 
 - Allows you to capture and inspect network traffic in your VPC.
 - Route the traffic to security appliances that we manage.
@@ -402,7 +357,7 @@
 - Source and Target can be in the same VPC or different VPCs (VPC Peering).
 - **Use cases:** Content inspection, threat monitoring, troubleshooting, ...
 
-# 19. What is IPv6?
+# 18. What is IPv6?
 
 - IPv4 designed to provide 4.3 Billion addresses (they'll be exhausted soon).
 - IPv6 is the successor of IPv4.
@@ -417,28 +372,28 @@
   - ::1234:5678 -> the first 6 segments are zero
   - 2001:db8::1234:5678 -> the middle 4 segments are zero
 
-## 19.1. IPv6 in VPC
+## 18.1. IPv6 in VPC
 
 - **IPv4 cannot be disabled for your VPC and subnets**
 - We can enable IPv6 (they're public IP addresses) to operate in dual-stack mode.
 - Your EC2 instances will get at least a private internal IPv4 and a public IPv6.
 - They can communicate using either IPv4 or IPv6 to the internet through an Internet Gateway EC2 Instance.
 
-## 19.2. IPv6 Troubleshooting
+## 18.2. IPv6 Troubleshooting
 
 - So, if we cannot launch an EC2 instance in your subnet.
   - It's not because it cannot acquire an IPv6 (the space is very large).
   - It's because there are no available IPv4 in your subnet.
 - **Solution:** Create a new IPv4 CIDR in your subnet.
 
-## 19.3. Egress-only Internet Gateway
+## 18.3. Egress-only Internet Gateway
 
 - **Used for IPv6 only.**
 - (similar to a NAT Gateway but for IPv6).
 - Allows instances in your VPC outbound connections over IPv6 while preventing the internet to initiate an IPv6 connection to your instances.
 - **You must update the Route Tables.**
 
-# 20. Network Protection on AWS
+# 19. Network Protection on AWS
 
 - **To protect network on AWS, we've seen**
   - Network Access Control Lists (NACLs).
@@ -448,7 +403,7 @@
   - AWS Firewall Manager (to manage them across accounts).
 - But what if we want to protect in a sophisticated way our entire VPC?
 
-## 20.1. AWS Network Firewall
+## 19.1. AWS Network Firewall
 
 - Protect your entire Amazon VPC.
 - From Layer 3 to Layer 7 protection.
@@ -460,7 +415,7 @@
 - Internally, the AWS Network Firewall uses the AWS Gateway Load Balancer.
 - Rules can be centrally managed cross- account by AWS Firewall Manager to apply to many VPCs.
 
-### 20.1.1. Fine Grained Controls
+### 19.1.1. Fine Grained Controls
 
 - Supports 1000s of rules.
   - IP & port - example: 10,000s of IPs filtering.
@@ -471,7 +426,7 @@
 - **Active flow inspection** to protect against network threats with intrusion-prevention capabilities (like Gateway Load Balancer, but all managed by AWS).
 - Send logs of rule matches to Amazon S3, CloudWatch Logs, Kinesis Data Firehose.
 
-# 21. VPC Section Summary
+# 20. VPC Section Summary
 
 - **CIDR:** IP Range.
 - **VPC:** Virtual Private Cloud => we define a list of IPv4 & IPv6 CIDR.

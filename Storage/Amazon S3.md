@@ -218,6 +218,8 @@ TODO: DIAGRAM
 - **Notes**
   - Any file that is not versioned prior to enabling versioning will have version `null`.
   - Suspending versioning does not delete the previous versions.
+  - Once you version-enable a bucket, it can never return to an unversioned state.
+    - Versioning can only be suspended once it has been enabled.
 
 # 8. Replication (CRR & SRR)
 

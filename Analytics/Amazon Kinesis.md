@@ -46,6 +46,7 @@
 - At-rest KMS encryption, in-flight HTTPS encryption.
 - Kinesis Producer Library (KPL) to write an optimized producer application.
 - Kinesis Client Library (KCL) to write an optimized consumer application.
+  ![Amazon Kinesis Data Streams](/Images/Analytics/AmazonKinesisDataStreams.png)
 
 ## 2.1. Capacity Modes
 

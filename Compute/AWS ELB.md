@@ -141,7 +141,7 @@
 - **Routing tables to different target groups**
   - Routing based on path (Path-based Routing) in URL (`example.com/users` and `example.com/posts`).
   - Routing based on hostname in URL (`one.example.com` and `other.example.com`).
-  - Routing based on URL Path, Query String, Headers (`example.com/users?id=123&order=false`).
+  - Routing based on URL Path, Query String, Headers (Content-Based Routing) (`example.com/users?id=123&order=false`).
 - ALB are a great fit for micro services & container-based application (example: Docker & Amazon ECS).
 - Has a port mapping feature to redirect to a dynamic port in ECS.
 - In comparison, we'd need multiple Classic Load Balancer per application.

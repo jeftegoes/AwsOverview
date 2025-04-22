@@ -30,12 +30,12 @@
 - In real-life, the load on your websites and application can change.
 - In the cloud, you can create and get rid of servers very quickly.
 - **The goal of an Auto Scaling Group (ASG) is to**
-  - Scale out (add EC2 instances) to match an increased load.
-  - Scale in (remove EC2 instances) to match a decreased load.
+  - **Scale out** (add EC2 instances) to match an increased load.
+  - **Scale in** (remove EC2 instances) to match a decreased load.
   - Ensure we have a minimum and a maximum number of machines running.
   - Automatically register new instances to a load balancer.
   - Re-create an EC2 instance in case a previous one is terminated (ex: if unhealthy) (Replace unhealthy instances).
-- Cost Savings: only run at an optimal capacity (principle of the cloud).
+- **Cost Savings:** Only run at an optimal capacity (principle of the cloud).
 - ASG are free (you only pay for the underlying EC2 instances).
 
 # 2. Auto Scaling Group Attributes
@@ -88,7 +88,7 @@
 
 - After a scaling activity happens, you are in the **cooldown period (default 300 seconds)**.
 - During the cooldown period, the ASG will not launch or terminate additional instances (to allow for metrics to stabilize).
-- Advice: Use a ready-to-use AMI to reduce configuration time in order to be serving request fasters and reduce the cooldown period.
+- **Advice:** Use a ready-to-use AMI to reduce configuration time in order to be serving request fasters and reduce the cooldown period.
 
 # 8. Lifecycle Hooks
 

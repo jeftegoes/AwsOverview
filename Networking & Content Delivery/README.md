@@ -6,6 +6,8 @@
 - [2. Amazon API Gateway](#2-amazon-api-gateway)
 - [3. Amazon CloudFront](#3-amazon-cloudfront)
 - [4. AWS Global Accelerator](#4-aws-global-accelerator)
+- [5. AWS Direct Connect](#5-aws-direct-connect)
+- [6. Amazon VPC](#6-amazon-vpc)
 
 # 1. Route 53
 
@@ -23,3 +25,11 @@
 # 4. AWS Global Accelerator
 
 [AWS Global Accelerator](AWS%20Global%20Accelerator.md)
+
+# 5. AWS Direct Connect
+
+[AWS Direct Connect](AWS%20Direct%20Connect.md)
+
+# 6. Amazon VPC
+
+[Amazon VPC](Amazon%20VPC.md)

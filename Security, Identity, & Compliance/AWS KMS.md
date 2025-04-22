@@ -1,4 +1,4 @@
-# AWS KMS - Key Management Service<!-- omit in toc -->
+# AWS KMS - Key Management Service <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -108,9 +108,9 @@
 ## 2.2. Key Policies
 
 - Control access to KMS keys, "similar" to S3 bucket policies.
-- **Difference:** You cannot control access without them.
+- **Difference:** We cannot control access without them.
 - **Default KMS Key Policy**
-  - Created if you don't provide a specific KMS Key Policy.
+  - Created if we don't provide a specific KMS Key Policy.
   - Complete access to the key to the root user = entire AWS account.
 - **Custom KMS Key Policy**
   - Define users, roles that can access the KMS key.
@@ -153,12 +153,12 @@
 
 - **Unencrypted objects and objects encrypted with SSE-S3 are replicated by default**.
 - Objects encrypted with SSE-C (customer provided key) can be replicated.
-- **For objects encrypted with SSE-KMS**, you need to enable the option.
+- **For objects encrypted with SSE-KMS**, we need to enable the option.
   - Specify which KMS Key to encrypt the objects within the target bucket.
   - Adapt the KMS Key Policy for the target key.
   - An IAM Role with `kms:Decrypt` for the source KMS Key and `kms:Encrypt` for the target KMS Key.
-  - You might get KMS throttling errors, in which case you can ask for a Service Quotas increase.
-- **You can use multi-region AWS KMS Keys, but they are currently treated as independent keys by Amazon S3 (the object will still be decrypted and then encrypted).**
+  - We might get KMS throttling errors, in which case we can ask for a Service Quotas increase.
+- **We can use multi-region AWS KMS Keys, but they are currently treated as independent keys by Amazon S3 (the object will still be decrypted and then encrypted).**
 
 ## 2.6. AMI Sharing Process Encrypted via KMS
 
@@ -175,7 +175,7 @@
 ## 2.8. Envelope Encryption
 
 - KMS Encrypt API call has a **limit of 4 KB**.
-- If you want to encrypt >4 KB, we need to use Envelope Encryption.
+- If we want to encrypt >4 KB, we need to use Envelope Encryption.
 - The main API that will help us is the GenerateDataKey API.
 - **Anything over 4 KB of data that needs to be encrypted must use the Envelope Encryption == `GenerateDataKey` API.**
 
@@ -183,7 +183,7 @@
 
 ### 2.8.1. Encrypt
 
-- It is recommended that you use the following pattern to encrypt data locally in your application:
+- It is recommended that we use the following pattern to encrypt data locally in your application:
 
 1. Use the GenerateDataKey operation to get a data encryption key.
 2. Use the plaintext data key (returned in the Plaintext field of the response) to encrypt data locally, then erase the plaintext data key from memory.
@@ -224,13 +224,13 @@
 
 # 3. Request Quotas
 
-- When you exceed a request quota, you get a `ThrottlingException`:
-  - **You have exceeded the rate at which you may call KMS. Reduce the frequency of your calls. (Service: AWSKMS; Status code: 400; Error Code: ThrottlingException); Request ID: <ID>**.
+- When we exceed a request quota, we get a `ThrottlingException`:
+  - **We have exceeded the rate at which you may call KMS. Reduce the frequency of your calls. (Service: AWSKMS; Status code: 400; Error Code: ThrottlingException); Request ID: <ID>**.
 - To respond, use **exponential backoff** (backoff and retry).
 - For cryptographic operations, they share a quota.
 - This includes requests made by AWS on your behalf (ex: SSE-KMS).
 - For `GenerateDataKey`, consider using DEK caching from the Encryption SDK.
-- **You can request a Request Quotas increase through API or AWS support.**
+- **We can request a Request Quotas increase through API or AWS support.**
 
 # 4. S3 Bucket Key for SSE-KMS encryption
 
@@ -240,14 +240,14 @@
 - This leverages data keys
   - A "S3 bucket key" is generated.
   - That key is used to encrypt KMS objects with new data keys.
-- You will see **less KMS CloudTrail events in CloudTrail**.
+- We will see **less KMS CloudTrail events in CloudTrail**.
 
 # 5. CloudHSM
 
 - KMS => AWS manages the software for encryption.
 - CloudHSM => AWS provisions encryption **hardware**.
 - Dedicated Hardware (HSM = Hardware Security Module).
-- You manage your own encryption keys entirely (not AWS).
+- We manage your own encryption keys entirely (not AWS).
 - HSM device is tamper resistant, FIPS 140-2 Level 3 compliance.
 - Supports both symmetric and **asymmetric** encryption (SSL/TLS keys).
 - No free tier available.
@@ -276,10 +276,10 @@
 
 # 6. CloudWatch Logs - Encryption
 
-- You can encrypt CloudWatch logs with KMS keys.
+- We can encrypt CloudWatch logs with KMS keys.
 - Encryption is enabled at the log group level, by associating a CMK with a log group, either when you create the log group or after it exists.
-- You cannot associate a CMK with a log group using the CloudWatch console.
-- You must use the CloudWatch Logs API:
+- We cannot associate a CMK with a log group using the CloudWatch console.
+- **We must use the CloudWatch Logs API**
   - `associate-kms-key`: if the log group already exists.
   - `create-log-group`: if the log group doesn't exist yet.
 
