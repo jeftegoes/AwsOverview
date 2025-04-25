@@ -59,7 +59,7 @@
 # 2. Amazon Route 53
 
 - A highly available, scalable, fully managed and Authoritative DNS.
-  - Authoritative = The customer (you) can update the DNS records.
+  - Authoritative = The customer (we) can update the DNS records.
 - **Route 53 is also a Domain Registrar**.
 - Ability to check the health of your resources.
 - The only AWS service which provides 100% availability SLA.
@@ -67,7 +67,7 @@
 
 ## 2.1. Records
 
-- How you want to route traffic for a domain.
+- How we want to route traffic for a domain.
 - **Each record contains**
   - **Domain/subdomain Name:** E.g., example.com
   - **Record Type:** E.g., A or AAAA
@@ -85,7 +85,7 @@
 - `CNAME` - Maps a hostname to another hostname:
   - The target is a domain name which must have an `A` or `AAAA` record.
   - Can't create a `CNAME` record for the top node of a DNS namespace (Zone Apex).
-  - **Example:** You can't create for example.com, but you can create for www.example.com
+  - **Example:** We can't create for example.com, but we can create for www.example.com
 - `NS` - Name Servers for the Hosted Zone.
   - Control how traffic is routed for a domain.
 
@@ -95,8 +95,8 @@
 - **Public Hosted Zones**
   - Contains records that specify how to route traffic on the Internet (public domain names) **application1.mypublicdomain.com**.
 - **Private Hosted Zones**
-  - Contain records that specify how you route traffic within one or more VPCs (private domain names) **application1.company.internal**.
-- **You pay $0.50 per month per hosted zone.**
+  - Contain records that specify how we route traffic within one or more VPCs (private domain names) **application1.company.internal**.
+- **We pay $0.50 per month per hosted zone.**
 
 ## 2.4. Records TTL (Time To Live)
 
@@ -112,7 +112,7 @@
 ## 2.5. CNAME vs Alias
 
 - AWS Resources (Load Balancer, CloudFront...) expose an AWS hostname:
-  - **lb1-1234.us-east-2.elb.amazonaws.com** and you **want myapp.mydomain.com**
+  - **lb1-1234.us-east-2.elb.amazonaws.com** and we **want myapp.mydomain.com**
 - **CNAME**
   - Points a hostname to any other hostname. (app.mydomain.com => blabla.anything.com).
   - ONLY FOR NON ROOT DOMAIN (aka. something.mydomain.com).
@@ -129,7 +129,7 @@
 - Automatically recognizes changes in the resource's IP addresses.
 - Unlike CNAME, it can be used for the top node of a DNS namespace (Zone Apex), e.g.: example.com
 - Alias Record is always of type A/AAAA for AWS resources (IPv4 / IPv6).
-- **You can't set the TTL.**
+- **We can't set the TTL.**
 
 #### 2.5.1.1. Targets
 
@@ -141,7 +141,7 @@
 - VPC Interface Endpoints.
 - Global Accelerator.
 - Route 53 record in the same hosted zone.
-- **You cannot set an ALIAS record for an EC2 DNS name.**
+- **We cannot set an ALIAS record for an EC2 DNS name.**
 
 ## 2.6. Health Checks
 
@@ -160,10 +160,10 @@
   - Supported protocol: HTTP, HTTPS and TCP.
   - If > 18% of health checkers report the endpoint is healthy, Route 53 considers it.**Healthy**.
     - Otherwise, it's **Unhealthy**.
-  - Ability to choose which locations you want Route 53 to use.
+  - Ability to choose which locations we want Route 53 to use.
 - Health Checks pass only when the endpoint responds with the 2xx and 3xx status codes.
 - Health Checks can be setup to pass / fail based on the text in the first 5120 bytes of the response.
-- Configure you router/firewall to allow incoming requests from Route 53 Health Checkers.
+- Configure we router/firewall to allow incoming requests from Route 53 Health Checkers.
 
 ### 2.6.2. Calculated Health Checks
 
@@ -244,12 +244,12 @@
 - **Resources can be**
   - AWS resources (specify AWS region).
   - Non-AWS resources (specify Latitude and Longitude).
-- You must use Route 53 **Traffic Flow** (advanced) to use this feature.
+- We must use Route 53 **Traffic Flow** (advanced) to use this feature.
 
 ### 2.7.7. IP-based Routing
 
 - Routing is based on clients' IP addresses.
-- **You provide a list of CIDRs for your clients** and the corresponding endpoints/locations (user-IP-to-endpoint mappings).
+- **We provide a list of CIDRs for your clients** and the corresponding endpoints/locations (user-IP-to-endpoint mappings).
 - **Use cases:** Optimize performance, reduce network costs...
 - **Example:** Route end users from a particular ISP to a specific endpoint.
 
@@ -271,14 +271,14 @@
 
 ## 2.9. Domain Registar vs DNS Service
 
-- You buy or register your domain name with a Domain Registrar typically by paying annual charges (e.g., GoDaddy, Amazon Registrar Inc., ...).
-- The Domain Registrar usually provides you with a DNS service to manage your DNS records.
-- But you can use another DNS service to manage your DNS records.
+- We buy or register your domain name with a Domain Registrar typically by paying annual charges (e.g., GoDaddy, Amazon Registrar Inc., ...).
+- The Domain Registrar usually provides we with a DNS service to manage your DNS records.
+- But we can use another DNS service to manage your DNS records.
 - **Example:** Purchase the domain from GoDaddy and use Route 53 to manage your DNS records.
 
 ### 2.9.1. 3rd Party Registrar with Amazon Route 53
 
-- If you buy your domain on a 3rd party registrar, you can still use Route 53 as the DNS Service provider.
+- If we buy your domain on a 3rd party registrar, we can still use Route 53 as the DNS Service provider.
 
 1. Create a Hosted Zone in Route 53.
 2. Update NS Records on 3rd party website to use Route 53 Name Servers.

@@ -8,9 +8,9 @@
   - [3.1. Amazon S3 File Gateway](#31-amazon-s3-file-gateway)
     - [3.1.1. RefreshCache API](#311-refreshcache-api)
     - [3.1.2. Automating Cache Refresh](#312-automating-cache-refresh)
-  - [3.2. Amazon FSx File Gateway](#32-amazon-fsx-file-gateway)
-  - [3.3. Volume Gateway](#33-volume-gateway)
-  - [3.4. Tape Gateway](#34-tape-gateway)
+    - [3.1.3. Amazon FSx File Gateway](#313-amazon-fsx-file-gateway)
+  - [3.2. Volume Gateway](#32-volume-gateway)
+  - [3.3. Tape Gateway](#33-tape-gateway)
 - [4. Hardware appliance](#4-hardware-appliance)
 
 # 1. Hybrid Cloud for Storage
@@ -47,7 +47,7 @@
 
 ## 3.1. Amazon S3 File Gateway
 
-- Configured S3 buckets are accessible using the NFS and SMB protocol.
+- Configured S3 buckets are accessible using the **NFS** and **SMB** protocol.
 - **Most recently used data is cached in the file gateway.**
 - Supports S3 Standard, S3 Standard IA, S3 One Zone A, S3 Intelligent Tiering.
 - **Transition to S3 Glacier using a Lifecycle Policy.**
@@ -68,7 +68,7 @@
 - Ensure that users are not accessing stale data on their file shares.
 - No need to manually and periodically invoke the `RefreshCache` API.
 
-## 3.2. Amazon FSx File Gateway
+### 3.1.3. Amazon FSx File Gateway
 
 - Native access to Amazon FSx for Windows File Server.
 - **Local cache for frequently accessed data.**
@@ -76,14 +76,14 @@
 - Useful for group file shares and home directories.
   ![AWS Storage Gateway - Amazon FSx File Gateway](/Images/Storage/AWSStorageGatewayAmazonFSxFileGateway.png)
 
-## 3.3. Volume Gateway
+## 3.2. Volume Gateway
 
 - Block storage using iSCSI protocol backed by S3.
 - Backed by EBS snapshots which can help restore on-premises volumes!
 - **Cached volumes:** Low latency access to most recent data.
 - **Stored volumes:** Entire dataset is on premise, scheduled backups to S3.
 
-## 3.4. Tape Gateway
+## 3.3. Tape Gateway
 
 - Some companies have backup processes using physical tapes (!).
 - With Tape Gateway, companies use the same processes but, in the cloud.

@@ -142,8 +142,8 @@
 # 7. RDS Custom
 
 - **Managed Oracle and Microsoft SQL Server Database with OS and database customization.**
-- RDS: Automates setup, operation, and scaling of database in AWS.
-- Custom: Access to the underlying database and OS so you can.
+- **RDS:** Automates setup, operation, and scaling of database in AWS.
+- **Custom:** Access to the underlying database and OS so we can.
   - Configure settings.
   - Install patches.
   - Enable native features.
@@ -200,7 +200,7 @@
 - IAM database authentication works with:
   - MySQL.
   - PostgreSQL.
-- You don't need a password, just an authentication token obtained through IAM & RDS API calls.
+- We don't need a password, just an authentication token obtained through IAM & RDS API calls.
 - Auth token has a lifetime of 15 minutes.
 - Benefits:
   - Network in/out must be encrypted using SSL.
@@ -210,7 +210,7 @@
 ## 8.5. Security - Summary
 
 - Encryption at rest:
-  - Is done only when you first create the DB instance.
+  - Is done only when we first create the DB instance.
   - Or: unencrypted DB => snapshot => copy snapshot as encrypted => create DB from snapshot.
 - Your responsibility:
   - Check the ports / IP / security group inbound rules in DB's SG.
@@ -244,7 +244,7 @@
 # 11. Enhanced Monitoring
 
 - Amazon RDS provides metrics in real-time for the operating system (OS) that your DB instance runs on.
-- You can view the metrics for your DB instance using the console or consume the Enhanced Monitoring JSON output from CloudWatch Logs in a monitoring system of your choice.
+- We can view the metrics for your DB instance using the console or consume the Enhanced Monitoring JSON output from CloudWatch Logs in a monitoring system of your choice.
 - By default, **Enhanced Monitoring metrics are stored in the CloudWatch Logs for 30 days**.
 - To modify the amount of time the metrics are stored in the CloudWatch Logs, change the retention for the `RDSOSMetrics` log group in the CloudWatch console.
 

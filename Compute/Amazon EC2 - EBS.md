@@ -120,7 +120,7 @@
 
 ### 6.1.3. Hard Disk Drives (HDD)
 
-- Cannot be a boot volume.
+- **ATTENTION!** **CANNOT** be a boot volume.
 - 125 GiB to 16 TiB.
 - **Throughput Optimized HDD (st1)**
   - Big Data, Data Warehouses, Log Processing.

@@ -54,6 +54,7 @@
     ![Amazon CloudFront EC2 as an Origin](/Images/Networking%20&%20Content%20Delivery/AmazonCloudFrontEC2Origin.png)
   - S3 website (must first enable the bucket as a static S3 website).
   - Any HTTP backend we want.
+- **ATTENTION!** CloudFront doesn't require the origin to be hosted on AWS—it can point to any publicly accessible HTTP/HTTPS server, including one running in your on-premise data center.
 
 ## 1.2. CloudFront at a high level
 
@@ -88,7 +89,7 @@
 
 - A unique identifier for every object in the cache.
 - By default, consists of **hostname + resource portion of the URL**.
-- If you have an application that serves up content that varies based on user, device, language, location...
+- If we have an application that serves up content that varies based on user, device, language, location...
 - We can add other elements (HTTP headers, cookies, query strings) to the Cache Key using **CloudFront Cache Policies**.
 
 ## 3.2. Cache Policy
@@ -99,16 +100,16 @@
   - **Query Strings:** None - Whitelist - Include All-Except - All.
 - Control the TTL (0 seconds to 1 year), can be set by the origin using the `Cache-Control` header, `Expires` header...
 - Create your own policy or use Predefined Managed Policies.
-- _All HTTP headers, cookies, and query strings that you include in the Cache Key are automatically included in origin requests._
+- _All HTTP headers, cookies, and query strings that we include in the Cache Key are automatically included in origin requests._
 
 ### 3.2.1. Managing cache expiration
 
-- **By default, each file automatically expires after 24 hours**, but you can change the default behavior in two ways:
-  - To change the cache duration for all files that match the same path pattern, you can change the CloudFront settings for:
+- **By default, each file automatically expires after 24 hours**, but we can change the default behavior in two ways:
+  - To change the cache duration for all files that match the same path pattern, we can change the CloudFront settings for:
     - **Minimum TTL**
     - **Maximum TTL**
     - **Default TTL**
-  - To change the cache duration for an individual file, you can configure your origin to add a `Cache-Control` header with the `max-age` or `s-maxage` directive, or an `Expires` header to the file.
+  - To change the cache duration for an individual file, we can configure your origin to add a `Cache-Control` header with the `max-age` or `s-maxage` directive, or an `Expires` header to the file.
 
 ### 3.2.2. HTTP Headers
 
@@ -215,7 +216,7 @@
     - Can leverage APIs to create and rotate keys (and IAM for API security).
   - An AWS Account that contains a CloudFront Key Pair:
     - Need to manage keys using **the root account and the AWS console**.
-    - Not recommended because you shouldn't use the root account for this.
+    - Not recommended because we shouldn't use the root account for this.
 - In your CloudFront distribution, create one or more trusted key groups.
 - **We generate your own public / private key**
   - The private key is used by your applications (e.g. EC2) to sign URLs.

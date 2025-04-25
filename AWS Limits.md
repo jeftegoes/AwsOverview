@@ -5,6 +5,7 @@
 - [1. API Rate Limits](#1-api-rate-limits)
 - [2. Service Quotas (Service Limits)](#2-service-quotas-service-limits)
 - [3. Exponential Backoff (any AWS service)](#3-exponential-backoff-any-aws-service)
+- [4. Amazon SQS](#4-amazon-sqs)
 
 # 1. API Rate Limits
 
@@ -26,3 +27,7 @@
 - Must implement yourself if using the AWS API as-is or in specific cases.
   - **Must only implement the retries on 5xx server errors and throttling.**
   - Do not implement on the 4xx client errors.
+
+# 4. Amazon SQS
+
+- https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html

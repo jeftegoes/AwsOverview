@@ -40,11 +40,11 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 
 - Produced to SQS using the SDK (SendMessage API).
 - The message is **persisted** in SQS until a consumer deletes it.
-- Message retention: default 4 days, up to 14 days.
+- **Message retention:** Default 4 days, up to 14 days.
 - **Example:** Send an order to be processed.
   - Order id.
   - Customer id.
-  - Any attributes you want.
+  - Any attributes we want.
 - **SQS standard:** Unlimited throughput.
 
 # 3. Consuming Messages
@@ -88,7 +88,9 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 # 7. FIFO Queue
 
 - FIFO = First In First Out (ordering of messages in the queue).
-- Limited throughput: 300 msg/s without batching, 3000 msg/s with.
+- **Limited throughput:** 300 msg/s without batching, 3000 msg/s with.
+  - For example, Amazon SQS supports up to 300 messages per second per API action when sending messages individually.
+    - However, when messages are sent using the `SendMessageBatch` API, this limit increases to 3,000 messages per second, as each batch can include up to 10 messages. 3,000 msg/s/ 10 = 300 msg/s.
 - Exactly-once send capability (by removing duplicates using Deduplication ID).
 - Messages are processed in order by the consumer.
 - Ordering by Message Group ID (all messages in the same group are ordered) - mandatory parameter.
@@ -135,7 +137,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 # 12. Must know API
 
 - `CreateQueue` - Creates a new standard or FIFO queue (MessageRetentionPeriod).
-- `DeleteQueue` - Deletes the queue specified by the QueueUrl, regardless of the queue's contents. When you delete a queue, any messages in the queue are no longer available.
+- `DeleteQueue` - Deletes the queue specified by the QueueUrl, regardless of the queue's contents. When we delete a queue, any messages in the queue are no longer available.
 - `PurgeQueue` - Delete all the messages in queue.
 - `SendMessage` (DelaySeconds), `ReceiveMessage`, `DeleteMessage`.
 - `MaxNumberOfMessages` - Default 1, max 10 (for ReceiveMessage API).
@@ -157,7 +159,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 
 ## 13.2. Message Grouping
 
-- If you specify the same value of MessageGroupID in an SQS FIFO queue, you can only have one consumer, and all the messages are in order.
+- If we specify the same value of MessageGroupID in an SQS FIFO queue, we can only have one consumer, and all the messages are in order.
 - To get ordering at the level of a subset of messages, specify different values for MessageGroupID.
   - Messages that share a common Message Group ID will be in order within the group.
   - Each Group ID can have a different consumer (parallel processing!).

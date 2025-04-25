@@ -90,7 +90,7 @@
 # 4. EC2 Detailed monitoring
 
 - EC2 instance metrics have metrics "every 5 minutes".
-- With **Detailed Monitoring** (for a cost), you get data "every 1 minute".
+- With **Detailed Monitoring** (for a cost), we get data "every 1 minute".
 - Use **Detailed Monitoring** if you want to scale faster for your ASG!
 - The AWS Free Tier allows us to have 10 detailed monitoring metrics.
 - Note: EC2 Memory usage is by default not pushed (must be pushed from inside the instance as a custom metric).
@@ -120,7 +120,7 @@
 - Continuously analyze metrics to determine normal baselines and surface anomalies using ML algorithms.
 - It creates a model of the metric's expected values (based on metric's past data).
 - Shows you which values in the graph are out of the normal range.
-- **Allows you to create Alarms based on metric's expected value (instead of Static Threshold).**
+- **Allows we to create Alarms based on metric's expected value (instead of Static Threshold).**
 - Ability to exclude specified time periods or events from being trained.
 
 # 8. Amazon Lookout for Metrics
@@ -245,7 +245,7 @@
 # 17. Logs for EC2
 
 - **By default, no logs from your EC2 machine will go to CloudWatch.**
-- You need to run a **CloudWatch Agent** on EC2 to push the log files you want.
+- We need to run a **CloudWatch Agent** on EC2 to push the log files we want.
 - Make sure IAM permissions are correct.
 - The CloudWatch log agent can be setup on-premises too.
   ![Amazon CloudWatch Logs Agent](/Images/Management%20&%20Governance/AmazonCloudWatchLogsAgent.png)
@@ -296,7 +296,7 @@
 
 - Stop, Terminate, Reboot, or Recover an EC2 Instance.
 - Trigger Auto Scaling Action.
-- Send notification to SNS (from which you can do pretty much anything).
+- Send notification to SNS (from which we can do pretty much anything).
 
 ## 19.2. Composite Alarms
 
@@ -307,7 +307,7 @@
 
 ## 19.3. Evaluating an alarm
 
-- When you create an alarm, you specify three settings to enable CloudWatch to evaluate when to change the alarm state:
+- When we create an alarm, we specify three settings to enable CloudWatch to evaluate when to change the alarm state:
   - **Period:** Is the length of time to evaluate the metric or expression to create each individual data point for an alarm. It is expressed in seconds.
   - **Evaluation Periods:** Is the number of the most recent periods, or data points, to evaluate when determining alarm state.
   - **Datapoints to Alarm:** Is the number of data points within the Evaluation Periods that must be breaching to cause the alarm to go to the ALARM state.
@@ -342,7 +342,7 @@
 
 - **Heartbeat Monitor:** Load URL, store screenshot and an HTTP archive file.
 - **API Canary:** Test basic read and write functions of REST APIs.
-- **Broken Link Checker:** Check all links inside the URL that you are testing.
+- **Broken Link Checker:** Check all links inside the URL that we are testing.
 - **Visual Monitoring":** Compare a screenshot taken during a canary run with a baseline screenshot.
 - **Canary Recorder:** Used with CloudWatch Synthetics Recorder (record your actions on a website and automatically generates a script for that).
 - **GUI Workflow Builder:** Verifies that actions can be taken on your webpage (e.g., test a webpage with a login form).
@@ -395,19 +395,19 @@
 - Analyze log data and create time series that display contributor data.
   - See metrics about the top-N contributors.
   - The total number of unique contributors, and their usage.
-- This helps you find top talkers and understand who or what is impacting system performance.
+- This helps we find top talkers and understand who or what is impacting system performance.
 - Works for any AWS-generated logs (VPC, VPC Flow Logs, DNS, etc..)
-- For example, you can find bad hosts, **identify the heaviest network users**, or find the URLs that generate the most errors.
-- You can build your rules from scratch, or you can also use sample rules that AWS has created - **leverages your CloudWatch Logs**.
-- CloudWatch also provides built-in rules that you can use to analyze metrics from other AWS services.
+- For example, we can find bad hosts, **identify the heaviest network users**, or find the URLs that generate the most errors.
+- We can build your rules from scratch, or we can also use sample rules that AWS has created - **leverages your CloudWatch Logs**.
+- CloudWatch also provides built-in rules that we can use to analyze metrics from other AWS services.
 
 ## 23.4. Application
 
 - **Provides automated dashboards that show potential problems with monitored applications, to help isolate ongoing issues.**
 - Your applications run on Amazon EC2 Instances with select technologies only (Java, .NET, Microsoft IIS Web Server, databases...).
-- And you can use other AWS resources such as Amazon EBS, RDS, ELB, ASG, Lambda, SQS, DynamoDB, S3 bucket, ECS, EKS, SNS, API Gateway...
+- And we can use other AWS resources such as Amazon EBS, RDS, ELB, ASG, Lambda, SQS, DynamoDB, S3 bucket, ECS, EKS, SNS, API Gateway...
 - Powered by SageMaker.
-- Enhanced visibility into your application health to reduce the time it will take you to troubleshoot and repair your applications.
+- Enhanced visibility into your application health to reduce the time it will take we to troubleshoot and repair your applications.
 - Findings and alerts are sent to Amazon EventBridge and SSM OpsCenter.
 
 ## 23.5. CloudWatch Insights and Operational Visibility
