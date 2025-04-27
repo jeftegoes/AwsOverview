@@ -9,6 +9,7 @@
 - [5. Global Aurora](#5-global-aurora)
 - [6. Machine Learning](#6-machine-learning)
 - [7. Unplanned Failover](#7-unplanned-failover)
+- [Additional Failover Control](#additional-failover-control)
 - [8. Features of Aurora](#8-features-of-aurora)
 - [9. Aurora Security](#9-aurora-security)
 - [10. Amazon Aurora Serverless](#10-amazon-aurora-serverless)
@@ -69,17 +70,24 @@
 
 # 6. Machine Learning
 
-- Enables you to add ML-based predictions to your applications via SQL.
+- Enables we to add ML-based predictions to your applications via SQL.
 - Simple, optimized, and secure integration between Aurora and AWS ML services.
 - Supported services.
   - [Amazon SageMaker](/Machine%20Learning/README.md) (use with any ML model).
   - [Amazon Comprehend](/Machine%20Learning/README.md) (for sentiment analysis).
-- You don't need to have ML experience.
+- We don't need to have ML experience.
 - **Use cases:** fraud detection, ads targeting, sentiment analysis, product recommendations.
 
 # 7. Unplanned Failover
 
 ![Unplanned Failover](/Images/AmazonAuroraUnplannedFailover.png)
+
+# Additional Failover Control
+
+- Each read replica is now associated with a priority tier (0-15).
+- In the event of a failover, Amazon Aurora will promote the Read Replica that has the highest priority (the lowest numbered tier).
+  - If two or more Aurora Replicas share the **same priority**, then Amazon RDS promotes the replica that is **largest in size**.
+  - If two or more Aurora Replicas share the **same priority and size**, then Amazon Aurora promotes an arbitrary replica in the **same promotion tier**.
 
 # 8. Features of Aurora
 
@@ -100,14 +108,14 @@
 - Automated backups, snapshots and replicas are also encrypted.
 - Encryption in flight using SSL (same process as MySQL or Postgres).
 - Possibility to authenticate using IAM token (same method as RDS).
-- You are responsible for protecting the instance with security groups.
-- You can't SSH.
+- We are responsible for protecting the instance with security groups.
+- We can't SSH.
 
 # 10. Amazon Aurora Serverless
 
 - The Aurora Serverless is an auto-scaling, on-demand configuration designed for Amazon Aurora RDS.
 - It can start, shut and scale capacity automatically, according to individual application's requirements.
-- This service allows you to run cloud-powered databases without the need to manage database capacity.
+- This service allows we to run cloud-powered databases without the need to manage database capacity.
 - Automated database instantiation and auto.
 - Scaling based on actual usage.
 - Good for infrequent, intermittent or unpredictable workloads.
@@ -116,9 +124,9 @@
 
 # 11. MySQL error log
 
-- You can monitor the MySQL logs directly through the Amazon RDS console, Amazon RDS API, AWS CLI, or AWS SDKs.
-- You can also access MySQL logs by directing the logs to a database table in the main database and querying that table.
-- You can use the mysqlbinlog utility to download a binary log.
+- We can monitor the MySQL logs directly through the Amazon RDS console, Amazon RDS API, AWS CLI, or AWS SDKs.
+- We can also access MySQL logs by directing the logs to a database table in the main database and querying that table.
+- We can use the mysqlbinlog utility to download a binary log.
 
 # 12. Amazon Aurora vs Amazon Aurora Serverless
 
@@ -139,7 +147,7 @@
   - Point-in-time recovery in that timeframe.
 - **Manual DB Snapshots**
   - Manually triggered by the user.
-  - Retention of backup for as long as you want.
+  - Retention of backup for as long as we want.
 
 ## 13.1. Restore options
 

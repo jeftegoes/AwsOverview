@@ -36,6 +36,7 @@
   - [15.1. S3 Event Notifications with Amazon EventBridge](#151-s3-event-notifications-with-amazon-eventbridge)
 - [16. Object Integrity](#16-object-integrity)
 - [17. Baseline Performance](#17-baseline-performance)
+- [S3 Performance](#s3-performance)
   - [17.1. Multi-Part upload:](#171-multi-part-upload)
     - [17.1.1. Sample multipart upload calls](#1711-sample-multipart-upload-calls)
   - [17.2. S3 Transfer Acceleration (S3TA)](#172-s3-transfer-acceleration-s3ta)
@@ -409,6 +410,8 @@ TODO: DIAGRAM
   - bucket/2/file => /2/
 - If you spread reads across all four prefixes evenly, you can achieve 22,000 requests per second for GET and HEAD.
 
+# S3 Performance
+
 ## 17.1. Multi-Part upload:
 
 - **Recommended for files > 100MB, must use for files > 5GB**.
@@ -428,6 +431,14 @@ TODO: DIAGRAM
 - **Amazon S3 Transfer Acceleration (S3TA) enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket. Transfer Acceleration takes advantage of Amazon CloudFront's globally distributed edge locations. As the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.**
 - Increase transfer speed by transferring file to an AWS edge location which will forward the data to the S3 bucket in the target region.
 - Compatible with multi-part upload.
+- **Use Cases**
+  - **Web or mobile applications** with **widespread users**.
+  - Applications **hosted far away** from their S3 bucket.
+- **Activation and Testing**
+  - **Enable** S3TA easily via the **S3 console**.
+  - **Test** the benefits with a **speed comparison tool**.
+- **Pricing Model**
+  - **Pay only** for the **accelerated** transfers.
 
 # 18. Byte-Range Fetches
 
