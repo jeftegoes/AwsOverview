@@ -4,7 +4,7 @@
 
 - [1. Networking Costs in AWS per GB - Simplified](#1-networking-costs-in-aws-per-gb---simplified)
 - [2. Minimizing egress traffic network cost](#2-minimizing-egress-traffic-network-cost)
-- [3. S3 Data Transfer Pricing – Analysis for USA](#3-s3-data-transfer-pricing--analysis-for-usa)
+- [3. S3 Data Transfer Pricing - Analysis for USA](#3-s3-data-transfer-pricing---analysis-for-usa)
 
 # 1. Networking Costs in AWS per GB - Simplified
 
@@ -18,7 +18,7 @@
 - Try to keep as much internet traffic within AWS to minimize costs.
 - Direct Connect location that are co-located in the same AWS Region result in lower cost for egress network.
 
-# 3. S3 Data Transfer Pricing – Analysis for USA
+# 3. S3 Data Transfer Pricing - Analysis for USA
 
 - **S3 ingress:** Free.
 - **S3 to Internet:** $0.09 per GB.

@@ -3,13 +3,22 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. Amazon FSx for Windows (File Server)](#2-amazon-fsx-for-windows-file-server)
-- [3. Amazon FSx for Lustre](#3-amazon-fsx-for-lustre)
-- [4. FSx Lustre - File System Deployment Options](#4-fsx-lustre---file-system-deployment-options)
-- [5. Amazon FSx for NetApp ONTAP](#5-amazon-fsx-for-netapp-ontap)
-- [6. Amazon FSx for OpenZFS](#6-amazon-fsx-for-openzfs)
+- [2. Amazon FSx](#2-amazon-fsx)
+- [3. Amazon FSx for Windows (File Server)](#3-amazon-fsx-for-windows-file-server)
+- [4. Amazon FSx for Lustre](#4-amazon-fsx-for-lustre)
+- [5. FSx Lustre - File System Deployment Options](#5-fsx-lustre---file-system-deployment-options)
+- [6. Amazon FSx for NetApp ONTAP](#6-amazon-fsx-for-netapp-ontap)
+- [7. Amazon FSx for OpenZFS](#7-amazon-fsx-for-openzfs)
 
 # 1. Introduction
+
+- Amazon FSx for Lustre makes it easy and cost-effective to launch and run the world's most popular high-performance file system.
+- It is used for workloads such as machine learning, high-performance computing (HPC), video processing, and financial modeling.
+- The open-source Lustre file system is designed for applications that require fast storage - where you want your storage to keep up with your compute.
+- FSx for Lustre integrates with Amazon S3, making it easy to process data sets with the Lustre file system.
+  - When linked to an S3 bucket, an FSx for Lustre file system transparently presents S3 objects as files and allows you to write changed data back to S3.
+
+# 2. Amazon FSx
 
 - Launch 3rd party high-performance file systems on AWS.
 - Fully managed service.
@@ -19,7 +28,7 @@
   - FSx for NetApp ONTAP.
   - FSx for OpenZFS.
 
-# 2. Amazon FSx for Windows (File Server)
+# 3. Amazon FSx for Windows (File Server)
 
 - **FSx for Windows** is a fully managed **Windows** file system share drive.
 - Supports SMB (Server Message Block) protocol & Windows NTFS.
@@ -34,7 +43,7 @@
 - Can be configured to be Multi-AZ (high availability).
 - Data is backed-up daily to S3.
 
-# 3. Amazon FSx for Lustre
+# 4. Amazon FSx for Lustre
 
 - Lustre is a type of parallel distributed file system, for large-scale computing.
 - The name Lustre is derived from "Linux" and "cluster.
@@ -49,7 +58,7 @@
   - Can write the output of the computations back to S3 (through FSx).
 - **Can be used from on-premises servers (VPN or Direct Connect).**
 
-# 4. FSx Lustre - File System Deployment Options
+# 5. FSx Lustre - File System Deployment Options
 
 - **Scratch File System**
   - Temporary storage.
@@ -62,7 +71,7 @@
   - Replace failed files within minutes.
   - **Usage:** Long-term processing, sensitive data.
 
-# 5. Amazon FSx for NetApp ONTAP
+# 6. Amazon FSx for NetApp ONTAP
 
 - Managed NetApp ONTAP on AWS.
 - **File System compatible with NFS, SMB, iSCSI protocol.**
@@ -78,7 +87,7 @@
 - Snapshots, replication, low-cost, compression and data de-duplication.
 - **Point-in-time instantaneous cloning (helpful for testing new workloads).**
 
-# 6. Amazon FSx for OpenZFS
+# 7. Amazon FSx for OpenZFS
 
 - Managed OpenZFS file system on AWS.
 - File System compatible with NFS (v3, v4, v4.1, v4.2).

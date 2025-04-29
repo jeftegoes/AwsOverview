@@ -447,6 +447,7 @@
 - 24 hours retention.
 - Limited # of consumers.
 - Process using AWS Lambda Triggers, or DynamoDB Stream Kinesis adapter.
+- Near-real-time.
 
 ## 13.2. Kinesis Data Streams (newer)
 
