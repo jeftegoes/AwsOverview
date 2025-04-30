@@ -48,10 +48,11 @@
   - [15.1. AMI Process (from an EC2 instance)](#151-ami-process-from-an-ec2-instance)
   - [15.2. EC2 Image Builder](#152-ec2-image-builder)
   - [15.3. Instance Migration between AZ](#153-instance-migration-between-az)
-  - [15.4. Cross-Account AMI Sharing](#154-cross-account-ami-sharing)
-    - [15.4.1. AMI Sharing with KMS Encryption](#1541-ami-sharing-with-kms-encryption)
-  - [15.5. Cross-Account AMI Copy](#155-cross-account-ami-copy)
-    - [15.5.1. AMI Copy with KMS Encryption](#1551-ami-copy-with-kms-encryption)
+  - [15.4. Instance Migration between Regions](#154-instance-migration-between-regions)
+  - [15.5. Cross-Account AMI Sharing](#155-cross-account-ami-sharing)
+    - [15.5.1. AMI Sharing with KMS Encryption](#1551-ami-sharing-with-kms-encryption)
+  - [15.6. Cross-Account AMI Copy](#156-cross-account-ami-copy)
+    - [15.6.1. AMI Copy with KMS Encryption](#1561-ami-copy-with-kms-encryption)
 - [16. Instance Scheduler on AWS](#16-instance-scheduler-on-aws)
 
 # 1. Introduction
@@ -224,7 +225,7 @@
 - Windows:
 
   - Configure pem file
-    ![Permission Propertie Aws PemFile](/Images/PermissionPropertieAwsPemFile.png)
+    ![Permission Propertie Aws PemFile](/Images//PermissionPropertieAwsPemFile.png)
   - Command
     - ssh -i D:\MY_PENFILE.pem ec2-user@PUBLIC_IP.
 
@@ -508,7 +509,7 @@
 
 - The VM Import/Export enables you to easily import virtual machine images from your existing environment to Amazon EC2 instances and export them back to your on-premises environment.
 
-![VM Import/Export](/Images/AmazonEC2VMImportExport.png)
+![VM Import/Export](/Images/Compute/AmazonEC2VMImportExport.png)
 
 # 15. AMI
 
@@ -519,11 +520,10 @@
   - You add your own software, configuration, operating system, monitoring...
   - Faster boot / configuration time because all your software is pre-packaged.
 - AMI are built for a **specific region** (and can be copied across regions).
-- You can launch EC2 instances from:
+- **You can launch EC2 instances from**
   - **A Public AMI:** AWS provided.
   - **Your own AMI:** You make and maintain them yourself.
   - **An AWS Marketplace AMI:** An AMI someone else made (and potentially sells).
-- **ATTENTION!** When the new AMI is copied from Region A into Region B, it automatically creates a snapshot in Region B because AMIs are based on the underlying snapshots.
 
 ## 15.1. AMI Process (from an EC2 instance)
 
@@ -549,36 +549,40 @@
 ## 15.3. Instance Migration between AZ
 
 - Remember **between AZ**.
-  ![EC2 Instance Migration between AZ](/Images/AmazonEC2MigrationBetweenAZ.png)
+  ![EC2 Instance Migration between AZ](/Images/Compute/AmazonEC2MigrationBetweenAZ.png)
 
-## 15.4. Cross-Account AMI Sharing
+## 15.4. Instance Migration between Regions
+
+- **ATTENTION!** When the new AMI is copied from Region A into Region B, it automatically creates a snapshot in Region B because AMIs are based on the underlying snapshots.
+
+## 15.5. Cross-Account AMI Sharing
 
 - You can share an AMI with another AWS account.
 - Sharing an AMI does **not affect the ownership** of the AMI.
-- You can only share AMIs that have:
+- **You can only share AMIs that have**
   1. Unencrypted volumes.
   2. Volumes that are encrypted with a customer managed key.
 - If you share an AMI with encrypted volumes,** you must also share any customer managed keys used to encrypt them**.
 
-![Cross-Account AMI Sharing](/Images/AmazonEC2CrossAccountAMISharing.png)
+![Cross-Account AMI Sharing](/Images/Compute/AmazonEC2CrossAccountAMISharing.png)
 
-### 15.4.1. AMI Sharing with KMS Encryption
+### 15.5.1. AMI Sharing with KMS Encryption
 
-![AMI Sharing with KMS Encryption](/Images/AmazonEC2AMISharingWithKMSEncryption.png)
+![AMI Sharing with KMS Encryption](/Images/Compute/AmazonEC2AMISharingWithKMSEncryption.png)
 
-## 15.5. Cross-Account AMI Copy
+## 15.6. Cross-Account AMI Copy
 
 - If you copy an AMI that has been shared with your account, you are the owner of the target AMI in your account.
 - The owner of the source AMI must grant you read permissions for the storage that backs the **AMI (EBS Snapshot)**.
 - If the shared AMI has encrypted snapshots, the owner must share the key or keys with you as well.
 - Can encrypt the AMI with your own CMK while copying.
 
-![Cross-Account AMI Copy](/Images/AmazonEC2CrossAccountAMICopy.png)
+![Cross-Account AMI Copy](/Images/Compute/mazonEC2CrossAccountAMICopy.png)
 
-### 15.5.1. AMI Copy with KMS Encryption
+### 15.6.1. AMI Copy with KMS Encryption
 
 - Cross-Region / Cross-Account Encrypted AMI Copy
-  ![AMI Copy with KMS Encryption](/Images/AmazonEC2CrossAccountAMICopyWithKMSEncryption.png)
+  ![AMI Copy with KMS Encryption](/Images/Compute/AmazonEC2CrossAccountAMICopyWithKMSEncryption.png)
 
 # 16. Instance Scheduler on AWS
 

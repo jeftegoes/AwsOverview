@@ -1,10 +1,11 @@
-# AWS Database Migration Service <!-- omit in toc -->
+# AWS Database Migration Service (DMS) <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
 - [2. DMS Sources and Targets](#2-dms-sources-and-targets)
 - [3. AWS Schema Conversion Tool (SCT)](#3-aws-schema-conversion-tool-sct)
+  - [3.1. Continuous Replication](#31-continuous-replication)
 - [4. Multi-AZ Deployment](#4-multi-az-deployment)
 - [5. RDS \& Aurora MySQL Migrations](#5-rds--aurora-mysql-migrations)
 - [6. RDS \& Aurora PostgreSQL Migrations](#6-rds--aurora-postgresql-migrations)
@@ -20,18 +21,18 @@
   - Homogeneous migrations: ex Oracle to Oracle.
   - Heterogeneous migrations: ex Microsoft SQL Server to Aurora.
 - Continuous Data Replication using CDC.
-- You must create an EC2 instance to perform the replication tasks.
+- We must create an EC2 instance to perform the replication tasks.
 
 # 2. DMS Sources and Targets
 
 - **SOURCES**
-  - On-Premises and EC2 instances databases: Oracle, MS SQL Server, MySQL, MariaDB, PostgreSQL, MongoDB, SAP, DB2.
-  - Azure: Azure SQL Database.
-  - Amazon RDS: all including Aurora.
-  - [Amazon S3](/Storage/Amazon%20S3.md)
-  - DocumentDB
+  - **On-Premises and EC2 instances databases:** Oracle, MS SQL Server, MySQL, MariaDB, PostgreSQL, MongoDB, SAP, DB2.
+  - **Azure:** Azure SQL Database.
+  - **Amazon RDS:** all including Aurora.
+  - [Amazon S3](/Storage/Amazon%20S3.md).
+  - DocumentDB.
 - **TARGETS**
-  - On-Premises and EC2 instances databases: Oracle, MS SQL Server, MySQL, MariaDB, PostgreSQL, SAP.
+  - **On-Premises and EC2 instances databases:** Oracle, MS SQL Server, MySQL, MariaDB, PostgreSQL, SAP.
   - Amazon RDS.
   - Redshift, DynamoDB, [Amazon S3](/Storage/Amazon%20S3.md)
   - OpenSearch Service.
@@ -43,12 +44,17 @@
 # 3. AWS Schema Conversion Tool (SCT)
 
 - Convert your Database's Schema from one engine to another.
-- Example OLTP: (SQL Server or Oracle) to MySQL, PostgreSQL, Aurora.
-- Example OLAP: (Teradata or Oracle) to Amazon Redshift.
+- **Example OLTP:** (SQL Server or Oracle) to MySQL, PostgreSQL, Aurora.
+- **Example OLAP:** (Teradata or Oracle) to Amazon Redshift.
 - Prefer compute-intensive instances to optimize data conversions.
-- **You do not need to use SCT if you are migrating the same DB engine.**
-  - Ex: On-Premise PostgreSQL => RDS PostgreSQL.
+  ![AWS Schema Conversion Tool (SCT)](/Images/Database/AWSDatabaseMigrationServiceSchemaConversionToolDiagram.png)
+- **We do not need to use SCT if we are migrating the same DB engine.**
+  - **Ex:** On-Premise PostgreSQL => RDS PostgreSQL.
   - The DB engine is still PostgreSQL (RDS is the platform).
+
+## 3.1. Continuous Replication
+
+![AWS Database Migration Service - Continuous Replication](/Images/Database/AWSDatabaseMigrationServiceContinuousReplication.png)
 
 # 4. Multi-AZ Deployment
 
