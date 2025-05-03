@@ -435,7 +435,7 @@
 
 - Spot Fleets = set of Spot Instances + (optional) On-Demand Instances
 - The Spot Fleet will try to meet the target capacity with price constraints.
-  - Define possible launch pools: instance type (m5.large), OS, Availability Zone.
+  - Define possible launch pools: Instance type (m5.large), OS, Availability Zone.
   - Can have multiple launch pools, so that the fleet can choose.
   - Spot Fleet stops launching instances when reaching capacity or max cost.
 - **Strategies to allocate Spot Instances**
@@ -451,7 +451,7 @@
 - A physical server with EC2 instance capacity fully dedicated to your use.
 - Allows you address **compliance requirements** and **use your existing server - bound software licenses** (per-socket, per-core, pe-VM software licenses).
 - Purchasing Options:
-  - **On-demand:** pay per second for active Dedicated Host.
+  - **On-demand:** Pay per second for active Dedicated Host.
   - **Reserved:** 1 or 3 years (No Upfront, Partial Upfront, All Upfront).
 - **The most expensive option.**
 - Useful for software that have complicated licensing model (BYOL - Bring Your Own License).
@@ -554,6 +554,7 @@
 ## 15.4. Instance Migration between Regions
 
 - **ATTENTION!** When the new AMI is copied from Region A into Region B, it automatically creates a snapshot in Region B because AMIs are based on the underlying snapshots.
+  ![EC2 Instance Migration Between Regions](/Images/Compute/AmazonEC2InstanceMigrationBetweenRegions.png)
 
 ## 15.5. Cross-Account AMI Sharing
 

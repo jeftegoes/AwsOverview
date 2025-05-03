@@ -267,6 +267,7 @@
 - **We must update route tables in each VPC's subnets to ensure EC2 instances can communicate with each othe.**
 - We can create VPC Peering connection between VPCs in different **AWS accounts/regions**.
 - We can reference a security group in a peered VPC (works cross accounts - same region).
+  ![Amazon VPC Peering](/Images/Networking%20&%20Content%20Delivery/AmazonVPCPeering.png)
 
 # 12. VPC Endpoints (AWS PrivateLink)
 
