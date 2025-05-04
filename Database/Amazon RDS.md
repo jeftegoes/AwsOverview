@@ -155,35 +155,35 @@
 
 # 8. Security - Encryption
 
-- At rest encryption:
+- **At rest encryption**
   - Possibility to encrypt the master & read replicas with AWS KMS - AES-256 encryption.
   - Encryption has to be defined at launch time.
   - If the master is not encrypted, the read replicas cannot be encrypted.
-- In-flight encryption:
+- **In-flight encryption**
   - SSL certificates to encrypt data to RDS in flight.
   - Provide SSL options with trust certificate when connecting to database.
-  - To enforce SSL:
-    - PostgreSQL: rds.force_ssl=1 in the AWS RDS Console (Parameter Groups).
-    - MySQL: Within the DB: `GRANT USAGE ON *.* TO 'mysqluser'@'%' REQUIRE SSL;`
+  - **To enforce SSL**
+    - **PostgreSQL:** `rds.force_ssl=1` in the AWS RDS Console (Parameter Groups).
+    - **MySQL:** Within the DB: `GRANT USAGE ON *.* TO 'mysqluser'@'%' REQUIRE SSL;`
 
 ## 8.1. TDE - Transparent Data Encryption
 
 - Amazon RDS supports using Transparent Data Encryption (TDE) to encrypt stored data on your DB instances running Microsoft SQL Server or Oracle.
 - TDE automatically encrypts data before it is written to storage, and automatically decrypts data when the data is read from storage.
-- At rest encryption:
+- **At rest encryption**
   - Transparent Data Encryption (TDE) available for Oracle and SQL Server.
 
 ## 8.2. Encryption Operations
 
-- Encrypting RDS backups:
+- **Encrypting RDS backups**
   - Snapshots of un-encrypted RDS databases are un-encrypted.
   - Snapshots of encrypted RDS databases are encrypted.
   - Can copy a snapshot into an encrypted one.
-- To encrypt an un-encrypted RDS database:
-  - Create a snapshot of the un-encrypted database.
-  - Copy the snapshot and enable encryption for the snapshot.
-  - Restore the database from the encrypted snapshot.
-  - Migrate applications to the new database, and delete the old database.
+- **To encrypt an un-encrypted RDS database**
+  1. Create a snapshot of the un-encrypted database.
+  2. Copy the snapshot and enable encryption for the snapshot.
+  3. Restore the database from the encrypted snapshot.
+  4. Migrate applications to the new database, and delete the old database.
 
 ## 8.3. Network & IAM
 

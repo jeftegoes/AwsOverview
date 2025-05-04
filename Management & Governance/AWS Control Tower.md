@@ -24,7 +24,7 @@
   - Detect policy violations and remediate them.
   - Monitor compliance through an interactive dashboard.
 - AWS Control Tower runs on top of [AWS Organizations](AWS%20Organizations.md):
-  - It automatically sets up [AWS Organizations](AWS%20Organizations.md) to organize accounts and implement SCPs (Service Control Policies).
+  - It automatically sets up [AWS Organizations](AWS%20Organizations.md) to organize accounts and implement SCP's (Service Control Policies).
 
 # 2. Account Factory
 

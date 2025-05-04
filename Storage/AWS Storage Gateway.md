@@ -23,7 +23,7 @@
   - Security requirements.
   - Compliance requirements.
   - IT strategy.
-- S3 is a proprietary storage technology (unlike EFS / NFS), so how do you expose the S3 data on-premise?
+- S3 is a proprietary storage technology (unlike EFS / NFS), so how do we expose the S3 data on-premise?
   - AWS Storage Gateway!
 
 # 2. AWS Storage Gateway
@@ -57,14 +57,14 @@
 
 ### 3.1.1. RefreshCache API
 
-- Storage Gateway updates the File Share Cache automatically when you write files to the File Gateway.
-- When you upload files directly to the S3 bucket, users connected to the File Gateway may not see the files on the File Share (accessing stale data).
-- You need to invoke the `RefreshCache` API.
+- Storage Gateway updates the File Share Cache automatically when we write files to the File Gateway.
+- When we upload files directly to the S3 bucket, users connected to the File Gateway may not see the files on the File Share (accessing stale data).
+- We need to invoke the `RefreshCache` API.
   ![AWS Storage Gateway RefreshCache API](/Images/Storage/AWSStorageGatewayRefreshCacheAPI.png)
 
 ### 3.1.2. Automating Cache Refresh
 
-- **Automated Cache Refresh:** A File Gateway feature that enables you to automatically refresh File Gateway cache to stay up to date with the changes in their S3 buckets.
+- **Automated Cache Refresh:** A File Gateway feature that enables we to automatically refresh File Gateway cache to stay up to date with the changes in their S3 buckets.
 - Ensure that users are not accessing stale data on their file shares.
 - No need to manually and periodically invoke the `RefreshCache` API.
 
@@ -93,9 +93,9 @@
 
 # 4. Hardware appliance
 
-- Using Storage Gateway means you need on-premises virtualization.
-- Otherwise, you can use a **Storage Gateway Hardware Appliance**.
-- You can buy it on amazon.com.
+- Using Storage Gateway means we need on-premises virtualization.
+- Otherwise, we can use a **Storage Gateway Hardware Appliance**.
+- We can buy it on amazon.com.
 - Works with File Gateway, Volume Gateway, Tape Gateway.
 - Has the required CPU, memory, network, SSD cache resources.
 - Helpful for daily NFS backups in small data centers.

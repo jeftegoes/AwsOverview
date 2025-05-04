@@ -27,6 +27,7 @@
 - [15. Shared Responsibility Model for IAM](#15-shared-responsibility-model-for-iam)
 - [16. Identity-based policies and resource-based policies](#16-identity-based-policies-and-resource-based-policies)
 - [17. Permissions boundary](#17-permissions-boundary)
+  - [17.1. Use cases](#171-use-cases)
 - [18. Access Analyzer](#18-access-analyzer)
 - [19. IAM Roles vs Resource Based Policies](#19-iam-roles-vs-resource-based-policies)
 - [20. Summary](#20-summary)
@@ -39,21 +40,21 @@
 - **Groups** only contain users, not other groups.
 - Users don't have to belong to a group, and user can belong to multiple groups.
 
-![IAM - Users and groups](/Images/IAMUsersAndGroups.png)
+![IAM - Users and groups](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMUsersAndGroups.png)
 
 # 2. Permissions
 
 - **Users or Groups** can be assigned JSON documents called policies.
 - These policies define the **permissions** of the users.
-- In AWS you apply the **least privilege** principle: don't give more permissions than a user needs.
+- In AWS we apply the **least privilege** principle: don't give more permissions than a user needs.
 
 # 3. Policies inheritance
 
-![IAM - Policies](/Images/IAMPoliciesInheritance.png)
+![IAM - Policies](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMPoliciesInheritance.png)
 
 # 4. Policies Structure
 
-![IAM - Policies](/Images/IAMPoliciesStructure.PNG)
+![IAM - Policies](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMPoliciesStructure.PNG)
 
 - **Consists of**
   - **Version:** Policy language version, always include "YYYY-MM-DD".
@@ -72,13 +73,13 @@
     - **Purpose:** Specifies what resource(s) the policy will affect. For example, an S3 bucket, an IAM user, an EC2 instance, or a Lambda function.
     - **Example:** In a policy granting access to an S3 bucket, the Resource field defines the ARN (Amazon Resource Name) of the bucket or objects in it.
   - **Condition:** Conditions for when this policy is in effect (optional).
-- **Remember that you can't modify these AWS-managed policies.**
+- **Remember that we can't modify these AWS-managed policies.**
 
 # 5. Policy variations
 
 ## 5.1. Policy Variables
 
-- Use AWS Identity and Access Management (IAM) policy variables as placeholders when you don't know the exact value of a resource or condition key when you write the policy.
+- Use AWS Identity and Access Management (IAM) policy variables as placeholders when we don't know the exact value of a resource or condition key when we write the policy.
   - Example:
     ```json
     {
@@ -101,7 +102,7 @@
 
 ## 5.2. Policy Condition
 
-- The `Condition` element (or Condition block) lets you specify conditions for when a policy is in effect, like so
+- The `Condition` element (or Condition block) lets we specify conditions for when a policy is in effect, like so
   ```json
     "Condition" : {
       "StringEquals" : {
@@ -113,20 +114,20 @@
 
 ## 5.3. Policy Resource
 
-- The Resource element specifies the object or objects that the statement covers. You specify a resource using an ARN.
+- The Resource element specifies the object or objects that the statement covers. We specify a resource using an ARN.
 - This cannot be used to address the requirements of the given use-case.
 
 ## 5.4. Policy Principal
 
-- You can use the `Principal` element in a policy to specify the principal that is allowed or denied access to a resource (In IAM, a principal is a person or application that can make a request for an action or operation on an AWS resource.
+- We can use the `Principal` element in a policy to specify the principal that is allowed or denied access to a resource (In IAM, a principal is a person or application that can make a request for an action or operation on an AWS resource.
 - The principal is authenticated as the AWS account root user or an IAM entity to make requests to AWS).
-- You cannot use the `Principal` element in an IAM identity-based policy.
-- You can use it in the trust policies for IAM roles and in resource-based policies.
+- We cannot use the `Principal` element in an IAM identity-based policy.
+- We can use it in the trust policies for IAM roles and in resource-based policies.
 
 # 6. Password Policy
 
 - Strong passwords = higher security for your account.
-- In AWS, you can setup a password policy:
+- In AWS, we can setup a password policy:
   - Set a minimum password length.
   - **Require specific character types**
     - Including uppercase letters.
@@ -140,8 +141,8 @@
 ## 6.1. Multi Factor Authentication - MFA
 
 - Users have access to your account and can possibly change configurations or delete resources in your AWS account.
-- **You want to protect your Root Accounts and IAM users.**
-- MFA = password you know + security device you own.
+- **We want to protect your Root Accounts and IAM users.**
+- MFA = password we know + security device we own.
 - **Main benefit of MFA**
   - If a password is stolen or hacked, the account is not compromised.
 
@@ -161,7 +162,7 @@
 
 # 7. How can users access AWS?
 
-- **To access AWS, you have three options**
+- **To access AWS, we have three options**
   - **AWS Management Console** (protected by password + MFA).
   - **AWS Command Line Interface (CLI):** Protected by access keys.
   - **AWS Software Developer Kit (SDK)** - For code: protected by access keys.
@@ -177,9 +178,9 @@
 
 # 8. What's the AWS CLI?
 
-- A tool that enables you to interact with AWS services using commands in your command-line shell.
+- A tool that enables we to interact with AWS services using commands in your command-line shell.
 - Direct access to the public APIs of AWS services.
-- You can develop scripts to manage your resources.
+- We can develop scripts to manage your resources.
 - It's [open-source](https://github.com/aws/aws-cli).
 - Alternative to using AWS Management Console.
 
@@ -187,7 +188,7 @@
 
 - AWS Software Development Kit (AWS SDK).
 - Language-specific APIs (set of libraries).
-- Enables you to access and manage AWS services programmatically.
+- Enables we to access and manage AWS services programmatically.
 - Embedded within your application.
 - **Supports**
   - SDKs (JavaScript, Python, PHP, .NET, Ruby, Java, Go, Node.js, C++).
@@ -210,14 +211,14 @@
   - A report that lists all your account's users and the status of their various credentials.
 - **IAM Access Advisor (user-level)**
   - Access advisor shows the service permissions granted to a user and when those services were last accessed.
-  - You can use this information to revise your policies.
+  - We can use this information to revise your policies.
 
 ## 11.1. IAM Access Advisor (user-level)
 
 - To help identify the unused roles, IAM reports the last-used timestamp that represents when a role was last used to make an AWS request.
   - Your security team can use this information to identify, analyze, and then confidently remove unused roles.
   - This helps improve the security posture of your AWS environments.
-  - Additionally, by removing unused roles, you can simplify your monitoring and auditing efforts by focusing only on roles that are in use.
+  - Additionally, by removing unused roles, we can simplify your monitoring and auditing efforts by focusing only on roles that are in use.
 
 # 12. Guidelines & Best Practices
 
@@ -233,25 +234,25 @@
 
 # 13. Certificate Store
 
-- Use IAM as a certificate manager only when you must support HTTPS connections in a Region that is not supported by ACM.
+- Use IAM as a certificate manager only when we must support HTTPS connections in a Region that is not supported by ACM.
 - IAM securely encrypts your private keys and stores the encrypted version in IAM SSL certificate storage.
-- IAM supports deploying server certificates in all Regions, but you must obtain your certificate from an external provider for use with AWS.
-- You cannot upload an ACM certificate to IAM.
-- Additionally, you cannot manage your certificates from the IAM Console.
+- IAM supports deploying server certificates in all Regions, but we must obtain your certificate from an external provider for use with AWS.
+- We cannot upload an ACM certificate to IAM.
+- Additionally, we cannot manage your certificates from the IAM Console.
 
 # 14. Providing access to externally authenticated users (identity federation)
 
 ## 14.1. Custom identity broker application
 
-![Custom Identity Federation Diagram](/Images/AWSIAMCustomIdentityFederation.png)
+![Custom Identity Federation Diagram](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMCustomIdentityFederation.png)
 
 # 15. Shared Responsibility Model for IAM
 
-- AWS:
+- **AWS**
   - Infrastructure (global network security).
   - Configuration and vulnerability analysis.
   - Compliance validation.
-- You (Customer):
+- **You (Customer)**
   - Users, Groups, Roles, Policies management and monitoring.
   - Enable MFA on all accounts.
   - Rotate all your keys often.
@@ -260,7 +261,7 @@
 
 # 16. Identity-based policies and resource-based policies
 
-![Difference between both](/Images/AWSIAMIdentityBasedVsResourceBasedPolicies.png)
+![Difference between both](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMIdentityBasedVsResourceBasedPolicies.png)
 
 # 17. Permissions boundary
 
@@ -268,17 +269,20 @@
 - Advanced feature to use a managed policy to set the maximum permissions an IAM entity can get.
 - Permissions boundary is a managed policy that is used for an IAM entity (user or role).
 - The policy defines the maximum permissions that the identity-based policies can grant to an entity, but does not grant permissions.
-- Can be used in combinations of AWS Organizations SCP.
-- **Use cases**
-  - Delegate responsibilities to non administrators within their permission boundaries, for example create new IAM users.
-  - Allow developers to self-assign policies and manage their own permissions, while making sure they can't "escalate" their privileges (= make themselves admin).
-  - Useful to restrict one specific user (instead of a whole account using Organizations & SCP).
+- Can be used in combinations of [AWS Organizations SCP](/Management%20&%20Governance/AWS%20Organizations.md).
+  ![AWS IAM Permission Boundaries](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMPermissionBoundaries.png)
+
+## 17.1. Use cases
+
+- Delegate responsibilities to non administrators within their permission boundaries, for example create new IAM users.
+- Allow developers to self-assign policies and manage their own permissions, while making sure they can't "escalate" their privileges (= make themselves admin).
+- Useful to restrict one specific user (instead of a whole account using Organizations & SCP).
 - https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html
 
 # 18. Access Analyzer
 
-- AWS IAM Access Analyzer helps you identify the resources in your organization and accounts, such as Amazon S3 buckets or IAM roles, that are shared with an external entity. This lets you identify unintended access to your resources and data, which is a security risk.
-- You can set the scope for the analyzer to an organization or an AWS account.
+- AWS IAM Access Analyzer helps we identify the resources in your organization and accounts, such as Amazon S3 buckets or IAM roles, that are shared with an external entity. This lets you identify unintended access to your resources and data, which is a security risk.
+- We can set the scope for the analyzer to an organization or an AWS account.
 - This is your zone of trust.
 - The analyzer scans all of the supported resources within your zone of trust.
 - When Access Analyzer finds a policy that allows access to a resource from outside of your zone of trust, it generates an active finding.
@@ -288,7 +292,7 @@
 - **Cross account**
   - Attaching a resource-based policy to a resource (example: S3 bucket policy).
   - OR using a role as a proxy.
-- **When you assume a role (user, application or service), you give up your original permissions and take the permissions assigned to the role.**
+- **When we assume a role (user, application or service), we give up your original permissions and take the permissions assigned to the role.**
 - When using a resource-based policy, the principal doesn't have to give up his permissions.
 - **Example:** User in account A needs to scan a DynamoDB table in Account A and dump it in an S3 bucket in Account B.
 - **Supported by:** Amazon S3 buckets, SNS topics, SQS queues, etc...
