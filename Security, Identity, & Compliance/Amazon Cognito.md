@@ -46,7 +46,7 @@
 - Password reset.
 - Email & Phone Number Verification.
 - Multi-factor authentication (MFA).
-- Federated Identities: users from Facebook, Google, SAML...
+- **Federated Identities:** Users from Facebook, Google, SAML...
 - Feature: block users if their credentials are compromised elsewhere.
 - Login sends back a JSON Web Token (JWT).
   ![Cognito User Pools Diagram](/Images/Security,%20Identity,%20&%20Compliance/AWSCognitoUserPoolsCUP.png)
@@ -104,7 +104,7 @@
   - Your applications can focus on their business logic.
 - Authenticate users through:
   - Identity Provider (IdP): OpenID Connect (OIDC) compliant.
-  - Cognito User Pools:
+  - **Cognito User Pools**
     - Social IdPs, such as Amazon, Facebook, or Google.
     - Corporate identities using SAML, LDAP, or Microsoft AD.
 - **Must use an HTTPS listener to set authenticate-oidc & authenticate-cognito rules.**

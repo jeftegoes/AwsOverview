@@ -1,0 +1,43 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.4 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="26.0.4">
+  <diagram name="Page-1" id="QbCToO09vOkqkHBWh7Bz">
+    <mxGraphModel dx="1114" dy="1198" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Un9E-txg3YxfsAyLl8cD-2" value="Amazon EFS File System" style="fillColor=none;strokeColor=#7AA116;dashed=1;verticalAlign=bottom;fontStyle=1;fontColor=#5A6C86;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="374" y="310" width="330" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="Un9E-txg3YxfsAyLl8cD-4" value="EFS Standard" style="fillColor=none;strokeColor=#000000;dashed=1;verticalAlign=bottom;fontStyle=1;fontColor=#5A6C86;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="390" y="344" width="300" height="236" as="geometry" />
+        </mxCell>
+        <mxCell id="Un9E-txg3YxfsAyLl8cD-1" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.file_system;" vertex="1" parent="1">
+          <mxGeometry x="500" y="260" width="78" height="73" as="geometry" />
+        </mxCell>
+        <mxCell id="Un9E-txg3YxfsAyLl8cD-3" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.document;" vertex="1" parent="1">
+          <mxGeometry x="410" y="370" width="57" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="Un9E-txg3YxfsAyLl8cD-5" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.document;" vertex="1" parent="1">
+          <mxGeometry x="610" y="370" width="57" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="Un9E-txg3YxfsAyLl8cD-6" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.document;" vertex="1" parent="1">
+          <mxGeometry x="510.5" y="370" width="57" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="Un9E-txg3YxfsAyLl8cD-10" value="move" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Un9E-txg3YxfsAyLl8cD-7" target="Un9E-txg3YxfsAyLl8cD-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Un9E-txg3YxfsAyLl8cD-7" value="no access for 60 days" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#00CC00;strokeColor=none;dashed=0;verticalLabelPosition=middle;verticalAlign=middle;align=left;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.document;labelPosition=right;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="410" y="472" width="57" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="Un9E-txg3YxfsAyLl8cD-8" value="EFS Infrequent Access (EFS-IA)" style="fillColor=none;strokeColor=#000000;dashed=1;verticalAlign=bottom;fontStyle=1;fontColor=#5A6C86;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="390" y="700" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Un9E-txg3YxfsAyLl8cD-9" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#00CC00;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.document;" vertex="1" parent="1">
+          <mxGeometry x="410" y="720" width="57" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="Un9E-txg3YxfsAyLl8cD-11" value="Lifecycle Policy" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#A10000;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.documents2;" vertex="1" parent="1">
+          <mxGeometry x="600" y="590" width="67" height="78" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

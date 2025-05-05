@@ -1,4 +1,4 @@
-# AWS Glue<!-- omit in toc -->
+# AWS Glue <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -11,7 +11,7 @@
 - Useful to prepare and transform data for analytics.
 - Fully **serverless** service.
 - Glue Data Catalog: catalog of datasets.
-  - **The AWS Glue Data Catalog is a central repository to store structural and operational metadata for all your data assets. For a given data set, you can store its table definition, physical location, add business relevant attributes, as well as track how this data has changed over time.**
+  - **The AWS Glue Data Catalog is a central repository to store structural and operational metadata for all your data assets. For a given data set, we can store its table definition, physical location, add business relevant attributes, as well as track how this data has changed over time.**
   - Can be used by [Amazon Athena](Amazon%20Athena.md), [Amazon Redshift](Amazon%20Redshift.md), [Amazon EMR](Amazon%20EMR.md).
 
 # 2. Things to know at a high-level

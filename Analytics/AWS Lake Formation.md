@@ -1,4 +1,4 @@
-# AWS Lake Formation<!-- omit in toc -->
+# AWS Lake Formation <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

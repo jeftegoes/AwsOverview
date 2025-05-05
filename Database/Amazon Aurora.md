@@ -71,8 +71,7 @@
   - Helps for decreasing latency.
   - Promoting another region (for disaster recovery) has an RTO of < 1 minute.
   - **Typical cross-region replication takes less than 1 second.**
-
-![Global Aurora](/Images/AmazonAuroraGlobal.png)
+    - ![Global Aurora](/Images/AmazonAuroraGlobal.png)
 
 # 6. Machine Learning
 

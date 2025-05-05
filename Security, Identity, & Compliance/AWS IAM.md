@@ -9,6 +9,11 @@
 - [5. Policy variations](#5-policy-variations)
   - [5.1. Policy Variables](#51-policy-variables)
   - [5.2. Policy Condition](#52-policy-condition)
+    - [5.2.1. aws:username](#521-awsusername)
+    - [5.2.2. aws:SourceIp](#522-awssourceip)
+    - [5.2.3. aws:RequestedRegion](#523-awsrequestedregion)
+    - [5.2.4. ec2:ResourceTag / aws:PrincipalTag](#524-ec2resourcetag--awsprincipaltag)
+    - [5.2.5. aws:MultiFactorAuthPresent](#525-awsmultifactorauthpresent)
   - [5.3. Policy Resource](#53-policy-resource)
   - [5.4. Policy Principal](#54-policy-principal)
 - [6. Password Policy](#6-password-policy)
@@ -102,15 +107,116 @@
 
 ## 5.2. Policy Condition
 
+### 5.2.1. aws:username
+
 - The `Condition` element (or Condition block) lets we specify conditions for when a policy is in effect, like so
   ```json
-    "Condition" : {
-      "StringEquals" : {
-        "aws:username" : "johndoe"
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": "*",
+        "Resource": "*",
+        "Condition": {
+          "StringEquals": {
+            "aws:username": "johndoe"
+          }
+        }
       }
-    }
+    ]
+  }
   ```
 - This can not be used to address the requirements of the given use-case.
+
+### 5.2.2. aws:SourceIp
+
+- Restrict the client IP from `203.0.113.0/24` which the API calls are being made.
+  ```json
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Deny",
+        "Action": "*",
+        "Resource": "*",
+        "Condition": {
+          "NotIpAddress": {
+            "aws:SourceIp": ["203.0.113.0/24"]
+          }
+        }
+      }
+    ]
+  }
+  ```
+
+### 5.2.3. aws:RequestedRegion
+
+- Restrict the region the API calls are made to `us-east-1`.
+  ```json
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Deny",
+        "Action": ["ec2:*", "rds:*", "dynamodb:*"],
+        "Resource": "*",
+        "Condition": {
+          "StringEquals": {
+            "aws:RequestedRegion": ["us-east-1"]
+          }
+        }
+      }
+    ]
+  }
+  ```
+
+### 5.2.4. ec2:ResourceTag / aws:PrincipalTag
+
+- Restrict based on tags.
+  ```json
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": ["ec2:StartInstances", "ec2:StopInstances"],
+        "Resource": "*",
+        "Condition": {
+          "StringEquals": {
+            "ec2:ResourceTag/Project": "Data",
+            "aws:PrincipalTag/Department": "Data"
+          }
+        }
+      }
+    ]
+  }
+  ```
+
+### 5.2.5. aws:MultiFactorAuthPresent
+
+- To force MFA.
+  ```json
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "ec2:StartInstances",
+          "ec2:StopInstances",
+          "ec2:RebootInstances"
+        ],
+        "Resource": "*",
+        "Condition": {
+          "Bool": {
+            "aws:MultiFactorAuthPresent": "true"
+          }
+        }
+      }
+    ]
+  }
+  ```
 
 ## 5.3. Policy Resource
 
@@ -277,6 +383,7 @@
 - Delegate responsibilities to non administrators within their permission boundaries, for example create new IAM users.
 - Allow developers to self-assign policies and manage their own permissions, while making sure they can't "escalate" their privileges (= make themselves admin).
 - Useful to restrict one specific user (instead of a whole account using Organizations & SCP).
+  ![AWS IAM Permission Boundaries Example](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMPermissionBoundariesExample.png)
 - https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html
 
 # 18. Access Analyzer

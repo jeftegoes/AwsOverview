@@ -125,8 +125,7 @@
 - No manual intervention in apps.
 - Not used for scaling.
 - Multi-AZ replication is free.
-- Note: The Read Replicas be setup as Multi-AZ for Disaster Recovery (DR).
-
+- **Note:** The Read Replicas be setup as Multi-AZ for Disaster Recovery (DR).
   ![Multi AZ](/Images/AmazonRDSMultiAZ.png)
 
 ## 6.2. From Single-AZ to Multi-AZ

@@ -21,11 +21,12 @@
   - [6.1. Kinesis Data Streams vs Firehose](#61-kinesis-data-streams-vs-firehose)
 - [7. Kinesis Data Analytics (SQL application)](#7-kinesis-data-analytics-sql-application)
   - [7.1. Kinesis Data Analytics for Apache Flink](#71-kinesis-data-analytics-for-apache-flink)
-- [8. Ordering data into](#8-ordering-data-into)
-  - [8.1. Kinesis](#81-kinesis)
-  - [8.2. SQS](#82-sqs)
-  - [8.3. Kinesis vs SQS ordering](#83-kinesis-vs-sqs-ordering)
-- [9. SQS vs SNS vs Kinesis](#9-sqs-vs-sns-vs-kinesis)
+- [8. Kinesis Agent](#8-kinesis-agent)
+- [9. Ordering data into](#9-ordering-data-into)
+  - [9.1. Kinesis](#91-kinesis)
+  - [9.2. SQS](#92-sqs)
+  - [9.3. Kinesis vs SQS ordering](#93-kinesis-vs-sqs-ordering)
+- [10. SQS vs SNS vs Kinesis](#10-sqs-vs-sns-vs-kinesis)
 
 # 1. Introduction
 
@@ -217,9 +218,16 @@
 
 [Amazon Managed Service for Apache Flink](/Analytics/Amazon%20Managed%20Service%20for%20Apache%20Flink.md)
 
-# 8. Ordering data into
+# 8. Kinesis Agent
 
-## 8.1. Kinesis
+- Kinesis Agent is a stand-alone Java software application that offers an easy way to collect and send data to **Amazon Kinesis Data Streams** or **Amazon Kinesis Firehose**.
+- **Note**
+  - When an **Amazon Kinesis Data Stream** is configured as the **source** of a **Kinesis Firehose** delivery stream, Firehose’s `PutRecord` and `PutRecordBatch` operations are disabled and Kinesis Agent **cannot write** to Kinesis Firehose Delivery Stream directly.
+  - Data needs to be added to the Amazon Kinesis Data Stream through the Kinesis Data Streams `PutRecord` and `PutRecords` operations instead.
+
+# 9. Ordering data into
+
+## 9.1. Kinesis
 
 - Imagine you have 100 trucks (truck_1, truck_2, ... truck_100) on the road sending their GPS positions regularly into AWS.
 - You want to consume the data in order for each truck, so that you can track their movement accurately.
@@ -227,14 +235,14 @@
   - Answer: send using a "Partition Key" value of the "truck_id".
   - The same key will always go to the same shard.
 
-## 8.2. SQS
+## 9.2. SQS
 
 - For SQS standard, there is no ordering.
 - For SQS FIFO, if you don't use a Group ID, messages are consumed in the order they are sent, **with only one consumer**.
 - You want to scale the number of consumers, but you want messages to be "grouped" when they are related to each other.
 - Then you use a Group ID (similar to Partition Key in Kinesis).
 
-## 8.3. Kinesis vs SQS ordering
+## 9.3. Kinesis vs SQS ordering
 
 - **Let's assume 100 trucks, 5 kinesis shards, 1 SQS FIFO.**
 - Kinesis Data Streams:
@@ -248,7 +256,7 @@
   - You can have up to 100 Consumers (due to the 100 Group ID).
   - You have up to 300 messages per second (or 3000 if using batching).
 
-# 9. SQS vs SNS vs Kinesis
+# 10. SQS vs SNS vs Kinesis
 
 | SQS                                             | SNS                                                   | Kinesis                                                   |
 | ----------------------------------------------- | ----------------------------------------------------- | --------------------------------------------------------- |

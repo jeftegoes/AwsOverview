@@ -19,7 +19,7 @@
 - Managed NFS (network file system) that **can be mounted on many EC2**.
 - EFS works with EC2 instances in **multi-AZ**.
 - Highly available, scalable, expensive (3x gp2), pay per use, no capacity planning.
-  ![Amazon Elastic File System Diagram](/Images/EFSDiagram.png)
+  ![Amazon Elastic File System Diagram](/Images/Storage/AmazonEFSDiagram.png)
 - **Use cases:** Content management, web serving, data sharing, Wordpress.
 - Uses NFSv4.1 protocol.
 - Uses security group to control access to EFS.
@@ -53,6 +53,7 @@
 - Lifecycle management feature - move file after N days.
 - **Standard:** For frequently accessed files.
 - **Infrequent access (EFS-IA):** Cost to retrieve files, lower price to store. Enable EFS-IA with a Lifecycle Policy.
+  ![Amazon EFS Infrequent Access](/Images/Storage/AmazonEFSInfrequentAccess.png)
 - **Archive:** Rarely accessed data (few times each year), 50% cheaper.
 - Implement **lifecycle policies** to move files between storage tiers.
 

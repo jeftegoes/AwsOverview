@@ -1,4 +1,4 @@
-# AWS Systems Manager<!-- omit in toc -->
+# AWS Systems Manager <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -28,7 +28,7 @@
 
 # 1. Introduction
 
-- Helps you manage your **EC2 and On-Premises** systems at scale.
+- Helps we manage your **EC2 and On-Premises** systems at scale.
 - Another Hybrid AWS service.
 - Get operational insights about the state of your infrastructure.
 - Easily detect problems.
@@ -51,7 +51,7 @@
 
 ## 1.2. Systems Manager - SSM Session Manager
 
-- Allows you to start a secure shell on your EC2 and on-premises servers.
+- Allows we to start a secure shell on your EC2 and on-premises servers.
 - No SSH access, bastion hosts, or SSH keys needed.
 - No port 22 needed (better security).
 - Supports Linux, macOS, and Windows.
@@ -61,8 +61,8 @@
 
 ## 2.1. Policies
 
-- Parameter policies help you manage a growing set of parameters by allowing you to assign specific criteria to a parameter, such as an expiration date or time to live.
-- Parameter policies are especially helpful in forcing you to update or delete passwords and configuration data stored in Parameter Store, a capability of AWS Systems Manager.
+- Parameter policies help we manage a growing set of parameters by allowing we to assign specific criteria to a parameter, such as an expiration date or time to live.
+- Parameter policies are especially helpful in forcing we to update or delete passwords and configuration data stored in Parameter Store, a capability of AWS Systems Manager.
 - Take note that parameter policies are only available for parameters in the **Advanced tier**.
 - Parameter Store offers the following types of policies:
   - `Expiration` - deletes the parameter at a specific date
@@ -72,8 +72,8 @@
 # 3. SSM - Documents
 
 - Documents can be in JSON or YAML.
-- You define parameters.
-- You define actions.
+- We define parameters.
+- We define actions.
 - Many documents already exist in AWS.
 
 # 4. SSM - Run Command
@@ -90,7 +90,7 @@
 # 5. Systems Manager Automation
 
 - Simplifies common maintenance and deployment tasks of Amazon EC2 instances and other AWS resources.
-- **Automation** enables you to do the following:
+- **Automation** enables we to do the following:
   - Build Automation workflows to configure and manage instances and AWS resources.
   - Create custom workflows or use pre-defined workflows maintained by AWS.
   - Receive notifications about Automation tasks and workflows by using Amazon CloudWatch Events.
@@ -188,7 +188,7 @@
 
 # 9. Session Manager
 
-- Allows you to start a secure shell on your EC2 and on-premises servers.
+- Allows we to start a secure shell on your EC2 and on-premises servers.
 - Access through AWS Console, AWS CLI, or Session Manager SDK.
 - **Does not need SSH access, bastion hosts, or SSH keys.**
 - No port 22 needed (better security).
@@ -203,7 +203,7 @@
   - Control which users/groups can access Session Manager and which instances.
   - Use tags to restrict access to only specific EC2 instances
   - Access SSM + write to S3 + write to CloudWatch
-- Optionally, you can restrict commands a user can run in a session
+- Optionally, we can restrict commands a user can run in a session
 
 # 11. Systems Manager - Default Host Management Configuration
 
@@ -216,7 +216,7 @@
 
 # 12. Hybrid Environments
 
-- You can setup Systems Manager to manage on-premises servers, IoT devices, edge devices, and virtual machines (e.g., VMs in other cloud providers).
+- We can setup Systems Manager to manage on-premises servers, IoT devices, edge devices, and virtual machines (e.g., VMs in other cloud providers).
 - In Systems Manager Console:
   - EC2 instances use the prefix **"i-"**.
   - Hybrid managed nodes use the prefix **"mi-"**.
@@ -226,7 +226,7 @@
 - Manage IoT Greengrass Core devices using SSM.
 - Install SSM Agent on Greengrass Core devices (registered as a managed node in SSM).
 - SSM Agent can be installed manually or deployed as a Greengrass Component (pre-built software module that you deploy directly to Greengrass Core devices).
-- You must add permissions to the Token Exchange Role (IAM Role for the IoT core device) to communicate with Systems Manager.
+- We must add permissions to the Token Exchange Role (IAM Role for the IoT core device) to communicate with Systems Manager.
 - Supports all SSM Capabilities (Patch Manager, Session Manager, Run Command...).
 - **Use cases:** Easily update and maintain OS and software updates across a fleet of Greengrass Core devices.
 
@@ -236,13 +236,13 @@
 - Displays current data about:
   - **Patches in Patch Manager.**
   - **Associations in State Manager.**
-- Can sync data to an S3 bucket using **Resource Data Sync**, and you can analyze using Athena and QuickSight.
+- Can sync data to an S3 bucket using **Resource Data Sync**, and we can analyze using Athena and QuickSight.
 - Can collect and aggregate data from multiple accounts and regions.
 - Can send compliance data to Security Hub.
 
 # 15. Systems Manager - OpsCenter
 
-- Allows you to view, investigate, and remediate issues in one place (no need to navigate across different AWS services).
+- Allows we to view, investigate, and remediate issues in one place (no need to navigate across different AWS services).
 - Security issues (Security Hub), performance issues (DynamoDB throttle), failures (ASG failed launch instance)...
 - Reduce meantime to resolve issues.
 - OpsItems
