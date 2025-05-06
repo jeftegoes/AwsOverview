@@ -317,18 +317,17 @@
 
 ## 11.3. S3 Events Notifications
 
-- S3 events:
-  - S3:ObjectCreated
-  - S3:ObjectRemoved
-  - S3:ObjectRestore
-  - S3:Replication...
+- **S3 events**
+  - `S3:ObjectCreated`
+  - `S3:ObjectRemoved`
+  - `S3:ObjectRestore`
+  - `S3:Replication`...
 - Object name filtering possible `.jpg`.
-- Use case: generate thumbnails of images uploaded to S3.
+- **Use case:** Generate thumbnails of images uploaded to S3.
 - S3 event notifications typically deliver events in seconds but can sometimes take a minute or longer.
-- If two writes are made to a single non- versioned object at the same time, it is possible that only a single event notification will be sent
+- If two writes are made to a single non- versioned object at the same time, it is possible that only a single event notification will be sent.
 - If you want to ensure that an event notification is sent for every successful write, you can enable versioning on your bucket.
-
-![S3 Events Notifications](/Images/S3EventsNotifications.png)
+  ![S3 Events Notifications](/Images/Storage/AmazonS3EventsNotifications.png)
 
 ### 11.3.1. Simple S3 Event Pattern - Metadata Sync
 
@@ -345,7 +344,7 @@
 - An event source mapping creates an iterator for each shard, processes items in order.
 - Start with new items, from the beginning or from timestamp.
 - Processed items aren't removed from the stream (other consumers can read them).
-- Low traffic: use batch window to accumulate records before processing.
+- **Low traffic:** Use batch window to accumulate records before processing.
 - You can process multiple batches in parallel.
   - Up to 10 batches per shard
   - In-order processing is still guaranteed for each partition key,
@@ -368,8 +367,8 @@
 
 - Event Source Mapping will poll SQS (**Long Polling**).
 - Specify batch size (1-10 messages).
-- Recommended: Set the queue visibility timeout to 6x the timeout of your Lambda function.
-- To use a DLQ:
+- **Recommended:** Set the queue visibility timeout to 6x the timeout of your Lambda function.
+- **To use a DLQ**
   - Set-up on the SQS queue, not Lambda (DLQ for Lambda is only for async invocations).
   - Or use a Lambda destination for failures.
 
@@ -385,15 +384,15 @@
 
 ## 12.5. Lambda Event Mapper Scaling
 
-- **Kinesis Data Streams & DynamoDB Streams:**
-  - One Lambda invocation per stream shard
-  - If you use parallelization, up to 10 batches processed per shard simultaneously
-- **SQS Standard:**
-  - Lambda adds 60 more instances per minute to scale up
-  - Up to 1000 batches of messages processed simultaneously
-- **SQS FIFO:**
-  - Messages with the same GroupID will be processed in order
-  - The Lambda function scales to the number of active message groups
+- **Kinesis Data Streams & DynamoDB Streams**
+  - One Lambda invocation per stream shard.
+  - If you use parallelization, up to 10 batches processed per shard simultaneously.
+- **SQS Standard**
+  - Lambda adds 60 more instances per minute to scale up.
+  - Up to 1000 batches of messages processed simultaneously.
+- **SQS FIFO**
+  - Messages with the same GroupID will be processed in order.
+  - The Lambda function scales to the number of active message groups.
 
 # 13. Event and Context Objects
 
@@ -402,9 +401,9 @@
 - JSON-formatted document contains data for the function to process.
 - Contains information from the invoking service (e.g., EventBridge, custom, ...).
 - Lambda runtime converts the event to an object (e.g., dict type in Python).
-- Example: input arguments, invoking service arguments, ...
-- Example of return:
-  ```
+- **Example:** Input arguments, invoking service arguments, ...
+- **Example of return**
+  ```json
   {
     "version": "0",
     "id": "fe8d3c65-xmpl-c5c3-2c87-81584709a377",
@@ -413,13 +412,12 @@
     "account": "123456789012",
     "time": "2020-04-28T07:20:20Z",
     "region": "us-east-2",
-    "resources":[
-      "arn:aws:rds: us-east-2:123456789012: db: rdz6xmpliljlb1"
-    ],
+    "resources": ["arn:aws:rds: us-east-2:123456789012: db: rdz6xmpliljlb1"],
     "detail": {
-      "EventCategories": [ "backup" ],
+      "EventCategories": ["backup"],
       "SourceType": "DB_INSTANCE",
-      "SourceArn": "arn: aws: rds: us-east-2:123456789012: db: rdz6xmpliljlb1", "Date": "2020-04-28T07:20:20.112Z",
+      "SourceArn": "arn: aws: rds: us-east-2:123456789012: db: rdz6xmpliljlb1",
+      "Date": "2020-04-28T07:20:20.112Z",
       "Message": "Finished DB Instance backup",
       "SourceIdentifier": "rdz6xmpliljlb1"
     }
@@ -430,18 +428,18 @@
 
 - Provides methods and properties that provide information about the invocation, function, and runtime environment.
 - Passed to your function by Lambda at runtime.
-- Example of return:
-  ```
-    {
-      "aws_request_id": "a3de505e-f16b-42f4-b3e6-bcd2e4a73903",
-      "function_name": "MyFunction-AULC3LB8Q02F",
-      "invoked_function_arn": "arn: aws: lambda: us-west-2:123456789012: function: MyFunction-AULC3LB8Q02F",
-      "function_version": "$LATEST",
-      "memory_limit_in_mb": "128",
-      "log_group_name": "/aws/lambda/MyFunction-AULC3LB8Q02F",
-      "log_stream_name": "2015/10/26/[$LATEST] c71058d852474b980f221f73402ad",
-      "client_context": "None",
-    }
+- **Example of return**
+  ```json
+  {
+    "aws_request_id": "a3de505e-f16b-42f4-b3e6-bcd2e4a73903",
+    "function_name": "MyFunction-AULC3LB8Q02F",
+    "invoked_function_arn": "arn: aws: lambda: us-west-2:123456789012: function: MyFunction-AULC3LB8Q02F",
+    "function_version": "$LATEST",
+    "memory_limit_in_mb": "128",
+    "log_group_name": "/aws/lambda/MyFunction-AULC3LB8Q02F",
+    "log_stream_name": "2015/10/26/[$LATEST] c71058d852474b980f221f73402ad",
+    "client_context": "None"
+  }
   ```
 
 # 14. Lambda - Destinations
@@ -452,7 +450,7 @@
   - Amazon SNS.
   - AWS Lambda.
   - Amazon EventBridge bus.
-- Note: AWS recommends you use destinations instead of DLQ now (but both can be used at the same time).
+- **Note:** AWS recommends you use destinations instead of DLQ now (but both can be used at the same time).
 - Event Source mapping: for discarded event batches
   - Amazon SQS:
   - Amazon SNS
@@ -498,10 +496,10 @@
 
 # 17. Lambda Logging & Monitoring
 
-- CloudWatch Logs:
+- **CloudWatch Logs**
   - AWS Lambda execution logs are stored in Amazon CloudWatch Logs.
   - **Make sure your AWS Lambda function has an execution role with an IAM policy that authorizes writes to CloudWatch Logs.**
-- CloudWatch Metrics:
+- **CloudWatch Metrics**
   - AWS Lambda metrics are displayed in Amazon CloudWatch Metrics.
   - Invocations, Durations, Concurrent Executions.
   - Error count, Success Rates, Throttles.
@@ -852,7 +850,7 @@ CMD ["app.lambdaHandler"]
 - Supports Resource-based Policies & CORS configurations.
 - Can be applied to any function alias or to `$LATEST` (can't be applied to other function versions).
 - Create and configure using AWS Console or AWS API.
-- Throttle your function by using Reserved Concurrency. 
+- Throttle your function by using Reserved Concurrency.
 
 ![Lambda Function URL](/Images/LambdaFunctionURL.png)
 

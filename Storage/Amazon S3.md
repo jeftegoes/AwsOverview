@@ -172,8 +172,8 @@
         ]
       }
       ```
-      ![Example ](/Images/AWSS3BucketPoliciesExample.png)
-- **Use S3 bucket for policy to:**
+      ![Example ](/Images/Storage/AmazonS3BucketPoliciesExample.png)
+- **Use S3 bucket for policy to**
   - Grant public access to the bucket.
   - Force objects to be encrypted at upload.
   - Grant access to another account (Cross Account).
@@ -182,15 +182,15 @@
 
 ### 5.2.1. Public Access - Use Bucket Policy
 
-![S3 Use bucket policy](/Images/S3UseBucketPolicy.png)
+![S3 Use bucket policy](/Images/Storage/AmazonS3UseBucketPolicy.png)
 
 ### 5.2.2. User Access to S3 - IAM permissions
 
-![S3 IAM Permissions](/Images/S3IamPermissions.png)
+![S3 IAM Permissions](/Images/Storage/AmazonS3IamPermissions.png)
 
 ### 5.2.3. EC2 instance access - Use IAM Roles
 
-![EC2 instance access - IAM Roles](/Images/S3IamRoles.png)
+![EC2 instance access - IAM Roles](/Images/Storage/AmazonS3IamRoles.png)
 
 ### 5.2.4. Cross-Account Access - Use Bucket Policy
 
@@ -580,22 +580,22 @@ TODO: DIAGRAM
 - Encryption type is **AES-256**.
 - Must set header `"x-amz-server-side-encryption": "AES256"`.
 - Enabled by default for new buckets and new objects.
-  ![Encryption SSE-S3](/Images/S3EncryptionSSES3.png)
+  ![Encryption SSE-S3](/Images/Storage/AmazonS3EncryptionSSES3.png)
 
 ## 24.2. SSE-KMS
 
 - Encryption using keys handled and managed by AWS KMS (Key Management Service).
   - **Manage your own keys.**
-- KMS advantages: user control + audit key usage using CloudTrail.
+- **KMS advantages:** User control + audit key usage using [AWS CloudTrail](/Management%20&%20Governance/AWS%20CloudTrail.md).
 - Object is encrypted server side.
 - Must set header `"x-amz-server-side-encryption": "aws:kms"`.
-  ![Encryption SSE-KMS](/Images/S3EncryptionSSEKMS.png)
+  ![Encryption SSE-KMS](/Images/Storage/AmazonS3EncryptionSSEKMS.png)
 
 ### 24.2.1. SSE-KMS Limitation
 
 - If you use SSE-KMS, you may be impacted by the KMS limits.
   - **Upload and download files from Amazon S3, you need to leverage a KMS Key.**
-    ![Encryption SSE-KMS Limitaition](/Images/S3EncryptionSSEKMSLimitation.png)
+    ![Encryption SSE-KMS Limitaition](/Images/Storage/AmazonS3EncryptionSSEKMSLimitation.png)
 - When you upload, it calls the `GenerateDataKey` KMS API.
 - When you download, it calls the `Decrypt` KMS API.
 - Count towards the KMS quota per second (5500, 10000, 30000 req/s based on region).
@@ -608,7 +608,7 @@ TODO: DIAGRAM
 - **HTTPS must be used.**
 - Encryption key must provided in HTTP headers, for every HTTP request made.
 - Must set header `"x-amz-server-side-encryption-customer-algorithm": "AES256"`.
-  ![Encryption SSE-C](/Images/S3EncryptionSSEC.png)
+  ![Encryption SSE-C](/Images/Storage/AmazonS3EncryptionSSEC.png)
 
 | Name                                            | Description                                                                                                                                                                                                                             |
 | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
