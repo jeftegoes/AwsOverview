@@ -20,12 +20,12 @@
 
 # 1. Introduction
 
-- An **EBS (Elastic Block Store) Volume** is a **network drive** you can attach to your instances while they run.
+- An **EBS (Elastic Block Store) Volume** is a **network drive** we can attach to your instances while they run.
 - It allows your instances to persist data, even after their termination.
 - **They can only be mounted to one instance at a time (at the CCP level).**
 - They are bound to a specific **availability zone (AZ)**.
 - Analogy: Think of them as a "network USB stick".
-- Free tier: 30 GB of free EBS storage of type General Purpose (SSD) or Magnetic per month.
+- **Free tier:** 30 GB of free EBS storage of type General Purpose (SSD) or Magnetic per month.
 
 # 2. EBS Volume
 
@@ -34,12 +34,12 @@
   - It can be detached from an EC2 instance and attached to another one quickly.
 - It's locked to an Availability Zone (AZ).
   - An EBS Volume in `sa-east-1a` cannot be attached to `sa-east-1b`.
-  - To move a volume across, you first need to **snapshot** it.
+  - To move a volume across, we first need to **snapshot** it.
 - Have a provisioned capacity (size in GBs, and IOPS).
-  - You get billed for all the provisioned capacity.
-  - You can increase the capacity of the drive over time.
+  - We get billed for all the provisioned capacity.
+  - We can increase the capacity of the drive over time.
 
-![EBS Volume diagram](/Images/EBSVolumeDiagram.png)
+![Amazon EC2 - EBS Volume diagram](/Images/Compute/AmazonEC2EBSVolumeDiagram.png)
 
 # 3. Delete on Termination attribute
 
@@ -47,7 +47,8 @@
   - By default, the root EBS volume is deleted (attribute enabled).
   - By default, any other attached EBS volume is not deleted (attribute disabled).
 - This can be controlled by the AWS console / AWS CLI.
-- **Use case: preserve root volume when instance is terminated.**
+- **Use case: Preserve root volume when instance is terminated.**
+- We can **prevent automatic deletion** by setting the `DeleteOnTermination` attribute to `false`.
 
 # 4. Snapshots
 
@@ -55,15 +56,15 @@
 - Not necessary to detach volume to do snapshot, **but recommended**.
 - Can copy snapshots across AZ or Region.
 
-![EBS Snapshot diagram](/Images/EBSSnapshotDiagram.png)
+![Amazon EC2 - EBS Snapshot diagram](/Images/Compute/AmazonEC2EBSSnapshotDiagram.png)
 
 ## 4.1. Features
 
-- **EBS Snapshot Archive:**
+- **EBS Snapshot Archive**
   - Move a Snapshot to an "archive tier" that is 75% cheaper.
   - Takes within 24 to 72 hours for restoring the archive.
-- **Recycle Bin for EBS Snapshots:**
-  - Setup rules to retain deleted snapshots so you can recover them after an accidental deletion.
+- **Recycle Bin for EBS Snapshots**
+  - Setup rules to retain deleted snapshots so we can recover them after an accidental deletion.
   - Specify retention (from 1 day to 1 year).
 - **Fast Snapshot Restore (FSR)**
   - Force full initialization of snapshot to have no latency on the first use ($$$).
@@ -71,7 +72,7 @@
 # 5. EC2 Instance Store
 
 - EBS volumes are **network drives** with good but "limited" performance.
-- **If you need a high-performance hardware disk, use EC2 Instance Store**.
+- **If we need a high-performance hardware disk, use EC2 Instance Store**.
 - Better I/O performance.
 - EC2 Instance Store lose their storage if they're stopped (ephemeral).
 - Good for buffer / cache / scratch data / temporary content.
@@ -142,12 +143,12 @@
 
 ## 6.2. EBS Encryption
 
-- When you create an encrypted EBS volume, you get the following:
+- When we create an encrypted EBS volume, we get the following:
   - Data at rest is encrypted inside the volume.
   - All the data in flight moving between the instance and the volume is encrypted.
   - All snapshots are encrypted.
   - All volumes created from the snapshot.
-- Encryption and decryption are handled transparently (you have nothing to do).
+- Encryption and decryption are handled transparently (we have nothing to do).
 - Encryption has a minimal impact on latency.
 - EBS Encryption leverages keys from KMS (AES-256).
 - Copying an unencrypted snapshot allows encryption.
@@ -158,7 +159,7 @@
 1. Create an EBS snapshot of the volume.
 2. Encrypt the EBS snapshot (using copy).
 3. Create new ebs volume from the snapshot (the volume will also be encrypted).
-4. Now you can attach the encrypted volume to the original instance.
+4. Now we can attach the encrypted volume to the original instance.
 
 # 7. Shared Responsibility Model for EC2 Storage
 

@@ -14,3 +14,4 @@
 - **Out-of-the-box source blueprints:** [Amazon S3](/Storage/Amazon%20S3.md), RDS, Relational & NoSQL DB...
 - **Fine-grained Access Control for your applications (row and column-level)**
 - Built on top of [AWS Glue](AWS%20Glue.md)
+  ![AWS Lake Formation](/Images/Analytics/AWSLakeFormation.png)

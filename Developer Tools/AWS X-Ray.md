@@ -166,7 +166,7 @@
 
 - AWS Elastic Beanstalk platforms include the X-Ray daemon.
 - You can run the daemon by setting an option in the Elastic Beanstalk console or with a configuration file (in .ebextensions/xray-daemon.config).
-  ```
+  ```yaml
   option_settings:
     aws:elasticbeanstalk:xray:
       XRayEnabled: true
