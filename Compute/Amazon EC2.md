@@ -179,7 +179,7 @@
 - Security groups only contain **allow** rules.
 - Security groups rules can reference by IP or by security group.
 - Security groups are acting as a **firewall** on EC2 instances.
-- They regulate:
+- **They regulate**
   - Access to Ports.
   - Authorised IP ranges - IPv4 and IPv6.
   - Control of inbound network (from other to the instance).
@@ -204,7 +204,7 @@
 
 - In this scenario, **S3 is not part of your VPC**, unlike your EC2 instances, EBS volumes, ELBs, and other services that typically reside within your private network.
 - An EC2 instance needs to have access to the Internet, via the Internet Gateway or a NAT Instance/Gateway in order to access S3.
-- Alternatively, you can also create a **VPC endpoint** so your private subnet would be able to connect to S3.
+- Alternatively, you can also create a **VPC Endpoint** so your private subnet would be able to connect to S3.
 - [Amazon VPC](/Networking%20&%20Content%20Delivery/Amazon%20VPC.md)
 
 ## 5.3. To acess S3 with IAM Roles

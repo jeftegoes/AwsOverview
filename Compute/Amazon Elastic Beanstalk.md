@@ -274,7 +274,7 @@
 ## 13.1. Multi Docker Container
 
 - Multi Docker helps run multiple containers per EC2 instance in EB.
-- This will create for you:
+- **This will create for you**
   - ECS Cluster.
   - EC2 instances, configured to use the ECS Cluster.
   - Load Balancer (in high availability mode).
@@ -286,7 +286,7 @@
 # 14. HTTPS
 
 - **Beanstalk with HTTPS**
-  - Idea: Load the SSL certificate onto the Load Balancer.
+  - **Idea:** Load the SSL certificate onto the Load Balancer.
   - Can be done from the Console (EB console, load balancer configuration).
   - Can be done from the code: `.ebextensions/securelistener-alb.config`.
   - SSL Certificate can be provisioned using ACM (AWS Certificate Manager) or CLI.
@@ -300,12 +300,12 @@
 
 - If your application performs tasks that are long to complete, offload these tasks to a dedicated **worker environment**.
 - **Decoupling** your application into two tiers is common.
-- Example: processing a video, generating a zip file, etc.
+- **Example:** Processing a video, generating a zip file, etc.
 - You can define periodic tasks in a file `cron.yaml`.
 
 # 16. Notifications
 
-- Create Rules in EventBridge to act to the following events:
+- **Create Rules in EventBridge to act to the following events**
   - **Environment Operations Status:** `create`, `update`, `terminate` (start, success, fail).
   - **Other Resources Status:** ASG, ELB, EC2 Instance (created, deleted).
   - **Managed Updates Status:** Started, failed.
@@ -313,14 +313,14 @@
 
 # 17. Custom Platform (Advanced)
 
-- Custom Platforms are very advanced, they allow to define from scratch:
+- **Custom Platforms are very advanced, they allow to define from scratch**
   - The Operating System (OS).
   - Additional Software.
   - Scripts that Beanstalk runs on these platforms.
-- Use case: **app language is incompatible with Beanstalk & doesn't use Docker.**
-- To create your own platform:
+- **Use case: App language is incompatible with Beanstalk & doesn't use Docker.**
+- **To create your own platform**
   - Define an AMI using `Platform.yaml` file.
   - Build that platform using the **Packer software (open source tool to create AMIs)**.
-- Custom Platform vs Custom Image (AMI):
+- **Custom Platform vs Custom Image (AMI)**
   - Custom Image is to tweak an existing Beanstalk Platform (Python, Node.js, Java...).
   - Custom Platform is to create an entirely new Beanstalk Platform.

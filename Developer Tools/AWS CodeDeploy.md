@@ -1,4 +1,4 @@
-# AWS CodeDeploy<!-- omit in toc -->
+# AWS CodeDeploy <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

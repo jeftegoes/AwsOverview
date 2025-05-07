@@ -40,7 +40,7 @@
 
 ## 1.3. Diagram
 
-TODO: DIAGRAM
+![Stateless Web App What Time Is It](/Images/Solution%20Architect/StatelessWebAppWhatTimeIsIt.png)
 
 # 2. MyClothes.com
 

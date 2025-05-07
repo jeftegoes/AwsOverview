@@ -1,4 +1,4 @@
-# AWS CloudTrail<!-- omit in toc -->
+# AWS CloudTrail <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

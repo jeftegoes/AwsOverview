@@ -19,6 +19,9 @@
 - [8. Network Access Control List (NACL)](#8-network-access-control-list-nacl)
   - [8.1. Default NACL](#81-default-nacl)
   - [8.2. Network ACLs vs Security Groups](#82-network-acls-vs-security-groups)
+    - [8.2.1. Security Groups (Stateful)](#821-security-groups-stateful)
+    - [8.2.2. Network ACLs (Stateless)](#822-network-acls-stateless)
+    - [8.2.3. Summary](#823-summary)
 - [9. Ephemeral Ports](#9-ephemeral-ports)
 - [10. VPC Flow Logs](#10-vpc-flow-logs)
   - [10.1. Logs Syntax](#101-logs-syntax)
@@ -220,6 +223,20 @@
 - Do NOT modify the Default NACL, instead create custom NACLs.
 
 ## 8.2. Network ACLs vs Security Groups
+
+### 8.2.1. Security Groups (Stateful)
+
+- **Stateful** means AWS **remembers the connection**.
+- If you allow **inbound traffic**, the **response (outbound traffic)** is automatically allowed — **you don't need to explicitly allow it**.
+- **Example:** If port 22 (SSH) is allowed **inbound**, the return SSH traffic **outbound is automatically allowed**.
+
+### 8.2.2. Network ACLs (Stateless)
+
+- **Stateless** means AWS does **not remember the connection**.
+- You must explicitly allow **both inbound and outbound traffic** for the connection to work.
+- **Example:** If you allow inbound on port 80 (HTTP), you also need to allow **outbound traffic** for responses on the appropriate ephemeral port range (usually 1024–65535).
+
+### 8.2.3. Summary
 
 | Security group                                                                                                                                               | Network ACL                                                                                                                                                                            |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -17,6 +17,6 @@
   - **Bootstrap using User Data:** For dynamic configuration, use User Data scripts.
   - **Hybrid:** Mix Golden AMI and User Data (Elastic Beanstalk).
 - **RDS Databases**
-  - Restore from a snapshot: the database will have schemas and data ready!
+  - **Restore from a snapshot:** The database will have schemas and data ready!
 - **EBS Volumes**
-  - Restore from a snapshot: the disk will already be formatted and have data!
+  - **Restore from a snapshot:** The disk will already be formatted and have data!

@@ -39,7 +39,7 @@
   | 10 TB | 12 days | 30 hours | 3 hours |
   | 100 TB | 124 days | 12 days | 30 hours |
   | 1 PB | 3 years | 124 days | 12 days |
-- AWS Snow Family: offline devices to perform data migrations.
+- **AWS Snow Family:** Offline devices to perform data migrations.
   - If it takes more than a week to transfer over the network, use Snowball devices!
 
 ## 2.1. AWS Snowcone
@@ -109,18 +109,19 @@
 - **Snowball Edge - Storage Optimized**
   - Up to 40 vCPUs, 80 GiB of RAM.
   - Object storage clustering available.
-- All: Can run EC2 Instances & AWS Lambda functions (using AWS IoT Greengrass).
+- **All:** Can run EC2 Instances & AWS Lambda functions (using AWS IoT Greengrass).
 - Long-term deployment options: 1 and 3 years discounted pricing.
 
 # 5. Solution Architecture: Snowball into Glacier
 
 - **Snowball cannot import to Glacier directly.**
 - You must use Amazon S3 first, in combination with an S3 lifecycle policy.
+  ![AWS Snowball to Glacier](/Images/Storage/AWSSnowballGlacier.png)
 
 # 6. AWS OpsHub
 
-- Historically, to use Snow Family devices, you needed a CLI (Command Line Interface tool).
-- Today, you can use AWS OpsHub (a software you install on your computer / laptop) to manage your Snow Family Device.
+- Historically, to use Snow Family devices, we needed a CLI (Command Line Interface tool).
+- Today, we can use AWS OpsHub (a software we install on your computer / laptop) to manage your Snow Family Device.
   - Unlocking and configuring single or clustered devices.
   - Transferring files.
   - Launching and managing instances running on Snow Family Devices.

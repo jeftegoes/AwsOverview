@@ -1,4 +1,4 @@
-# AWS Tips to AWS Certified DevOps Engineer - Professional<!-- omit in toc -->
+# AWS Tips to AWS Certified DevOps Engineer - Professional <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

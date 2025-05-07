@@ -1,4 +1,4 @@
-# Amazon OpenSearch Service<!-- omit in toc -->
+# Amazon OpenSearch Service <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

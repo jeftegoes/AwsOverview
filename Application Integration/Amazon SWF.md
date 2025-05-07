@@ -1,4 +1,4 @@
-# Amazon SWF - Simple Workflow Service<!-- omit in toc -->
+# Amazon SWF - Simple Workflow Service <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
