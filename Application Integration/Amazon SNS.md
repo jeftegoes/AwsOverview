@@ -16,14 +16,14 @@
 
 # 1. Introduction
 
-- What if you want to send one message to many receivers?
+- What if we want to send one message to many receivers?
 - The "event producer" only sends message to one SNS topic.
 - As many "event receivers" (subscriptions) as we want to listen to the SNS topic notifications.
 - Each subscriber to the topic will get all the messages (**Note:** New feature to filter messages).
 - Up to 12,500,000 subscriptions per topic.
 - 100,000 topics limit.
 - Many AWS services can send data directly to SNS for notifications.
-  ![Amazon SNS Diagram](/Images/AWSSNSDiagram.png)
+  ![Amazon SNS Diagram](/Images/Application%20Integration/AmazonSNSDiagram.png)
 
 # 2. How to publish
 
@@ -61,13 +61,13 @@
 
 ## 5.1. S3 Events to multiple queues
 
-- For the same combination of: **Event type** (e.g. object create) and **prefix** (e.g. Images/) you can only have one S3 Event rule.
-- If you want to send the same S3 event to many SQS queues, use fan-out.
+- For the same combination of: **Event type** (e.g. object create) and **prefix** (e.g. Images/) we can only have one S3 Event rule.
+- If we want to send the same S3 event to many SQS queues, use fan-out.
 
 ## 5.2. SNS to Amazon S3 through Kinesis Data Firehose
 
 - SNS can send to Kinesis and therefore we can have the following solutions architecture:
-  TODO: DIAGRAM
+  ![Amazon SNS Kinesis Firehose S3](/Images/Application%20Integration/AmazonSNSKinesisFirehoseS3.png)
 
 # 6. FIFO Topic
 
@@ -80,7 +80,7 @@
 
 # 7. SNS FIFO + SQS FIFO: Fan Out
 
-- In case you need fan out + ordering + deduplication.
+- In case we need fan out + ordering + deduplication.
 
 # 8. Message Filtering
 
@@ -89,6 +89,6 @@
 
 # 9. Dead Letter Queue (DLQ)
 
-- After exhausting the delivery policy (delivery retries), messages that haven't been delivered are discarded unless you set a DLQ (Dead Letter Queue).
+- After exhausting the delivery policy (delivery retries), messages that haven't been delivered are discarded unless we set a DLQ (Dead Letter Queue).
 - Redrive Policy - JSON object that refers to the ARN of the DLQ (SQS or SQS FIFO).
 - DLQ is attached to SNS Subscription-level (rather than the SNS Topic).
