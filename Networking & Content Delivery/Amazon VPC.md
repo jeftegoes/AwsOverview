@@ -352,11 +352,12 @@
 
 - **For having transitive peering between thousands of VPC and on-premises, hub-and-spoke (star) connection.**
 - Regional resource, can work cross-region.
-- Share cross-account using Resource Access Manager (RAM).
+- Share cross-account using **Resource Access Manager (RAM)**.
 - We can peer Transit Gateways across regions.
 - **Route Tables:** Limit which VPC can talk with other VPC.
 - Works with Direct Connect Gateway, VPN connections.
 - Supports **IP Multicast** (not supported by any other AWS service).
+  ![Amazon VPC Transit Gateway](/Images/Networking%20&%20Content%20Delivery/AmazonVPCTransitGateway.png)
 
 ## 16.1. Transit Gateway: Site-to-Site VPN ECMP
 
