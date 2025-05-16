@@ -352,7 +352,7 @@
 
 - **For having transitive peering between thousands of VPC and on-premises, hub-and-spoke (star) connection.**
 - Regional resource, can work cross-region.
-- Share cross-account using **Resource Access Manager (RAM)**.
+- Share cross-account using [Resource Access Manager (RAM)](/Security,%20Identity,%20&%20Compliance/AWS%20Resource%20Access%20Manager.md).
 - We can peer Transit Gateways across regions.
 - **Route Tables:** Limit which VPC can talk with other VPC.
 - Works with Direct Connect Gateway, VPN connections.
