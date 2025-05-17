@@ -16,26 +16,27 @@
     - [5.2.5. aws:MultiFactorAuthPresent](#525-awsmultifactorauthpresent)
   - [5.3. Policy Resource](#53-policy-resource)
   - [5.4. Policy Principal](#54-policy-principal)
-- [6. Password Policy](#6-password-policy)
-  - [6.1. Multi Factor Authentication - MFA](#61-multi-factor-authentication---mfa)
-  - [6.2. MFA devices options in AWS](#62-mfa-devices-options-in-aws)
-- [7. How can users access AWS?](#7-how-can-users-access-aws)
-- [8. What's the AWS CLI?](#8-whats-the-aws-cli)
-- [9. What's the AWS SDK?](#9-whats-the-aws-sdk)
-- [10. Roles for Services](#10-roles-for-services)
-- [11. Security Tools](#11-security-tools)
-  - [11.1. IAM Access Advisor (user-level)](#111-iam-access-advisor-user-level)
-- [12. Guidelines \& Best Practices](#12-guidelines--best-practices)
-- [13. Certificate Store](#13-certificate-store)
-- [14. Providing access to externally authenticated users (identity federation)](#14-providing-access-to-externally-authenticated-users-identity-federation)
-  - [14.1. Custom identity broker application](#141-custom-identity-broker-application)
-- [15. Shared Responsibility Model for IAM](#15-shared-responsibility-model-for-iam)
-- [16. Identity-based policies and resource-based policies](#16-identity-based-policies-and-resource-based-policies)
-- [17. Permissions boundary](#17-permissions-boundary)
-  - [17.1. Use cases](#171-use-cases)
-- [18. Access Analyzer](#18-access-analyzer)
-- [19. IAM Roles vs Resource Based Policies](#19-iam-roles-vs-resource-based-policies)
-- [20. Summary](#20-summary)
+- [6. IAM for S3](#6-iam-for-s3)
+- [7. Password Policy](#7-password-policy)
+  - [7.1. Multi Factor Authentication - MFA](#71-multi-factor-authentication---mfa)
+  - [7.2. MFA devices options in AWS](#72-mfa-devices-options-in-aws)
+- [8. How can users access AWS?](#8-how-can-users-access-aws)
+- [9. What's the AWS CLI?](#9-whats-the-aws-cli)
+- [10. What's the AWS SDK?](#10-whats-the-aws-sdk)
+- [11. Roles for Services](#11-roles-for-services)
+- [12. Security Tools](#12-security-tools)
+  - [12.1. IAM Access Advisor (user-level)](#121-iam-access-advisor-user-level)
+- [13. Guidelines \& Best Practices](#13-guidelines--best-practices)
+- [14. Certificate Store](#14-certificate-store)
+- [15. Providing access to externally authenticated users (identity federation)](#15-providing-access-to-externally-authenticated-users-identity-federation)
+  - [15.1. Custom identity broker application](#151-custom-identity-broker-application)
+- [16. Shared Responsibility Model for IAM](#16-shared-responsibility-model-for-iam)
+- [17. Identity-based policies and resource-based policies](#17-identity-based-policies-and-resource-based-policies)
+- [18. Permissions boundary](#18-permissions-boundary)
+  - [18.1. Use cases](#181-use-cases)
+- [19. Access Analyzer](#19-access-analyzer)
+- [20. IAM Roles vs Resource Based Policies](#20-iam-roles-vs-resource-based-policies)
+- [21. Summary](#21-summary)
 
 # 1. Users & Groups
 
@@ -230,7 +231,32 @@
 - We cannot use the `Principal` element in an IAM identity-based policy.
 - We can use it in the trust policies for IAM roles and in resource-based policies.
 
-# 6. Password Policy
+# 6. IAM for S3
+
+- **Bucket level permission**
+  - `s3:ListBucket` permission applies to arn:aws:s3:::test
+- **Object level permission**
+  - `s3:GetObject`, `s3:PutObject`, `s3:DeleteObject` applies to `arn:awn:s3:::test/*`
+- **Example**
+  ```json
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": "s3:ListBucket",
+        "Resource": "arn:aws:s3:::my-example-bucket"
+      },
+      {
+        "Effect": "Allow",
+        "Action": ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"],
+        "Resource": "arn:aws:s3:::my-example-bucket/*"
+      }
+    ]
+  }
+  ```
+
+# 7. Password Policy
 
 - Strong passwords = higher security for your account.
 - In AWS, we can setup a password policy:
@@ -244,7 +270,7 @@
 - Require users to change their password after some time (password expiration).
 - Prevent password re-use.
 
-## 6.1. Multi Factor Authentication - MFA
+## 7.1. Multi Factor Authentication - MFA
 
 - Users have access to your account and can possibly change configurations or delete resources in your AWS account.
 - **We want to protect your Root Accounts and IAM users.**
@@ -252,7 +278,7 @@
 - **Main benefit of MFA**
   - If a password is stolen or hacked, the account is not compromised.
 
-## 6.2. MFA devices options in AWS
+## 7.2. MFA devices options in AWS
 
 - **Virtual MFA device**
   - Google AuthenLcator (phone only).
@@ -266,7 +292,7 @@
 - **Hardware Key Fob MFA Device for AWS GovCloud (US)**
   - Provided by SurePassID (3rd party).
 
-# 7. How can users access AWS?
+# 8. How can users access AWS?
 
 - **To access AWS, we have three options**
   - **AWS Management Console** (protected by password + MFA).
@@ -282,7 +308,7 @@
   - Secret Access Key: AZPN3zojWozWCndIjhB0Unh8239a1bzbzO5fqqkZq.
   - **Remember: Don't share your access keys.**
 
-# 8. What's the AWS CLI?
+# 9. What's the AWS CLI?
 
 - A tool that enables we to interact with AWS services using commands in your command-line shell.
 - Direct access to the public APIs of AWS services.
@@ -290,7 +316,7 @@
 - It's [open-source](https://github.com/aws/aws-cli).
 - Alternative to using AWS Management Console.
 
-# 9. What's the AWS SDK?
+# 10. What's the AWS SDK?
 
 - AWS Software Development Kit (AWS SDK).
 - Language-specific APIs (set of libraries).
@@ -302,7 +328,7 @@
   - IoT Device SDKs (Embedded C, Arduino, ...).
 - **Example:** AWS CLI is built on AWS SDK for Python.
 
-# 10. Roles for Services
+# 11. Roles for Services
 
 - Some AWS service will need to perform actions on your behalf.
 - To do so, we will assign permissions to AWS services with IAM Roles.
@@ -311,7 +337,7 @@
   - Lambda Function Roles.
   - Roles for CloudFormation.
 
-# 11. Security Tools
+# 12. Security Tools
 
 - **IAM Credentials Report (account-level)**
   - A report that lists all your account's users and the status of their various credentials.
@@ -319,14 +345,14 @@
   - Access advisor shows the service permissions granted to a user and when those services were last accessed.
   - We can use this information to revise your policies.
 
-## 11.1. IAM Access Advisor (user-level)
+## 12.1. IAM Access Advisor (user-level)
 
 - To help identify the unused roles, IAM reports the last-used timestamp that represents when a role was last used to make an AWS request.
   - Your security team can use this information to identify, analyze, and then confidently remove unused roles.
   - This helps improve the security posture of your AWS environments.
   - Additionally, by removing unused roles, we can simplify your monitoring and auditing efforts by focusing only on roles that are in use.
 
-# 12. Guidelines & Best Practices
+# 13. Guidelines & Best Practices
 
 - Don't use the root account except for AWS account setup.
 - One physical user = One AWS **user**.
@@ -338,7 +364,7 @@
 - Audit permissions of your account with the IAM Credentials Report.
 - **Never share IAM users & Access Keys.**
 
-# 13. Certificate Store
+# 14. Certificate Store
 
 - Use IAM as a certificate manager only when we must support HTTPS connections in a Region that is not supported by ACM.
 - IAM securely encrypts your private keys and stores the encrypted version in IAM SSL certificate storage.
@@ -346,13 +372,13 @@
 - We cannot upload an ACM certificate to IAM.
 - Additionally, we cannot manage your certificates from the IAM Console.
 
-# 14. Providing access to externally authenticated users (identity federation)
+# 15. Providing access to externally authenticated users (identity federation)
 
-## 14.1. Custom identity broker application
+## 15.1. Custom identity broker application
 
 ![Custom Identity Federation Diagram](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMCustomIdentityFederation.png)
 
-# 15. Shared Responsibility Model for IAM
+# 16. Shared Responsibility Model for IAM
 
 - **AWS**
   - Infrastructure (global network security).
@@ -365,11 +391,11 @@
   - Use IAM tools to apply appropriate permissions.
   - Analyze access patterns & review permissions.
 
-# 16. Identity-based policies and resource-based policies
+# 17. Identity-based policies and resource-based policies
 
 ![Difference between both](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMIdentityBasedVsResourceBasedPolicies.png)
 
-# 17. Permissions boundary
+# 18. Permissions boundary
 
 - IAM Permission Boundaries are supported for users and roles (not groups).
 - Advanced feature to use a managed policy to set the maximum permissions an IAM entity can get.
@@ -378,7 +404,7 @@
 - Can be used in combinations of [AWS Organizations SCP](/Management%20&%20Governance/AWS%20Organizations.md).
   ![AWS IAM Permission Boundaries](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMPermissionBoundaries.png)
 
-## 17.1. Use cases
+## 18.1. Use cases
 
 - Delegate responsibilities to non administrators within their permission boundaries, for example create new IAM users.
 - Allow developers to self-assign policies and manage their own permissions, while making sure they can't "escalate" their privileges (= make themselves admin).
@@ -386,7 +412,7 @@
   ![AWS IAM Permission Boundaries Example](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMPermissionBoundariesExample.png)
 - https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html
 
-# 18. Access Analyzer
+# 19. Access Analyzer
 
 - AWS IAM Access Analyzer helps we identify the resources in your organization and accounts, such as Amazon S3 buckets or IAM roles, that are shared with an external entity. This lets you identify unintended access to your resources and data, which is a security risk.
 - We can set the scope for the analyzer to an organization or an AWS account.
@@ -394,7 +420,7 @@
 - The analyzer scans all of the supported resources within your zone of trust.
 - When Access Analyzer finds a policy that allows access to a resource from outside of your zone of trust, it generates an active finding.
 
-# 19. IAM Roles vs Resource Based Policies
+# 20. IAM Roles vs Resource Based Policies
 
 - **Cross account**
   - Attaching a resource-based policy to a resource (example: S3 bucket policy).
@@ -404,7 +430,7 @@
 - **Example:** User in account A needs to scan a DynamoDB table in Account A and dump it in an S3 bucket in Account B.
 - **Supported by:** Amazon S3 buckets, SNS topics, SQS queues, etc...
 
-# 20. Summary
+# 21. Summary
 
 - **Users:** Mapped to a physical user, has a password for AWS Console.
 - **Groups:** Contains users only.

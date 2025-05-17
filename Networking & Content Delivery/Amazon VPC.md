@@ -35,6 +35,7 @@
 - [15. Site-to-Site VPN connection as a backup](#15-site-to-site-vpn-connection-as-a-backup)
 - [16. Transit Gateway](#16-transit-gateway)
   - [16.1. Transit Gateway: Site-to-Site VPN ECMP](#161-transit-gateway-site-to-site-vpn-ecmp)
+  - [16.2. Share Direct Connect between multiple accounts](#162-share-direct-connect-between-multiple-accounts)
 - [17. VPC - Traffic Mirroring](#17-vpc---traffic-mirroring)
 - [18. What is IPv6?](#18-what-is-ipv6)
   - [18.1. IPv6 in VPC](#181-ipv6-in-vpc)
@@ -364,6 +365,10 @@
 - ECMP = Equal-cost multi-path routing.
 - Routing strategy to allow to forward a packet over multiple best path.
 - **Use case:** Create multiple Site-to-Site VPN connections to increase the bandwidth of your connection to AWS.
+
+## 16.2. Share Direct Connect between multiple accounts
+
+- TODO: DIAGRAM HERE
 
 # 17. VPC - Traffic Mirroring
 
