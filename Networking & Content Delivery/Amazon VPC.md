@@ -34,6 +34,8 @@
 - [14. AWS VPN CloudHub](#14-aws-vpn-cloudhub)
 - [15. Site-to-Site VPN connection as a backup](#15-site-to-site-vpn-connection-as-a-backup)
 - [16. Transit Gateway](#16-transit-gateway)
+  - [With AWS Transit Gateway](#with-aws-transit-gateway)
+  - [Without AWS Transit Gateway](#without-aws-transit-gateway)
   - [16.1. Transit Gateway: Site-to-Site VPN ECMP](#161-transit-gateway-site-to-site-vpn-ecmp)
   - [16.2. Share Direct Connect between multiple accounts](#162-share-direct-connect-between-multiple-accounts)
 - [17. VPC - Traffic Mirroring](#17-vpc---traffic-mirroring)
@@ -351,6 +353,10 @@
 
 # 16. Transit Gateway
 
+- AWS Transit Gateway is a service that enables customers to connect their Amazon Virtual Private Clouds (VPCs) and their on-premises networks to a single gateway.
+  - With AWS Transit Gateway, we only have to create and manage a single connection from the central gateway into each Amazon VPC, on-premises data center, or remote office across your network.
+  - Transit Gateway acts as a hub that controls how traffic is routed among all the connected networks which act like spokes.
+  - So, this is a perfect use-case for the Transit Gateway.
 - **For having transitive peering between thousands of VPC and on-premises, hub-and-spoke (star) connection.**
 - Regional resource, can work cross-region.
 - Share cross-account using [Resource Access Manager (RAM)](/Security,%20Identity,%20&%20Compliance/AWS%20Resource%20Access%20Manager.md).
@@ -358,7 +364,14 @@
 - **Route Tables:** Limit which VPC can talk with other VPC.
 - Works with Direct Connect Gateway, VPN connections.
 - Supports **IP Multicast** (not supported by any other AWS service).
-  ![Amazon VPC Transit Gateway](/Images/Networking%20&%20Content%20Delivery/AmazonVPCTransitGateway.png)
+
+## With AWS Transit Gateway
+
+![With AWS Transit Gateway](/Images/Networking%20&%20Content%20Delivery/AmazonVPCTransitGateway.png)
+
+## Without AWS Transit Gateway
+
+![Without AWS Transit Gateway](/Images/Networking%20&%20Content%20Delivery/AmazonVPCWithoutTransitGateway.png)
 
 ## 16.1. Transit Gateway: Site-to-Site VPN ECMP
 
@@ -368,7 +381,7 @@
 
 ## 16.2. Share Direct Connect between multiple accounts
 
-- TODO: DIAGRAM HERE
+![Amazon VPC Transit Gateway Share Direct Connect](/Images/Networking%20&%20Content%20Delivery/AmazonVPCTransitGatewayShareDirectConnect.png)
 
 # 17. VPC - Traffic Mirroring
 
