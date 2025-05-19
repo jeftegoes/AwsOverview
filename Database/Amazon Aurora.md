@@ -51,7 +51,7 @@
 
 # 3. Auto Scaling
 
-![Auto Scaling](/Images/AmazonAuroraAutoScaling.png)
+![Auto Scaling](/Images/Database/AmazonAuroraAutoScaling.png)
 
 # 4. Custom Endpoints
 
@@ -71,7 +71,7 @@
   - Helps for decreasing latency.
   - Promoting another region (for disaster recovery) has an RTO of < 1 minute.
   - **Typical cross-region replication takes less than 1 second.**
-    ![Global Aurora](/Images/AmazonAuroraGlobal.png)
+    ![Global Aurora](/Images/Database/AmazonAuroraGlobal.png)
 
 # 6. Machine Learning
 
@@ -85,7 +85,7 @@
 
 # 7. Unplanned Failover
 
-![Unplanned Failover](/Images/AmazonAuroraUnplannedFailover.png)
+![Unplanned Failover](/Images/Database/AmazonAuroraUnplannedFailover.png)
 
 # 8. Additional Failover Control
 

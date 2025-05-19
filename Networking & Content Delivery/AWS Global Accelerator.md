@@ -5,7 +5,8 @@
 - [1. Global users for our application](#1-global-users-for-our-application)
 - [2. Unicast IP vs Anycast IP](#2-unicast-ip-vs-anycast-ip)
 - [3. Introduction](#3-introduction)
-  - [3.1. AWS Global Accelerator vs CloudFront](#31-aws-global-accelerator-vs-cloudfront)
+- [4. Single-region blue/green deployment with AWS Global Accelerator](#4-single-region-bluegreen-deployment-with-aws-global-accelerator)
+- [5. AWS Global Accelerator vs CloudFront](#5-aws-global-accelerator-vs-cloudfront)
 
 # 1. Global users for our application
 
@@ -24,10 +25,10 @@
 - Leverage the AWS internal network to optimize the route to your application (60% improvement).
 - **2 Anycast IP** are created for your application and traffic is sent through Edge Locations.
 - The Edge locations send the traffic to your application.
-  Works with **Elastic IP, EC2 instances, ALB, NLB, public or private**.
+- Works with **Elastic IP, EC2 instances, ALB, NLB, public or private**.
 - **Consistent Performance**
   - Intelligent routing to lowest latency and fast regional failover.
-  - No issue with client cache (because the IP doesn't change).
+  - **IMPORTANT!** No issue with client cache (because the IP doesn't change).
   - Internal AWS network.
 - **Health Checks**
   - Global Accelerator performs a health check of your applications.
@@ -37,7 +38,11 @@
   - Only 2 external IP need to be whitelisted.
   - DDoS protection thanks to AWS Shield.
 
-## 3.1. AWS Global Accelerator vs CloudFront
+# 4. Single-region blue/green deployment with AWS Global Accelerator
+
+![AWS Global Accelerator Single Region Blue/Green](/Images/Networking%20&%20Content%20Delivery/AWSGlobalAcceleratorSingleRegionBlueGreen.png)
+
+# 5. AWS Global Accelerator vs CloudFront
 
 - They both use the AWS global network and its edge locations around the world.
 - Both services integrate with AWS Shield for DDoS protection.

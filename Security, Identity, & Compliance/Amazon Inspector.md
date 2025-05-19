@@ -25,7 +25,7 @@
 
 # 2. What does AWS Inspector evaluate?
 
-- **ATTENTION! Only for EC2 instances, Container Images and Lambda functions.**
+- **IMPORTANT! Only for EC2 instances, Container Images and Lambda functions.**
 - Continuous scanning of the infrastructure, only when needed.
 - Package vulnerabilities (EC2, ECR and Lambda).
   - Database of CVE (Common Vulnerabilities and Exposures).

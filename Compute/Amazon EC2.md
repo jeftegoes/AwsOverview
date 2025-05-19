@@ -315,23 +315,24 @@
 # 11. EC2 Hibernate
 
 - We know we can stop, terminate instances.
-  - **Stop** - the data on disk (EBS) is kept intact in the next start.
-  - **Terminate** - any EBS volumes (root) also set-up to be destroyed is lost.
+  - **Stop:** The data on disk (EBS) is kept intact in the next start.
+  - **Terminate:** Any EBS volumes (root) also set-up to be destroyed is lost.
 - **On start, the following happens**
-  - First start: the OS boots & the EC2 User Data script is run.
-  - Following starts: the OS boots up.
+  - **First start:** The OS boots & the EC2 User Data script is run.
+  - **Following starts:** The OS boots up.
   - Then your application starts, caches get warmed up, and that can take time!
 
 ## 11.1. Introducing EC2 Hibernate
 
-- The in-memory (RAM) state is preserved
+- The in-memory (RAM) state is preserved.
 - The instance boot is much faster! (the OS is not stopped / restarted).
 - Under the hood: the RAM state is written to a file in the root EBS volume.
 - The root EBS volume must be encrypted.
-- **Use cases:**
-  - Long-running processing
-  - Saving the RAM state
-  - Services that take time to initialize
+- **Use cases**
+  - Long-running processing.
+  - Saving the RAM state.
+  - Services that take time to initialize.
+    ![Amazon EC2 Hibernate](/Images/Compute/AmazonEC2Hibernate.png)
 
 ## 11.2. Good to know
 
@@ -553,7 +554,7 @@
 
 ## 15.4. Instance Migration between Regions
 
-- **ATTENTION!** When the new AMI is copied from Region A into Region B, it automatically creates a snapshot in Region B because AMIs are based on the underlying snapshots.
+- **IMPORTANT!** When the new AMI is copied from Region A into Region B, it automatically creates a snapshot in Region B because AMIs are based on the underlying snapshots.
   ![EC2 Instance Migration Between Regions](/Images/Compute/AmazonEC2InstanceMigrationBetweenRegions.png)
 
 ## 15.5. Cross-Account AMI Sharing
