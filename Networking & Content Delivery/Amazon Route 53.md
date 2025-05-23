@@ -9,6 +9,7 @@
   - [2.1. Records](#21-records)
   - [2.2. Record Types](#22-record-types)
   - [2.3. Hosted Zones](#23-hosted-zones)
+    - [2.3.1. DNS hostnames and DNS resolution](#231-dns-hostnames-and-dns-resolution)
   - [2.4. Records TTL (Time To Live)](#24-records-ttl-time-to-live)
   - [2.5. CNAME vs Alias](#25-cname-vs-alias)
     - [2.5.1. Alias Records](#251-alias-records)
@@ -93,10 +94,17 @@
 
 - A container for records that define how to route traffic to a domain and its subdomains.
 - **Public Hosted Zones**
-  - Contains records that specify how to route traffic on the Internet (public domain names) **application1.mypublicdomain.com**.
+  - Contains records that specify how to route traffic on the Internet (public domain names) `application1.mypublicdomain.com`.
 - **Private Hosted Zones**
-  - Contain records that specify how we route traffic within one or more VPCs (private domain names) **application1.company.internal**.
+  - Contain records that specify how we route traffic within one or more VPCs (private domain names) `application1.company.internal`.
 - **We pay $0.50 per month per hosted zone.**
+
+### 2.3.1. DNS hostnames and DNS resolution
+
+- DNS hostnames and DNS resolution are required settings for private hosted zones.
+- DNS queries for private hosted zones can be resolved by the Amazon-provided VPC DNS server only.
+- As a result, these options must be enabled for your private hosted zone to work.
+  ![Amazon Route 53 DNS Hostname and DNS Resolution](/Images/Networking%20&%20Content%20Delivery/AmazonRoute53DNSHostnameResolution.png)
 
 ## 2.4. Records TTL (Time To Live)
 

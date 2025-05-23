@@ -427,23 +427,23 @@
 - Define **max spot price** and get the instance while **current spot price < max**.
   - The hourly spot price varies based on offer and capacity.
   - If the current spot price > your max price you can choose to **stop** or **terminate** your instance with a 2 minutes grace period.
-- Other strategy: **Spot Block**
+- **Other strategy:** Spot Block
   - "block" spot instance during a specified time frame (1 to 6 hours) without interruptions.
   - In rare situations, the instance may be reclaimed.
 - Used for batch jobs, data analysis, or workloads that are resilient to failures.
 
 ### 13.4.2. Spot Fleets
 
-- Spot Fleets = set of Spot Instances + (optional) On-Demand Instances
+- Spot Fleets = set of Spot Instances + (optional) On-Demand Instances.
 - The Spot Fleet will try to meet the target capacity with price constraints.
-  - Define possible launch pools: Instance type (m5.large), OS, Availability Zone.
+  - **Define possible launch pools:** Instance type (m5.large), OS, Availability Zone.
   - Can have multiple launch pools, so that the fleet can choose.
   - Spot Fleet stops launching instances when reaching capacity or max cost.
 - **Strategies to allocate Spot Instances**
-  - `lowestPrice`: from the pool with the lowest price (cost optimization, short workload).
-  - `diversified`: distributed across all pools (great for availability, long workloads).
-  - `capacityOptimized`: pool with the optimal capacity for the number of instances.
-  - `priceCapacityOptimized` (recommended): pools with highest capacity available, then select the pool with the lowest price (best choice for most workloads).
+  - `lowestPrice`: From the pool with the lowest price (cost optimization, short workload).
+  - `diversified`: Distributed across all pools (great for availability, long workloads).
+  - `capacityOptimized`: Pool with the optimal capacity for the number of instances.
+  - `priceCapacityOptimized` (recommended): Pools with highest capacity available, then select the pool with the lowest price (best choice for most workloads).
 - _Spot Fleets allow us to automatically request Spot Instances with the lowest price._
 
 ## 13.5. Dedicated Hosts

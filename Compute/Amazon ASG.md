@@ -154,15 +154,15 @@
 
 ## 13.1. Different Termination Policies
 
-- `Default` - Terminates instances according to Default Termination Policy
-- `AllocationStrategy` - Terminates instances to align the remaining instances to the Allocation Strategy (e.g., lowest-price for Spot Instances, or lower priority On-Demand Instances)
-- `OldestLaunchTemplate` - Terminates instances that have the oldest Launch Template
-- `OldestLaunchConfiguration` - Terminates instances that have the oldest Launch Configuration
-- `ClosestToNextInstanceHour` - Terminates instances that are closest to the next billing hour
-- `NewestInstance` - Terminates the newest instance (testing new launch template)
-- `OldestInstance` - Terminates the oldest instance (upgrading instance size, not launch template)
-- **Note: you can use one or more policies and specify the evaluation order.**
-- **Note: can define Custom Termination Policy backed by a Lambda function.**
+- `Default` - Terminates instances according to Default Termination Policy.
+- `AllocationStrategy` - Terminates instances to align the remaining instances to the Allocation Strategy (e.g., lowest-price for Spot Instances, or lower priority On-Demand Instances).
+- `OldestLaunchTemplate` - Terminates instances that have the oldest Launch Template.
+- `OldestLaunchConfiguration` - Terminates instances that have the oldest Launch Configuration.
+- `ClosestToNextInstanceHour` - Terminates instances that are closest to the next billing hour.
+- `NewestInstance` - Terminates the newest instance (testing new launch template).
+- `OldestInstance` - Terminates the oldest instance (upgrading instance size, not launch template).
+- **Note: We can use one or more policies and specify the evaluation order.**
+- **Note: Can define Custom Termination Policy backed by a Lambda function.**
 
 # 14. Scale-out Latency Problem
 

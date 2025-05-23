@@ -80,8 +80,8 @@
 
 # 6. Moving Accounts
 
-1. Remove the member account from the AWS Organization.
-2. Send an invite to the member account from the AWS Organization.
+1. Remove the member account from the old AWS Organization.
+2. Send an invite to the member account from the new AWS Organization.
 3. Accept the invite to the new Organization from the member account.
 
 # 7. Service Control Policies (SCP)

@@ -208,15 +208,15 @@
 
 ## 8.5. Security - Summary
 
-- Encryption at rest:
+- **Encryption at rest**
   - Is done only when we first create the DB instance.
-  - Or: unencrypted DB => snapshot => copy snapshot as encrypted => create DB from snapshot.
-- Your responsibility:
+  - Or: Unencrypted DB => snapshot => copy snapshot as encrypted => create DB from snapshot.
+- **Your responsibility**
   - Check the ports / IP / security group inbound rules in DB's SG.
   - In-database user creation and permissions or manage through IAM.
   - Creating a database with or without public access.
   - Ensure parameter groups or DB is configured to only allow SSL connections.
-- AWS responsibility:
+- **AWS responsibility**
   - No SSH access.
   - No manual DB patching.
   - No manual OS patching.
