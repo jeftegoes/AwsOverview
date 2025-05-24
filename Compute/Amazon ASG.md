@@ -51,6 +51,7 @@
   - Load Balancer Information.
 - Min Size / Max Size / Initial Capacity.
 - Scaling Policies.
+  ![Amazon ASG Launch Template](/Images/Compute/AmazonASGLaunchTemplate.png)
 
 # 3. CloudWatch Alarms & Scaling
 
@@ -148,9 +149,13 @@
 
 - Determine which instances to terminates first during scale-in events, Instance Refresh, and AZ Rebalancing.
 - **Default Termination Policy**
-  - Select AZ with more instances.
-  - Terminate instance with oldest Launch Template or Launch Configuration.
-  - If instances were launched using the same Launch Template, terminate the instance that is closest to the next billing hour.
+  1. Determine the Availability Zone with the most instances - Given: `us-east-1a` has the most.
+  2. Within that AZ, find instances using the oldest launch configuration.
+  3. If there are multiple instances with the same oldest launch configuration, terminate the one that is closest to the next billing hour.
+  4. If there's still a tie, terminate randomly among them.
+- **Note:** **Launch configuration** and **launch template** are different.
+  - AWS treats them separately in termination logic.
+  - It prefers launch configurations (legacy method) when deciding termination under this policy.
 
 ## 13.1. Different Termination Policies
 
