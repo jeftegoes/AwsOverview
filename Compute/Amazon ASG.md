@@ -1,4 +1,4 @@
-# Amazon ASG - Auto Scaling Groups<!-- omit in toc -->
+# Amazon ASG - Auto Scaling Groups <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

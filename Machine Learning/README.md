@@ -10,7 +10,6 @@
 - [4. Amazon Translate](#4-amazon-translate)
 - [5. Amazon Lex \& Connect](#5-amazon-lex--connect)
 - [6. Amazon Comprehend](#6-amazon-comprehend)
-  - [6.1. Medical](#61-medical)
 - [7. Amazon SageMaker](#7-amazon-sagemaker)
 - [8. Amazon Forecast](#8-amazon-forecast)
 - [9. Amazon Kendra](#9-amazon-kendra)
@@ -92,35 +91,11 @@
 
 # 6. Amazon Comprehend
 
-- **Amazon Comprehend is a natural language processing (NLP) service that uses machine learning to find meaning and insights in text.**
-- For **Natural Language Processing - NLP**.
-- Fully managed and serverless service.
-- Uses machine learning to find insights and relationships in text:
-  - Language of the text.
-  - Extracts key phrases, places, people, brands, or events.
-  - Understands how positive or negative the text is.
-  - Analyzes text using tokenization and parts of speech.
-  - Automatically organizes a collection of text files by topic.
-- **Sample use cases**
-  - Analyze customer interactions (emails) to find what leads to a positive or negative experience.
-  - Create and groups articles by topics that Comprehend will uncover.
-
-## 6.1. Medical
-
-- Amazon Comprehend Medical detects and returns useful information in unstructured clinical text:
-  - Physician's notes.
-  - Discharge summaries.
-  - Test results.
-  - Case notes.
-- **Uses NLP to detect Protected Health Information (PHI)** - DetectPHI API.
-- Store your documents in Amazon S3, analyze real-time data with Kinesis Data Firehose, or use Amazon Transcribe to transcribe patient narratives into text that can be analyzed by Amazon Comprehend Medical.
+[Amazon Comprehend](Amazon%20Comprehend.md)
 
 # 7. Amazon SageMaker
 
-- **Amazon SageMaker is a fully managed service that provides every developer and data scientist with the ability to build, train, and deploy machine learning (ML) models quickly. SageMaker removes the heavy lifting from each step of the machine learning process to make it easier to develop high quality models.**
-- Fully managed service for developers / data scientists to build ML models.
-- Typically, difficult to do all the processes in one place + provision servers.
-- Machine learning process (simplified): predicting your exam score.
+[Amazon SageMaker](Amazon%20SageMaker.md)
 
 # 8. Amazon Forecast
 
