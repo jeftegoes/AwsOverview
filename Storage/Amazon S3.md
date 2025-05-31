@@ -1,4 +1,4 @@
-# AWS S3 - Simple Storage Service <!-- omit in toc -->
+# Amazon S3 - Simple Storage Service <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

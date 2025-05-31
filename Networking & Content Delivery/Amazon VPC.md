@@ -34,10 +34,10 @@
 - [14. AWS VPN CloudHub](#14-aws-vpn-cloudhub)
 - [15. Site-to-Site VPN connection as a backup](#15-site-to-site-vpn-connection-as-a-backup)
 - [16. Transit Gateway](#16-transit-gateway)
-  - [With AWS Transit Gateway](#with-aws-transit-gateway)
-  - [Without AWS Transit Gateway](#without-aws-transit-gateway)
-  - [16.1. Transit Gateway: Site-to-Site VPN ECMP](#161-transit-gateway-site-to-site-vpn-ecmp)
-  - [16.2. Share Direct Connect between multiple accounts](#162-share-direct-connect-between-multiple-accounts)
+  - [16.1. With AWS Transit Gateway](#161-with-aws-transit-gateway)
+  - [16.2. Without AWS Transit Gateway](#162-without-aws-transit-gateway)
+  - [16.3. Transit Gateway: Site-to-Site VPN ECMP](#163-transit-gateway-site-to-site-vpn-ecmp)
+  - [16.4. Share Direct Connect between multiple accounts](#164-share-direct-connect-between-multiple-accounts)
 - [17. VPC - Traffic Mirroring](#17-vpc---traffic-mirroring)
 - [18. What is IPv6?](#18-what-is-ipv6)
   - [18.1. IPv6 in VPC](#181-ipv6-in-vpc)
@@ -365,21 +365,21 @@
 - Works with Direct Connect Gateway, VPN connections.
 - Supports **IP Multicast** (not supported by any other AWS service).
 
-## With AWS Transit Gateway
+## 16.1. With AWS Transit Gateway
 
 ![With AWS Transit Gateway](/Images/Networking%20&%20Content%20Delivery/AmazonVPCTransitGateway.png)
 
-## Without AWS Transit Gateway
+## 16.2. Without AWS Transit Gateway
 
 ![Without AWS Transit Gateway](/Images/Networking%20&%20Content%20Delivery/AmazonVPCWithoutTransitGateway.png)
 
-## 16.1. Transit Gateway: Site-to-Site VPN ECMP
+## 16.3. Transit Gateway: Site-to-Site VPN ECMP
 
 - ECMP = Equal-cost multi-path routing.
 - Routing strategy to allow to forward a packet over multiple best path.
 - **Use case:** Create multiple Site-to-Site VPN connections to increase the bandwidth of your connection to AWS.
 
-## 16.2. Share Direct Connect between multiple accounts
+## 16.4. Share Direct Connect between multiple accounts
 
 ![Amazon VPC Transit Gateway Share Direct Connect](/Images/Networking%20&%20Content%20Delivery/AmazonVPCTransitGatewayShareDirectConnect.png)
 
