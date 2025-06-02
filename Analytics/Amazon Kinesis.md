@@ -206,10 +206,10 @@
 - Fully managed, no servers to provision.
 - Automatic scaling.
 - Pay for actual consumption rate.
-- **Output:**
+- **Output**
   - Kinesis Data Streams: create streams out of the real-time analytics queries.
   - Kinesis Data Firehose: send analytics query results to destinations.
-- **Use cases:**
+- **Use cases**
   - Time-series analytics.
   - Real-time dashboards.
   - Real-time metrics.

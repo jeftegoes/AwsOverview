@@ -6,6 +6,7 @@
 - [2. Redshift Cluster](#2-redshift-cluster)
 - [3. Snapshots \& DR](#3-snapshots--dr)
 - [4. Spectrum](#4-spectrum)
+- [5. Massively parallel processing](#5-massively-parallel-processing)
 
 # 1. Introduction
 
@@ -27,6 +28,7 @@
 - **Provisioned mode**
   - Choose instance types in advance.
   - Can reserve instances for cost savings.
+    ![Amazon Redshift Cluster](/Images/Analytics/AmazonRedshiftCluster.png)
 
 # 3. Snapshots & DR
 
@@ -43,3 +45,8 @@
 - Query data that is already in S3 without loading it.
 - **Must have a Redshift cluster available to start the query.**
 - The query is then submitted to thousands of Redshift Spectrum nodes.
+
+# 5. Massively parallel processing
+
+- Massively parallel processing (MPP) enables fast run of the most complex queries operating on large amounts of data.
+- Multiple compute nodes handle all query processing leading up to final result aggregation, with each core of each node running the same compiled query segments on portions of the entire data.
