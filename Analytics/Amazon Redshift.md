@@ -7,6 +7,7 @@
 - [3. Snapshots \& DR](#3-snapshots--dr)
 - [4. Spectrum](#4-spectrum)
 - [5. Massively parallel processing](#5-massively-parallel-processing)
+- [6. UNLOAD command](#6-unload-command)
 
 # 1. Introduction
 
@@ -50,3 +51,15 @@
 
 - Massively parallel processing (MPP) enables fast run of the most complex queries operating on large amounts of data.
 - Multiple compute nodes handle all query processing leading up to final result aggregation, with each core of each node running the same compiled query segments on portions of the entire data.
+
+# 6. UNLOAD command
+
+- By default, an Amazon S3 object is owned by the AWS account that uploaded it.
+- This is true even when the bucket is owned by another account.
+- Because the Amazon Redshift data files from the `UNLOAD` command were put into your bucket by another account, you (the bucket owner) don't have default permission to access those files.
+- To get access to the data files, an AWS Identity and Access Management (IAM) role with cross-account permissions must run the `UNLOAD` command again. Follow these steps to set up the Amazon Redshift cluster with cross-account permissions to the bucket:
+  1. From the account of the Amazon S3 bucket, create an IAM role (Bucket Role) with permissions to the bucket.
+  2. From the account of the Amazon Redshift cluster, create another IAM role (Cluster Role) with permissions to assume the Bucket Role.
+  3. Update the Bucket Role to grant bucket access and create a trust relationship with the Cluster Role.
+  4. From the Amazon Redshift cluster, run the `UNLOAD` command using the Cluster Role and Bucket Role.
+- **IMPORTANT:** This solution doesn't apply to Amazon Redshift clusters or Amazon S3 buckets that use server-side encryption with AWS Key Management Service (AWS KMS).
