@@ -194,11 +194,11 @@
 
 ### 5.2.4. Cross-Account Access - Use Bucket Policy
 
-TODO: DIAGRAM
+![Cross-Account Access - Use Bucket Policy](/Images/Storage/AmazonS3CrossAccountPermissions.png)
 
 ## 5.3. Bucket settings for Block Public Access
 
-![Settings for Block Public Access](/Images/EditBlockPublicAccess.PNG)
+![Settings for Block Public Access](/Images/Storage/EditBlockPublicAccess.png)
 
 - **These settings were created to prevent company data leaks.**
 - If you know your bucket should never be public, leave these on.

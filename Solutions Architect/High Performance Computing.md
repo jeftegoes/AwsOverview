@@ -9,8 +9,8 @@
   - [1.4. Storage](#14-storage)
   - [1.5. Automation and Orchestration](#15-automation-and-orchestration)
 - [2. Creating a highly available EC2 instance](#2-creating-a-highly-available-ec2-instance)
-- [3. Creating a highly available EC2 instance](#3-creating-a-highly-available-ec2-instance)
-- [4. Creating a highly available EC2 instance With ASG + EBS](#4-creating-a-highly-available-ec2-instance-with-asg--ebs)
+  - [2.1. With ASG](#21-with-asg)
+  - [2.2. With ASG + EBS](#22-with-asg--ebs)
 
 # 1. High Performance Computing (HPC)
 
@@ -74,12 +74,12 @@
 
 # 2. Creating a highly available EC2 instance
 
-TODO: DIAGRAM
+![Highly available EC2 instance](/Images/HighlyAvailableEC2Instance.png)
 
-# 3. Creating a highly available EC2 instance
+## 2.1. With ASG
 
-TODO: DIAGRAM
+![Highly available EC2 instance with ASG ](/Images/HighlyAvailableEC2InstanceASG.png.png)
 
-# 4. Creating a highly available EC2 instance With ASG + EBS
+## 2.2. With ASG + EBS
 
 TODO: DIAGRAM
