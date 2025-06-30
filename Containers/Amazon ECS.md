@@ -95,7 +95,7 @@
 ## 3.3. Load Balancer Integrations
 
 - **Application Load Balancer:** Supported and works for most use cases.
-- **Network Load Balancer:** Recommended only for high throughput / high performance use cases, or to pair it with AWS Private Link.
+- **Network Load Balancer:** Recommended only for high throughput / high performance use cases, or to pair it with AWS PrivateLink.
 - **Classic Load Balancer:** Supported but not recommended (no advanced features - no Fargate).
 
 ## 3.4. Data Volumes (EFS)

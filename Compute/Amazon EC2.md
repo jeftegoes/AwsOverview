@@ -311,6 +311,7 @@
   - A MAC address.
 - You can create ENI independently and attach them on the fly (move them) on EC2 instances for failover.
 - Bound to a specific availability zone (AZ).
+  [Elastic Network Interfaces - ENI](/Images/Compute/AmazonEC2ElasticNetworkInterfaces.png)
 
 # 11. EC2 Hibernate
 

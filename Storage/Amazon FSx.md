@@ -6,6 +6,7 @@
 - [2. Amazon FSx](#2-amazon-fsx)
 - [3. Amazon FSx for Windows (File Server)](#3-amazon-fsx-for-windows-file-server)
 - [4. Amazon FSx for Lustre](#4-amazon-fsx-for-lustre)
+  - [4.1. Hot \& Cold Data Handling](#41-hot--cold-data-handling)
 - [5. FSx Lustre - File System Deployment Options](#5-fsx-lustre---file-system-deployment-options)
 - [6. Amazon FSx for NetApp ONTAP](#6-amazon-fsx-for-netapp-ontap)
 - [7. Amazon FSx for OpenZFS](#7-amazon-fsx-for-openzfs)
@@ -57,6 +58,11 @@
   - Can "read S3" as a file system (through FSx).
   - Can write the output of the computations back to S3 (through FSx).
 - **Can be used from on-premises servers (VPN or Direct Connect).**
+
+## 4.1. Hot & Cold Data Handling
+
+- Process hot data in a parallel and distributed way.
+- Store cold data efficiently in [Amazon S3](Amazon%20S3.md).
 
 # 5. FSx Lustre - File System Deployment Options
 

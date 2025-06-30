@@ -93,7 +93,7 @@
 
 - CodePipeline
   - CodeCommit -> `new commit` CodeBuild -> `trigger` > Manual Approval -> `deploy` -> CodeDeploy
-- **Important: Owner is "AWS", Action is "Manual".**
+- **IMPORTANT! Owner is "AWS", Action is "Manual".**
 
 # 9. CloudFormation as a target
 

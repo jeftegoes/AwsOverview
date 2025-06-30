@@ -16,3 +16,5 @@
 - Store and manage users' credentials within the service.
 - Integrate with existing authentication systems (Microsoft Active Directory, LDAP, Okta, Amazon Cognito, custom).
 - **Usage:** Sharing files, public datasets, CRM, ERP, ...
+
+TODO: DIAGRAM

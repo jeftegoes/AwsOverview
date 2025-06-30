@@ -2,30 +2,35 @@
 
 ## Contents <!-- omit in toc -->
 
-- [1. Amazon S3](#1-amazon-s3)
-- [2. AWS Snow Family](#2-aws-snow-family)
-- [3. AWS Storage Gateway](#3-aws-storage-gateway)
-- [4. AWS Backup](#4-aws-backup)
-- [5. Summary](#5-summary)
+- [1. AWS Storage Cloud Native Options](#1-aws-storage-cloud-native-options)
+- [2. Amazon S3](#2-amazon-s3)
+- [3. AWS Snow Family](#3-aws-snow-family)
+- [4. AWS Storage Gateway](#4-aws-storage-gateway)
+- [5. AWS Backup](#5-aws-backup)
+- [6. Summary](#6-summary)
 
-# 1. Amazon S3
+# 1. AWS Storage Cloud Native Options
+
+![AWS Storage Cloud Native Options](/Images/Storage/AWSStorageCloudNativeOptions.png)
+
+# 2. Amazon S3
 
 [Amazon S3](Amazon%20S3.md)
 
-# 2. AWS Snow Family
+# 3. AWS Snow Family
 
 [AWS Snow Family](AWS%20Snow%20Family.md)
 
-# 3. AWS Storage Gateway
+# 4. AWS Storage Gateway
 
 - **AWS Storage Gateway is a hybrid cloud storage service that gives you on-premises access to virtually unlimited cloud storage. Storage Gateway provides a standard set of storage protocols such as iSCSI, SMB, and NFS, which allow you to use AWS storage without rewriting your existing applications. It provides low-latency performance by caching frequently accessed data on premises, while storing data securely and durably in Amazon cloud storage services.** [AWS Storage Gateway](AWS%20Storage%20Gateway.md)
 
-# 4. AWS Backup
+# 5. AWS Backup
 
 - **AWS Backup is a centralized backup service that makes it easy and cost-effective for you to backup your application data across AWS services in the AWS Cloud**
 - **CloudEndure Disaster Recovery minimizes downtime and data loss by providing fast, reliable recovery into AWS of your physical, virtual, and cloud-based servers.** [AWS Backup](AWS%20Backup.md)
 
-# 5. Summary
+# 6. Summary
 
 - **S3:** Object Storage.
 - **S3 Glacier:** Object Archival.

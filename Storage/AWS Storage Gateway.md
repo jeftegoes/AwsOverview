@@ -53,6 +53,7 @@
 - **Transition to S3 Glacier using a Lifecycle Policy.**
 - Bucket access using IAM roles for each File Gateway.
 - SMB Protocol has integration with Active Directory (AD) for user authentication.
+- **IMPORTANT!** Does not support file shares in Amazon FSx for Windows File Server.
   ![AWS Storage Gateway - Amazon S3 File Gateway](/Images/Storage/AWSStorageGatewayAmazonS3FileGateway.png)
 
 ### 3.1.1. RefreshCache API
@@ -83,6 +84,8 @@
 - **Cached volumes:** Low latency access to most recent data.
 - **Stored volumes:** Entire dataset is on premise, scheduled backups to S3.
 
+TODO: DIAGRAM
+
 ## 3.3. Tape Gateway
 
 - Some companies have backup processes using physical tapes (!).
@@ -90,6 +93,8 @@
 - Virtual Tape Library (VTL) backed by Amazon S3 and Glacier.
 - Back up data using existing tape-based processes (and iSCSI interface).
 - Works with leading backup software vendors.
+
+TODO: DIAGRAM
 
 # 4. Hardware appliance
 
@@ -99,3 +104,5 @@
 - Works with File Gateway, Volume Gateway, Tape Gateway.
 - Has the required CPU, memory, network, SSD cache resources.
 - Helpful for daily NFS backups in small data centers.
+
+TODO: DIAGRAM

@@ -22,7 +22,7 @@
 
 # 2. Medical
 
-- Amazon Comprehend Medical detects and returns useful information in unstructured clinical text:
+- **Amazon Comprehend Medical** detects and returns useful information in unstructured clinical text:
   - Physician's notes.
   - Discharge summaries.
   - Test results.

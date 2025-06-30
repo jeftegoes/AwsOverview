@@ -29,6 +29,7 @@
 - [12. VPC Endpoints (AWS PrivateLink)](#12-vpc-endpoints-aws-privatelink)
   - [12.1. Types of Endpoints](#121-types-of-endpoints)
   - [12.2. Gateway or Interface Endpoint for S3?](#122-gateway-or-interface-endpoint-for-s3)
+  - [12.3. Use cases](#123-use-cases)
 - [13. Site-to-Site VPN](#13-site-to-site-vpn)
   - [13.1. Connections](#131-connections)
 - [14. AWS VPN CloudHub](#14-aws-vpn-cloudhub)
@@ -319,6 +320,16 @@
 - Gateway is most likely going to be preferred all.
 - **Cost:** Free for Gateway, $ for interface endpoint.
 - Interface Endpoint is preferred access is required from on-premises (Site to Site VPN or Direct Connect), a different VPC or a different region.
+
+## 12.3. Use cases
+
+- In the following diagram, the VPC on the left has several [Amazon EC2](/Compute/Amazon%20EC2.md) instances in a private subnet and five **VPC endpoints** - three **interface VPC endpoints**, a **resource VPC endpoint** and a **service-network VPC endpoint**.
+  - The first interface VPC endpoint connects to an AWS service.
+  - The second interface VPC endpoint connects to a service hosted by another AWS account (a VPC endpoint service).
+  - The third interface VPC endpoint connects to an AWS Marketplace partner service.
+  - The resource VPC endpoint connects to a database.
+  - The service network VPC endpoint connects to a service network.
+    ![Amazon VPC Link Use Cases](/Images/Networking%20&%20Content%20Delivery/AmazonVPCLinkUseCases.png)
 
 # 13. Site-to-Site VPN
 

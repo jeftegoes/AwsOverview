@@ -123,7 +123,7 @@
 
 # 11. Auto Scaling - Instance Refresh
 
-- Goal: update launch template and then re-creating all EC2 instances.
+- **Goal:** Update launch template and then re-creating all EC2 instances.
 - For this we can use the native feature of Instance Refresh.
 - Setting of minimum healthy percentage.
 - Specify warm-up time (how long until the instance is ready to use).
