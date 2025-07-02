@@ -13,6 +13,7 @@
 - You have deployed an application and have global users who want to access it directly.
 - They go over the public internet, which can add a lot of latency due to many hops.
 - We wish to go as fast as possible through AWS network to minimize latency.
+  ![AWS Global Accelerator](/Images/Networking%20&%20Content%20Delivery/AWSGlobalAccelerator.png)
 
 # 2. Unicast IP vs Anycast IP
 

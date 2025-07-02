@@ -47,7 +47,8 @@
 - [19. Network Protection on AWS](#19-network-protection-on-aws)
   - [19.1. AWS Network Firewall](#191-aws-network-firewall)
     - [19.1.1. Fine Grained Controls](#1911-fine-grained-controls)
-- [20. VPC Section Summary](#20-vpc-section-summary)
+- [20. Transit VPC](#20-transit-vpc)
+- [21. VPC Section Summary](#21-vpc-section-summary)
 
 # 1. Understanding CIDR
 
@@ -378,7 +379,7 @@
 
 ## 16.1. With AWS Transit Gateway
 
-![With AWS Transit Gateway](/Images/Networking%20&%20Content%20Delivery/AmazonVPCTransitGateway.png)
+![With AWS Transit Gateway](/Images/Networking%20&%20Content%2r0Delivery/AmazonVPCTransitGateway.png)
 
 ## 16.2. Without AWS Transit Gateway
 
@@ -474,7 +475,16 @@
 - **Active flow inspection** to protect against network threats with intrusion-prevention capabilities (like Gateway Load Balancer, but all managed by AWS).
 - Send logs of rule matches to Amazon S3, CloudWatch Logs, Kinesis Data Firehose.
 
-# 20. VPC Section Summary
+# 20. Transit VPC
+
+- AWS Transit VPC is a networking architecture that allows you to centralize connectivity between multiple Amazon VPCs (in the same or different AWS regions), on-premises networks, or remote offices, using a hub-and-spoke model.
+- Think of it like a central router (the Transit VPC) that connects to all your other networks (the spokes) so they can communicate through it.
+- Transit VPC uses **customer-managed** Amazon Elastic Compute Cloud (Amazon EC2) VPN instances in a dedicated transit VPC with an Internet gateway.
+- This design requires the customer to deploy, configure, and manage EC2-based VPN appliances, which will result in additional EC2, and potentially third-party product and licensing charges.
+  - Note that this design will generate additional data transfer charges for traffic traversing the transit VPC: data is charged when it is sent from a spoke VPC to the transit VPC, and again from the transit VPC to the on-premises network or a different AWS Region.
+- **IMPORTANT! AWS has introduced AWS Transit Gateway, which is the modern replacement for Transit VPC.**
+
+# 21. VPC Section Summary
 
 - **CIDR:** IP Range.
 - **VPC:** Virtual Private Cloud => we define a list of IPv4 & IPv6 CIDR.

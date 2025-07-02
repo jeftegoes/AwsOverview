@@ -71,7 +71,9 @@
 ## 2.1. KMS Keys Types
 
 - **KMS Keys is the new name of KMS Customer Master Key (CMK).**
-  - AWS KMS is replacing the term customer master key (CMK) with AWS KMS key and KMS key. The concept has not changed. To prevent breaking changes, AWS KMS is keeping some variations of this term.
+  - AWS KMS is replacing the term customer master key (CMK) with AWS KMS key and KMS key.
+    - The concept has not changed.
+    - To prevent breaking changes, AWS KMS is keeping some variations of this term.
   - https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html
 - **Symmetric (AES-256 keys)**
   - Single encryption key that is used to Encrypt and Decrypt.
@@ -134,6 +136,9 @@
 - KMS Multi-Region are NOT global (Primary + Replicas).
 - Each Multi-Region key is managed **independently**.
 - **Use cases:** Global client-side encryption, encryption on Global DynamoDB, Global Aurora.
+  ![AWS KMS Multi-Region Keys](/Images/Security,%20Identity,%20&%20Compliance/AWSKMSMultiRegionKeys.png)
+- **IMPORTANT!** We cannot convert an existing single-Region key to a multi-Region key.
+  - This design ensures that all data protected with existing single-Region keys maintain the same data residency and data sovereignty properties.
 
 ### 2.4.1. DynamoDB Global Tables and KMS Multi-Region Keys Client-Side encryption
 
