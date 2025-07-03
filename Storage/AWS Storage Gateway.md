@@ -12,6 +12,7 @@
   - [3.2. Volume Gateway](#32-volume-gateway)
   - [3.3. Tape Gateway](#33-tape-gateway)
 - [4. Hardware appliance](#4-hardware-appliance)
+- [5. AWS Storage Gateway Overview](#5-aws-storage-gateway-overview)
 
 # 1. Hybrid Cloud for Storage
 
@@ -83,8 +84,7 @@
 - Backed by EBS snapshots which can help restore on-premises volumes!
 - **Cached volumes:** Low latency access to most recent data.
 - **Stored volumes:** Entire dataset is on premise, scheduled backups to S3.
-
-TODO: DIAGRAM
+  ![AWS Storage Gateway - Volume Gateway](/Images/Storage/AWSStorageGatewayVolumeGateway.png)
 
 ## 3.3. Tape Gateway
 
@@ -93,8 +93,7 @@ TODO: DIAGRAM
 - Virtual Tape Library (VTL) backed by Amazon S3 and Glacier.
 - Back up data using existing tape-based processes (and iSCSI interface).
 - Works with leading backup software vendors.
-
-TODO: DIAGRAM
+  ![AWS Storage Gateway - Tape Gateway](/Images/Storage/AWSStorageGatewayTapeGateway.png)
 
 # 4. Hardware appliance
 
@@ -105,4 +104,6 @@ TODO: DIAGRAM
 - Has the required CPU, memory, network, SSD cache resources.
 - Helpful for daily NFS backups in small data centers.
 
-TODO: DIAGRAM
+# 5. AWS Storage Gateway Overview
+
+![AWS Storage Gateway Overview](/Images/Storage/AWSStorageGatewayOverview.png)

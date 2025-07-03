@@ -1,0 +1,45 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.4 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="26.0.4">
+  <diagram name="Page-1" id="W6M-3M9bq2nHeSQ7bbCg">
+    <mxGraphModel dx="928" dy="998" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="oEnysuNTiIOwoKULvUlp-1" value="Corporate data center" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_corporate_data_center;strokeColor=#7D8998;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#5A6C86;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="390" width="305" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="oEnysuNTiIOwoKULvUlp-10" value="Volume Gateway" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.volume_gateway;" vertex="1" parent="oEnysuNTiIOwoKULvUlp-1">
+          <mxGeometry x="210" y="46" width="65" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="oEnysuNTiIOwoKULvUlp-5" value="AWS Cloud" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_cloud_alt;strokeColor=#232F3E;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#232F3E;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="440" y="360" width="375" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="oEnysuNTiIOwoKULvUlp-12" value="Region" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_region;strokeColor=#00A4A6;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#147EBA;dashed=1;" vertex="1" parent="oEnysuNTiIOwoKULvUlp-5">
+          <mxGeometry x="20" y="40" width="340" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="oEnysuNTiIOwoKULvUlp-7" value="S3 Bucket" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.bucket;labelPosition=center;spacingLeft=0;" vertex="1" parent="oEnysuNTiIOwoKULvUlp-12">
+          <mxGeometry x="30" y="36" width="75" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="oEnysuNTiIOwoKULvUlp-13" value="Amazon EBS Snapshot" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.snapshot;" vertex="1" parent="oEnysuNTiIOwoKULvUlp-12">
+          <mxGeometry x="240" y="36" width="56" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="oEnysuNTiIOwoKULvUlp-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="oEnysuNTiIOwoKULvUlp-12" source="oEnysuNTiIOwoKULvUlp-7" target="oEnysuNTiIOwoKULvUlp-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oEnysuNTiIOwoKULvUlp-3" value="&amp;nbsp;iSCSI&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="oEnysuNTiIOwoKULvUlp-4" target="oEnysuNTiIOwoKULvUlp-10">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="246.76829545454552" y="475" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oEnysuNTiIOwoKULvUlp-4" value="Application&lt;div&gt;Server&lt;/div&gt;" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.traditional_server;" vertex="1" parent="1">
+          <mxGeometry x="65" y="436" width="45" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="oEnysuNTiIOwoKULvUlp-9" value="&amp;nbsp;HTTPS&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="oEnysuNTiIOwoKULvUlp-10" target="oEnysuNTiIOwoKULvUlp-7">
+          <mxGeometry x="0.2" relative="1" as="geometry">
+            <mxPoint x="351.2317045454547" y="475" as="sourcePoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

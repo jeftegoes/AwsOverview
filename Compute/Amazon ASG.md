@@ -24,6 +24,7 @@
 - [16. AWS Application Auto Scaling](#16-aws-application-auto-scaling)
   - [16.1. Integrated AWS Services](#161-integrated-aws-services)
 - [17. Terraform details](#17-terraform-details)
+- [18. Impaired status](#18-impaired-status)
 
 # 1. Introduction
 
@@ -251,3 +252,10 @@
   3. After successfully creating the new Auto Scaling group, AWS CloudFormation deletes the old Auto Scaling group during the cleanup process.
 - When you set the `WillReplace` parameter, remember to specify a matching CreationPolicy.
   - If the minimum number of instances (specified by the `MinSuccessfulInstancesPercent` property) doesn't signal success within the Timeout period (specified in the CreationPolicy policy), the replacement update fails, and AWS CloudFormation rolls back to the old Auto Scaling group.
+
+# 18. Impaired status
+
+- Amazon EC2 Auto Scaling does not immediately terminate instances with an **Impaired status**.
+- Instead, Amazon EC2 Auto Scaling waits a few minutes for the instance to recover.
+- Amazon EC2 Auto Scaling might also delay or not terminate instances that fail to report data for status checks.
+- This usually happens when there is insufficient data for the status check metrics in Amazon CloudWatch.

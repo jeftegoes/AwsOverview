@@ -8,14 +8,14 @@
   - [1.3. Default VPC](#13-default-vpc)
 - [2. VPC in AWS](#2-vpc-in-aws)
 - [3. Subnet](#3-subnet)
-- [4. NAT Gateways](#4-nat-gateways)
-  - [4.1. NAT Gateway with High Availability](#41-nat-gateway-with-high-availability)
-  - [4.2. NAT Gateway vs. NAT Instance](#42-nat-gateway-vs-nat-instance)
-- [5. Internet Gateway](#5-internet-gateway)
-  - [5.1. Subnet](#51-subnet)
-- [6. Bastion Hosts](#6-bastion-hosts)
-- [7. NAT Instance (outdated)](#7-nat-instance-outdated)
-  - [7.1. Comments](#71-comments)
+- [4. NAT Instance (outdated)](#4-nat-instance-outdated)
+  - [4.1. Comments](#41-comments)
+- [5. NAT Gateways](#5-nat-gateways)
+  - [5.1. NAT Gateway with High Availability](#51-nat-gateway-with-high-availability)
+  - [5.2. NAT Gateway vs. NAT Instance](#52-nat-gateway-vs-nat-instance)
+- [6. Internet Gateway](#6-internet-gateway)
+  - [6.1. Subnet](#61-subnet)
+- [7. Bastion Hosts](#7-bastion-hosts)
 - [8. Network Access Control List (NACL)](#8-network-access-control-list-nacl)
   - [8.1. Default NACL](#81-default-nacl)
   - [8.2. Network ACLs vs Security Groups](#82-network-acls-vs-security-groups)
@@ -137,55 +137,7 @@
 - **Example**
   ![Amazon VPC Subnets](/Images/Networking%20&%20Content%20Delivery/AmazonVPCSubnets.png)
 
-# 4. NAT Gateways
-
-- **NAT Gateways allow your instances in your private subnets to access the Internet while remaining private, and are managed by AWS.**
-- **NAT Gateways** (AWS-managed) and **NAT Instances** (self-managed) allow your instances in your **Private Subnets** to access the internet while remaining private.
-- AWS-managed NAT, higher bandwidth, high availability, no administration.
-- Pay per hour for usage and bandwidth.
-- NATGW is created in a specific Availability Zone, uses an Elastic IP.
-- Can't be used by EC2 instance in the same subnet (only from other subnets).
-- Requires an IGW (Private Subnet => NATGW => IGW).
-- 5 Gbps of bandwidth with automatic scaling up to 100 Gbps.
-- No Security Groups to manage / required.
-
-## 4.1. NAT Gateway with High Availability
-
-- **NAT Gateway is resilient within a single Availability Zone.**
-- Must create **multiple NAT** Gateways in **multiple AZs** for fault-tolerance.
-- There is no cross-AZ failover needed because if an AZ goes down it doesn't need NAT.
-
-## 4.2. NAT Gateway vs. NAT Instance
-
-[Compare NAT gateways and NAT instances](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-comparison.html)
-
-# 5. Internet Gateway
-
-- Allows resources (e.g., EC2 instances) in a VPC connect to the Internet.
-- It scales horizontally and is highly available and redundant.
-- Must be created separately from a VPC.
-- One VPC can only be attached to one IGW and vice versa.
-- **Internet Gateways on their own do not allow Internet access!**
-  - Route tables must also be edited!
-    ![Internet Gateway](/Images/Networking%20&%20Content%20Delivery/AmazonVPCInternetGateway.png)
-
-## 5.1. Subnet
-
-- Public Subnets have a route to the internet gateway.
-- A subnet can only be associated with one route table at a time (1..1).
-  - A subnet is **implicitly associated** with the **main route table** if it is not explicitly associated with a particular route table.
-  - So, a subnet is always associated with some route table.
-  - **But you can associate multiple subnets with the same subnet route table (1..N).**
-- A route table contains a set of rules, called routes, that are used to determine where network traffic from your subnet or gateway is directed. The route table in the instance's subnet should have a route defined to the Internet Gateway.
-
-# 6. Bastion Hosts
-
-- We can use a Bastion Host to SSH into our private EC2 instances.
-- The bastion is in the public subnet which is then connected to all other private subnets.
-- **Bastion Host security group must allow** inbound from the internet on port 22 from restricted CIDR, for example the public CIDR of your corporation.
-- Security Group of the EC2 Instances must allow the Security Group of the Bastion Host, or the private IP of the Bastion host.
-
-# 7. NAT Instance (outdated)
+# 4. NAT Instance (outdated)
 
 - NAT = Network Address Translation.
 - Allows EC2 instances in private subnets to connect to the Internet.
@@ -194,7 +146,7 @@
 - Must have Elastic IP attached to it.
 - Route Tables must be configured to route traffic from private subnets to the NAT Instance.
 
-## 7.1. Comments
+## 4.1. Comments
 
 - Pre-configured Amazon Linux AMI is available.
   - Reached the end of standard support on December 31, 2020.
@@ -207,6 +159,53 @@
     - Allow SSH from your home network (access is provided through Internet Gateway).
   - **Outbound**
     - Allow HTTP / HTTPS traffic to the Internet.
+
+# 5. NAT Gateways
+
+- **NAT Gateways** (AWS-managed) and **NAT Instances** (self-managed) allow your instances in your **Private Subnets** to access the internet while remaining private.
+- AWS-managed NAT, higher bandwidth, high availability, no administration.
+- Pay per hour for usage and bandwidth.
+- NATGW is created in a specific Availability Zone, uses an Elastic IP.
+- Can't be used by EC2 instance in the same subnet (only from other subnets).
+- Requires an IGW (Private Subnet => NATGW => IGW).
+- 5 Gbps of bandwidth with automatic scaling up to 100 Gbps.
+- No Security Groups to manage / required.
+
+## 5.1. NAT Gateway with High Availability
+
+- **NAT Gateway is resilient within a single Availability Zone.**
+- Must create **multiple NAT** Gateways in **multiple AZs** for fault-tolerance.
+- There is no cross-AZ failover needed because if an AZ goes down it doesn't need NAT.
+
+## 5.2. NAT Gateway vs. NAT Instance
+
+[Compare NAT gateways and NAT instances](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-comparison.html)
+
+# 6. Internet Gateway
+
+- Allows resources (e.g., EC2 instances) in a VPC connect to the Internet.
+- It scales horizontally and is highly available and redundant.
+- Must be created separately from a VPC.
+- One VPC can only be attached to one IGW and vice versa.
+- **Internet Gateways on their own do not allow Internet access!**
+  - Route tables must also be edited!
+    ![Internet Gateway](/Images/Networking%20&%20Content%20Delivery/AmazonVPCInternetGateway.png)
+
+## 6.1. Subnet
+
+- Public Subnets have a route to the internet gateway.
+- A subnet can only be associated with one route table at a time (1..1).
+  - A subnet is **implicitly associated** with the **main route table** if it is not explicitly associated with a particular route table.
+  - So, a subnet is always associated with some route table.
+  - **But you can associate multiple subnets with the same subnet route table (1..N).**
+- A route table contains a set of rules, called routes, that are used to determine where network traffic from your subnet or gateway is directed. The route table in the instance's subnet should have a route defined to the Internet Gateway.
+
+# 7. Bastion Hosts
+
+- We can use a Bastion Host to SSH into our private EC2 instances.
+- The bastion is in the public subnet which is then connected to all other private subnets.
+- **Bastion Host security group must allow** inbound from the internet on port 22 from restricted CIDR, for example the public CIDR of your corporation.
+- Security Group of the EC2 Instances must allow the Security Group of the Bastion Host, or the private IP of the Bastion host.
 
 # 8. Network Access Control List (NACL)
 
