@@ -1,4 +1,4 @@
-# Amazon EC2 - Elastic Compute Cloud<!-- omit in toc -->
+# Amazon EC2 - Elastic Compute Cloud <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -35,8 +35,6 @@
   - [13.2. Reserved Instances](#132-reserved-instances)
   - [13.3. Savings Plans](#133-savings-plans)
   - [13.4. Spot Instances](#134-spot-instances)
-    - [13.4.1. Requests](#1341-requests)
-    - [13.4.2. Spot Fleets](#1342-spot-fleets)
   - [13.5. Dedicated Hosts](#135-dedicated-hosts)
   - [13.6. Dedicated Instances](#136-dedicated-instances)
   - [13.7. Capacity Reservations](#137-capacity-reservations)
@@ -45,14 +43,6 @@
   - [13.10. Shared Responsibility Model for EC2](#1310-shared-responsibility-model-for-ec2)
 - [14. VM Import/Export](#14-vm-importexport)
 - [15. AMI](#15-ami)
-  - [15.1. AMI Process (from an EC2 instance)](#151-ami-process-from-an-ec2-instance)
-  - [15.2. EC2 Image Builder](#152-ec2-image-builder)
-  - [15.3. Instance Migration between AZ](#153-instance-migration-between-az)
-  - [15.4. Instance Migration between Regions](#154-instance-migration-between-regions)
-  - [15.5. Cross-Account AMI Sharing](#155-cross-account-ami-sharing)
-    - [15.5.1. AMI Sharing with KMS Encryption](#1551-ami-sharing-with-kms-encryption)
-  - [15.6. Cross-Account AMI Copy](#156-cross-account-ami-copy)
-    - [15.6.1. AMI Copy with KMS Encryption](#1561-ami-copy-with-kms-encryption)
 - [16. Instance Scheduler on AWS](#16-instance-scheduler-on-aws)
 
 # 1. Introduction
@@ -412,40 +402,7 @@
 
 ## 13.4. Spot Instances
 
-- Can get a **discount of up to 90%** compared to On-demand.
-- Instances that you can "lose" at any point of time if your max price is less than the current spot price.
-- The **MOST cost-efficient** instances in AWS.
-- **Useful for workloads that are resilient to failure:**
-  - Batch jobs.
-  - Data analysis.
-  - Image processing.
-  - Any **distributed** workloads.
-  - Workloads with a flexible start and end time.
-- **Not suitable for critical jobs or databases.**
-
-### 13.4.1. Requests
-
-- Define **max spot price** and get the instance while **current spot price < max**.
-  - The hourly spot price varies based on offer and capacity.
-  - If the current spot price > your max price you can choose to **stop** or **terminate** your instance with a 2 minutes grace period.
-- **Other strategy:** Spot Block
-  - "block" spot instance during a specified time frame (1 to 6 hours) without interruptions.
-  - In rare situations, the instance may be reclaimed.
-- Used for batch jobs, data analysis, or workloads that are resilient to failures.
-
-### 13.4.2. Spot Fleets
-
-- Spot Fleets = set of Spot Instances + (optional) On-Demand Instances.
-- The Spot Fleet will try to meet the target capacity with price constraints.
-  - **Define possible launch pools:** Instance type (m5.large), OS, Availability Zone.
-  - Can have multiple launch pools, so that the fleet can choose.
-  - Spot Fleet stops launching instances when reaching capacity or max cost.
-- **Strategies to allocate Spot Instances**
-  - `lowestPrice`: From the pool with the lowest price (cost optimization, short workload).
-  - `diversified`: Distributed across all pools (great for availability, long workloads).
-  - `capacityOptimized`: Pool with the optimal capacity for the number of instances.
-  - `priceCapacityOptimized` (recommended): Pools with highest capacity available, then select the pool with the lowest price (best choice for most workloads).
-- _Spot Fleets allow us to automatically request Spot Instances with the lowest price._
+[Spot Instance](#134-spot-instances)
 
 ## 13.5. Dedicated Hosts
 
@@ -495,97 +452,27 @@
 
 ## 13.10. Shared Responsibility Model for EC2
 
-- AWS:
-  - Infrastructure (global network security)
-  - Isolation on physical hosts
-  - Replacing faulty hardware
-  - Compliance validation
-- You:
-  - Security Groups rules
-  - Operating-system patches and updates
-  - Software and utilities installed on the EC2 instance
-  - IAM Roles assigned to EC2ASDASD\_\_& IAM user access management
-  - Data security on your instance
+- **AWS**
+  - Infrastructure (global network security).
+  - Isolation on physical hosts.
+  - Replacing faulty hardware.
+  - Compliance validation.
+- **We**
+  - Security Groups rules.
+  - Operating-system patches and updates.
+  - Software and utilities installed on the EC2 instance.
+  - IAM Roles assigned to EC2ASDASD\_\_& IAM user access management.
+  - Data security on our instance.
 
 # 14. VM Import/Export
 
-- The VM Import/Export enables you to easily import virtual machine images from your existing environment to Amazon EC2 instances and export them back to your on-premises environment.
+- The VM Import/Export enables we to easily import virtual machine images from our existing environment to Amazon EC2 instances and export them back to our on-premises environment.
 
 ![VM Import/Export](/Images/Compute/AmazonEC2VMImportExport.png)
 
 # 15. AMI
 
-- AMI = Amazon Machine Image.
-  - **Golden AMI** is an AMI that you standardize through configuration, consistent security patching, and hardening.
-    - It also contains agents you approve for logging, security, performance monitoring, etc.
-- AMI are a **customization** of an EC2 instance.
-  - You add your own software, configuration, operating system, monitoring...
-  - Faster boot / configuration time because all your software is pre-packaged.
-- AMI are built for a **specific region** (and can be copied across regions).
-- **You can launch EC2 instances from**
-  - **A Public AMI:** AWS provided.
-  - **Your own AMI:** You make and maintain them yourself.
-  - **An AWS Marketplace AMI:** An AMI someone else made (and potentially sells).
-
-## 15.1. AMI Process (from an EC2 instance)
-
-1. Start an EC2 instance and customize it.
-2. Stop the instance (for data integrity).
-3. Build an AMI - this will also create EBS snapshots.
-4. Launch instances from other AMIs.
-
-## 15.2. EC2 Image Builder
-
-- Used to automate the creation of Virtual Machines or container images.
-- Automate the creation, maintain, validate and test **EC2 AMIs**.
-- Can be run on a schedule (weekly, whenever packages are updated, etc...).
-- Free service (only pay for the underlying resources).
-- **Steps**
-  1. EC2 Image Builder
-     1. Create
-  2. Builder EC2 Instance
-     1. Create
-  3. New AMI
-  4. Test EC2 Instance
-
-## 15.3. Instance Migration between AZ
-
-- Remember **between AZ**.
-  ![EC2 Instance Migration between AZ](/Images/Compute/AmazonEC2MigrationBetweenAZ.png)
-
-## 15.4. Instance Migration between Regions
-
-- **IMPORTANT!** When the new AMI is copied from Region A into Region B, it automatically creates a snapshot in Region B because AMIs are based on the underlying snapshots.
-  ![EC2 Instance Migration Between Regions](/Images/Compute/AmazonEC2InstanceMigrationBetweenRegions.png)
-
-## 15.5. Cross-Account AMI Sharing
-
-- You can share an AMI with another AWS account.
-- Sharing an AMI does **not affect the ownership** of the AMI.
-- **You can only share AMIs that have**
-  1. Unencrypted volumes.
-  2. Volumes that are encrypted with a customer managed key.
-- If you share an AMI with encrypted volumes,** you must also share any customer managed keys used to encrypt them**.
-
-![Cross-Account AMI Sharing](/Images/Compute/AmazonEC2CrossAccountAMISharing.png)
-
-### 15.5.1. AMI Sharing with KMS Encryption
-
-![AMI Sharing with KMS Encryption](/Images/Compute/AmazonEC2AMISharingWithKMSEncryption.png)
-
-## 15.6. Cross-Account AMI Copy
-
-- If you copy an AMI that has been shared with your account, you are the owner of the target AMI in your account.
-- The owner of the source AMI must grant you read permissions for the storage that backs the **AMI (EBS Snapshot)**.
-- If the shared AMI has encrypted snapshots, the owner must share the key or keys with you as well.
-- Can encrypt the AMI with your own CMK while copying.
-
-![Cross-Account AMI Copy](/Images/Compute/mazonEC2CrossAccountAMICopy.png)
-
-### 15.6.1. AMI Copy with KMS Encryption
-
-- Cross-Region / Cross-Account Encrypted AMI Copy
-  ![AMI Copy with KMS Encryption](/Images/Compute/AmazonEC2CrossAccountAMICopyWithKMSEncryption.png)
+[Amazon EC2 - AMI](Amazon%20EC2%20-%20AMI.md)
 
 # 16. Instance Scheduler on AWS
 

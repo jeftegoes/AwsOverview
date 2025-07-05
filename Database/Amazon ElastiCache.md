@@ -41,8 +41,7 @@
 - Applications queries ElastiCache, if not available, get from RDS and store in ElastiCache.
 - Helps relieve load in RDS.
 - Cache must have an invalidation strategy to make sure only the most current data is used in there.
-
-![Amazon ElastiCache Solution Architecture - DB Cache](/Images/AWSElastiCacheSolutionArchitectureDbCache.png)
+  ![Amazon ElastiCache Solution Architecture - DB Cache](/Images/Database/AmazonElastiCacheSolutionArchitectureDbCache.png)
 
 ## 2.2. User Session Store
 
@@ -51,7 +50,7 @@
 - The user hits another instance of our application.
 - The instance retrieves the data and the user is already logged in.
 
-![Amazon ElastiCache Solution Architecture User Session Store](/Images/AWSElastiCacheSolutionArchitectureUserSessionStore.png)
+![Amazon ElastiCache Solution Architecture User Session Store](/Images/Database/AmazonElastiCacheSolutionArchitectureUserSessionStore.png)
 
 # 3. Redis vs Memcached
 
@@ -160,7 +159,7 @@
   - Cache miss penalty that results in 3 round trips, noticeable delay for that request.
   - Stale data: data can be updated in the database and outdated in the cache.
 
-![Amazon ElastiCache Solution Architecture - DB Cache](/Images/AWSElastiCacheSolutionArchitectureDbCache.png)
+![Amazon ElastiCache Solution Architecture - DB Cache](/Images/Database/AmazonElastiCacheSolutionArchitectureDbCache.png)
 
 ```
   // Pseudo code
@@ -215,6 +214,7 @@
 - Gaming Leaderboards are computationally complex.
 - **Redis Sorted sets** guarantee both uniqueness and element ordering.
 - Each time a new element added, it's ranked in real time, then added in correct order.
+  ![Amazon ElastiCache Use Case](/Images/Database/AmazonElastiCacheUseCase.png)
 
 # 11. Summary
 

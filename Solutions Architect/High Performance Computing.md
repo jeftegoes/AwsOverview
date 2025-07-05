@@ -78,7 +78,7 @@
 
 ## 2.1. With ASG
 
-![Highly available EC2 instance with ASG ](/Images/HighlyAvailableEC2InstanceASG.png.png)
+![Highly available EC2 instance with ASG ](/Images/HighlyAvailableEC2InstanceASG.png)
 
 ## 2.2. With ASG + EBS
 

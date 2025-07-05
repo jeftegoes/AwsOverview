@@ -20,8 +20,7 @@
   - Assessment of functions as they are deployed.
 - Reporting & integration with AWS Security Hub.
 - Send findings to Amazon Event Bridge.
-
-![Amazon Inspector Diagram](/Images/AmazonInspectorDiagram.png)
+  ![Amazon Inspector Diagram](/Images/AmazonInspectorDiagram.png)
 
 # 2. What does AWS Inspector evaluate?
 
@@ -38,5 +37,4 @@
   - **SSM Agent is running.**
   - Be an SSM Managed Instance (IAM Role or Default Host Management Config.).
   - Outbound 443 to Systems Manager endpoint.
-
-![Systems Manager Integration](/Images/AmazonInspectorSystemsManager.png)
+    ![Systems Manager Integration](/Images/AmazonInspectorSystemsManager.png)

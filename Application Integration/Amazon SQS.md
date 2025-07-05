@@ -10,6 +10,7 @@
 - [5. Security](#5-security)
 - [6. Message Visibility Timeout](#6-message-visibility-timeout)
 - [7. FIFO Queue](#7-fifo-queue)
+  - [7.1. FIFO Queue name](#71-fifo-queue-name)
 - [8. Dead Letter Queue (DLQ)](#8-dead-letter-queue-dlq)
   - [8.1. Redrive to Source](#81-redrive-to-source)
 - [9. Delay Queue](#9-delay-queue)
@@ -94,6 +95,12 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - Exactly-once send capability (by removing duplicates using Deduplication ID).
 - Messages are processed in order by the consumer.
 - Ordering by Message Group ID (all messages in the same group are ordered) - mandatory parameter.
+
+## 7.1. FIFO Queue name
+
+- The name of a FIFO queue must end with the `.fifo` suffix.
+- The suffix counts towards the 80-character queue name limit.
+- To determine whether a queue is FIFO, we can check whether the queue name ends with the suffix.
 
 # 8. Dead Letter Queue (DLQ)
 

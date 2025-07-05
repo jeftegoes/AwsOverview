@@ -30,7 +30,7 @@
   - [12.1. Types of Endpoints](#121-types-of-endpoints)
   - [12.2. Gateway or Interface Endpoint for S3?](#122-gateway-or-interface-endpoint-for-s3)
   - [12.3. Use cases](#123-use-cases)
-- [13. Site-to-Site VPN](#13-site-to-site-vpn)
+- [13. Site-to-Site VPN ((aka VPN Connection))](#13-site-to-site-vpn-aka-vpn-connection)
   - [13.1. Connections](#131-connections)
 - [14. AWS VPN CloudHub](#14-aws-vpn-cloudhub)
 - [15. Site-to-Site VPN connection as a backup](#15-site-to-site-vpn-connection-as-a-backup)
@@ -145,6 +145,10 @@
 - **Must disable EC2 setting:** Source / destination Check.
 - Must have Elastic IP attached to it.
 - Route Tables must be configured to route traffic from private subnets to the NAT Instance.
+  ![NAT Instance](/Images/Networking%20&%20Content%20Delivery/NATInstance.png)
+- **IMPORTANT!**
+  - NAT instance can be used as a bastion server.
+  - NAT instance supports port forwarding.
 
 ## 4.1. Comments
 
@@ -331,7 +335,7 @@
   - The service network VPC endpoint connects to a service network.
     ![Amazon VPC Link Use Cases](/Images/Networking%20&%20Content%20Delivery/AmazonVPCLinkUseCases.png)
 
-# 13. Site-to-Site VPN
+# 13. Site-to-Site VPN ((aka VPN Connection))
 
 - **Virtual Private Gateway (VGW)**
   - VPN concentrator on the AWS side of the VPN connection.
@@ -491,7 +495,8 @@
 - **Internet Gateway:** At the VPC level, provide IPv4 & IPv6 Internet Access.
 - **Route Tables:** Must be edited to add routes from subnets to the IGW, VPC Peering Connections, VPC Endpoints, ...
 - **Bastion Host:** Public EC2 instance to SSH into, that has SSH connectivity to EC2 instances in private subnets.
-- **NAT Instances:** Gives Internet access to EC2 instances in private subnets. Old, must be setup in a public subnet, disable Source / Destination check flag.
+- **NAT Instances (outdated):** Gives Internet access to EC2 instances in private subnets.
+  - Old, must be setup in a public subnet, disable Source / Destination check flag.
 - **NAT Gateway:** Managed by AWS, provides scalable Internet access to private EC2 instances, when the target is an IPv4 address.
 - **NACL:** Stateless, subnet rules for inbound and outbound, don't forget Ephemeral Ports.
 - **Security Groups:** Stateful, operate at the EC2 instance level.
