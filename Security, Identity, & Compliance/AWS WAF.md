@@ -27,12 +27,13 @@
   - Size constraints, **geo-match (block countries)**.
   - **Rate-based rules** (to count occurrences of events) - **for DDoS protection**.
 - Web ACL are Regional except for CloudFront.
-- A rule group is **a reusable set of rules that you can add to a web ACL**.
+- A rule group is **a reusable set of rules that we can add to a web ACL**.
 
 # 2. Fixed IP while using WAF with a Load Balancer
 
 - WAF does not support the Network Load Balancer (Layer 4).
 - We can use Global Accelerator for fixed IP and WAF on the ALB.
+  ![ Fixed IP while using WAF with a Load Balancer](/Images/Security,%20Identity,%20&%20Compliance/AWSWAFFixedIPLoadBalancer.png)
 
 # 3. Managed Rules
 
@@ -56,7 +57,7 @@
 
 # 4. Logging
 
-- You can send your logs to an:
+- We can send your logs to an:
   - Amazon CloudWatch Logs log group - 5 MB per second.
   - Amazon Simple Storage Service (Amazon S3) bucket - 5 minutes interval.
     - Your bucket names for AWS WAF logging must start with `aws-waf-logs-` and can end with any suffix you want.
@@ -72,9 +73,9 @@
 - **WAF, Shield and Firewall Manager are used together for comprehensive protection.**
 - Define your Web ACL rules in WAF.
 - For granular protection of your resources, WAF alone is the correct choice.
-- If you want to use AWS WAF across accounts, accelerate WAF configuration, automate the protection of new resources, use Firewall Manager with AWS WAF.
+- If we want to use AWS WAF across accounts, accelerate WAF configuration, automate the protection of new resources, use Firewall Manager with AWS WAF.
 - Shield Advanced adds additional features on top of AWS WAF, such as dedicated support from the Shield Response Team (SRT) and advanced reporting.
-- If you're prone to frequent DDoS attacks, consider purchasing Shield Advanced.
+- If we're prone to frequent DDoS attacks, consider purchasing Shield Advanced.
 
 # 7. Security Policies
 

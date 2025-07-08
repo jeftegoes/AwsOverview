@@ -10,7 +10,7 @@
 
 # 1. Global users for our application
 
-- You have deployed an application and have global users who want to access it directly.
+- We have deployed an application and have global users who want to access it directly.
 - They go over the public internet, which can add a lot of latency due to many hops.
 - We wish to go as fast as possible through AWS network to minimize latency.
   ![AWS Global Accelerator](/Images/Networking%20&%20Content%20Delivery/AWSGlobalAccelerator.png)
@@ -38,6 +38,7 @@
 - **Security**
   - Only 2 external IP need to be whitelisted.
   - DDoS protection thanks to AWS Shield.
+    ![AWS Global Accelerator Traffic Multi Region](/Images/Networking%20&%20Content%20Delivery/AWSGlobalAcceleratorTrafficMultiRegion.png)
 
 # 4. Single-region blue/green deployment with AWS Global Accelerator
 

@@ -265,14 +265,10 @@
 
 # 6. Cross-Zone Load Balancing
 
-- With Cross Zone Load Balancing: Each load balancer instance distributes evenly
-  across all registered instances in all AZ.
+- **With Cross Zone Load Balancing:** Each load balancer instance distributes evenly across all registered instances in all AZ.
   ![With Cross Zone Load Balancing](/Images/Compute/AWSELBWithCrossZone.png)
-
-- Without Cross Zone Load Balancing: Requests are distributed in the instances of the
-  node of the Elastic Load Balancer.
+- **Without Cross Zone Load Balancing:** Requests are distributed in the instances of the node of the Elastic Load Balancer.
   ![Without Cross Zone Load Balancing](/Images/Compute/AWSELBWithoutCrossZone.png)
-
 - **Application Load Balancer**
   - Always on (can't be disabled).
   - No charges for inter AZ data.
@@ -336,3 +332,4 @@
 - Between 1 to 3600 seconds (default: 300 seconds).
 - Can be disabled (set value to 0).
 - Set to a low value if your requests are short.
+  TODO: DIAGRAM

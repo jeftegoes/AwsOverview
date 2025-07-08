@@ -876,8 +876,7 @@
 - When you update a stack set, all associated stack instances are updated throughout all accounts and regions.
 - Regional service.
 - Can be applied into all accounts of an AWS organizations.
-
-![CloudFormation StackSet](/Images/AWSCloudFormationStackSet.png)
+  ![CloudFormation StackSet](/Images/AWSCloudFormationStackSet.png)
 
 ## 18.1. StackSet Operations
 

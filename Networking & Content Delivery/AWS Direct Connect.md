@@ -7,6 +7,7 @@
   - [2.1. Connection Types](#21-connection-types)
 - [3. Encryption](#3-encryption)
 - [4. Resiliency](#4-resiliency)
+- [5. Virtual Interfaces (VIF)](#5-virtual-interfaces-vif)
 
 # 1. Direct Connect (DX)
 
@@ -19,6 +20,7 @@
   - More consistent network experience - applications using real-time data feeds.
   - Hybrid Environments (on prem + cloud).
 - Supports both IPv4 and IPv6
+  ![AWS Direct Connect Diagram](/Images/Networking%20&%20Content%20Delivery/AWSDirectConnectDiagram.png)
 
 # 2. Direct Connect Gateway
 
@@ -47,3 +49,11 @@
   - One connection at multiple locations.
 - Maximum Resiliency for Critical Workloads.
   - Maximum resilience is achieved by separate connections terminating on separate devices in more than one location.
+
+# 5. Virtual Interfaces (VIF)
+
+- We must create one of the following virtual interfaces (VIFs) to begin using your AWS Direct Connect connection.
+  - **Private virtual interface:** A private virtual interface should be used to access an Amazon VPC using private IP addresses.
+  - **Public virtual interface:** A public virtual interface can access all AWS public services using public IP addresses.
+- **Transit virtual interface (VIF):** A transit virtual interface should be used to access one or more Amazon VPC Transit Gateways associated with Direct Connect gateways.
+- We can use **transit virtual interfaces** with any **AWS Direct Connect** dedicated or hosted connection of any speed.

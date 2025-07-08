@@ -72,7 +72,7 @@
 - ElastiCache supports **IAM Authentication for Redis**.
 - IAM policies on ElastiCache are only used for AWS API-level security.
 - **Redis AUTH**
-  - You can set a "password/token" when you create a Redis cluster.
+  - We can set a "password/token" when we create a Redis cluster.
   - This is an extra level of security for your cache (on top of security groups).
   - Support SSL in flight encryption.
 - **Memcached**
@@ -183,21 +183,21 @@
 # 7. Cache Evictions and Time-to-live (TTL)
 
 - Cache eviction can occur in three ways:
-  - You delete the item explicitly in the cache.
+  - We delete the item explicitly in the cache.
   - Item is evicted because the memory is full and it's not recently used (LRU).
-  - You set an item **time-to-live (or TTL)**.
+  - We set an item **time-to-live (or TTL)**.
 - TTL are helpful for any kind of data:
   - Leaderboards.
   - Comments.
   - Activity streams.
 - TTL can range from few seconds to hours or days.
-- If too many evictions happen due to memory, you should scale up or out.
+- If too many evictions happen due to memory, we should scale up or out.
 
 # 8. Final words of wisdom
 
 - Lazy Loading / Cache aside is easy to implement and works for many situations as a foundation, especially on the read side.
 - Write-through is usually combined with Lazy Loading as targeted for the queries or workloads that benefit from this optimization.
-- Setting a TTL is usually not a bad idea, except when you're using Write- through. Set it to a sensible value for your application.
+- Setting a TTL is usually not a bad idea, except when we're using Write- through. Set it to a sensible value for your application.
 - Only cache the data that makes sense (user profiles, blogs, etc...).
 - Quote: There are only two hard things in Computer Science: cache invalidation and naming things.
 
