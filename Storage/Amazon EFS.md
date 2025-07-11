@@ -65,7 +65,7 @@
 
 # 3. Inter-region VPC peering connection
 
-- We can connect to Amazon EFS file systems from EC2 instances in other AWS regions using an inter-region VPC peering connection, and from on-premises servers using an AWS VPN connection. So this is the correct option.
+- We can connect to Amazon EFS file systems from EC2 instances in other AWS regions using an inter-region VPC peering connection, and from on-premises servers using an AWS VPN connection.
 
 # 4. EFS vs EBS - Elastic Block Storage
 

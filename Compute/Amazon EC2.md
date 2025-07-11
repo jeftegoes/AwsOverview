@@ -37,10 +37,11 @@
   - [13.4. Spot Instances](#134-spot-instances)
   - [13.5. Dedicated Hosts](#135-dedicated-hosts)
   - [13.6. Dedicated Instances](#136-dedicated-instances)
-  - [13.7. Capacity Reservations](#137-capacity-reservations)
-  - [13.8. Which purchase option is better? (Correlation with Hotel)](#138-which-purchase-option-is-better-correlation-with-hotel)
-  - [13.9. AWS License Manager](#139-aws-license-manager)
-  - [13.10. Shared Responsibility Model for EC2](#1310-shared-responsibility-model-for-ec2)
+  - [13.7. Dedicated Instances vs Dedicated Hosts](#137-dedicated-instances-vs-dedicated-hosts)
+  - [13.8. Capacity Reservations](#138-capacity-reservations)
+  - [13.9. Which purchase option is better? (Correlation with Hotel)](#139-which-purchase-option-is-better-correlation-with-hotel)
+  - [13.10. AWS License Manager](#1310-aws-license-manager)
+  - [13.11. Shared Responsibility Model for EC2](#1311-shared-responsibility-model-for-ec2)
 - [14. VM Import/Export](#14-vm-importexport)
 - [15. AMI](#15-ami)
 - [16. Instance Scheduler on AWS](#16-instance-scheduler-on-aws)
@@ -409,7 +410,7 @@
 - **An Amazon EC2 Dedicated Host is a physical server with EC2 instance capacity fully dedicated to your use. Dedicated Hosts can help you address compliance requirements and reduce costs by allowing you to use your existing server-bound software licenses.**
 - A physical server with EC2 instance capacity fully dedicated to your use.
 - Allows you address **compliance requirements** and **use your existing server - bound software licenses** (per-socket, per-core, pe-VM software licenses).
-- Purchasing Options:
+- **Purchasing Options**
   - **On-demand:** Pay per second for active Dedicated Host.
   - **Reserved:** 1 or 3 years (No Upfront, Partial Upfront, All Upfront).
 - **The most expensive option.**
@@ -422,7 +423,13 @@
 - May share hardware with other instances in same account.
 - No control over instance placement (can move hardware after Stop / Start).
 
-## 13.7. Capacity Reservations
+## 13.7. Dedicated Instances vs Dedicated Hosts
+
+- "**Host** Has Hardware, **Instance** is Isolated."
+- Host = Full physical server under your control (hardware). $$$
+- Instance = Runs on dedicated hardware, but you don’t see the host (just isolated). $
+
+## 13.8. Capacity Reservations
 
 - Reserve **On-Demand** instances capacity in a specific AZ for any duration.
 - You always have access to EC2 capacity when you need it.
@@ -431,7 +438,7 @@
 - You're charged at On-Demand rate whether you run instances or not.
 - Suitable for short-term, uninterrupted workloads that needs to be in a specific AZ.
 
-## 13.8. Which purchase option is better? (Correlation with Hotel)
+## 13.9. Which purchase option is better? (Correlation with Hotel)
 
 - **On demand:** Coming and staying in resort whenever we like, we pay the full price.
 - **Reserved:** Like planning ahead and if we plan to stay for a long time, we may get a good discount.
@@ -441,7 +448,7 @@
 - **Dedicated Hosts:** We book an entire building of the resort.
 - **Capacity Reservations:** You book a room for a period with full price even you don't stay in it.
 
-## 13.9. AWS License Manager
+## 13.10. AWS License Manager
 
 - AWS License Manager makes it easier to manage your software licenses from vendors such as Microsoft, SAP, Oracle, and IBM across AWS and on-premises environments.
 - AWS License Manager lets administrators create customized licensing rules that mirror the terms of their licensing agreements.
@@ -450,7 +457,7 @@
 - Administrators gain control and visibility of all their licenses with the AWS License Manager dashboard and reduce the risk of non-compliance, misreporting, and additional costs due to licensing overages.
 - Independent software vendors (ISVs) can also use AWS License Manager to easily distribute and track licenses.
 
-## 13.10. Shared Responsibility Model for EC2
+## 13.11. Shared Responsibility Model for EC2
 
 - **AWS**
   - Infrastructure (global network security).

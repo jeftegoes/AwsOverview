@@ -242,7 +242,7 @@
 
 - **Stateless** means AWS does **not remember the connection**.
 - You must explicitly allow **both inbound and outbound traffic** for the connection to work.
-- **Example:** If you allow inbound on port 80 (HTTP), you also need to allow **outbound traffic** for responses on the appropriate ephemeral port range (usually 1024–65535).
+- **Example:** If you allow inbound on port 80 (HTTP), you also need to allow **outbound traffic** for responses on the appropriate ephemeral port range (usually 1024-65535).
 
 ### 8.2.3. Summary
 

@@ -25,6 +25,7 @@
   - [16.1. Integrated AWS Services](#161-integrated-aws-services)
 - [17. Terraform details](#17-terraform-details)
 - [18. Impaired status](#18-impaired-status)
+- [19. Scaling Based on Amazon SQS](#19-scaling-based-on-amazon-sqs)
 
 # 1. Introduction
 
@@ -101,8 +102,7 @@
   - Pause the instances before they're terminated for troubleshooting.
 - **Use cases:** Cleanup, log extraction, special health checks.
 - Integration with EventBridge, SNS, and SQS.
-
-![Amazon ASG - Lifecycle Hooks](/Images/AmazonAsgLifecycleHooks.png)
+  ![Amazon ASG - Lifecycle Hooks](/Images/AmazonAsgLifecycleHooks.png)
 
 # 9. ASG -> SNS Notifications
 
@@ -259,3 +259,7 @@
 - Instead, Amazon EC2 Auto Scaling waits a few minutes for the instance to recover.
 - Amazon EC2 Auto Scaling might also delay or not terminate instances that fail to report data for status checks.
 - This usually happens when there is insufficient data for the status check metrics in Amazon CloudWatch.
+
+# 19. Scaling Based on Amazon SQS
+
+![Scaling Based on Amazon SQS](/Images/Compute/AmazonEC2ASGScalingBasedSQS.png)

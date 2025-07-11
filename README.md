@@ -185,13 +185,13 @@
 
 ## 3.1. You've been using some Cloud services
 
-- Gmail
-  - E-mail cloud service
-  - Pay for ONLY your emails stored (no infrastructure, etc.)
-- Dropbox
-  - Cloud Storage Service
-  - Originally built on AWS
-- Netflix
+- **Gmail**
+  - E-mail cloud service.
+  - Pay for ONLY your emails stored (no infrastructure, etc.).
+- **Dropbox**
+  - Cloud Storage Service.
+  - Originally built on AWS.
+- **Netflix**
   - Built on AWS
   - Video on Demand
 
@@ -216,40 +216,40 @@
 
 ## 3.3. The Five Characteristics of Cloud Computing
 
-- On-demand self service:
-  - Users can provision resources and use them without human interaction from the service provider
-- Broad network access:
-  - Resources available over the network, and can be accessed by diverse client platforms
-- Multi-tenancy and resource pooling:
-  - Multiple customers can share the same infrastructure and applications with security and privacy
-  - Multiple customers are serviced from the same physical resources
-- Rapid elasticity and scalability:
-  - Automatically and quickly acquire and dispose resources when needed
-  - Quickly and easily scale based on demand
-- Measured service:
+- **On-demand self service**
+  - Users can provision resources and use them without human interaction from the service provider.
+- **Broad network access**
+  - Resources available over the network, and can be accessed by diverse client platforms.
+- **Multi-tenancy and resource pooling**
+  - Multiple customers can share the same infrastructure and applications with security and privacy.
+  - Multiple customers are serviced from the same physical resources.
+- **Rapid elasticity and scalability**
+  - Automatically and quickly acquire and dispose resources when needed.
+  - Quickly and easily scale based on demand.
+- **Measured service**
   - Usage is measured, users pay correctly for what they have used
 
 ## 3.4. Six Advantages of Cloud Computing
 
 - Trade capital expense (CAPEX) for operational expense (OPEX)
-  - Pay On-Demand: don't own hardware
-  - Reduced Total Cost of Ownership (TCO) & Operational Expense (OPEX)
+  - **Pay On-Demand:** Don't own hardware.
+  - Reduced Total Cost of Ownership (TCO) & Operational Expense (OPEX).
 - Benefit from massive economies of scale
-  - Prices are reduced as AWS is more efficient due to large scale
+  - Prices are reduced as AWS is more efficient due to large scale.
 - Stop guessing capacity
-  - Scale based on actual measured usage
-- Increase speed and agility
-- Stop spending money running and maintaining data centers
-- Go global in minutes: leverage the AWS global infrastructure
+  - Scale based on actual measured usage.
+- Increase speed and agility.
+- Stop spending money running and maintaining data centers.
+- Go global in minutes: leverage the AWS global infrastructure.
 
 ## 3.5. Problems solved by the Cloud
 
-- Flexibility: change resource types when needed
-- Cost-Effectiveness: pay as you go, for what you use
-- Scalability: accommodate larger loads by making hardware stronger or adding additional nodes
-- Elasticity: ability to scale out and scale-in when needed
-- High-availability and fault-tolerance: build across data centers
-- Agility: rapidly develop, test and launch software applications
+- **Flexibility:** Change resource types when needed.
+- **Cost-Effectiveness:** Pay as you go, for what you use.
+- **Scalability:** Accommodate larger loads by making hardware stronger or adding additional nodes.
+- **Elasticity:** Ability to scale-out and scale-in when needed.
+- **High-availability and fault-tolerance:** Build across data centers.
+- **Agility:** Rapidly develop, test and launch software applications.
 
 ## 3.6. Types of Cloud Computing
 
