@@ -43,6 +43,7 @@
 - AWS Direct Connect plus (+) virtual private network (VPN) provides an **IPsec-encrypted** private connection.
 - Good for an extra level of security, but slightly more complex to put in place.
 
+
 # 4. Resiliency
 
 - High Resiliency for Critical Workloads.

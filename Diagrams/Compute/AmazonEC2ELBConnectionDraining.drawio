@@ -1,0 +1,64 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.4 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="26.0.4">
+  <diagram name="Page-1" id="Kh21HxsU_zASM-r1x5bw">
+    <mxGraphModel dx="1114" dy="1198" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="mY-pVmr41r8ARvA8dUtk-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="mY-pVmr41r8ARvA8dUtk-1" target="mY-pVmr41r8ARvA8dUtk-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mY-pVmr41r8ARvA8dUtk-1" value="Users" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.users;" vertex="1" parent="1">
+          <mxGeometry x="96" y="520" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="mY-pVmr41r8ARvA8dUtk-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;exitPerimeter=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="mY-pVmr41r8ARvA8dUtk-2" target="mY-pVmr41r8ARvA8dUtk-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="216" y="579" />
+              <mxPoint x="216" y="579" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mY-pVmr41r8ARvA8dUtk-11" value="&amp;nbsp;Waiting for &lt;b&gt;existing&lt;/b&gt; connections to complete&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#FF1616;startArrow=classic;startFill=1;" edge="1" parent="1" source="mY-pVmr41r8ARvA8dUtk-2" target="mY-pVmr41r8ARvA8dUtk-3">
+          <mxGeometry x="0.2455" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="405" y="434" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mY-pVmr41r8ARvA8dUtk-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="mY-pVmr41r8ARvA8dUtk-2" target="mY-pVmr41r8ARvA8dUtk-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="405" y="694" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mY-pVmr41r8ARvA8dUtk-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="mY-pVmr41r8ARvA8dUtk-2" target="mY-pVmr41r8ARvA8dUtk-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mY-pVmr41r8ARvA8dUtk-2" value="ELB" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=top;verticalAlign=bottom;align=left;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elastic_load_balancing;labelPosition=right;" vertex="1" parent="1">
+          <mxGeometry x="366" y="520" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="mY-pVmr41r8ARvA8dUtk-3" value="EC2 Instance&lt;div&gt;&lt;b&gt;DRAINING&lt;/b&gt;&lt;/div&gt;" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.instance2;" vertex="1" parent="1">
+          <mxGeometry x="706" y="410" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="mY-pVmr41r8ARvA8dUtk-4" value="EC2 Instance" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.instance2;" vertex="1" parent="1">
+          <mxGeometry x="706" y="535" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="mY-pVmr41r8ARvA8dUtk-5" value="EC2 Instance" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.instance2;" vertex="1" parent="1">
+          <mxGeometry x="706" y="670" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="mY-pVmr41r8ARvA8dUtk-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;strokeWidth=2;strokeColor=#FF1616;" edge="1" parent="1" source="mY-pVmr41r8ARvA8dUtk-1" target="mY-pVmr41r8ARvA8dUtk-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="270" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mY-pVmr41r8ARvA8dUtk-14" value="New connections established&lt;div&gt;to all other instances&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="410" y="650" width="180" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

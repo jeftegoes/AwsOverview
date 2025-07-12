@@ -21,7 +21,7 @@
 
 - Helps with **auditing and recording compliance of your AWS resources**.
 - Helps record configurations and changes over time.
-- **Questions that can be solved by AWS Config:**
+- **Questions that can be solved by AWS Config**
   - Is there unrestricted SSH access to my security groups?
   - Do my buckets have any public access?
   - How has my ALB configuration changed over time?

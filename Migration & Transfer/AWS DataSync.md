@@ -4,6 +4,7 @@
 
 - [1. Introduction](#1-introduction)
 - [2. Transfer between AWS storage services](#2-transfer-between-aws-storage-services)
+- [3. Data Transfer from On-Premises NFS to Amazon EFS using AWS DataSync](#3-data-transfer-from-on-premises-nfs-to-amazon-efs-using-aws-datasync)
 
 # 1. Introduction
 
@@ -23,3 +24,7 @@
 # 2. Transfer between AWS storage services
 
 ![Transfer between AWS storage services](/Images/Migration%20&%20Transfer/AwsDataSyncTransferStorageServices.png)
+
+# 3. Data Transfer from On-Premises NFS to Amazon EFS using AWS DataSync
+
+![Data Transfer from On-Premises NFS to Amazon EFS using AWS DataSync](/Images/Migration%20&%20Transfer/AwsDataSyncTransferEFS.png)

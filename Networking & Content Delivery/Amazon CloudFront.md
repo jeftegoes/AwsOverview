@@ -37,6 +37,8 @@
 - Improves users experience.
 - 216 Point of Presence globally (edge locations).
 - **DDoS protection (because worldwide), integration with Shield, AWS Web Application Firewall.**
+- **IMPORTANT!** For **objects smaller than 1 GB** or total data sets under 1 GB, use **Amazon CloudFront's PUT/POST** commands for better performance.
+  - **Otherwise**, use **S3 Transfer Acceleration (S3TA)** to achieve faster and more efficient transfers.
 
 ## 1.1. Origins
 

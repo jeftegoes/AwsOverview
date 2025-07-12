@@ -30,8 +30,9 @@
   - [12.1. Types of Endpoints](#121-types-of-endpoints)
   - [12.2. Gateway or Interface Endpoint for S3?](#122-gateway-or-interface-endpoint-for-s3)
   - [12.3. Use cases](#123-use-cases)
-- [13. Site-to-Site VPN ((aka VPN Connection))](#13-site-to-site-vpn-aka-vpn-connection)
+- [13. Site-to-Site VPN (aka VPN Connection)](#13-site-to-site-vpn-aka-vpn-connection)
   - [13.1. Connections](#131-connections)
+  - [13.2. IPsec VPN connection](#132-ipsec-vpn-connection)
 - [14. AWS VPN CloudHub](#14-aws-vpn-cloudhub)
 - [15. Site-to-Site VPN connection as a backup](#15-site-to-site-vpn-connection-as-a-backup)
 - [16. Transit Gateway](#16-transit-gateway)
@@ -335,7 +336,7 @@
   - The service network VPC endpoint connects to a service network.
     ![Amazon VPC Link Use Cases](/Images/Networking%20&%20Content%20Delivery/AmazonVPCLinkUseCases.png)
 
-# 13. Site-to-Site VPN ((aka VPN Connection))
+# 13. Site-to-Site VPN (aka VPN Connection)
 
 - **Virtual Private Gateway (VGW)**
   - VPN concentrator on the AWS side of the VPN connection.
@@ -354,6 +355,17 @@
 - **Important step:** Enable **Route Propagation** for the Virtual Private Gateway in the route table that is associated with your subnets.
 - If we need to ping your EC2 instances from on-premises, make sure we add the ICMP protocol on the inbound of your security groups.
   ![AWS Site-To-Site VPN Connections](/Images/Networking%20&%20Content%20Delivery/AWSSiteToSiteVPNConnections.png)
+
+## 13.2. IPsec VPN connection
+
+- Amazon VPC provides the facility to create an IPsec VPN connection (also known as AWS site-to-site VPN) between remote customer networks and their Amazon VPC over the internet.
+- The following are the key concepts for a site-to-site VPN:
+  - **Virtual private gateway:** A **virtual private gateway (VGW)**, also known as a **VPN Gateway** is the endpoint on the AWS VPC side of your VPN connection.
+  - **Site-to-Site VPN (aka VPN Connection):** A secure connection between your on-premises equipment and your VPCs.
+  - **VPN tunnel:** An encrypted link where data can pass from the customer network to or from AWS.
+  - **Customer Gateway:** An AWS resource that provides information to AWS about your Customer Gateway device.
+  - **Customer Gateway device:** A physical device or software application on the customer side of the Site-to-Site VPN connection.
+    ![IPsec VPN connection](/Images/Networking%20&%20Content%20Delivery/AWSSiteToSiteVPNIpSec.png)
 
 # 14. AWS VPN CloudHub
 

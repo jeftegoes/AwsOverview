@@ -45,6 +45,9 @@
 - [14. VM Import/Export](#14-vm-importexport)
 - [15. AMI](#15-ami)
 - [16. Instance Scheduler on AWS](#16-instance-scheduler-on-aws)
+- [17. Status checks for Amazon EC2 instances](#17-status-checks-for-amazon-ec2-instances)
+- [18. Impaired Status in Amazon EC2](#18-impaired-status-in-amazon-ec2)
+  - [18.1. What Causes an Impaired Status?](#181-what-causes-an-impaired-status)
 
 # 1. Introduction
 
@@ -490,3 +493,41 @@
 - Schedules are managed in a DynamoDB table - Uses resources' tags and Lambda to stop/start instances.
 - Supports cross-account and cross-region resources.
 - https://aws.amazon.com/solutions/implementations/instance-scheduler-on-aws
+
+# 17. Status checks for Amazon EC2 instances
+
+- **Purpose**: Helps detect issues that might prevent EC2 instances from running applications properly.
+- **How It Works**
+  - EC2 runs **automated status checks** every minute on each running instance.
+  - Results return either **pass** or **fail**.
+  - If all checks pass -> status is **OK**.
+  - If any check fails -> status is **Impaired**.
+  - Checks cover **hardware and software** issues.
+- **Integration**
+  - **Status check results complement**
+    - Instance states (e.g., `pending`, `running`, `stopping`)
+    - CloudWatch metrics (CPU, network, disk)
+- **CloudWatch Metrics & Alarms**
+  - Failed checks increment the **CloudWatch status check metric**.
+  - You can set up **CloudWatch alarms** to notify or act on failures.
+  - **Alarms can**
+    - Notify you of failures
+    - **Automatically recover impaired instances**
+  - **Note**: Status checks are **built-in** and **cannot be disabled or deleted**.
+
+# 18. Impaired Status in Amazon EC2
+
+- When an EC2 instance shows a **status of "Impaired"**, it means that **one or more of the automated status checks have failed**.
+- This status indicates a **problem that is likely affecting the instance’s ability to function correctly**.
+
+## 18.1. What Causes an Impaired Status?
+
+- An instance may be marked as **Impaired** due to
+  - **Hardware failures** (e.g., physical server issues, networking hardware)
+  - **Software-level issues** (e.g., kernel crashes, stuck processes)
+  - **Operating system boot errors**
+  - **Loss of network connectivity**
+  - **Failure to respond to EC2 system pings**
+- **IMPORTANT!**
+  - A recovered instance **is identical to the original instance**, including the instance ID, private IP addresses, Elastic IP addresses, and all instance metadata.
+  - If your instance has a public IPv4 address, it retains the public IPv4 address after recovery.

@@ -4,6 +4,8 @@
 
 - [1. Introduction](#1-introduction)
 - [2. DMS Sources and Targets](#2-dms-sources-and-targets)
+  - [2.1. Sources](#21-sources)
+  - [2.2. Targets](#22-targets)
 - [3. AWS Schema Conversion Tool (SCT)](#3-aws-schema-conversion-tool-sct)
   - [3.1. Continuous Replication](#31-continuous-replication)
 - [4. Multi-AZ Deployment](#4-multi-az-deployment)
@@ -25,21 +27,24 @@
 
 # 2. DMS Sources and Targets
 
-- **SOURCES**
-  - **On-Premises and EC2 instances databases:** Oracle, MS SQL Server, MySQL, MariaDB, PostgreSQL, MongoDB, SAP, DB2.
-  - **Azure:** Azure SQL Database.
-  - **Amazon RDS:** all including Aurora.
-  - [Amazon S3](/Storage/Amazon%20S3.md).
-  - DocumentDB.
-- **TARGETS**
-  - **On-Premises and EC2 instances databases:** Oracle, MS SQL Server, MySQL, MariaDB, PostgreSQL, SAP.
-  - Amazon RDS.
-  - Redshift, DynamoDB, [Amazon S3](/Storage/Amazon%20S3.md)
-  - OpenSearch Service.
-  - Kinesis Data Streams.
-  - Apache Kafka.
-  - DocumentDB & Amazon Neptune.
-  - Redis & Babelfish.
+## 2.1. Sources
+
+- **On-Premises and EC2 instances databases:** Oracle, MS SQL Server, MySQL, MariaDB, PostgreSQL, MongoDB, SAP, DB2.
+- **Azure:** Azure SQL Database.
+- **Amazon RDS:** all including Aurora.
+- [Amazon S3](/Storage/Amazon%20S3.md).
+- DocumentDB.
+
+## 2.2. Targets
+
+- **On-Premises and EC2 instances databases:** Oracle, MS SQL Server, MySQL, MariaDB, PostgreSQL, SAP.
+- Amazon RDS.
+- [Redshift](/Analytics/Amazon%20Redshift.md), [DynamoDB](/Database/Amazon%20DynamoDB.md), [Amazon S3](/Storage/Amazon%20S3.md)
+- OpenSearch Service.
+- Kinesis Data Streams.
+- Apache Kafka.
+- DocumentDB & Amazon Neptune.
+- Redis & Babelfish.
 
 # 3. AWS Schema Conversion Tool (SCT)
 
