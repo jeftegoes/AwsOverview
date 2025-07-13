@@ -176,7 +176,7 @@
 
 # 8. Lifecycle execution
 
-![Lifecycle execution](/Images/LambdaLifecycle.png)
+![Lifecycle execution](/Images/AWSLambdaLifecycle.png)
 
 # 9. Invocations types
 
@@ -198,7 +198,7 @@
 - Results is returned right away.
 - Error handling must happen client side (retries, [exponential backoff](/AWS%20Limits.md), etc...).
 
-![Lambda Synchronous Invocations](/Images/LambdaSynchronousInvocations.png)
+![Lambda Synchronous Invocations](/Images/AWSLambdaSynchronousInvocations.png)
 
 ## 10.1. Services
 
@@ -222,7 +222,7 @@
 - You can use the Application Load Balancer (or an API Gateway).
 - The Lambda function must be registered in a target group.
 
-![Lambda integration with ALB](/Images/LambdaIntegrationAlb.png)
+![Lambda integration with ALB](/Images/AWSLambdaIntegrationAlb.png)
 
 ### 10.2.1. ALB to Lambda: HTTP to JSON
 
@@ -240,7 +240,7 @@
 - ALB can support multi header values (ALB setting).
 - When you enable multi-value headers, HTTP headers and query string parameters that are sent with multiple values are shown as arrays within the AWS Lambda event and response objects.
 
-![Lambda ALB Multi-Header values](/Images/LambdaALBMultiHeaderValues.png)
+![Lambda ALB Multi-Header values](/Images/AWSLambdaALBMultiHeaderValues.png)
 
 ## 10.3. Lambda@Edge
 
@@ -265,7 +265,7 @@
 
 ### 10.3.1. Lambda@Edge: Global application
 
-![Lambda@Edge Global Application](/Images/Lambda@EdgeGlobalApplication.png)
+![Lambda@Edge Global Application](/Images/AWSLambda@EdgeGlobalApplication.png)
 
 ### 10.3.2. Lambda@Edge: Use Cases
 
@@ -292,9 +292,9 @@
 - Can define a DLQ (dead-letter queue) - **SNS or SQS** - for failed processing (need correct IAM permissions).
 - Asynchronous invocations allow you to speed up the processing if you don't need to wait for the result (ex: you need 1000 files processed).
 
-![Lambda Asynchronous Invocations](/Images/LambdaAsynchronousInvocations1.png)
+![Lambda Asynchronous Invocations](/Images/AWSLambdaAsynchronousInvocations1.png)
 
-![Lambda Asynchronous Invocations](/Images/LambdaAsynchronousInvocations2.png)
+![Lambda Asynchronous Invocations](/Images/AWSLambdaAsynchronousInvocations2.png)
 
 ## 11.1. Services
 
@@ -349,7 +349,7 @@
   - Up to 10 batches per shard
   - In-order processing is still guaranteed for each partition key,
 
-![Lambda Streams Kinesis and DynamoDb](/Images/LambdaStreamsKinesisAndDynamoDb.png)
+![Lambda Streams Kinesis and DynamoDb](/Images/AWSLambdaStreamsKinesisAndDynamoDb.png)
 
 - https://aws.amazon.com/blogs/compute/new-aws-lambda-scaling-controls-for-kinesis-and-dynamodb-event-sources/
 
@@ -458,7 +458,7 @@
 
 ![Event Source Mapping Kinesis Stream.png](/Images/EventSourceMappingKinesisStream.png)
 
-![Lambda Destinations for Asynchronous Invocation](/Images/LambdaDestinationsForAsynchronousInvocation.png)
+![Lambda Destinations for Asynchronous Invocation](/Images/AWSLambdaDestinationsForAsynchronousInvocation.png)
 
 - https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html
 - https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html
@@ -837,7 +837,7 @@ CMD ["app.lambdaHandler"]
 - **AllAtOnce:** immediate
   - Can create Pre & Post Traffic hooks to check the health of the Lambda function.
 
-![Canary deploy](/Images/LambdaCanaryDeploy.png)
+![Canary deploy](/Images/AWSLambdaCanaryDeploy.png)
 
 # 33. Function URL
 
@@ -852,7 +852,7 @@ CMD ["app.lambdaHandler"]
 - Create and configure using AWS Console or AWS API.
 - Throttle your function by using Reserved Concurrency.
 
-![Lambda Function URL](/Images/LambdaFunctionURL.png)
+![Lambda Function URL](/Images/AWSLambdaFunctionURL.png)
 
 ## 33.1. Function URL Security
 
@@ -870,7 +870,7 @@ CMD ["app.lambdaHandler"]
     - **Same account:** Identity-based Policy **OR** Resource-based Policy as ALLOW.
     - **Cross account:** Identity-based Policy **AND** Resource-based Policy as ALLOW.
 
-![Lambda secutiry options](/Images/LambdaFunctionURLSecutiryOptions.png)
+![Lambda secutiry options](/Images/AWSLambdaFunctionURLSecutiryOptions.png)
 
 # 34. Lambda and CodeGuru Profiling
 

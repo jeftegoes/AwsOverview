@@ -6,30 +6,34 @@
   - [1.1. DNS Terminologies](#11-dns-terminologies)
   - [1.2. How DNS Works](#12-how-dns-works)
 - [2. Amazon Route 53](#2-amazon-route-53)
-  - [2.1. Records](#21-records)
-  - [2.2. Record Types](#22-record-types)
-  - [2.3. Hosted Zones](#23-hosted-zones)
-    - [2.3.1. DNS hostnames and DNS resolution](#231-dns-hostnames-and-dns-resolution)
-  - [2.4. Records TTL (Time To Live)](#24-records-ttl-time-to-live)
-  - [2.5. CNAME vs Alias](#25-cname-vs-alias)
-    - [2.5.1. Alias Records](#251-alias-records)
-      - [2.5.1.1. Targets](#2511-targets)
-  - [2.6. Health Checks](#26-health-checks)
-    - [2.6.1. Monitor an Endpoint](#261-monitor-an-endpoint)
-    - [2.6.2. Calculated Health Checks](#262-calculated-health-checks)
-    - [2.6.3. Private Hosted Zones](#263-private-hosted-zones)
-  - [2.7. Routing Policies](#27-routing-policies)
-    - [2.7.1. Simple](#271-simple)
-    - [2.7.2. Weighted](#272-weighted)
-    - [2.7.3. Latency-based](#273-latency-based)
-    - [2.7.4. Failover (Active-Passive)](#274-failover-active-passive)
-    - [2.7.5. Geolocation](#275-geolocation)
-    - [2.7.6. Geoproximity](#276-geoproximity)
-    - [2.7.7. IP-based Routing](#277-ip-based-routing)
-    - [2.7.8. Multi-Value](#278-multi-value)
-  - [2.8. Traffic flow](#28-traffic-flow)
-  - [2.9. Domain Registar vs DNS Service](#29-domain-registar-vs-dns-service)
-    - [2.9.1. 3rd Party Registrar with Amazon Route 53](#291-3rd-party-registrar-with-amazon-route-53)
+- [3. Records](#3-records)
+  - [3.1. Record Types](#31-record-types)
+  - [3.2. Hosted Zones](#32-hosted-zones)
+    - [3.2.1. DNS hostnames and DNS resolution](#321-dns-hostnames-and-dns-resolution)
+  - [3.3. Records TTL (Time To Live)](#33-records-ttl-time-to-live)
+  - [3.4. CNAME vs Alias](#34-cname-vs-alias)
+    - [3.4.1. Alias Records](#341-alias-records)
+      - [3.4.1.1. Targets](#3411-targets)
+    - [3.4.2. Core Difference (Simplified)](#342-core-difference-simplified)
+- [4. Health Checks](#4-health-checks)
+  - [4.1. Monitor an Endpoint](#41-monitor-an-endpoint)
+  - [4.2. Calculated Health Checks](#42-calculated-health-checks)
+  - [4.3. Private Hosted Zones](#43-private-hosted-zones)
+- [5. Routing Policies](#5-routing-policies)
+  - [5.1. Simple](#51-simple)
+  - [5.2. Weighted](#52-weighted)
+  - [5.3. Latency-based](#53-latency-based)
+  - [5.4. Failover (Active-Passive)](#54-failover-active-passive)
+  - [5.5. Geolocation](#55-geolocation)
+  - [5.6. Geoproximity](#56-geoproximity)
+  - [5.7. IP-based Routing](#57-ip-based-routing)
+  - [5.8. Multi-Value](#58-multi-value)
+  - [5.9. Traffic flow](#59-traffic-flow)
+- [6. Domain Registar vs DNS Service](#6-domain-registar-vs-dns-service)
+  - [6.1. 3rd Party Registrar with Amazon Route 53](#61-3rd-party-registrar-with-amazon-route-53)
+- [7. Amazon Route 53 - Resolver](#7-amazon-route-53---resolver)
+  - [7.1. Outbound](#71-outbound)
+  - [7.2. Inbound](#72-inbound)
 
 # 1. What is DNS?
 
@@ -66,7 +70,7 @@
 - The only AWS service which provides 100% availability SLA.
 - Why Route 53? 53 is a reference to the traditional DNS port.
 
-## 2.1. Records
+# 3. Records
 
 - How we want to route traffic for a domain.
 - **Each record contains**
@@ -79,7 +83,7 @@
   - (must know) A / AAAA / CNAME / NS
   - (advanced) CAA / DS / MX / NAPTR / PTR / SOA / TXT / SPF / SRV
 
-## 2.2. Record Types
+## 3.1. Record Types
 
 - `A` - Maps a hostname to IPv4.
 - `AAAA` - Maps a hostname to IPv6.
@@ -90,7 +94,7 @@
 - `NS` - Name Servers for the Hosted Zone.
   - Control how traffic is routed for a domain.
 
-## 2.3. Hosted Zones
+## 3.2. Hosted Zones
 
 - A container for records that define how to route traffic to a domain and its subdomains.
 - **Public Hosted Zones**
@@ -99,14 +103,14 @@
   - Contain records that specify how we route traffic within one or more VPCs (private domain names) `application1.company.internal`.
 - **We pay $0.50 per month per hosted zone.**
 
-### 2.3.1. DNS hostnames and DNS resolution
+### 3.2.1. DNS hostnames and DNS resolution
 
 - DNS hostnames and DNS resolution are required settings for private hosted zones.
 - DNS queries for private hosted zones can be resolved by the Amazon-provided VPC DNS server only.
 - As a result, these options must be enabled for your private hosted zone to work.
   ![Amazon Route 53 DNS Hostname and DNS Resolution](/Images/Networking%20&%20Content%20Delivery/AmazonRoute53DNSHostnameResolution.png)
 
-## 2.4. Records TTL (Time To Live)
+## 3.3. Records TTL (Time To Live)
 
 - **High TTL - e.g., 24 hr**
   - Less traffic on Route 53.
@@ -117,7 +121,7 @@
   - Easy to change records.
 - **Except for Alias records, TTL is mandatory for each DNS record.**
 
-## 2.5. CNAME vs Alias
+## 3.4. CNAME vs Alias
 
 - AWS Resources (Load Balancer, CloudFront...) expose an AWS hostname:
   - **lb1-1234.us-east-2.elb.amazonaws.com** and we **want myapp.mydomain.com**
@@ -130,7 +134,7 @@
   - Free of charge.
   - Native health check.
 
-### 2.5.1. Alias Records
+### 3.4.1. Alias Records
 
 - Maps a hostname to an AWS resource.
 - An extension to DNS functionality.
@@ -139,7 +143,7 @@
 - Alias Record is always of type A/AAAA for AWS resources (IPv4 / IPv6).
 - **We can't set the TTL.**
 
-#### 2.5.1.1. Targets
+#### 3.4.1.1. Targets
 
 - Elastic Load Balancers.
 - CloudFront Distributions.
@@ -151,7 +155,16 @@
 - Route 53 record in the same hosted zone.
 - **We cannot set an ALIAS record for an EC2 DNS name.**
 
-## 2.6. Health Checks
+### 3.4.2. Core Difference (Simplified)
+
+| Feature          | Alias Record                             | CNAME Record                                |
+| ---------------- | ---------------------------------------- | ------------------------------------------- |
+| **Target**       | AWS resources (like ELB, CloudFront, S3) | Any domain name                             |
+| **Root Domain?** | Yes (e.g., `example.com`)                | No (only subdomains like `www.example.com`) |
+| **DNS Type**     | Acts like **A or AAAA**                  | Always a **CNAME**                          |
+| **Cost**         | Free DNS queries to AWS targets          | Standard DNS pricing                        |
+
+# 4. Health Checks
 
 - HTTP Health Checks are only for **public resources**.
 - Health Check => Automated DNS Failover
@@ -160,7 +173,7 @@
   3. Health checks that monitor CloudWatch Alarms (full control !!) - e.g., throttles of DynamoDB, alarms on RDS, custom metrics, ... (helpful for private resources).
 - Health Checks are integrated with [Amazon CloudWatch](/Management%20&%20Governance/Amazon%20CloudWatch.md) metrics.
 
-### 2.6.1. Monitor an Endpoint
+## 4.1. Monitor an Endpoint
 
 - **About 15 global health checkers will check the endpoint health**
   - Healthy/Unhealthy Threshold - 3 (default).
@@ -173,7 +186,7 @@
 - Health Checks can be setup to pass / fail based on the text in the first 5120 bytes of the response.
 - Configure we router/firewall to allow incoming requests from Route 53 Health Checkers.
 
-### 2.6.2. Calculated Health Checks
+## 4.2. Calculated Health Checks
 
 - Combine the results of multiple Health Checks into a single Health Check.
 - We can use **OR, AND, or NOT**.
@@ -181,13 +194,13 @@
 - Specify how many of the health checks need to pass to make the parent pass.
 - **Usage:** Perform maintenance to your website without causing all health checks to fail.
 
-### 2.6.3. Private Hosted Zones
+## 4.3. Private Hosted Zones
 
 - Route 53 health checkers are outside the VPC.
 - They can't access **private** endpoints (private VPC or on-premises resource).
 - We can create a **CloudWatch Metric** and associate a **CloudWatch Alarm**, then create a Health Check that checks the alarm itself.
 
-## 2.7. Routing Policies
+# 5. Routing Policies
 
 - Define how Route 53 responds to DNS queries.
 - **Don't get confused by the word "Routing"**
@@ -202,7 +215,7 @@
   - Multi-Value Answer.
   - Geoproximity (using Route 53 Traffic Flow feature).
 
-### 2.7.1. Simple
+## 5.1. Simple
 
 - Typically, route traffic to a single resource.
 - Can specify multiple values in the same record.
@@ -210,7 +223,7 @@
 - When Alias enabled, specify only one AWS resource.
 - Can't be associated with Health Checks.
 
-### 2.7.2. Weighted
+## 5.2. Weighted
 
 - Control the % of the requests that go to each specific resource.
 - Assign each record a relative weight.
@@ -221,7 +234,7 @@
 - **Assign a weight of 0 to a record to stop sending traffic to a resource.**
 - **If all records have weight of 0, then all records will be returned equally.**
 
-### 2.7.3. Latency-based
+## 5.3. Latency-based
 
 - Redirect to the resource that has the least latency close to us.
 - Super helpful when latency for users is a priority.
@@ -229,11 +242,11 @@
 - Germany users may be directed to the US (if that's the lowest latency).
 - Can be associated with Health Checks (has a failover capability).
 
-### 2.7.4. Failover (Active-Passive)
+## 5.4. Failover (Active-Passive)
 
-![Amazon Route53 Failover Policie](/Images/AmazonRoute53FailoverPolicie.png)
+![Amazon Route53 Failover Policie](/Images/Networking%20&%20Content%20Delivery/AmazonRoute53FailoverPolicie.png)
 
-### 2.7.5. Geolocation
+## 5.5. Geolocation
 
 - Different from Latency-based!
 - **This routing is based on user location.**
@@ -242,7 +255,7 @@
 - **Use cases:** website localization, restrict content distribution, load balancing, ...
 - Can be associated with Health Checks.
 
-### 2.7.6. Geoproximity
+## 5.6. Geoproximity
 
 - Route traffic to your resources based on the geographic location of users and resources.
 - Ability **to shift more traffic to resources based** on the defined bias.
@@ -254,14 +267,14 @@
   - Non-AWS resources (specify Latitude and Longitude).
 - We must use Route 53 **Traffic Flow** (advanced) to use this feature.
 
-### 2.7.7. IP-based Routing
+## 5.7. IP-based Routing
 
 - Routing is based on clients' IP addresses.
 - **We provide a list of CIDRs for your clients** and the corresponding endpoints/locations (user-IP-to-endpoint mappings).
 - **Use cases:** Optimize performance, reduce network costs...
 - **Example:** Route end users from a particular ISP to a specific endpoint.
 
-### 2.7.8. Multi-Value
+## 5.8. Multi-Value
 
 - Use when routing traffic to multiple resources.
 - Route 53 return multiple values/resources.
@@ -269,7 +282,7 @@
 - Up to 8 healthy records are returned for each Multi-Value query.
 - **Multi-Value is not a substitute for having an ELB.**
 
-## 2.8. Traffic flow
+## 5.9. Traffic flow
 
 - Simplify the process of creating and maintaining records in large and complex configurations.
 - Visual editor to manage complex routing decision trees.
@@ -277,14 +290,14 @@
   - Can be applied to different Route 53 Hosted Zones (different domain names).
   - Supports versioning.
 
-## 2.9. Domain Registar vs DNS Service
+# 6. Domain Registar vs DNS Service
 
 - We buy or register your domain name with a Domain Registrar typically by paying annual charges (e.g., GoDaddy, Amazon Registrar Inc., ...).
 - The Domain Registrar usually provides we with a DNS service to manage your DNS records.
 - But we can use another DNS service to manage your DNS records.
 - **Example:** Purchase the domain from GoDaddy and use Route 53 to manage your DNS records.
 
-### 2.9.1. 3rd Party Registrar with Amazon Route 53
+## 6.1. 3rd Party Registrar with Amazon Route 53
 
 - If we buy your domain on a 3rd party registrar, we can still use Route 53 as the DNS Service provider.
 
@@ -293,3 +306,27 @@
 
 - **Domain Registrar != DNS Service**
 - But every Domain Registrar usually comes with some DNS features.
+
+# 7. Amazon Route 53 - Resolver
+
+## 7.1. Outbound
+
+![Amazon Route 53 - Resolver](/Images/Networking%20&%20Content%20Delivery/AmazonRoute53ResolverOutboundEndpoint.png)
+
+- **The diagram illustrates the following steps**
+  1. An Amazon EC2 instance needs to resolve a DNS query to the domain internal.example.com. The authoritative DNS server is in the on-premises data center. This DNS query is sent to the VPC+2 in the VPC that connects to Route 53 Resolver.
+  2. A Route 53 Resolver forwarding rule is configured to forward queries to internal.example.com in the on-premises data center.
+  3. The query is forwarded to an outbound endpoint.
+  4. The outbound endpoint forwards the query to the on-premises DNS resolver through a private connection between AWS and the data center. The connection can be either AWS Direct Connect or AWS Site-to-Site VPN, depicted as a virtual private gateway.
+  5. The on-premises DNS resolver resolves the DNS query for internal.example.com and returns the answer to the Amazon EC2 instance via the same path in reverse.
+
+## 7.2. Inbound
+
+![Amazon Route 53 - Resolver](/Images/Networking%20&%20Content%20Delivery/AmazonRoute53ResolverInboundEndpoint.png)
+
+- **The diagram illustrates the following steps**
+  1. A client in the on-premises data center needs to resolve a DNS query to an AWS resource for the domain **dev.example.com**.
+     - It sends the query to the on-premises DNS resolver.
+  2. The on-premises DNS resolver has a forwarding rule that points queries to dev.example.com to an inbound endpoint.
+  3. The query arrives at the inbound endpoint through a private connection, such as AWS Direct Connect or AWS Site-to-Site VPN, depicted as a virtual gateway.
+  4. The inbound endpoint sends the query to Route 53 Resolver, and Route 53 Resolver resolves the DNS query for **dev.example.com** and returns the answer to the client via the same path in reverse.

@@ -40,16 +40,17 @@
   - [16.2. Without AWS Transit Gateway](#162-without-aws-transit-gateway)
   - [16.3. Transit Gateway: Site-to-Site VPN ECMP](#163-transit-gateway-site-to-site-vpn-ecmp)
   - [16.4. Share Direct Connect between multiple accounts](#164-share-direct-connect-between-multiple-accounts)
-- [17. VPC - Traffic Mirroring](#17-vpc---traffic-mirroring)
-- [18. What is IPv6?](#18-what-is-ipv6)
-  - [18.1. IPv6 in VPC](#181-ipv6-in-vpc)
-  - [18.2. IPv6 Troubleshooting](#182-ipv6-troubleshooting)
-  - [18.3. Egress-only Internet Gateway](#183-egress-only-internet-gateway)
-- [19. Network Protection on AWS](#19-network-protection-on-aws)
-  - [19.1. AWS Network Firewall](#191-aws-network-firewall)
-    - [19.1.1. Fine Grained Controls](#1911-fine-grained-controls)
-- [20. Transit VPC](#20-transit-vpc)
-- [21. VPC Section Summary](#21-vpc-section-summary)
+- [17. VPC Sharing](#17-vpc-sharing)
+- [18. VPC - Traffic Mirroring](#18-vpc---traffic-mirroring)
+- [19. What is IPv6?](#19-what-is-ipv6)
+  - [19.1. IPv6 in VPC](#191-ipv6-in-vpc)
+  - [19.2. IPv6 Troubleshooting](#192-ipv6-troubleshooting)
+  - [19.3. Egress-only Internet Gateway](#193-egress-only-internet-gateway)
+- [20. Network Protection on AWS](#20-network-protection-on-aws)
+  - [20.1. AWS Network Firewall](#201-aws-network-firewall)
+    - [20.1.1. Fine Grained Controls](#2011-fine-grained-controls)
+- [21. Transit VPC](#21-transit-vpc)
+- [22. VPC Section Summary](#22-vpc-section-summary)
 
 # 1. Understanding CIDR
 
@@ -373,6 +374,7 @@
 - Low-cost hub-and-spoke model for primary or secondary network connectivity between different locations (VPN only).
 - It's a VPN connection so it goes over the public Internet.
 - To set it up, connect multiple VPN connections on the same VGW, setup dynamic routing and configure route tables.
+  ![AWS VPN CloudHub](/Images/Networking%20&%20Content%20Delivery/AmazonVPCVPNCloudHub.png)
 
 # 15. Site-to-Site VPN connection as a backup
 
@@ -410,7 +412,18 @@
 
 ![Amazon VPC Transit Gateway Share Direct Connect](/Images/Networking%20&%20Content%20Delivery/AmazonVPCTransitGatewayShareDirectConnect.png)
 
-# 17. VPC - Traffic Mirroring
+# 17. VPC Sharing
+
+- **VPC Sharing**, part of AWS Resource Access Manager (RAM), allows multiple AWS accounts to deploy resources (e.g., EC2, RDS, Redshift, Lambda) into a **shared and _centrally-managed_ VPC** controlled by a central **owner account**.
+- The **owner** shares subnets with **participant accounts** within the same AWS Organization.
+- **Participants** can manage their own resources in shared subnets but **cannot access** resources owned by others or the VPC owner.
+- Ideal for applications needing **high interconnectivity** within **trusted boundaries**.
+- **Benefits**
+  - Simplifies network architecture.
+  - Reduces VPC sprawl.
+  - Maintains **separate billing and access control** per account.
+
+# 18. VPC - Traffic Mirroring
 
 - Allows you to capture and inspect network traffic in your VPC.
 - Route the traffic to security appliances that we manage.
@@ -421,7 +434,7 @@
 - Source and Target can be in the same VPC or different VPCs (VPC Peering).
 - **Use cases:** Content inspection, threat monitoring, troubleshooting, ...
 
-# 18. What is IPv6?
+# 19. What is IPv6?
 
 - IPv4 designed to provide 4.3 Billion addresses (they'll be exhausted soon).
 - IPv6 is the successor of IPv4.
@@ -436,28 +449,28 @@
   - ::1234:5678 -> the first 6 segments are zero
   - 2001:db8::1234:5678 -> the middle 4 segments are zero
 
-## 18.1. IPv6 in VPC
+## 19.1. IPv6 in VPC
 
 - **IPv4 cannot be disabled for your VPC and subnets**
 - We can enable IPv6 (they're public IP addresses) to operate in dual-stack mode.
 - Your EC2 instances will get at least a private internal IPv4 and a public IPv6.
 - They can communicate using either IPv4 or IPv6 to the internet through an Internet Gateway EC2 Instance.
 
-## 18.2. IPv6 Troubleshooting
+## 19.2. IPv6 Troubleshooting
 
 - So, if we cannot launch an EC2 instance in your subnet.
   - It's not because it cannot acquire an IPv6 (the space is very large).
   - It's because there are no available IPv4 in your subnet.
 - **Solution:** Create a new IPv4 CIDR in your subnet.
 
-## 18.3. Egress-only Internet Gateway
+## 19.3. Egress-only Internet Gateway
 
 - **Used for IPv6 only.**
 - (similar to a NAT Gateway but for IPv6).
 - Allows instances in your VPC outbound connections over IPv6 while preventing the internet to initiate an IPv6 connection to your instances.
 - **You must update the Route Tables.**
 
-# 19. Network Protection on AWS
+# 20. Network Protection on AWS
 
 - **To protect network on AWS, we've seen**
   - Network Access Control Lists (NACLs).
@@ -467,7 +480,7 @@
   - AWS Firewall Manager (to manage them across accounts).
 - But what if we want to protect in a sophisticated way our entire VPC?
 
-## 19.1. AWS Network Firewall
+## 20.1. AWS Network Firewall
 
 - Protect your entire Amazon VPC.
 - From Layer 3 to Layer 7 protection.
@@ -479,7 +492,7 @@
 - Internally, the AWS Network Firewall uses the AWS Gateway Load Balancer.
 - Rules can be centrally managed cross- account by AWS Firewall Manager to apply to many VPCs.
 
-### 19.1.1. Fine Grained Controls
+### 20.1.1. Fine Grained Controls
 
 - Supports 1000s of rules.
   - IP & port - example: 10,000s of IPs filtering.
@@ -490,7 +503,7 @@
 - **Active flow inspection** to protect against network threats with intrusion-prevention capabilities (like Gateway Load Balancer, but all managed by AWS).
 - Send logs of rule matches to Amazon S3, CloudWatch Logs, Kinesis Data Firehose.
 
-# 20. Transit VPC
+# 21. Transit VPC
 
 - AWS Transit VPC is a networking architecture that allows you to centralize connectivity between multiple Amazon VPCs (in the same or different AWS regions), on-premises networks, or remote offices, using a hub-and-spoke model.
 - Think of it like a central router (the Transit VPC) that connects to all your other networks (the spokes) so they can communicate through it.
@@ -499,7 +512,7 @@
   - Note that this design will generate additional data transfer charges for traffic traversing the transit VPC: data is charged when it is sent from a spoke VPC to the transit VPC, and again from the transit VPC to the on-premises network or a different AWS Region.
 - **IMPORTANT! AWS has introduced AWS Transit Gateway, which is the modern replacement for Transit VPC.**
 
-# 21. VPC Section Summary
+# 22. VPC Section Summary
 
 - **CIDR:** IP Range.
 - **VPC:** Virtual Private Cloud => we define a list of IPv4 & IPv6 CIDR.

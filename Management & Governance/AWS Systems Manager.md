@@ -25,6 +25,8 @@
 - [13. IoT Greengrass Instance Activation](#13-iot-greengrass-instance-activation)
 - [14. Systems Manager - Compliance](#14-systems-manager---compliance)
 - [15. Systems Manager - OpsCenter](#15-systems-manager---opscenter)
+- [16. Quick Setup](#16-quick-setup)
+  - [16.1. Supported Configuration Types Include](#161-supported-configuration-types-include)
 
 # 1. Introduction
 
@@ -250,3 +252,22 @@
   - Event, resource, AWS Config changes, CloudTrail logs, EventBridge...
   - Provides recommended Runbooks to resolve the issue.
 - Supports both EC2 instances and on-premises managed nodes.
+
+# 16. Quick Setup
+
+- **Quick Setup** is a tool in AWS Systems Manager that **automates best-practice configurations** for common features across single or multiple AWS accounts and Regions.
+- Default Host Management Configuration (part of Quick Setup).
+- **Key Benefits**
+  - **Simplifies configuration:** Automatically sets up IAM roles, patch scans, inventory collection, CloudWatch Agent, instance scheduling, AWS Config, and more.
+  - **Drift remediation:** Periodically checks and corrects configuration drift.
+  - **Multi-account & multi-region deployment:** Integrates with AWS Organizations and deploys via CloudFormation StackSets.
+
+## 16.1. Supported Configuration Types Include
+
+- Host management (e.g., SSM & CloudWatch agents, inventory, patch scans)
+- Default Host Management for organizations
+- AWS Config recorder
+- Patch policy enforcement
+- Resource Scheduler (auto start/stop EC2)
+- Distributor packages deployment
+- OpsCenter, DevOps Guru, Resource Explorer, Change Manager, etc.

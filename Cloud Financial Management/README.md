@@ -94,7 +94,7 @@
 - **Difference with CloudWatch Billing Alarms: CloudWatch Billing Alarms only send alerts when your costs and usage are exceeding your budget, not when it is forecasted to exceed your budget, while AWS Budgets does both.**
 - Create budget and **send alarms when costs exceeds the budget**.
 - 3 types of budgets: Usage, Cost, Reservation.
-- For Reserved Instances (RI):
+- **For Reserved Instances (RI)**
   - Track utilization.
   - Supports EC2, ElastiCache, RDS, Redshift.
 - Up to 5 SNS notifications per budget.

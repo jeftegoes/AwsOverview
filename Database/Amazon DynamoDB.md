@@ -54,6 +54,8 @@
   - [22.2. DynamoDB Encryption Client](#222-dynamodb-encryption-client)
   - [22.3. Fine-Grained Access Control](#223-fine-grained-access-control)
 - [23. Backups for disaster recovery](#23-backups-for-disaster-recovery)
+  - [23.1. Continuous backups using point-in-time recovery (PITR)](#231-continuous-backups-using-point-in-time-recovery-pitr)
+  - [23.2. On-demand backups](#232-on-demand-backups)
 - [24. Integration with Amazon S3](#24-integration-with-amazon-s3)
 - [25. Summary](#25-summary)
 
@@ -605,19 +607,23 @@
 # 23. Backups for disaster recovery
 
 - **DynamoDB offers two built-in backup methods**
-  - **Continuous backups using point-in-time recovery (PITR)**
-    - Optionally enabled for the last 35 days.
-    - Point-in-time recovery to any time within the backup window.
-    - The recovery process creates a new table.
-  - **On-demand backups**
-    - Full backups for long-term retention, until explicitely deleted.
-    - Doesn't affect performance or latency.
-    - Can be configured and managed in AWS Backup (enables cross-region copy).
-    - The recovery process creates a new table.
 - Both of these methods are suitable for backing up your tables for disaster recovery purposes.
 - However, with these methods, you can't use the data for use cases involving data analysis or extract, transform, and load (ETL) jobs.
 - The DynamoDB Export to S3 feature is the easiest way to create backups that you can download locally or use with another AWS service.
 - To customize the process of creating backups, you can use Amazon EMR, AWS Glue, or AWS Data Pipeline.
+
+## 23.1. Continuous backups using point-in-time recovery (PITR)
+
+- Optionally enabled for the last 35 days.
+- Point-in-time recovery to any time within the backup window.
+- The recovery process creates a new table.
+
+## 23.2. On-demand backups
+
+- Full backups for long-term retention, until explicitely deleted.
+- Doesn't affect performance or latency.
+- Can be configured and managed in AWS Backup (enables cross-region copy).
+- The recovery process creates a new table.
 
 # 24. Integration with Amazon S3
 
