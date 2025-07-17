@@ -17,8 +17,8 @@
 - Any event that has a negative impact on a company's business continuity or finances is a disaster.
 - Disaster recovery (DR) is about preparing for and recovering from a disaster.
 - What kind of disaster recovery?
-  - On-premise => On-premise: Traditional DR, and very expensive.
-  - On-premise => AWS Cloud: Hybrid recovery.
+  - **On-premise => On-premise:** Traditional DR, and very expensive.
+  - **On-premise => AWS Cloud:** Hybrid recovery.
   - AWS Cloud Region A => AWS Cloud Region B.
 
 # 2. RPO & RTO
@@ -27,8 +27,7 @@
   - How much of a data loss are we willing to accept in case of a disaster happens?
 - **RTO:** Recovery Time Objective.
   - Is when we recover from your disaster.
-
-![RPO & RTO](/Images/DisasterRecoveryRpoRto.png)
+    ![RPO & RTO](/Images/DisasterRecoveryRpoRto.png)
 
 # 3. Disaster Recovery Strategies (Faster RTO)
 
@@ -36,8 +35,7 @@
 - Pilot Light.
 - Warm Standby.
 - Hot Site / Multi Site Approach.
-
-![Faster RTO](/Images/DisasterRecoveryFasterRTO.png)
+  - ![Faster RTO](/Images/DisasterRecoveryFasterRTO.png)
 
 ## 3.1. Backup and Restore (High RPO)
 
