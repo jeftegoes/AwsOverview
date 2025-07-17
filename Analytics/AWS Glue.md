@@ -28,7 +28,7 @@
 
 # 4. AWS Glue DataBrew
 
-- Is a fully managed, serverless data preparation tool that enables users to visually clean, transform, and normalize raw datasets—all **without writing any code**.
+- Is a fully managed, serverless data preparation tool that enables users to visually clean, transform, and normalize raw datasets-all **without writing any code**.
 - **It is specifically designed for**
   - Data analysts.
   - Business users.

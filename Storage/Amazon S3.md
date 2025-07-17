@@ -648,7 +648,7 @@
 - **Same origin:** http://example.com/app1 & http://example.com/app2.
 - **Different origins:** http://www.example.com & http://other.example.com.
 - The requests won't be fulfilled unless the other origin allows for the requests, using **CORS Headers** (example: `Access-Control-Allow-Origin`).
-  ![CORS Diagram](/Images/APIGatewayCORS.png)
+  ![CORS Diagram](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayCORS.png)
 
 ## 25.1. Amazon S3 - CORS
 

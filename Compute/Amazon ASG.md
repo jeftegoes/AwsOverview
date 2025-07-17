@@ -5,27 +5,26 @@
 - [1. Introduction](#1-introduction)
 - [2. Auto Scaling Group Attributes](#2-auto-scaling-group-attributes)
 - [3. CloudWatch Alarms \& Scaling](#3-cloudwatch-alarms--scaling)
-- [4. Dynamic Scaling Policies](#4-dynamic-scaling-policies)
-- [5. Predictive Scaling](#5-predictive-scaling)
-- [6. Good metrics to scale on](#6-good-metrics-to-scale-on)
-- [7. Scaling Cooldowns](#7-scaling-cooldowns)
-- [8. Lifecycle Hooks](#8-lifecycle-hooks)
-- [9. ASG -\> SNS Notifications](#9-asg---sns-notifications)
-- [10. EventBridge Events](#10-eventbridge-events)
-- [11. Auto Scaling - Instance Refresh](#11-auto-scaling---instance-refresh)
-- [12. Scaling Strategies (Resume)](#12-scaling-strategies-resume)
-- [13. Termination Policies](#13-termination-policies)
-  - [13.1. Different Termination Policies](#131-different-termination-policies)
-- [14. Scale-out Latency Problem](#14-scale-out-latency-problem)
-- [15. ASG Warm Pools](#15-asg-warm-pools)
-  - [15.1. Instance States](#151-instance-states)
-  - [15.2. Pricing: m5.large](#152-pricing-m5large)
-  - [15.3. Instance Reuse Policy](#153-instance-reuse-policy)
-- [16. AWS Application Auto Scaling](#16-aws-application-auto-scaling)
-  - [16.1. Integrated AWS Services](#161-integrated-aws-services)
-- [17. Terraform details](#17-terraform-details)
-- [18. ASG and EC2 Impaired status](#18-asg-and-ec2-impaired-status)
-- [19. Scaling Based on Amazon SQS](#19-scaling-based-on-amazon-sqs)
+- [4. Scaling Strategies (Scaling Policies)](#4-scaling-strategies-scaling-policies)
+  - [4.1. Predictive Scaling](#41-predictive-scaling)
+- [5. Good metrics to scale on](#5-good-metrics-to-scale-on)
+- [6. Scaling Cooldowns](#6-scaling-cooldowns)
+- [7. Lifecycle Hooks](#7-lifecycle-hooks)
+- [8. ASG -\> SNS Notifications](#8-asg---sns-notifications)
+- [9. EventBridge Events](#9-eventbridge-events)
+- [10. Auto Scaling - Instance Refresh](#10-auto-scaling---instance-refresh)
+- [11. Termination Policies](#11-termination-policies)
+  - [11.1. Different Termination Policies](#111-different-termination-policies)
+- [12. Scale-out Latency Problem](#12-scale-out-latency-problem)
+- [13. ASG Warm Pools](#13-asg-warm-pools)
+  - [13.1. Instance States](#131-instance-states)
+  - [13.2. Pricing: m5.large](#132-pricing-m5large)
+  - [13.3. Instance Reuse Policy](#133-instance-reuse-policy)
+- [14. AWS Application Auto Scaling](#14-aws-application-auto-scaling)
+  - [14.1. Integrated AWS Services](#141-integrated-aws-services)
+- [15. Terraform details](#15-terraform-details)
+- [16. ASG and EC2 Impaired status](#16-asg-and-ec2-impaired-status)
+- [17. Scaling Based on Amazon SQS](#17-scaling-based-on-amazon-sqs)
 
 # 1. Introduction
 
@@ -64,36 +63,48 @@
   - We can create scale-out policies (increase the number of instances).
   - We can create scale-in policies (decrease the number of instances).
 
-# 4. Dynamic Scaling Policies
+# 4. Scaling Strategies (Scaling Policies)
 
+- **Manual Scaling:** Update the size of an ASG manually.
+- **Dynamic Scaling:** Respond to changing demand.
+  - **Simple / Step Scaling**
+    - When a CloudWatch alarm is triggered (example CPU > 70%), then add 2 units.
+    - When a CloudWatch alarm is triggered (example CPU < 30%), then remove 1.
 - **Target Tracking Scaling**
   - Most simple and easy to set-up.
-  - **Example:** We want the average ASG CPU to stay at around 40%.
-- **Simple / Step Scaling**
-  - When a CloudWatch alarm is triggered (example CPU > 70%), then add 2 units.
-  - When a CloudWatch alarm is triggered (example CPU < 30%), then remove 1.
-- **Scheduled Actions**
+  - **Example:** I want the **average** ASG CPU to stay at around 40%.
+- **Scheduled Scaling**
   - Anticipate a scaling based on known usage patterns.
-  - **Example:** Increase the min capacity to 10 at 5 pm on Fridays.
+  - **Example:** Increase the min. capacity to 10 at 5 pm on Fridays.
+- **Predictive Scaling**
+  - Uses Machine Learning to predict future traffic ahead of time.
+  - Automatically provisions the right number of EC2 instances in advance.
+  - Useful when your load has predictable time-based patterns.
 
-# 5. Predictive Scaling
+## 4.1. Predictive Scaling
 
-- **Predictive scaling:** continuously forecast load and schedule scaling ahead.
+- **Predictive scaling:** Continuously forecast load and schedule scaling ahead.
+  ![Predictive scaling](/Images/Compute/AmazonEC2ASGPredictiveScaling.png)
+- Uses **machine learning** to analyze historical traffic patterns.
+- **Forecasts demand** and schedules capacity ahead of time.
+- Ideal for **daily and weekly workload trends**.
+- Reacts to **real-time traffic changes** (e.g., scale when CPU > 60%).
+- Ensures quick response to **unexpected spikes**.
 
-# 6. Good metrics to scale on
+# 5. Good metrics to scale on
 
 - `CPUUtilization` - Average CPU utilization across your instances.
 - `RequestCountPerTarget` - To make sure the number of requests per EC2 instances is stable.
 - **Average Network In / Out** (if you're application is network bound).
 - **Any custom metric** (that you push using CloudWatch).
 
-# 7. Scaling Cooldowns
+# 6. Scaling Cooldowns
 
 - After a scaling activity happens, you are in the **cooldown period (default 300 seconds)**.
 - During the cooldown period, the ASG will not launch or terminate additional instances (to allow for metrics to stabilize).
 - **Advice:** Use a ready-to-use AMI to reduce configuration time in order to be serving request fasters and reduce the cooldown period.
 
-# 8. Lifecycle Hooks
+# 7. Lifecycle Hooks
 
 - By default, as soon as an instance is launched in an ASG it's in service.
 - You can perform extra steps before the instance goes in service (Pending state).
@@ -104,7 +115,7 @@
 - Integration with EventBridge, SNS, and SQS.
   ![Amazon ASG - Lifecycle Hooks](/Images/AmazonAsgLifecycleHooks.png)
 
-# 9. ASG -> SNS Notifications
+# 8. ASG -> SNS Notifications
 
 - ASG supports sending SNS notifications for the following events:
   - `autoscaling:EC2_INSTANCE_LAUNCH`
@@ -112,7 +123,7 @@
   - `autoscaling:EC2_INSTANCE_TERMINATE`
   - `autoscaling:EC2_INSTANCE_TERMINATE_ERROR`
 
-# 10. EventBridge Events
+# 9. EventBridge Events
 
 - You can create Rules that match the following ASG events:
   - EC2 Instance Launching, EC2 Instance Launch Successful/Unsuccessful.
@@ -122,31 +133,14 @@
 
 ![EventBridge Rule Integration](/Images/AmazonAsgEc2RuleLifecycleAction.png)
 
-# 11. Auto Scaling - Instance Refresh
+# 10. Auto Scaling - Instance Refresh
 
 - **Goal:** Update launch template and then re-creating all EC2 instances.
 - For this we can use the native feature of Instance Refresh.
 - Setting of minimum healthy percentage.
 - Specify warm-up time (how long until the instance is ready to use).
 
-# 12. Scaling Strategies (Resume)
-
-- Manual Scaling: Update the size of an ASG manually
-- Dynamic Scaling: Respond to changing demand
-  - Simple / Step Scaling
-    - When a CloudWatch alarm is triggered (example CPU > 70%), then add 2 units
-    - When a CloudWatch alarm is triggered (example CPU < 30%), then remove 1
-- Target Tracking Scaling
-  - Example: I want the **average** ASG CPU to stay at around 40%
-- Scheduled Scaling
-  - Anticipate a scaling based on known usage patterns
-  - Example: increase the min. capacity to 10 at 5 pm on Fridays
-- Predictive Scaling
-  - Uses Machine Learning to predict future traffic ahead of time.
-  - Automatically provisions the right number of EC2 instances in advance.
-  - Useful when your load has predictable time-based patterns.
-
-# 13. Termination Policies
+# 11. Termination Policies
 
 - Determine which instances to terminates first during scale-in events, Instance Refresh, and AZ Rebalancing.
 - **Default Termination Policy**
@@ -158,7 +152,7 @@
   - AWS treats them separately in termination logic.
   - It prefers launch configurations (legacy method) when deciding termination under this policy.
 
-## 13.1. Different Termination Policies
+## 11.1. Different Termination Policies
 
 - `Default` - Terminates instances according to Default Termination Policy.
 - `AllocationStrategy` - Terminates instances to align the remaining instances to the Allocation Strategy (e.g., lowest-price for Spot Instances, or lower priority On-Demand Instances).
@@ -170,7 +164,7 @@
 - **Note: We can use one or more policies and specify the evaluation order.**
 - **Note: Can define Custom Termination Policy backed by a Lambda function.**
 
-# 14. Scale-out Latency Problem
+# 12. Scale-out Latency Problem
 
 - When an ASG scales out, it tries to launch instances as fast as possible.
 - Some applications contain a lengthy unavoidable latency that exists at the application initialization/bootstrap layer (several minutes or more).
@@ -178,7 +172,7 @@
 - Solution was to over-provision compute resources to absorb unexpected demand increases (increased cost) or use Golden Images to try to reduce boot time.
 - **New solution: ASG Warm Pools**
 
-# 15. ASG Warm Pools
+# 13. ASG Warm Pools
 
 - Reduces scale-out latency by maintaining a pool of pre-initialized instances.
 - In a scale-out event, ASG uses the pre-initialized instances from the Warm Pool instead of launching new instances.
@@ -189,7 +183,7 @@
 - **Warm Pool Instance State** - What state to keep your Warm Pool instances in after initialization **(Running, Stopped, Hibernated)**.
 - Warm Pools instances don't contribute to ASG metrics that affect Scaling Policies.
 
-## 15.1. Instance States
+## 13.1. Instance States
 
 |                 | Running                                                                    | Stopped                                                                                                                                                 | Hibernated                                                                                                                                                                                   |
 | --------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -197,19 +191,19 @@
 | Start Up Delay  | Lower - EC2 instances are already running                                  | Slower - needs to go through the application startup process which may need some time especially if there are many application components to initialize | Medium - faster startup process than EC2 instances in the Stopped state because components and applications are already initialized in memory                                                |
 | Costs           | Higher - incur costs for their usage even when they're not serving traffic | Lower Cost - do not incur running costs, only pay for the attached resources, more cost effective                                                       | Lower Cost - do not incur running costs, only pay for the attached resources, more cost effective The hibernation state must be able to fit onto the EBS volume (might need a bigger volume) |
 
-## 15.2. Pricing: m5.large
+## 13.2. Pricing: m5.large
 
 - If we "over provision an EC2 instance" in an ASG.
 - Running Cost = $0.096/hour _ 24 hours/day _ 30 days = $69.12 \* EBS charges.
 - If the EC2 instance is stopped, we only pay for the attached EBS volume.
 - EBS Volume Cost = $0.10/GB-month \* 10GB = $1.00
 
-## 15.3. Instance Reuse Policy
+## 13.3. Instance Reuse Policy
 
 - By default, ASG terminates instances when ASG scales in, then it launches new instances into the Warm Pool.
 - **Instance Reuse Policy allows you to return instances to the Warm Pool when a scale-in event happens.**
 
-# 16. AWS Application Auto Scaling
+# 14. AWS Application Auto Scaling
 
 - Monitors your apps and automatically adjusts capacity to maintain steady, predictable performance at lowest cost.
 - Setup scaling for multiple resouces across multiple services from a single place (no need to navigate across different services).
@@ -218,7 +212,7 @@
 - Build Scaling Plans to automatically add/remove capacity from your resources in real-time as demand changes.
 - **Supports Target Tracking, Step, and Scheduled Scaling Policies.**
 
-## 16.1. Integrated AWS Services
+## 14.1. Integrated AWS Services
 
 - AppStream 2.0 - Fleets
 - Aurora - Replicas
@@ -235,7 +229,7 @@
 - Spot Fleet - Requests
 - Custom Resources
 
-# 17. Terraform details
+# 15. Terraform details
 
 - If you plan to launch an Auto Scaling group of EC2 instances, you can configure the `AWS::AutoScaling::AutoScalingGroup` resource type reference in your CloudFormation template to define an Amazon EC2 Auto Scaling group with the specified name and attributes.
 - You can add an `UpdatePolicy` attribute to your Auto Scaling group to perform rolling updates (or replace the group) when a change has been made to the group.
@@ -253,13 +247,13 @@
 - When you set the `WillReplace` parameter, remember to specify a matching CreationPolicy.
   - If the minimum number of instances (specified by the `MinSuccessfulInstancesPercent` property) doesn't signal success within the Timeout period (specified in the CreationPolicy policy), the replacement update fails, and AWS CloudFormation rolls back to the old Auto Scaling group.
 
-# 18. ASG and EC2 Impaired status
+# 16. ASG and EC2 Impaired status
 
 - Amazon EC2 Auto Scaling does not immediately terminate instances with an **Impaired status**.
 - Instead, Amazon EC2 Auto Scaling waits a few minutes for the instance to recover.
 - Amazon EC2 Auto Scaling might also delay or not terminate instances that fail to report data for status checks.
 - This usually happens when there is insufficient data for the status check metrics in Amazon CloudWatch.
 
-# 19. Scaling Based on Amazon SQS
+# 17. Scaling Based on Amazon SQS
 
 ![Scaling Based on Amazon SQS](/Images/Compute/AmazonEC2ASGScalingBasedSQS.png)

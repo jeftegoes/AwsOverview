@@ -36,7 +36,9 @@
   - [18.1. Use cases](#181-use-cases)
 - [19. Access Analyzer](#19-access-analyzer)
 - [20. IAM Roles vs Resource Based Policies](#20-iam-roles-vs-resource-based-policies)
-- [21. Summary](#21-summary)
+- [21. IAM Trust Policy](#21-iam-trust-policy)
+  - [21.1. Key Points](#211-key-points)
+- [22. Summary](#22-summary)
 
 # 1. Users & Groups
 
@@ -430,7 +432,23 @@
 - **Example:** User in account A needs to scan a DynamoDB table in Account A and dump it in an S3 bucket in Account B.
 - **Supported by:** Amazon S3 buckets, SNS topics, SQS queues, etc...
 
-# 21. Summary
+# 21. IAM Trust Policy
+
+- A **trust policy** defines **who can assume an IAM role**.
+- Specifies **principals** like:
+  - AWS accounts.
+  - IAM users or roles.
+  - Federated identities (e.g., SAML, OIDC).
+
+## 21.1. Key Points
+
+- IAM roles are both **identities** and **resources**, so they require:
+  - A **trust policy** (resource-based) - defines **who can assume** the role.
+  - An **identity-based policy** - defines **what the role can do**.
+- Only **one type of resource-based policy** is allowed on IAM roles:
+  - The **role trust policy**.
+
+# 22. Summary
 
 - **Users:** Mapped to a physical user, has a password for AWS Console.
 - **Groups:** Contains users only.

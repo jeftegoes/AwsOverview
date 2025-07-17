@@ -46,7 +46,7 @@
 - When an event occurs on a layer's instance, AWS OpsWorks Stacks automatically runs the appropriate set of recipes.
 - To provide a custom response to these events, implement custom recipes and assign them to the appropriate events for each layer.
 - AWS OpsWorks Stacks runs those recipes after the event's built-in recipes.
-- When AWS OpsWorks Stacks runs a command on an instance—for example, a deploy command in response to a Deploy lifecycle event—it adds a set of attributes to the instance's node object that describes the stack's current configuration.
+- When AWS OpsWorks Stacks runs a command on an instance-for example, a deploy command in response to a Deploy lifecycle event-it adds a set of attributes to the instance's node object that describes the stack's current configuration.
 - For Deploy events and Execute Recipes stack commands, AWS OpsWorks Stacks installs deploy attributes, which provide some additional deployment information.
 
 ### 3.1.1. Lifecycle

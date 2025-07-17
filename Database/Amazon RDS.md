@@ -196,12 +196,12 @@
 
 ## 8.4. IAM Authentication
 
-- IAM database authentication works with:
+- **IAM database authentication works with**
   - MySQL.
   - PostgreSQL.
 - We don't need a password, just an authentication token obtained through IAM & RDS API calls.
 - Auth token has a lifetime of 15 minutes.
-- Benefits:
+- **Benefits**
   - Network in/out must be encrypted using SSL.
   - IAM to centrally manage users instead of DB.
   - Can leverage IAM Roles and EC2 Instance profiles for easy integration.

@@ -56,7 +56,7 @@
     ![Amazon CloudFront EC2 as an Origin](/Images/Networking%20&%20Content%20Delivery/AmazonCloudFrontEC2Origin.png)
   - S3 website (must first enable the bucket as a static S3 website).
   - Any HTTP backend we want.
-- **IMPORTANT!** CloudFront doesn't require the origin to be hosted on AWS—it can point to any publicly accessible HTTP/HTTPS server, including one running in your on-premise data center.
+- **IMPORTANT!** CloudFront doesn't require the origin to be hosted on AWS-it can point to any publicly accessible HTTP/HTTPS server, including one running in your on-premise data center.
 
 ## 1.2. CloudFront at a high level
 

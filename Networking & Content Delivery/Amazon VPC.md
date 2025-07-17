@@ -237,7 +237,7 @@
 ### 8.2.1. Security Groups (Stateful)
 
 - **Stateful** means AWS **remembers the connection**.
-- If you allow **inbound traffic**, the **response (outbound traffic)** is automatically allowed — **you don't need to explicitly allow it**.
+- If you allow **inbound traffic**, the **response (outbound traffic)** is automatically allowed - **you don't need to explicitly allow it**.
 - **Example:** If port 22 (SSH) is allowed **inbound**, the return SSH traffic **outbound is automatically allowed**.
 
 ### 8.2.2. Network ACLs (Stateless)

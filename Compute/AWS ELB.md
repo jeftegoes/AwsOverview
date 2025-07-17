@@ -31,15 +31,14 @@
 - [6. Cross-Zone Load Balancing](#6-cross-zone-load-balancing)
 - [7. SSL/TLS - Basics](#7-ssltls---basics)
   - [7.1. Load Balancer - SSL Certificates](#71-load-balancer---ssl-certificates)
-  - [7.2. SSL - Server Name Indication (SNI)](#72-ssl---server-name-indication-sni)
+  - [7.2. Server Name Indication (SNI)](#72-server-name-indication-sni)
   - [7.3. Elastic Load Balancers - SSL Certificates](#73-elastic-load-balancers---ssl-certificates)
 - [8. Connection Draining](#8-connection-draining)
 
 # 1. Introduction
 
 - Load balancers are servers that forward internet traffic to multiple servers (e.g., EC2 Instances) downstream.
-
-![Load Balance](/Images/LoadBalanceDiagram.png)
+  ![Load Balance](/Images/LoadBalanceDiagram.png)
 
 ## 1.1. Why use a load balancer?
 
@@ -290,6 +289,8 @@
 
 ## 7.1. Load Balancer - SSL Certificates
 
+![Load Balancer - SSL Certificates](/Images/Compute/AmazonEC2ELBSSLCertificates.png)
+
 - The load balancer uses an X.509 certificate (SSL/TLS server certificate).
 - You can manage certificates using ACM (AWS Certificate Manager).
 - You can create upload your own certificates alternatively.
@@ -299,7 +300,7 @@
   - **Clients can use SNI (Server Name Indication) to specify the hostname they reach.**
   - Ability to specify a security policy to support older versions of SSL / TLS (legacy clients).
 
-## 7.2. SSL - Server Name Indication (SNI)
+## 7.2. Server Name Indication (SNI)
 
 - **Server Name Indication (SNI) allows you to expose multiple HTTPS applications each with its own SSL certificate on the same listener. Read more here: https://aws.amazon.com/blogs/aws/new-application-load-balancer-sni/**
 - SNI solves the problem of loading **multiple SSL certificates onto one web server** (to serve multiple websites).
@@ -308,6 +309,7 @@
 - **Note**
   - Only works for ALB & NLB (newer generation), CloudFront.
   - Does not work for CLB (older gen).
+    ![Server Name Indication (SNI)](/Images/Compute/AmazonEC2ELBServerNameIndication.png)
 
 ## 7.3. Elastic Load Balancers - SSL Certificates
 

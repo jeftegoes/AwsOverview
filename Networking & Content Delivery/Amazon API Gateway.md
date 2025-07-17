@@ -45,7 +45,7 @@
 
 # 1. Introduction
 
-![Example: API Gateway a Serveless API](/Images/APIGatewayServelessAPI.png)
+![Example: API Gateway a Serveless API](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayServelessAPI.png)
 
 - AWS Lambda + API Gateway: No infrastructure to manage.
 - Support for the WebSocket Protocol.
@@ -109,7 +109,7 @@
 
 ## 5.1. API Gateway Stages v1 and v2 API breaking change
 
-![API Gateway - API breaking change](/Images/APIGatewayAPIBreakingChange.png)
+![API Gateway - API breaking change](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayAPIBreakingChange.png)
 
 # 6. Stage Variables
 
@@ -135,7 +135,7 @@
 - We create a stage variable to indicate the corresponding Lambda alias.
 - Our API gateway will automatically invoke the right Lambda function!
 
-![API Gateway Stage Variables and Lambda Aliases](/Images/APIGatewayStageVariablesAndLambdaAliases.png)
+![API Gateway Stage Variables and Lambda Aliases](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayStageVariablesAndLambdaAliases.png)
 
 # 7. Canary Deployment
 
@@ -145,7 +145,7 @@
 - Possibility to override stage variables for canary.
 - This is blue / green deployment with [AWS Lambda](AWS%20Lambda.md) and API Gateway.
 
-![API Gateway - Canary Deployment](/Images/APIGatewayCanaryDeployment.png)
+![API Gateway - Canary Deployment](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayCanaryDeployment.png)
 
 # 8. Integration Types (Methods)
 
@@ -240,7 +240,7 @@
 - Clients can invalidate the cache with header: `Cache-Control: max-age=0` (with proper IAM authorization).
 - If you don't impose an `execute-api:InvalidateCache` policy (or choose the **Require Authorization** check box in the console), any client can invalidate the API cache.
 
-![API Gateway cache parameter](/Images/APIGatewayCacheParameter.png)
+![API Gateway cache parameter](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayCacheParameter.png)
 
 - Role example:
   ```
@@ -339,7 +339,7 @@
   - Access-Control-Allow-Origin
 - CORS can be enabled through the console.
 
-![API Gateway CORS](/Images/APIGatewayCORS.png)
+![API Gateway CORS](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayCORS.png)
 
 # 17. Security
 
@@ -371,7 +371,7 @@
 - Lambda must return an IAM policy for the user, result policy is cached.
 - **Authentication = External** | _Authorization = Lambda function_.
 
-![Lambda Authorizer Diagram](/Images/APIGatewayLambdaAuthorizer.png)
+![Lambda Authorizer Diagram](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayLambdaAuthorizer.png)
 
 ## 17.4. Summary
 

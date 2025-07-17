@@ -25,7 +25,7 @@
 - Allows to grant limited and temporary access to AWS resources (up to 1 hour).
 - `AssumeRole` - Is useful for allowing existing IAM users to access AWS resources that they don't already have access to.
   - For example, the user might need access to resources **in another AWS account (cross account)**.
-  - It is also useful as a means to temporarily gain privileged access—for example, to provide multi-factor authentication (MFA).
+  - It is also useful as a means to temporarily gain privileged access-for example, to provide multi-factor authentication (MFA).
   - We must call this API using existing IAM user credentials.
 - `AssumeRoleWithSAML` - Return credentials for users logged with SAML.
 - `AssumeRoleWithWebIdentity`
