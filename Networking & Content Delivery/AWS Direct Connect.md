@@ -24,7 +24,8 @@
 
 # 2. Direct Connect Gateway
 
-- **If we want to setup a Direct Connect to one or more VPC in many different regions (same account), we must use a Direct Connect Gateway.**
+- If we want to setup a Direct Connect to one or more VPC in many different regions (same account), we must use a Direct Connect Gateway.
+  ![Direct Connect Gateway](/Images/Networking%20&%20Content%20Delivery/AWSDirectConnectGateway.png)
 
 ## 2.1. Connection Types
 
@@ -42,7 +43,6 @@
 - Data in transit is **not encrypted** but is private.
 - AWS Direct Connect plus (+) virtual private network (VPN) provides an **IPsec-encrypted** private connection.
 - Good for an extra level of security, but slightly more complex to put in place.
-
 
 # 4. Resiliency
 

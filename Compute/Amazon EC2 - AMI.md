@@ -79,8 +79,7 @@
   1. Unencrypted volumes.
   2. Volumes that are encrypted with a customer managed key.
 - If you share an AMI with encrypted volumes,** you must also share any customer managed keys used to encrypt them**.
-
-![Cross-Account AMI Sharing](/Images/Compute/AmazonEC2CrossAccountAMISharing.png)
+  ![Cross-Account AMI Sharing](/Images/Compute/AmazonEC2CrossAccountAMISharing.png)
 
 ## 3.5. AMI Sharing with KMS Encryption
 
@@ -97,5 +96,5 @@
 
 ## 4.1. AMI Copy with KMS Encryption
 
-- Cross-Region / Cross-Account Encrypted AMI Copy
+- **Cross-Region / Cross-Account Encrypted AMI Copy**
   ![AMI Copy with KMS Encryption](/Images/Compute/AmazonEC2CrossAccountAMICopyWithKMSEncryption.png)

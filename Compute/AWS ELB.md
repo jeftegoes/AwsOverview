@@ -117,10 +117,9 @@
 
 ## 4.1. Load Balancer Security Groups
 
-![Load Balancer Security Groups](/Images/Compute/LoadBalancerSecurityGroups.png)
-
 - Load Balancer Security Group: Allowing HTTP (80) / HTTPS (443).
 - Application Security Group: Allow traffic **ONLY** from Load Balancer.
+  ![Load Balancer Security Groups](/Images/Compute/LoadBalancerSecurityGroups.png)
 
 ## 4.2. Classic Load Balancers
 

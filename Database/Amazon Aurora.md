@@ -25,7 +25,9 @@
   - [17.3. Benefits](#173-benefits)
   - [17.4. Common Use Cases](#174-common-use-cases)
   - [17.5. Limitations](#175-limitations)
-- [18. Summary](#18-summary)
+- [18. ## Amazon Aurora I/O-Optimized Summary](#18--amazon-aurora-io-optimized-summary)
+  - [18.1. Key Benefits](#181-key-benefits)
+- [19. Summary](#19-summary)
 
 # 1. Introduction
 
@@ -216,7 +218,20 @@
 - Not all SQL Server features are supported.
 - Review AWS documentation for detailed limitations.
 
-# 18. Summary
+# 18. ## Amazon Aurora I/O-Optimized Summary
+
+- **Aurora I/O-Optimized** is a new cluster configuration designed for **I/O-intensive applications** like:
+  - E-commerce platforms.
+  - Payment processing systems.
+  - High-throughput databases.
+
+## 18.1. Key Benefits
+
+- **Improved price/performance** for workloads with heavy I/O usage.
+- **Higher throughput** and **lower latency**.
+- **Predictable pricing** (eliminates per-I/O charges).
+
+# 19. Summary
 
 - Compatible API for PostgreSQL / MySQL, separation of storage and compute.
 - **Storage:** Data is stored in 6 replicas, across 3 AZ - highly available, self-healing, auto-scaling.

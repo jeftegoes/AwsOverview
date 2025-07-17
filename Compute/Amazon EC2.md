@@ -48,6 +48,10 @@
 - [17. Status checks for Amazon EC2 instances](#17-status-checks-for-amazon-ec2-instances)
 - [18. Impaired Status in Amazon EC2](#18-impaired-status-in-amazon-ec2)
   - [18.1. What Causes an Impaired Status?](#181-what-causes-an-impaired-status)
+- [19. Amazon EC2 Tenancy Options](#19-amazon-ec2-tenancy-options)
+  - [19.1. Shared (Default)](#191-shared-default)
+  - [19.2. Dedicated Instances](#192-dedicated-instances)
+  - [19.3. Dedicated Hosts](#193-dedicated-hosts)
 
 # 1. Introduction
 
@@ -266,6 +270,7 @@
 - **Pros:** Great network (10 Gbps bandwidth between instances with Enhanced Networking enabled - recommended).
 - **Cons:** If the AZ fails, all instances fails at the same time.
 - **Use case**
+  - High-performance computing (HPC) workloads with high network throughput and low-latency network.
   - Big Data job that needs to complete fast.
   - Application that needs extremely low latency and high network throughput.
     ![Placement Group Cluster](/Images/Compute/AmazonEC2PlacementGroupCluster.png)
@@ -277,7 +282,7 @@
   - Reduced risk is simultaneous failure.
   - EC2 Instances are on different physical hardware.
 - **Cons**
-  - Limited to 7 instances per AZ per placement group.
+  - Limited to 7 **INSTANCES** per AZ per placement group.
 - **Use case**
   - Application that needs to maximize high availability.
   - Critical Applications where each instance must be isolated from failure from each other.
@@ -285,7 +290,7 @@
 
 ## 9.3. Partition
 
-- Up to 7 partitions per AZ.
+- Up to 7 **PARTITIONS** per AZ.
 - Can span across multiple AZs in the same region.
 - Up to 100s of EC2 instances.
 - The instances in a partition do not share racks with the instances in the other partitions.
@@ -399,14 +404,14 @@
 - Commit to a certain type of usage ($10/hour for 1 or 3 years).
 - Usage beyond EC2 Savings Plans is billed at the On-Demand price.
 - Locked to a specific instance family & AWS region (e.g., M5 in us-east-1).
-- Flexible across:
+- **Flexible across**
   - Instance Size (e.g., m5.xlarge, m5.2xlarge).
   - OS (e.g., Linux, Windows).
   - Tenancy (Host, Dedicated, Default).
 
 ## 13.4. Spot Instances
 
-[Spot Instance](#134-spot-instances)
+[Spot Instances](Amazon%20EC2%20-%20Spot%20Instance.md)
 
 ## 13.5. Dedicated Hosts
 
@@ -425,6 +430,7 @@
 - Instances running on hardware that's dedicated to you.
 - May share hardware with other instances in same account.
 - No control over instance placement (can move hardware after Stop / Start).
+- **IMPORTANT!** Dedicated instances cannot be used for existing server-bound software licenses.
 
 ## 13.7. Dedicated Instances vs Dedicated Hosts
 
@@ -531,3 +537,26 @@
 - **IMPORTANT!**
   - A recovered instance **is identical to the original instance**, including the instance ID, private IP addresses, Elastic IP addresses, and all instance metadata.
   - If your instance has a public IPv4 address, it retains the public IPv4 address after recovery.
+
+# 19. Amazon EC2 Tenancy Options
+
+- Amazon EC2 offers three tenancy models to control how instances are placed on physical hardware.
+- Use **Shared** for cost savings, **Dedicated Instances** for isolation, and **Dedicated Hosts** for licensing and compliance control.
+
+## 19.1. Shared (Default)
+
+- **Description:** Multiple AWS accounts share the same physical server.
+- **Use Case:** General-purpose, cost-efficient deployments.
+
+## 19.2. Dedicated Instances
+
+- **Description:** Instances run on hardware **dedicated to a single customer**.
+- **Isolation:** No other AWS customer shares the same physical server.
+- **Use Case:** Higher isolation without managing the host directly.
+
+## 19.3. Dedicated Hosts
+
+- **Description:** Entire physical server is **allocated to your account**.
+- **Control:** Full visibility and control of the hardware.
+- **Use Case:** Ideal for **BYOL (Bring Your Own License)** and meeting **compliance** or licensing requirements.
+- **Note:** Requires a **host resource group**.

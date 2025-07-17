@@ -47,7 +47,8 @@
   - [18.2. CloudFront Functions vs. Lambda@Edge](#182-cloudfront-functions-vs-lambdaedge)
   - [18.3. CloudFront Functions vs. Lambda@Edge - Use Cases](#183-cloudfront-functions-vs-lambdaedge---use-cases)
 - [19. Lambda in VPC](#19-lambda-in-vpc)
-  - [19.1. Lambda in VPC - Internet Access](#191-lambda-in-vpc---internet-access)
+  - [19.1. Default behaviour](#191-default-behaviour)
+  - [19.2. Lambda in VPC - Internet Access](#192-lambda-in-vpc---internet-access)
 - [20. Lambda with RDS Proxy](#20-lambda-with-rds-proxy)
   - [20.1. Invoking Lambda from RDS \& Aurora](#201-invoking-lambda-from-rds--aurora)
   - [20.2. RDS Event Notifications](#202-rds-event-notifications)
@@ -568,14 +569,18 @@
 
 # 19. Lambda in VPC
 
+## 19.1. Default behaviour
+
 - By default, your Lambda function is launched outside your own VPC (in an AWS-owned VPC).
 - Therefore it cannot access resources in your VPC (RDS, ElastiCache, internal ELB...).
-- You must define the VPC ID, the Subnets and the Security Groups.
-- Lambda will create an ENI (Elastic Network Interface) in your subnets.
+  ![Lambda in VPC - Default behaviour](/Images/Compute/AWSLambdaVPCDefault.png)
 - `AWSLambdaVPCAccessExecutionRole`
 
-## 19.1. Lambda in VPC - Internet Access
+## 19.2. Lambda in VPC - Internet Access
 
+- You must define the VPC ID, the Subnets and the Security Groups.
+- Lambda will create an ENI (Elastic Network Interface) in your subnets.
+  ![Lambda in VPC - Private Subnet](/Images/Compute/AWSLambdaVPCPrivateSubnet.png)
 - A Lambda function in your VPC does not have internet access.
 - Deploying a Lambda function in a public subnet does not give it internet access or a public IP.
 - Deploying a Lambda function in a private subnet gives it internet access if you have a NAT Gateway / Instance.

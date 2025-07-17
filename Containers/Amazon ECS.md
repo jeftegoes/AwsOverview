@@ -1,4 +1,4 @@
-# Amazon ECS - Elastic Container Service, Fargate and ECR - Elastic Container Registry<!-- omit in toc -->
+# Amazon ECS - Elastic Container Service <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -31,15 +31,7 @@
       - [3.12.2.3. Spread](#31223-spread)
       - [3.12.2.4. Distinct Instance (distinctInstance)](#31224-distinct-instance-distinctinstance)
       - [3.12.2.5. memberOf](#31225-memberof)
-- [4. Amazon ECR](#4-amazon-ecr)
-  - [4.1. Lifecycle Policies](#41-lifecycle-policies)
-  - [4.2. Amazon ECR public](#42-amazon-ecr-public)
-- [5. AWS Copilot](#5-aws-copilot)
-- [6. Amazon EKS](#6-amazon-eks)
-  - [6.1. Node Types](#61-node-types)
-  - [6.2. Data Volumes](#62-data-volumes)
-  - [6.3. Control Plane Logging](#63-control-plane-logging)
-  - [6.4. Nodes \& Containers Logging](#64-nodes--containers-logging)
+- [4. AWS Copilot](#4-aws-copilot)
 
 # 1. What is Docker?
 
@@ -271,28 +263,7 @@
 - Tasks are placed on EC2 instances that satisfy a specified expression.
 - Uses the **Cluster Query Language** (advanced).
 
-# 4. Amazon ECR
-
-- ECR = Elastic Container Registry.
-- Store and manage Docker images on AWS.
-- **Private** and **Public** repository (Amazon ECR Public Gallery https://gallery.ecr.aws).
-- Fully integrated with ECS, backed by [Amazon S3](/Storage/Amazon%20S3.md).
-- Access is controlled through IAM (permission errors => policy).
-- Supports image vulnerability scanning, versioning, image tags, image lifecycle, ...
-
-## 4.1. Lifecycle Policies
-
-- Automatically remove old or unused images based on age or count.
-- Each Lifecycle Policy contains one or more rules.
-- All rules are evaluated at the same time, then applied based on priority.
-- Images are expired within 24 hours after they meet the criteria.
-- Helps you reduce unnecessary storage costs.
-
-## 4.2. Amazon ECR public
-
-- Developers building container-based applications can now discover and download Docker Official Images directly from Amazon Elastic Container Registry (Amazon ECR) Public.
-
-# 5. AWS Copilot
+# 4. AWS Copilot
 
 - CLI tool to build, release, and operate production-ready containerized apps.
 - Run your apps on **AppRunner, ECS, and Fargate**.
@@ -301,57 +272,3 @@
 - Automated deployments with one command using CodePipeline.
 - Deploy to multiple environments.
 - Troubleshooting, logs, health status...
-
-# 6. Amazon EKS
-
-- Amazon EKS = Amazon Elastic **Kubernetes** Service.
-- It is a way to launch **managed Kubernetes clusters on AWS**.
-- Kubernetes is an **open-source system** for automatic deployment, scaling and management of containerized (usually Docker) application.
-- It's an alternative to ECS, similar goal but different API.
-- EKS supports **EC2** if you want to deploy worker nodes or **Fargate** to deploy serverless containers.
-- **Use case:** If your company is already using Kubernetes on-premises or in another cloud, and wants to migrate to AWS using Kubernetes.
-- **Kubernetes is cloud-agnostic** (can be used in any cloud - Azure, GCP...).
-- For multiple regions, deploy one EKS cluster per region.
-- Collect logs and metrics using **CloudWatch Container Insights**.
-
-## 6.1. Node Types
-
-- **Managed Node Groups**
-  - Creates and manages Nodes (EC2 instances) for you.
-  - Nodes are part of an ASG managed by EKS.
-  - Supports On-Demand or Spot Instances.
-- **Self-Managed Nodes**
-  - Nodes created by you and registered to the EKS cluster and managed by an ASG.
-  - You can use prebuilt AMI - Amazon EKS Optimized AMI.
-  - Supports On-Demand or Spot Instances.
-- **AWS Fargate**
-  - No maintenance required: no nodes managed.
-
-## 6.2. Data Volumes
-
-- Need to specify **StorageClass** manifest on your EKS cluster.
-- Leverages a **Container Storage Interface (CSI)** compliant driver.
-- Support for...
-  - Amazon EBS.
-  - Amazon EFS (works with Fargate).
-  - Amazon FSx for Lustre.
-  - Amazon FSx for NetApp ONTAP.
-
-## 6.3. Control Plane Logging
-
-- Send EKS Control Plane audit and diagnostic logs to CloudWatch Logs.
-- EKS Control Plane Log Types:
-  - API Server (api).
-  - Audit (audit).
-  - Authenticator (authenticator).
-  - Controller Manager (controllerManager).
-  - Scheduler (scheduler).
-- Ability to select the exact log types to send to CloudWatch Logs.
-
-## 6.4. Nodes & Containers Logging
-
-- You can capture node, pod, and containers logs and send them to CloudWatch Logs.
-- Use **CloudWatch Agent** to send metrics to CloudWatch.
-- Use the Fluent Bit, or Fluentd log drivers to send logs to CloudWatch Logs.
-- Container logs are stored on a Node directory /var/log/containers.
-- Use CloudWatch Container Insights to get a dashboarding monitoring solution for nodes, pods, tasks, and services.

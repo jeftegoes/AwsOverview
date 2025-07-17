@@ -20,6 +20,7 @@
   - [6.5. AWS Enterprise Support Plan (24/7)](#65-aws-enterprise-support-plan-247)
 - [7. Account Best Practices - Summary](#7-account-best-practices---summary)
 - [8. Billing and Costing Tools - Summary](#8-billing-and-costing-tools---summary)
+- [9. Cost Optimization Hub](#9-cost-optimization-hub)
 
 # 1. Billing and Costing Tools
 
@@ -54,7 +55,7 @@
 
 ## 3.2. AWS Resource Groups and Tagging
 
-- [AWS Resource Groups and Tagging](AWS%20Resource%20Groups.md)
+- [AWS Resource Groups and Tagging](/AWS%20Resource%20Groups.md)
 
 ## 3.3. Cost and Usage Reports
 
@@ -181,3 +182,14 @@
 - **Billing Alarms:** In `sa-east-1` - track overall and per-service billing.
 - **Budgets:** More advanced - track usage, costs, RI, and get alerts.
 - **Savings Plans:** Easy way to save based on long-term usage of AWS.
+
+# 9. Cost Optimization Hub
+
+- A feature in **AWS Billing and Cost Management**.
+- Consolidates cost-saving **recommendations across accounts and Regions**.
+- **Helps identify and act on**
+  - Resource rightsizing
+  - Idle resource deletion
+  - Savings Plans
+  - Reserved Instances
+- Offers a **centralized dashboard**, reducing the need to check multiple services for cost opportunities.

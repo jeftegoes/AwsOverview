@@ -126,7 +126,7 @@
 - Not used for scaling.
 - Multi-AZ replication is free.
 - **Note:** The Read Replicas be setup as Multi-AZ for Disaster Recovery (DR).
-  ![Multi AZ](/Images/AmazonRDSMultiAZ.png)
+  ![Multi AZ](/Images/Database/AmazonRDSMultiAZ.png)
 
 ## 6.2. From Single-AZ to Multi-AZ
 
@@ -136,7 +136,7 @@
   1. A snapshot is taken.
   2. A new DB is restored from the snapshot in a new AZ.
   3. Synchronization is established between the two databases.
-     ![Single AZ](/Images/AmazonRDSSingleAZ.png)
+     ![Single AZ](/Images/Database/AmazonRDSSingleAZ.png)
 
 # 7. RDS Custom
 
@@ -224,7 +224,7 @@
 
 # 9. Monitoring
 
-![RDS Monitoring log options](/Images/AWSRDSMonitoring.png)
+![RDS Monitoring log options](/Images/Database/AmazonRDSMonitoring.png)
 
 # 10. Proxy
 
@@ -238,7 +238,7 @@
 - **Enforce IAM Authentication for DB, and securely store credentials in AWS Secrets Manager.**
 - **RDS Proxy is never publicly accessible (must be accessed from VPC).**
 
-![RDS Proxy Diagram](/Images/AWSRDSProxyDiagram.png)
+![RDS Proxy Diagram](/Images/Database/AmazonRDSProxyDiagram.png)
 
 # 11. Enhanced Monitoring
 
