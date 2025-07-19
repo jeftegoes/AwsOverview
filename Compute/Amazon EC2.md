@@ -302,7 +302,7 @@
 # 10. Elastic Network Interfaces (ENI)
 
 - Logical component in a VPC that represents a virtual network card.
-- The ENI can have the following attributes:
+- **The ENI can have the following attributes**
   - Primary private IPv4, one or more secondary IPv4.
   - One Elastic IP (IPv4) per private IPv4.
   - One Public IPv4.

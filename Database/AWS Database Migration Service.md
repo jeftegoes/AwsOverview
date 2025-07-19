@@ -13,7 +13,8 @@
 - [6. RDS \& Aurora PostgreSQL Migrations](#6-rds--aurora-postgresql-migrations)
 - [7. On-Premise strategy with AWS](#7-on-premise-strategy-with-aws)
 - [8. Replication Task Monitoring](#8-replication-task-monitoring)
-- [9. CloudWatch Metrics](#9-cloudwatch-metrics)
+- [9. Streaming data from Amazon S3 to Amazon Kinesis](#9-streaming-data-from-amazon-s3-to-amazon-kinesis)
+- [10. CloudWatch Metrics](#10-cloudwatch-metrics)
 
 # 1. Introduction
 
@@ -120,7 +121,11 @@
   - Includes the current state of the tables (e.g., Before load, Table completed...).
   - Number of inserts, deletions, and updates for each table.
 
-# 9. CloudWatch Metrics
+# 9. Streaming data from Amazon S3 to Amazon Kinesis
+
+![Streaming data from Amazon S3 to Amazon Kinesis](/Images/Database/AWSDatabaseMigrationServiceS3ToKinesis.png)
+
+# 10. CloudWatch Metrics
 
 - **Host Metrics**
   - Performance and utilization statistics for the replication host.

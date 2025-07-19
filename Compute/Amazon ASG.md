@@ -144,7 +144,7 @@
 
 - Determine which instances to terminates first during scale-in events, Instance Refresh, and AZ Rebalancing.
 - **Default Termination Policy**
-  1. Determine the Availability Zone with the most instances - Given: `us-east-1a` has the most.
+  1. Determine the Availability Zone with the most instances.
   2. Within that AZ, find instances using the oldest launch configuration.
   3. If there are multiple instances with the same oldest launch configuration, terminate the one that is closest to the next billing hour.
   4. If there's still a tie, terminate randomly among them.
