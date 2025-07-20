@@ -47,15 +47,13 @@
 - Useful for the critical core (pilot light).
 - Very similar to Backup and Restore.
 - Faster than Backup and Restore as critical systems are already up.
-
-![Pilot Light](/Images/DisasterRecoveryPilotLight.png)
+  ![Pilot Light](/Images/DisasterRecoveryPilotLight.png)
 
 ## 3.3. Warm Standby
 
 - Full system is up and running, but at minimum size.
 - Upon disaster, we can scale to production load.
-
-![Warm Standby](/Images/DisasterRecoveryWarmStandby.png)
+  ![Warm Standby](/Images/DisasterRecoveryWarmStandby.png)
 
 ## 3.4. Multi Site / Hot Site Approach (Low RTO)
 

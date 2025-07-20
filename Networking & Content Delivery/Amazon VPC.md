@@ -39,6 +39,7 @@
   - [16.1. With AWS Transit Gateway](#161-with-aws-transit-gateway)
   - [16.2. Without AWS Transit Gateway](#162-without-aws-transit-gateway)
   - [16.3. Transit Gateway: Site-to-Site VPN ECMP](#163-transit-gateway-site-to-site-vpn-ecmp)
+    - [16.3.1. Throughput with ECMP](#1631-throughput-with-ecmp)
   - [16.4. Share Direct Connect between multiple accounts](#164-share-direct-connect-between-multiple-accounts)
 - [17. VPC Sharing](#17-vpc-sharing)
 - [18. VPC - Traffic Mirroring](#18-vpc---traffic-mirroring)
@@ -396,7 +397,7 @@
 
 ## 16.1. With AWS Transit Gateway
 
-![With AWS Transit Gateway](/Images/Networking%20&%20Content%2r0Delivery/AmazonVPCTransitGateway.png)
+![With AWS Transit Gateway](/Images/Networking%20&%20Content%20Delivery/AmazonVPCTransitGateway.png)
 
 ## 16.2. Without AWS Transit Gateway
 
@@ -404,9 +405,14 @@
 
 ## 16.3. Transit Gateway: Site-to-Site VPN ECMP
 
-- ECMP = Equal-cost multi-path routing.
+- **ECMP** = **Equal-cost multi-path routing**.
 - Routing strategy to allow to forward a packet over multiple best path.
 - **Use case:** Create multiple Site-to-Site VPN connections to increase the bandwidth of your connection to AWS.
+  ![Site-to-Site VPN ECMP](/Images/Networking%20&%20Content%20Delivery/AWSSiteToSiteVPNECMP.png)
+
+### 16.3.1. Throughput with ECMP
+
+![Throughput with ECMP](/Images/Networking%20&%20Content%20Delivery/AWSSiteToSiteVPNThroughputECMP.png)
 
 ## 16.4. Share Direct Connect between multiple accounts
 

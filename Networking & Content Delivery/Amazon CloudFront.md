@@ -260,7 +260,7 @@
 - Adds an additional layer of security along with HTTPS.
 - Sensitive information encrypted at the edge close to user.
 - Uses asymmetric encryption.
-- Usage:
+- **Usage**
   - Specify set of fields in POST requests that we want to be encrypted (up to 10 fields).
   - Specify the public key to encrypt them.
 

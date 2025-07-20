@@ -225,7 +225,7 @@
 - `UpdateItem`
   - Edits an existing item's attributes or adds a new item if it doesn't exist.
   - Can be used to implement **Atomic Counters** - A numeric attribute that's unconditionally incremented.
-- **Conditional Writes:**
+- **Conditional Writes**
   - Accept a write/update/delete only if conditions are met, otherwise returns an error.
   - Helps with concurrent access to items.
   - No performance impact.
@@ -242,10 +242,10 @@
 ## 7.3. Reading Data (Query)
 
 - `Query` returns items based on:
-  - **KeyConditionExpression:**
+  - **KeyConditionExpression**
     - Partition Key value (must be = operator) - required.
     - Sort Key value (=, <, <=, >, >=, Between, Begins with) - optional.
-  - **FilterExpression:**
+  - **FilterExpression**
     - Additional filtering after the Query operation (before data returned to you).
     - Use only with non-key attributes (does not allow HASH or RANGE attributes).
 - Returns:

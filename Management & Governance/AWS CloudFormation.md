@@ -1,4 +1,4 @@
-# AWS CloudFormation<!-- omit in toc -->
+# AWS CloudFormation <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -133,7 +133,7 @@
 - Stacks are identified by a name.
 - Deleting a stack deletes every single artifact that was created by CloudFormation.
 
-![How CloudFormation Works](/Images/AWSCloudformationDiagram.png)
+![How CloudFormation Works](/Images/Management%20&%20Governance/AWSCloudformationDiagram.png)
 
 ## 1.5. Deploying CloudFormation templates
 
@@ -742,7 +742,7 @@
 - To update a nested stack, always update the parent (root stack).
 - You create a nested stack within another stack by using the `AWS::CloudFormation::Stack` resource.
 
-![Nested stacks](/Images/AWSCloudFormationNestedStacks.png)
+![Nested stacks](/Images/Management%20&%20Governance/AWSCloudFormationNestedStacks.png)
 
 # 11. CloudFormation - Cross vs Nested Stacks
 
@@ -785,7 +785,7 @@
 - `ServiceToken` specifies where CloudFormation sends requests to, such as **Lambda ARN** or **SNS ARN** (required & must be in the same region).
 - Input data parameters (optional).
 
-![AWS CloudFormation Custom Resources](/Images/AWSCloudFormationCustomResources.png)
+![AWS CloudFormation Custom Resources](/Images/Management%20&%20Governance/AWSCloudFormationCustomResources.png)
 
 ## 13.2. Use cases
 
@@ -794,7 +794,7 @@
 - You can't delete a non-empty S3 bucket.
 - To delete a non-empty S3 bucket, you must first delete all the objects inside it.
 
-![AWS CloudFormation Custom Resource Non-empty S3 bucket case](/Images/AWSCloudFormationCustomResourceNonEmptyS3Bucket.png)
+![AWS CloudFormation Custom Resource Non-empty S3 bucket case](/Images/Management%20&%20Governance/AWSCloudFormationCustomResourceNonEmptyS3Bucket.png)
 
 # 14. Service Role
 
@@ -806,7 +806,7 @@
   - But you don't want to give the user all the required permissions to create the stack resources.
 - User must have `iam:PassRole` permissions.
 
-![Service Role](/Images/AWSCloudFormationServiceRole.png)
+![Service Role](/Images/Management%20&%20Governance/AWSCloudFormationServiceRole.png)
 
 # 15. CloudFormation Capabilities
 
@@ -876,7 +876,7 @@
 - When you update a stack set, all associated stack instances are updated throughout all accounts and regions.
 - Regional service.
 - Can be applied into all accounts of an AWS organizations.
-  ![CloudFormation StackSet](/Images/AWSCloudFormationStackSet.png)
+  ![CloudFormation StackSet](/Images/Management%20&%20Governance/AWSCloudFormationStackSet.png)
 
 ## 18.1. StackSet Operations
 

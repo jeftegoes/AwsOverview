@@ -25,7 +25,8 @@
 - [11. Enhanced Monitoring](#11-enhanced-monitoring)
 - [12. CloudFormation](#12-cloudformation)
 - [13. RDS](#13-rds)
-- [14. Summary](#14-summary)
+- [14. DB Engine Maintenance](#14-db-engine-maintenance)
+- [15. Summary](#15-summary)
 
 # 1. Introduction
 
@@ -268,7 +269,14 @@
 - **No SSH available** except on RDS Custom.
 - **Audit Logs can be enabled** and sent to CloudWatch Logs for longer retention.
 
-# 14. Summary
+# 14. DB Engine Maintenance
+
+- Upgrading the database engine version **requires downtime**.
+- In Multi-AZ deployments, both primary and standby instances are upgraded at the same time.
+- Downtime lasts until the upgrade process is complete.
+- The duration of downtime depends on the size of the DB instance.
+
+# 15. Summary
 
 - Managed PostgreSQL / MySQL / Oracle / SQL Server / DB2 / MariaDB / Custom.
 - Provisioned RDS Instance Size and EBS Volume Type & Size.

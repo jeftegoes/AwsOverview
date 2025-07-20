@@ -220,13 +220,11 @@
 
 # 7. How to SSH into your EC2 Instance
 
-- Windows:
-
+- **Windows**
   - Configure pem file
     ![Permission Propertie Aws PemFile](/Images//PermissionPropertieAwsPemFile.png)
   - Command
     - ssh -i D:\MY_PENFILE.pem ec2-user@PUBLIC_IP.
-
 - Generate a public SSH key from a private SSH key. Then, import the key into each of your AWS Regions.
 - Here is the correct way of reusing SSH keys in your AWS Regions:
   1. Generate a public SSH key (.pub) file from the private SSH key (.pem) file.

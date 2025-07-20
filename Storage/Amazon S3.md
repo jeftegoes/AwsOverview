@@ -73,7 +73,8 @@
   - [31.1. Access Points - VPC Origin](#311-access-points---vpc-origin)
 - [32. S3 Object Lambda](#32-s3-object-lambda)
 - [33. Shared Responsibility Model for S3](#33-shared-responsibility-model-for-s3)
-- [34. Summary](#34-summary)
+- [34. S3 Sync Command](#34-s3-sync-command)
+- [35. Summary](#35-summary)
 
 # 1. Introduction
 
@@ -790,7 +791,20 @@
   - S3 Storage Classes
   - Data encryption at rest and in transit
 
-# 34. Summary
+# 34. S3 Sync Command
+
+- **Purpose**: Copies objects between Amazon S3 buckets using the **CopyObject** API.
+- **How it works**:
+  - Compares source and target buckets.
+  - **Copies objects that**
+    - Are **missing** in the target bucket.
+    - Have **different LastModified** timestamps.
+- **Example usage**
+  ```bash
+    aws s3 sync s3://DOC-EXAMPLE-BUCKET-SOURCE s3://DOC-EXAMPLE-BUCKET-TARGET
+  ```
+
+# 35. Summary
 
 - S3 is a... key / value store for objects.
 - Great for bigger objects, not so great for many small objects.
