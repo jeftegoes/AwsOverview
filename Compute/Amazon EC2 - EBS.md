@@ -14,9 +14,9 @@
     - [6.1.2. Provisioned IOPS (PIOPS) SSD](#612-provisioned-iops-piops-ssd)
     - [6.1.3. Hard Disk Drives (HDD)](#613-hard-disk-drives-hdd)
     - [6.1.4. EBS Multi-Attach - io1/io2 family](#614-ebs-multi-attach---io1io2-family)
-  - [6.2. EBS Encryption](#62-ebs-encryption)
-    - [6.2.1. Encryption: encrypt an unencrypted EBS volume](#621-encryption-encrypt-an-unencrypted-ebs-volume)
-- [7. Shared Responsibility Model for EC2 Storage](#7-shared-responsibility-model-for-ec2-storage)
+- [7. EBS Encryption](#7-ebs-encryption)
+  - [7.1. Encryption: encrypt an unencrypted EBS volume](#71-encryption-encrypt-an-unencrypted-ebs-volume)
+- [8. Shared Responsibility Model for EC2 Storage](#8-shared-responsibility-model-for-ec2-storage)
 
 # 1. Introduction
 
@@ -141,7 +141,7 @@
 - **Up to 16 EC2 Instances at a time.**
 - Must use a file system that's cluster-aware (not XFS, EX4, etc...).
 
-## 6.2. EBS Encryption
+# 7. EBS Encryption
 
 - When we create an encrypted EBS volume, we get the following:
   - Data at rest is encrypted inside the volume.
@@ -154,14 +154,14 @@
 - Copying an unencrypted snapshot allows encryption.
 - Snapshots of encrypted volumes are encrypted.
 
-### 6.2.1. Encryption: encrypt an unencrypted EBS volume
+## 7.1. Encryption: encrypt an unencrypted EBS volume
 
 1. Create an EBS snapshot of the volume.
 2. Encrypt the EBS snapshot (using copy).
 3. Create new ebs volume from the snapshot (the volume will also be encrypted).
 4. Now we can attach the encrypted volume to the original instance.
 
-# 7. Shared Responsibility Model for EC2 Storage
+# 8. Shared Responsibility Model for EC2 Storage
 
 - **AWS**
   - Infrastructure.

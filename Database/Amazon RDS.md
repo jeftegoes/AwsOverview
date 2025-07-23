@@ -11,7 +11,7 @@
   - [5.1. Use Cases](#51-use-cases)
   - [5.2. Network Cost](#52-network-cost)
 - [6. Disaster Recovery](#6-disaster-recovery)
-  - [6.1. Multi AZ](#61-multi-az)
+  - [6.1. Multi-AZ](#61-multi-az)
   - [6.2. From Single-AZ to Multi-AZ](#62-from-single-az-to-multi-az)
 - [7. RDS Custom](#7-rds-custom)
 - [8. Security - Encryption](#8-security---encryption)
@@ -48,7 +48,7 @@
   - Continuous backups and restore to specific timestamp (Point in Time Restore)!
   - Monitoring dashboards.
   - Read replicas for improved read performance.
-  - Multi AZ setup for DR (Disaster Recovery).
+  - Multi-AZ setup for DR (Disaster Recovery).
   - Maintenance windows for upgrades.
   - Scaling capability (vertical and horizontal).
   - Storage backed by EBS (gp2 or io1).
@@ -117,7 +117,7 @@
 | Manual Snapshots  | Better | Good   | Medium | Cross-Region  |
 | Read Replicas     | Best   | Best   | High   | Cross-Region  |
 
-## 6.1. Multi AZ
+## 6.1. Multi-AZ
 
 - **SYNC** replication.
 - One DNS name - automatic app failover to standby.
@@ -127,7 +127,7 @@
 - Not used for scaling.
 - Multi-AZ replication is free.
 - **Note:** The Read Replicas be setup as Multi-AZ for Disaster Recovery (DR).
-  ![Multi AZ](/Images/Database/AmazonRDSMultiAZ.png)
+  ![Multi-AZ](/Images/Database/AmazonRDSMultiAZ.png)
 
 ## 6.2. From Single-AZ to Multi-AZ
 
@@ -281,7 +281,7 @@
 - Managed PostgreSQL / MySQL / Oracle / SQL Server / DB2 / MariaDB / Custom.
 - Provisioned RDS Instance Size and EBS Volume Type & Size.
 - Auto-scaling capability for Storage.
-- Support for Read Replicas and Multi AZ.
+- Support for Read Replicas and Multi-AZ.
 - Security through IAM, Security Groups, KMS , SSL in transit.
 - Automated Backup with Point in time restore feature (up to 35 days).
 - Manual DB Snapshot for longer-term recovery.

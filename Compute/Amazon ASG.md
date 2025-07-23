@@ -25,6 +25,7 @@
 - [15. Terraform details](#15-terraform-details)
 - [16. ASG and EC2 Impaired status](#16-asg-and-ec2-impaired-status)
 - [17. Scaling Based on Amazon SQS](#17-scaling-based-on-amazon-sqs)
+- [18. Health Checks](#18-health-checks)
 
 # 1. Introduction
 
@@ -257,3 +258,8 @@
 # 17. Scaling Based on Amazon SQS
 
 ![Scaling Based on Amazon SQS](/Images/Compute/AmazonEC2ASGScalingBasedSQS.png)
+
+# 18. Health Checks
+
+- Amazon EC2 Auto Scaling continuously monitors instance health using EC2 health checks.
+- If an instance is terminated or becomes impaired, Auto Scaling automatically replaces it to maintain the desired capacity.

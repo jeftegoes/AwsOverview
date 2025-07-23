@@ -188,8 +188,8 @@
 - A feature in **AWS Billing and Cost Management**.
 - Consolidates cost-saving **recommendations across accounts and Regions**.
 - **Helps identify and act on**
-  - Resource rightsizing
-  - Idle resource deletion
-  - Savings Plans
-  - Reserved Instances
+  - Resource rightsizing.
+  - Idle resource deletion.
+  - Savings Plans.
+  - Reserved Instances.
 - Offers a **centralized dashboard**, reducing the need to check multiple services for cost opportunities.

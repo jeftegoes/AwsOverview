@@ -25,7 +25,7 @@
   - [17.3. Benefits](#173-benefits)
   - [17.4. Common Use Cases](#174-common-use-cases)
   - [17.5. Limitations](#175-limitations)
-- [18. ## Amazon Aurora I/O-Optimized Summary](#18--amazon-aurora-io-optimized-summary)
+- [18. Amazon Aurora I/O-Optimized Summary](#18-amazon-aurora-io-optimized-summary)
   - [18.1. Key Benefits](#181-key-benefits)
 - [19. Summary](#19-summary)
 
@@ -218,7 +218,7 @@
 - Not all SQL Server features are supported.
 - Review AWS documentation for detailed limitations.
 
-# 18. ## Amazon Aurora I/O-Optimized Summary
+# 18. Amazon Aurora I/O-Optimized Summary
 
 - **Aurora I/O-Optimized** is a new cluster configuration designed for **I/O-intensive applications** like:
   - E-commerce platforms.
