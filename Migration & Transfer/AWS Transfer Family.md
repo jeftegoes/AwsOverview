@@ -6,7 +6,7 @@
 
 # 1. Introduction
 
-- A fully-managed service for file transfers into and out of Amazon S3 or Amazon EFS using the FTP protocol.
+- A fully-managed service for file transfers into and out **ONLY** of [Amazon S3](/Storage/Amazon%20S3.md) or [Amazon EFS](/Storage/Amazon%20EFS.md) using the FTP protocol.
 - **Supported Protocols**
   - **AWS Transfer for FTP** (File Transfer Protocol (FTP)).
   - **AWS Transfer for FTPS** (File Transfer Protocol over SSL (FTPS)).

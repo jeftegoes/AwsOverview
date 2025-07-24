@@ -36,7 +36,7 @@
 - **S3 Glacier:** Object Archival.
 - **EBS volumes:** Network storage for one EC2 instance at a time.
 - **Instance Storage:** Physical storage for your EC2 instance (high IOPS).
-- EFS: Network File System for Linux instances, POSIX filesystem.
+- **EFS:** Network File System for Linux instances, POSIX filesystem.
 - **FSx for Windows:** Network File System for Windows servers.
 - **FSx for Lustre:** High Performance Computing Linux file system.
 - **FSx for NetApp ONTAP:** High OS Compatibility.

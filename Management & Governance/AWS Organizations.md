@@ -4,6 +4,7 @@
 
 - [1. Introduction](#1-introduction)
   - [1.1. Advantages](#11-advantages)
+  - [1.2. Security](#12-security)
 - [2. OrganizationAccountAccessRole](#2-organizationaccountaccessrole)
 - [3. Multi account strategies](#3-multi-account-strategies)
 - [4. Feature Modes](#4-feature-modes)
@@ -33,10 +34,13 @@
 - Enable CloudTrail on all accounts, send logs to central S3 account.
 - Send CloudWatch Logs to central logging account.
 - Establish Cross Account Roles for Admin purposes.
-- **Security: Service Control Policies (SCP)**
-  - IAM policies applied to OU or Accounts to restrict Users and Roles.
-  - They do not apply to the management account (full admin power).
-  - Must have an explicit allow from the root through each OU in the direct path to the target account (does not allow anything by default - like IAM).
+
+## 1.2. Security
+
+- Service Control Policies = SCP.
+- IAM policies applied to OU or Accounts to restrict Users and Roles.
+- They do not apply to the management account (full admin power).
+- Must have an explicit allow from the root through each OU in the direct path to the target account (does not allow anything by default - like IAM).
 
 # 2. OrganizationAccountAccessRole
 
@@ -48,23 +52,19 @@
 
 # 3. Multi account strategies
 
-- Create accounts per:
-  - **Department**
-  - **Cost center**
-  - **Dev / test / prod**
+- **Create accounts per**
+  - Department.
+  - Cost center.
+  - Dev / test / prod.
   - Based on **regulatory restrictions** (using SCP), for **better resource isolation** (ex: VPC), to have **separate per-account service limits**, isolated account for **logging**.
-- Multi Account vs One Account Multi VPC.
-- Use tagging standards for billing purposes.
-- Enable CloudTrail on all accounts, send logs to central S3 account.
-- Send CloudWatch Logs to central logging account.
 - Strategy to create an account for security.
 
 # 4. Feature Modes
 
-- Consolidated billing features:
+- **Consolidated billing features**
   - Consolidated Billing across all accounts - single payment method.
   - Pricing benefits from aggregated usage (volume discount for EC2, S3...).
-- All Features (Default):
+- **All Features (Default)**
   - Includes consolidated billing features, SCP.
   - Invited accounts must approve enabling all features.
   - Ability to apply an SCP to prevent member accounts from leaving the org.
@@ -94,7 +94,7 @@
 - The SCP does not affect service-linked roles.
   - Service-linked roles enable other AWS services to integrate with AWS Organizations and can't be restricted by SCPs.
 - SCP must have an explicit Allow (does not allow anything by default).
-- If a user or role has an IAM permission policy that grants access to an action that is either not allowed or explicitly denied by the applicable service control policy (SCP), the user or role can't perform that action
+- If a user or role has an IAM permission policy that grants access to an action that is either not allowed or explicitly denied by the applicable service control policy (SCP), the user or role can't perform that action.
 - **Use cases**
   - Restrict access to certain services (for example: can't use EMR).
   - Enforce PCI compliance by explicitly disabling services.

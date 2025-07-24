@@ -1,11 +1,12 @@
-# AWS Resource Groups and Tagging <!-- omit in toc -->
+# AWS Resource Groups <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
 - [2. AWS Tag Editor](#2-aws-tag-editor)
 - [3. AWS Tags](#3-aws-tags)
-- [4. Resource Groups](#4-resource-groups)
+- [4. AWS Tag Policies](#4-aws-tag-policies)
+- [5. Resource Groups](#5-resource-groups)
 
 # 1. Introduction
 
@@ -35,7 +36,15 @@
   - Cost allocation.
 - Better to have too many tags than too few!
 
-# 4. Resource Groups
+# 4. AWS Tag Policies
+
+- **AWS Tag Policies** are managed via **AWS Organizations**.
+- They define rules for **tag keys and values** to enforce consistency.
+- Tag policies do **not block resource creation**, but:
+  - They **flag noncompliant resources**.
+  - Help improve **tagging visibility** and **standardization** across accounts.
+
+# 5. Resource Groups
 
 - Create, view or manage logical group of resources thanks to tags.
 - Allows creation of logical groups of resources such as:
