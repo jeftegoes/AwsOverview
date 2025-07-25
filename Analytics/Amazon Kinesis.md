@@ -26,7 +26,9 @@
   - [9.1. Kinesis](#91-kinesis)
   - [9.2. SQS](#92-sqs)
   - [9.3. Kinesis vs SQS ordering](#93-kinesis-vs-sqs-ordering)
-- [10. SQS vs SNS vs Kinesis](#10-sqs-vs-sns-vs-kinesis)
+- [10. Using Enhanced Fan-out with Kinesis](#10-using-enhanced-fan-out-with-kinesis)
+- [11. Batch Messages](#11-batch-messages)
+- [12. SQS vs SNS vs Kinesis](#12-sqs-vs-sns-vs-kinesis)
 
 # 1. Introduction
 
@@ -139,7 +141,7 @@
 - Track other workers and share the work amongst shards using DynamoDB.
 - KCL can run on EC2, Elastic Beanstalk, and on-premises.
 - Records are read in order at the shard level.
-- Versions:
+- **Versions**
   - KCL 1.x (supports shared consumer).
   - KCL 2.x (supports shared & enhanced fan-out consumer).
 
@@ -256,7 +258,26 @@
   - You can have up to 100 Consumers (due to the 100 Group ID).
   - You have up to 300 messages per second (or 3000 if using batching).
 
-# 10. SQS vs SNS vs Kinesis
+# 10. Using Enhanced Fan-out with Kinesis
+
+- **Enhanced Fan-out** allows consumers to receive data from Amazon Kinesis with lower latency and higher throughput.
+- The simplest way to use it is via **Kinesis Client Library (KCL) 2.0**.
+- **Automatic registration** as a stream consumer.
+- Uses **SubscribeToShard API** to subscribe to shards.
+- Automatically reconnects when connections drop.
+- **Checkpointing and state management** are handled via a **DynamoDB table** created in your AWS account.
+
+TODO: DIAGRAM -> https://aws.amazon.com/blogs/aws/kds-enhanced-fanout/
+
+# 11. Batch Messages
+
+- For applications sending many records per second (RPS) to Amazon Kinesis, using `PutRecord` in a loop is inefficient.
+- **Problem:** High overhead and poor throughput with individual `PutRecord` calls.
+  - This can cause a `ProvisionedThroughputExceededException` when shard limits are exceeded.
+- **Solution:** Use `PutRecords` to batch records and implement parallel HTTP requests.
+- **Benefit:** Improves efficiency and maximizes shard utilization, reducing the chance of throughput exceptions.
+
+# 12. SQS vs SNS vs Kinesis
 
 | SQS                                             | SNS                                                   | Kinesis                                                   |
 | ----------------------------------------------- | ----------------------------------------------------- | --------------------------------------------------------- |

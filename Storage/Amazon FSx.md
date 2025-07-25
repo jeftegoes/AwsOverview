@@ -93,6 +93,8 @@
 - Snapshots, replication, low-cost, compression and data de-duplication.
 - **Point-in-time instantaneous cloning (helpful for testing new workloads).**
 
+TODO: DIAGRAM
+
 # 7. Amazon FSx for OpenZFS
 
 - Managed OpenZFS file system on AWS.
@@ -108,3 +110,5 @@
 - Up to 1,000,000 IOPS with < 0.5ms latency.
 - Snapshots, compression and low-cost.
 - **Point-in-time instantaneous cloning (helpful for testing new workloads).**
+
+TODO: DIAGRAM

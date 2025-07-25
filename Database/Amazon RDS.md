@@ -26,6 +26,7 @@
 - [12. CloudFormation](#12-cloudformation)
 - [13. RDS](#13-rds)
 - [14. DB Engine Maintenance](#14-db-engine-maintenance)
+  - [14.1. Multi-AZ Failover](#141-multi-az-failover)
 - [15. Summary](#15-summary)
 
 # 1. Introduction
@@ -275,6 +276,17 @@
 - In Multi-AZ deployments, both primary and standby instances are upgraded at the same time.
 - Downtime lasts until the upgrade process is complete.
 - The duration of downtime depends on the size of the DB instance.
+
+## 14.1. Multi-AZ Failover
+
+- Amazon RDS provides high availability and failover using **Multi-AZ deployments**.
+- Multi-AZ deploys a **synchronous standby replica** in a different Availability Zone for:
+  - Data redundancy.
+  - Minimizing latency spikes during backups.
+  - Enhancing availability during maintenance or failures.
+- Failover is **automatic**, requiring no administrative action.
+- During failover, the **CNAME record is updated** to point to the standby, which becomes the new primary.
+  - This ensures the **database URL remains the same** and failover is seamless.
 
 # 15. Summary
 
