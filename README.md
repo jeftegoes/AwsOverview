@@ -84,7 +84,6 @@
     - [15.3.5. Storage Pricing - EBS](#1535-storage-pricing---ebs)
     - [15.3.6. Database Pricing - RDS](#1536-database-pricing---rds)
     - [15.3.7. Content Delivery - CloudFront](#1537-content-delivery---cloudfront)
-      - [15.3.7.1. Networking Costs in AWS per GB - Simplified](#15371-networking-costs-in-aws-per-gb---simplified)
     - [15.3.8. Savings Plan](#1538-savings-plan)
   - [15.4. AWS Compute Optimizer](#154-aws-compute-optimizer)
   - [15.5. Billing and Costing Tools](#155-billing-and-costing-tools)
@@ -810,11 +809,6 @@
 - Aggregated for each edge location, then applied to your bill.
 - Data Transfer Out (volume discount).
 - Number of HTTP/HTTPS requests.
-
-#### 15.3.7.1. Networking Costs in AWS per GB - Simplified
-
-- Use Private IP instead of Public IP for good savings and better network performance.
-- Use same AZ for maximum savings (at the cost of high availability).
 
 ### 15.3.8. Savings Plan
 

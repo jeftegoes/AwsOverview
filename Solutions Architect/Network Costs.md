@@ -18,6 +18,8 @@
 - Try to keep as much internet traffic within AWS to minimize costs.
 - Direct Connect location that are co-located in the same AWS Region result in lower cost for egress network.
 
+TODO: DIAGRAM
+
 # 3. S3 Data Transfer Pricing - Analysis for USA
 
 - **S3 ingress:** Free.
@@ -30,3 +32,5 @@
   - Caching capability (lower latency).
   - Reduce costs associated with S3 Requests Pricing (7x cheaper with CloudFront).
 - **S3 Cross Region Replication:** $0.02 per GB.
+
+TODO: DIAGRAM

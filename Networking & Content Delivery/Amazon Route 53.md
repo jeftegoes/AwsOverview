@@ -244,7 +244,11 @@
 
 ## 5.4. Failover (Active-Passive)
 
-![Amazon Route53 Failover Policie](/Images/Networking%20&%20Content%20Delivery/AmazonRoute53FailoverPolicie.png)
+- Use **active-passive failover** when a primary resource should handle traffic most of the time, with a secondary resource on standby.
+- **Route 53** responds to DNS queries with only **healthy primary resources**.
+- If all primary resources become **unhealthy**, Route 53 automatically switches to respond with the **healthy secondary resources**.
+- This ensures high availability and automatic DNS-based failover.
+  ![Amazon Route53 Failover Policie](/Images/Networking%20&%20Content%20Delivery/AmazonRoute53FailoverPolicie.png)
 
 ## 5.5. Geolocation
 

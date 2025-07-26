@@ -8,6 +8,7 @@
 - [3. Encryption](#3-encryption)
 - [4. Resiliency](#4-resiliency)
 - [5. Virtual Interfaces (VIF)](#5-virtual-interfaces-vif)
+- [6. Data Transfer Out (DTO) over AWS Direct Connect](#6-data-transfer-out-dto-over-aws-direct-connect)
 
 # 1. Direct Connect (DX)
 
@@ -58,3 +59,11 @@
   - **Public virtual interface:** A public virtual interface can access all AWS public services using public IP addresses.
 - **Transit virtual interface (VIF):** A transit virtual interface should be used to access one or more Amazon VPC Transit Gateways associated with Direct Connect gateways.
 - We can use **transit virtual interfaces** with any **AWS Direct Connect** dedicated or hosted connection of any speed.
+
+# 6. Data Transfer Out (DTO) over AWS Direct Connect
+
+- **DTO** refers to the total amount of data sent **out of AWS** via an **AWS Direct Connect** location.
+- It is **charged per gigabyte (GB)**, based on **data volume**, not speed.
+- **Pricing varies** depending on the AWS Region, Local Zone, and Direct Connect location.
+- **Important:** Direct Connect transfers data to your on-premises location, **not over the internet**.
+- For internet-based DTO charges, see the [EC2 pricing page](https://aws.amazon.com/directconnect/pricing/).

@@ -266,8 +266,7 @@
 - Uses **SubscribeToShard API** to subscribe to shards.
 - Automatically reconnects when connections drop.
 - **Checkpointing and state management** are handled via a **DynamoDB table** created in your AWS account.
-
-TODO: DIAGRAM -> https://aws.amazon.com/blogs/aws/kds-enhanced-fanout/
+  ![Using Enhanced Fan-out with Kinesis](/Images/Analytics/AmazonKinesisEnchancedFanOut.png)
 
 # 11. Batch Messages
 

@@ -15,9 +15,9 @@
 
 - Amazon FSx for Lustre makes it easy and cost-effective to launch and run the world's most popular high-performance file system.
 - It is used for workloads such as machine learning, high-performance computing (HPC), video processing, and financial modeling.
-- The open-source Lustre file system is designed for applications that require fast storage - where you want your storage to keep up with your compute.
+- The open-source Lustre file system is designed for applications that require fast storage - where we want our storage to keep up with our compute.
 - FSx for Lustre integrates with Amazon S3, making it easy to process data sets with the Lustre file system.
-  - When linked to an S3 bucket, an FSx for Lustre file system transparently presents S3 objects as files and allows you to write changed data back to S3.
+  - When linked to an S3 bucket, an FSx for Lustre file system transparently presents S3 objects as files and allows we to write changed data back to S3.
 
 # 2. Amazon FSx
 
@@ -40,7 +40,7 @@
 - **Storage Options**
   - **SSD:** Latency sensitive workloads (databases, media processing, data analytics, ...).
   - **HDD:** Broad spectrum of workloads (home directory, CMS, ...).
-- Can be accessed from your on-premises infrastructure (VPN or Direct Connect).
+- Can be accessed from our on-premises infrastructure (VPN or Direct Connect).
 - Can be configured to be Multi-AZ (high availability).
 - Data is backed-up daily to S3.
 
@@ -92,8 +92,7 @@
 - Storage shrinks or grows automatically.
 - Snapshots, replication, low-cost, compression and data de-duplication.
 - **Point-in-time instantaneous cloning (helpful for testing new workloads).**
-
-TODO: DIAGRAM
+  ![Amazon FSx for NetApp ONTAP](/Images/Storage/AmazonFSxNetAppONTAP.png)
 
 # 7. Amazon FSx for OpenZFS
 
@@ -110,5 +109,4 @@ TODO: DIAGRAM
 - Up to 1,000,000 IOPS with < 0.5ms latency.
 - Snapshots, compression and low-cost.
 - **Point-in-time instantaneous cloning (helpful for testing new workloads).**
-
-TODO: DIAGRAM
+  ![Amazon FSx for NetApp ONTAP](/Images/Storage/AmazonFSxOpenZFS.png)
