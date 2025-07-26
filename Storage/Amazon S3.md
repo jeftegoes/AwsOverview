@@ -17,7 +17,7 @@
 - [6. Static Website Hosting](#6-static-website-hosting)
 - [7. Versioning](#7-versioning)
 - [8. Replication (CRR \& SRR)](#8-replication-crr--srr)
-  - [8.1. Replication (Notes)](#81-replication-notes)
+  - [8.1. Notes](#81-notes)
 - [9. Storage Classes](#9-storage-classes)
   - [9.1. Durability and Availability](#91-durability-and-availability)
   - [9.2. S3 Standard - General Purposes](#92-s3-standard---general-purposes)
@@ -74,7 +74,8 @@
 - [32. S3 Object Lambda](#32-s3-object-lambda)
 - [33. Shared Responsibility Model for S3](#33-shared-responsibility-model-for-s3)
 - [34. S3 Sync Command](#34-s3-sync-command)
-- [35. Summary](#35-summary)
+- [35. Read-After-Write Consistency](#35-read-after-write-consistency)
+- [36. Summary](#36-summary)
 
 # 1. Introduction
 
@@ -229,18 +230,19 @@
 # 8. Replication (CRR & SRR)
 
 - **Must enable versioning** in source and destination.
-- **Cross Region Replication (CRR).**
-- **Same Region Replication (SRR).**
+- **Cross-Region Replication (CRR).**
+- **Same-Region Replication (SRR).**
 - Buckets can be in different accounts.
 - Copying is asynchronous.
 - Must give proper IAM permissions to S3.
 - **Use cases**
   - **CRR:** Compliance, lower latency access, replication across accounts.
   - **SRR:** Log aggregation, live replication between production and test accounts.
+    ![Cross-Region Replication](/Images/Storage/AmazonS3Replication.png)
 
-## 8.1. Replication (Notes)
+## 8.1. Notes
 
-- After you enable Replication, only new objects are replicated.
+- After you **enable Replication**, only new objects are replicated.
 - Optionally, you can replicate existing objects using **S3 Batch Replication**.
   - Replicates existing objects and objects that failed replication.
 - **For DELETE operations**
@@ -711,7 +713,7 @@
 - That data can be analyzed using data analysis tools...
 - The target logging bucket must be in the same AWS region.
 - Very helpful to come down to the root cause of an issue, or audit usage, view suspicious patterns, etc...
-- The log format is at: https://docs.aws.amazon.com/AmazonS3/latest/dev/LogFormat.html
+- **The log format is at:** https://docs.aws.amazon.com/AmazonS3/latest/dev/LogFormat.html
 
 ## 27.1. Access Logs WARNING
 
@@ -804,7 +806,15 @@
     aws s3 sync s3://DOC-EXAMPLE-BUCKET-SOURCE s3://DOC-EXAMPLE-BUCKET-TARGET
   ```
 
-# 35. Summary
+# 35. Read-After-Write Consistency
+
+- **Amazon S3 provides strong read-after-write consistency** automatically and at no extra cost.
+- After a **successful write or overwrite**, any **immediate read** returns the **latest version** of the object.
+- **List operations** are also strongly consistent—newly written or deleted objects are immediately reflected.
+- Applies to **GET, PUT, LIST**, and changes to **tags, ACLs, and metadata**.
+- Ensures that **"what you write is what you read"**, supporting use cases that require immediate access to updated objects.
+
+# 36. Summary
 
 - S3 is a... key / value store for objects.
 - Great for bigger objects, not so great for many small objects.

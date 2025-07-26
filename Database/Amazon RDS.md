@@ -92,7 +92,7 @@
 # 5. Read Replicas for read scalability
 
 - Up to 15 Read Replicas.
-- Within AZ, Cross AZ or Cross Region.
+- Within AZ, Cross AZ or Cross-Region.
 - Replication is **ASYNC**, so reads are eventually consistent.
 - Replicas can be promoted to their own DB.
 - Applications must update the connection string to leverage read replicas.

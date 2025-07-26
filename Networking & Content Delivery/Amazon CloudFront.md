@@ -6,7 +6,7 @@
   - [1.1. Origins](#11-origins)
   - [1.2. CloudFront at a high level](#12-cloudfront-at-a-high-level)
   - [1.3. Restricting access to an Amazon S3 origin](#13-restricting-access-to-an-amazon-s3-origin)
-- [2. CloudFront vs S3 Cross Region Replication](#2-cloudfront-vs-s3-cross-region-replication)
+- [2. CloudFront vs S3 Cross-Region Replication](#2-cloudfront-vs-s3-cross-region-replication)
 - [3. Caching](#3-caching)
   - [3.1. Cache Key](#31-cache-key)
   - [3.2. Cache Policy](#32-cache-policy)
@@ -29,6 +29,8 @@
 - [8. Field Level Encryption](#8-field-level-encryption)
 - [9. Real Time Logs](#9-real-time-logs)
 - [10. HTTPS for communication between viewers and CloudFront](#10-https-for-communication-between-viewers-and-cloudfront)
+- [11. CloudFront and ACM Certificate Region Requirement](#11-cloudfront-and-acm-certificate-region-requirement)
+- [12. Origin Access Control (OAC)](#12-origin-access-control-oac)
 
 # 1. Introduction
 
@@ -68,13 +70,13 @@
 - Amazon S3 server-side encryption with AWS KMS (SSE-KMS)
 - Dynamic requests (PUT and DELETE) to Amazon S3
 
-# 2. CloudFront vs S3 Cross Region Replication
+# 2. CloudFront vs S3 Cross-Region Replication
 
 - **CloudFront**
   - Global Edge network.
   - Files are cached for a TTL (maybe a day).
   - **Great for static content that must be available everywhere.**
-- **S3 Cross Region Replication**
+- **S3 Cross-Region Replication**
   - Must be setup for each region we want replication to happen.
   - Files are updated in near real-time.
   - Read only.
@@ -275,3 +277,17 @@
 # 10. HTTPS for communication between viewers and CloudFront
 
 - Change the **Origin Protocol Policy** and **Viewer Protocol Policy**.
+
+# 11. CloudFront and ACM Certificate Region Requirement
+
+- **CloudFront only supports ACM certificates from the `us-east-1` (N. Virginia) Region**.
+- This applies even if your content is hosted in a different Region (e.g., `eu-west-2`).
+- To serve content over **HTTPS with a custom domain**, the **ACM public certificate must be created in `us-east-1`**.
+- The certificate secures HTTPS access through CloudFront.
+
+# 12. Origin Access Control (OAC)
+
+- **Origin Access Control (OAC)** is the **recommended** way to grant CloudFront secure access to S3.
+- It **replaces** the older Origin Access Identity (OAI) method.
+- OAC supports **both read and write** operations.
+- It enables you to **restrict direct access** to the S3 bucket, ensuring only CloudFront can interact with it securely.

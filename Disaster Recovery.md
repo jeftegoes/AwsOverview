@@ -71,14 +71,14 @@
 
 - **Backup**
   - EBS Snapshots, RDS automated backups / Snapshots, etc...
-  - Regular pushes to S3 / S3 IA / Glacier, Lifecycle Policy, Cross Region Replication.
+  - Regular pushes to S3 / S3 IA / Glacier, Lifecycle Policy, Cross-Region Replication.
   - From On-Premise: Snowball or Storage Gateway.
 - **High Availability**
   - Use Route53 to migrate DNS over from Region to Region.
   - RDS Multi-AZ, ElastiCache Multi-AZ, EFS, S3.
   - Site to Site VPN as a recovery from Direct Connect.
 - **Replication**
-  - RDS Replication (Cross Region), AWS Aurora + Global Databases.
+  - RDS Replication (Cross-Region), AWS Aurora + Global Databases.
   - Database replication from on-premise to RDS.
   - Storage Gateway.
 - **Automation**

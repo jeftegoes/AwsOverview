@@ -49,7 +49,7 @@
 - One Aurora Instance takes writes (master).
 - Automated failover for master in less than 30 seconds.
 - Master + up to 15 Aurora Read Replicas serve reads.
-- **Support for Cross Region Replication.**
+- **Support for Cross-Region Replication.**
 
 # 3. Auto Scaling
 
@@ -63,7 +63,7 @@
 
 # 5. Global Aurora
 
-- **Aurora Cross Region Read Replicas**
+- **Aurora Cross-Region Read Replicas**
   - Useful for disaster recovery.
   - Simple to put in place.
 - **Aurora Global Database (recommended)**

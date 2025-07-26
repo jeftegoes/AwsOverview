@@ -31,6 +31,6 @@ TODO: DIAGRAM
 - **CloudFront to Internet:** $0.085 per GB (slightly cheaper than S3).
   - Caching capability (lower latency).
   - Reduce costs associated with S3 Requests Pricing (7x cheaper with CloudFront).
-- **S3 Cross Region Replication:** $0.02 per GB.
+- **S3 Cross-Region Replication:** $0.02 per GB.
 
 TODO: DIAGRAM

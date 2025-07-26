@@ -3,7 +3,8 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. Dashboard \& Analysis](#2-dashboard--analysis)
+- [2. QuickSight Integrations](#2-quicksight-integrations)
+- [3. Dashboard \& Analysis](#3-dashboard--analysis)
 
 # 1. Introduction
 
@@ -17,8 +18,13 @@
 - Integrated with RDS, Aurora, [Amazon Athena](Amazon%20Athena.md), [Amazon Redshift](Amazon%20Redshift.md), [Amazon S3](/Storage/Amazon%20S3.md)...
 - **In-memory computation using SPICE** engine if data is imported into QuickSight.
 - Enterprise edition: Possibility to setup **Column-Level security (CLS)**.
+  ![Amazon QuickSight](/Images/Analytics/AmazonQuickSight.png)
 
-# 2. Dashboard & Analysis
+# 2. QuickSight Integrations
+
+![QuickSight Integrations](/Images/Analytics/AmazonQuickSightIntegrations.png)
+
+# 3. Dashboard & Analysis
 
 - Define Users (standard versions) and Groups (enterprise version)
   - These users & groups only exist within QuickSight, not IAM !!
