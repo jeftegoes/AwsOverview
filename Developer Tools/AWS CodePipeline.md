@@ -45,7 +45,7 @@
 - You can trigger an execution when you **change your source code** or **manually** start the pipeline.
 - You can also trigger an execution through an [Amazon CloudWatch](/Management%20&%20Governance/Amazon%20CloudWatch.md) Events rule that you schedule.
 
-![CodePipeline](/Images/AWSCodePipeline.png)
+![CodePipeline](/Images/Developer%20Tools/AWSCodePipeline.png)
 
 # 4. Artifacts
 
@@ -120,11 +120,11 @@
 # 11. Best practices
 
 - One CodePipeline, One CodeDeploy, Parallel deploy to multiple Deployment Groups.
-  ![Multiple Deployment Groups](/Images/AWSCodePipelineBestPractices_1.png)
+  ![Multiple Deployment Groups](/Images/Developer%20Tools/AWSCodePipelineBestPractices_1.png)
 - **Parallel Actions** using in a Stage using `RunOrder`.
-  ![Multiple Deployment Groups](/Images/AWSCodePipelineBestPractices_2.png)
+  ![Multiple Deployment Groups](/Images/Developer%20Tools/AWSCodePipelineBestPractices_2.png)
 - Deploy to Pre-Prod before Deploying to Prod.
-  ![Multiple Deployment Groups](/Images/AWSCodePipelineBestPractices_3.png)
+  ![Multiple Deployment Groups](/Images/Developer%20Tools/AWSCodePipelineBestPractices_3.png)
 
 - Example using `RunOrder`:
   ```
@@ -170,7 +170,7 @@
 - CodePipeline handles the copying of input artifacts from one AWS Region to the other Regions when performing **cross-region actions**.
   - In your **cross-region actions**, only reference the name of the input artifacts.
 
-![AWS CodePipeline - Multi Region](/Images/AWSCodePipelineMultiRegion.png)
+![AWS CodePipeline - Multi Region](/Images/Developer%20Tools/AWSCodePipelineMultiRegion.png)
 
 # 15. Pipeline executions
 
@@ -191,4 +191,4 @@
   - A custom test action that configures and runs automated tests.
   - A custom invoke action that runs functions.
 
-![Custom Actions](/Images/AWSCodePipelineCustomJobWorker.png)
+![Custom Actions](/Images/Developer%20Tools/AWSCodePipelineCustomJobWorker.png)

@@ -475,7 +475,7 @@
 ## 9.7. Global Applications Architecture
 
 - Single Region, Single AZ.
-- Single Region, Multi AZ.
+- Single Region, Multi-AZ.
 - Multi Region, Active-Passive.
 - Multi Region, Active-Active.
 

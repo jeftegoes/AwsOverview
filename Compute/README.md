@@ -14,7 +14,7 @@
   - [3.5. Scalability vs Elasticity (vs Agility)](#35-scalability-vs-elasticity-vs-agility)
   - [3.6. AWS ELB - Elastic Load Balancing](#36-aws-elb---elastic-load-balancing)
   - [3.7. AWS ASG - Auto Scaling Groups](#37-aws-asg---auto-scaling-groups)
-  - [3.8. Multi AZ in AWS](#38-multi-az-in-aws)
+  - [3.8. Multi-AZ in AWS](#38-multi-az-in-aws)
     - [3.8.1. ELB and ASG - Summary](#381-elb-and-asg---summary)
 - [4. AWS Elastic Beanstalk](#4-aws-elastic-beanstalk)
   - [4.1. Elastic Beanstalk Summary:](#41-elastic-beanstalk-summary)
@@ -83,7 +83,7 @@
 - High Availability usually goes **hand in hand with Horizontal Scaling**.
 - High availability means running your application / system in at least 2 data centers (== Availability Zones).
 - The goal of high availability is to survive a data center loss (disaster).
-- The high availability can be passive (for RDS Multi AZ for example).
+- The high availability can be passive (for RDS Multi-AZ for example).
 - The high availability can be active (for horizontal scaling).
 
 ## 3.4. High Availability and Scalability for EC2
@@ -94,9 +94,9 @@
 - **Horizontal Scaling:** Increase number of instances (= scale out / in).
   - Auto Scaling Group.
   - Load Balancer.
-- **High Availability:** Run instances for the same application across multi AZ.
-  - Auto Scaling Group multi AZ.
-  - Load Balancer multi AZ.
+- **High Availability:** Run instances for the same application across Multi-AZ.
+  - Auto Scaling Group Multi-AZ.
+  - Load Balancer Multi-AZ.
 
 ## 3.5. Scalability vs Elasticity (vs Agility)
 
@@ -114,7 +114,7 @@
 - **Auto Scaling in EC2 allows you to have the right number of instances to handle the application load. Auto Scaling in DynamoDB automatically adjusts read and write throughput capacity, in response to dynamically changing request volumes, with zero downtime. These are both examples of horizontal scaling.**
 - **For each Auto Scaling Group, there's a Cooldown Period after each scaling activity. In this period, the ASG doesn't launch or terminate EC2 instances. This gives time to metrics to stabilize. The default value for the Cooldown Period is 300 seconds (5 minutes).** [AWS ASG](Amazon%20ASG.md)
 
-## 3.8. Multi AZ in AWS
+## 3.8. Multi-AZ in AWS
 
 - Services where Multi-AZ must be enabled manually:
   - EFS, ELB, ASG, Beanstalk: assign AZ.

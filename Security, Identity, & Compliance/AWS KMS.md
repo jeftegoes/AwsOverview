@@ -270,7 +270,7 @@
 
 ## 5.2. High Availability
 
-- CloudHSM clusters are spread across Multi AZ (HA)
+- CloudHSM clusters are spread across Multi-AZ (HA)
 - Great for availability and durability
 
 ## 5.3. Integration with AWS Services

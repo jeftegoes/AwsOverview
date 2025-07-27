@@ -5,43 +5,43 @@
 - [1. Why Monitoring is Important](#1-why-monitoring-is-important)
 - [2. Monitoring in AWS](#2-monitoring-in-aws)
 - [3. Amazon CloudWatch Metrics](#3-amazon-cloudwatch-metrics)
+  - [3.1. Metric Streams](#31-metric-streams)
+  - [3.2. Custom Metrics](#32-custom-metrics)
 - [4. EC2 Detailed monitoring](#4-ec2-detailed-monitoring)
-- [5. Metric Streams](#5-metric-streams)
-- [6. Custom Metrics](#6-custom-metrics)
-- [7. CloudWatch Anomaly Detection](#7-cloudwatch-anomaly-detection)
-- [8. Amazon Lookout for Metrics](#8-amazon-lookout-for-metrics)
-- [9. Logs](#9-logs)
-  - [9.1. Sources](#91-sources)
-- [10. Logs Insights](#10-logs-insights)
-- [11. Logs - S3 Export](#11-logs---s3-export)
-- [12. Subscription Filter](#12-subscription-filter)
-  - [12.1. Scenario with HIDS](#121-scenario-with-hids)
-  - [12.2. Cross-Account Subscription](#122-cross-account-subscription)
-- [13. CloudWatch Logs Aggregation Multi-Account \& Multi Region](#13-cloudwatch-logs-aggregation-multi-account--multi-region)
-- [14. CloudWatch Logs Metric Filter](#14-cloudwatch-logs-metric-filter)
-- [15. CloudWatch cross-account observability](#15-cloudwatch-cross-account-observability)
-- [16. All kind of Logs](#16-all-kind-of-logs)
-  - [16.1. AWS Managed Logs](#161-aws-managed-logs)
-- [17. Logs for EC2](#17-logs-for-ec2)
-  - [17.1. Logs Agent \& Unified Agent](#171-logs-agent--unified-agent)
-    - [17.1.1. Unified Agent - Metrics](#1711-unified-agent---metrics)
-- [18. Logs Metric Filter](#18-logs-metric-filter)
-- [19. CloudWatch Alarms](#19-cloudwatch-alarms)
-  - [19.1. Alarm Targets](#191-alarm-targets)
-  - [19.2. Composite Alarms](#192-composite-alarms)
-  - [19.3. Evaluating an alarm](#193-evaluating-an-alarm)
-  - [19.4. EC2 Instance Recovery](#194-ec2-instance-recovery)
-  - [19.5. CloudWatch Alarm: good to know](#195-cloudwatch-alarm-good-to-know)
-- [20. Synthetics Canary](#20-synthetics-canary)
-  - [20.1. Canary Blueprints](#201-canary-blueprints)
-- [21. CloudWatch Events (Will be replaced with Amazon EventBridge)](#21-cloudwatch-events-will-be-replaced-with-amazon-eventbridge)
-- [22. CloudWatch Evidently](#22-cloudwatch-evidently)
-- [23. Insights](#23-insights)
-  - [23.1. Container](#231-container)
-  - [23.2. Lambda](#232-lambda)
-  - [23.3. Contributor](#233-contributor)
-  - [23.4. Application](#234-application)
-  - [23.5. CloudWatch Insights and Operational Visibility](#235-cloudwatch-insights-and-operational-visibility)
+- [5. CloudWatch Anomaly Detection](#5-cloudwatch-anomaly-detection)
+- [6. Amazon Lookout for Metrics](#6-amazon-lookout-for-metrics)
+- [7. Logs](#7-logs)
+  - [7.1. Sources](#71-sources)
+- [8. Logs Insights](#8-logs-insights)
+- [9. Logs - S3 Export](#9-logs---s3-export)
+- [10. Subscription Filter](#10-subscription-filter)
+  - [10.1. Scenario with HIDS](#101-scenario-with-hids)
+  - [10.2. Cross-Account Subscription](#102-cross-account-subscription)
+- [11. CloudWatch Logs Aggregation Multi-Account \& Multi Region](#11-cloudwatch-logs-aggregation-multi-account--multi-region)
+- [12. CloudWatch Logs Metric Filter](#12-cloudwatch-logs-metric-filter)
+- [13. CloudWatch cross-account observability](#13-cloudwatch-cross-account-observability)
+- [14. All kind of Logs](#14-all-kind-of-logs)
+  - [14.1. AWS Managed Logs](#141-aws-managed-logs)
+- [15. Logs for EC2](#15-logs-for-ec2)
+  - [15.1. Logs Agent \& Unified Agent](#151-logs-agent--unified-agent)
+    - [15.1.1. Unified Agent - Metrics](#1511-unified-agent---metrics)
+- [16. Logs Metric Filter](#16-logs-metric-filter)
+- [17. CloudWatch Alarms](#17-cloudwatch-alarms)
+  - [17.1. Alarm Targets](#171-alarm-targets)
+  - [17.2. Composite Alarms](#172-composite-alarms)
+  - [17.3. Evaluating an alarm](#173-evaluating-an-alarm)
+  - [17.4. EC2 Instance Recovery](#174-ec2-instance-recovery)
+  - [17.5. CloudWatch Alarm: good to know](#175-cloudwatch-alarm-good-to-know)
+- [18. Synthetics Canary](#18-synthetics-canary)
+  - [18.1. Canary Blueprints](#181-canary-blueprints)
+- [19. CloudWatch Events (Will be replaced with Amazon EventBridge)](#19-cloudwatch-events-will-be-replaced-with-amazon-eventbridge)
+- [20. CloudWatch Evidently](#20-cloudwatch-evidently)
+- [21. Insights](#21-insights)
+  - [21.1. Container](#211-container)
+  - [21.2. Lambda](#212-lambda)
+  - [21.3. Contributor](#213-contributor)
+  - [21.4. Application](#214-application)
+  - [21.5. CloudWatch Insights and Operational Visibility](#215-cloudwatch-insights-and-operational-visibility)
 
 # 1. Why Monitoring is Important
 
@@ -87,6 +87,27 @@
 - Can create CloudWatch dashboards of metrics.
 - Can create **CloudWatch Custom Metrics** (for the RAM for example).
 
+## 3.1. Metric Streams
+
+- Continually stream CloudWatch metrics to a destination of your choice, with **near-real-time delivery** and low latency.
+  - Amazon Kinesis Data Firehose (and then its destinations).
+  - **3rd party service provider:** Datadog, Dynatrace, New Relic, Splunk, Sumo Logic...
+- Option to **filter metrics** to only stream a subset of them.
+  ![Amazon CloudWatch Metric Streams](/Images/Management%20&%20Governance/AmazonCloudWatchMetricStreams.png)
+
+## 3.2. Custom Metrics
+
+- Possibility to define and send your own custom metrics to CloudWatch.
+- **Example:** Memory (RAM) usage, disk space, number of logged in users...
+- Use API call `PutMetricData`.
+- Ability to use dimensions (attributes) to segment metrics.
+  - `Instance.id`
+  - `Environment.name`
+- Metric resolution (`StorageResolution` API parameter - two possible value):
+  - **Standard:** 1 minute (60 seconds).
+  - **High Resolution:** 1/5/10/30 second(s) - **Higher cost**.
+- **Important: Accepts metric data points two weeks in the past and two hours in the future (make sure to configure your EC2 instance time correctly).**
+
 # 4. EC2 Detailed monitoring
 
 - EC2 instance metrics have metrics "every 5 minutes".
@@ -95,27 +116,7 @@
 - The AWS Free Tier allows us to have 10 detailed monitoring metrics.
 - Note: EC2 Memory usage is by default not pushed (must be pushed from inside the instance as a custom metric).
 
-# 5. Metric Streams
-
-- Continually stream CloudWatch metrics to a destination of your choice, with **near-real-time delivery** and low latency.
-  - Amazon Kinesis Data Firehose (and then its destinations).
-  - 3rd party service provider: Datadog, Dynatrace, New Relic, Splunk, Sumo Logic...
-- Option to **filter metrics** to only stream a subset of them.
-
-# 6. Custom Metrics
-
-- Possibility to define and send your own custom metrics to CloudWatch.
-- Example: memory (RAM) usage, disk space, number of logged in users...
-- Use API call `PutMetricData`.
-- Ability to use dimensions (attributes) to segment metrics.
-  - `Instance.id`
-  - `Environment.name`
-- Metric resolution (`StorageResolution` API parameter - two possible value):
-  - Standard: 1 minute (60 seconds).
-  - High Resolution: 1/5/10/30 second(s) - **Higher cost**.
-- **Important: Accepts metric data points two weeks in the past and two hours in the future (make sure to configure your EC2 instance time correctly).**
-
-# 7. CloudWatch Anomaly Detection
+# 5. CloudWatch Anomaly Detection
 
 - Continuously analyze metrics to determine normal baselines and surface anomalies using ML algorithms.
 - It creates a model of the metric's expected values (based on metric's past data).
@@ -123,14 +124,14 @@
 - **Allows we to create Alarms based on metric's expected value (instead of Static Threshold).**
 - Ability to exclude specified time periods or events from being trained.
 
-# 8. Amazon Lookout for Metrics
+# 6. Amazon Lookout for Metrics
 
 - Automatically detect anomalies within metrics and identify their root causes using Machine Learning.
 - It detects and diagnoses errors within your data with no manual intervention.
 - Integrates with different AWS Services and 3rd party SaaS apps through AppFlow.
 - Send alerts to SNS, Lambda, Slack, Webhooks...
 
-# 9. Logs
+# 7. Logs
 
 - **Log groups:** Arbitrary name, usually representing an application.
 - **Log stream:** Instances within application / log files / containers.
@@ -144,7 +145,7 @@
 - Logs are encrypted by default.
 - Can setup KMS-based encryption with your own keys.
 
-## 9.1. Sources
+## 7.1. Sources
 
 - SDK, CloudWatch Logs Agent, CloudWatch Unified Agent.
 - Elastic Beanstalk: collection of logs from application.
@@ -153,9 +154,9 @@
 - **VPC Flow Logs:** VPC specific logs.
 - API Gateway.
 - CloudTrail based on filter.
-- **Route53:** Log DNS queries.
+- **Route 53:** Log DNS queries.
 
-# 10. Logs Insights
+# 8. Logs Insights
 
 - Search and analyze log data stored in CloudWatch Logs.
 - **Example:** Find a specific IP inside a log, count occurrences of "ERROR" in your logs...
@@ -166,13 +167,13 @@
 - Can query multiple Log Groups in different AWS accounts.
 - It's a query engine, not a real-time engine.
 
-# 11. Logs - S3 Export
+# 9. Logs - S3 Export
 
 - Log data can take **up to 12 hours** to become available for export.
 - The API call is `CreateExportTask`.
 - Not near-real time or real-time... use Logs Subscriptions instead.
 
-# 12. Subscription Filter
+# 10. Subscription Filter
 
 - Get a real-time log events from CloudWatch Logs for processing and analysis.
 - Send to Kinesis Data Streams, Kinesis Data Firehose, or Lambda.
@@ -180,21 +181,21 @@
   ![Amazon CloudWatch Logs Subscriptions](/Images/Management%20&%20Governance/AmazonCloudWatchLogsSubscriptions.png)
   ![Amazon CloudWatch Logs Subscriptions](/Images/Management%20&%20Governance/AmazonCloudWatchSubscriptionFilters.png)
 
-## 12.1. Scenario with HIDS
+## 10.1. Scenario with HIDS
 
 - HIDS = Host-based intrusion detection system.
   ![Amazon CloudWatch Logs Subscriptions with HIDS](/Images/Management%20&%20Governance/AmazonCloudWatchLogsSubscriptionsHIDS.png)
 
-## 12.2. Cross-Account Subscription
+## 10.2. Cross-Account Subscription
 
 - Send log events to resources in a different AWS account (KDS, KDF).
   ![Cross-Account Subscription](/Images/Management%20&%20Governance/AmazonCloudWatchLogsSubscriptionsCrossAccount.png)
 
-# 13. CloudWatch Logs Aggregation Multi-Account & Multi Region
+# 11. CloudWatch Logs Aggregation Multi-Account & Multi Region
 
 ![Logs Aggregation Multi-Account & Multi Region](/Images/Management%20&%20Governance/AmazonCloudWatchLogsAggregation.png)
 
-# 14. CloudWatch Logs Metric Filter
+# 12. CloudWatch Logs Metric Filter
 
 - CloudWatch Logs can use filter expressions.
   - For example, find a specific IP inside of a log.
@@ -204,11 +205,11 @@
   - Ability to specify up to 3 Dimensions for the Metric Filter (optional).
     ![CloudWatch Logs Metric Filter](/Images/Management%20&%20Governance/AmazonCloudWatchLogsMetricFilter.png)
 
-# 15. CloudWatch cross-account observability
+# 13. CloudWatch cross-account observability
 
 ![CloudWatch cross-account observability](/Images/Management%20&%20Governance/AmazonCloudWatchCrossAccountObservability.png)
 
-# 16. All kind of Logs
+# 14. All kind of Logs
 
 - **Application Logs**
   - Logs that are produced by your application code.
@@ -227,7 +228,7 @@
     - Example for httpd: /var/log/apache/access.log
   - Usually for load balancers, proxies, web servers, etc...
 
-## 16.1. AWS Managed Logs
+## 14.1. AWS Managed Logs
 
 - Load Balancer Access Logs (ALB, NLB, CLB) => to S3.
   - Access logs for your Load Balancers.
@@ -242,7 +243,7 @@
 - CloudFront Access Logs => to S3.
   - Detailed information about every user request that CloudFront receives.
 
-# 17. Logs for EC2
+# 15. Logs for EC2
 
 - **By default, no logs from your EC2 machine will go to CloudWatch.**
 - We need to run a **CloudWatch Agent** on EC2 to push the log files we want.
@@ -250,7 +251,7 @@
 - The CloudWatch log agent can be setup on-premises too.
   ![Amazon CloudWatch Logs Agent](/Images/Management%20&%20Governance/AmazonCloudWatchLogsAgent.png)
 
-## 17.1. Logs Agent & Unified Agent
+## 15.1. Logs Agent & Unified Agent
 
 - For virtual servers (EC2 instances, on-premise servers...).
 - **CloudWatch Logs Agent**
@@ -261,7 +262,7 @@
   - Collect logs to send to CloudWatch Logs.
   - Centralized configuration using SSM Parameter Store.
 
-### 17.1.1. Unified Agent - Metrics
+### 15.1.1. Unified Agent - Metrics
 
 - Collected directly on your Linux server / EC2 instance:
   - **CPU:** (active, guest, idle, system, user, steal).
@@ -272,7 +273,7 @@
   - **Swap Space:** (free, used, used %).
   - **Reminder:** Out-of-the box metrics for EC2 - disk, CPU, network (high level).
 
-# 18. Logs Metric Filter
+# 16. Logs Metric Filter
 
 - CloudWatch Logs can use filter expressions.
   - For example, find a specific IP inside of a log.
@@ -280,7 +281,7 @@
   - Metric filters can be used to trigger alarms.
 - Filters do not retroactively filter data. Filters only publish the metric data points for events that happen after the filter was created.
 
-# 19. CloudWatch Alarms
+# 17. CloudWatch Alarms
 
 - Alarms are used to trigger notifications for any metric.
 - Various options (sampling, %, max, min, etc...).
@@ -292,20 +293,20 @@
   - Length of time in seconds to evaluate the metric.
   - **High-Resolution Custom Metrics:** 10 sec, 30 sec or multiples of 60 sec.
 
-## 19.1. Alarm Targets
+## 17.1. Alarm Targets
 
 - Stop, Terminate, Reboot, or Recover an EC2 Instance.
 - Trigger Auto Scaling Action.
 - Send notification to SNS (from which we can do pretty much anything).
 
-## 19.2. Composite Alarms
+## 17.2. Composite Alarms
 
 - CloudWatch Alarms are on a single metric.
 - **Composite Alarms are monitoring the states of multiple other alarms.**
 - AND and OR conditions.
 - Helpful to reduce "alarm noise" by creating complex composite alarms.
 
-## 19.3. Evaluating an alarm
+## 17.3. Evaluating an alarm
 
 - When we create an alarm, we specify three settings to enable CloudWatch to evaluate when to change the alarm state:
   - **Period:** Is the length of time to evaluate the metric or expression to create each individual data point for an alarm. It is expressed in seconds.
@@ -315,7 +316,7 @@
 
 ![Evaluating an alarm](/Images/Management%20&%20Governance/CloudWatchEvaluatingAlarm.png)
 
-## 19.4. EC2 Instance Recovery
+## 17.4. EC2 Instance Recovery
 
 - **Status Check**
   - Instance status = check the EC2 VM.
@@ -323,12 +324,12 @@
   - Attached EBS status = check attached EBS volumes.
 - **Recovery:** Same Private, Public, Elastic IP, metadata, placement group.
 
-## 19.5. CloudWatch Alarm: good to know
+## 17.5. CloudWatch Alarm: good to know
 
 - Alarms can be created based on CloudWatch Logs Metrics Filters.
 - To test alarms and notifications, set the alarm state to Alarm using CLI: `aws cloudwatch set-alarm-state --alarm-name "myalarm" --state-value ALARM --state-reason "testing purposes"`
 
-# 20. Synthetics Canary
+# 18. Synthetics Canary
 
 - Configurable script that monitor your APIs, URLs, Websites, ...
 - Reproduce what your customers do programmatically to find issues before customers are impacted.
@@ -338,7 +339,7 @@
 - Programmatic access to a headless Google Chrome browser.
 - Can run once or on a regular schedule.
 
-## 20.1. Canary Blueprints
+## 18.1. Canary Blueprints
 
 - **Heartbeat Monitor:** Load URL, store screenshot and an HTTP archive file.
 - **API Canary:** Test basic read and write functions of REST APIs.
@@ -347,7 +348,7 @@
 - **Canary Recorder:** Used with CloudWatch Synthetics Recorder (record your actions on a website and automatically generates a script for that).
 - **GUI Workflow Builder:** Verifies that actions can be taken on your webpage (e.g., test a webpage with a login form).
 
-# 21. CloudWatch Events (Will be replaced with Amazon EventBridge)
+# 19. CloudWatch Events (Will be replaced with Amazon EventBridge)
 
 - Event Pattern: Intercept events from AWS services (Sources):
   - Example sources: EC2 Instance Start, CodeBuild Failure, S3, Trusted Advisor.
@@ -361,7 +362,7 @@
 
 [Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md)
 
-# 22. CloudWatch Evidently
+# 20. CloudWatch Evidently
 
 - Safely validate new features by serving them to a specified % of your users.
   - Reduce risk and identify unintended consequences.
@@ -371,9 +372,9 @@
 - **Overrides:** Pre-define a variation for a specific user.
 - Store evaluation events in CloudWatch Logs or S3.
 
-# 23. Insights
+# 21. Insights
 
-## 23.1. Container
+## 21.1. Container
 
 - Collect, aggregate, summarize metrics and logs from containers.
 - Available for containers on...
@@ -383,14 +384,14 @@
   - Fargate (both for ECS and EKS).
 - **In Amazon EKS and Kubernetes, CloudWatch Insights is using a containerized version of the CloudWatch Agent to discover containers.**
 
-## 23.2. Lambda
+## 21.2. Lambda
 
 - Monitoring and troubleshooting solution for serverless applications running on AWS Lambda.
 - Collects, aggregates, and summarizes system-level metrics including CPU time, memory, disk, and network.
 - Collects, aggregates, and summarizes diagnostic information such as cold starts and Lambda worker shutdowns.
 - Lambda Insights is provided as a Lambda Layer.
 
-## 23.3. Contributor
+## 21.3. Contributor
 
 - Analyze log data and create time series that display contributor data.
   - See metrics about the top-N contributors.
@@ -401,7 +402,7 @@
 - We can build your rules from scratch, or we can also use sample rules that AWS has created - **leverages your CloudWatch Logs**.
 - CloudWatch also provides built-in rules that we can use to analyze metrics from other AWS services.
 
-## 23.4. Application
+## 21.4. Application
 
 - **Provides automated dashboards that show potential problems with monitored applications, to help isolate ongoing issues.**
 - Your applications run on Amazon EC2 Instances with select technologies only (Java, .NET, Microsoft IIS Web Server, databases...).
@@ -410,7 +411,7 @@
 - Enhanced visibility into your application health to reduce the time it will take we to troubleshoot and repair your applications.
 - Findings and alerts are sent to Amazon EventBridge and SSM OpsCenter.
 
-## 23.5. CloudWatch Insights and Operational Visibility
+## 21.5. CloudWatch Insights and Operational Visibility
 
 - **CloudWatch Container Insights**
   - ECS, EKS, Kubernetes on EC2, Fargate, needs agent for Kubernetes.

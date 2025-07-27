@@ -1,4 +1,4 @@
-# AWS OpsWorks<!-- omit in toc -->
+# AWS OpsWorks <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -21,7 +21,7 @@
 - Only provision standard AWS resources:
   - EC2 Instances, Databases, Load Balancers, EBS volumes...
 
-![AWS OpsWorks](/Images/AWSOpsWorksGeneralDiagram.png)
+![AWS OpsWorks](/Images/Management%20&%20Governance/AWSOpsWorksGeneralDiagram.png)
 
 # 2. Ohters details
 
@@ -38,7 +38,7 @@
 - Represents a set of instances and applications that you want to manage collectively.
 - E.g Web Server stack may contain a load balancer, server instances and database.
 
-![AWS OpsWorks Stacks](/Images/AWSOpsWorksStacks.png)
+![AWS OpsWorks Stacks](/Images/Management%20&%20Governance/AWSOpsWorksStacks.png)
 
 ## 3.1. Stacks Lifecycle Events
 
@@ -93,7 +93,7 @@
 - AWS OpsWorks Stacks uses that communication to monitor instance health.
 - If an agent does not communicate with the service for more than approximately five minutes, AWS OpsWorks Stacks considers the instance to have failed.
 
-![AutoHealing](/Images/AWSOpsWorksAutoHealing.png)
+![AutoHealing](/Images/Management%20&%20Governance/AWSOpsWorksAutoHealing.png)
 
 - The `initiated_by` field is only populated when the instance is in the **requested**, **terminating**, or **stopping** states.
 - The `initiated_by` field can contain one of the following values.

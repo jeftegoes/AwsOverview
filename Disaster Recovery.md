@@ -74,7 +74,7 @@
   - Regular pushes to S3 / S3 IA / Glacier, Lifecycle Policy, Cross-Region Replication.
   - From On-Premise: Snowball or Storage Gateway.
 - **High Availability**
-  - Use Route53 to migrate DNS over from Region to Region.
+  - Use Route 53 to migrate DNS over from Region to Region.
   - RDS Multi-AZ, ElastiCache Multi-AZ, EFS, S3.
   - Site to Site VPN as a recovery from Direct Connect.
 - **Replication**

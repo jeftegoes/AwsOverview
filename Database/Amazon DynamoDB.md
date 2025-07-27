@@ -644,7 +644,7 @@
 - AWS proprietary technology, managed serverless NoSQL database, millisecond latency.
 - Capacity modes: provisioned capacity with optional auto-scaling or on-demand capacity.
 - Can replace ElastiCache as a key/value store (storing session data for example, using TTL feature).
-- Highly Available, Multi AZ by default, Read and Writes are decoupled, transaction capability.
+- Highly Available, Multi-AZ by default, Read and Writes are decoupled, transaction capability.
 - DAX cluster for read cache, microsecond read latency.
 - Security, authentication and authorization is done through IAM.
 - Event Processing: DynamoDB Streams to integrate with AWS Lambda, or Kinesis Data Streams.

@@ -13,7 +13,7 @@
 - Aurora Global Database (one region is master, other is for Read & DR).
 - EBS volumes snapshots, AMI, RDS snapshots can be copied to other regions.
 - VPC peering to allow private traffic between regions.
-- Route53 uses a global network of DNS servers.
+- Route 53 uses a global network of DNS servers.
 - S3 Cross-Region Replication.
 - CloudFront for Global CDN at the Edge Locations.
 - Lambda@Edge for Global Lambda function at Edge Locations (A/B testing).

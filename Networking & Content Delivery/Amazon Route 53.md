@@ -172,13 +172,14 @@
   2. Health checks that monitor other health checks (Calculated Health Checks).
   3. Health checks that monitor CloudWatch Alarms (full control !!) - e.g., throttles of DynamoDB, alarms on RDS, custom metrics, ... (helpful for private resources).
 - Health Checks are integrated with [Amazon CloudWatch](/Management%20&%20Governance/Amazon%20CloudWatch.md) metrics.
+  ![Amazon Route 53 - Health Checks](/Images/Networking%20&%20Content%20Delivery/AmazonRoute53HealthChecks.png)
 
 ## 4.1. Monitor an Endpoint
 
 - **About 15 global health checkers will check the endpoint health**
   - Healthy/Unhealthy Threshold - 3 (default).
   - Interval - 30 sec (can set to 10 sec - higher cost).
-  - Supported protocol: HTTP, HTTPS and TCP.
+  - **Supported protocol:** HTTP, HTTPS and TCP.
   - If > 18% of health checkers report the endpoint is healthy, Route 53 considers it.**Healthy**.
     - Otherwise, it's **Unhealthy**.
   - Ability to choose which locations we want Route 53 to use.
@@ -248,7 +249,7 @@
 - **Route 53** responds to DNS queries with only **healthy primary resources**.
 - If all primary resources become **unhealthy**, Route 53 automatically switches to respond with the **healthy secondary resources**.
 - This ensures high availability and automatic DNS-based failover.
-  ![Amazon Route53 Failover Policie](/Images/Networking%20&%20Content%20Delivery/AmazonRoute53FailoverPolicie.png)
+  ![Amazon Route 53 Failover Policie](/Images/Networking%20&%20Content%20Delivery/AmazonRoute53FailoverPolicie.png)
 
 ## 5.5. Geolocation
 

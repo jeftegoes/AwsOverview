@@ -8,13 +8,14 @@
   - [2.2. Targets](#22-targets)
 - [3. AWS Schema Conversion Tool (SCT)](#3-aws-schema-conversion-tool-sct)
   - [3.1. Continuous Replication](#31-continuous-replication)
-- [4. Multi-AZ Deployment](#4-multi-az-deployment)
-- [5. RDS \& Aurora MySQL Migrations](#5-rds--aurora-mysql-migrations)
-- [6. RDS \& Aurora PostgreSQL Migrations](#6-rds--aurora-postgresql-migrations)
-- [7. On-Premise strategy with AWS](#7-on-premise-strategy-with-aws)
-- [8. Replication Task Monitoring](#8-replication-task-monitoring)
-- [9. Streaming data from Amazon S3 to Amazon Kinesis](#9-streaming-data-from-amazon-s3-to-amazon-kinesis)
-- [10. CloudWatch Metrics](#10-cloudwatch-metrics)
+- [4. AWS DMS Serverless](#4-aws-dms-serverless)
+- [5. Multi-AZ Deployment](#5-multi-az-deployment)
+- [6. RDS \& Aurora MySQL Migrations](#6-rds--aurora-mysql-migrations)
+- [7. RDS \& Aurora PostgreSQL Migrations](#7-rds--aurora-postgresql-migrations)
+- [8. On-Premise strategy with AWS](#8-on-premise-strategy-with-aws)
+- [9. Replication Task Monitoring](#9-replication-task-monitoring)
+- [10. Streaming data from Amazon S3 to Amazon Kinesis](#10-streaming-data-from-amazon-s3-to-amazon-kinesis)
+- [11. CloudWatch Metrics](#11-cloudwatch-metrics)
 
 # 1. Introduction
 
@@ -62,7 +63,16 @@
 
 ![AWS Database Migration Service - Continuous Replication](/Images/Database/AWSDatabaseMigrationServiceContinuousReplication.png)
 
-# 4. Multi-AZ Deployment
+# 4. AWS DMS Serverless
+
+- AWS DMS Serverless is a feature that provides automatic provisioning, scaling, built-in high availability, and a pay-for-use billing model, to increase operations agility and optimize your costs.
+- **AWS DMS Serverless** is ideal for variable and automated data replication workloads.
+- It **automatically provisions and scales** compute resources based on demand.
+- Supports **ongoing replication**, including **change data capture (CDC)**.
+- Fully managed, reducing the need for manual operations or capacity planning.
+- Eliminates the need to guess or adjust instance sizes manually.
+
+# 5. Multi-AZ Deployment
 
 - When Multi-AZ Enabled, DMS provisions and maintains a synchronously stand replica in a different AZ.
 - **Advantages**
@@ -70,7 +80,7 @@
   - Eliminates I/O freezes.
   - Minimizes latency spikes.
 
-# 5. RDS & Aurora MySQL Migrations
+# 6. RDS & Aurora MySQL Migrations
 
 - RDS MySQL to Aurora MySQL.
   - **Option 1:** DB Snapshots from RDS MySQL restored as MySQL Aurora DB.
@@ -84,7 +94,7 @@
     - Use the mysqldump utility to migrate MySQL into Aurora (slower than S3 method).
 - Use DMS if both databases are up and running.
 
-# 6. RDS & Aurora PostgreSQL Migrations
+# 7. RDS & Aurora PostgreSQL Migrations
 
 - RDS PostgreSQL to Aurora PostgreSQL.
   - **Option 1:** DB Snapshots from RDS PostgreSQL restored as PostgreSQL Aurora DB.
@@ -94,7 +104,7 @@
   - Import it using the aws_s3 Aurora extension.
 - Use DMS if both databases are up and running.
 
-# 7. On-Premise strategy with AWS
+# 8. On-Premise strategy with AWS
 
 - **Ability to download Amazon Linux 2 AMI as a VM (.iso format)**
   - VMWare, KVM, VirtualBox (Oracle VM), Microsoft Hyper-V.
@@ -112,7 +122,7 @@
 - **AWS Server Migration Service (SMS)**
   - Incremental replication of on-premises live servers to AWS.
 
-# 8. Replication Task Monitoring
+# 9. Replication Task Monitoring
 
 - **Task Status**
   - Indicates the condition of the Task (e.g., Creating, Running, Stopped...).
@@ -121,11 +131,11 @@
   - Includes the current state of the tables (e.g., Before load, Table completed...).
   - Number of inserts, deletions, and updates for each table.
 
-# 9. Streaming data from Amazon S3 to Amazon Kinesis
+# 10. Streaming data from Amazon S3 to Amazon Kinesis
 
 ![Streaming data from Amazon S3 to Amazon Kinesis](/Images/Database/AWSDatabaseMigrationServiceS3ToKinesis.png)
 
-# 10. CloudWatch Metrics
+# 11. CloudWatch Metrics
 
 - **Host Metrics**
   - Performance and utilization statistics for the replication host.

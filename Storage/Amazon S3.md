@@ -75,7 +75,8 @@
 - [33. Shared Responsibility Model for S3](#33-shared-responsibility-model-for-s3)
 - [34. S3 Sync Command](#34-s3-sync-command)
 - [35. Read-After-Write Consistency](#35-read-after-write-consistency)
-- [36. Summary](#36-summary)
+- [36. Amazon S3 Bucket Keys with SSE-KMS](#36-amazon-s3-bucket-keys-with-sse-kms)
+- [37. Summary](#37-summary)
 
 # 1. Introduction
 
@@ -260,7 +261,7 @@
   - Amazon S3 One Zone-Infrequent Access.
 - **Glacier**
   - Amazon S3 Glacier Instant Retrieval.
-  - Amazon S3 Glacier Flexible Retrieval.
+  - Amazon S3 Glacier Flexible Retrieval (formerly Amazon S3 Glacier).
   - Amazon S3 Glacier Deep Archive.
 - **Intelligent Tiering**
   - Amazon S3 Intelligent Tiering.
@@ -814,7 +815,16 @@
 - Applies to **GET, PUT, LIST**, and changes to **tags, ACLs, and metadata**.
 - Ensures that **"what you write is what you read"**, supporting use cases that require immediate access to updated objects.
 
-# 36. Summary
+# 36. Amazon S3 Bucket Keys with SSE-KMS
+
+- **S3 Bucket Keys** optimize server-side encryption with AWS KMS (SSE-KMS) by using a **bucket-level key**.
+- This reduces the number of **direct KMS API calls** by allowing S3 to generate data keys locally.
+- Can lower **AWS KMS request costs by up to 99%**.
+- Maintains the **same security and compliance** as standard SSE-KMS.
+- Especially beneficial for **high-volume workloads** with frequent reads or writes.
+  ![Amazon S3 Bucket Keys with SSE-KMS](/Images/Storage/AmazonS3BucketKeys.png)
+
+# 37. Summary
 
 - S3 is a... key / value store for objects.
 - Great for bigger objects, not so great for many small objects.

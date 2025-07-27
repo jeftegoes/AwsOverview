@@ -20,8 +20,8 @@
   - [6.3. Write Through - Add or Update cache when database is updated](#63-write-through---add-or-update-cache-when-database-is-updated)
 - [7. Cache Evictions and Time-to-live (TTL)](#7-cache-evictions-and-time-to-live-ttl)
 - [8. Final words of wisdom](#8-final-words-of-wisdom)
-- [9. Amazon MemoryDB for Redis](#9-amazon-memorydb-for-redis)
-- [10. Use Case](#10-use-case)
+- [9. Use Case](#9-use-case)
+- [10. Geospatial Support](#10-geospatial-support)
 - [11. Summary](#11-summary)
 
 # 1. Introduction
@@ -55,7 +55,7 @@
 # 3. Redis vs Memcached
 
 - **Redis**
-  - **Multi AZ** with Auto-Failover.
+  - **Multi-AZ** with Auto-Failover.
   - **Read Replicas** to scale reads and have **high availability**.
   - Data Durability using AOF persistence.
   - **Backup and restore features.**
@@ -201,27 +201,25 @@
 - Only cache the data that makes sense (user profiles, blogs, etc...).
 - Quote: There are only two hard things in Computer Science: cache invalidation and naming things.
 
-# 9. Amazon MemoryDB for Redis
-
-- Redis-compatible, durable, in-memory database service.
-- Ultra-fast performance with over 160 millions requests/second.
-- Durable in-memory data storage with Multi-AZ transactional log.
-- Scale seamlessly from 10s GBs to 100s TBs of storage.
-- **Use cases:** Web and mobile apps, online gaming, media streaming, ...
-
-# 10. Use Case
+# 9. Use Case
 
 - Gaming Leaderboards are computationally complex.
 - **Redis Sorted sets** guarantee both uniqueness and element ordering.
 - Each time a new element added, it's ranked in real time, then added in correct order.
   ![Amazon ElastiCache Use Case](/Images/Database/AmazonElastiCacheUseCase.png)
 
+# 10. Geospatial Support
+
+- Redis includes commands for **real-time geospatial operations** like:
+  - Calculating distances between locations.
+  - Finding all elements within a certain radius.
+
 # 11. Summary
 
 - Managed Redis / Memcached (similar offering as RDS, but for caches).
 - In-memory data store, sub-millisecond latency.
 - Select an ElastiCache instance type (e.g., cache.m6g.large).
-- Support for Clustering (Redis) and Multi AZ, Read Replicas (sharding).
+- Support for Clustering (Redis) and Multi-AZ, Read Replicas (sharding).
 - Security through IAM, Security Groups, KMS, Redis Auth.
 - Backup / Snapshot / Point in time restore feature.
 - Managed and Scheduled maintenance.
