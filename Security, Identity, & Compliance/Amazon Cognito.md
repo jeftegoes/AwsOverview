@@ -42,7 +42,7 @@
 ## 3.1. User Features
 
 - Create a serverless database of user for your web & mobile apps.
-- Simple login: Username (or email) / password combination.
+- **Simple login:** Username (or email) / password combination.
 - Password reset.
 - Email & Phone Number Verification.
 - Multi-factor authentication (MFA).

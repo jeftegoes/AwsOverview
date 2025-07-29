@@ -49,7 +49,7 @@
 - If an instance can't be controlled with SSM, it's probably an issue with the **SSM Agent**!
 - Thanks to the **SSM Agent**, we can run commands, patch & configure our servers.
 
-![SSM Agent](/Images/AWSSystemsManagerSSMAgent.png)
+![SSM Agent](/Images/Management%20&%20Governance/AWSSystemsManagerSSMAgent.png)
 
 ## 1.2. Systems Manager - SSM Session Manager
 
@@ -98,7 +98,7 @@
   - Receive notifications about Automation tasks and workflows by using Amazon CloudWatch Events.
   - Monitor Automation progress and execution details by using the Amazon EC2 or the AWS Systems Manager console.
 
-![SSM - Automation](/Images/AWSSystemsManagerAutomation.png)
+![SSM - Automation](/Images/Management%20&%20Governance/AWSSystemsManagerAutomation.png)
 
 ## 5.1. Automation Runbook
 
@@ -152,7 +152,7 @@
 - Scan instances and generate patch compliance report (missing patches).
 - Patch compliance report can be sent to S3.
 
-![Patch Manager](/Images/AWSSystemsManagerPatchManager.png)
+![Patch Manager](/Images/Management%20&%20Governance/AWSSystemsManagerPatchManager.png)
 
 ## 7.1. Patch Baseline & Patch Group
 
@@ -181,7 +181,7 @@
 # 8. SSM - Maintenance Windows
 
 - Defines a schedule for when to perform actions on your instances.
-- Example: OS patching, updating drivers, installing software...
+- **Example:** OS patching, updating drivers, installing software...
 - **Maintenance Window contains**
   - Schedule.
   - Duration.

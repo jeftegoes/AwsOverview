@@ -65,7 +65,7 @@
   - Amazon Kinesis Data Firehose - limited by Firehose quotas.
   - **AWS WAF supports encryption with Amazon S3 buckets for key type Amazon S3 key (SSE-S3) and AWS Key Management Service (SSE-KMS) AWS KMS keys.**
   - **AWS WAF doesn't support encryption for AWS Key Management Service keys that are managed by AWS.**
-    ![AWS WAF Integrations](/Images/AWSWAFIntegrations.png)
+    ![AWS WAF Integrations](/Images/Security,%20Identity,%20&%20Compliance/AWSWAFIntegrations.png)
 
 # 6. WAF vs. Firewall Manager vs. Shield
 

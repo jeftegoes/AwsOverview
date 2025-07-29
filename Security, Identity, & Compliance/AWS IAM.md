@@ -416,7 +416,8 @@
 
 # 19. Access Analyzer
 
-- AWS IAM Access Analyzer helps we identify the resources in your organization and accounts, such as Amazon S3 buckets or IAM roles, that are shared with an external entity. This lets you identify unintended access to your resources and data, which is a security risk.
+- AWS IAM Access Analyzer helps we identify the resources in your organization and accounts, such as Amazon S3 buckets or IAM roles, that are shared with an external entity.
+  - This lets you identify unintended access to your resources and data, which is a security risk.
 - We can set the scope for the analyzer to an organization or an AWS account.
 - This is your zone of trust.
 - The analyzer scans all of the supported resources within your zone of trust.

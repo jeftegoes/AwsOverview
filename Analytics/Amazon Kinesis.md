@@ -149,7 +149,7 @@
 
 - Using the Amazon Kinesis Adapter is the recommended way to consume streams from Amazon DynamoDB.
 - You can write applications for Kinesis Data Streams using the Kinesis Client Library (KCL).
-  ![Kinesis Adapter](/Images/AWSKinesisAdapter.png)
+  ![Kinesis Adapter](/Images/Analytics/AWSKinesisAdapter.png)
 
 # 5. Kinesis Operation
 
@@ -165,7 +165,7 @@
 - No automatic scaling (manually increase/decrease capacity)
 - Can't split into more than two shards in a single operation
 
-![Kinesis Shard Splitting](/Images/AWSKinesisSplittingShards.png)
+![Kinesis Shard Splitting](/Images/Analytics/AWSKinesisSplittingShards.png)
 
 ## 5.3. Merging Shards
 
@@ -174,7 +174,7 @@
 - Old shards are closed and will be deleted once the data is expired.
 - Can't merge more than two shards in a single operation.
 
-![Kinesis Merging Shards](/Images/AWSKinesisMergingShards.png)
+![Kinesis Merging Shards](/Images/Analytics/AWSKinesisMergingShards.png)
 
 # 6. Kinesis Data Firehose
 
