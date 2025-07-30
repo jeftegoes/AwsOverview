@@ -352,10 +352,17 @@
 
 ### 17.1.1. Resource Policies
 
-- Resource policies (similar to Lambda Resource Policy).
-- Allow for Cross Account Access (combined with IAM Security).
-- Allow for a specific source IP address.
-- Allow for a VPC Endpoint.
+- **API Gateway resource policies** allow IP-based access control using **IAM-style JSON policies**.
+- Use the `IpAddress` and `NotIpAddress` conditions to **allow only trusted IP ranges**.
+- **This method**
+  - **Denies all other IPs**
+  - Enforces **fine-grained, centralized control**
+  - Requires **no additional infrastructure**
+  - Aligns with **AWS best practices** for securing public APIs with sensitive data
+- **They support**
+  - **Cross-account access** (with IAM)
+  - **IP-based restrictions** (`IpAddress`, `NotIpAddress`)
+  - **VPC Endpoint restrictions** (`aws:SourceVpce`)
 
 ## 17.2. Cognito User Pools
 

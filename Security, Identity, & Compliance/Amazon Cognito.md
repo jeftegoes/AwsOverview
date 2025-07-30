@@ -7,6 +7,7 @@
 - [3. Cognito User Pools (CUP)](#3-cognito-user-pools-cup)
   - [3.1. User Features](#31-user-features)
   - [3.2. Integrations](#32-integrations)
+    - [3.2.1. CloudFront Integration](#321-cloudfront-integration)
   - [3.3. Lambda Triggers](#33-lambda-triggers)
   - [3.4. Hosted Authentication UI](#34-hosted-authentication-ui)
     - [3.4.1. Hosted UI Custom Domain](#341-hosted-ui-custom-domain)
@@ -58,6 +59,13 @@
     ![API Gateway](/Images/Security,%20Identity,%20&%20Compliance/AWSCognitoUserPoolsCUPApiGatewayIntegration.png)
   - **Application Load Balancer**  
     ![Application Load Balancer](/Images/Security,%20Identity,%20&%20Compliance/AWSCognitoUserPoolsCUPApplicationLoadBalancer.png)
+
+### 3.2.1. CloudFront Integration
+
+- **Cognito User Pools** cannot be directly integrated with **CloudFront**.
+- Requires creating a custom **AWS Lambda@Edge** function to handle authentication.
+- Involves **additional development effort** and complexity.
+- Not ideal for use cases needing a simple or native integration.
 
 ## 3.3. Lambda Triggers
 
