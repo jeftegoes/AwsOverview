@@ -78,6 +78,8 @@
 - Good for buffer / cache / scratch data / temporary content.
 - Risk of data loss if hardware fails.
 - Backups and Replication are your responsibility.
+- They **cannot be detached or reattached** to another instance.
+- When we **create an AMI** from an instance, **data on instance store volumes is not preserved**.
 
 # 6. EBS Volume Types
 

@@ -104,7 +104,7 @@
 - **Data is partitioned across shards (helpful to scale writes).**
 - Each shard has a primary and up to 5 replica nodes (same concept as before).
 - Multi-AZ capability.
-- Up to 500 nodes per cluster:
+- **Up to 500 nodes per cluster**
   - 500 shards with single master.
   - 250 shards with 1 master and 1 replica.
   - ...
@@ -133,10 +133,10 @@
 - Read more at: https://aws.amazon.com/caching/implementation-considerations/
 - **Is it safe to cache data?** Data may be out of date, eventually consistent.
 - **Is caching effective for that data?**
-  - Pattern: Data changing slowly, few keys are frequently needed.
-  - Anti patterns: data changing rapidly, all large key space frequently needed.
+  - **Pattern:** Data changing slowly, few keys are frequently needed.
+  - **Anti patterns:** Data changing rapidly, all large key space frequently needed.
 - **Is data structured well for caching?**
-  - Example: Key value caching, or caching of aggregations results.
+  - **Example:** Key value caching, or caching of aggregations results.
 - Which caching design pattern is the most appropriate?
 
 ## 6.1. Patterns for ElastiCache
@@ -152,10 +152,10 @@
 ## 6.2. Lazy Loading / Cache-Aside / Lazy Population
 
 - Lazy Loading would load data into the cache only when necessary (actively requested data from the database).
-- Pros:
+- **Pros**
   - Only requested data is cached (the cache isn't filled up with unused data).
   - Node failures are not fatal (just increased latency to warm the cache).
-- Cons
+- **Cons**
   - Cache miss penalty that results in 3 round trips, noticeable delay for that request.
   - Stale data: data can be updated in the database and outdated in the cache.
 
@@ -173,20 +173,20 @@
 
 ## 6.3. Write Through - Add or Update cache when database is updated
 
-- Pros:
+- **Pros**
   - Data in cache is never stale, reads are quick.
   - Write penalty vs Read penalty (each write requires 2 calls).
-- Cons:
+- **Cons**
   - Missing Data until it is added / updated in the DB. Mitigation is to implement Lazy Loading strategy as well.
   - Cache churn - a lot of the data will never be read.
 
 # 7. Cache Evictions and Time-to-live (TTL)
 
-- Cache eviction can occur in three ways:
+- **Cache eviction can occur in three ways**
   - We delete the item explicitly in the cache.
   - Item is evicted because the memory is full and it's not recently used (LRU).
   - We set an item **time-to-live (or TTL)**.
-- TTL are helpful for any kind of data:
+- **TTL are helpful for any kind of data**
   - Leaderboards.
   - Comments.
   - Activity streams.

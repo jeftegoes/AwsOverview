@@ -1,4 +1,4 @@
-# Storage <!-- omit in toc -->
+# Database <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -61,12 +61,12 @@
 
 - NoSQL = non-SQL = non relational databases
 - NoSQL databases are purpose built for specific data models and have flexible schemas for building modern applications.
-- Benefits:
-  - Flexibility: easy to evolve data model.
-  - Scalability: designed to scale-out by using distributed clusters.
-  - High-performance: optimized for a specific data model.
-  - Highly functional: types optimized for the data model.
-- Examples: Key-value, document, graph, in-memory, search databases.
+- **Benefits**
+  - **Flexibility:** Easy to evolve data model.
+  - **Scalability:** Designed to scale-out by using distributed clusters.
+  - **High-performance:** Optimized for a specific data model.
+  - **Highly functional:** Types optimized for the data model.
+- **Examples:** Key-value, document, graph, in-memory, search databases.
 
 ## 5.1. NoSQL data example: JSON
 
@@ -75,23 +75,18 @@
 - Data can be nested.
 - Fields can change over time.
 - Support for new types: arrays, etc...
-
-```
-{
-   "name":"John",
-   "age":30,
-   "cars":[
-      "Ford",
-      "BMW",
-      "Fiat"
-   ],
-   "address":{
-      "type":"house",
-      "number":23,
-      "street":"Dream Road"
-   }
-}
-```
+  ```json
+  {
+    "name": "John",
+    "age": 30,
+    "cars": ["Ford", "BMW", "Fiat"],
+    "address": {
+      "type": "house",
+      "number": 23,
+      "street": "Dream Road"
+    }
+  }
+  ```
 
 # 6. Databases and Shared Responsibility on AWS
 
@@ -101,7 +96,7 @@
   - Automated Backup & Restore, Operations, Upgrades.
   - Operating System Patching is handled by AWS.
   - Monitoring, alerting.
-- Note: many databases technologies could be run on EC2, but you must handle yourself the resiliency, backup, patching, high availability, fault tolerance, scaling...
+- **Note:** Many databases technologies could be run on EC2, but you must handle yourself the resiliency, backup, patching, high availability, fault tolerance, scaling...
 
 # 7. Amazon RDS - Relational Database Service
 
@@ -153,6 +148,6 @@
 - Warehouse - OLAP: Redshift (SQL).
 - DocumentDB: "Aurora for MongoDB" (JSON - NoSQL database).
 - Amazon QLDB: Financial Transactions Ledger (immutable journal, cryptographically verifiable).
-- Amazon Managed Blockchain: managed Hyperledger Fabric & Ethereum blockchains.
+- Amazon Managed Blockchain: Managed Hyperledger Fabric & Ethereum blockchains.
 - Database Migration Service: DMS.
 - Neptune: Graph database.

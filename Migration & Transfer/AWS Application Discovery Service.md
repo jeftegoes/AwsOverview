@@ -1,4 +1,4 @@
-# AWS Application Discovery Service<!-- omit in toc -->
+# AWS Application Discovery Service <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -7,7 +7,6 @@
 - [3. Discovery and collecting](#3-discovery-and-collecting)
   - [3.1. Agentless](#31-agentless)
   - [3.2. Agent-based](#32-agent-based)
-- [4. AWS Application Migration Service (MGN)](#4-aws-application-migration-service-mgn)
 
 # 1. Introduction
 
@@ -40,11 +39,3 @@
 - The agent installer is available for both Windows and Linux operating systems.
 - It collects static configuration data, detailed time-series system-performance information, inbound and outbound network connections, and processes that are running.
 - You can export this data to perform a detailed cost analysis and to identify network connections between servers for grouping servers as applications.
-
-# 4. AWS Application Migration Service (MGN)
-
-- The "AWS evolution" of CloudEndure Migration, replacing AWS Server Migration Service (SMS).
-- Lift-and-shift (rehost) solution which simplify migrating applications to AWS.
-- Converts your physical, virtual, and cloud-based servers to run natively on AWS.
-- Supports wide range of platforms, Operating Systems, and databases.
-- Minimal downtime, reduced costs.

@@ -83,7 +83,7 @@
   - [Amazon SageMaker](/Machine%20Learning/README.md) (use with any ML model).
   - [Amazon Comprehend](/Machine%20Learning/README.md) (for sentiment analysis).
 - We don't need to have ML experience.
-- **Use cases:** fraud detection, ads targeting, sentiment analysis, product recommendations.
+- **Use cases:** Fraud detection, ads targeting, sentiment analysis, product recommendations.
 
 # 7. Unplanned Failover
 
@@ -128,6 +128,7 @@
 - Good for infrequent, intermittent or unpredictable workloads.
 - No capacity planning needed.
 - Pay per second, can be more cost-effective.
+- Suitable for **OLTP (Online Transaction Processing)** systems, as they follow a **relational model**.
 
 # 12. MySQL error log
 

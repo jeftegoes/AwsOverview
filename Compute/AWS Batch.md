@@ -1,9 +1,10 @@
-# AWS batch <!-- omit in toc -->
+# AWS Batch <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
 - [2. Batch vs Lambda](#2-batch-vs-lambda)
+- [3. Example](#3-example)
 
 # 1. Introduction
 
@@ -28,3 +29,7 @@
   - Any runtime as long as it's packaged as a Docker image.
   - Rely on EBS / instance store for disk space.
   - Relies on EC2 (can be managed by AWS).
+
+# 3. Example
+
+![AWS Batch](/Images/Compute/AWSBatch.png)
