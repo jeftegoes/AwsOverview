@@ -9,12 +9,14 @@
 - [3. Records](#3-records)
   - [3.1. Record Types](#31-record-types)
   - [3.2. Hosted Zones](#32-hosted-zones)
-    - [3.2.1. DNS hostnames and DNS resolution](#321-dns-hostnames-and-dns-resolution)
-  - [3.3. Records TTL (Time To Live)](#33-records-ttl-time-to-live)
-  - [3.4. CNAME vs Alias](#34-cname-vs-alias)
-    - [3.4.1. Alias Records](#341-alias-records)
-      - [3.4.1.1. Targets](#3411-targets)
-    - [3.4.2. Core Difference (Simplified)](#342-core-difference-simplified)
+    - [3.2.1. VPC Configuration Required:](#321-vpc-configuration-required)
+  - [3.3. Public vs. Private Hosted Zones](#33-public-vs-private-hosted-zones)
+    - [3.3.1. DNS hostnames and DNS resolution](#331-dns-hostnames-and-dns-resolution)
+  - [3.4. Records TTL (Time To Live)](#34-records-ttl-time-to-live)
+  - [3.5. CNAME vs Alias](#35-cname-vs-alias)
+    - [3.5.1. Alias Records](#351-alias-records)
+      - [3.5.1.1. Targets](#3511-targets)
+    - [3.5.2. Core Difference (Simplified)](#352-core-difference-simplified)
 - [4. Health Checks](#4-health-checks)
   - [4.1. Monitor an Endpoint](#41-monitor-an-endpoint)
   - [4.2. Calculated Health Checks](#42-calculated-health-checks)
@@ -101,16 +103,30 @@
   - Contains records that specify how to route traffic on the Internet (public domain names) `application1.mypublicdomain.com`.
 - **Private Hosted Zones**
   - Contain records that specify how we route traffic within one or more VPCs (private domain names) `application1.company.internal`.
+  - You create records (e.g., A, CNAME) to define how traffic should be routed **privately**.
 - **We pay $0.50 per month per hosted zone.**
 
-### 3.2.1. DNS hostnames and DNS resolution
+### 3.2.1. VPC Configuration Required:
+
+- To associate a VPC with a private hosted zone, ensure these settings are enabled:
+  - `enableDnsHostnames = true`
+  - `enableDnsSupport = true`
+
+## 3.3. Public vs. Private Hosted Zones
+
+- Public Hosted Zone
+  ![Public Hosted Zone](/Images/Networking%20&%20Content%20Delivery/AmazonRoute53PublicHostedZone.png)
+- Private Hosted Zone
+  ![Private Hosted Zone](/Images/Networking%20&%20Content%20Delivery/AmazonRoute53PrivateHostedZone.png)
+
+### 3.3.1. DNS hostnames and DNS resolution
 
 - DNS hostnames and DNS resolution are required settings for private hosted zones.
 - DNS queries for private hosted zones can be resolved by the Amazon-provided VPC DNS server only.
 - As a result, these options must be enabled for your private hosted zone to work.
   ![Amazon Route 53 DNS Hostname and DNS Resolution](/Images/Networking%20&%20Content%20Delivery/AmazonRoute53DNSHostnameResolution.png)
 
-## 3.3. Records TTL (Time To Live)
+## 3.4. Records TTL (Time To Live)
 
 - **High TTL - e.g., 24 hr**
   - Less traffic on Route 53.
@@ -121,7 +137,7 @@
   - Easy to change records.
 - **Except for Alias records, TTL is mandatory for each DNS record.**
 
-## 3.4. CNAME vs Alias
+## 3.5. CNAME vs Alias
 
 - AWS Resources (Load Balancer, CloudFront...) expose an AWS hostname:
   - **lb1-1234.us-east-2.elb.amazonaws.com** and we **want myapp.mydomain.com**
@@ -134,7 +150,7 @@
   - Free of charge.
   - Native health check.
 
-### 3.4.1. Alias Records
+### 3.5.1. Alias Records
 
 - Maps a hostname to an AWS resource.
 - An extension to DNS functionality.
@@ -143,7 +159,7 @@
 - Alias Record is always of type A/AAAA for AWS resources (IPv4 / IPv6).
 - **We can't set the TTL.**
 
-#### 3.4.1.1. Targets
+#### 3.5.1.1. Targets
 
 - Elastic Load Balancers.
 - CloudFront Distributions.
@@ -155,7 +171,7 @@
 - Route 53 record in the same hosted zone.
 - **We cannot set an ALIAS record for an EC2 DNS name.**
 
-### 3.4.2. Core Difference (Simplified)
+### 3.5.2. Core Difference (Simplified)
 
 | Feature          | Alias Record                             | CNAME Record                                |
 | ---------------- | ---------------------------------------- | ------------------------------------------- |

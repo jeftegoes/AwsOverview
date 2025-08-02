@@ -14,12 +14,13 @@
 - [8. Dead Letter Queue (DLQ)](#8-dead-letter-queue-dlq)
   - [8.1. Redrive to Source](#81-redrive-to-source)
 - [9. Delay Queue](#9-delay-queue)
-- [10. Long Polling](#10-long-polling)
-- [11. SQS Extended Client](#11-sqs-extended-client)
-- [12. Must know API](#12-must-know-api)
-- [13. SQS FIFO](#13-sqs-fifo)
-  - [13.1. Deduplication](#131-deduplication)
-  - [13.2. Message Grouping](#132-message-grouping)
+- [10. Temporary Queues](#10-temporary-queues)
+- [11. Long Polling](#11-long-polling)
+- [12. SQS Extended Client](#12-sqs-extended-client)
+- [13. Must know API](#13-must-know-api)
+- [14. SQS FIFO](#14-sqs-fifo)
+  - [14.1. Deduplication](#141-deduplication)
+  - [14.2. Message Grouping](#142-message-grouping)
 
 # 1. What's a queue?
 
@@ -126,7 +127,18 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - Can override the default on send using the `DelaySeconds` parameter.
   ![SQS Delay Queue](/Images/Application%20Integration/AWSSQSDelayQueue.png)
 
-# 10. Long Polling
+# 10. Temporary Queues
+
+- **Temporary queues** simplify development and reduce deployment costs for **request-response** messaging patterns.
+- The **SQS Temporary Queue Client** allows you to create **virtual queues** mapped onto a single SQS queue, improving **throughput** and reducing **API calls**.
+- **Key benefits**
+  - Lightweight communication for individual threads or processes.
+  - Created/deleted without additional cost.
+  - API-compatible with standard SQS queues.
+  - Automatic cleanup of unused queues, even in case of unclean shutdowns.
+- **Virtual queues** are local buffers with **no additional cost** or API overhead, ideal for **short-lived, low-traffic messaging needs**.
+
+# 11. Long Polling
 
 - When a consumer requests messages from the queue, it can optionally "wait" for messages to arrive if there are none in the queue.
 - This is called Long Polling.
@@ -135,12 +147,12 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - Long Polling is preferable to Short Polling.
 - Long polling can be enabled at the queue level or at the API level using `ReceiveMessageWaitTimeSeconds`.
 
-# 11. SQS Extended Client
+# 12. SQS Extended Client
 
 - Message size limit is 256KB, how to send large messages, e.g. 1GB?
   - Using the SQS Extended Client (Java Library).
 
-# 12. Must know API
+# 13. Must know API
 
 - `CreateQueue` - Creates a new standard or FIFO queue (MessageRetentionPeriod).
 - `DeleteQueue` - Deletes the queue specified by the QueueUrl, regardless of the queue's contents. When we delete a queue, any messages in the queue are no longer available.
@@ -152,9 +164,9 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 - `RemovePermission` - Revokes any permissions in the queue policy that matches the specified Label parameter.
 - Batch APIs for `SendMessage`, `DeleteMessage`, `ChangeMessageVisibility` helps decrease your costs.
 
-# 13. SQS FIFO
+# 14. SQS FIFO
 
-## 13.1. Deduplication
+## 14.1. Deduplication
 
 - De-duplication interval is 5 minutes.
 - Two de-duplication methods:
@@ -163,7 +175,7 @@ Producer > Send messages > SQS Queue < Poll messages < Consumer
 
 ![MessageDeduplicationId](/Images/Application%20Integration/AWSSQSDeduplicationID.png)
 
-## 13.2. Message Grouping
+## 14.2. Message Grouping
 
 - If we specify the same value of MessageGroupID in an SQS FIFO queue, we can only have one consumer, and all the messages are in order.
 - To get ordering at the level of a subset of messages, specify different values for MessageGroupID.

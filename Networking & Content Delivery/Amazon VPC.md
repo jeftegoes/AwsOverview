@@ -181,8 +181,9 @@
 ## 5.1. NAT Gateway with High Availability
 
 - **NAT Gateway is resilient within a single Availability Zone.**
-- Must create **multiple NAT** Gateways in **multiple AZs** for fault-tolerance.
+- Must create **multiple NAT Gateways** in **multiple AZs** for fault-tolerance.
 - There is no cross-AZ failover needed because if an AZ goes down it doesn't need NAT.
+  ![NAT Gateway with High Availability](/Images/Networking%20&%20Content%20Delivery/AmazonVPCNATGatewayHighAvailability.png)
 
 ## 5.2. NAT Gateway vs. NAT Instance
 

@@ -1,0 +1,70 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.4 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="26.0.4">
+  <diagram name="Page-1" id="JOCIM9VOoIq4sWqlZIPB">
+    <mxGraphModel dx="928" dy="998" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="IBfrwuu3sC72nxP20e6l-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="IBfrwuu3sC72nxP20e6l-15" target="IBfrwuu3sC72nxP20e6l-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IBfrwuu3sC72nxP20e6l-23" value="&amp;nbsp;api.example.internal?&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="IBfrwuu3sC72nxP20e6l-15" target="IBfrwuu3sC72nxP20e6l-17">
+          <mxGeometry x="0.5016" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="380" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IBfrwuu3sC72nxP20e6l-24" value="10.0.0.10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="IBfrwuu3sC72nxP20e6l-17" target="IBfrwuu3sC72nxP20e6l-15">
+          <mxGeometry x="0.3972" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="410" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IBfrwuu3sC72nxP20e6l-15" value="EC2 Instance&lt;div&gt;(webapp.example.internal)&lt;br&gt;&lt;div&gt;&lt;b&gt;(Public IP)&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.instance2;" vertex="1" parent="1">
+          <mxGeometry x="270" y="560" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="IBfrwuu3sC72nxP20e6l-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="IBfrwuu3sC72nxP20e6l-16" target="IBfrwuu3sC72nxP20e6l-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IBfrwuu3sC72nxP20e6l-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="IBfrwuu3sC72nxP20e6l-17" target="IBfrwuu3sC72nxP20e6l-16">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="520" />
+              <mxPoint x="500" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IBfrwuu3sC72nxP20e6l-25" value="10.0.0.35" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="IBfrwuu3sC72nxP20e6l-22">
+          <mxGeometry x="-0.0163" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IBfrwuu3sC72nxP20e6l-16" value="EC2 Instance&lt;div&gt;(api.example.internal)&lt;br&gt;&lt;div&gt;&lt;b&gt;(Private IP)&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.instance2;" vertex="1" parent="1">
+          <mxGeometry x="460" y="560" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="IBfrwuu3sC72nxP20e6l-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="IBfrwuu3sC72nxP20e6l-16" target="IBfrwuu3sC72nxP20e6l-17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="470" y="500" />
+              <mxPoint x="470" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IBfrwuu3sC72nxP20e6l-26" value="db.example.internal?" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=-90;" vertex="1" connectable="0" parent="IBfrwuu3sC72nxP20e6l-21">
+          <mxGeometry x="0.2602" y="2" relative="1" as="geometry">
+            <mxPoint x="-8" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IBfrwuu3sC72nxP20e6l-17" value="Private Hosted Zone" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=top;verticalAlign=bottom;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.hosted_zone;labelPosition=center;" vertex="1" parent="1">
+          <mxGeometry x="445" y="360" width="78" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="IBfrwuu3sC72nxP20e6l-18" value="DB Instance&lt;div&gt;(db.example.internal)&lt;/div&gt;&lt;div&gt;(Private IP)&lt;/div&gt;" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#C925D1;strokeColor=none;dashed=0;verticalLabelPosition=top;verticalAlign=bottom;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.rds_instance;labelPosition=center;" vertex="1" parent="1">
+          <mxGeometry x="640" y="359.5" width="78" height="78" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

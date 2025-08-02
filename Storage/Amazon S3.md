@@ -40,7 +40,7 @@
 - [16. Object Integrity](#16-object-integrity)
 - [17. Baseline Performance](#17-baseline-performance)
 - [18. S3 Performance](#18-s3-performance)
-  - [18.1. Multi-Part upload:](#181-multi-part-upload)
+  - [18.1. Multi-Part upload](#181-multi-part-upload)
     - [18.1.1. Sample multipart upload calls](#1811-sample-multipart-upload-calls)
   - [18.2. S3 Transfer Acceleration (S3TA)](#182-s3-transfer-acceleration-s3ta)
 - [19. Byte-Range Fetches](#19-byte-range-fetches)
@@ -436,7 +436,7 @@
 
 # 18. S3 Performance
 
-## 18.1. Multi-Part upload:
+## 18.1. Multi-Part upload
 
 - **Recommended for files > 100MB, must use for files > 5GB**.
 - Can help parallelize uploads (speed up transfers).
@@ -469,7 +469,9 @@
 - Parallelize GETs by requesting specific byte ranges.
 - Better resilience in case of failures.
 - Can be used to speed up downloads.
+  ![Byte-Range Fetches to speed up downloads](/Images/Storage/AmazonS3ByteRangeFetches1.png)
 - Can be used to retrieve only partial data (for example the head of a file).
+  ![Byte-Range Fetches to retrieve only partial data](/Images/Storage/AmazonS3ByteRangeFetches2.png)
 
 # 20. Batch Operations
 
