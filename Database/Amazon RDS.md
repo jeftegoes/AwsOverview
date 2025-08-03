@@ -21,7 +21,7 @@
   - [8.4. IAM Authentication](#84-iam-authentication)
   - [8.5. Security - Summary](#85-security---summary)
 - [9. Monitoring](#9-monitoring)
-- [10. Proxy](#10-proxy)
+- [10. Amazon RDS Proxy](#10-amazon-rds-proxy)
 - [11. Enhanced Monitoring](#11-enhanced-monitoring)
 - [12. CloudFormation](#12-cloudformation)
 - [13. RDS](#13-rds)
@@ -228,7 +228,7 @@
 
 ![RDS Monitoring log options](/Images/Database/AmazonRDSMonitoring.png)
 
-# 10. Proxy
+# 10. Amazon RDS Proxy
 
 - Fully managed database proxy for RDS.
 - Allows apps to pool and share DB connections established with the database.
@@ -239,8 +239,7 @@
 - No code changes required for most apps.
 - **Enforce IAM Authentication for DB, and securely store credentials in AWS Secrets Manager.**
 - **RDS Proxy is never publicly accessible (must be accessed from VPC).**
-
-![RDS Proxy Diagram](/Images/Database/AmazonRDSProxyDiagram.png)
+  ![RDS Proxy Diagram](/Images/Database/AmazonRDSProxyDiagram.png)
 
 # 11. Enhanced Monitoring
 

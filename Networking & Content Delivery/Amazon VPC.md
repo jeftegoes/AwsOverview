@@ -29,7 +29,7 @@
 - [12. VPC Endpoints (AWS PrivateLink)](#12-vpc-endpoints-aws-privatelink)
   - [12.1. Types of Endpoints](#121-types-of-endpoints)
   - [12.2. Gateway or Interface Endpoint for S3?](#122-gateway-or-interface-endpoint-for-s3)
-  - [12.3. Use cases](#123-use-cases)
+  - [12.3. Use cases PrivateLink](#123-use-cases-privatelink)
 - [13. Site-to-Site VPN (aka VPN Connection)](#13-site-to-site-vpn-aka-vpn-connection)
   - [13.1. Connections](#131-connections)
   - [13.2. IPsec VPN connection](#132-ipsec-vpn-connection)
@@ -214,6 +214,7 @@
 - The bastion is in the public subnet which is then connected to all other private subnets.
 - **Bastion Host security group must allow** inbound from the internet on port 22 from restricted CIDR, for example the public CIDR of your corporation.
 - Security Group of the EC2 Instances must allow the Security Group of the Bastion Host, or the private IP of the Bastion host.
+  ![Bastion Hosts](/Images/Networking%20&%20Content%20Delivery/BastionHosts.png)
 
 # 8. Network Access Control List (NACL)
 
@@ -329,7 +330,7 @@
 - **Cost:** Free for Gateway, $ for interface endpoint.
 - Interface Endpoint is preferred access is required from on-premises (Site to Site VPN or Direct Connect), a different VPC or a different region.
 
-## 12.3. Use cases
+## 12.3. Use cases PrivateLink
 
 - In the following diagram, the VPC on the left has several [Amazon EC2](/Compute/Amazon%20EC2.md) instances in a private subnet and five **VPC endpoints** - three **interface VPC endpoints**, a **resource VPC endpoint** and a **service-network VPC endpoint**.
   - The first interface VPC endpoint connects to an AWS service.

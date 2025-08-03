@@ -12,6 +12,7 @@
 - [3. Inter-region VPC peering connection](#3-inter-region-vpc-peering-connection)
 - [4. EFS vs EBS - Elastic Block Storage](#4-efs-vs-ebs---elastic-block-storage)
 - [5. EBS vs EFS - Elastic File System](#5-ebs-vs-efs---elastic-file-system)
+- [6. Cross-Account Amazon EFS Access for AWS Lambda](#6-cross-account-amazon-efs-access-for-aws-lambda)
 
 # 1. Introduction
 
@@ -88,3 +89,16 @@
 - EFS has a higher price point than EBS.
 - Can leverage EFS-IA for cost savings.
 - Remember: EFS vs EBS vs Instance Store.
+
+# 6. Cross-Account Amazon EFS Access for AWS Lambda
+
+- **Approach**
+  - Use **Amazon EFS resource policies** to grant **cross-account access** to the central AWS account.
+  - Attach the **EFS mount target** to a **shared VPC** or a **VPC peered** with the Lambda function's VPC.
+  - Configure the Lambda function to **mount the file system via an EFS Access Point**.
+- **Benefits**
+  - **Native AWS support** for secure cross-account access without workarounds.
+  - EFS **access points** provide fine-grained permissions and simplified mounting.
+  - **No need for data duplication** or proxying through intermediate services.
+  - Scales automatically with Lambda and supports **secure, performant** file access.
+  - Most **cost-effective** and **operationally efficient** method for this scenario.

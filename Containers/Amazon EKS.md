@@ -7,6 +7,7 @@
 - [3. Data Volumes](#3-data-volumes)
 - [4. Control Plane Logging](#4-control-plane-logging)
 - [5. Nodes \& Containers Logging](#5-nodes--containers-logging)
+- [6. IAM Roles for Service Accounts (IRSA)](#6-iam-roles-for-service-accounts-irsa)
 
 # 1. Introduction
 
@@ -24,14 +25,14 @@
 
 - **Managed Node Groups**
   - Creates and manages Nodes (EC2 instances) for we.
-  - Nodes are part of an ASG managed by EKS.
+  - **Nodes** are part of an ASG managed by EKS.
   - Supports On-Demand or Spot Instances.
 - **Self-Managed Nodes**
-  - Nodes created by we and registered to the EKS cluster and managed by an ASG.
+  - **Nodes** created by we and registered to the EKS cluster and managed by an ASG.
   - We can use prebuilt AMI - Amazon EKS Optimized AMI.
   - Supports On-Demand or Spot Instances.
 - **AWS Fargate**
-  - No maintenance required: no nodes managed.
+  - **No maintenance required:** No nodes managed.
 
 # 3. Data Volumes
 
@@ -61,3 +62,15 @@
 - Use the Fluent Bit, or Fluentd log drivers to send logs to CloudWatch Logs.
 - Container logs are stored on a Node directory /var/log/containers.
 - Use CloudWatch Container Insights to get a dashboarding monitoring solution for nodes, pods, tasks, and services.
+
+# 6. IAM Roles for Service Accounts (IRSA)
+
+- IAM Roles for Service Accounts (IRSA) enables assigning fine-grained IAM roles to Kubernetes service accounts in Amazon EKS.
+- This provides Pod-level access to AWS resources without relying on node-level instance profiles.
+- IRSA leverages an **OpenID Connect (OIDC)** provider integrated with the EKS cluster.
+- Pods assume the associated IAM role via the service account securely, without storing credentials in the container.
+- **Benefits**
+  - Enforces **least privilege** by scoping permissions to each service's needs.
+  - Ensures **Pod-level isolation** for access control.
+  - Eliminates the need for **EC2 instance-wide roles**, reducing risk of over-permissioning.
+  - Aligns with **AWS security best practices** for running workloads in EKS.

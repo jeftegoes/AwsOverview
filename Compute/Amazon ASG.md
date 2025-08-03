@@ -29,6 +29,10 @@
 - [19. EC2 Auto Scaling and ELB Health Checks](#19-ec2-auto-scaling-and-elb-health-checks)
 - [20. Scaling Based on Amazon SQS](#20-scaling-based-on-amazon-sqs)
 - [21. Health Check Grace Period](#21-health-check-grace-period)
+- [22. Health Check Replacement vs. AZ Rebalancing](#22-health-check-replacement-vs-az-rebalancing)
+  - [22.1. Health Check Replacement](#221-health-check-replacement)
+  - [22.2. Availability Zone (AZ) Rebalancing](#222-availability-zone-az-rebalancing)
+  - [22.3. Summary Table](#223-summary-table)
 
 # 1. Introduction
 
@@ -283,3 +287,32 @@
 - **Amazon EC2 Auto Scaling** waits for the **health check grace period** to expire before terminating an instance.
 - This applies even if the instance fails **EC2 status checks** or **ELB health checks**.
 - The grace period allows the instance time to **initialize and become healthy** before being evaluated for termination.
+
+# 22. Health Check Replacement vs. AZ Rebalancing
+
+## 22.1. Health Check Replacement
+
+- **Triggered by**: Detection of an unhealthy instance (via EC2 or ELB health checks).
+- **Sequence**:
+  1. Terminates the unhealthy instance.
+  2. Launches a new instance to replace it.
+- **Impact**: May cause a temporary dip in capacity.
+- **Reason**: The instance is already unhealthy and likely not serving traffic.
+
+## 22.2. Availability Zone (AZ) Rebalancing
+
+- **Triggered by**: Imbalance in instance distribution across AZs (e.g., due to manual changes or AZ configuration updates).
+- **Sequence**:
+  1. Launches a new instance in the underused AZ.
+  2. Terminates an instance from the overloaded AZ.
+- **Impact**: Maintains full capacity at all times.
+- **Reason**: To avoid degrading performance during rebalancing.
+
+## 22.3. Summary Table
+
+| Feature                     | Health Check Replacement | AZ Rebalancing |
+| --------------------------- | ------------------------ | -------------- |
+| Trigger                     | Unhealthy instance       | AZ imbalance   |
+| Terminates instance first   | Yes                      | No             |
+| Launches new instance first | No                       | Yes            |
+| Temporary capacity dip      | Yes                      | No             |
