@@ -811,33 +811,18 @@
 
 ### 15.3.8. Savings Plan
 
-- Commit a certain $ amount per hour for 1 or 3 years
-- Easiest way to setup long-term commitments on AWS
-- EC2 Savings Plan
-  - Up to 72% discount compared to On-Demand
-  - Commit to usage of individual instance families in a region (e.g. C5 or M5)
-  - Regardless of AZ, size (m5.xl to m5.4xl), OS (Linux/Windows) or tenancy
-  - All upfront, partial upfront, no upfront
-- Compute Savings Plan
-  - Up to 66% discount compared to On-Demand
-  - Regardless of Family, Region, size, OS, tenancy, compute options
-  - Compute Options: EC2, Fargate, Lambda
-  - **Compute Savings Plans provide the most flexibility and help to reduce your costs by up to 66% in exchange for a commitment to a consistent amount of usage for a 1 or 3 year term. These plans automatically apply to EC2 instance usage regardless of instance family, size, AZ, region, OS or tenancy, and also apply to Fargate or Lambda usage.**
-- Setup from the AWS Cost Explorer console
+- Commit a certain $ amount per hour for 1 or 3 years.
+- Easiest way to setup long-term commitments on AWS.
+- **EC2 Savings Plan**
+  [EC2 Savings Plans](/Compute/Amazon%20EC2.md)
+- **AWS Compute Savings Plan**
+  [Compute Savings Plan](Compute/README.md)
+- Setup from the AWS Cost Explorer console.
 - Estimate pricing at https://aws.amazon.com/savingsplans/pricing/
 
 ## 15.4. AWS Compute Optimizer
 
-- Reduce costs and improve performance by recommending optimal AWS resources for your workloads.
-- Helps you choose optimal configurations and right - size your workloads (over/under provisioned).
-- Uses Machine Learning to analyze your resources, configurations and their utilization CloudWatch metrics.
-- **Supported resources**
-  - EC2 instances.
-  - EC2 Auto Scaling Groups.
-  - EBS volumes.
-  - Lambda functions.
-- Lower your costs by up to 25%.
-- Recommendations can be exported to S3.
+[AWS Compute Optimizer](/Management%20&%20Governance/AWS%20Compute%20Optimizer.md)
 
 ## 15.5. Billing and Costing Tools
 
@@ -867,11 +852,11 @@
 
 ### 17.2.1. Amazon AppStream 2.0 vs WorkSpaces
 
-- **Workspaces:**
+- **Workspaces**
   - Fully managed VDI and desktop available.
   - The users connect to the VDI and open native or WAM applications.
   - Workspaces are on-demand or always on.
-- **AppStream 2.0:**
+- **AppStream 2.0**
   - Stream a desktop application to web browsers (no need to connect to a VDI).
   - Works with any device (that has a web browser).
   - Allow to configure an instance type per application type (CPU, RAM, GPU).

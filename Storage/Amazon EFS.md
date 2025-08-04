@@ -7,6 +7,7 @@
   - [2.1. EFS Scale](#21-efs-scale)
   - [2.2. Performance mode (set at EFS creation time)](#22-performance-mode-set-at-efs-creation-time)
   - [2.3. Throughput mode](#23-throughput-mode)
+    - [2.3.1. Comparison Table](#231-comparison-table)
   - [2.4. Storage Tiers](#24-storage-tiers)
   - [2.5. Availability and durability](#25-availability-and-durability)
 - [3. Inter-region VPC peering connection](#3-inter-region-vpc-peering-connection)
@@ -48,6 +49,17 @@
 - **Elastic:** Automatically scales throughput up or down based on your workloads.
   - Up to 3GiB/s for reads and 1GiB/s for writes.
   - Used for unpredictable workloads.
+
+### 2.3.1. Comparison Table
+
+| Feature               | Bursting Throughput            | Provisioned Throughput           |
+| --------------------- | ------------------------------ | -------------------------------- |
+| Default mode          | Yes                            | No                               |
+| Throughput depends on | File system size               | User-specified throughput        |
+| Cost basis            | Storage + usage                | Storage + provisioned throughput |
+| Ideal for             | Spiky, unpredictable workloads | Consistent high-throughput needs |
+| Throttling risk       | Yes, if credits run out        | No, as long as within limits     |
+| Manual configuration  | No                             | Yes                              |
 
 ## 2.4. Storage Tiers
 

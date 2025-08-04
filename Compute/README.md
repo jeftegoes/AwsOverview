@@ -21,7 +21,8 @@
 - [5. Lambda](#5-lambda)
   - [5.1. Lambda Summary](#51-lambda-summary)
 - [6. AWS Batch](#6-aws-batch)
-- [7. Summary](#7-summary)
+- [7. AWS Compute Savings Plan](#7-aws-compute-savings-plan)
+- [8. Summary](#8-summary)
 
 # 1. EC2 - Elastic Compute Cloud
 
@@ -174,6 +175,19 @@
 
 [text](AWS%20Batch.md)
 
-# 7. Summary
+# 7. AWS Compute Savings Plan
+
+- **Compute Savings Plan** is the **most flexible** AWS Savings Plan.
+- **Applies to multiple compute services**
+  - Amazon EC2
+  - AWS Fargate
+  - AWS Lambda
+- **Not restricted** to specific instance types or Regions.
+- Ideal for organizations with **diverse or changing compute workloads**.
+- Provides **cost savings** without requiring changes to architecture.
+- Suitable for steady-state usage across EC2, Fargate, and Lambda.
+- Offers **simple, unified billing** and **long-term savings** with minimal management effort.
+
+# 8. Summary
 
 - Batch: run batch jobs on AWS across managed EC2 instances.

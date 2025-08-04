@@ -24,7 +24,7 @@
 
 - Define **max spot price** and get the instance while **current spot price < max**.
   - The hourly spot price varies based on offer and capacity.
-  - If the current spot price > your max price we can choose to **stop** or **terminate** your instance with a 2 minutes grace period.
+  - If the current spot price > your max price we can choose to **stop** or **terminate** your instance with a 2 minutes grace period (2-minute warning).
 - **Other strategy:** Spot Block
   - "block" spot instance during a specified time frame (1 to 6 hours) without interruptions.
   - In rare situations, the instance may be reclaimed.

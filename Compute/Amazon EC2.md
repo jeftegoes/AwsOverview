@@ -52,6 +52,7 @@
   - [19.1. Shared (Default)](#191-shared-default)
   - [19.2. Dedicated Instances](#192-dedicated-instances)
   - [19.3. Dedicated Hosts](#193-dedicated-hosts)
+  - [19.4. How Tenancy Settings Work](#194-how-tenancy-settings-work)
 
 # 1. Introduction
 
@@ -349,6 +350,9 @@
 - The "magic" is that a temporary key is uploaded onto EC2 by AWS.
 - **Works only out-of-the-box with Amazon Linux 2.**
 - Need to make sure the port 22 is still opened!
+- Works by **injecting a one-time-use SSH public key** at connection time.
+- Ideal for **temporary administrative access** without managing long-term SSH keys.
+- Sessions are **short-lived** and **auditable** via AWS CloudTrail.
 
 # 13. EC2 Instances Purchasing Options
 
@@ -558,3 +562,12 @@
 - **Control:** Full visibility and control of the hardware.
 - **Use Case:** Ideal for **BYOL (Bring Your Own License)** and meeting **compliance** or licensing requirements.
 - **Note:** Requires a **host resource group**.
+
+## 19.4. How Tenancy Settings Work
+
+| VPC Tenancy | Launch Template Tenancy | Resulting Instance Tenancy |
+| ----------- | ----------------------- | -------------------------- |
+| default     | shared (default)        | Shared                     |
+| default     | dedicated               | Dedicated                  |
+| dedicated   | shared (default)        | Dedicated                  |
+| dedicated   | dedicated               | Dedicated                  |

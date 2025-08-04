@@ -96,10 +96,10 @@
 
 ## 3.6. Decoding a ID Token; JWT - JSON Web Token
 
-- CUP issues JWT tokens (Base64 encoded):
-  - **Header**
-  - **Payload**
-  - **Signature**
+- **CUP issues JWT tokens (Base64 encoded)**
+  - Header.
+  - Payload.
+  - Signature.
 - **The signature must be verified to ensure the JWT can be trusted.**
 - Libraries can help you verify the validity of JWT tokens issued by Cognito User Pools.
 - The Payload will contain the user information (sub UUID, given_name, email, phone_number, attributes...).
@@ -110,8 +110,8 @@
 - Your Application Load Balancer can securely authenticate users:
   - Offload the work of authenticating users to your load balancer.
   - Your applications can focus on their business logic.
-- Authenticate users through:
-  - Identity Provider (IdP): OpenID Connect (OIDC) compliant.
+- **Authenticate users through**
+  - **Identity Provider (IdP):** OpenID Connect (OIDC) compliant.
   - **Cognito User Pools**
     - Social IdPs, such as Amazon, Facebook, or Google.
     - Corporate identities using SAML, LDAP, or Microsoft AD.
@@ -149,8 +149,7 @@
 - **Users can then access AWS services directly or through API Gateway**
   - The IAM policies applied to the credentials are defined in Cognito.
   - They can be customized based on the user_id for fine grained control.
-
-![Cognito Identity Pools](/Images/Security,%20Identity,%20&%20Compliance/AWSCognitoIdentityPoolsDiagram.png)
+    ![Cognito Identity Pools](/Images/Security,%20Identity,%20&%20Compliance/AWSCognitoIdentityPoolsDiagram.png)
 
 ## 4.1. Developer Authenticated
 

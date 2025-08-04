@@ -45,7 +45,7 @@
   - [18.2. S3 Transfer Acceleration (S3TA)](#182-s3-transfer-acceleration-s3ta)
 - [19. Byte-Range Fetches](#19-byte-range-fetches)
 - [20. Batch Operations](#20-batch-operations)
-- [21. Storage Lens](#21-storage-lens)
+- [21. Amazon S3 - Storage Lens](#21-amazon-s3---storage-lens)
   - [21.1. Default Dashboard](#211-default-dashboard)
   - [21.2. Metrics](#212-metrics)
   - [21.3. Free vs. Paid](#213-free-vs-paid)
@@ -486,13 +486,14 @@
 - S3 Batch Operations manages retries, tracks progress, sends completion notifications, generate reports...
 - **You can use S3 Inventory to get object list and use Athena to query and filter your objects.**
 
-# 21. Storage Lens
+# 21. Amazon S3 - Storage Lens
 
-- Understand, analyze, and optimize storage across entire AWS Organization.
+- Understand, analyze, and optimize storage across entire **AWS Organization**.
 - Discover anomalies, identify cost efficiencies, and apply data protection best practices across entire AWS Organization (30 days usage & activity metrics).
 - Aggregate data for Organization, specific accounts, regions, buckets, or prefixes.
 - Default dashboard or create your own dashboards.
 - Can be configured to export metrics daily to an S3 bucket (CSV, Parquet).
+  ![Amazon S3 - Storage Lens](/Images/Storage/AmazonS3StorageLens.png)
 
 ## 21.1. Default Dashboard
 
@@ -587,6 +588,13 @@
 - Must set header `"x-amz-server-side-encryption": "AES256"`.
 - Enabled by default for new buckets and new objects.
   ![Encryption SSE-S3](/Images/Storage/AmazonS3EncryptionSSES3.png)
+- **Server-side encryption (SSE)** encrypts data at rest on the storage service (e.g., Amazon S3).
+- **SSE-S3** uses Amazon S3 managed keys to encrypt each object with a unique key.
+- The object key is further encrypted with a **root key** that is regularly rotated for added security.
+- As of **January 5, 2023**, all new object uploads to S3 are automatically encrypted using SSE-S3:
+  - **No additional cost**
+  - **No impact on performance**
+  - **Applies by default to every S3 bucket**
 
 ## 24.2. SSE-KMS
 

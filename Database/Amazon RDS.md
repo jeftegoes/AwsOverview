@@ -25,9 +25,11 @@
 - [11. Enhanced Monitoring](#11-enhanced-monitoring)
 - [12. CloudFormation](#12-cloudformation)
 - [13. RDS](#13-rds)
-- [14. DB Engine Maintenance](#14-db-engine-maintenance)
-  - [14.1. Multi-AZ Failover](#141-multi-az-failover)
-- [15. Summary](#15-summary)
+- [14. Maintenance Behavior](#14-maintenance-behavior)
+  - [14.1. DB Engine Upgrades](#141-db-engine-upgrades)
+  - [14.2. Amazon RDS Multi-AZ Maintenance Behavior](#142-amazon-rds-multi-az-maintenance-behavior)
+- [15. Multi-AZ Failover](#15-multi-az-failover)
+- [16. Summary](#16-summary)
 
 # 1. Introduction
 
@@ -269,14 +271,26 @@
 - **No SSH available** except on RDS Custom.
 - **Audit Logs can be enabled** and sent to CloudWatch Logs for longer retention.
 
-# 14. DB Engine Maintenance
+# 14. Maintenance Behavior
+
+## 14.1. DB Engine Upgrades
 
 - Upgrading the database engine version **requires downtime**.
+  - This causes a **full shutdown** of the Multi-AZ deployment during the upgrade.
+  - For **database engine upgrades**, both the **primary and standby** are updated **simultaneously**.
 - In Multi-AZ deployments, both primary and standby instances are upgraded at the same time.
 - Downtime lasts until the upgrade process is complete.
 - The duration of downtime depends on the size of the DB instance.
 
-## 14.1. Multi-AZ Failover
+## 14.2. Amazon RDS Multi-AZ Maintenance Behavior
+
+- **Multi-AZ deployments** help reduce downtime during maintenance events.
+- For **OS updates**, RDS follows this process:
+  1. Applies updates to the **standby** instance.
+  2. Promotes the standby to become the **new primary**.
+  3. Updates the **old primary**, now acting as the new standby.
+
+# 15. Multi-AZ Failover
 
 - Amazon RDS provides high availability and failover using **Multi-AZ deployments**.
 - Multi-AZ deploys a **synchronous standby replica** in a different Availability Zone for:
@@ -287,7 +301,7 @@
 - During failover, the **CNAME record is updated** to point to the standby, which becomes the new primary.
   - This ensures the **database URL remains the same** and failover is seamless.
 
-# 15. Summary
+# 16. Summary
 
 - Managed PostgreSQL / MySQL / Oracle / SQL Server / DB2 / MariaDB / Custom.
 - Provisioned RDS Instance Size and EBS Volume Type & Size.

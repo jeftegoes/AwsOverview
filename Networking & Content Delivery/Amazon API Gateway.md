@@ -42,6 +42,7 @@
 - [19. WebSocket API](#19-websocket-api)
   - [19.1. Routing](#191-routing)
 - [20. Architecture](#20-architecture)
+- [21. JWT Authorizers](#21-jwt-authorizers)
 
 # 1. Introduction
 
@@ -431,3 +432,15 @@
 - Use API endpoints with various resources.
 - Apply a simple domain name and SSL certificates.
 - Can apply forwarding and transformation rules at the API Gateway level.
+
+# 21. JWT Authorizers
+
+- **HTTP APIs** in Amazon API Gateway support **native JWT authorizers**.
+- Allows automatic validation of **JWT tokens** from OIDC-compliant providers (e.g., Auth0, Okta, Amazon Cognito).
+- **No need** for custom authentication logic in Lambda functions.
+- **Benefits**
+  - Lower latency.
+  - Reduced cost.
+  - Simplified architecture.
+- HTTP APIs are more **cost-effective** and **high-performance** than REST APIs.
+- Ideal for **modern serverless applications** needing JWT validation and claim-based access control.
