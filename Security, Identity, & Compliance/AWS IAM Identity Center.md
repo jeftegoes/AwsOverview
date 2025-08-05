@@ -3,10 +3,13 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. Fine-grained Permissions and Assignments](#2-fine-grained-permissions-and-assignments)
-- [3. External IdPs](#3-external-idps)
-- [4. Attribute-Based Access Control (ABAC)](#4-attribute-based-access-control-abac)
-- [5. Multi-Factor Authentication (MFA)](#5-multi-factor-authentication-mfa)
+- [2. Login flow](#2-login-flow)
+- [3. AWS IAM Identity Center](#3-aws-iam-identity-center)
+- [4. IAM Identity Center](#4-iam-identity-center)
+- [5. Fine-grained Permissions and Assignments](#5-fine-grained-permissions-and-assignments)
+- [6. External IdPs](#6-external-idps)
+- [7. Attribute-Based Access Control (ABAC)](#7-attribute-based-access-control-abac)
+- [8. Multi-Factor Authentication (MFA)](#8-multi-factor-authentication-mfa)
 
 # 1. Introduction
 
@@ -20,7 +23,19 @@
   - Built-in identity store in IAM Identity Center.
   - 3rd party: Active Directory (AD), OneLogin, Okta...
 
-# 2. Fine-grained Permissions and Assignments
+# 2. Login flow
+
+![Single Sign-ON](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMIdentitySSO.png)
+
+# 3. AWS IAM Identity Center
+
+![alt](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMIdentityCenterDiagram.png)
+
+# 4. IAM Identity Center
+
+TODO: DIAGRAM
+
+# 5. Fine-grained Permissions and Assignments
 
 - **Multi-Account Permissions**
   - Manage access across AWS accounts in your AWS Organization.
@@ -33,7 +48,9 @@
   - **Example:** Cost center, title, locale...
   - **Use case:** Define permissions once, then modify AWS access by changing the attributes.
 
-# 3. External IdPs
+TODO: DIAGRAM
+
+# 6. External IdPs
 
 - **SAML 2.0:** Authenticate identities from external IdP.
   - Users sign into AWS access portal using their corporate identities.
@@ -45,7 +62,7 @@
   - Must be supported by the external IdP.
   - Perfect complement to using SAML 2.0.
 
-# 4. Attribute-Based Access Control (ABAC)
+# 7. Attribute-Based Access Control (ABAC)
 
 - Fine-grained permissions based on users' attributes stored in IAM Identity Center Identity Store.
 - User attributes can be used in **IAM Identity Center Permission Sets** and **Resource-based Policies**.
@@ -53,7 +70,7 @@
 - Use case: Define permissions once, then modify AWS access by changing the attributes.
 - **User attributes are mapped from the IdP as key-value pairs.**
 
-# 5. Multi-Factor Authentication (MFA)
+# 8. Multi-Factor Authentication (MFA)
 
 - Supports Multi-Factor Authentication (MFA) with authentication modes:
   - **Every Time They Sign-in (Always-on).**

@@ -27,6 +27,7 @@
 - [12. Security Tools](#12-security-tools)
   - [12.1. IAM Access Advisor (user-level)](#121-iam-access-advisor-user-level)
 - [13. Guidelines \& Best Practices](#13-guidelines--best-practices)
+  - [13.1. Centralized Root Email Aliasing and Alternate Contacts](#131-centralized-root-email-aliasing-and-alternate-contacts)
 - [14. Certificate Store](#14-certificate-store)
 - [15. Providing access to externally authenticated users (identity federation)](#15-providing-access-to-externally-authenticated-users-identity-federation)
   - [15.1. Custom identity broker application](#151-custom-identity-broker-application)
@@ -365,6 +366,20 @@
 - Use Access Keys for Programmatic Access (CLI / SDK).
 - Audit permissions of your account with the IAM Credentials Report.
 - **Never share IAM users & Access Keys.**
+
+## 13.1. Centralized Root Email Aliasing and Alternate Contacts
+
+- Combines two AWS best practices for account communication:
+  1. **Root email aliasing:** Each AWS account uses a root email that redirects to a **centrally monitored mailbox**.
+     - Ensures control, availability, and an audit trail for critical notifications.
+  2. **Alternate contacts:** Assign **team-based distribution lists** for billing, security, and operations.
+     - Delivers role-specific alerts to the right teams.
+     - Reduces alert fatigue and improves response times.
+- **Benefits**
+  - Increases security and operational efficiency.
+  - Reduces reliance on individual root users.
+  - Scales with organizational growth.
+  - Aligns with AWS best practices for separating duties and managing notifications.
 
 # 14. Certificate Store
 

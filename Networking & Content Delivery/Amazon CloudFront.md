@@ -288,6 +288,6 @@
 # 12. Origin Access Control (OAC)
 
 - **Origin Access Control (OAC)** is the **recommended** way to grant CloudFront secure access to S3.
-- It **replaces** the older Origin Access Identity (OAI) method.
+  - It **replaces** the older Origin Access Identity (OAI) method.
 - OAC supports **both read and write** operations.
 - It enables you to **restrict direct access** to the S3 bucket, ensuring only CloudFront can interact with it securely.
