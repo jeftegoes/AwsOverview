@@ -38,8 +38,10 @@
 
 - Provides ongoing governance for your Control Tower environment (AWS Accounts).
 - **Preventive:** Using SCPs (e.g., Disallow Creation of Access Keys for the Root User).
-- **Detective:** - Using AWS Config (e.g., Detect Whether MFA for the Root User is Enabled).
+- **Detective:** Using AWS Config (e.g., Detect Whether MFA for the Root User is Enabled).
 - **Example:** Identify non-compliant resources (e.g., untagged resources).
+
+TODO: DIAGRAM
 
 ### 3.1.1. Guardrails Levels
 

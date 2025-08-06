@@ -385,11 +385,12 @@
 # 13. Amazon S3 Analytics - Storage Class Analysis
 
 - Help you decide when to transition objects to the right storage class.
-- Recommendations for **Standard** and **Standard IA**:
+- Recommendations for **Standard** and **Standard IA**.
   - Does NOT work for One-Zone IA or Glacier.
 - Report is updated daily.
 - 24 to 48 hours to start seeing data analysis.
 - Good first step to put together Lifecycle Rules (or improve them)!
+  ![Amazon S3 Analytics - Storage Class Analysis](/Images/Storage/AmazonS3AnalyticsStorageClassAnalysis.png)
 
 # 14. Requester Pays
 
@@ -742,6 +743,7 @@
   - Allow only logged-in users to download a premium video from your S3 bucket.
   - Allow an ever-changing list of users to download files by generating URLs dynamically.
   - Allow temporarily a user to upload a file to a precise location in your S3 bucket.
+    ![Amazon S3 Pre-Signed URLs](/Images/Storage/AmazonS3PreSignedURLs.png)
 
 # 29. S3 Glacier Vault Lock
 
