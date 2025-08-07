@@ -777,11 +777,15 @@
   - Its own DNS name (Internet Origin or VPC Origin).
   - An access point policy (similar to bucket policy) - manage security at scale.
 
+TODO: DIAGRAM
+
 ## 31.1. Access Points - VPC Origin
 
 - We can define the access point to be accessible only from within the VPC.
 - You must create a VPC Endpoint to access the Access Point (Gateway or Interface Endpoint).
 - The VPC Endpoint Policy must allow access to the target bucket and Access Point.
+
+TODO: DIAGRAM
 
 # 32. S3 Object Lambda
 
