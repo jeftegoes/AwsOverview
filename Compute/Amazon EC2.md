@@ -438,7 +438,7 @@
 
 - "**Host** Has Hardware, **Instance** is Isolated."
 - Host = Full physical server under your control (hardware). $$$
-- Instance = Runs on dedicated hardware, but you don’t see the host (just isolated). $
+- Instance = Runs on dedicated hardware, but you don't see the host (just isolated). $
 
 ## 13.8. Capacity Reservations
 
@@ -526,7 +526,7 @@
 # 18. Impaired Status in Amazon EC2
 
 - When an EC2 instance shows a **status of "Impaired"**, it means that **one or more of the automated status checks have failed**.
-- This status indicates a **problem that is likely affecting the instance’s ability to function correctly**.
+- This status indicates a **problem that is likely affecting the instance's ability to function correctly**.
 
 ## 18.1. What Causes an Impaired Status?
 

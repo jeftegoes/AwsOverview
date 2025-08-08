@@ -13,7 +13,12 @@
 - [3. Inter-region VPC peering connection](#3-inter-region-vpc-peering-connection)
 - [4. EFS vs EBS - Elastic Block Storage](#4-efs-vs-ebs---elastic-block-storage)
 - [5. EBS vs EFS - Elastic File System](#5-ebs-vs-efs---elastic-file-system)
-- [6. Cross-Account Amazon EFS Access for AWS Lambda](#6-cross-account-amazon-efs-access-for-aws-lambda)
+- [6. Amazon EFS Mount Targets](#6-amazon-efs-mount-targets)
+  - [6.1. Why Create a Mount Target in Each AZ?](#61-why-create-a-mount-target-in-each-az)
+  - [6.2. How It Works](#62-how-it-works)
+  - [6.3. High Availability Benefits](#63-high-availability-benefits)
+  - [6.4. AWS Recommendation](#64-aws-recommendation)
+- [7. Cross-Account Amazon EFS Access for AWS Lambda](#7-cross-account-amazon-efs-access-for-aws-lambda)
 
 # 1. Introduction
 
@@ -44,7 +49,7 @@
 
 ## 2.3. Throughput mode
 
-- **Bursting:** (1 TB = 50MiB/s + burst of up to 100MiB/s).
+- **Bursting (burst throughput):** (1 TB = 50MiB/s + burst of up to 100MiB/s).
 - **Provisioned:** Set your throughput regardless of storage size, ex: 1 GiB/s for 1 TB storage.
 - **Elastic:** Automatically scales throughput up or down based on your workloads.
   - Up to 3GiB/s for reads and 1GiB/s for writes.
@@ -102,7 +107,38 @@
 - Can leverage EFS-IA for cost savings.
 - Remember: EFS vs EBS vs Instance Store.
 
-# 6. Cross-Account Amazon EFS Access for AWS Lambda
+# 6. Amazon EFS Mount Targets
+
+## 6.1. Why Create a Mount Target in Each AZ?
+
+- **Amazon EFS (Elastic File System)** is a regional service, but EC2 instances connect to it through **mount targets**, which are specific to an **Availability Zone (AZ)**.
+- Creating a **mount target in each AZ** where your EC2 instances run ensures:
+  - **Lowest possible latency** - traffic stays inside the same AZ.
+  - **No inter-AZ data transfer costs** - you avoid paying for cross-zone network usage.
+
+## 6.2. How It Works
+
+- When an EC2 instance mounts EFS **through a target in the same AZ**, the network traffic:
+  - Stays within the **local VPC infrastructure**.
+  - Avoids slower cross-zone paths.
+- This results in:
+  - Faster file access.
+  - More predictable performance.
+
+## 6.3. High Availability Benefits
+
+- If **one AZ fails**, EC2 instances in other AZs:
+  - Continue to access EFS **through their own local mount targets**.
+  - Maintain application uptime without manual reconfiguration.
+
+## 6.4. AWS Recommendation
+
+- **Always** create a mount target in every AZ where EC2 instances require EFS access.
+- This approach delivers:
+  - **Optimal performance** (low latency, high throughput).
+  - **Resilience** against AZ outages.
+
+# 7. Cross-Account Amazon EFS Access for AWS Lambda
 
 - **Approach**
   - Use **Amazon EFS resource policies** to grant **cross-account access** to the central AWS account.

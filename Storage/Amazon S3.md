@@ -827,7 +827,7 @@ TODO: DIAGRAM
 
 - **Amazon S3 provides strong read-after-write consistency** automatically and at no extra cost.
 - After a **successful write or overwrite**, any **immediate read** returns the **latest version** of the object.
-- **List operations** are also strongly consistent—newly written or deleted objects are immediately reflected.
+- **List operations** are also strongly consistent-newly written or deleted objects are immediately reflected.
 - Applies to **GET, PUT, LIST**, and changes to **tags, ACLs, and metadata**.
 - Ensures that **"what you write is what you read"**, supporting use cases that require immediate access to updated objects.
 

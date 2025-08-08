@@ -224,7 +224,7 @@
 
 - Kinesis Agent is a stand-alone Java software application that offers an easy way to collect and send data to **Amazon Kinesis Data Streams** or **Amazon Kinesis Firehose**.
 - **Note**
-  - When an **Amazon Kinesis Data Stream** is configured as the **source** of a **Kinesis Firehose** delivery stream, Firehose’s `PutRecord` and `PutRecordBatch` operations are disabled and Kinesis Agent **cannot write** to Kinesis Firehose Delivery Stream directly.
+  - When an **Amazon Kinesis Data Stream** is configured as the **source** of a **Kinesis Firehose** delivery stream, Firehose's `PutRecord` and `PutRecordBatch` operations are disabled and Kinesis Agent **cannot write** to Kinesis Firehose Delivery Stream directly.
   - Data needs to be added to the Amazon Kinesis Data Stream through the Kinesis Data Streams `PutRecord` and `PutRecords` operations instead.
 
 # 9. Ordering data into
@@ -234,7 +234,7 @@
 - Imagine you have 100 trucks (truck_1, truck_2, ... truck_100) on the road sending their GPS positions regularly into AWS.
 - You want to consume the data in order for each truck, so that you can track their movement accurately.
 - How should you send that data into Kinesis?
-  - Answer: send using a "Partition Key" value of the "truck_id".
+  - **Answer:** Send using a "Partition Key" value of the "truck_id".
   - The same key will always go to the same shard.
 
 ## 9.2. SQS
@@ -247,12 +247,12 @@
 ## 9.3. Kinesis vs SQS ordering
 
 - **Let's assume 100 trucks, 5 kinesis shards, 1 SQS FIFO.**
-- Kinesis Data Streams:
+- **Kinesis Data Streams**
   - On average you'll have 20 trucks per shard.
   - Trucks will have their data ordered within each shard.
   - The maximum amount of consumers in parallel we can have is 5.
   - Can receive up to 5 MB/s of data.
-- SQS FIFO
+- **SQS FIFO**
   - You only have one SQS FIFO queue.
   - You will have 100 Group ID.
   - You can have up to 100 Consumers (due to the 100 Group ID).

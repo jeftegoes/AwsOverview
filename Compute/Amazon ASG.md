@@ -274,7 +274,7 @@
 # 19. EC2 Auto Scaling and ELB Health Checks
 
 - By default, **Amazon EC2 Auto Scaling uses EC2 health checks**, not ELB health checks.
-- This means it **won’t terminate instances** that fail **ELB health checks** unless configured otherwise.
+- This means it **won't terminate instances** that fail **ELB health checks** unless configured otherwise.
 - If an instance appears `OutOfService` in the ELB console but **Healthy** in the Auto Scaling console, check the group's **health check type**.
 - To ensure Auto Scaling responds to ELB failures, set the health check type to **ELB**.
 
