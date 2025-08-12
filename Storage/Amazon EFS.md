@@ -105,7 +105,9 @@
 - Only for Linux Instances (POSIX).
 - EFS has a higher price point than EBS.
 - Can leverage EFS-IA for cost savings.
-- Remember: EFS vs EBS vs Instance Store.
+- **Remember:** EFS vs EBS vs Instance Store.
+
+TODO: DIAGRAM
 
 # 6. Amazon EFS Mount Targets
 
@@ -137,6 +139,8 @@
 - This approach delivers:
   - **Optimal performance** (low latency, high throughput).
   - **Resilience** against AZ outages.
+
+TODO: DIAGRAM - #4-14
 
 # 7. Cross-Account Amazon EFS Access for AWS Lambda
 

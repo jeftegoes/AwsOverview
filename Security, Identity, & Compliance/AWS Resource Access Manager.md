@@ -16,10 +16,10 @@
 
 # 2. Key Supported Resources
 
-- AWS Transit Gateways
-- Subnets
-- AWS License Manager configurations
-- Amazon Route 53 Resolver rules
+- AWS Transit Gateways.
+- Subnets.
+- AWS License Manager configurations.
+- Amazon Route 53 Resolver rules.
 
 # 3. Benefits
 

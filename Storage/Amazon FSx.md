@@ -36,6 +36,7 @@
 - Microsoft Active Directory integration, ACLs, user quotas.
 - **Can be mounted on Linux EC2 instances.**
 - Supports **Microsoft's Distributed File System (DFS) Namespaces** (group files across multiple FS).
+- **Replication**: Uses **Distributed File System Replication (DFSR)** for multi-master folder synchronization across servers.
 - Scale up to 10s of GB/s, millions of IOPS, 100s PB of data.
 - **Storage Options**
   - **SSD:** Latency sensitive workloads (databases, media processing, data analytics, ...).

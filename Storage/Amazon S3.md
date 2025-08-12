@@ -70,13 +70,13 @@
 - [29. S3 Glacier Vault Lock](#29-s3-glacier-vault-lock)
 - [30. S3 Object Lock](#30-s3-object-lock)
 - [31. S3 - Access Points](#31-s3---access-points)
-  - [31.1. Access Points - VPC Origin](#311-access-points---vpc-origin)
-- [32. S3 Object Lambda](#32-s3-object-lambda)
-- [33. Shared Responsibility Model for S3](#33-shared-responsibility-model-for-s3)
-- [34. S3 Sync Command](#34-s3-sync-command)
-- [35. Read-After-Write Consistency](#35-read-after-write-consistency)
-- [36. Amazon S3 Bucket Keys with SSE-KMS](#36-amazon-s3-bucket-keys-with-sse-kms)
-- [37. Summary](#37-summary)
+  - [31.1. VPC Origin](#311-vpc-origin)
+  - [31.2. S3 Object Lambda](#312-s3-object-lambda)
+- [32. Shared Responsibility Model for S3](#32-shared-responsibility-model-for-s3)
+- [33. S3 Sync Command](#33-s3-sync-command)
+- [34. Read-After-Write Consistency](#34-read-after-write-consistency)
+- [35. Amazon S3 Bucket Keys with SSE-KMS](#35-amazon-s3-bucket-keys-with-sse-kms)
+- [36. Summary](#36-summary)
 
 # 1. Introduction
 
@@ -776,18 +776,16 @@
 - **Each Access Point has**
   - Its own DNS name (Internet Origin or VPC Origin).
   - An access point policy (similar to bucket policy) - manage security at scale.
+    ![S3 - Access Points](/Images/Storage/AmazonS3AccessPoints.png)
 
-TODO: DIAGRAM
-
-## 31.1. Access Points - VPC Origin
+## 31.1. VPC Origin
 
 - We can define the access point to be accessible only from within the VPC.
 - You must create a VPC Endpoint to access the Access Point (Gateway or Interface Endpoint).
 - The VPC Endpoint Policy must allow access to the target bucket and Access Point.
+  ![Access Points - VPC Origin](/Images/Storage/AmazonS3AccessPointsVPCOrigin.png)
 
-TODO: DIAGRAM
-
-# 32. S3 Object Lambda
+## 31.2. S3 Object Lambda
 
 - Use AWS Lambda Functions to change the object before it is retrieved by the caller application.
 - Only one S3 bucket is needed, on top of which we create **S3 Access Point and S3 Object Lambda Access Points**.
@@ -796,7 +794,7 @@ TODO: DIAGRAM
   - Converting across data formats, such as converting XML to JSON.
   - Resizing and watermarking images on the fly using caller-specific details, such as the user who requested the object.
 
-# 33. Shared Responsibility Model for S3
+# 32. Shared Responsibility Model for S3
 
 - **Aws**
   - Infrastructure (global security, durability, availability, sustain concurrent loss of data in two facilities)
@@ -810,7 +808,7 @@ TODO: DIAGRAM
   - S3 Storage Classes
   - Data encryption at rest and in transit
 
-# 34. S3 Sync Command
+# 33. S3 Sync Command
 
 - **Purpose**: Copies objects between Amazon S3 buckets using the **CopyObject** API.
 - **How it works**:
@@ -823,7 +821,7 @@ TODO: DIAGRAM
     aws s3 sync s3://DOC-EXAMPLE-BUCKET-SOURCE s3://DOC-EXAMPLE-BUCKET-TARGET
   ```
 
-# 35. Read-After-Write Consistency
+# 34. Read-After-Write Consistency
 
 - **Amazon S3 provides strong read-after-write consistency** automatically and at no extra cost.
 - After a **successful write or overwrite**, any **immediate read** returns the **latest version** of the object.
@@ -831,7 +829,7 @@ TODO: DIAGRAM
 - Applies to **GET, PUT, LIST**, and changes to **tags, ACLs, and metadata**.
 - Ensures that **"what you write is what you read"**, supporting use cases that require immediate access to updated objects.
 
-# 36. Amazon S3 Bucket Keys with SSE-KMS
+# 35. Amazon S3 Bucket Keys with SSE-KMS
 
 - **S3 Bucket Keys** optimize server-side encryption with AWS KMS (SSE-KMS) by using a **bucket-level key**.
 - This reduces the number of **direct KMS API calls** by allowing S3 to generate data keys locally.
@@ -840,7 +838,7 @@ TODO: DIAGRAM
 - Especially beneficial for **high-volume workloads** with frequent reads or writes.
   ![Amazon S3 Bucket Keys with SSE-KMS](/Images/Storage/AmazonS3BucketKeys.png)
 
-# 37. Summary
+# 36. Summary
 
 - S3 is a... key / value store for objects.
 - Great for bigger objects, not so great for many small objects.
