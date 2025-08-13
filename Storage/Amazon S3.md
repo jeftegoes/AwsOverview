@@ -793,6 +793,7 @@
   - Redacting personally identifiable information for analytics or non- production environments.
   - Converting across data formats, such as converting XML to JSON.
   - Resizing and watermarking images on the fly using caller-specific details, such as the user who requested the object.
+    ![Access Points - S3 Object Lambda](/Images/Storage/AmazonS3AccessPointsObjectLambda.png)
 
 # 32. Shared Responsibility Model for S3
 

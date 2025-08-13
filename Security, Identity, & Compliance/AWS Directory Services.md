@@ -33,7 +33,7 @@
 
 - Connect to an AWS Managed Microsoft AD (Directory Service).
   - Integration is out of the box.
-    ![AWS Managed Microsoft AD ](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMIdentityCenter.png)
+    ![AWS Managed Microsoft AD ](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMIdentityCenterAD.png)
 - Connect to a Self-Managed Directory
   - Create Two-way Trust Relationship using AWS Managed Microsoft AD.
   - Create an AD Connector.

@@ -33,7 +33,7 @@
 
 # 4. IAM Identity Center
 
-TODO: DIAGRAM
+![alt](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMIdentityCenter.png)
 
 # 5. Fine-grained Permissions and Assignments
 

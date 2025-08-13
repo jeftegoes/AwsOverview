@@ -4,6 +4,7 @@
 
 - [1. Introduction](#1-introduction)
 - [2. AWS Transfer Family for Legacy SFTP Integration](#2-aws-transfer-family-for-legacy-sftp-integration)
+- [3. AWS Transfer Family with Amazon EFS Solution](#3-aws-transfer-family-with-amazon-efs-solution)
 
 # 1. Introduction
 
@@ -29,3 +30,18 @@
   - Enforce **least-privilege access** and prevent data leakage.
 - Supports **auditing and logging** via **AWS CloudTrail** for visibility and compliance.
 - Enables **secure, scalable, and fully managed file transfers** without requiring changes on the vendor side.
+
+# 3. AWS Transfer Family with Amazon EFS Solution
+
+- **Storage**
+  - Uses **Amazon EFS** for shared, low-latency, scalable storage.
+    - Ideal for **high IOPS** workloads.
+    - Natively supported by AWS Transfer Family.
+- **Access**
+  - SFTP endpoint deployed **within a VPC** with Elastic IPs for secure, internet-facing connectivity.
+- **Security**
+  - **IAM policies** + **POSIX user ID mappings** for per-user access control (similar to Linux permissions).
+  - **Security group** restricts SFTP access to trusted IPs.
+- **Benefits**:
+  - Meets performance, security, and manageability requirements.
+  - Fully **serverless architecture**.

@@ -107,23 +107,24 @@
 - Can leverage EFS-IA for cost savings.
 - **Remember:** EFS vs EBS vs Instance Store.
 
-TODO: DIAGRAM
+  ![Amazon EFS Mount Target](/Images/Storage/AmazonEFSMountTarget.png)
 
 # 6. Amazon EFS Mount Targets
 
 ## 6.1. Why Create a Mount Target in Each AZ?
 
-- **Amazon EFS (Elastic File System)** is a regional service, but EC2 instances connect to it through **mount targets**, which are specific to an **Availability Zone (AZ)**.
+- **Amazon EFS (Elastic File System)** is a regional service, but EC2 instances connect to it through **MOUNT TARGETS**, which are specific to an **Availability Zone (AZ)**.
 - Creating a **mount target in each AZ** where your EC2 instances run ensures:
-  - **Lowest possible latency** - traffic stays inside the same AZ.
-  - **No inter-AZ data transfer costs** - you avoid paying for cross-zone network usage.
+  - **Lowest possible latency** - Traffic stays inside the same AZ.
+  - **No inter-AZ data transfer costs** - You avoid paying for cross-zone network usage.
+    ![Amazon EFS Mount Target](/Images/Storage/AmazonEFSMountTarget.png)
 
 ## 6.2. How It Works
 
 - When an EC2 instance mounts EFS **through a target in the same AZ**, the network traffic:
   - Stays within the **local VPC infrastructure**.
   - Avoids slower cross-zone paths.
-- This results in:
+- **This results in**
   - Faster file access.
   - More predictable performance.
 
@@ -136,11 +137,9 @@ TODO: DIAGRAM
 ## 6.4. AWS Recommendation
 
 - **Always** create a mount target in every AZ where EC2 instances require EFS access.
-- This approach delivers:
+- **This approach delivers**
   - **Optimal performance** (low latency, high throughput).
   - **Resilience** against AZ outages.
-
-TODO: DIAGRAM - #4-14
 
 # 7. Cross-Account Amazon EFS Access for AWS Lambda
 
