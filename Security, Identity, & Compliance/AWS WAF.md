@@ -3,9 +3,11 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. Fixed IP while using WAF with a Load Balancer](#2-fixed-ip-while-using-waf-with-a-load-balancer)
-- [3. Managed Rules](#3-managed-rules)
-- [4. Logging](#4-logging)
+- [2. Rules](#2-rules)
+  - [2.1. Rate-Based](#21-rate-based)
+- [3. Fixed IP while using WAF with a Load Balancer](#3-fixed-ip-while-using-waf-with-a-load-balancer)
+- [4. Managed Rules](#4-managed-rules)
+- [5. Logging](#5-logging)
 - [6. WAF vs. Firewall Manager vs. Shield](#6-waf-vs-firewall-manager-vs-shield)
 - [7. Security Policies](#7-security-policies)
 - [8. AWS Shield](#8-aws-shield)
@@ -25,17 +27,29 @@
   - **IP Set: up to 10,000 IP addresses** - use multiple Rules for more IPs.
   - HTTP headers, HTTP body, or URI strings Protects from common attack - **SQL injection** and **Cross-Site Scripting (XSS)**.
   - Size constraints, **geo-match (block countries)**.
-  - **Rate-based rules** (to count occurrences of events) - **for DDoS protection**.
+  - **Rate-based Rules** (to count occurrences of events) - **for DDoS protection**.
 - Web ACL are Regional except for CloudFront.
 - A rule group is **a reusable set of rules that we can add to a web ACL**.
 
-# 2. Fixed IP while using WAF with a Load Balancer
+# 2. Rules
+
+## 2.1. Rate-Based
+
+- **Purpose**
+  - Track request rates per originating IP.
+  - Trigger an action if requests exceed a set limit.
+  - Limit is defined as **requests per 5-minute period**.
+  - Useful for temporarily blocking excessive requests.
+- **Use case**
+  - Limit illegitimate requests without affecting genuine traffic.
+
+# 3. Fixed IP while using WAF with a Load Balancer
 
 - WAF does not support the Network Load Balancer (Layer 4).
 - We can use Global Accelerator for fixed IP and WAF on the ALB.
   ![ Fixed IP while using WAF with a Load Balancer](/Images/Security,%20Identity,%20&%20Compliance/AWSWAFFixedIPLoadBalancer.png)
 
-# 3. Managed Rules
+# 4. Managed Rules
 
 - Library of over 190 managed rules.
 - Ready-to-use rules that are managed by AWS and AWS Marketplace Sellers.
@@ -55,7 +69,7 @@
 - **Bot Control Managed Rule Group:** Block and manage requests from bots:
   - `AWSManagedRulesBotControlRuleSet`
 
-# 4. Logging
+# 5. Logging
 
 - We can send your logs to an:
   - Amazon CloudWatch Logs log group - 5 MB per second.

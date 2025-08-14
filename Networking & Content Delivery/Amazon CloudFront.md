@@ -18,10 +18,11 @@
   - [3.5. Cache Behaviors](#35-cache-behaviors)
 - [4. Geo Restriction](#4-geo-restriction)
 - [5. Signed URL / Signed Cookies](#5-signed-url--signed-cookies)
-  - [5.1. Signed URL vs S3 Pre-Signed URL](#51-signed-url-vs-s3-pre-signed-url)
-    - [5.1.1. CloudFront Signed URL](#511-cloudfront-signed-url)
-    - [5.1.2. S3 Pre-Signed URL](#512-s3-pre-signed-url)
-  - [5.2. Signed URL Process](#52-signed-url-process)
+  - [5.1. Use Cases](#51-use-cases)
+  - [5.2. Signed URL vs S3 Pre-Signed URL](#52-signed-url-vs-s3-pre-signed-url)
+    - [5.2.1. CloudFront Signed URL](#521-cloudfront-signed-url)
+    - [5.2.2. S3 Pre-Signed URL](#522-s3-pre-signed-url)
+  - [5.3. Signed URL Process](#53-signed-url-process)
 - [6. Pricing](#6-pricing)
   - [6.1. Price Classes](#61-price-classes)
 - [7. Multiple Origin](#7-multiple-origin)
@@ -195,30 +196,40 @@
 - How long should the URL be valid for?
   - Shared content (movie, music): Make it short (a few minutes).
   - Private content (private to the user): We can make it last for years.
-- Signed URL = access to individual files (one signed URL per file).
-- Signed Cookies = access to multiple files (one signed cookie for many files).
+- Signed URL = Access to individual files (one signed URL per file).
+- Signed Cookies = Access to multiple files (one signed cookie for many files).
 
-## 5.1. Signed URL vs S3 Pre-Signed URL
+## 5.1. Use Cases
 
-### 5.1.1. CloudFront Signed URL
+- **Use Signed URLs** when:
+  - Using an **RTMP distribution** (signed cookies not supported).
+  - Restricting access to **individual files** (e.g., an app installer).
+  - Clients **don’t support cookies** (e.g., custom HTTP client).
+- **Use Signed Cookies** when:
+  - Providing access to **multiple restricted files** (e.g., video segments in HLS or a subscriber-only content area).
+  - You **don’t want to change existing URLs**.
+
+## 5.2. Signed URL vs S3 Pre-Signed URL
+
+### 5.2.1. CloudFront Signed URL
 
 - Allow access to a path, no matter the origin.
 - **Account wide key-pair, only the root can manage it.**
 - Can filter by IP, path, date, expiration.
 - Can leverage caching features.
 
-### 5.1.2. S3 Pre-Signed URL
+### 5.2.2. S3 Pre-Signed URL
 
 - Issue a request as the person who pre-signed the URL.
 - Uses the IAM key of the signing IAM principal.
 - Limited lifetime.
 
-## 5.2. Signed URL Process
+## 5.3. Signed URL Process
 
-- Two types of signers:
-  - Either a trusted key group (recommended):
+- **Two types of signers**
+  - **Either a trusted key group (recommended)**
     - Can leverage APIs to create and rotate keys (and IAM for API security).
-  - An AWS Account that contains a CloudFront Key Pair:
+  - **An AWS Account that contains a CloudFront Key Pair**
     - Need to manage keys using **the root account and the AWS console**.
     - Not recommended because we shouldn't use the root account for this.
 - In your CloudFront distribution, create one or more trusted key groups.

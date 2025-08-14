@@ -1,8 +1,8 @@
-# AWS STS - Security Token Service<!-- omit in toc -->
+# AWS STS - Security Token Service <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
-- [1. STS - Security Token Service](#1-sts---security-token-service)
+- [1. Introduction](#1-introduction)
 - [2. Using STS to Assume a Role](#2-using-sts-to-assume-a-role)
 - [3. Cross account access with STS](#3-cross-account-access-with-sts)
 - [4. STS with MFA](#4-sts-with-mfa)
@@ -20,7 +20,7 @@
 - [9. Inline vs Managed Policies](#9-inline-vs-managed-policies)
 - [10. Granting a User Permissions to Pass a Role to an AWS Service](#10-granting-a-user-permissions-to-pass-a-role-to-an-aws-service)
 
-# 1. STS - Security Token Service
+# 1. Introduction
 
 - Allows to grant limited and temporary access to AWS resources (up to 1 hour).
 - `AssumeRole` - Is useful for allowing existing IAM users to access AWS resources that they don't already have access to.
@@ -145,16 +145,16 @@
 
 # 9. Inline vs Managed Policies
 
-- AWS Managed Policy
-  - Maintained by AWS
-  - Good for power users and administrators
-  - Updated in case of new services / new APIs
-- Customer Managed Policy
-  - Best Practice, re-usable, can be applied to many principals
-  - Version Controlled + rollback, central change management
-- Inline
-  - Strict one-to-one relationship between policy and principal
-  - Policy is deleted if you delete the IAM principal
+- **AWS Managed Policy**
+  - Maintained by AWS.
+  - Good for power users and administrators.
+  - Updated in case of new services / new APIs.
+- **Customer Managed Policy**
+  - Best Practice, re-usable, can be applied to many principals.
+  - Version Controlled + rollback, central change management.
+- **Inline**
+  - Strict one-to-one relationship between policy and principal.
+  - Policy is deleted if you delete the IAM principal.
 
 # 10. Granting a User Permissions to Pass a Role to an AWS Service
 
@@ -167,42 +167,38 @@
   - To CodePipeline to allow it to invoke other services
 - For this, you need the IAM permission `iam:PassRole`.
 - It often comes with `iam:GetRole` to view the role being passed.
-- Example:
-
+- **Example**
+  ```json
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": ["ec2:*"],
+        "Resource": "*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": "iam:PassRole",
+        "Resource": "arn:aws:iam::123456789012:role/S3Access"
+      }
+    ]
+  }
   ```
-    {
-      "Version": "2012-10-17",
-      "Statement":[
-        {
-          "Effect": "Allow",
-          "Action": [
-            "ec2:*"
-          ],
-          "Resource": "*"
-        },
-        {
-          "Effect": "Allow",
-          "Action": "iam:PassRole",
-          "Resource": "arn:aws:iam::123456789012:role/S3Access"
-        }
-      ]
-    }
-  ```
-
 - Can a role be passed to any service?
   - **No: Roles can only be passed to what their trust allows.**
   - A trust policy for the role that allows the service to assume the role.
-  - Example:
-  ```
-    {
-      "Version": "2012-10-17",
-        "Statement": {
-        "Sid": "TrustPolicyStatementThatAllowsEC2ServiceToAssumeTheAttachedRole",
-        "Effect": "Allow",
-        "Principal": {
-          "Service": "ec2.amazonaws.com"
-        },
-        "Action": "sts: AssumeRole"
-      }
+  - **Example**
+  ```json
+  {
+    "Version": "2012-10-17",
+    "Statement": {
+      "Sid": "TrustPolicyStatementThatAllowsEC2ServiceToAssumeTheAttachedRole",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Action": "sts: AssumeRole"
     }
+  }
   ```

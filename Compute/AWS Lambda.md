@@ -40,6 +40,7 @@
 - [15. Lambda Execution Role (IAM Role)](#15-lambda-execution-role-iam-role)
   - [15.1. Lambda Resource Based Policies](#151-lambda-resource-based-policies)
 - [16. Lambda Environment Variables](#16-lambda-environment-variables)
+  - [16.1. Encryption](#161-encryption)
 - [17. Lambda Logging \& Monitoring](#17-lambda-logging--monitoring)
   - [17.1. Lambda Tracing with X-Ray](#171-lambda-tracing-with-x-ray)
 - [18. Customization At The Edge](#18-customization-at-the-edge)
@@ -494,6 +495,22 @@
 - Lambda Service adds its own system environment variables as well.
 - Helpful to store secrets (encrypted by KMS).
 - Secrets can be encrypted by the Lambda service key, or your own CMK.
+
+## 16.1. Encryption
+
+- **Encryption process**
+  - AWS Lambda encrypts environment variables using **AWS Key Management Service (KMS)**.
+  - Upon function invocation, variables are **decrypted** and made available to the code.
+- **Default key**
+  - The first time environment variables are used in a region, Lambda creates a **default service key** in KMS automatically.
+  - This key encrypts environment variables by default.
+- **Custom KMS key**
+  - Required when using **encryption helpers** after the Lambda function is created.
+  - The default key cannot be selected manually (will cause errors).
+  - **A custom key offers**
+    - Key creation, rotation, and disabling.
+    - Custom access controls.
+    - Auditing of key usage.
 
 # 17. Lambda Logging & Monitoring
 

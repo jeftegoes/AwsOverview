@@ -81,7 +81,7 @@
 # 6. Amazon FSx for NetApp ONTAP
 
 - Managed NetApp ONTAP on AWS.
-- **File System compatible with NFS, SMB, iSCSI protocol.**
+- **File System compatible with NFS, SMB, iSCSI (block storage) protocol.**
 - Move workloads running on ONTAP or NAS to AWS.
 - **Works with**
   - Linux.
