@@ -1,4 +1,4 @@
-# AWS STS - Security Token Service <!-- omit in toc -->
+# AWS Security Token Service (AWS STS) <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -19,6 +19,7 @@
 - [8. Dynamic Policies with IAM](#8-dynamic-policies-with-iam)
 - [9. Inline vs Managed Policies](#9-inline-vs-managed-policies)
 - [10. Granting a User Permissions to Pass a Role to an AWS Service](#10-granting-a-user-permissions-to-pass-a-role-to-an-aws-service)
+  - [10.1. Temporary Credentials \& Enterprise Identity Federation in AWS](#101-temporary-credentials--enterprise-identity-federation-in-aws)
 
 # 1. Introduction
 
@@ -202,3 +203,21 @@
     }
   }
   ```
+
+## 10.1. Temporary Credentials & Enterprise Identity Federation in AWS
+
+- **Use cases for temporary credentials**
+  - Identity federation.
+  - Delegation.
+  - Cross-account access.
+  - IAM roles.
+- **Enterprise Identity Federation**
+  - Authenticate users via the organization's existing identity provider.
+  - Provide AWS access without creating separate AWS credentials.
+  - Enables **Single Sign-On (SSO)**.
+  - Supported by AWS STS with **SAML 2.0** (e.g., Microsoft AD FS with Active Directory).
+- **Correct steps**
+  1. Set up a federation proxy or identity provider, then use **AWS STS** to generate temporary tokens.
+  2. Configure an **IAM role** and **IAM policy** to grant access (e.g., to an S3 bucket).
+
+TODO: DIAGRAM

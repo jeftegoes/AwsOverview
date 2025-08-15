@@ -42,6 +42,7 @@
   - [21.3. Contributor](#213-contributor)
   - [21.4. Application](#214-application)
   - [21.5. CloudWatch Insights and Operational Visibility](#215-cloudwatch-insights-and-operational-visibility)
+- [22. Amazon EC2 Monitoring with Amazon CloudWatch](#22-amazon-ec2-monitoring-with-amazon-cloudwatch)
 
 # 1. Why Monitoring is Important
 
@@ -422,3 +423,18 @@
   - Find "Top-N" Contributors through CloudWatch Logs.
 - **CloudWatch Application Insights**
   - Automatic dashboard to troubleshoot your application and related AWS services.
+
+# 22. Amazon EC2 Monitoring with Amazon CloudWatch
+
+- **Default EC2 Metrics**
+  - `CPU Utilization` - Processing power usage.
+  - `Network Utilization` - Incoming/outgoing traffic volume.
+  - `Disk Read` - Data read from instance’s disk (affects application speed).
+- **Custom Metrics (not available by default)**
+  - Created using **CloudWatch Monitoring Scripts** (Perl) or **CloudWatch Agent**.
+  - **Examples**
+    - `Memory utilization`.
+    - `Disk swap utilization`.
+    - `Disk space utilization`.
+    - `Page file utilization`.
+    - `Log collection`.

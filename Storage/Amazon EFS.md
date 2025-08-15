@@ -91,7 +91,7 @@
   - Can be attached to only one instance (except multi-attach `io1/io2`).
   - Are locked at the Availability Zone (AZ) level.
   - **gp2:** IO increases if the disk size increases.
-  - **gp3 & io1:** Can increase IO independently
+  - **gp3 & io1:** Can increase IO independently.
 - **To migrate an EBS volume across AZ**
   1. Take a snapshot.
   2. Restore the snapshot to another AZ.

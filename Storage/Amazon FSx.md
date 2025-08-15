@@ -94,6 +94,7 @@
 - Snapshots, replication, low-cost, compression and data de-duplication.
 - **Point-in-time instantaneous cloning (helpful for testing new workloads).**
   ![Amazon FSx for NetApp ONTAP](/Images/Storage/AmazonFSxNetAppONTAP.png)
+- Does support Multi-AZ.
 
 # 7. Amazon FSx for OpenZFS
 
