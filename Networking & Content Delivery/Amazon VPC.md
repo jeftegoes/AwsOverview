@@ -476,9 +476,11 @@
 ## 19.3. Egress-only Internet Gateway
 
 - **Used for IPv6 only.**
-- (similar to a NAT Gateway but for IPv6).
+- Similar to a NAT Gateway but for IPv6.
 - Allows instances in your VPC outbound connections over IPv6 while preventing the internet to initiate an IPv6 connection to your instances.
 - **You must update the Route Tables.**
+
+TODO: DIAGRAM
 
 # 20. Network Protection on AWS
 

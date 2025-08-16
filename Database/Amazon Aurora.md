@@ -5,7 +5,8 @@
 - [1. Introduction](#1-introduction)
 - [2. High Availability and Read Scaling](#2-high-availability-and-read-scaling)
 - [3. Auto Scaling](#3-auto-scaling)
-- [4. Custom Endpoints](#4-custom-endpoints)
+- [4. Endpoints](#4-endpoints)
+  - [4.1. Custom Endpoints](#41-custom-endpoints)
 - [5. Global Aurora](#5-global-aurora)
 - [6. Machine Learning](#6-machine-learning)
 - [7. Unplanned Failover](#7-unplanned-failover)
@@ -55,11 +56,21 @@
 
 ![Auto Scaling](/Images/Database/AmazonAuroraAutoScaling.png)
 
-# 4. Custom Endpoints
+# 4. Endpoints
+
+- **Types of endpoints**
+  - **Writer Endpoint (Cluster endpoint):** Routes to the primary instance (for write operations).
+  - **Reader endpoint:** Load-balances read queries across replicas.
+  - **Instance endpoint:** Direct connection to a specific DB instance (diagnostics/tuning).
+  - **Custom endpoint:** Load-balanced connections based on custom criteria (e.g., instance class, parameter groups, or workloads).
+
+## 4.1. Custom Endpoints
 
 - Define a subset of Aurora Instances as a Custom Endpoint.
 - **Example:** Run analytical queries on specific replicas.
 - The Reader Endpoint is generally not used after defining Custom Endpoints.
+
+TODO: DIAGRAM
 
 # 5. Global Aurora
 
