@@ -30,6 +30,7 @@
   - [5.1. Diagram](#51-diagram)
   - [5.2. High Availability](#52-high-availability)
   - [5.3. Integration with AWS Services](#53-integration-with-aws-services)
+  - [5.4. AWS KMS Custom Key Store with CloudHSM](#54-aws-kms-custom-key-store-with-cloudhsm)
 - [6. CloudWatch Logs - Encryption](#6-cloudwatch-logs---encryption)
 - [7. CodeBuild Security](#7-codebuild-security)
 - [8. AWS Nitro Enclaves](#8-aws-nitro-enclaves)
@@ -262,22 +263,43 @@
 
 ## 5.1. Diagram
 
-- IAM permissions:
-  - CRUD an HSM Cluster
-- CloudHSM Software:
-  - Manage the Keys
-  - Manage the Users
+- **IAM permissions**
+  - CRUD an HSM Cluster.
+- **CloudHSM Software**
+  - Manage the Keys.
+  - Manage the Users.
 
 ## 5.2. High Availability
 
-- CloudHSM clusters are spread across Multi-AZ (HA)
-- Great for availability and durability
+- CloudHSM clusters are spread across Multi-AZ (HA).
+- Great for availability and durability.
 
 ## 5.3. Integration with AWS Services
 
-- Through integration with AWS KMS
-- Configure KMS Custom Key Store with CloudHSM
-- Example: EBS, S3, RDS ...
+- Through integration with AWS KMS.
+- Configure KMS **Custom Key Store** with CloudHSM.
+- **Example:** EBS, S3, RDS ...
+
+## 5.4. AWS KMS Custom Key Store with CloudHSM
+
+- **Definition**  
+  Combines the **control of AWS CloudHSM** with the **integration of AWS KMS**.
+  - Keys are generated and stored in your **CloudHSM cluster**.
+  - Key material never leaves the HSM in plaintext.
+  - All cryptographic operations are performed within your HSMs.
+- **Integration**
+  - AWS KMS integrates with other AWS services for encryption/decryption.
+  - Each **custom key store** is tied to your own **AWS CloudHSM cluster**.
+  - You can manage key lifecycles independently of AWS KMS.
+- **Use cases / Benefits**
+  - Safeguard encryption keys within **dedicated HSMs** under your control.
+  - Meet **strict single-tenancy** and compliance requirements.
+  - Independently **revoke and remove key material** from AWS KMS.
+  - Perform **independent auditing/monitoring** beyond KMS and CloudTrail logs.
+- **Correct approach**:  
+  Use **AWS KMS** to create a key in a **custom key store** and store the non-extractable key material in **AWS CloudHSM**.
+
+TODO: DIAGRAM #1 #38
 
 # 6. CloudWatch Logs - Encryption
 
@@ -285,25 +307,25 @@
 - Encryption is enabled at the log group level, by associating a CMK with a log group, either when you create the log group or after it exists.
 - We cannot associate a CMK with a log group using the CloudWatch console.
 - **We must use the CloudWatch Logs API**
-  - `associate-kms-key`: if the log group already exists.
-  - `create-log-group`: if the log group doesn't exist yet.
+  - `associate-kms-key` - If the log group already exists.
+  - `create-log-group` - If the log group doesn't exist yet.
 
 # 7. CodeBuild Security
 
 - To access resources in your VPC, make sure you specify a VPC configuration for your CodeBuild.
-- Secrets in CodeBuild:
-- Don't store them as plaintext in environment variables.
+- **Secrets in CodeBuild**
+  - Don't store them as plaintext in environment variables.
 - Instead...
   - Environment variables can reference parameter store parameters.
   - Environment variables can reference secrets manager secrets.
 
 # 8. AWS Nitro Enclaves
 
-- Process highly sensitive data in an isolated compute environment
+- Process highly sensitive data in an isolated compute environment.
   - Personally Identifiable Information (PII), healthcare, financial, ...
-- Fully isolated virtual machines, hardened, and highly constrained
+- Fully isolated virtual machines, hardened, and highly constrained.
   - Not a container, not persistent storage, no interactive access, no external networking.
 - Helps reduce the attack surface for sensitive data processing apps
   - Cryptographic Attestation - only authorized code can be running in your Enclave.
   - Only Enclaves can access sensitive data (integration with KMS).
-- **Use cases:** securing private keys, processing credit cards, secure multi-party computation...
+- **Use cases:** Securing private keys, processing credit cards, secure multi-party computation...

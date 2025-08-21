@@ -20,8 +20,8 @@
     - [10.2.1. ALB to Lambda: HTTP to JSON](#1021-alb-to-lambda-http-to-json)
     - [10.2.2. ALB Multi-Header Values](#1022-alb-multi-header-values)
   - [10.3. Lambda@Edge](#103-lambdaedge)
-    - [10.3.1. Lambda@Edge: Global application](#1031-lambdaedge-global-application)
-    - [10.3.2. Lambda@Edge: Use Cases](#1032-lambdaedge-use-cases)
+    - [10.3.1. Global application](#1031-global-application)
+    - [10.3.2. Use Cases](#1032-use-cases)
 - [11. Asynchronous Invocations](#11-asynchronous-invocations)
   - [11.1. Services](#111-services)
   - [11.2. CloudWatch Events / EventBridge](#112-cloudwatch-events--eventbridge)
@@ -50,9 +50,10 @@
 - [19. Lambda in VPC](#19-lambda-in-vpc)
   - [19.1. Default behaviour](#191-default-behaviour)
   - [19.2. Lambda in VPC - Internet Access](#192-lambda-in-vpc---internet-access)
-- [20. Lambda with RDS Proxy](#20-lambda-with-rds-proxy)
-  - [20.1. Invoking Lambda from RDS \& Aurora](#201-invoking-lambda-from-rds--aurora)
-  - [20.2. RDS Event Notifications](#202-rds-event-notifications)
+- [20. RDS Integration](#20-rds-integration)
+  - [20.1. Lambda with RDS Proxy](#201-lambda-with-rds-proxy)
+  - [20.2. Invoking Lambda from RDS \& Aurora](#202-invoking-lambda-from-rds--aurora)
+  - [20.3. RDS Event Notifications](#203-rds-event-notifications)
 - [21. Lambda Function Configuration](#21-lambda-function-configuration)
   - [21.1. Lambda Execution Context](#211-lambda-execution-context)
   - [21.2. Lambda Functions /tmp space](#212-lambda-functions-tmp-space)
@@ -204,16 +205,16 @@
 
 ## 10.1. Services
 
-- User Invoked:
+- **User Invoked**
   - Elastic Load Balancing (Application Load Balancer).
   - Amazon API Gateway.
   - Amazon CloudFront (Lambda@Edge).
   - Amazon S3 Batch.
-- Service Invoked:
+- **Service Invoked**
   - DynamoDB > Streams [DynamoDB Streams and AWS Lambda](/Database/Amazon%20DynamoDB.md)
   - Amazon Cognito.
   - AWS Step Functions.
-- Other Services:
+- **Other Services**
   - Amazon Lex.
   - Amazon Alexa.
   - Amazon Kinesis Data Firehose.
@@ -249,8 +250,8 @@
 - You have deployed a CDN using CloudFront.
   - What if you wanted to run a global AWS Lambda alongside?
   - Or how to implement request filtering before reaching your application?
-- For this, you can use Lambda@Edge:
-  - Deploy Lambda functions alongside your CloudFront CDN:
+- **For this, you can use Lambda@Edge**
+  - **Deploy Lambda functions alongside your CloudFront CDN**
     - Build more responsive applications.
     - You don't manage servers, Lambda is deployed globally.
     - Customize the CDN content.
@@ -264,12 +265,13 @@
   - **Origin Response:** After CloudFront receives the response from the origin.
   - **Viewer Response:** Before CloudFront forwards the response to the viewer.
 - Author your functions in one AWS Region (us-east-1), then CloudFront replicates to its locations.
+  ![Amazon CloudFront Functions](/Images/Networking%20&%20Content%20Delivery/AmazonCloudFrontFunctions.png)
 
-### 10.3.1. Lambda@Edge: Global application
+### 10.3.1. Global application
 
 ![Lambda@Edge Global Application](/Images/Compute/AWSLambda@EdgeGlobalApplication.png)
 
-### 10.3.2. Lambda@Edge: Use Cases
+### 10.3.2. Use Cases
 
 - Website Security and Privacy.
 - Dynamic Web Application at the Edge.
@@ -557,6 +559,7 @@
   - **Viewer Request:** After CloudFront receives a request from a viewer.
   - **Viewer Response:** Before CloudFront forwards the response to the viewer.
 - Native feature of CloudFront (manage code entirely within CloudFront).
+  ![Amazon CloudFront Functions](/Images/Networking%20&%20Content%20Delivery/AmazonCloudFrontFunctions.png)
 
 ## 18.2. CloudFront Functions vs. Lambda@Edge
 
@@ -603,7 +606,9 @@
 - Deploying a Lambda function in a private subnet gives it internet access if you have a NAT Gateway / Instance.
 - You can use VPC endpoints to privately access AWS services without a NAT.
 
-# 20. Lambda with RDS Proxy
+# 20. RDS Integration
+
+## 20.1. Lambda with RDS Proxy
 
 - If Lambda functions directly access your database, they may open too many connections under high load.
 - **RDS Proxy**
@@ -611,32 +616,35 @@
   - Improve availability by reducing by 66% the failover time and preserving connections.
   - Improve security by enforcing IAM authentication and storing credentials in Secrets Manager.
 - **The Lambda function must be deployed in your VPC, because RDS Proxy is never publicly accessible**
+  ![AWS Lambda with RDS Proxy](/Images/Compute/AWSLambdaRDSProxy.png)
 
-## 20.1. Invoking Lambda from RDS & Aurora
+## 20.2. Invoking Lambda from RDS & Aurora
 
 - Invoke Lambda functions from within your DB instance.
 - Allows you to process **data events** from within a database.
 - Supported for **RDS for PostgreSQL and Aurora MySQL**.
 - **Must allow outbound traffic to your Lambda function** from within your DB instance (Public, NAT GW, VPC Endpoints).
 - **DB instance must have the required permissions to invoke the Lambda function** (Lambda Resource-based Policy & IAM Policy).
+  ![Invoking Lambda from RDS & Aurora](/Images/Compute/AWSLambdaRdsAndAurora.png)
 
-## 20.2. RDS Event Notifications
+## 20.3. RDS Event Notifications
 
 - Notifications that tells information about the DB instance itself (created, stopped, start, ...).
 - You don't have any information about the data itself.
 - Subscribe to the following event categories: **DB instance, DB snapshot, DB Parameter Group, DB Security Group, RDS Proxy, Custom Engine Version**.
 - Near real-time events (up to 5 minutes).
 - Send notifications to SNS or subscribe to events using EventBridge.
+  ![RDS Event Notifications](/Images/Compute/AWSLambdaRDSEventNotification.png)
 
 # 21. Lambda Function Configuration
 
-- **RAM:**
-  - From 128MB to 10GB in 1MB increments
-  - The more RAM you add, the more vCPU credits you get
-  - At 1,792 MB, a function has the equivalent of one full vCPU
+- **RAM**
+  - From 128MB to 10GB in 1MB increments.
+  - The more RAM you add, the more vCPU credits you get.
+  - At 1,792 MB, a function has the equivalent of one full vCPU.
   - After 1,792 MB, you get more than one CPU, and need to use multi-threading in your code to benefit from it (up to 6 vCPU).
 - **If your application is CPU-bound (computation heavy), increase RAM.**
-- **Timeout:** default 3 seconds, maximum is 900 seconds (15 minutes)
+- **Timeout:** Default 3 seconds, maximum is 900 seconds (15 minutes).
 
 ## 21.1. Lambda Execution Context
 

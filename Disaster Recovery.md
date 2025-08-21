@@ -35,7 +35,7 @@
 - Pilot Light.
 - Warm Standby.
 - Hot Site / Multi Site Approach.
-  - ![Faster RTO](/Images/DisasterRecoveryFasterRTO.png)
+  ![Faster RTO](/Images/DisasterRecoveryFasterRTO.png)
 
 ## 3.1. Backup and Restore (High RPO)
 

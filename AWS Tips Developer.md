@@ -1,4 +1,4 @@
-# AWS Tips to AWS Certified Developer - Associate<!-- omit in toc -->
+# AWS Tips to AWS Certified Developer - Associate <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

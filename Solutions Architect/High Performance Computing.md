@@ -70,7 +70,7 @@
   - Open-source cluster management tool to deploy HPC on AWS.
   - Configure with text files.
   - Automate creation of VPC, Subnet, cluster type and instance types.
-  - Ability to enable EFA on the cluster (improves network performance).
+  - **Ability to enable EFA on the cluster (improves network performance).**
 
 # 2. Creating a highly available EC2 instance
 

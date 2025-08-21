@@ -1,4 +1,4 @@
-# AWS Multi Region Architectures<!-- omit in toc -->
+# AWS Multi Region Architectures <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 

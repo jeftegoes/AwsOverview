@@ -495,7 +495,7 @@
   - Security Groups rules.
   - Operating-system patches and updates.
   - Software and utilities installed on the EC2 instance.
-  - IAM Roles assigned to EC2ASDASD\_\_& IAM user access management.
+  - IAM Roles assigned to EC2 & IAM user access management.
   - Data security on our instance.
 
 # 16. VM Import/Export

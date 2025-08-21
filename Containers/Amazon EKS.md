@@ -8,6 +8,7 @@
 - [4. Control Plane Logging](#4-control-plane-logging)
 - [5. Nodes \& Containers Logging](#5-nodes--containers-logging)
 - [6. IAM Roles for Service Accounts (IRSA)](#6-iam-roles-for-service-accounts-irsa)
+- [7. Encrypting EKS Secrets with KMS](#7-encrypting-eks-secrets-with-kms)
 
 # 1. Introduction
 
@@ -74,3 +75,15 @@
   - Ensures **Pod-level isolation** for access control.
   - Eliminates the need for **EC2 instance-wide roles**, reducing risk of over-permissioning.
   - Aligns with **AWS security best practices** for running workloads in EKS.
+
+# 7. Encrypting EKS Secrets with KMS
+
+- **Problem:** By default, EKS stores secrets in `etcd` unencrypted (security risk).
+- **Solution:** Enable **secret encryption** with a new **AWS KMS key**.
+- **How it works**
+  - Create a KMS key for the EKS cluster.
+  - Configure EKS to encrypt secrets before saving them in `etcd`.
+- **Benefits**
+  - Secrets encrypted **at rest**.
+  - Stronger **data confidentiality and integrity**.
+  - Meets **industry compliance** and security standards.

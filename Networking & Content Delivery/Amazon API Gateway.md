@@ -145,8 +145,7 @@
 - Metrics & Logs are separate (for better monitoring).
 - Possibility to override stage variables for canary.
 - This is blue / green deployment with [AWS Lambda](AWS%20Lambda.md) and API Gateway.
-
-![API Gateway - Canary Deployment](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayCanaryDeployment.png)
+  ![API Gateway - Canary Deployment](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayCanaryDeployment.png)
 
 # 8. Integration Types (Methods)
 
