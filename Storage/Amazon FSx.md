@@ -10,6 +10,10 @@
 - [5. FSx Lustre - File System Deployment Options](#5-fsx-lustre---file-system-deployment-options)
 - [6. Amazon FSx for NetApp ONTAP](#6-amazon-fsx-for-netapp-ontap)
 - [7. Amazon FSx for OpenZFS](#7-amazon-fsx-for-openzfs)
+- [8. Choosing an Amazon FSx File System](#8-choosing-an-amazon-fsx-file-system)
+  - [8.1. Familiar File System](#81-familiar-file-system)
+  - [8.2. Performance and Scale](#82-performance-and-scale)
+  - [8.3. Accessibility and Integrations](#83-accessibility-and-integrations)
 
 # 1. Introduction
 
@@ -112,3 +116,17 @@
 - Snapshots, compression and low-cost.
 - **Point-in-time instantaneous cloning (helpful for testing new workloads).**
   ![Amazon FSx for NetApp ONTAP](/Images/Storage/AmazonFSxOpenZFS.png)
+
+# 8. Choosing an Amazon FSx File System
+
+## 8.1. Familiar File System
+
+![Familiar File System](/Images/Storage/AmazonFsxFamiliarFileSystem.png)
+
+## 8.2. Performance and Scale
+
+![Performance and Scale](/Images/Storage/AmazonFsxPerformanceScale.png)
+
+## 8.3. Accessibility and Integrations
+
+![Accessibility and Integrations](/Images/Storage/AmazonFsxAccessibilityIntegrations.png)

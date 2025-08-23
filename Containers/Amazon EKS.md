@@ -9,6 +9,7 @@
 - [5. Nodes \& Containers Logging](#5-nodes--containers-logging)
 - [6. IAM Roles for Service Accounts (IRSA)](#6-iam-roles-for-service-accounts-irsa)
 - [7. Encrypting EKS Secrets with KMS](#7-encrypting-eks-secrets-with-kms)
+- [8. Kubernetes Cluster Autoscaler on EKS](#8-kubernetes-cluster-autoscaler-on-eks)
 
 # 1. Introduction
 
@@ -87,3 +88,15 @@
   - Secrets encrypted **at rest**.
   - Stronger **data confidentiality and integrity**.
   - Meets **industry compliance** and security standards.
+
+# 8. Kubernetes Cluster Autoscaler on EKS
+
+- **Purpose:** Automatically adjusts the size of an EKS cluster’s compute resources.
+- **How it works**
+  - Monitors for **unschedulable pods** (pods without enough CPU/memory).
+  - If needed, scales out by increasing the **Auto Scaling group (ASG)** capacity to add EC2 nodes.
+  - Scales in by draining and removing **underutilized nodes** when workloads can be shifted.
+- **Benefits**
+  - Ensures elasticity and high availability.
+  - Reduces costs by removing idle nodes.
+  - Minimizes admin overhead while supporting real-time, variable workloads.

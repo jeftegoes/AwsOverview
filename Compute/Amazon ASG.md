@@ -280,7 +280,12 @@
 
 # 20. Scaling Based on Amazon SQS
 
-![Scaling Based on Amazon SQS](/Images/Compute/AmazonEC2ASGScalingBasedSQS.png)
+- Use **Amazon EC2 Auto Scaling** with a **target tracking policy** based on the SQS `ApproximateNumberOfMessages` metric.
+- Automatically adjusts the number of worker instances as queue depth changes.
+- Ensures backlogs are processed efficiently during traffic spikes.
+- Improves **responsiveness**, **resilience**, and **cost efficiency** for unpredictable workloads.
+- Removes the need for manual intervention or fixed scaling schedules.  
+  ![Scaling Based on Amazon SQS](/Images/Compute/AmazonEC2ASGScalingBasedSQS.png)
 
 # 21. Health Check Grace Period
 

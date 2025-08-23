@@ -12,6 +12,7 @@
   - [3.5. AWS Cost Anomaly Detection](#35-aws-cost-anomaly-detection)
 - [4. Billing Alarms in CloudWatch](#4-billing-alarms-in-cloudwatch)
 - [5. AWS Budgets](#5-aws-budgets)
+  - [5.1. Savings Plans coverage budget](#51-savings-plans-coverage-budget)
 - [6. AWS Support Plans Pricing](#6-aws-support-plans-pricing)
   - [6.1. AWS Basic Support Plan](#61-aws-basic-support-plan)
   - [6.2. AWS Developer Support Plan](#62-aws-developer-support-plan)
@@ -102,6 +103,14 @@
 - **Can filter by:** Service, Linked Account, Tag, Purchase Option, Instance Type, Region, Availability Zone, API Operation, etc...
 - Same options as AWS Cost Explorer!
 - 2 budgets are free, then $0.02/day/budget.
+
+## 5.1. Savings Plans coverage budget
+
+- Use **AWS Budgets** to create a daily **Savings Plans coverage budget** for Compute.
+  - Define a coverage threshold (e.g., 90%).
+  - Configure notifications (SNS/email) to alert stakeholders when coverage drops below the threshold.
+  - Provides proactive cost monitoring with no custom scripts or infrastructure.
+  - Ensures visibility and efficiency in Savings Plans utilization.
 
 # 6. AWS Support Plans Pricing
 

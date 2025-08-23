@@ -119,7 +119,7 @@
 - **io2 Block Express (4 GiB - 64 TiB)**
   - Sub-millisecond latency.
   - Max PIOPS: 256,000 with an IOPS:GiB ratio of 1,000:1.
-- Supports EBS Multi-attach.
+- **Supports EBS Multi-attach.**
 
 ### 6.1.3. Hard Disk Drives (HDD)
 

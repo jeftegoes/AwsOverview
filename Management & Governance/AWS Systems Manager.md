@@ -11,6 +11,7 @@
 - [4. SSM - Run Command](#4-ssm---run-command)
 - [5. Systems Manager Automation](#5-systems-manager-automation)
   - [5.1. Automation Runbook](#51-automation-runbook)
+  - [5.2. Automation Workflow](#52-automation-workflow)
 - [6. Parameter Store](#6-parameter-store)
   - [6.1. Parameter Store Hierarchy](#61-parameter-store-hierarchy)
   - [6.2. Parameters Policies (for advanced parameters)](#62-parameters-policies-for-advanced-parameters)
@@ -105,12 +106,20 @@
 - SSM Documents of type Automation.
 - Defines actions preformed on your EC2 instances or AWS resources.
 - Pre-defined runbooks (AWS) or create custom runbooks.
-
 - **Can be triggered**
   - Manually using AWS Console, AWS CLI or SDK.
   - By Amazon EventBridge.
   - On a schedule using Maintenance Windows.
   - By AWS Config for rules remediations.
+
+## 5.2. Automation Workflow
+
+- The **AWSEC2-PatchLoadBalancerInstance** SSM Automation document automates patching of EC2 instances behind a load balancer:
+  - Deregisters the instance from the ALB target group.
+  - Waits for in-flight requests to finish.
+  - Applies patches and reboots if required.
+  - Re-registers the instance safely.
+- This ensures **no downtime**, avoids request failures, and maintains **security compliance** during patching.
 
 # 6. Parameter Store
 

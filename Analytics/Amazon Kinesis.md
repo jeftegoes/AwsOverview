@@ -50,6 +50,7 @@
 - Kinesis Producer Library (KPL) to write an optimized producer application.
 - Kinesis Client Library (KCL) to write an optimized consumer application.
   ![Amazon Kinesis Data Streams](/Images/Analytics/AmazonKinesisDataStreams.png)
+- Built-in **retry mechanism** ensures reliability.
 
 ## 2.1. Capacity Modes
 
@@ -81,7 +82,7 @@
   - Sequence number (unique per partition-key within shard).
   - Partition key (must specify while put records into stream).
   - Data blob (up to 1 MB).
-- Producers:
+- **Producers**
   - **AWS SDK:** Simple producer.
   - **Kinesis Producer Library (KPL):** C++, Java, batch, compression, retries.
   - **Kinesis Agent:** Monitor log files.

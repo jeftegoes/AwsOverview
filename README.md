@@ -71,6 +71,8 @@
   - [13.9. Amazon Detective](#139-amazon-detective)
   - [13.10. AWS Abuse](#1310-aws-abuse)
   - [13.11. Root user privileges](#1311-root-user-privileges)
+    - [13.11.1. ## AWS Root User Notifications Best Practice](#13111--aws-root-user-notifications-best-practice)
+    - [13.11.2. Benefit](#13112-benefit)
   - [13.12. Summary: Security \& Compliance](#1312-summary-security--compliance)
 - [14. Machine Learning](#14-machine-learning)
 - [15. Account Management, Billing \& Support](#15-account-management-billing--support)
@@ -91,7 +93,6 @@
 - [17. Other AWS Services](#17-other-aws-services)
   - [17.1. Amazon WorkSpaces](#171-amazon-workspaces)
   - [17.2. Amazon AppStream 2.0](#172-amazon-appstream-20)
-    - [17.2.1. Amazon AppStream 2.0 vs WorkSpaces](#1721-amazon-appstream-20-vs-workspaces)
   - [17.3. Amazon Sumerian](#173-amazon-sumerian)
   - [17.4. AWS IoT Core](#174-aws-iot-core)
   - [17.5. Amazon Elastic Transcoder](#175-amazon-elastic-transcoder)
@@ -609,11 +610,7 @@
 
 ## 13.5. AWS Artifact (not really a service)
 
-- **AWS Artifact is your go-to, central resource for compliance-related information that matters to you.**
-- Portal that provides customers with on-demand access to AWS compliance documentation and AWS agreements.
-- **Artifact Reports** - Allows you to download AWS security and compliance documents from third-party auditors, like AWS ISO certifications, Payment Card Industry (PCI), and System and Organization Control (SOC) reports.
-- **Artifact Agreements** - Allows you to review, accept, and track the status of AWS agreements such as the Business Associate Addendum (BAA) or the Health Insurance Portability and Accountability Act (HIPAA) for an individual account or in your organization.
-- Can be used to support internal audit or compliance.
+[Amazon Macie](/Security,%20Identity,%20&%20Compliance/AWS%20Artifact.md)
 
 ## 13.6. AWS Config
 
@@ -629,12 +626,7 @@
 
 ## 13.9. Amazon Detective
 
-- GuardDuty, Macie, and Security Hub are used to identify potential
-  security issues, or findings.
-- Sometimes security findings require deeper analysis to isolate the root cause and take action - it's a complex process.
-- Amazon Detective **analyzes, investigates, and quickly identifies the root cause of security issues or suspicious activities using ML and graphs**.
-- **Automatically collects and processes events** from VPC Flow Logs, CloudTrail, and GuardDuty to create a unified view.
-- Produces visualizations with details and context to get to the root cause.
+[AWS Security Hub](/Security,%20Identity,%20&%20Compliance/Amazon%20Detective.md)
 
 ## 13.10. AWS Abuse
 
@@ -665,6 +657,18 @@
   - Edit or delete an Amazon S3 bucket policy that includes an invalid VPC ID or VPC endpoint ID.
   - Sign up for GovCloud.
 
+### 13.11.1. ## AWS Root User Notifications Best Practice
+
+- Configure **root email aliases** → forward to a **centralized mailbox** monitored by admins.
+- Assign **alternate contacts** (billing, security, operations) → use **team distribution lists**.
+
+### 13.11.2. Benefit
+
+- Centralized control & clear audit trail.
+- Role-specific alerts reach the right teams.
+- Faster response times, reduced alert fatigue.
+- Aligns with AWS best practices (security, continuity, scalability).
+
 ## 13.12. Summary: Security & Compliance
 
 - Shared Responsibility on AWS
@@ -692,11 +696,11 @@
 
 ## 15.1. AWS Organizations
 
-[AWS Organizations](AWS%20Organizations.md)
+[AWS Organizations](/Management%20&%20Governance/AWS%20Organizations.md)
 
 ## 15.2. AWS Control Tower
 
-- **AWS Control Tower offers the easiest way to set up and govern a new, secure, multi-account AWS environment. It establishes a landing zone that is based on best-practices blueprints, and enables governance using guardrails you can choose from a pre-packaged list.** [AWS Control Tower](AWS%20Control%20Tower.md)
+- **AWS Control Tower offers the easiest way to set up and govern a new, secure, multi-account AWS environment. It establishes a landing zone that is based on best-practices blueprints, and enables governance using guardrails you can choose from a pre-packaged list.** [AWS Control Tower](/Management%20&%20Governance/AWS%20Control%20Tower.md)
 
 ## 15.3. Pricing Models in AWS
 
@@ -836,30 +840,11 @@
 
 ## 17.1. Amazon WorkSpaces
 
-- **Amazon WorkSpaces is a fully managed, secure cloud desktop service. You can use Amazon WorkSpaces to provision either Windows or Linux desktops in just a few minutes and quickly scale to provide thousands of desktops to workers across the globe.**
-- Managed Desktop as a Service (DaaS) solution to easily provision Windows or Linux desktops.
-- Great to eliminate management of on-premise VDI (Virtual Desktop Infrastructure).
-- Fast and quickly scalable to thousands of users.
-- Secured data - integrates with KMS.
-- Pay-as-you-go service with monthly or hourly rates.
+[Amazon WorkSpaces](/Security,%20Identity,%20&%20Compliance/README.md)
 
 ## 17.2. Amazon AppStream 2.0
 
-- **Amazon AppStream 2.0 is a fully managed non-persistent application and desktop streaming service that provides users instant access to their desktop applications from anywhere.**
-- Desktop Application Streaming Service.
-- Deliver to any computer, without acquiring, provisioning infrastructure.
-- The application is delivered from within a web browser.
-
-### 17.2.1. Amazon AppStream 2.0 vs WorkSpaces
-
-- **Workspaces**
-  - Fully managed VDI and desktop available.
-  - The users connect to the VDI and open native or WAM applications.
-  - Workspaces are on-demand or always on.
-- **AppStream 2.0**
-  - Stream a desktop application to web browsers (no need to connect to a VDI).
-  - Works with any device (that has a web browser).
-  - Allow to configure an instance type per application type (CPU, RAM, GPU).
+[Amazon AppStream 2.0](Cloud%20Financial%20Management/README.md)
 
 ## 17.3. Amazon Sumerian
 

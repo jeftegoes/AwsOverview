@@ -563,7 +563,8 @@
 
 # 22. Security & Other Features
 
-- When creating a new table, you can choose one of the following AWS KMS key types to encrypt your table. **You can switch between these key types at any time**.
+- When creating a new table, you can choose one of the following AWS KMS key types to encrypt your table.
+  - **You can switch between these key types at any time**.
   - **AWS owned key:** Default encryption type. The key is owned by DynamoDB (no additional charge)
   - **AWS managed key:** The key is stored in your account and is managed by AWS KMS (AWS KMS charges apply).
   - **Customer managed key:** The key is stored in your account and is created, owned, and managed by you. You have full control over the KMS key (AWS KMS charges apply).
