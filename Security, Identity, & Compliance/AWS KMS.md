@@ -310,8 +310,6 @@
 - **Correct approach**:  
   Use **AWS KMS** to create a key in a **custom key store** and store the non-extractable key material in **AWS CloudHSM**.
 
-TODO: DIAGRAM #1 #38
-
 # 6. CloudWatch Logs - Encryption
 
 - We can encrypt CloudWatch logs with KMS keys.

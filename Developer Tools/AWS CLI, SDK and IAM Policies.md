@@ -32,8 +32,8 @@
 - It allows AWS EC2 instances to "learn about themselves" **without using an IAM Role for that purpose**.
 - The URL is http://169.254.169.254/latest/meta-data
 - You can retrieve the IAM Role name from the metadata, but you CANNOT retrieve the IAM Policy.
-- Metadata = Info about the EC2 instance.
-- Userdata = launch script of the EC2 instance.
+- **Metadata:** Info about the EC2 instance.
+- **Userdata:** Launch script of the EC2 instance.
 
 # 4. MFA with CLI
 

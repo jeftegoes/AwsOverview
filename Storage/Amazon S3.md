@@ -592,7 +592,7 @@
 - **Server-side encryption (SSE)** encrypts data at rest on the storage service (e.g., Amazon S3).
 - **SSE-S3** uses Amazon S3 managed keys to encrypt each object with a unique key.
 - The object key is further encrypted with a **root key** that is regularly rotated for added security.
-- As of **January 5, 2023**, all new object uploads to S3 are automatically encrypted using SSE-S3:
+- As of **January 5, 2023 (Default Behavior)**, all new object uploads to S3 are automatically encrypted using SSE-S3:
   - **No additional cost**
   - **No impact on performance**
   - **Applies by default to every S3 bucket**

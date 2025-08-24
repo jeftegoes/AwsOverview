@@ -26,6 +26,7 @@
 - They are bound to a specific **availability zone (AZ)**.
 - Analogy: Think of them as a "network USB stick".
 - **Free tier:** 30 GB of free EBS storage of type General Purpose (SSD) or Magnetic per month.
+- EBS **does not** support SMB protocol.
 
 # 2. EBS Volume
 
@@ -80,6 +81,7 @@
 - Backups and Replication are your responsibility.
 - They **cannot be detached or reattached** to another instance.
 - When we **create an AMI** from an instance, **data on instance store volumes is not preserved**.
+- Instance store volumes are **not supported for automatic recovery** by Amazon CloudWatch alarms.
 
 # 6. EBS Volume Types
 

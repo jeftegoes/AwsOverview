@@ -512,11 +512,11 @@
 
 - AWS solution deployed through [CloudFormation](/Management%20&%20Governance/AWS%20CloudFormation.md) (not a service).
 - Automatically start/stop your AWS services to reduce costs (up to 70%).
-- Example: stop company's EC2 instances outside business hours.
+- **Example:** Stop company's EC2 instances outside business hours.
 - Supports EC2 instances, EC2 Auto Scaling Groups, and [RDS](/Database/Amazon%20RDS.md) instances.
 - Schedules are managed in a DynamoDB table - Uses resources' tags and Lambda to stop/start instances.
 - Supports cross-account and cross-region resources.
-- https://aws.amazon.com/solutions/implementations/instance-scheduler-on-aws
+- [Instance Scheduler on AWS](https://aws.amazon.com/solutions/implementations/instance-scheduler-on-aws)
 
 # 19. Status checks for Amazon EC2 instances
 

@@ -33,7 +33,7 @@
   - [7.1. Load Balancer - SSL Certificates](#71-load-balancer---ssl-certificates)
   - [7.2. Server Name Indication (SNI)](#72-server-name-indication-sni)
   - [7.3. Elastic Load Balancers - SSL Certificates](#73-elastic-load-balancers---ssl-certificates)
-- [8. Connection Draining](#8-connection-draining)
+- [8. Connection Draining (Deregistration Delay)](#8-connection-draining-deregistration-delay)
 
 # 1. Introduction
 
@@ -323,11 +323,11 @@
   - Supports multiple listeners with multiple SSL certificates.
   - Uses Server Name Indication (SNI) to make it work.
 
-# 8. Connection Draining
+# 8. Connection Draining (Deregistration Delay)
 
 - **Feature naming**
   - Connection Draining for CLB.
-  - Deregistration Delay for ALB & NLB.
+  - **Deregistration Delay** for ALB & NLB.
 - Time to complete "in-flight requests" while the instance is de-registering or unhealthy.
 - Stops sending new requests to the EC2 instance which is de-registering.
 - Between 1 to 3600 seconds (default: 300 seconds).

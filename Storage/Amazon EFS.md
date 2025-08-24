@@ -7,7 +7,9 @@
   - [2.1. EFS Scale](#21-efs-scale)
   - [2.2. Performance mode (set at EFS creation time)](#22-performance-mode-set-at-efs-creation-time)
   - [2.3. Throughput mode](#23-throughput-mode)
-    - [2.3.1. Comparison Table](#231-comparison-table)
+    - [2.3.1. Provisioned Throughput Mode](#231-provisioned-throughput-mode)
+    - [2.3.2. Bursting Throughput Mode](#232-bursting-throughput-mode)
+    - [2.3.3. Comparison Table](#233-comparison-table)
   - [2.4. Storage Tiers](#24-storage-tiers)
   - [2.5. Availability and durability](#25-availability-and-durability)
 - [3. Inter-region VPC peering connection](#3-inter-region-vpc-peering-connection)
@@ -34,6 +36,7 @@
 - Encryption at rest using KMS.
 - POSIX file system (~Linux) that has a standard file API.
 - File system scales automatically, pay-per-use, no capacity planning!
+- EFS **does not** support SMB protocol.
 
 # 2. Performance and Storage Classes
 
@@ -55,7 +58,30 @@
   - Up to 3GiB/s for reads and 1GiB/s for writes.
   - Used for unpredictable workloads.
 
-### 2.3.1. Comparison Table
+### 2.3.1. Provisioned Throughput Mode
+
+- Designed for apps with **high throughput-to-storage ratios** or needs beyond **Bursting Throughput mode**.
+- **Useful for workloads like**
+  - Development tools.
+  - Web serving.
+  - Content management systems.
+- Allows high throughput **without padding file system size**.
+- **Scaling rules**
+  - Can **increase throughput** anytime.
+  - Can **decrease throughput** only after **24 hours** since last change.
+  - Can switch between **Provisioned** and **Bursting** modes, also requiring **24 hours** between changes.
+
+### 2.3.2. Bursting Throughput Mode
+
+- **Throughput scales** with the amount of data stored in the file system.
+- Ideal for **spiky workloads**:
+  - Short bursts of high throughput.
+  - Long periods of low throughput.
+- **Default and recommended mode** by AWS.
+- Best choice for most applications.
+- If migrating **large amounts of data**, consider **Provisioned Throughput mode** instead.
+
+### 2.3.3. Comparison Table
 
 | Feature               | Bursting Throughput            | Provisioned Throughput           |
 | --------------------- | ------------------------------ | -------------------------------- |
