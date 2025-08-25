@@ -38,4 +38,4 @@
 
 # 4. Pricing NAT Gateway vs Gateway VPC Endpoint
 
-TODO: DIAGRAM
+![Pricing NAT Gateway vs Gateway VPC Endpoint](/Images/PricingNATGatewayVsGatewayVPCEndpoint.png)

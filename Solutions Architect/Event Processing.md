@@ -2,12 +2,13 @@
 
 ## Contents <!-- omit in toc -->
 
-- [1. Introduction](#1-introduction)
+- [1. Lambda, SNS \& SQS](#1-lambda-sns--sqs)
+- [2. Fan Out Pattern: deliver to multiple SQS](#2-fan-out-pattern-deliver-to-multiple-sqs)
 
-# Lambda, SNS & SQS
+# 1. Lambda, SNS & SQS
 
-TODO: DIAGAM
+![Lambda, SNS & SQS](/Images/LambdaSNSSQS.png)
 
-# Fan Out Pattern: deliver to multiple SQS
+# 2. Fan Out Pattern: deliver to multiple SQS
 
-TODO: DIAGAM
+![Fan Out Pattern: deliver to multiple SQS](/Images/DeliverMultipleSQS.png)

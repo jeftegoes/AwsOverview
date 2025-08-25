@@ -35,7 +35,7 @@
   - [12.5. Reason for the Restriction](#125-reason-for-the-restriction)
 - [13. Amazon S3 Analytics - Storage Class Analysis](#13-amazon-s3-analytics---storage-class-analysis)
 - [14. Requester Pays](#14-requester-pays)
-- [15. Event Notifications](#15-event-notifications)
+- [15. S3 Event Notifications](#15-s3-event-notifications)
   - [15.1. S3 Event Notifications with Amazon EventBridge](#151-s3-event-notifications-with-amazon-eventbridge)
 - [16. Object Integrity](#16-object-integrity)
 - [17. Baseline Performance](#17-baseline-performance)
@@ -399,7 +399,7 @@
 - Helpful when you want to share large datasets with other accounts.
 - The requester must be authenticated in AWS (cannot be anonymous).
 
-# 15. Event Notifications
+# 15. S3 Event Notifications
 
 - `S3:ObjectCreated`, `S3:ObjectRemoved`, `S3:ObjectRestore`, `S3:Replication`...
 - Object name filtering possible `*.jpg`.
@@ -410,7 +410,7 @@
 ## 15.1. S3 Event Notifications with Amazon EventBridge
 
 - **Advanced filtering** options with JSON rules (metadata, object size, name...).
-- **Multiple Destinations:** Ex Step Functions, Kinesis Streams / Firehose...
+- **Multiple Destinations:** Ex: Step Functions, Kinesis Streams / Firehose...
 - **EventBridge Capabilities:** Archive, Replay Events, Reliable delivery.
 
 # 16. Object Integrity
