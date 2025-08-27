@@ -50,6 +50,7 @@
 - [20. Network Protection on AWS](#20-network-protection-on-aws)
   - [20.1. AWS Network Firewall](#201-aws-network-firewall)
     - [20.1.1. Fine Grained Controls](#2011-fine-grained-controls)
+    - [20.1.2. Defense-in-Depth in AWS](#2012-defense-in-depth-in-aws)
 - [21. Transit VPC](#21-transit-vpc)
 - [22. VPC Section Summary](#22-vpc-section-summary)
 
@@ -177,6 +178,7 @@
 - Requires an IGW (Private Subnet => NATGW => IGW).
 - 5 Gbps of bandwidth with automatic scaling up to 100 Gbps.
 - No Security Groups to manage / required.
+- **Route table in private subnet.**
 
 ## 5.1. NAT Gateway with High Availability
 
@@ -483,7 +485,7 @@
 
 # 20. Network Protection on AWS
 
-- **To protect network on AWS, we've seen**
+- **To protect network on AWS**
   - Network Access Control Lists (NACLs).
   - Amazon VPC security groups.
   - AWS WAF (protect against malicious requests).
@@ -495,7 +497,7 @@
 
 - Protect your entire Amazon VPC.
 - From Layer 3 to Layer 7 protection.
-- Any direction, you can inspect.
+- **Any direction, you can inspect**
   - VPC to VPC traffic.
   - Outbound to internet.
   - Inbound from internet.
@@ -503,16 +505,32 @@
 - Internally, the AWS Network Firewall uses the AWS Gateway Load Balancer.
 - Rules can be centrally managed cross- account by AWS Firewall Manager to apply to many VPCs.
 
+TODO: DIAGRAM
+
 ### 20.1.1. Fine Grained Controls
 
 - Supports 1000s of rules.
   - IP & port - example: 10,000s of IPs filtering.
-  - Protocol - example: block the SMB protocol for outbound communications.
-  - Stateful domain list rule groups: only allow outbound traffic to \*.mycorp.com or third-party software repo.
+  - Protocol - example: Block the SMB protocol for outbound communications.
+  - Stateful domain list rule groups: Only allow outbound traffic to \*.mycorp.com or third-party software repo.
   - General pattern matching using regex.
 - **Traffic filtering: Allow, drop, or alert for the traffic that matches the rules.**
 - **Active flow inspection** to protect against network threats with intrusion-prevention capabilities (like Gateway Load Balancer, but all managed by AWS).
 - Send logs of rule matches to Amazon S3, CloudWatch Logs, Kinesis Data Firehose.
+
+### 20.1.2. Defense-in-Depth in AWS
+
+- This layered model reduces the risk that a single misconfiguration could expose resources to unintended access.
+- Layered Segmentation
+  - Resources with different reachability needs should be segmented into **subnets**.
+  - **Example:** An **RDS database cluster** with no internet access should be placed in **private subnets** without routes to the internet.
+- **Setup**
+  1. **Deploy an Application Load Balancer** in a public subnet.
+  2. Host the **Auto Scaling group of EC2 instances** and **Aurora Serverless DB cluster** in private subnets.
+  3. Launch **AWS Network Firewall** with a firewall policy that:
+     - Blocks traffic to **malicious URLs**.
+     - Drops requests from **blacklisted FQDNs**.
+  4. Reroute VPC traffic through the **firewall endpoints**.
 
 # 21. Transit VPC
 

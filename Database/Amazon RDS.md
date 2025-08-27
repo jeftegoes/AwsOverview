@@ -18,7 +18,7 @@
   - [8.1. TDE - Transparent Data Encryption](#81-tde---transparent-data-encryption)
   - [8.2. Encryption Operations](#82-encryption-operations)
   - [8.3. Network \& IAM](#83-network--iam)
-  - [8.4. IAM Database Authentication](#84-iam-database-authentication)
+  - [8.4. IAM DB Authentication](#84-iam-db-authentication)
   - [8.5. Security - Summary](#85-security---summary)
 - [9. Monitoring](#9-monitoring)
 - [10. Amazon RDS Proxy](#10-amazon-rds-proxy)
@@ -198,9 +198,9 @@
   - Traditional Username and Password can be used to login into the database.
   - IAM-based authentication can be used to login into RDS MySQL & PostgreSQL.
 
-## 8.4. IAM Database Authentication
+## 8.4. IAM DB Authentication
 
-- **IAM database authentication works with**
+- **IAM DB authentication works with**
   - MySQL.
   - PostgreSQL.
 - We don't need a password, just an authentication token obtained through IAM & RDS API calls.

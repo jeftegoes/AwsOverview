@@ -121,6 +121,8 @@
 - During the cooldown period, the ASG will not launch or terminate additional instances (to allow for metrics to stabilize).
 - **Advice:** Use a ready-to-use AMI to reduce configuration time in order to be serving request fasters and reduce the cooldown period.
 
+TODO: DIAGRAM
+
 # 9. Lifecycle Hooks
 
 - By default, as soon as an instance is launched in an ASG it's in service.

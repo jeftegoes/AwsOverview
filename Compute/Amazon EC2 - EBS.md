@@ -15,8 +15,9 @@
     - [6.1.3. Hard Disk Drives (HDD)](#613-hard-disk-drives-hdd)
     - [6.1.4. EBS Multi-Attach - io1/io2 family](#614-ebs-multi-attach---io1io2-family)
 - [7. EBS Encryption](#7-ebs-encryption)
-  - [7.1. Encryption: encrypt an unencrypted EBS volume](#71-encryption-encrypt-an-unencrypted-ebs-volume)
-- [8. Shared Responsibility Model for EC2 Storage](#8-shared-responsibility-model-for-ec2-storage)
+  - [7.1. Encryption: Encrypt an unencrypted EBS volume](#71-encryption-encrypt-an-unencrypted-ebs-volume)
+- [8. Amazon Data Lifecycle Manager (DLM)](#8-amazon-data-lifecycle-manager-dlm)
+- [9. Shared Responsibility Model for EC2 Storage](#9-shared-responsibility-model-for-ec2-storage)
 
 # 1. Introduction
 
@@ -39,6 +40,8 @@
 - Have a provisioned capacity (size in GBs, and IOPS).
   - We get billed for all the provisioned capacity.
   - We can increase the capacity of the drive over time.
+- EBS volumes support live configuration changes while in production.
+  - We can modify volume type, volume size, and IOPS capacity without service interruptions.
 
 ![Amazon EC2 - EBS Volume diagram](/Images/Compute/AmazonEC2EBSVolumeDiagram.png)
 
@@ -158,14 +161,26 @@
 - Copying an unencrypted snapshot allows encryption.
 - Snapshots of encrypted volumes are encrypted.
 
-## 7.1. Encryption: encrypt an unencrypted EBS volume
+## 7.1. Encryption: Encrypt an unencrypted EBS volume
 
 1. Create an EBS snapshot of the volume.
 2. Encrypt the EBS snapshot (using copy).
 3. Create new ebs volume from the snapshot (the volume will also be encrypted).
 4. Now we can attach the encrypted volume to the original instance.
 
-# 8. Shared Responsibility Model for EC2 Storage
+# 8. Amazon Data Lifecycle Manager (DLM)
+
+- Amazon Data Lifecycle Manager (DLM) **automates the creation, retention, and deletion** of Amazon EBS snapshots.
+- It simplifies EBS volume management by applying lifecycle policies to ensure regular backups and cost optimization.
+- **Benefits**
+  - **Automated backups:** Enforces a regular snapshot schedule.
+  - **Compliance:** Retains backups for audit and internal requirements.
+  - **Cost savings:** Removes outdated snapshots automatically.
+- **Integration**
+  - Works with **Amazon EventBridge** and **AWS CloudTrail** for monitoring and auditing.
+  - Provides a **complete backup solution** for EBS volumes **at no additional cost**.
+
+# 9. Shared Responsibility Model for EC2 Storage
 
 - **AWS**
   - Infrastructure.

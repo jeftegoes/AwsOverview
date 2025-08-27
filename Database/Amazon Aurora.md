@@ -140,6 +140,8 @@
 - Pay per second, can be more cost-effective.
 - Suitable for **OLTP (Online Transaction Processing)** systems, as they follow a **relational model**.
 
+TODO: DIAGRAM
+
 # 12. MySQL error log
 
 - We can monitor the MySQL logs directly through the Amazon RDS console, Amazon RDS API, AWS CLI, or AWS SDKs.

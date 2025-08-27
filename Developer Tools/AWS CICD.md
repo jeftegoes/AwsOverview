@@ -35,7 +35,7 @@
 
 # 1. CICD in AWS
 
-- This is all about automating the deployment we've done so far while adding increased safety:
+- This is all about automating the deployment, while adding increased safety:
   - **AWS CodeCommit:** Storing our code.
   - **AWS CodePipeline:** Automating our pipeline from code to Elastic Beanstalk.
   - **AWS CodeBuild:** Building and testing our code.

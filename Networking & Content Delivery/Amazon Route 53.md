@@ -36,6 +36,7 @@
 - [7. Amazon Route 53 - Resolver](#7-amazon-route-53---resolver)
   - [7.1. Outbound](#71-outbound)
   - [7.2. Inbound](#72-inbound)
+- [8. Routing Traffic to an S3 Bucket with Amazon Route 53](#8-routing-traffic-to-an-s3-bucket-with-amazon-route-53)
 
 # 1. What is DNS?
 
@@ -351,3 +352,9 @@
   2. The on-premises DNS resolver has a forwarding rule that points queries to dev.example.com to an inbound endpoint.
   3. The query arrives at the inbound endpoint through a private connection, such as AWS Direct Connect or AWS Site-to-Site VPN, depicted as a virtual gateway.
   4. The inbound endpoint sends the query to Route 53 Resolver, and Route 53 Resolver resolves the DNS query for **dev.example.com** and returns the answer to the client via the same path in reverse.
+
+# 8. Routing Traffic to an S3 Bucket with Amazon Route 53
+
+- Amazon S3 allows you to host a static website (webpages and client-side scripts).
+- You have an **S3 bucket configured for static website hosting**.
+- The bucket name **exactly matches** the intended domain or subdomain (e.g., `acme.example.com` for `acme.example.com`).

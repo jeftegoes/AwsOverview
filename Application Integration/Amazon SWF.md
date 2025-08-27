@@ -3,13 +3,22 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. Events Record](#2-events-record)
+- [2. Purpose](#2-purpose)
+- [3. Events Record](#3-events-record)
 
 # 1. Introduction
 
-- The Amazon Simple Workflow Service (Amazon SWF) makes it easy to build applications that coordinate work across distributed components.
+- The Amazon SWF (Amazon Simple Workflow Service) makes it easy to build applications that coordinate work across distributed components.
 
-# 2. Events Record
+# 2. Purpose
+
+- Helps build **decoupled architectures** in AWS.
+- **Decoupled architecture**
+  - Components or layers **execute independently**.
+  - Still **communicate and interface** with each other.
+- **Benefit:** Increases scalability, fault tolerance, and flexibility of applications.
+
+# 3. Events Record
 
 - `markers` - To record events in the workflow execution history for application specific purposes.
   - Markers are useful when you want to record custom information to help implement decider logic.

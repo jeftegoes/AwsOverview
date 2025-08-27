@@ -3,7 +3,6 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Amazon Rekognition](#1-amazon-rekognition)
-  - [1.1. Content Moderation](#11-content-moderation)
 - [2. Amazon Transcribe](#2-amazon-transcribe)
 - [3. Amazon Polly](#3-amazon-polly)
   - [3.1. Lexicon \& SSML](#31-lexicon--ssml)
@@ -19,26 +18,7 @@
 
 # 1. Amazon Rekognition
 
-- **Amazon Rekognition makes it easy to add image and video analysis to your applications using proven, highly scalable, deep learning technology that requires no machine learning expertise to use.**
-- Find **objects, people, text, scenes in images and videos** using ML.
-- **Facial analysis** and **facial search** to do user verification, people counting.
-- Create a database of "familiar faces" or compare against celebrities.
-- **Use cases**
-  - Labeling.
-  - Content Moderation.
-  - Text Detection.
-  - Face Detection and Analysis (gender, age range, emotions...).
-  - Face Search and Verification.
-  - Celebrity Recognition.
-  - Pathing (ex: for sports game analysis).
-
-## 1.1. Content Moderation
-
-- Detect content that is inappropriate, unwanted, or offensive (image and videos).
-- Used in social media, broadcast media, advertising, and e-commerce situations to create a safer user experience.
-- **Set a Minimum Confidence Threshold for items that will be flagged.**
-- Flag sensitive content for manual review in Amazon Augmented AI (A2I).
-- Help comply with regulations.
+[Amazon Rekognition](Amazon%20Rekognition.md)
 
 # 2. Amazon Transcribe
 
