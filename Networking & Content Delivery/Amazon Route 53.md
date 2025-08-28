@@ -169,7 +169,7 @@
 - S3 Websites.
 - VPC Interface Endpoints.
 - Global Accelerator.
-- Route 53 record in the same hosted zone.
+- **Route 53 record in the same hosted zone.**
 - **We cannot set an ALIAS record for an EC2 DNS name.**
 
 ### 3.5.2. Core Difference (Simplified)

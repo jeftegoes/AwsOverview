@@ -85,7 +85,9 @@
 # 8. Message Filtering
 
 - JSON policy used to filter messages sent to SNS topic's subscriptions.
-- If a subscription doesn't have a filter policy, it receives every message.
+- If a subscription doesn't have a **filter policy**, it receives every message.
+
+TODO: DIAGRAM
 
 # 9. Dead Letter Queue (DLQ)
 

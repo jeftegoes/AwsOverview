@@ -72,7 +72,7 @@
 # 8. Amazon Forecast
 
 - Fully managed service that uses ML to deliver highly accurate forecasts.
-- Example: predict the future sales of a raincoat.
+- **Example:** Predict the future sales of a raincoat.
 - 50% more accurate than looking at the data itself.
 - Reduce forecasting time from months to hours.
 - **Use cases:** Product Demand Planning, Financial Planning, Resource Planning, ...
@@ -90,8 +90,8 @@
 
 - **Amazon Personalize is a machine learning service that makes it easy for developers to create individualized recommendations for customers using their applications.**
 - Fully managed ML-service to build apps with real-time personalized recommendations.
-- Example: Personalized product recommendations/re-ranking, customized direct marketing.
-  - Example: User bought gardening tools, provide recommendations on the next one to buy.
+- **Example:** Personalized product recommendations/re-ranking, customized direct marketing.
+  - **Example:** User bought gardening tools, provide recommendations on the next one to buy.
 - Same technology used by Amazon.com.
 - Integrates into existing websites, applications, SMS, email marketing systems, ...
 - Implement in days, not months (you don't need to build, train, and deploy ML solutions).

@@ -57,7 +57,7 @@
 # 4. Landing Zone
 
 - Automatically provisioned, secure, and compliant multi-account environment based on AWS best practices.
-- Landing Zone consists of:
+- **Landing Zone consists of**
   - **AWS Organization:** Create and manage multi-account structure.
   - **Account Factory:** Easily configure new accounts to adhere to configurations and policies.
   - **Organizational Units (OUs):** Group and categorize accounts based on purpose.

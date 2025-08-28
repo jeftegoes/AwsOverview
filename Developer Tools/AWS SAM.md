@@ -47,7 +47,7 @@
 
 ## 2.1. Example
 
-```
+```yaml
   # SAM FILE
   AWSTemplateFormatVersion: '2010-09-09'
   Transform: 'AWS::Serverless-2016-10-31'

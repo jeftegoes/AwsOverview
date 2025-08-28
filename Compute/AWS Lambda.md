@@ -22,6 +22,7 @@
   - [10.3. Lambda@Edge](#103-lambdaedge)
     - [10.3.1. Global application](#1031-global-application)
     - [10.3.2. Use Cases](#1032-use-cases)
+    - [10.3.3. Use Case: Image Generation Workflow](#1033-use-case-image-generation-workflow)
 - [11. Asynchronous Invocations](#11-asynchronous-invocations)
   - [11.1. Services](#111-services)
   - [11.2. CloudWatch Events / EventBridge](#112-cloudwatch-events--eventbridge)
@@ -283,6 +284,10 @@
 - User Authentication and Authorization.
 - User Prioritization.
 - User Tracking and Analytics.
+
+### 10.3.3. Use Case: Image Generation Workflow
+
+![Use Case: Image Generation Workflow](/Images/Compute/AWSLambda@EdgeImageGeneration.png)
 
 # 11. Asynchronous Invocations
 

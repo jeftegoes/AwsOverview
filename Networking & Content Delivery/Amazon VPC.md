@@ -8,6 +8,8 @@
   - [1.3. Default VPC](#13-default-vpc)
 - [2. VPC in AWS](#2-vpc-in-aws)
 - [3. Subnet](#3-subnet)
+  - [3.1. Range of IP](#31-range-of-ip)
+    - [3.1.1. Scenario: IPv4 Exhaustion](#311-scenario-ipv4-exhaustion)
 - [4. NAT Instance (outdated)](#4-nat-instance-outdated)
   - [4.1. Comments](#41-comments)
 - [5. NAT Gateways](#5-nat-gateways)
@@ -52,7 +54,8 @@
     - [20.1.1. Fine Grained Controls](#2011-fine-grained-controls)
     - [20.1.2. Defense-in-Depth in AWS](#2012-defense-in-depth-in-aws)
 - [21. Transit VPC](#21-transit-vpc)
-- [22. VPC Section Summary](#22-vpc-section-summary)
+- [22. Gateway Endpoint - Endpoint Policy](#22-gateway-endpoint---endpoint-policy)
+- [23. VPC Section Summary](#23-vpc-section-summary)
 
 # 1. Understanding CIDR
 
@@ -140,6 +143,23 @@
   - You need to choose a subnet of size /26 (64 IP addresses, 64 - 5 = 59 > 29).
 - **Example**
   ![Amazon VPC Subnets](/Images/Networking%20&%20Content%20Delivery/AmazonVPCSubnets.png)
+
+## 3.1. Range of IP
+
+- **Each subnet**
+  - Resides in **one Availability Zone**.
+  - Cannot span multiple zones.
+- VPCs can run in **dual-stack mode** (IPv4 + IPv6).
+- IPv4 is always enabled (cannot be disabled).
+
+### 3.1.1. Scenario: IPv4 Exhaustion
+
+- Company’s **IPv4 CIDR blocks nearly exhausted**.
+- VPC already supports **IPv6**.
+- **Best solution**
+  - Create an **IPv6-only subnet**.
+  - Launch EC2 instances without consuming scarce IPv4 addresses.
+  - Ensures **scalability and long-term growth**.
 
 # 4. NAT Instance (outdated)
 
@@ -541,7 +561,16 @@ TODO: DIAGRAM
   - Note that this design will generate additional data transfer charges for traffic traversing the transit VPC: data is charged when it is sent from a spoke VPC to the transit VPC, and again from the transit VPC to the on-premises network or a different AWS Region.
 - **IMPORTANT! AWS has introduced AWS Transit Gateway, which is the modern replacement for Transit VPC.**
 
-# 22. VPC Section Summary
+# 22. Gateway Endpoint - Endpoint Policy
+
+- **Endpoint Policy:** Controls access from the endpoint to the connected service.
+- Policies can be modified to add/remove route tables.
+- Does **not override IAM or service-specific policies** (e.g., S3 bucket policy).
+- **Best Practice**
+  - To allow traffic only to **trusted S3 buckets**, use an **endpoint policy** instead of configuring individual bucket policies for each bucket.
+  - This simplifies management while ensuring secure, controlled access.
+
+# 23. VPC Section Summary
 
 - **CIDR:** IP Range.
 - **VPC:** Virtual Private Cloud => we define a list of IPv4 & IPv6 CIDR.

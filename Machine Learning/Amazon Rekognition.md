@@ -20,6 +20,8 @@
   - Celebrity Recognition.
   - Pathing (ex: for sports game analysis).
 
+TODO: DIAGRAM
+
 # 2. Content Moderation
 
 - Detect content that is inappropriate, unwanted, or offensive (image and videos).

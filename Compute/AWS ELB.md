@@ -24,6 +24,7 @@
   - [4.4. Network Load Balancer (v2)](#44-network-load-balancer-v2)
     - [4.4.1. Based Traffic](#441-based-traffic)
     - [4.4.2. Target Groups](#442-target-groups)
+    - [4.4.3. Use Case: Trusted IP Access](#443-use-case-trusted-ip-access)
   - [4.5. Gateway Load Balancer](#45-gateway-load-balancer)
     - [4.5.1. Target Groups](#451-target-groups)
 - [5. Sticky Sessions (Session Affinity)](#5-sticky-sessions-session-affinity)
@@ -219,6 +220,12 @@
 - IP Addresses - must be private IPs.
 - Application Load Balancer.
 - Health Checks support the **TCP, HTTP and HTTPS Protocols**.
+
+### 4.4.3. Use Case: Trusted IP Access
+
+- If clients can only access **trusted IPs**, use the **Bring Your Own IP (BYOIP)** feature.
+- BYOIP allows assigning **trusted Elastic IP addresses (EIPs)** to the NLB.
+- This avoids reconfiguring client-side whitelists when IPs change.
 
 ## 4.5. Gateway Load Balancer
 
