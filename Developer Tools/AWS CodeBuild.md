@@ -77,40 +77,40 @@
 
 - Lambda + Dotnet scenario:
 
-  ```
-      version: 0.2
+  ```yaml
+  version: 0.2
 
-      env:
-      variables:
-          DOTNET_ROOT: /root/.dotnet
-      secrets-manager:
-          AWS_ACCESS_KEY_ID_PARAM: MySecretManager:AWS_ACCESS_KEY_ID
-          AWS_SECRET_ACCESS_KEY_PARAM: MySecretManager:AWS_SECRET_ACCESS_KEY
+  env:
+  variables:
+    DOTNET_ROOT: /root/.dotnet
+  secrets-manager:
+    AWS_ACCESS_KEY_ID_PARAM: MySecretManager:AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY_PARAM: MySecretManager:AWS_SECRET_ACCESS_KEY
 
-      phases:
-      install:
-          runtime-versions:
-          dotnet: 6.0
-      pre_build:
-          commands:
-          - echo Restore started on `date`
-          - export PATH="$PATH:/root/.dotnet/tools"
-          - pip install --upgrade awscli
-          - aws configure set profile $Profile
-          - aws configure set region $Region
-          - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID_PARAM
-          - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY_PARAM
-          - cd src
-          - cd InsertBook
-          - dotnet clean
-          - dotnet restore
-      build:
-          commands:
-          - echo Build started on `date`
-          - dotnet new -i Amazon.Lambda.Templates::*
-          - dotnet tool install -g Amazon.Lambda.Tools
-          - dotnet tool update -g Amazon.Lambda.Tools
-          - dotnet lambda deploy-function "InsertBook"
+  phases:
+  install:
+    runtime-versions:
+    dotnet: 6.0
+  pre_build:
+    commands:
+      - echo Restore started on `date`
+      - export PATH="$PATH:/root/.dotnet/tools"
+      - pip install --upgrade awscli
+      - aws configure set profile $Profile
+      - aws configure set region $Region
+      - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID_PARAM
+      - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY_PARAM
+      - cd src
+      - cd InsertBook
+      - dotnet clean
+      - dotnet restore
+  build:
+    commands:
+      - echo Build started on `date`
+      - dotnet new -i Amazon.Lambda.Templates::*
+      - dotnet tool install -g Amazon.Lambda.Tools
+      - dotnet tool update -g Amazon.Lambda.Tools
+      - dotnet lambda deploy-function "InsertBook"
   ```
 
 ## 5.2. Phases

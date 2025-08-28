@@ -125,30 +125,31 @@
   ![Multiple Deployment Groups](/Images/Developer%20Tools/AWSCodePipelineBestPractices_2.png)
 - Deploy to Pre-Prod before Deploying to Prod.
   ![Multiple Deployment Groups](/Images/Developer%20Tools/AWSCodePipelineBestPractices_3.png)
-
 - Example using `RunOrder`:
-  ```
-    [
-      {
-        "inputArtifacts": [
-          "An input artifact structure, if supported for the action category"
-        ],
-        "name": "ActionName",
-        "region": "Region",
-        "namespace": "source_namespace",
-        "actionTypeId": {
-          "category": "An action category",
-          "owner": "AWS",
-          "version": "1",
-          "provider": "A provider type for the action category"
-        },
-        "outputArtifacts": [
-          "An output artifact structure, if supported for the action category"
-        ],
-        "configuration": ["Configuration details appropriate to the provider type"],
-        "runOrder": "A positive integer that indicates the run order within the stage"
-      }
-    ]
+  ```json
+  [
+    {
+      "inputArtifacts": [
+        "An input artifact structure, if supported for the action category"
+      ],
+      "name": "ActionName",
+      "region": "Region",
+      "namespace": "source_namespace",
+      "actionTypeId": {
+        "category": "An action category",
+        "owner": "AWS",
+        "version": "1",
+        "provider": "A provider type for the action category"
+      },
+      "outputArtifacts": [
+        "An output artifact structure, if supported for the action category"
+      ],
+      "configuration": [
+        "Configuration details appropriate to the provider type"
+      ],
+      "runOrder": "A positive integer that indicates the run order within the stage"
+    }
+  ]
   ```
 
 # 12. EventBridge

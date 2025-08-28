@@ -114,7 +114,7 @@
   - Make sure the IAM permissions are correct - the agent will assume the role.
   - This allows to have a central account for all your application tracing.
 - Example:
-  ```
+  ```json
     "subsegments" : [
         {
           "id"         : "53995c3f42cd8ad8",

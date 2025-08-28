@@ -140,7 +140,7 @@
   - Enable logging using `ECS_AVAILABLE_LOGGING_DRIVERS` in `/etc/ecs/ecs.config`
   - Container EC2 instances must have permissions.
     ![awslogs driver](/Images/AmazonECSAwsLogsLogDriver.png)
-  ```
+  ```json
     "logConfiguration": {
       "logDriver": "awslog",
       "options": {

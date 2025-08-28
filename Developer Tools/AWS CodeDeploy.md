@@ -90,7 +90,7 @@
   fi
   ```
 
-- The following script example changes the verbosity level of messages recorded in its error log from warning to debug if the value of the `DEPLOYMENT_GROUP_NAME` environment variable is equal to Staging.
+- The following script example changes the verbosity level of messages recorded in its error log from warning to debug if the value of the `DEPLOYMENT_GROUP_NAME` environment variable isww equal to Staging.
 - This script must be invoked during the `BeforeInstall` deployment lifecycle event:
 
   ```
@@ -133,27 +133,27 @@
 
 ### 4.2.1. Example
 
-```
-  version: 0.0
-  os: linux
-  files:
-    - source: app
-      destination: /var/www
-    - source: deploy-scripts/webapi.service
-      destination: /etc/systemd/system
-  hooks:
-    BeforeInstall:
-      - location: deploy-scripts/before_install.sh
-        timeout: 120
-        runas: root
-    ApplicationStop:
-      - location: deploy-scripts/stop_app.sh
-        timeout: 120
-        runas: root
-    ApplicationStart:
-      - location: deploy-scripts/start_app.sh
-        timeout: 120
-        runas: root
+```yaml
+version: 0.0
+os: linux
+files:
+  - source: app
+    destination: /var/www
+  - source: deploy-scripts/webapi.service
+    destination: /etc/systemd/system
+hooks:
+  BeforeInstall:
+    - location: deploy-scripts/before_install.sh
+      timeout: 120
+      runas: root
+  ApplicationStop:
+    - location: deploy-scripts/stop_app.sh
+      timeout: 120
+      runas: root
+  ApplicationStart:
+    - location: deploy-scripts/start_app.sh
+      timeout: 120
+      runas: root
 ```
 
 ## 4.3. List of lifecycle event hooks

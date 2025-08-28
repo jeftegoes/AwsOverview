@@ -243,21 +243,19 @@
 ![API Gateway cache parameter](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayCacheParameter.png)
 
 - Role example:
-  ```
-    {
-      "Version":"2012-10-17",
-      "Statement":[
-          {
-            "Effect":"Allow",
-            "Action":[
-                "execute-api:InvalidateCache"
-            ],
-            "Resource":[
-                "arn:aws:execute-api:region:account-id:api-id/stage-name/GET/resource-path-specifier"
-            ]
-          }
-      ]
-    }
+  ```json
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": ["execute-api:InvalidateCache"],
+        "Resource": [
+          "arn:aws:execute-api:region:account-id:api-id/stage-name/GET/resource-path-specifier"
+        ]
+      }
+    ]
+  }
   ```
 
 # 12. Usage Plans & API Keys

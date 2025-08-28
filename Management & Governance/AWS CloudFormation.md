@@ -428,13 +428,13 @@
 - Creating a VPC as part of one template.
 - We create an output that references that VPC.
 - Example:
-  ```
-    Outputs:
-      StackVPC:
-        Description: The ID of the VPC
-        Value: !Ref MyVPC
-        Export:
-          Name: MyBeautifulVPC
+  ```yaml
+  Outputs:
+    StackVPC:
+      Description: The ID of the VPC
+      Value: !Ref MyVPC
+      Export:
+        Name: MyBeautifulVPC
   ```
 
 ### 2.5.2. Cross Stack Reference
@@ -444,15 +444,15 @@
 - You can't delete a CloudFormation Stack if its outputs are being referenced by another CloudFormation stack.
   - You can't delete the underlying stack until all the references are deleted too.
 - Example:
+  ```yaml
+  Outputs:
+    StackSSHSecurityGroup:
+    Description: The SSH Security Group for our Company
+    Value: !Ref MyBeautifulSSHSecurityGroup
+    Export:
+      Name: SSHMyBeautifulSecurityGroup
   ```
-    Outputs:
-      StackSSHSecurityGroup:
-      Description: The SSH Security Group for our Company
-      Value: !Ref MyBeautifulSSHSecurityGroup
-      Export:
-        Name: SSHMyBeautifulSecurityGroup
-  ```
-  ```
+  ```yaml
     Resources:
       MySecureInstance:
         Type: AWS:: EC2::Instance

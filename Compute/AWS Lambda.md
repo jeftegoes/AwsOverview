@@ -232,10 +232,10 @@
 
 - Basic example:
 
-  ```
+  ```json
   {
-  "path": "api/address/44077200",
-  "httpMethod": "GET"
+    "path": "api/address/44077200",
+    "httpMethod": "GET"
   }
   ```
 
@@ -744,16 +744,16 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
 - Use the `Code.ZipFile` property.
 - You cannot include function dependencies with inline functions.
 - Example:
-  ```
-    Resources:
-    MyFunction:
-      Type: AWS::Lambda::Function
-      Properties:
-        Code:
-          ZipFile: |
-            import json
-            def handler(event, context):
-                print("Event: %s" % json.dumps(event))
+  ```yaml
+  Resources:
+  MyFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        ZipFile: |
+          import json
+          def handler(event, context):
+              print("Event: %s" % json.dumps(event))
   ```
 
 ## 26.2. Through S3
@@ -765,14 +765,14 @@ https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
   - `S3ObjectVersion` - If versioned bucket.
 - If you update the code in S3, but don't update `S3Bucket`, `S3Key` or `S3ObjectVersion`, CloudFormation won't update your function.
 - Example:
-  ```
-    MyFunction:
-      DependsOn: CopyZips
-      Type: AWS::Lambda::Function
-      Properties:
-        Code:
-          S3Bucket: !Ref 'LambdaZipsBucket'
-          S3Key: !Sub '${QSS3KeyPrefix}functions/packages/MyFunction/lambda.zip'
+  ```yaml
+  MyFunction:
+    DependsOn: CopyZips
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: !Ref "LambdaZipsBucket"
+        S3Key: !Sub "${QSS3KeyPrefix}functions/packages/MyFunction/lambda.zip"
   ```
 
 ### 26.2.1. through S3 Multiple accounts

@@ -681,7 +681,7 @@
 
 ## 25.3. CORS configuration
 
-```
+```xml
   <?xml version="1.0" encoding="UTF-8"?>
   <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
     <CORSRule>
@@ -794,6 +794,14 @@
   - Converting across data formats, such as converting XML to JSON.
   - Resizing and watermarking images on the fly using caller-specific details, such as the user who requested the object.
     ![Access Points - S3 Object Lambda](/Images/Storage/AmazonS3AccessPointsObjectLambda.png)
+- When you use **Amazon S3 Object Lambda**, you connect an **AWS Lambda function** to S3.
+- This function acts like a middle layer between your application and S3.
+  - **Object's key (file name)**
+    - Every object in S3 has a unique key (like `reports/2025/january.csv`).
+    - The Lambda function uses this key to know _which file is being requested_.
+  - **Bucket details**  
+    The Lambda function also needs to know _which bucket_ the object lives in (since you might have multiple buckets).
+  - With these parameters **(key + bucket)**, the Lambda function fetches the object from S3, applies transformations (e.g., filtering rows, redacting sensitive info, reformatting data), and then returns the modified result to the application.
 
 # 32. Shared Responsibility Model for S3
 

@@ -6,7 +6,8 @@
 - [2. Convert data into Parquet format](#2-convert-data-into-parquet-format)
 - [3. Data Catalog](#3-data-catalog)
 - [4. AWS Glue DataBrew](#4-aws-glue-databrew)
-- [5. Things to know at a high-level](#5-things-to-know-at-a-high-level)
+- [5. Job Bookmarking](#5-job-bookmarking)
+- [6. Things to know at a high-level](#6-things-to-know-at-a-high-level)
 
 # 1. Introduction
 
@@ -35,7 +36,16 @@
   - Data engineers.
 - Who need to prepare data for analytics or machine learning workflows using an intuitive point-and-click interface.
 
-# 5. Things to know at a high-level
+# 5. Job Bookmarking
+
+- **Job bookmarking** allows AWS Glue to remember the progress of an ETL job.
+- If a job fails or is restarted, it can **resume from where it left off**.
+- **Benefits**
+  - **Avoids reprocessing** old data.
+  - **Saves time and resources** when handling large datasets or long-running jobs.
+  - Improves **ETL efficiency** by only processing new data.
+
+# 6. Things to know at a high-level
 
 - **Glue Job Bookmarks:** Prevent re-processing old data.
 - **Glue Elastic Views**

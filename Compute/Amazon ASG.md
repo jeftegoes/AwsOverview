@@ -254,10 +254,10 @@ TODO: DIAGRAM
 - You can add an `UpdatePolicy` attribute to your Auto Scaling group to perform rolling updates (or replace the group) when a change has been made to the group.
 - To specify how AWS CloudFormation handles replacement updates for an Auto Scaling group, use the `AutoScalingReplacingUpdate` policy.
 - This policy enables you to specify whether AWS CloudFormation replaces an Auto Scaling group with a new one or replaces only the instances in the Auto Scaling group.
-  ```
-    UpdatePolicy:
-      AutoScalingReplacingUpdate:
-        WillReplace: true
+  ```yaml
+  UpdatePolicy:
+    AutoScalingReplacingUpdate:
+      WillReplace: true
   ```
 - During replacement, AWS CloudFormation retains the old group until it finishes creating the new one.
   1. If the update fails, AWS CloudFormation can roll back to the old Auto Scaling group and delete the new Auto Scaling group.

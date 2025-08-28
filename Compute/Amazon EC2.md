@@ -47,13 +47,14 @@
 - [17. AMI](#17-ami)
 - [18. Instance Scheduler on AWS](#18-instance-scheduler-on-aws)
 - [19. Status checks for Amazon EC2 instances](#19-status-checks-for-amazon-ec2-instances)
-- [20. Impaired Status in Amazon EC2](#20-impaired-status-in-amazon-ec2)
-  - [20.1. What Causes an Impaired Status?](#201-what-causes-an-impaired-status)
-- [21. Amazon EC2 Tenancy Options](#21-amazon-ec2-tenancy-options)
-  - [21.1. Shared (Default)](#211-shared-default)
-  - [21.2. Dedicated Instances](#212-dedicated-instances)
-  - [21.3. Dedicated Hosts](#213-dedicated-hosts)
-  - [21.4. How Tenancy Settings Work](#214-how-tenancy-settings-work)
+- [20. EC2 Instance States](#20-ec2-instance-states)
+- [21. Impaired Status in Amazon EC2](#21-impaired-status-in-amazon-ec2)
+  - [21.1. What Causes an Impaired Status?](#211-what-causes-an-impaired-status)
+- [22. Amazon EC2 Tenancy Options](#22-amazon-ec2-tenancy-options)
+  - [22.1. Shared (Default)](#221-shared-default)
+  - [22.2. Dedicated Instances](#222-dedicated-instances)
+  - [22.3. Dedicated Hosts](#223-dedicated-hosts)
+  - [22.4. How Tenancy Settings Work](#224-how-tenancy-settings-work)
 
 # 1. Introduction
 
@@ -520,7 +521,7 @@
 
 # 19. Status checks for Amazon EC2 instances
 
-- **Purpose**: Helps detect issues that might prevent EC2 instances from running applications properly.
+- **Purpose:** Helps detect issues that might prevent EC2 instances from running applications properly.
 - **How It Works**
   - EC2 runs **automated status checks** every minute on each running instance.
   - Results return either **pass** or **fail**.
@@ -539,12 +540,29 @@
     - **Automatically recover impaired instances**
   - **Note**: Status checks are **built-in** and **cannot be disabled or deleted**.
 
-# 20. Impaired Status in Amazon EC2
+# 20. EC2 Instance States
+
+- **pending**  
+  The instance is preparing to enter the running state. An instance enters the pending state when it launches for the first time, or when it is restarted after being in the stopped state.
+- **running**  
+  The instance is running and ready for use.
+- **stopping**  
+  The instance is preparing to be stopped.
+  > **Note:** You will not be billed if it is preparing to stop, however, you will still be billed if it is preparing to hibernate.
+- **stopped**  
+  The instance is shut down and cannot be used. The instance can be restarted at any time.
+- **shutting-down**  
+  The instance is preparing to be terminated.
+- **terminated**  
+  The instance has been permanently deleted and cannot be restarted.
+  > **Note:** Reserved Instances that applied to terminated instances are still billed until the end of their term according to their payment option.
+
+# 21. Impaired Status in Amazon EC2
 
 - When an EC2 instance shows a **status of "Impaired"**, it means that **one or more of the automated status checks have failed**.
 - This status indicates a **problem that is likely affecting the instance's ability to function correctly**.
 
-## 20.1. What Causes an Impaired Status?
+## 21.1. What Causes an Impaired Status?
 
 - An instance may be marked as **Impaired** due to
   - **Hardware failures** (e.g., physical server issues, networking hardware)
@@ -556,30 +574,30 @@
   - A recovered instance **is identical to the original instance**, including the instance ID, private IP addresses, Elastic IP addresses, and all instance metadata.
   - If your instance has a public IPv4 address, it retains the public IPv4 address after recovery.
 
-# 21. Amazon EC2 Tenancy Options
+# 22. Amazon EC2 Tenancy Options
 
 - Amazon EC2 offers three tenancy models to control how instances are placed on physical hardware.
 - Use **Shared** for cost savings, **Dedicated Instances** for isolation, and **Dedicated Hosts** for licensing and compliance control.
 
-## 21.1. Shared (Default)
+## 22.1. Shared (Default)
 
 - **Description:** Multiple AWS accounts share the same physical server.
 - **Use Case:** General-purpose, cost-efficient deployments.
 
-## 21.2. Dedicated Instances
+## 22.2. Dedicated Instances
 
 - **Description:** Instances run on hardware **dedicated to a single customer**.
 - **Isolation:** No other AWS customer shares the same physical server.
 - **Use Case:** Higher isolation without managing the host directly.
 
-## 21.3. Dedicated Hosts
+## 22.3. Dedicated Hosts
 
 - **Description:** Entire physical server is **allocated to your account**.
 - **Control:** Full visibility and control of the hardware.
 - **Use Case:** Ideal for **BYOL (Bring Your Own License)** and meeting **compliance** or licensing requirements.
 - **Note:** Requires a **host resource group**.
 
-## 21.4. How Tenancy Settings Work
+## 22.4. How Tenancy Settings Work
 
 | VPC Tenancy | Launch Template Tenancy | Resulting Instance Tenancy |
 | ----------- | ----------------------- | -------------------------- |
