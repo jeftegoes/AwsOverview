@@ -28,6 +28,8 @@
   - Transition to Cold Storage (Never, Days, Weeks, Months, Years).
   - Retention Period (Always, Days, Weeks, Months, Years).
 
+TODO: DIAGRAM
+
 # 2. Vault Lock
 
 - Enforce a WORM (Write Once Read Many) state for all the backups that you store in your AWS Backup Vault.
@@ -35,3 +37,5 @@
   - Inadvertent or malicious delete operations.
   - Updates that shorten or alter retention periods.
 - Even the root user cannot delete backups when enabled.
+
+TODO: DIAGRAM

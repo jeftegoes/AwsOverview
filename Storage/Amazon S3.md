@@ -76,7 +76,12 @@
 - [33. S3 Sync Command](#33-s3-sync-command)
 - [34. Read-After-Write Consistency](#34-read-after-write-consistency)
 - [35. Amazon S3 Bucket Keys with SSE-KMS](#35-amazon-s3-bucket-keys-with-sse-kms)
-- [36. Summary](#36-summary)
+- [36. Restoring Objects: Retrieval Options](#36-restoring-objects-retrieval-options)
+  - [36.1. Expedited](#361-expedited)
+  - [36.2. Standard](#362-standard)
+  - [36.3. Bulk](#363-bulk)
+  - [36.4. Comparison](#364-comparison)
+- [37. Summary](#37-summary)
 
 # 1. Introduction
 
@@ -847,7 +852,39 @@
 - Especially beneficial for **high-volume workloads** with frequent reads or writes.
   ![Amazon S3 Bucket Keys with SSE-KMS](/Images/Storage/AmazonS3BucketKeys.png)
 
-# 36. Summary
+# 36. Restoring Objects: Retrieval Options
+
+- Amazon S3 offers three retrieval tiers when restoring objects from archival storage (Glacier or Intelligent-Tiering access tiers).
+
+## 36.1. Expedited
+
+- **Speed:** Typically available within **1–5 minutes** (for objects smaller than 250 MB).
+- **Availability:** Supported for **S3 Glacier Flexible Retrieval** and **S3 Intelligent-Tiering Archive Access**.  
+  Not available for **Deep Archive** tiers.
+- **Cost:** Premium pricing. You can optionally purchase **Provisioned Capacity** to ensure retrieval availability during high demand.
+
+## 36.2. Standard
+
+- **Speed:** Usually completes in **3–5 hours** for Glacier Flexible Retrieval or Intelligent-Tiering Archive Access,  
+  and up to **12 hours** for Glacier Deep Archive or Intelligent-Tiering Deep Archive.
+- **Default Tier:** Used when no specific tier is specified.
+- **Cost:** Free when used with **Intelligent-Tiering**.
+
+## 36.3. Bulk
+
+- **Speed:** Ideal for large-scale restores—typically **5–12 hours** for Glacier Flexible Retrieval or Intelligent-Tiering Archive Access,  
+  and up to **48 hours** for Glacier Deep Archive or Intelligent-Tiering Deep Archive.
+- **Cost:** The **lowest-cost option**; free when used with **Intelligent-Tiering**.
+
+## 36.4. Comparison
+
+| Tier          | Duration                                   | Storage Classes              | Notes                |
+| ------------- | ------------------------------------------ | ---------------------------- | -------------------- |
+| **Expedited** | 1-5 min                                    | Glacier Flexible, IT Archive | Fastest, premium     |
+| **Standard**  | 3-5 h (Glacier / IT), 12 h (Deep Archive)  | All archival tiers           | Default, free in IT  |
+| **Bulk**      | 5-12 h (Glacier / IT), 48 h (Deep Archive) | All archival tiers           | Cheapest, free in IT |
+
+# 37. Summary
 
 - S3 is a... key / value store for objects.
 - Great for bigger objects, not so great for many small objects.

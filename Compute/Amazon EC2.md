@@ -337,6 +337,8 @@
   - **First start:** The OS boots & the EC2 User Data script is run.
   - **Following starts:** The OS boots up.
   - Then your application starts, caches get warmed up, and that can take time!
+  - **IMPORTANT:** To use **hibernation**, you must **launch the EC2 instance with hibernation enabled** from the start.
+    > Once the instance is created, **hibernation cannot be enabled or disabled later**.
 
 ## 13.1. Introducing EC2 Hibernate
 

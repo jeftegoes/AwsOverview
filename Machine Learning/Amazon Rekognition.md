@@ -20,7 +20,7 @@
   - Celebrity Recognition.
   - Pathing (ex: for sports game analysis).
 
-TODO: DIAGRAM
+![Amazon Rekognition](/Images/Machine%20Learning/AmazonRekognition.png)
 
 # 2. Content Moderation
 
@@ -30,4 +30,4 @@ TODO: DIAGRAM
 - Flag sensitive content for manual review in Amazon Augmented AI (A2I).
 - Help comply with regulations.
 
-TODO: DIAGRAM
+![Kinesis Use Case](/Images/Machine%20Learning/AmazonRekognitionKinesisUseCase.png)

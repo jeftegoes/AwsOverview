@@ -41,7 +41,7 @@
 
 # 2. Kinesis Data Streams
 
-- Retention between up to 365 days.
+- A Kinesis data stream stores records from **24 hours by default** to a maximum of 8760 hours (365 days).
 - Ability to reprocess (replay) data by consumers.
 - Data can't be deleted from Kinesis (until it expires).
 - Data up to 1MB (typical use case is lot of "small" real-time data).

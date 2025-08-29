@@ -12,4 +12,4 @@
   - Provisioned compute resources, parallel computation, automatic scaling.
   - Application backups (implemented as checkpoints and snapshots).
   - Use any Apache Flink programming features to transform data.
-  - **IMPORTANT!** Flink does not read from Amazon Data Firehose.
+    > **IMPORTANT!** Flink does not read from Amazon Data Firehose.
