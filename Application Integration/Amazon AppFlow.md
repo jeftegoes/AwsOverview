@@ -7,7 +7,12 @@
 # 1. Introduction
 
 - Fully managed integration service that enables you to securely transfer data between **Software-as-a-Service (SaaS) applications and AWS**.
-  - **Sources:** Salesforce, SAP, Zendesk, Slack, and ServiceNow.
+  - **Sources**
+    - Salesforce.
+    - SAP.
+    - Zendesk.
+    - Slack.
+    - ServiceNow.
   - **Destinations:** AWS services like Amazon S3, Amazon Redshift or non-AWS such as SnowFlake and Salesforce.
 - **Frequency:** On a schedule, in response to events, or on demand.
 - Data transformation capabilities like filtering and validation.

@@ -410,7 +410,7 @@
   | Queuing a purchase | You can queue purchases for regional Reserved Instances. | You can't queue purchases for zonal Reserved Instances. |
 
 - Recommended for steady-state usage applications (think database).
-- You can buy and sell in the Reserved Instance Marketplace.
+- You can buy and sell in the **AWS Reserved Instance Marketplace**.
 - **Convertible Reserved Instance**
   - Can change the EC2 instance type, instance family, OS, scope and tenancy.
   - Up to **66%** discount.

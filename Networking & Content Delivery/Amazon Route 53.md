@@ -26,11 +26,12 @@
   - [5.2. Weighted](#52-weighted)
   - [5.3. Latency-based](#53-latency-based)
   - [5.4. Failover (Active-Passive)](#54-failover-active-passive)
-  - [5.5. Geolocation](#55-geolocation)
-  - [5.6. Geoproximity](#56-geoproximity)
-  - [5.7. IP-based Routing](#57-ip-based-routing)
-  - [5.8. Multi-Value](#58-multi-value)
-  - [5.9. Traffic flow](#59-traffic-flow)
+  - [5.5. Failover (Active-Active)](#55-failover-active-active)
+  - [5.6. Geolocation](#56-geolocation)
+  - [5.7. Geoproximity](#57-geoproximity)
+  - [5.8. IP-based Routing](#58-ip-based-routing)
+  - [5.9. Multi-Value](#59-multi-value)
+  - [5.10. Traffic flow](#510-traffic-flow)
 - [6. Domain Registar vs DNS Service](#6-domain-registar-vs-dns-service)
   - [6.1. 3rd Party Registrar with Amazon Route 53](#61-3rd-party-registrar-with-amazon-route-53)
 - [7. Amazon Route 53 - Resolver](#7-amazon-route-53---resolver)
@@ -268,7 +269,15 @@
 - This ensures high availability and automatic DNS-based failover.
   ![Amazon Route 53 Failover Policie](/Images/Networking%20&%20Content%20Delivery/AmazonRoute53FailoverPolicie.png)
 
-## 5.5. Geolocation
+## 5.5. Failover (Active-Active)
+
+- **Purpose:** Use this setup when you want **all resources available most of the time**.
+- **Health checks:** If a resource becomes **unhealthy**, Route 53 stops including it in DNS responses.
+- **Behavior**
+  - Multiple records (same name, type, and routing policy) are active simultaneously.
+  - Route 53 responds to queries using **any healthy record**.
+
+## 5.6. Geolocation
 
 - Different from Latency-based!
 - **This routing is based on user location.**
@@ -277,7 +286,7 @@
 - **Use cases:** Website localization, restrict content distribution, load balancing, ...
 - Can be associated with Health Checks.
 
-## 5.6. Geoproximity
+## 5.7. Geoproximity
 
 - Route traffic to your resources based on the geographic location of users and resources.
 - Ability **to shift more traffic to resources based** on the defined bias.
@@ -289,14 +298,14 @@
   - Non-AWS resources (specify Latitude and Longitude).
 - We must use Route 53 **Traffic Flow** (advanced) to use this feature.
 
-## 5.7. IP-based Routing
+## 5.8. IP-based Routing
 
 - Routing is based on clients' IP addresses.
 - **We provide a list of CIDRs for your clients** and the corresponding endpoints/locations (user-IP-to-endpoint mappings).
 - **Use cases:** Optimize performance, reduce network costs...
 - **Example:** Route end users from a particular ISP to a specific endpoint.
 
-## 5.8. Multi-Value
+## 5.9. Multi-Value
 
 - Use when routing traffic to multiple resources.
 - Route 53 return multiple values/resources.
@@ -304,7 +313,7 @@
 - Up to 8 healthy records are returned for each Multi-Value query.
 - **Multi-Value is not a substitute for having an ELB.**
 
-## 5.9. Traffic flow
+## 5.10. Traffic flow
 
 - Simplify the process of creating and maintaining records in large and complex configurations.
 - Visual editor to manage complex routing decision trees.

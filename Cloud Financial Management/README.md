@@ -10,6 +10,7 @@
   - [3.3. Cost and Usage Reports](#33-cost-and-usage-reports)
   - [3.4. Cost Explorer](#34-cost-explorer)
   - [3.5. AWS Cost Anomaly Detection](#35-aws-cost-anomaly-detection)
+  - [3.6. Cost Explorer API.](#36-cost-explorer-api)
 - [4. Billing Alarms in CloudWatch](#4-billing-alarms-in-cloudwatch)
 - [5. AWS Budgets](#5-aws-budgets)
   - [5.1. Savings Plans coverage budget](#51-savings-plans-coverage-budget)
@@ -48,10 +49,10 @@
 ## 3.1. Cost Allocation Tags
 
 - Use **cost allocation tags** to track your AWS costs on a detailed level.
-- **AWS generated tags:**
+- **AWS generated tags**
   - Automatically applied to the resource you create.
   - Starts with Prefix aws: (e.g. aws: createdBy).
-- **User-defined tags:**
+- **User-defined tags**
   - Defined by the user.
 
 ## 3.2. AWS Resource Groups and Tagging
@@ -82,6 +83,14 @@
 - Monitor AWS services, member accounts, cost allocation tags, or cost categories.
 - Sends you the anomaly detection report with root-cause analysis.
 - Get notified with individual alerts or daily/weekly summary (using SNS).
+
+TODO: DIAGRAM
+
+## 3.6. Cost Explorer API.
+
+- The Cost Explorer API lets you programmatically query, analyze, and retrieve cost and usage data for your AWS accounts.
+- Useful for automation, integration into dashboards, and cost optimization workflows.
+- Data is typically updated every 24 hours.
 
 # 4. Billing Alarms in CloudWatch
 

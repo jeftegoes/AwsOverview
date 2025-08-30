@@ -21,7 +21,7 @@
   - EC2 Windows Instances.
 - **Identity providers**
   - Built-in identity store in IAM Identity Center.
-  - 3rd party: Active Directory (AD), OneLogin, Okta...
+  - **3rd party:** Active Directory (AD), OneLogin, Okta...
 
 # 2. Login flow
 

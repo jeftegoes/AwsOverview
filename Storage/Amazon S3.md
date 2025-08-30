@@ -406,7 +406,12 @@
 
 # 15. S3 Event Notifications
 
-- `S3:ObjectCreated`, `S3:ObjectRemoved`, `S3:ObjectRestore`, `S3:Replication`...
+- `S3:ObjectCreated:*`
+- `S3:ObjectRemoved:*`
+  - `s3:ObjectRemoved:Delete`
+- `S3:ObjectRestore:*`
+- `S3:Replication:*`
+- `...`
 - Object name filtering possible `*.jpg`.
 - **Use case:** Generate thumbnails of images uploaded to S3.
 - **Can create as many "S3 events" as desired.**

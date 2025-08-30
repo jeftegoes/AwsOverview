@@ -4,11 +4,11 @@
 
 - [1. Introduction](#1-introduction)
 - [2. Amazon FSx](#2-amazon-fsx)
-- [3. Amazon FSx for Windows (File Server)](#3-amazon-fsx-for-windows-file-server)
+- [3. Amazon FSx for Windows (File Server) (file storage)](#3-amazon-fsx-for-windows-file-server-file-storage)
 - [4. Amazon FSx for Lustre](#4-amazon-fsx-for-lustre)
   - [4.1. Hot \& Cold Data Handling](#41-hot--cold-data-handling)
 - [5. FSx Lustre - File System Deployment Options](#5-fsx-lustre---file-system-deployment-options)
-- [6. Amazon FSx for NetApp ONTAP](#6-amazon-fsx-for-netapp-ontap)
+- [6. Amazon FSx for NetApp ONTAP (block storage)](#6-amazon-fsx-for-netapp-ontap-block-storage)
 - [7. Amazon FSx for OpenZFS](#7-amazon-fsx-for-openzfs)
 - [8. Choosing an Amazon FSx File System](#8-choosing-an-amazon-fsx-file-system)
   - [8.1. Familiar File System](#81-familiar-file-system)
@@ -33,7 +33,7 @@
   - FSx for NetApp ONTAP.
   - FSx for OpenZFS.
 
-# 3. Amazon FSx for Windows (File Server)
+# 3. Amazon FSx for Windows (File Server) (file storage)
 
 - **FSx for Windows** is a fully managed **Windows** file system share drive.
 - Supports SMB (Server Message Block) protocol & Windows NTFS.
@@ -61,7 +61,7 @@
   - **HDD:** Throughput-intensive workloads, large & sequential file operations.
 - **Seamless integration with S3**
   - Can "read S3" as a file system (through FSx).
-  - Can write the output of the computations back to S3 (through FSx).
+  - **Can write** the output of the computations back **to Amazon S3** (through FSx).
 - **Can be used from on-premises servers (VPN or Direct Connect).**
 
 ## 4.1. Hot & Cold Data Handling
@@ -82,7 +82,7 @@
   - Replace failed files within minutes.
   - **Usage:** Long-term processing, sensitive data.
 
-# 6. Amazon FSx for NetApp ONTAP
+# 6. Amazon FSx for NetApp ONTAP (block storage)
 
 - Managed NetApp ONTAP on AWS.
 - **File System compatible with NFS, SMB, iSCSI (block storage) protocol.**
