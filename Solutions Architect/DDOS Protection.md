@@ -2,12 +2,20 @@
 
 ## Contents <!-- omit in toc -->
 
-- [1. Edge Location Mitigation (BP1, BP3)](#1-edge-location-mitigation-bp1-bp3)
-- [2. Best pratices for DDoS mitigation](#2-best-pratices-for-ddos-mitigation)
-- [3. Application Layer Defense](#3-application-layer-defense)
-- [4. Attack surface reduction](#4-attack-surface-reduction)
+- [1. Overview](#1-overview)
+- [2. Edge Location Mitigation (BP1, BP3)](#2-edge-location-mitigation-bp1-bp3)
+- [3. Best pratices for DDoS mitigation](#3-best-pratices-for-ddos-mitigation)
+- [4. Application Layer Defense](#4-application-layer-defense)
+- [5. Attack surface reduction](#5-attack-surface-reduction)
 
-# 1. Edge Location Mitigation (BP1, BP3)
+# 1. Overview
+
+- To protect your system from DDoS attack, you can do the following:
+  - Use an Amazon CloudFront service for distributing both static and dynamic content.
+  - Use an Application Load Balancer with Auto Scaling groups for your EC2 instances. Prevent direct Internet traffic to your Amazon RDS database by deploying it to a new private subnet.
+  - Set up alerts in Amazon CloudWatch to look for high Network In and CPU utilization metrics.
+
+# 2. Edge Location Mitigation (BP1, BP3)
 
 - **BP1 - CloudFront**
   - Web Application delivery at the edge.
@@ -20,7 +28,7 @@
   - Domain Name Resolution at the edge.
   - DDoS Protection mechanism.
 
-# 2. Best pratices for DDoS mitigation
+# 3. Best pratices for DDoS mitigation
 
 - **Infrastructure layer defense (BP1, BP3, BP6)**
   - Protect Amazon EC2 against high traffic.
@@ -30,7 +38,7 @@
 - **Elastic Load Balancing (BP6)**
   - Elastic Load Balancing scales with the traffic increases and will distribute the traffic to many EC2 instances.
 
-# 3. Application Layer Defense
+# 4. Application Layer Defense
 
 - **Detect and filter malicious web requests (BP1, BP2)**
   - CloudFront cache static content and serve it from edge locations, protecting your backend.
@@ -41,7 +49,7 @@
 - **Shield Advanced (BP1, BP2, BP6)**
   - Shield Advanced automatic application layer DDoS mitigation automatically creates, evaluates and deploys AWS WAF rules to mitigate layer 7 attacks.
 
-# 4. Attack surface reduction
+# 5. Attack surface reduction
 
 - **Obfuscating AWS resources (BP1, BP4, BP6)**
   - Using CloudFront, API Gateway, Elastic Load Balancing to hide your backend resources (Lambda functions, EC2 instances).

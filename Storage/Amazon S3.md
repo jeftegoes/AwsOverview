@@ -877,8 +877,7 @@
 
 ## 36.3. Bulk
 
-- **Speed:** Ideal for large-scale restores—typically **5–12 hours** for Glacier Flexible Retrieval or Intelligent-Tiering Archive Access,  
-  and up to **48 hours** for Glacier Deep Archive or Intelligent-Tiering Deep Archive.
+- **Speed:** Ideal for large-scale restores-typically **5–12 hours** for Glacier Flexible Retrieval or Intelligent-Tiering Archive Access, and up to **48 hours** for Glacier Deep Archive or Intelligent-Tiering Deep Archive.
 - **Cost:** The **lowest-cost option**; free when used with **Intelligent-Tiering**.
 
 ## 36.4. Comparison

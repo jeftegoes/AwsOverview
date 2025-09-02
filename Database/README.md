@@ -43,14 +43,14 @@
 
 # 3. Database Types
 
-- RDBMS (= SQL / OLTP): RDS, Aurora - great for joins.
-- NoSQL database - no joins, no SQL : DynamoDB (~JSON), ElastiCache (key / value pairs), Neptune (graphs), DocumentDB (for MongoDB), Keyspaces (for Apache Cassandra).
-- Object Store: S3 (for big objects) / Glacier (for backups / archives).
-- Data Warehouse (= SQL Analytics / BI): Redshift (OLAP), Athena, EMR.
-- Search: OpenSearch (JSON) - free text, unstructured searches.
-- Graphs: Amazon Neptune - displays relationships between data.
-- Ledger: Amazon Quantum Ledger Database.
-- Time series: Amazon Timestrea.
+- **RDBMS (= SQL / OLTP):** RDS, Aurora - great for joins.
+- **NoSQL database - no joins, no SQL:** DynamoDB (~JSON), ElastiCache (key / value pairs), Neptune (graphs), DocumentDB (for MongoDB), Keyspaces (for Apache Cassandra).
+- **Object Store:** S3 (for big objects) / Glacier (for backups / archives).
+- **Data Warehouse (= SQL Analytics / BI):** Redshift (OLAP), Athena, EMR.
+- **Search:** OpenSearch (JSON) - free text, unstructured searches.
+- **Graphs:** Amazon Neptune - displays relationships between data.
+- **Ledger:** Amazon Quantum Ledger Database.
+- **Time series:** Amazon Timestrea.
 
 # 4. Relational Databases
 

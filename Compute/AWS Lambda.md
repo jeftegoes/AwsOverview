@@ -84,6 +84,7 @@
 - [35. AWS Lambda Limits to Know - per region](#35-aws-lambda-limits-to-know---per-region)
 - [36. AWS Lambda Best Practices](#36-aws-lambda-best-practices)
 - [37. Error creating a lambda function via CLI](#37-error-creating-a-lambda-function-via-cli)
+- [38. Ephemeral Storage](#38-ephemeral-storage)
 
 # 1. What's serverless?
 
@@ -955,3 +956,12 @@ CMD ["app.lambdaHandler"]
 - `CodeStorageExceededException` - If you have exceeded your maximum total code size per account, will be returned.
 - `ResourceConflictException` - If the resource already exists, will be returned and not `InvalidParameterValueException`.
 - `ServiceException` - If the AWS Lambda service encountered an internal error, will be returned.
+
+# 38. Ephemeral Storage
+
+- **Default:** 512 MB temporary storage per function instance.  
+- **Configurable:** Up to 10 GB.  
+- **Purpose:** For temporary data processing (e.g., file manipulation, caching).  
+- **Lifecycle:** Storage is **ephemeral**-wiped after function execution.  
+- **Use Cases:** Data processing, temporary file handling, in-memory caching.  
+- **Not Persistent:** For long-term storage, use S3, EFS, or DynamoDB instead.  

@@ -690,7 +690,7 @@
   - `cfn-signal`: Use to signal with a `CreationPolicy` or `WaitCondition`, so you can synchronize other resources in the stack when the prerequisite resource or application is ready.
   - `cfn-get-metadata`: Use to retrieve metadata for a resource or path to a specific key.
   - `cfn-hup`: Use to check for updates to metadata and execute custom hooks when changes are detected.
-- Usual flow: `cfn-init`, then `cfn-signal`, then optionally `cfn-hup`.
+- **Usual flow:** `cfn-init`, then `cfn-signal`, then optionally `cfn-hup`.
 - You call the scripts directly from your template.
 - The scripts work in conjunction with resource metadata that's defined in the same template.
 - The scripts run on the [Amazon EC2](AWS%20EC2.md) instance during the stack creation process.
@@ -721,7 +721,7 @@
   - We run `cfn-signal` right after `cfn-init`.
   - Tell CloudFormation service that the resource creation success/fail to keep on going or fail.
 - We need to define `WaitCondition`:
-  - Block the template until it receives a signal from cfn-signal.
+  - Block the template until it receives a signal from `cfn-signal`.
   - We attach a `CreationPolicy` (also works on EC2, ASG).
   - We can define a `Count` > 1 (in case you need more than 1 signal).
 
@@ -760,7 +760,7 @@
 - A stack goes into the `UPDATE_ROLLBACK_FAILED` state when CloudFormation can't roll back all changes during an update.
 - A resource can't return to its original state, causing the rollback to fail.
 - Example: Roll back to an old database instance that was deleted outside CloudFormation.
-- Solutions:
+- **Solutions**
   - Fix the errors manually outside of CloudFormation and then continue update rollback the stack.
   - Skip the resources that can't rollback successfully (CloudFormation will mark the failed resources as `UPDATE_COMPLETE`).
 - You can't update a stack in this state.

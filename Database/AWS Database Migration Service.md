@@ -47,6 +47,7 @@
 - Apache Kafka.
 - DocumentDB & Amazon Neptune.
 - Redis & Babelfish.
+- Amazon Aurora.
 
 # 3. AWS Schema Conversion Tool (SCT)
 

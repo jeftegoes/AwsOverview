@@ -264,7 +264,7 @@ TODO: DIAGRAM
   2. While AWS CloudFormation creates the new group, it doesn't detach or attach any instances.
   3. After successfully creating the new Auto Scaling group, AWS CloudFormation deletes the old Auto Scaling group during the cleanup process.
 - When you set the `WillReplace` parameter, remember to specify a matching CreationPolicy.
-  - If the minimum number of instances (specified by the `MinSuccessfulInstancesPercent` property) doesn't signal success within the Timeout period (specified in the CreationPolicy policy), the replacement update fails, and AWS CloudFormation rolls back to the old Auto Scaling group.
+  - If the minimum number of instances (specified by the `MinSuccessfulInstancesPercent` property) doesn't signal success within the Timeout period (specified in the `CreationPolicy` policy), the replacement update fails, and AWS CloudFormation rolls back to the old Auto Scaling group.
 
 # 18. ASG and EC2 Impaired status
 
