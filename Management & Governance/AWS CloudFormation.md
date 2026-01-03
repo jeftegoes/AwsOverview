@@ -42,38 +42,42 @@
   - [3.10. Fn::Select](#310-fnselect)
 - [4. Rollbacks](#4-rollbacks)
 - [5. Stack Notifications](#5-stack-notifications)
-- [6. ChangeSets](#6-changesets)
-- [7. Retaining Data on Deletes](#7-retaining-data-on-deletes)
-- [8. Termination Protection on Stacks](#8-termination-protection-on-stacks)
-- [9. User Data in EC2 for CloudFormation](#9-user-data-in-ec2-for-cloudformation)
-  - [9.1. CFN-Init and EC2 User Data, what?!!](#91-cfn-init-and-ec2-user-data-what)
-  - [9.2. The Problems with EC2 User Data](#92-the-problems-with-ec2-user-data)
-  - [9.3. CloudFormation helper scripts reference](#93-cloudformation-helper-scripts-reference)
-  - [9.4. AWS::CloudFormation::Init](#94-awscloudformationinit)
-    - [9.4.1. cfn-init](#941-cfn-init)
-    - [9.4.2. cfn-signal \& wait conditions](#942-cfn-signal--wait-conditions)
-    - [9.4.3. cfn-hup](#943-cfn-hup)
-- [10. Nested stacks](#10-nested-stacks)
-- [11. CloudFormation - Cross vs Nested Stacks](#11-cloudformation---cross-vs-nested-stacks)
-- [12. Continue Rolling Back an Update](#12-continue-rolling-back-an-update)
-- [13. Custom Resources](#13-custom-resources)
-  - [13.1. How to define a Custom Resource?](#131-how-to-define-a-custom-resource)
-  - [13.2. Use cases](#132-use-cases)
-    - [13.2.1. Non-empty S3 bucket](#1321-non-empty-s3-bucket)
-- [14. Service Role](#14-service-role)
-- [15. CloudFormation Capabilities](#15-cloudformation-capabilities)
-- [16. SSM Parameter Type](#16-ssm-parameter-type)
-- [17. Dynamic References](#17-dynamic-references)
-  - [17.1. Dynamic Reference: ssm](#171-dynamic-reference-ssm)
-  - [17.2. Dynamic Reference: ssm-secure](#172-dynamic-reference-ssm-secure)
-  - [17.3. Dynamic Reference: secretsmanager](#173-dynamic-reference-secretsmanager)
-- [18. StackSets](#18-stacksets)
-  - [18.1. StackSet Operations](#181-stackset-operations)
-  - [18.2. StackSet Deployment Options](#182-stackset-deployment-options)
-  - [18.3. Permission Models for StackSet](#183-permission-models-for-stackset)
-  - [18.4. StackSets with AWS Organizations](#184-stacksets-with-aws-organizations)
-  - [18.5. StackSet Drift Detection](#185-stackset-drift-detection)
-- [19. Stack Policies](#19-stack-policies)
+- [6. Troubleshooting](#6-troubleshooting)
+  - [6.1. StackSet Troubleshooting](#61-stackset-troubleshooting)
+- [7. ChangeSets](#7-changesets)
+- [8. DeletionPolicy Delete](#8-deletionpolicy-delete)
+- [9. Stack Policies](#9-stack-policies)
+- [10. Termination Protection](#10-termination-protection)
+- [11. User Data in EC2 for CloudFormation](#11-user-data-in-ec2-for-cloudformation)
+  - [11.1. The Problems with EC2 User Data](#111-the-problems-with-ec2-user-data)
+  - [11.2. CloudFormation helper scripts reference](#112-cloudformation-helper-scripts-reference)
+  - [11.3. AWS::CloudFormation::Init](#113-awscloudformationinit)
+    - [11.3.1. cfn-init](#1131-cfn-init)
+    - [11.3.2. cfn-signal \& wait conditions](#1132-cfn-signal--wait-conditions)
+    - [11.3.3. cfn-hup](#1133-cfn-hup)
+- [12. Wait Condition Didn't Receive the Required Number of Signals from an Amazon EC2 Instance](#12-wait-condition-didnt-receive-the-required-number-of-signals-from-an-amazon-ec2-instance)
+- [13. Nested stacks](#13-nested-stacks)
+- [14. CloudFormation - Cross vs Nested Stacks](#14-cloudformation---cross-vs-nested-stacks)
+- [15. DependsOn](#15-dependson)
+- [16. Continue Rolling Back an Update](#16-continue-rolling-back-an-update)
+- [17. Custom Resources](#17-custom-resources)
+  - [17.1. How to define a Custom Resource?](#171-how-to-define-a-custom-resource)
+  - [17.2. Use cases: Delete content from an S3 bucket](#172-use-cases-delete-content-from-an-s3-bucket)
+  - [17.3. How does it work?](#173-how-does-it-work)
+- [18. Service Role](#18-service-role)
+- [19. CloudFormation Capabilities](#19-cloudformation-capabilities)
+- [20. SSM Parameter Type](#20-ssm-parameter-type)
+- [21. Dynamic References](#21-dynamic-references)
+  - [21.1. Dynamic Reference: ssm](#211-dynamic-reference-ssm)
+  - [21.2. Dynamic Reference: ssm-secure](#212-dynamic-reference-ssm-secure)
+  - [21.3. Dynamic Reference: secretsmanager](#213-dynamic-reference-secretsmanager)
+- [22. StackSets](#22-stacksets)
+  - [22.1. StackSet Operations](#221-stackset-operations)
+  - [22.2. StackSet Deployment Options](#222-stackset-deployment-options)
+  - [22.3. StackSets Permission Models](#223-stacksets-permission-models)
+  - [22.4. StackSets with AWS Organizations](#224-stacksets-with-aws-organizations)
+  - [22.5. StackSet Drift Detection](#225-stackset-drift-detection)
+- [23. CloudFormation - Drift](#23-cloudformation---drift)
 
 # 1. Introduction Infrastructure as Code (IaC)
 
@@ -132,15 +136,14 @@
 - We have to re-upload a new version of the template to AWS.
 - Stacks are identified by a name.
 - Deleting a stack deletes every single artifact that was created by CloudFormation.
-
-![How CloudFormation Works](/Images/Management%20&%20Governance/AWSCloudformationDiagram.png)
+  - ![How CloudFormation Works](/Images/Management%20&%20Governance/AWSCloudformationDiagram.png)
 
 ## 1.5. Deploying CloudFormation templates
 
-- Manual way:
+- **Manual way**
   - Editing templates in the CloudFormation Designer.
   - Using the console to input parameters, etc.
-- Automated way:
+- **Automated way**
   - Editing templates in a YAML file.
   - Using the AWS CLI (Command Line Interface) to deploy the templates.
   - Recommended way when you fully want to automate your flow.
@@ -212,15 +215,15 @@
 - There are over ~700 types of resources.
 - Resource types identifiers are of the form:
   - `Type: service-provider::service-name::data-type-name`
-  - Example:
-    ```
-      Resources:
-        MyInstance:
-          Type: AWS::EC2::Instance
-          Properties:
-            AvailabilityZone: sa-east-1a
-            ImageId: ami-3sd89f07
-            InstanceType: t2.micro
+  - **Example**
+    ```yaml
+    Resources:
+      MyInstance:
+        Type: AWS::EC2::Instance
+        Properties:
+          AvailabilityZone: sa-east-1a
+          ImageId: ami-3sd89f07
+          InstanceType: t2.micro
     ```
 
 ### 2.2.1. How do I find resources documentation?
@@ -250,11 +253,11 @@
   - If so, make it a parameter.
 - You won't have to re-upload a template to change its content.
 - Example:
-  ```
-    Parameters:
-      SecurityGroupDescription:
-        Description: Security Group Description
-        Type: String
+  ```yaml
+  Parameters:
+    SecurityGroupDescription:
+      Description: Security Group Description
+      Type: String
   ```
 
 ### 2.3.2. Parameters Settings
@@ -280,20 +283,20 @@
 
 - The `Fn::Ref` function can be leveraged to reference parameters.
 - Parameters can be used anywhere in a template.
-- The shorthand for this in YAML is `!Ref`
+- The shorthand for this in YAML is `!Ref`.
 - The function can also reference other elements within the template.
-- Example:
+- **Examples**
+  ```yaml
+  Parameters:
+    SecurityGroupDescription:
+      Description: Security Group Description
+      Type: String
   ```
-    Parameters:
-      SecurityGroupDescription:
-        Description: Security Group Description
-        Type: String
-  ```
-  ```
-    ServerSecurityGroup:
-      Type: AWS::EC2::SecurityGroup
-      Properties:
-        GroupDescription: !Ref SecurityGroupDescription
+  ```yaml
+  ServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: !Ref SecurityGroupDescription
   ```
 
 ### 2.3.4. Concept: Pseudo Parameters
@@ -323,7 +326,7 @@
 
 - Example:
 
-  ```
+  ```yaml
     aws ssm put-parameter --name myEC2TypeDev --type String --value "t2.small"
 
     Parameters:
@@ -332,13 +335,13 @@
         Default: myEC2TypeDev
   ```
 
-  ```
-    MyIAMUser:
-      Type: AWS::IAM::User
-      Properties:
-        UserName: 'MyUserName'
-        LoginProfile:
-          Password: '{{resolve:ssm-secure:IAMUserPassword:10}}'
+  ```yaml
+  MyIAMUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: "MyUserName"
+      LoginProfile:
+        Password: "{{resolve:ssm-secure:IAMUserPassword:10}}"
   ```
 
 ## 2.4. Mappings
@@ -347,30 +350,30 @@
 - They're very handy to differentiate between different environments (dev vs prod), regions (AWS regions), AMI types, etc.
 - All the values are hardcoded within the template.
 - Example:
-  ```
-    Mappings:
-      Mapping01:
-        Key01:
-          Name: Value01
-        Key02:
-          Name: Value02
-        Key03:
-          Name: Value03
+  ```yaml
+  Mappings:
+    Mapping01:
+      Key01:
+        Name: Value01
+      Key02:
+        Name: Value02
+      Key03:
+        Name: Value03
   ```
 - Real example:
-  ```
-    Mappings:
-      RegionMap:
-        us-east-1:
-          "HVM64": "ami-0ff8a91507f77f867"
-        us-west-1:
-          "HVM64": "ami-0bdb828fd58c52235"
-        eu-west-1:
-          "HVM64": "ami-047bb4163c506cd98"
-        ap-southeast-1:
-          "HVM64": "ami-08569b978cc4dfa10"
-        ap-northeast-1:
-          "HVM64": "ami-06cd52961ce9f0d85"
+  ```yaml
+  Mappings:
+    RegionMap:
+      us-east-1:
+        "HVM64": "ami-0ff8a91507f77f867"
+      us-west-1:
+        "HVM64": "ami-0bdb828fd58c52235"
+      eu-west-1:
+        "HVM64": "ami-047bb4163c506cd98"
+      ap-southeast-1:
+        "HVM64": "ami-08569b978cc4dfa10"
+      ap-northeast-1:
+        "HVM64": "ami-06cd52961ce9f0d85"
   ```
 
 ### 2.4.1. Accessing Mapping Values Fn::FindInMap
@@ -637,52 +640,76 @@
 - Send Stack events to SNS Topic (Email, Lambda, ...)
 - Enable SNS Integration using Stack Options
 
-# 6. ChangeSets
+# 6. Troubleshooting
+
+- `DELETE_FAILED`
+  - Some resources must be emptied before deleting, such as S3 buckets.
+  - Use Custom Resources with Lambda functions to automate some actions.
+  - Security Groups cannot be deleted until all EC2 instances in the group are gone.
+  - Think about using `DeletionPolicy=Retain` to skip deletions.
+- `UPDATE_ROLLBACK_FAILED`
+  - Can be caused by resources changed outside of CloudFormation, insufficient permissions, Auto Scaling Group that doesn't receive enough signals...
+- Manually fix the error and then `ContinueUpdateRollback`.
+
+## 6.1. StackSet Troubleshooting
+
+- A stack operation failed, and the stack instance status is OUTDATED.
+- Insufficient permissions in a target account for creating resources that are specified in your template.
+- The template could be trying to create global resources that must be unique but aren't, such as S3 buckets.
+- The administrator account does not have a trust relationship with the target account.
+- Reached a limit or a quota in the target account (too many resources).
+
+# 7. ChangeSets
 
 - When you update a stack, you need to know what changes before it happens for greater confidence.
 - ChangeSets won't say if the update will be successful.
+- For Nested Stacks, you see the changes across all stacks.
 
-# 7. Retaining Data on Deletes
+# 8. DeletionPolicy Delete
 
-- You can put a DeletionPolicy on any resource to control what happens when the CloudFormation template is deleted.
-- DeletionPolicy = Retain:
+- Control what happens when the CloudFormation template is deleted or when a resource is removed from a CloudFormation template.
+- Extra safety measure to preserve and backup resources
+- Default **DeletionPolicy = Delete**
+  - Delete won't work on an S3 bucket if the bucket is not empty.
+- **DeletionPolicy = Retain**
   - Specify on resources to preserve / backup in case of CloudFormation deletes.
+  - Works with any resources.
   - To keep a resource, specify Retain (works for any resource / nested stack).
-- DeletionPolicy = Snapshot:
-  - EBS Volume, ElastiCache Cluster, ElastiCache ReplicationGroup.
-  - RDS DBInstance, RDS DBCluster, Redshift Cluster.
-- DeletePolicy = Delete (default behavior):
-  - Note: for `AWS::RDS::DBCluster` resources, the default policy is Snapshot.
-  - Note: to delete an S3 bucket, you need to first empty the bucket of its content.
+- **DeletionPolicy = Snapshot**
+  - Create one final snapshot before deleting the resource.
+  - **Examples of supported resources**
+    - EBS Volume, ElastiCache Cluster, ElastiCache ReplicationGroup.
+    - RDS DBInstance, RDS DBCluster, Redshift Cluster, Neptune DBCluster, DocumentDB DBCluster.
 
-# 8. Termination Protection on Stacks
+# 9. Stack Policies
+
+- During a CloudFormation Stack update, all update actions are allowed on all resources (default).
+- **A Stack Policy is a JSON document that defines the update actions that are allowed on specific resources during Stack updates.**
+- Protect resources from unintentional updates.
+- When you set a Stack Policy, all resources in the Stack are protected by default.
+- Specify an explicit ALLOW for the resources you want to be allowed to be updated.
+
+# 10. Termination Protection
 
 - To prevent accidental deletes of CloudFormation templates, use `TerminationProtection`.
 
-# 9. User Data in EC2 for CloudFormation
+# 11. User Data in EC2 for CloudFormation
 
-- The important thing to pass is the entire script through the function
-  `Fn::Base64`.
-- Good to know, user data script log is in /var/log/cloud-init-output.log
+- We can have user data at EC2 instance launch through the console.
+- The important thing to pass is the entire script through the function `Fn::Base64`.
+- Good to know, user data script log is in **/var/log/cloud-init-output.log**.
 
-## 9.1. CFN-Init and EC2 User Data, what?!!
-
-- Many of the CloudFormation templates will be about provisioning computing resources in your AWS Cloud.
-- These resources can be either:
-  - EC2 Instances.
-  - Auto Scaling Groups.
-  - etc...
-- Usually, you want the instances to be self configured so that they can perform the job they're supposed to perform.
-- You can fully automate your EC2 fleet state with CloudFormation Init.
-
-## 9.2. The Problems with EC2 User Data
+## 11.1. The Problems with EC2 User Data
 
 - What if we want to have a very large instance configuration?
 - What if we want to evolve the state of the EC2 instance without terminating it and creating a new one?
 - How do we make EC2 user-data more readable?
 - How do we know or signal that our EC2 user-data script completed successfully?
+- Enter **CloudFormation Helper Scripts**!
+  - Python scripts, that come directly on Amazon Linux AMIs, or can be installed using `yum` or `dnf` on non-Amazon Linux AMIs.
+    - `cfn-init`, `cfn-signal`, `cfn-get-metadata`, `cfn-hup`.
 
-## 9.3. CloudFormation helper scripts reference
+## 11.2. CloudFormation helper scripts reference
 
 - AWS CloudFormation provides the following Python helper scripts that you can use to install software and start services on an [Amazon EC2](AWS%20EC2.md) instance that you create as part of your stack:
 - We have 4 Python scripts, that come directly on Amazon Linux 2 AMI, or can be installed using `yum` on non-Amazon Linux AMIs.
@@ -695,26 +722,28 @@
 - The scripts work in conjunction with resource metadata that's defined in the same template.
 - The scripts run on the [Amazon EC2](AWS%20EC2.md) instance during the stack creation process.
 
-## 9.4. AWS::CloudFormation::Init
+## 11.3. AWS::CloudFormation::Init
 
 - A **config** contains the following and is executed in that order:
-  - **Packages:** used to download and install pre-packaged apps and components on Linux/Windows (ex. MySQL, PHP, etc...).
-  - **Groups:** define user groups - Users: define users, and which group they belong to.
-  - **Sources:** download files and archives and place them on the EC2 instance.
-  - **Files:** create files on the EC2 instance, using inline or can be pulled from a URL.
-  - **Commands:** run a series of commands.
-  - **Services:** launch a list of sysvinit.
-- You can have multiple **configs** in your AWS::CloudFormation::Init
+  - **Packages:** Used to download and install pre-packaged apps and components on Linux/Windows (ex. MySQL, PHP, etc...).
+  - **Groups:** Define user groups - Users: define users, and which group they belong to.
+  - **Sources:** Download files and archives and place them on the EC2 instance.
+  - **Files:** Create files on the EC2 instance, using inline or can be pulled from a URL.
+  - **Commands:** Run a series of commands.
+  - **Services:** Launch a list of sysvinit.
+- You can have multiple **configs** in your `AWS::CloudFormation::Init`.
 - You create configSets with multiple **configs**.
 - And you invoke `configSets` from your EC2 user-data.
 
-### 9.4.1. cfn-init
+### 11.3.1. cfn-init
 
+- Used to retrieve and interpret the resource metadata, installing packages, creating files and starting services.
 - With the `cfn-init` script, it helps make complex EC2 configurations readable.
 - The EC2 instance will query the CloudFormation service to get init data.
+- `AWS::CloudFormation::Init` must be in the Metadata of a resource.
 - Logs go to `/var/log/cfn-init.log`.
 
-### 9.4.2. cfn-signal & wait conditions
+### 11.3.2. cfn-signal & wait conditions
 
 - We still don't know how to tell CloudFormation that the EC2 instance got properly configured after a `cfn-init`.
 - For this, we can use the `cfn-signal` script!
@@ -725,26 +754,36 @@
   - We attach a `CreationPolicy` (also works on EC2, ASG).
   - We can define a `Count` > 1 (in case you need more than 1 signal).
 
-### 9.4.3. cfn-hup
+### 11.3.3. cfn-hup
 
 - Can be used to tell your EC2 instance to look for Metadata changes every 15 minutes and apply the Metadata configuration again.
 - It's very powerful but you really need to try it out to understand how it works.
 - It relies on a `cfn-hup` configuration, see **/etc/cfn/cfn-hup.conf** and **/etc/cfn/hooks.d/cfn-auto-reloader.con**
 
-# 10. Nested stacks
+# 12. Wait Condition Didn't Receive the Required Number of Signals from an Amazon EC2 Instance
+
+- We ensure that the AMI we are using has the AWS CloudFormation helper scripts installed.
+  - If the AMI does not include the helper scripts, we can download them to the instance.
+- We verify that the `cfn-init` and `cfn-signal` commands ran successfully on the instance.
+- We can view logs such as **/var/log/cloud-init.log** or **/var/log/cfn-init.log** to help debug the instance launch.
+- We retrieve the logs by logging in to the instance, but we must disable rollback on failure; otherwise, AWS CloudFormation deletes the instance after the stack fails to create.
+- We verify that the instance has an Internet connection.
+  - If the instance is in a VPC, we ensure it can connect to the Internet through a NAT device when it is in a private subnet, or through an Internet gateway when it is in a public subnet.
+- For example, we run: `curl -I https://aws.amazon.com`.
+
+# 13. Nested stacks
 
 - Nested stacks are stacks as part of other stacks.
-- They allow you to isolate repeated patterns / common components in separate stacks and call them from other stacks.
-- Example:
+- We allow the isolation of repeated patterns and common components into separate stacks, which we can call from other stacks.
+- **Example**
   - Load Balancer configuration that is re-used.
   - Security Group that is re-used.
 - Nested stacks are considered best practice.
 - To update a nested stack, always update the parent (root stack).
-- You create a nested stack within another stack by using the `AWS::CloudFormation::Stack` resource.
+- We create a nested stack within another stack by using the `AWS::CloudFormation::Stack` resource.
+  - ![Nested stacks](/Images/Management%20&%20Governance/AWSCloudFormationNestedStacks.png)
 
-![Nested stacks](/Images/Management%20&%20Governance/AWSCloudFormationNestedStacks.png)
-
-# 11. CloudFormation - Cross vs Nested Stacks
+# 14. CloudFormation - Cross vs Nested Stacks
 
 - **Cross Stacks**
   - Helpful when stacks have different lifecycles.
@@ -752,10 +791,17 @@
   - When you need to pass export values to many stacks (VPC Id, etc...).
 - **Nested Stacks**
   - Helpful when components must be re-used.
-  - Ex: re-use how to properly configure an Application Load Balancer.
+  - **Ex:** re-use how to properly configure an Application Load Balancer.
   - The nested stack only is important to the higher level stack (it's not shared).
 
-# 12. Continue Rolling Back an Update
+# 15. DependsOn
+
+- Specify that the creation of a specific resource follows another.
+- When added to a resource, that resource is created only after the creation of the resource specified in the **DependsOn** attribute.
+- Applied automatically when using `!Ref` and `!GetAtt`
+- Use with any resource.
+
+# 16. Continue Rolling Back an Update
 
 - A stack goes into the `UPDATE_ROLLBACK_FAILED` state when CloudFormation can't roll back all changes during an update.
 - A resource can't return to its original state, causing the rollback to fail.
@@ -766,49 +812,43 @@
 - You can't update a stack in this state.
 - For nested stacks, rolling back the parent stack will attempt to roll back all the child stacks as well.
 
-# 13. Custom Resources
+# 17. Custom Resources
 
-- Enable you to write custom provision logic in templates that AWS CloudFormation runs anytime you create, update, delete stacks.
-- Defined in the template using `AWS::CloudFormation::CustomResource` or `Custom::MyCustomResourceTypeName` (recommended).
-- Two types:
-  - Amazon SNS-backed Custom Resources.
-  - AWS Lambda-backed Custom Resources.
-- **Use cases**
-  - An AWS resource is not covered yet (new service for example).
-  - An on-premises resource.
-  - Running a Lambda function to empty an S3 bucket before being deleted.
-  - Fetch an AMI id.
-  - Anything you want...!
+- **Used to**
+  - Define resources not yet supported by CloudFormation.
+  - Define custom provisioning logic for resources can that be outside of CloudFormation (on-premises resources, 3rd party resources...).
+  - Have custom scripts run during create / update / delete through Lambda functions (running a Lambda function to empty an S3 bucket before being deleted).
+- Defined in the template using `AWS::CloudFormation::CustomResource` or `Custom::MyCustomResourceTypeName` **(recommended)**
+- Backed by a Lambda function (most common) or an SNS topic.
 
-## 13.1. How to define a Custom Resource?
+## 17.1. How to define a Custom Resource?
 
 - `ServiceToken` specifies where CloudFormation sends requests to, such as **Lambda ARN** or **SNS ARN** (required & must be in the same region).
 - Input data parameters (optional).
 
+## 17.2. Use cases: Delete content from an S3 bucket
+
+- We can't delete a non-empty S3 bucket.
+- To delete a non-empty S3 bucket, we must first delete all the objects inside it.
+- We can use a custom resource to empty an S3 bucket before it gets deleted by CloudFormation.
+  - ![AWS CloudFormation Custom Resource Non-empty S3 bucket case](/Images/Management%20&%20Governance/AWSCloudFormationCustomResourceNonEmptyS3Bucket.png)
+
+## 17.3. How does it work?
+
 ![AWS CloudFormation Custom Resources](/Images/Management%20&%20Governance/AWSCloudFormationCustomResources.png)
 
-## 13.2. Use cases
-
-### 13.2.1. Non-empty S3 bucket
-
-- You can't delete a non-empty S3 bucket.
-- To delete a non-empty S3 bucket, you must first delete all the objects inside it.
-
-![AWS CloudFormation Custom Resource Non-empty S3 bucket case](/Images/Management%20&%20Governance/AWSCloudFormationCustomResourceNonEmptyS3Bucket.png)
-
-# 14. Service Role
+# 18. Service Role
 
 - IAM role that allows CloudFormation to create/update/delete stack resources on your behalf.
 - Give ability to users to create/update/delete the stack resources even if they don't have permissions to work with the resources in the stack.
 - By default, CloudFormation uses a temporary session that it generates from your user credentials.
-- **Use cases:**
+- **Use cases**
   - You want to achieve the least privilege principle.
   - But you don't want to give the user all the required permissions to create the stack resources.
 - User must have `iam:PassRole` permissions.
+  - ![Service Role](/Images/Management%20&%20Governance/AWSCloudFormationServiceRole.png)
 
-![Service Role](/Images/Management%20&%20Governance/AWSCloudFormationServiceRole.png)
-
-# 15. CloudFormation Capabilities
+# 19. CloudFormation Capabilities
 
 - `CAPABILITY_NAMED_IAM` and `CAPABILITY_IAM`.
   - Necessary to enable when you CloudFormation template is creating or updating IAM resources (IAM User, Role, Group, Policy, Access Keys, Instance Profile...).
@@ -819,7 +859,7 @@
 - `InsufficientCapabilitiesException`
   - Exception that will be thrown by CloudFormation if the capabilities haven't been acknowledge when deploying a template (security measure).
 
-# 16. SSM Parameter Type
+# 20. SSM Parameter Type
 
 - Reference parameters in Systems Manager Parameter Store.
 - Specify SSM parameter key as the value.
@@ -833,26 +873,25 @@
   - `AWS::SSM::Parameter::Value<AWS-Specific Parameter>`
   - `AWS::SSM::Parameter::Value<List<AWS-Specific Parameter>>`
 
-# 17. Dynamic References
+# 21. Dynamic References
 
-- Reference external values stored in SSM Parameter Store and AWS Secrets Manager within CloudFormation templates.
-- CloudFormation retrieves the value of the specified reference during stack and change set operations.
-- For example: retrieve RDS DB Instance master password from AWS Secrets Manager.
-- Supports
-  - `ssm` - For plaintext values stored in SSM Parameter Store
-  - `ssm-secure` - For secure strings stored in SSM Parameter Store
-  - `secretsmanager` - For secret values stored in AWS Secrets Manager
-- Up to 60 dynamic references in a template.
+- Reference external values stored in [AWS Systems Manager](/Management%20&%20Governance/AWS%20Systems%20Manager.md) -> Parameter Store and [Secrets Manager](/Security,%20Identity,%20&%20Compliance/AWS%20Secrets%20Manager.md) within CloudFormation templates.
+- CloudFormation retrieves the value of the specified reference during create/update/delete operations.
+- **Example:** Retrieve RDS DB Instance master password from Secrets Manager.
+- **Supports**
+  - `ssm` - For plaintext values stored in SSM Parameter Store.
+  - `ssm-secure` - For secure strings stored in SSM Parameter Store.
+  - `secretsmanager` - For secret values stored in AWS Secrets Manager.
 - `{{resolve:service-name:reference-key}}`
 
-## 17.1. Dynamic Reference: ssm
+## 21.1. Dynamic Reference: ssm
 
 - Reference values stored in SSM Parameter Store of type `String` and `StringList`.
 - If no version specified, CloudFormation uses the latest version.
 - Doesn't support public SSM parameters (e.g., Amazon Linux 2 AMI).
 - `{{resolve:ssm:parameter-name:version}}`
 
-## 17.2. Dynamic Reference: ssm-secure
+## 21.2. Dynamic Reference: ssm-secure
 
 - Reference values stored in SSM Parameter Store of type `SecureString`.
 - For example: passwords, license keys, etc...
@@ -861,14 +900,14 @@
 - [Only use with supported resources](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/dynamic-references.html#template-parameters-dynamic-patterns-resources)
 - `{{resolve:ssm-secure:parameter-name:version}}`
 
-## 17.3. Dynamic Reference: secretsmanager
+## 21.3. Dynamic Reference: secretsmanager
 
 - Retrieve entire secrets or secret values stored in AWS Secrets Manager.
 - For example: database credentials, passwords, 3rd party API keys, etc...
 - To update a secret, you must update the resource containing the secretsmanager dynamic reference (one of the resource properties).
 - `{{resolve:secretsmanager:secret-id:secret-string:json-key:version-stage:version-id}}`
 
-# 18. StackSets
+# 22. StackSets
 
 - Create, update, or delete stacks across **multiple accounts and regions** with a single operation.
 - Administrator account to create StackSets.
@@ -878,7 +917,7 @@
 - Can be applied into all accounts of an AWS organizations.
   ![CloudFormation StackSet](/Images/Management%20&%20Governance/AWSCloudFormationStackSet.png)
 
-## 18.1. StackSet Operations
+## 22.1. StackSet Operations
 
 - **Create StackSet**
   - Provide template + target accounts/regions.
@@ -891,7 +930,7 @@
 - **Delete StackSet**
   - Must delete all stack instances within StackSet to delete it.
 
-## 18.2. StackSet Deployment Options
+## 22.2. StackSet Deployment Options
 
 - **Deployment Order**
   - Order of regions where stacks are deployed.
@@ -905,24 +944,24 @@
 - **Retain Stacks**
   - Used when deleting StackSet to keep stacks and their resources running when removed from StackSet.
 
-## 18.3. Permission Models for StackSet
+## 22.3. StackSets Permission Models
 
-- Self-managed Permissions
+- **Self-managed Permissions**
   - Create the IAM roles (with established trusted relationship) in both administrator and target accounts.
   - Deploy to any target account in which you have permissions to create IAM role.
-- Service-managed Permissions
+- **Service-managed Permissions**
   - Deploy to accounts managed by AWS Organizations.
   - StackSets create the IAM roles on your behalf (**enable trusted access** with AWS Organizations).
   - Must **enable all features** in AWS Organizations.
   - Ability to deploy to accounts added to your organization in the future (Automatic Deployments).
 
-## 18.4. StackSets with AWS Organizations
+## 22.4. StackSets with AWS Organizations
 
 - Ability to **automatically** deploy Stack instances to new Accounts in an Organization.
 - Can delegate StackSets administration to member accounts in AWS Organization.
-- Trusted access with AWS Organizations must be enabled before delegated administrators can deploy to accounts managed by Organizations.
+- **Trusted access with AWS Organizations must be enabled before delegated** administrators can deploy to accounts managed by Organizations.
 
-## 18.5. StackSet Drift Detection
+## 22.5. StackSet Drift Detection
 
 - Performs drift detection on the stack associated with each stack instance in the StackSet.
 - If the current state of a resource in a stack varies from the expected state:
@@ -933,10 +972,10 @@
 - Changes made through CloudFormation to a stack directly (not at the StackSet level), aren't considered drifted.
 - You can stop drift detection on a StackSet.
 
-# 19. Stack Policies
+# 23. CloudFormation - Drift
 
-- During a CloudFormation Stack update, all update actions are allowed on all resources (default).
-- **A Stack Policy is a JSON document that defines the update actions that are allowed on specific resources during Stack updates.**
-- Protect resources from unintentional updates.
-- When you set a Stack Policy, all resources in the Stack are protected by default.
-- Specify an explicit ALLOW for the resources you want to be allowed to be updated.
+- CloudFormation allows we to create infrastructure.
+- But it doesn't protect we against manual configuration changes.
+- How do we know if our resources have drifted?
+  - We can use CloudFormation Drift!
+- Detect drift on an entire stack or on individual resources within a stack.

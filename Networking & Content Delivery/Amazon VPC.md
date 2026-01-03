@@ -154,7 +154,7 @@
 
 ### 3.1.1. Scenario: IPv4 Exhaustion
 
-- Company’s **IPv4 CIDR blocks nearly exhausted**.
+- Company's **IPv4 CIDR blocks nearly exhausted**.
 - VPC already supports **IPv6**.
 - **Best solution**
   - Create an **IPv6-only subnet**.

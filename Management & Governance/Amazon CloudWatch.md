@@ -429,7 +429,7 @@
 - **Default EC2 Metrics**
   - `CPU Utilization` - Processing power usage.
   - `Network Utilization` - Incoming/outgoing traffic volume.
-  - `Disk Read` - Data read from instance’s disk (affects application speed).
+  - `Disk Read` - Data read from instance's disk (affects application speed).
 - **Custom Metrics (not available by default)**
   - Created using **CloudWatch Monitoring Scripts** (Perl) or **CloudWatch Agent**.
   - **Examples**

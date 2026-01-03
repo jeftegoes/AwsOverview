@@ -204,10 +204,10 @@
 - **Use Signed URLs** when:
   - Using an **RTMP distribution** (signed cookies not supported).
   - Restricting access to **individual files** (e.g., an app installer).
-  - Clients **don’t support cookies** (e.g., custom HTTP client).
+  - Clients **don't support cookies** (e.g., custom HTTP client).
 - **Use Signed Cookies** when:
   - Providing access to **multiple restricted files** (e.g., video segments in HLS or a subscriber-only content area).
-  - You **don’t want to change existing URLs**.
+  - You **don't want to change existing URLs**.
 
 ## 5.2. Signed URL vs S3 Pre-Signed URL
 

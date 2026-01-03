@@ -91,7 +91,7 @@
 
 # 8. Kubernetes Cluster Autoscaler on EKS
 
-- **Purpose:** Automatically adjusts the size of an EKS cluster’s compute resources.
+- **Purpose:** Automatically adjusts the size of an EKS cluster's compute resources.
 - **How it works**
   - Monitors for **unschedulable pods** (pods without enough CPU/memory).
   - If needed, scales out by increasing the **Auto Scaling group (ASG)** capacity to add EC2 nodes.
