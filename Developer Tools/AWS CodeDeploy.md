@@ -36,7 +36,7 @@
   - Amazon ECS services.
 - Automated Rollback capability in case of failed deployments, or trigger CloudWatch Alarm.
 - Gradual deployment control.
-- A file named appspec.yml defines how the deployment happens.
+- A file named `appspec.yml` defines how the deployment happens.
 - There are several ways to handle deployments using open-source tools (Ansible, Terraform, Chef, Puppet, ...).
 
 # 2. Steps To Make it Work
@@ -176,7 +176,7 @@ hooks:
 - Can deploy to EC2 Instances & on-premises servers.
 - Perform in-place deployments or blue/green deployments.
 - Must run the **CodeDeploy Agent** on the target instances.
-- Define deployment speed:
+- **Define deployment speed**
   - `AllAtOnce` - Most downtime.
   - `HalfAtATime` - Reduced capacity by 50%.
   - `OneAtATime` - Slowest, lowest availability impact.
@@ -184,11 +184,13 @@ hooks:
 
 ## 5.1. In-Place deployment
 
-![Aws CodeDeploy In-Place Deployment](/Images/AwsCodeDeployInPlaceDeployment.png)
+![Aws CodeDeploy In-Place Deployment](/Images/Developer%20Tools/AwsCodeDeployInPlaceDeployment.png)
+TODO: UPDATE DIAGRAM
 
 ## 5.2. Blue / Green Deployment
 
-![Aws CodeDeploy Blue/Green Deployment](/Images/AwsCodeDeployBlueGreenDeployment.png)
+![Aws CodeDeploy Blue/Green Deployment](/Images/Developer%20Tools/AwsCodeDeployBlueGreenDeployment.png)
+TODO: UPDATE DIAGRAM
 
 ## 5.3. CodeDeploy Agent
 
@@ -200,22 +202,23 @@ hooks:
 
 - **CodeDeploy** can help you automate traffic shift for Lambda aliases.
 - Feature is integrated within the SAM framework.
-- **Linear:** grow traffic every N minutes until 100%
+- **Linear:** Grow traffic every N minutes until 100%
   - `LambdaLinear10PercentEvery3Minutes`
   - `LambdaLinear10PercentEvery10Minutes`
-- **Canary:** try X percent then 100%
+- **Canary:** Try X percent then 100%
   - `LambdaCanary10Percent5Minutes`
   - `LambdaCanary10Percent30Minutes`
 - `AllAtOnce` - Immediate.
+  TODO: DIAGRAM
 
 # 7. ECS Platform
 
 - CodeDeploy can help you automate the deployment of a new **ECS Task Definition**.
 - **Only Blue/Green Deployments**.
-- **Linear:** grow traffic every N minutes until 100%.
+- **Linear:** Grow traffic every N minutes until 100%.
   - `ECSLinear10PercentEvery3Minutes`
   - `ECSLinear10PercentEvery10Minutes`
-- **Canary:** try X percent then 100%:
+- **Canary:** Try X percent then 100%:
   - `ECSCanary10Percent5Minutes`
   - `ECSCanary10Percent30Minutes`
 - `AllAtOnce` - Immediate.
@@ -276,7 +279,7 @@ hooks:
   - You're using an HTTP Proxy, configure CodeDeploy Agent with `:proxy_uri:` parameter.
   - Date and Time mismatch between CodeDeploy and Agent.
 
-![Deployment failure](/Images/AWSCodeDeployDeploymentFailure.png)
+![Deployment failure](/Images/Developer%20Tools/AWSCodeDeployDeploymentFailure.png)
 
 ## 12.3. Scenario 3
 

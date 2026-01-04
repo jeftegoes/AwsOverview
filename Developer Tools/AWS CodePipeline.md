@@ -21,7 +21,7 @@
 
 # 1. Introduction
 
-- Build serverless visual workflow to orchestrate your Lambda functions.
+- Build serverless visual workflow to orchestrate our Lambda functions.
 - **Features:** Sequence, parallel, conditions, timeouts, error handling, ...
 - Can integrate with EC2, ECS, On-premises servers, API Gateway, SQS queues, etc...
 - Possibility of implementing human approval feature.
@@ -29,23 +29,22 @@
 
 # 2. Details
 
-- Visual Workflow to orchestrate your CI/CD.
-- **Source:** CodeCommit, ECR, S3, Bitbucket, GitHub.
+- Visual Workflow to orchestrate our CI/CD.
+- **Source:** ECR, S3, Bitbucket, GitHub.
 - **Build:** CodeBuild, Jenkins, CloudBees, TeamCity.
 - **Test:** CodeBuild, AWS Device Farm, 3rd party tools, ...
 - **Deploy:** CodeDeploy, Elastic Beanstalk, CloudFormation, ECS, S3, ...
 - **Invoke:** Lambda, Step Functions.
 - **Consists of stages**
   - Each stage can have sequential actions and/or parallel actions.
-  - Example: Build -> Test -> Deploy -> Load Testing -> ...
+  - **Example:** Build -> Test -> Deploy -> Load Testing -> ...
   - Manual approval can be defined at any stage.
 
 # 3. How pipeline executions are started
 
-- You can trigger an execution when you **change your source code** or **manually** start the pipeline.
-- You can also trigger an execution through an [Amazon CloudWatch](/Management%20&%20Governance/Amazon%20CloudWatch.md) Events rule that you schedule.
-
-![CodePipeline](/Images/Developer%20Tools/AWSCodePipeline.png)
+- We can trigger an execution when we **change our source code** or **manually** start the pipeline.
+- We can also trigger an execution through an [Amazon CloudWatch](/Management%20&%20Governance/Amazon%20CloudWatch.md) Events rule that we schedule.
+  - ![CodePipeline](/Images/Developer%20Tools/AWSCodePipeline.png)
 
 # 4. Artifacts
 
@@ -57,22 +56,22 @@
 
 - For CodePipeline Pipeline/Action/Stage Execution State Changes.
 - Use **CloudWatch Events (Amazon EventBridge)**.
-- Example:
-  - You can create events for failed pipelines.
-  - You can create events for cancelled stages.
+- **Example**
+  - We can create events for failed pipelines.
+  - We can create events for cancelled stages.
 - If CodePipeline fails a stage, your pipeline stops, and you can get information in the console.
 - If pipeline can't perform an action, make sure the "IAM Service Role" attached does have enough IAM permissions (IAM Policy).
 - AWS CloudTrail can be used to audit AWS API calls.
 
 # 6. Events vs.Webhooks vs. Polling
 
-- Events
+- **Events**
   - CodeCommit -> `event` -> EventBridge -> `trigger` -> CodePipeline
   - GitHub -> CodeStar Source Connection (GitHub App) -> `trigger` -> CodePipeline
   - **Note: Events are the default and recommended**
-- Webhooks
+- **Webhooks**
   - Script/Code -> `HTTP Webhook` CodePipeline
-- Polling
+- **Polling**
   - GitHub -> regular checks -> CodePipeline
 
 # 7. Action types constraints for artifacts
@@ -129,9 +128,7 @@
   ```json
   [
     {
-      "inputArtifacts": [
-        "An input artifact structure, if supported for the action category"
-      ],
+      "inputArtifacts": ["An input artifact structure, if supported for the action category"],
       "name": "ActionName",
       "region": "Region",
       "namespace": "source_namespace",
@@ -141,12 +138,8 @@
         "version": "1",
         "provider": "A provider type for the action category"
       },
-      "outputArtifacts": [
-        "An output artifact structure, if supported for the action category"
-      ],
-      "configuration": [
-        "Configuration details appropriate to the provider type"
-      ],
+      "outputArtifacts": ["An output artifact structure, if supported for the action category"],
+      "configuration": ["Configuration details appropriate to the provider type"],
       "runOrder": "A positive integer that indicates the run order within the stage"
     }
   ]

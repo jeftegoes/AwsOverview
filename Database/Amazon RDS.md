@@ -216,7 +216,7 @@
 
 - **Encryption at rest**
   - Is done only when we first create the DB instance.
-  - Or: Unencrypted DB => snapshot => copy snapshot as encrypted => create DB from snapshot.
+  - **Or:** Unencrypted DB => snapshot => copy snapshot as encrypted => create DB from snapshot.
 - **Your responsibility**
   - Check the ports / IP / security group inbound rules in DB's SG.
   - In-database user creation and permissions or manage through IAM.

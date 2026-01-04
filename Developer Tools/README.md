@@ -17,7 +17,6 @@
 # 3. Summary
 
 - CodeDeploy (hybrid): deploy & upgrade any application onto servers.
-- CodeCommit: Store code in private git repository (version controlled).
 - CodeBuild: Build & test code in AWS.
 - CodeDeploy: Deploy code onto servers.
 - CodePipeline: Orchestration of pipeline (from code to build to deploy).

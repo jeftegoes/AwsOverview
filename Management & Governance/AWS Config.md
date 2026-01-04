@@ -19,22 +19,22 @@
 
 # 1. Introduction
 
-- Helps with **auditing and recording compliance of your AWS resources**.
+- Helps with **auditing and recording compliance of ours AWS resources**.
 - Helps record configurations and changes over time.
 - **Questions that can be solved by AWS Config**
   - Is there unrestricted SSH access to my security groups?
   - Do my buckets have any public access?
   - How has my ALB configuration changed over time?
-- You can receive alerts (SNS notifications) for any changes.
+- We can receive alerts (SNS notifications) for any changes.
 - AWS Config is a per-region service.
 - Can be aggregated across regions and accounts.
-- Evaluate your AWS resource configurations for desired settings.
-- Get a snapshot of the current configurations of the supported resources that are associated with your AWS account.
-- Retrieve configurations of one or more resources that exist in your account.
+- Evaluate our AWS resource configurations for desired settings.
+- Get a snapshot of the current configurations of the supported resources that are associated with our AWS account.
+- Retrieve configurations of one or more resources that exist in our account.
 - Retrieve historical configurations of one or more resources.
 - Receive a notification whenever a resource is created, modified, or deleted.
 - View relationships between resources.
-  - For example, you might want to find all resources that use a particular security group.
+  - For example, we might want to find all resources that use a particular security group.
 
 # 2. S3 Integration
 
@@ -45,8 +45,8 @@
 
 - Can use AWS managed config rules (over 75).
 - Can make custom config rules (must be defined in AWS Lambda).
-  - **Ex:** Evaluate if each EBS disk is of type gp2.
-  - **Ex:** Evaluate if each EC2 instance is t2.micro.
+  - **Ex:** Evaluate if each EBS disk is of type `gp2`.
+  - **Ex:** Evaluate if each EC2 instance is `t2.micro`.
 - **Rules can be evaluated / triggered**
   - For each config change.
   - **And / or:** At regular time intervals.
@@ -63,13 +63,13 @@
 
 - Automate remediation of non-compliant resources using SSM Automation Documents.
 - Use AWS-Managed Automation Documents or create custom Automation Documents.
-  - **Tip:** You can create custom Automation Documents that invokes Lambda function.
-- You can set **Remediation Retries** if the resource is still non-compliant after auto-remediation.
+  - **Tip:** We can create custom Automation Documents that invokes Lambda function.
+- We can set **Remediation Retries** if the resource is still non-compliant after auto-remediation.
   ![Config Rules Remediations](/Images/Management%20&%20Governance/AWSConfigRulesRemediations.png)
 
 ### 3.2.1. Required Tags
 
-- Checks if your resources have the tags that you specify.
+- Checks if our resources have the tags that we specify.
   [Required Tags](https://docs.aws.amazon.com/config/latest/developerguide/required-tags.html)
 
 ## 3.3. Notifications
@@ -79,11 +79,11 @@
 
 # 4. Configuration Recorder
 
-- Stores the configurations of your AWS resources as Configuration Items.
+- Stores the configurations of our AWS resources as Configuration Items.
 - **Configuration Item:** A point-in-time view of the various attributes of an AWS resource.
   - Created whenever AWS Config detects a change to the resource (e.g., attributes, relationships, config., events...)
-- **Custom Configuration Recorder to record** only the resource types that you specify.
-- **Must be created before AWS Config can track your resources (created automatically when you enable AWS Config using AWS CLI or AWS Console).**
+- **Custom Configuration Recorder to record** only the resource types that we specify.
+- **Must be created before AWS Config can track our resources (created automatically when we enable AWS Config using AWS CLI or AWS Console).**
 
 # 5. Aggregators
 
@@ -95,7 +95,7 @@
   ![AWS Config Aggregators](/Images/Management%20&%20Governance/AWSConfigAggregators.png)
 
 - **Accounts and regios**
-  - Select the source accounts and regions from where you want to collect AWS Config data.
+  - Select the source accounts and regions from where we want to collect AWS Config data.
 - **AWS Config Data**
   - Collection of AWS Config Data from multiple source accounts and regions.
 - **Aggregator**
@@ -108,14 +108,14 @@
 - Collection of AWS Config Rules and Remediation actions.
 - Packs are created in YAML-formatted files (similar to CloudFormation).
 - Deploy to an AWS account and regions or across an AWS Organization.
-- Pre-built sample Packs or create your own **Custom Conformance Packs**.
-- Can include **custom Config Rules** which are backed by Lambda functions to evaluate whether your resources are compliant with the Config Rules.
+- Pre-built sample Packs or create our own **Custom Conformance Packs**.
+- Can include **custom Config Rules** which are backed by Lambda functions to evaluate whether our resources are compliant with the Config Rules.
 - Can pass inputs via Parameters section to make it more flexible.
-- Can designate a Delegated Administrator to deploy Conformance Packs to your AWS Organization (can be Member account).
+- Can designate a Delegated Administrator to deploy Conformance Packs to our AWS Organization (can be Member account).
 
 # 7. Organizational Rules
 
-- AWS Config Rule that you can manage across all accounts within an AWS Organization.
+- AWS Config Rule that we can manage across all accounts within an AWS Organization.
 
 ## 7.1. Custom rules
 
@@ -132,5 +132,5 @@
 
 # 9. Managed Rules
 
-- AWS Config provides **AWS managed rules**, which are predefined, customizable rules that AWS Config uses to evaluate whether your AWS resources comply with common best practices.
+- AWS Config provides **AWS managed rules**, which are predefined, customizable rules that AWS Config uses to evaluate whether our AWS resources comply with common best practices.
   ![AWS Managed Rules](/Images/Management%20&%20Governance/AWSConfigManagedRules.png)
