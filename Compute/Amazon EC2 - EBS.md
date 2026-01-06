@@ -81,7 +81,7 @@
 - EC2 Instance Store **LOSE** their storage if they're stopped (ephemeral).
 - Good for buffer / cache / scratch data / temporary content.
 - Risk of data loss if hardware fails.
-- Backups and Replication are your responsibility.
+- Backups and Replication are our responsibility.
 - They **cannot be detached or reattached** to another instance.
 - When we **create an AMI** from an instance, **data on instance store volumes is not preserved**.
 - Instance store volumes are **not supported for automatic recovery** by Amazon CloudWatch alarms.

@@ -24,18 +24,18 @@
 
 # 1. Introduction
 
-- Debugging in Production, the good old way:
+- **Debugging in Production, the good old way**
   - Test locally.
   - Add log statements everywhere.
   - Re-deploy in production.
 - Log formats differ across applications using CloudWatch and analytics is hard.
-- Debugging: monolith "easy", distributed services "hard".
+- **Debugging:** Monolith "easy", distributed services "hard".
 - No common views of your entire architecture!
 - Tracing requests across your microservices (distributed systems).
 
 # 2. Visual analysis of our applications
 
-![AWS X-Ray Service Map](/Images/AWSXRayServiceMap.PNG)
+![AWS X-Ray Service Map](/Images/Developer%20Tools/AWSXRayServiceMap.png)
 
 # 3. Advantages
 
@@ -50,7 +50,7 @@
 
 # 4. Compatibility
 
-- Integrations with:
+- **Integrations with**
   - EC2 - install the X-Ray agent.
   - ECS - install the X-Ray agent or Docker container.
   - Lambda.
@@ -65,10 +65,10 @@
 - Each component dealing with the request adds its own "trace".
 - Tracing is made of segments (+ sub segments).
 - Annotations can be added to traces to provide extra-information
-- Ability to trace:
+- **Ability to trace**
   - Every request.
   - Sample request (as a % for example or a rate per minute).
-- X-Ray Security:
+- **X-Ray Security**
   - IAM for authorization.
   - KMS for encryption at rest.
 
@@ -151,7 +151,7 @@
 
 ### 13.1.1. Segment documents
 
-![Segment documents](/Images/AwsXRaySegmentDocuments.png)
+![Segment documents](/Images/Developer%20Tools/AwsXRaySegmentDocuments.png)
 
 ## 13.2. Read APIs
 

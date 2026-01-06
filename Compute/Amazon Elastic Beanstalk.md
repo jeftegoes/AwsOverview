@@ -49,16 +49,16 @@
   - Automatically handles capacity provisioning, load balancing, scaling, application health monitoring, instance configuration, ...
   - Just the application code is the responsibility of the developer.
 - We still have full control over the configuration.
-- Beanstalk is free but you pay for the underlying instances.
+- Beanstalk is free but we pay for the underlying instances.
 
 # 3. Components
 
 - **Application:** Collection of Elastic Beanstalk components (environments, versions, configurations, ...).
-- **Application Version:** An iteration of your application code.
+- **Application Version:** An iteration of our application code.
 - **Environment**
   - Collection of AWS resources running an application version (only one application version at a time).
   - **Tiers:** Web Server Environment Tier & Worker Environment Tier.
-  - You can create multiple environments (dev, test, prod, ...).
+  - We can create multiple environments (dev, test, prod, ...).
     ![Elastic Beanstalk Workflow](/Images/ElasticBeanstalkWorkflow.png)
 
 ## 3.1. Supported Platforms
@@ -76,7 +76,7 @@
 - Single Container Docker.
 - Multi-container Docker.
 - Preconfigured Docker.
-- If not supported, you can write your custom platform (advanced).
+- If not supported, we can write our custom platform (advanced).
 
 # 4. Deployment options for updates
 
@@ -95,8 +95,7 @@
 - Application has downtime.
 - Great for quick iterations in development environment.
 - No additional cost.
-
-![All at once deployment](/Images/Compute/AmazonElasticBeanstalkAllAtOnce.png)
+  - ![All at once deployment](/Images/Compute/AmazonElasticBeanstalkAllAtOnce.png)
 
 ## 4.2. Rolling
 
@@ -105,8 +104,7 @@
 - Application is running both versions simultaneously.
 - No additional cost.
 - Long deployment.
-
-![Rolling deployment](/Images/Compute/AmazonElasticBeanstalkRolling.png)
+  - ![Rolling deployment](/Images/Compute/AmazonElasticBeanstalkRolling.png)
 
 ## 4.3. Rolling with additional batches
 
@@ -117,8 +115,7 @@
 - Additional batch is removed at the end of the deployment.
 - Longer deployment.
 - Good for prod.
-
-![Rolling with additional batches deployment](/Images/Compute/AmazonElasticBeanstalkRollingAdditionalBatches.png)
+  - ![Rolling with additional batches deployment](/Images/Compute/AmazonElasticBeanstalkRollingAdditionalBatches.png)
 
 ## 4.4. Immutable
 
@@ -129,8 +126,7 @@
 - Longest deployment.
 - Quick rollback in case of failures (just terminate new ASG).
 - Great for prod.
-
-![Immutable deployment](/Images/Compute/AmazonElasticBeanstalkImmutable.png)
+  ![Immutable deployment](/Images/Compute/AmazonElasticBeanstalkImmutable.png)
 
 ## 4.5. Blue / Green
 
@@ -140,8 +136,7 @@
 - The new environment (green) can be validated independently and rollback if issues.
 - Route 53 can be setup using weighted policies to redirect a little bit of traffic to the stage environment (CNAMEs).
 - Using Beanstalk, "swap URLs" when done with the environment test.
-
-![Immutable deployment](/Images/Compute/AmazonElasticBeanstalkBlueGreen.png)
+  ![Immutable deployment](/Images/Compute/AmazonElasticBeanstalkBlueGreen.png)
 
 ## 4.6. Traffic Splitting
 
@@ -178,7 +173,7 @@
   - `eb deploy`
   - `eb config`
   - `eb terminate`
-- It's helpful for your automated deployment pipelines!
+- It's helpful for our automated deployment pipelines!
 
 # 6. Elastic Beanstalk Deployment Process
 
@@ -193,10 +188,10 @@
 # 7. Lifecycle Policy
 
 - Elastic Beanstalk can store at most 1000 application versions.
-- If you don't remove old versions, you won't be able to deploy anymore.
+- If we don't remove old versions, we won't be able to deploy anymore.
 - To phase out old application versions, use a **lifecycle policy**.
   - Based on time (old versions are removed).
-  - Based on space (when you have too many versions).
+  - Based on space (when we have too many versions).
 - Versions that are currently used won't be deleted.
 - Option not to delete the source bundle in S3 to prevent data loss.
 
@@ -216,24 +211,24 @@
 
 - Under the hood, Elastic Beanstalk relies on CloudFormation.
 - CloudFormation is used to provision other AWS services.
-- Use case: you can define CloudFormation resources in your `.ebextensions` to provision ElastiCache, an S3 bucket, anything you want!
+- **Use case:** We can define CloudFormation resources in your `.ebextensions` to provision ElastiCache, an S3 bucket, anything we want!
 
 # 10. Elastic Beanstalk Cloning
 
 - Clone an environment with the exact same configuration.
-- Useful for deploying a "test" version of your application.
+- Useful for deploying a "test" version of our application.
 - All resources and configuration are preserved:
   - Load Balancer type and configuration.
   - RDS database type (but the data is not preserved).
   - Environment variables.
-- After cloning an environment, you can change settings cloning.
+- After cloning an environment, we can change settings cloning.
 
 # 11. Migration: Load Balancer
 
-- After creating an Elastic Beanstalk environment, you cannot change the Elastic Load Balancer type (only the configuration).
+- After creating an Elastic Beanstalk environment, we cannot change the Elastic Load Balancer type (only the configuration).
 - To migrate:
   1. Create a new environment with the same configuration except LB (can't clone).
-  2. Deploy your application onto the new environment.
+  2. Deploy our application onto the new environment.
   3. Perform a CNAME swap or Route 53 update.
 
 # 12. RDS with Elastic Beanstalk
@@ -244,7 +239,7 @@
 
 ## 12.1. Database lifecycle
 
-- You can choose what you want to happen to the database after you decouple it from your Elastic Beanstalk environment.
+- We can choose what we want to happen to the database after We decouple it from our Elastic Beanstalk environment.
   - **Snapshot:** Before Elastic Beanstalk terminates the database, it saves a snapshot of it.
   - **Delete:** Elastic Beanstalk terminates the database. After it's terminated, the database instance is no longer available for any operation.
   - **Retain:** The database instance isn't terminated. It remains available and operational, though decoupled from Elastic Beanstalk.
@@ -253,15 +248,15 @@
 
 1. Create a snapshot of RDS DB (as a safeguard).
 2. Go to the RDS console and protect the RDS database from deletion.
-3. Create a new Elastic Beanstalk environment, without RDS, point your application to existing RDS.
+3. Create a new Elastic Beanstalk environment, without RDS, point our application to existing RDS.
 4. perform a CNAME swap (blue/green) or Route 53 update, confirm working.
 5. Terminate the old environment (RDS won't be deleted).
 6. Delete CloudFormation stack (in DELETE_FAILED state).
 
 # 13. Single Docker
 
-- Run your application as a single docker container.
-- Either provide:
+- Run our application as a single docker container.
+- **Either provide**
   - `Dockerfile` - Elastic Beanstalk will build and run the Docker container
   - `Dockerrun.aws.json` - Aat the root of source code, describe where _already built_ Docker image is:
     - Image
@@ -274,14 +269,14 @@
 ## 13.1. Multi Docker Container
 
 - Multi Docker helps run multiple containers per EC2 instance in EB.
-- **This will create for you**
+- **This will create for we**
   - ECS Cluster.
   - EC2 instances, configured to use the ECS Cluster.
   - Load Balancer (in high availability mode).
   - Task definitions and execution.
 - Requires a config `Dockerrun.aws.json` at the root of source code.
 - `Dockerrun.aws.json` - Is used to generate the **ECS task definition**.
-- Your Docker images must be pre-built and stored in ECR for example.
+- Our Docker images must be pre-built and stored in ECR for example.
 
 # 14. HTTPS
 
@@ -292,16 +287,16 @@
   - SSL Certificate can be provisioned using ACM (AWS Certificate Manager) or CLI.
   - Must configure a security group rule to allow incoming port 443 (HTTPS port).
 - **Beanstalk redirect HTTP to HTTPS**
-  - Configure your instances to redirect HTTP to HTTPS: https://github.com/awsdocs/elastic-beanstalk-samples/tree/master/configuration-files/aws-provided/security-configuration/https-redirect
+  - Configure our instances to redirect HTTP to HTTPS: https://github.com/awsdocs/elastic-beanstalk-samples/tree/master/configuration-files/aws-provided/security-configuration/https-redirect
   - OR configure the Application Load Balancer (ALB only) with a rule.
   - Make sure health checks are not redirected (so they keep giving 200 OK).
 
 # 15. Web Server vs Worker Environment
 
-- If your application performs tasks that are long to complete, offload these tasks to a dedicated **worker environment**.
-- **Decoupling** your application into two tiers is common.
+- If our application performs tasks that are long to complete, offload these tasks to a dedicated **worker environment**.
+- **Decoupling** our application into two tiers is common.
 - **Example:** Processing a video, generating a zip file, etc.
-- You can define periodic tasks in a file `cron.yaml`.
+- We can define periodic tasks in a file `cron.yaml`.
 
 # 16. Notifications
 
@@ -318,7 +313,7 @@
   - Additional Software.
   - Scripts that Beanstalk runs on these platforms.
 - **Use case: App language is incompatible with Beanstalk & doesn't use Docker.**
-- **To create your own platform**
+- **To create our own platform**
   - Define an AMI using `Platform.yaml` file.
   - Build that platform using the **Packer software (open source tool to create AMIs)**.
 - **Custom Platform vs Custom Image (AMI)**

@@ -7,6 +7,7 @@
 - [2. Health Event Notifications](#2-health-event-notifications)
 - [3. Status Checks](#3-status-checks)
 - [4. CW Metrics \& Recovery](#4-cw-metrics--recovery)
+- [5. Detecting Exposed Credentials](#5-detecting-exposed-credentials)
 
 # 1. Introduction
 
@@ -59,3 +60,12 @@
   - Send notifications using SNS
 - Option 2: **Auto Scaling Group**
   - Set min/max/desired 1 to recover an instance but won't keep the same private and elastic IP.
+
+# 5. Detecting Exposed Credentials
+
+- AWS proactively monitors popular code repository sites for IAM access keys that have been publicly exposed.
+- Upon detection of an exposed IAM access key, AWS Health generates an `AWS_RISK_CREDENTIALS_EXPOSED` event in the AWS account related to the exposed key.
+- An **Amazon EventBridge rule** is configured with:
+  - **Event source:** `aws.health`
+  - **Event type:** `AWS_RISK_CREDENTIALS_EXPOSED`
+    ![IAM Access Key Exposed](/Images/AWSHealthDashboardIAMAccessKeyExposed.png)

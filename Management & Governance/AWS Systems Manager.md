@@ -160,8 +160,7 @@
 - Patch on-demand or on a schedule using **Maintenance Windows**.
 - Scan instances and generate patch compliance report (missing patches).
 - Patch compliance report can be sent to S3.
-
-![Patch Manager](/Images/Management%20&%20Governance/AWSSystemsManagerPatchManager.png)
+  ![Patch Manager](/Images/Management%20&%20Governance/AWSSystemsManagerPatchManager.png)
 
 ## 7.1. Patch Baseline & Patch Group
 
@@ -231,6 +230,7 @@
 - In Systems Manager Console:
   - EC2 instances use the prefix **"i-"**.
   - Hybrid managed nodes use the prefix **"mi-"**.
+    TODO: DIAGRAM
 
 # 13. IoT Greengrass Instance Activation
 

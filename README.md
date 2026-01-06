@@ -548,12 +548,12 @@
 
 ### 13.1.1. Example, for RDS
 
-- AWS responsibility:
+- **AWS responsibility**
   - Manage the underlying EC2 instance, disable SSH access.
   - Automated DB patching.
   - Automated OS patching.
   - Audit the underlying instance and disks & guarantee it functions.
-- Your responsibility:
+- **Our responsibility**
   - Check the ports / IP / security group inbound rules in DB's SG.
   - In-database user creation and permissions.
   - Creating a database with or without public access.
@@ -562,12 +562,12 @@
 
 ### 13.1.2. Example, for S3
 
-- AWS responsibility:
+- **AWS responsibility**
   - Guarantee you get unlimited storage.
   - Guarantee you get encryption.
   - Ensure separation of the data between different customers.
   - Ensure AWS employees can't access your data.
-- Your responsibility:
+- **Our responsibility**
   - Bucket configuration.
   - Bucket policy / public setting.
   - IAM user and roles.

@@ -305,9 +305,9 @@
 ## 7.7. Extra
 
 - To return the number of write capacity units consumed by any of these operations (`PutItem`, `UpdateItem`, `DeleteItem`), set the `ReturnConsumedCapacity` parameter to one of the following:
-  - `TOTAL` - returns the total number of write capacity units consumed.
-  - `INDEXES` - returns the total number of write capacity units consumed, with subtotals for the table and any secondary indexes that were affected by the operation.
-  - `NONE` - no write capacity details are returned. (This is the default.)
+  - `TOTAL` - Returns the total number of write capacity units consumed.
+  - `INDEXES` - Returns the total number of write capacity units consumed, with subtotals for the table and any secondary indexes that were affected by the operation.
+  - `NONE` - No write capacity details are returned. (This is the default.)
 
 # 8. Indexes
 
@@ -317,7 +317,7 @@
 - The Sort Key consists of one scalar attribute (String, Number, or Binary).
 - Up to 5 Local Secondary Indexes per table.
 - **Must be defined at table creation time.**
-- **Attribute Projections** - can contain some or all the attributes of the base table **(KEYS_ONLY, INCLUDE, ALL)**.
+- **Attribute Projections** - Can contain some or all the attributes of the base table **(KEYS_ONLY, INCLUDE, ALL)**.
 - When you query this index, you can choose **either eventual consistency or strong consistency**.
 - For each partition key value, the total size of all indexed items must be **10 GB** or less.
 - Queries or scans on this index consume read capacity units from the base table.
@@ -327,7 +327,7 @@
 - **Alternative Primary Key (HASH or HASH+RANGE)** from the base table.
 - Speed up queries on non-key attributes.
 - The Index Key consists of scalar attributes (String, Number, or Binary).
-- **Attribute Projections** - some or all the attributes of the base table **(KEYS_ONLY, INCLUDE, ALL)**.
+- **Attribute Projections** - Some or all the attributes of the base table **(KEYS_ONLY, INCLUDE, ALL)**.
 - Must provision RCUs and WCUs for the index.
 - **Can be added/modified after table creation.**
 - `Queries` or `scans` on this index consume capacity units from the index, not from the base table.
@@ -335,12 +335,12 @@
 
 ## 8.3. Indexes and Throttling
 
-- Global Secondary Index (GSI):
+- **Global Secondary Index (GSI)**
   - **If the writes are throttled on the GSI, then the main table will be throttled!**
   - Even if the WCU on the main tables are fine.
   - Choose your GSI partition key carefully!
   - Assign your WCU capacity carefully!
-- Local Secondary Index (LSI):
+- **Local Secondary Index (LSI)**
   - Uses the WCUs and RCUs of the main table.
   - No special throttling considerations.
 
@@ -349,7 +349,7 @@
 - SQL-compatible query language for DynamoDB.
 - Allows you to select, insert, update, and delete (but not all) data in DynamoDB using SQL.
 - Run queries across multiple DynamoDB tables.
-- Run PartiQL queries from:
+- **Run PartiQL queries from**
   - AWS Management Console.
   - NoSQL Workbench for DynamoDB.
   - DynamoDB APIs.

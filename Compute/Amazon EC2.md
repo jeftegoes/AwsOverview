@@ -504,8 +504,7 @@
 # 16. VM Import/Export
 
 - The VM Import/Export enables we to easily import virtual machine images from our existing environment to Amazon EC2 instances and export them back to our on-premises environment.
-
-![VM Import/Export](/Images/Compute/AmazonEC2VMImportExport.png)
+  ![VM Import/Export](/Images/Compute/AmazonEC2VMImportExport.png)
 
 # 17. AMI
 

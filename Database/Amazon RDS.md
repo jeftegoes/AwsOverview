@@ -35,7 +35,7 @@
 
 - RDS stands for Relational Database Service.
 - It's a managed DB service for DB use SQL as a query language.
-- It allows you to create databases in the cloud that are managed by AWS:
+- It allows we to create databases in the cloud that are managed by AWS:
   - Postgres.
   - MySQL.
   - MariaDB.
@@ -55,7 +55,7 @@
   - Maintenance windows for upgrades.
   - Scaling capability (vertical and horizontal).
   - Storage backed by EBS (gp2 or io1).
-- BUT you can't SSH into your instances.
+- BUT we can't SSH into our instances.
 
 # 3. Backups
 
@@ -67,25 +67,25 @@
   - 1** to 35 days of retention,** set 0 to disable automated backups.
 - **Manual DB Snapshots**
   - Manually triggered by the user.
-  - Retention of backup for as long as you want.
+  - Retention of backup for as long as we want.
 - **Trick**
-  - In a stopped RDS database, you will still pay for storage.
-  - If you plan on stopping it for a long time, you should snapshot & restore instead.
+  - In a stopped RDS database, we will still pay for storage.
+  - If we plan on stopping it for a long time, we should snapshot & restore instead.
 
 ## 3.1. Restore options
 
 - Restoring a RDS backup or a snapshot creates a new database.
 - **Restoring MySQL RDS database from S3**
-  - Create a backup of your on-premises database.
+  - Create a backup of our on-premises database.
   - Store it on Amazon S3 (object storage).
   - Restore the backup file onto a new RDS instance running MySQL.
 
 # 4. Storage Auto Scaling
 
-- Helps you increase storage on your RDS DB instance dynamically.
-- When RDS detects you are running out of free database storage, it scales automatically.
-- Avoid manually scaling your database storage.
-- You have to set **Maximum Storage Threshold** (maximum limit for DB storage).
+- Helps we increase storage on our RDS DB instance dynamically.
+- When RDS detects we are running out of free database storage, it scales automatically.
+- Avoid manually scaling our database storage.
+- We have to set **Maximum Storage Threshold** (maximum limit for DB storage).
 - **Automatically modify storage if**
   - Free storage is less than 10% of allocated storage.
   - Low-storage lasts at least 5 minutes.
@@ -103,16 +103,16 @@
 
 ## 5.1. Use Cases
 
-- You have a production database that is taking on normal load.
-- You want to run a reporting application to run some analytics.
-- You create a Read Replica to run the new workload there.
+- We have a production database that is taking on normal load.
+- We want to run a reporting application to run some analytics.
+- We create a Read Replica to run the new workload there.
 - The production application is unaffected.
 - Read replicas are used for SELECT (=read) only kind of statements (not INSERT, UPDATE, DELETE).
 
 ## 5.2. Network Cost
 
 - In AWS there's a network cost when data goes from one AZ to another.
-- **For RDS Read Replicas within the same region, you don't pay that fee.**
+- **For RDS Read Replicas within the same region, we don't pay that fee.**
 
 # 6. Disaster Recovery
 
@@ -153,7 +153,7 @@
   - Install patches.
   - Enable native features.
   - Access the underlying EC2 Instance using **SSH** or **SSM Session Manager**.
-- **De-activate Automation Mode** to perform your customization, better to take a DB snapshot before.
+- **De-activate Automation Mode** to perform our customization, better to take a DB snapshot before.
 - **RDS vs. RDS Custom**
   - **RDS:** Entire database and the OS to be managed by AWS.
   - **RDS Custom:** Full admin access to the underlying OS and the database.
@@ -173,7 +173,7 @@
 
 ## 8.1. TDE - Transparent Data Encryption
 
-- Amazon RDS supports using Transparent Data Encryption (TDE) to encrypt stored data on your DB instances running Microsoft SQL Server or Oracle.
+- Amazon RDS supports using Transparent Data Encryption (TDE) to encrypt stored data on our DB instances running Microsoft SQL Server or Oracle.
 - TDE automatically encrypts data before it is written to storage, and automatically decrypts data when the data is read from storage.
 - **At rest encryption**
   - Transparent Data Encryption (TDE) available for Oracle and SQL Server.
@@ -217,7 +217,7 @@
 - **Encryption at rest**
   - Is done only when we first create the DB instance.
   - **Or:** Unencrypted DB => snapshot => copy snapshot as encrypted => create DB from snapshot.
-- **Your responsibility**
+- **Our responsibility**
   - Check the ports / IP / security group inbound rules in DB's SG.
   - In-database user creation and permissions or manage through IAM.
   - Creating a database with or without public access.
