@@ -20,7 +20,7 @@
 - [9. In-place](#9-in-place)
   - [9.1. In-place Deployment Hooks](#91-in-place-deployment-hooks)
 - [10. Deploy to an ASG](#10-deploy-to-an-asg)
-- [11. Redeploy and Rollbacks](#11-redeploy-and-rollbacks)
+- [11. Redeploy \& Rollbacks](#11-redeploy--rollbacks)
 - [12. Troubleshooting](#12-troubleshooting)
   - [12.1. Scenario 1](#121-scenario-1)
   - [12.2. Scenario 2](#122-scenario-2)
@@ -197,6 +197,7 @@ TODO: UPDATE DIAGRAM
 - The CodeDeploy Agent must be running on the EC2 instances as a pre-requisites.
 - It can be installed and updated automatically if you're using Systems Manager.
 - The EC2 Instances must have sufficient permissions to access Amazon S3 to get deployment bundles.
+- TODO: DIAGRAM
 
 # 6. Lambda Platform
 
@@ -248,14 +249,15 @@ TODO: UPDATE DIAGRAM
   - Choose how long to keep the old EC2 instances (old ASG).
   - Must be using an ELB.
 
-# 11. Redeploy and Rollbacks
+# 11. Redeploy & Rollbacks
 
-- Rollback = redeploy a previously deployed revision of your application.
-- Deployments can be rolled back:
+- Rollback = Redeploy a previously deployed revision of your application.
+- **Deployments can be rolled back**
   - **Automatically:** Rollback when a deployment fails or rollback when a CloudWatch Alarm thresholds are met.
   - **Manually.**
 - Disable Rollbacks - Do not perform rollbacks for this deployment.
 - **If a roll back happens, CodeDeploy redeploys the last known good revision as a new deployment (not a restored version).**
+  ![AWS Code Deploy rollback configuration](/Images/Developer%20Tools/AWSCodeDeployRollback.png)
 
 # 12. Troubleshooting
 

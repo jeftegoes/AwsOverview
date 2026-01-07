@@ -3,13 +3,14 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-  - [1.1. How Systems Manager works?](#11-how-systems-manager-works)
-  - [1.2. Systems Manager - SSM Session Manager](#12-systems-manager---ssm-session-manager)
+  - [1.1. AWS Systems Manager Features](#11-aws-systems-manager-features)
+  - [1.2. How Systems Manager works](#12-how-systems-manager-works)
+  - [1.3. Systems Manager - SSM Session Manager](#13-systems-manager---ssm-session-manager)
 - [2. Systems Manager parameters - SSM parameters](#2-systems-manager-parameters---ssm-parameters)
   - [2.1. Policies](#21-policies)
 - [3. SSM - Documents](#3-ssm---documents)
 - [4. SSM - Run Command](#4-ssm---run-command)
-- [5. Systems Manager Automation](#5-systems-manager-automation)
+- [5. Automation](#5-automation)
   - [5.1. Automation Runbook](#51-automation-runbook)
   - [5.2. Automation Workflow](#52-automation-workflow)
 - [6. Parameter Store](#6-parameter-store)
@@ -43,16 +44,46 @@
 - Integrated with AWS Config.
 - Free service.
 
-## 1.1. How Systems Manager works?
+## 1.1. AWS Systems Manager Features
+
+- **Resource Groups**
+  - Operations Management
+    - Explorer
+    - OpsCenter
+    - CloudWatch Dashboard
+    - PHD
+    - Incident Manager
+- **Shared Resources**
+  - Documents
+- **Change Management**
+  - Change Manager
+  - Automation
+  - Change Calendar
+  - Maintenance Windows
+- **Application Management**
+  - Application Manager
+  - AppConfig
+  - Parameter Store
+- **Node Management**
+  - Fleet Manager
+  - Compliance
+  - Inventory
+  - Hybrid Activations
+  - Session Manager
+  - Run Command
+  - State Manager
+  - Patch Manager
+  - Distributer
+
+## 1.2. How Systems Manager works
 
 - We need to install the **SSM Agent** onto the systems we control.
 - Installed by default on Amazon Linux AMI & some Ubuntu AMI.
 - If an instance can't be controlled with SSM, it's probably an issue with the **SSM Agent**!
 - Thanks to the **SSM Agent**, we can run commands, patch & configure our servers.
+  ![SSM Agent](/Images/Management%20&%20Governance/AWSSystemsManagerSSMAgent.png)
 
-![SSM Agent](/Images/Management%20&%20Governance/AWSSystemsManagerSSMAgent.png)
-
-## 1.2. Systems Manager - SSM Session Manager
+## 1.3. Systems Manager - SSM Session Manager
 
 - Allows we to start a secure shell on your EC2 and on-premises servers.
 - No SSH access, bastion hosts, or SSH keys needed.
@@ -90,7 +121,7 @@
 - Send notifications to SNS about command statues (In progress, Success, Failed...).
 - Can be invoked using EventBridge.
 
-# 5. Systems Manager Automation
+# 5. Automation
 
 - Simplifies common maintenance and deployment tasks of Amazon EC2 instances and other AWS resources.
 - **Automation** enables we to do the following:
@@ -147,7 +178,7 @@
 - /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 (public)
 
 ## 6.2. Parameters Policies (for advanced parameters)
-
+ww
 - Allow to assign a TTL to a parameter (expiration date) to force updating or deleting sensitive data such as passwords.
 - Can assign multiple policies at a time.
 

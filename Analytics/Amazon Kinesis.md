@@ -33,7 +33,7 @@
 # 1. Introduction
 
 - Makes it easy to **collect**, **process**, and **analyze** streaming data in real-time.
-- Ingest real-time data such as: Application logs, Metrics, Website clickstreams, IoT telemetry data...
+- **Ingest real-time data such as:** Application logs, Metrics, Website clickstreams, IoT telemetry data...
 - **Kinesis Data Streams:** Capture, process, and store data streams.
 - **Kinesis Data Firehose:** Load data streams into AWS data stores.
 - **Kinesis Data Analytics:** Analyze data streams with SQL or Apache Flink.
@@ -78,7 +78,7 @@
 ## 2.3. Producers
 
 - Puts data records into data streams.
-- Data record consists of:
+- **Data record consists of**
   - Sequence number (unique per partition-key within shard).
   - Partition key (must specify while put records into stream).
   - Data blob (up to 1 MB).

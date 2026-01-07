@@ -46,7 +46,7 @@
 
 # 5. Resource Groups
 
-- Create, view or manage logical group of resources thanks to tags.
+- Create, view or manage logical group of resources thanks to **tags**.
 - Allows creation of logical groups of resources such as:
   - Applications.
   - Different layers of an application stack.
