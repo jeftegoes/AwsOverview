@@ -162,6 +162,8 @@ hooks:
 - `Install` - During this deployment lifecycle event, the CodeDeploy agent copies the revision files from the temporary location to the final destination folder.
   - **This event is reserved for the CodeDeploy agent and cannot be used to run scripts.**
 - `AfterInstall` - You can use this deployment lifecycle event for tasks such as configuring your application or changing file permissions.
+- `AfterAllowTestTraffic` - Use to run tasks after the test listener serves traffic to the replacement task set.
+  - **The results of a hook function at this point can trigger a rollback.**
 - `ApplicationStart` - You typically use this deployment lifecycle event to restart services that were stopped during ApplicationStop.
 - `ValidateService` - This is the last deployment lifecycle event. It is used to verify the deployment was completed successfully.
 - `BeforeBlockTraffic` - You can use this deployment lifecycle event to run tasks on instances before they are deregistered from a load balancer.

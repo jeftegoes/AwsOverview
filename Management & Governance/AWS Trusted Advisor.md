@@ -11,9 +11,9 @@
 
 # 1. Introduction
 
-- Scans your AWS infrastructure, compares with AWS best practices.
+- Scans our AWS infrastructure, compares with AWS best practices.
 - No need to install anything - high level AWS account assessment.
-- **Analyze your AWS accounts and provides recommendation on 6 categories**
+- **Analyze our AWS accounts and provides recommendation on 6 categories**
   - Cost optimization.
   - Performance.
   - Security.
@@ -25,6 +25,9 @@
 - Full Trusted Advisor - Available for **Business & Enterprise** support plans.
   - Ability to set CloudWatch alarms when reaching limits.
   - **Programmatic Access using AWS Support API.**
+- **Business & Enterprise Support plan**
+  - Full Set of Checks.
+  - Programmatic Access using AWS Support API.
 
 ## 1.1. Checks examples
 
@@ -61,13 +64,13 @@
 
 # 4. Integrations
 
-- You can use [Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md) to detect and react to changes in the status of Trusted Advisor checks.
-- Then, based on the rules that you create, EventBridge invokes one or more target actions when a check status changes to the value you specify in a rule.
-- Depending on the type of status change, you might want to send notifications, capture status information, take corrective action, initiate events, or take other actions.
+- We can use [Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md) to detect and react to changes in the status of Trusted Advisor checks.
+- Then, based on the rules that we create, EventBridge invokes one or more target actions when a check status changes to the value we specify in a rule.
+- Depending on the type of status change, we might want to send notifications, capture status information, take corrective action, initiate events, or take other actions.
 
 ## 4.1. Targets
 
-- You can select the following types of targets when using [Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md) as a part of your Trusted Advisor workflow:
+- We can select the following types of targets when using [Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md) as a part of our Trusted Advisor workflow:
   - AWS Lambda functions
   - Amazon Kinesis streams
   - Amazon Simple Queue Service queues

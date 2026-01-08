@@ -66,10 +66,10 @@
 # 2. Monitoring in AWS
 
 - **Amazon CloudWatch**
-  - Metrics: Collect and track key metrics.
-  - Logs: Collect, monitor, analyze and store log files.
-  - Events: Send notifications when certain events happen in your AWS.
-  - Alarms: React in real-time to metrics / events.
+  - **Metrics:** Collect and track key metrics.
+  - **Logs:** Collect, monitor, analyze and store log files.
+  - **Events:** Send notifications when certain events happen in your AWS.
+  - **Alarms:** React in real-time to metrics / events.
 - **AWS X-Ray**
   - Troubleshooting application performance and errors.
   - Distributed tracing of microservices.

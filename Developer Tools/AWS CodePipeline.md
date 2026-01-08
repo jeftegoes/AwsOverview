@@ -93,6 +93,7 @@
 - CodePipeline
   - CodeCommit -> `new commit` CodeBuild -> `trigger` > Manual Approval -> `deploy` -> CodeDeploy
 - **IMPORTANT! Owner is "AWS", Action is "Manual".**
+  TODO: DIAGRAM
 
 # 9. CloudFormation as a target
 
@@ -157,7 +158,7 @@
 # 14. Multi Region (Cross-Region Actions)
 
 - **Actions in your pipeline can be in different regions**
-  - Example: deploy a Lambda function through CloudFormation into multiple regions.
+  - **Example:** deploy a Lambda function through CloudFormation into multiple regions.
 - **S3 Artifact Stores must be defined in each region where you have actions**
   - CodePipeline must have read/write access into every **artifact buckets**.
   - If you use the console default **artifact buckets** are configured, else you must create them.
@@ -175,14 +176,13 @@
   - Stopped
   - Succeeded
   - Superseded
-  - Failed.
+  - Failed
 
 # 16. Custom Actions (Job Worker)
 
-- You can create custom actions for the following AWS CodePipeline action categories:
+- You can create **custom actions** for the following AWS CodePipeline action categories:
   - A custom build action that builds or transforms the items.
   - A custom deploy action that deploys items to one or more servers, websites, or repositories.
   - A custom test action that configures and runs automated tests.
   - A custom invoke action that runs functions.
-
-![Custom Actions](/Images/Developer%20Tools/AWSCodePipelineCustomJobWorker.png)
+    ![Custom Actions](/Images/Developer%20Tools/AWSCodePipelineCustomJobWorker.png)
