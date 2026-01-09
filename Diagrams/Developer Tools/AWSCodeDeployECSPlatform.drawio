@@ -1,0 +1,86 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.2.9 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.2.9">
+  <diagram name="Page-1" id="THskNT8OZOfO2rnHkEX4">
+    <mxGraphModel dx="1224" dy="1192" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-4" parent="1" style="fillColor=none;strokeColor=#ED7100;dashed=1;verticalAlign=top;fontStyle=1;fontColor=#ED7100;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;fontSize=14;" value="ECS Cluster" vertex="1">
+          <mxGeometry height="140" width="450" x="170" y="605" as="geometry" />
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-5" edge="1" parent="1" source="ZK-FFYjSgME7KGDInGRt-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" target="ZK-FFYjSgME7KGDInGRt-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-26" edge="1" parent="1" source="ZK-FFYjSgME7KGDInGRt-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="ZK-FFYjSgME7KGDInGRt-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="680" y="364" />
+              <mxPoint x="680" y="675" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-1" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.codedeploy;" value="CodeDeploy" vertex="1">
+          <mxGeometry height="78" width="78" x="520" y="325" as="geometry" />
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-21" edge="1" parent="1" source="ZK-FFYjSgME7KGDInGRt-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#3F8624;" target="ZK-FFYjSgME7KGDInGRt-12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="505" y="464" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-23" connectable="0" parent="ZK-FFYjSgME7KGDInGRt-21" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="X%" vertex="1">
+          <mxGeometry relative="1" x="0.4444" y="3" as="geometry">
+            <mxPoint x="-3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-22" edge="1" parent="1" source="ZK-FFYjSgME7KGDInGRt-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#147EBA;strokeWidth=2;" target="ZK-FFYjSgME7KGDInGRt-6" value="100% - X%">
+          <mxGeometry relative="1" x="0.4444" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="285" y="464" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-2" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.application_load_balancer;" value="Application Load Balancer&lt;div&gt;&lt;b&gt;(required)&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="78" width="78" x="356" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-3" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecs;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="170" y="605" as="geometry" />
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-6" parent="1" style="fillColor=none;strokeColor=#147EBA;dashed=1;verticalAlign=top;fontStyle=1;fontColor=#147EBA;whiteSpace=wrap;html=1;fontSize=14;" value="Target Group (Blue)" vertex="1">
+          <mxGeometry height="90" width="210" x="180" y="645" as="geometry" />
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-8" parent="1" style="whiteSpace=wrap;html=1;fillColor=#147EBA;fontColor=#FFFFFF;" value="v1" vertex="1">
+          <mxGeometry height="40" width="40" x="190" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-9" parent="1" style="whiteSpace=wrap;html=1;fillColor=#147EBA;fontColor=#FFFFFF;" value="v1" vertex="1">
+          <mxGeometry height="40" width="40" x="240" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-10" parent="1" style="whiteSpace=wrap;html=1;fillColor=#147EBA;fontColor=#FFFFFF;" value="v1" vertex="1">
+          <mxGeometry height="40" width="40" x="290" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-11" parent="1" style="whiteSpace=wrap;html=1;fillColor=#147EBA;fontColor=#FFFFFF;" value="v1" vertex="1">
+          <mxGeometry height="40" width="40" x="340" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-12" parent="1" style="fillColor=none;strokeColor=#3F8624;dashed=1;verticalAlign=top;fontStyle=1;fontColor=#3F8624;whiteSpace=wrap;html=1;fontSize=14;" value="Target Group (Green)" vertex="1">
+          <mxGeometry height="90" width="210" x="400" y="645" as="geometry" />
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-13" parent="1" style="whiteSpace=wrap;html=1;fillColor=#3F8624;fontColor=#FFFFFF;" value="v2" vertex="1">
+          <mxGeometry height="40" width="40" x="410" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-14" parent="1" style="whiteSpace=wrap;html=1;fillColor=#3F8624;fontColor=#FFFFFF;" value="v2" vertex="1">
+          <mxGeometry height="40" width="40" x="460" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-15" parent="1" style="whiteSpace=wrap;html=1;fillColor=#3F8624;fontColor=#FFFFFF;" value="v2" vertex="1">
+          <mxGeometry height="40" width="40" x="510" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-16" parent="1" style="whiteSpace=wrap;html=1;fillColor=#3F8624;fontColor=#FFFFFF;" value="v2" vertex="1">
+          <mxGeometry height="40" width="40" x="560" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="ZK-FFYjSgME7KGDInGRt-24" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=20;fontStyle=1" value="Blue-Green Deployment" vertex="1">
+          <mxGeometry height="10" width="250" x="270" y="765" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

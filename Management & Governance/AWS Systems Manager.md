@@ -178,7 +178,9 @@
 - /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 (public)
 
 ## 6.2. Parameters Policies (for advanced parameters)
+
 ww
+
 - Allow to assign a TTL to a parameter (expiration date) to force updating or deleting sensitive data such as passwords.
 - Can assign multiple policies at a time.
 
@@ -258,10 +260,10 @@ ww
 # 12. Hybrid Environments
 
 - We can setup Systems Manager to manage on-premises servers, IoT devices, edge devices, and virtual machines (e.g., VMs in other cloud providers).
-- In Systems Manager Console:
+- **In Systems Manager Console**
   - EC2 instances use the prefix **"i-"**.
   - Hybrid managed nodes use the prefix **"mi-"**.
-    TODO: DIAGRAM
+    ![AWS Systems Manager - Hybrid Environments](/Images/Management%20&%20Governance/AWSSystemsManagerHybridEnvironments.png)
 
 # 13. IoT Greengrass Instance Activation
 

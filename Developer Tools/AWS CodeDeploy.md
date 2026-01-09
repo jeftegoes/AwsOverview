@@ -187,19 +187,17 @@ hooks:
 ## 5.1. In-Place deployment
 
 ![Aws CodeDeploy In-Place Deployment](/Images/Developer%20Tools/AwsCodeDeployInPlaceDeployment.png)
-TODO: UPDATE DIAGRAM
 
 ## 5.2. Blue / Green Deployment
 
 ![Aws CodeDeploy Blue/Green Deployment](/Images/Developer%20Tools/AwsCodeDeployBlueGreenDeployment.png)
-TODO: UPDATE DIAGRAM
 
 ## 5.3. CodeDeploy Agent
 
 - The CodeDeploy Agent must be running on the EC2 instances as a pre-requisites.
 - It can be installed and updated automatically if you're using Systems Manager.
 - The EC2 Instances must have sufficient permissions to access Amazon S3 to get deployment bundles.
-- TODO: DIAGRAM
+  ![AWS CodeDeploy Agent](/Images/Developer%20Tools/AWSCodeDeployAgent.png)
 
 # 6. Lambda Platform
 
@@ -212,7 +210,7 @@ TODO: UPDATE DIAGRAM
   - `LambdaCanary10Percent5Minutes`
   - `LambdaCanary10Percent30Minutes`
 - `AllAtOnce` - Immediate.
-  TODO: DIAGRAM
+  ![AWS CodeDeploy Lambda Platform](/Images/Developer%20Tools/AWSCodeDeployLambdaPlatform.png)
 
 # 7. ECS Platform
 
@@ -225,6 +223,7 @@ TODO: UPDATE DIAGRAM
   - `ECSCanary10Percent5Minutes`
   - `ECSCanary10Percent30Minutes`
 - `AllAtOnce` - Immediate.
+  ![AWS CodeDeploy Lambda Platform](/Images/Developer%20Tools/AWSCodeDeployECSPlatform.png)
 
 # 8. Deployment to EC2
 

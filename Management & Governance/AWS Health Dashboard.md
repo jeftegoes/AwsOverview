@@ -3,7 +3,7 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-  - [1.1. Your account](#11-your-account)
+  - [1.1. Our account](#11-our-account)
 - [2. Health Event Notifications](#2-health-event-notifications)
 - [3. Status Checks](#3-status-checks)
 - [4. CW Metrics \& Recovery](#4-cw-metrics--recovery)
@@ -13,9 +13,9 @@
 
 - Shows all regions, all services health.
 - Shows historical information for each day.
-- Has an RSS feed you can subscribe to.
+- Has an RSS feed we can subscribe to.
 
-## 1.1. Your account
+## 1.1. Our account
 
 - Previously called AWS Personal Health Dashboard (PHD).
 - AWS Health Dashboard provides **alerts and remediation guidance** when AWS is experiencing **events that may impact you**.
@@ -29,7 +29,7 @@
 # 2. Health Event Notifications
 
 - Use [Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md) to react to changes for **AWS Health events** in your AWS account.
-- Example: receive email notifications when EC2 instances in your AWS account are scheduled for updates.
+- **Example:** Receive email notifications when EC2 instances in your AWS account are scheduled for updates.
 - This is possible for Account events (resources that are affected in your account) and Public Events (Regional availability of a service).
 - **Use cases**
   - Send notifications.
@@ -47,7 +47,7 @@
   - Resolution: stop and start the instance (instance migrated to a new host).
 - **Instance Status Checks**
   - Monitors software/network configuration of your instance (invalid network configuration, exhausted memory...).
-  - Resolution: reboot the instance or change instance configuration.
+  - **Resolution:** Reboot the instance or change instance configuration.
 
 # 4. CW Metrics & Recovery
 

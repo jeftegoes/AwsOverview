@@ -120,8 +120,7 @@
 - After a scaling activity happens, you are in the **cooldown period (default 300 seconds)**.
 - During the cooldown period, the ASG will not launch or terminate additional instances (to allow for metrics to stabilize).
 - **Advice:** Use a ready-to-use AMI to reduce configuration time in order to be serving request fasters and reduce the cooldown period.
-
-TODO: DIAGRAM
+  - ![Amazon ASG - Scaling Cooldowns](/Images/Compute/AmazonASGScalingCooldowns.png)
 
 # 9. Lifecycle Hooks
 
@@ -132,7 +131,7 @@ TODO: DIAGRAM
   - Pause the instances before they're terminated for troubleshooting.
 - **Use cases:** Cleanup, log extraction, special health checks.
 - Integration with EventBridge, SNS, and SQS.
-  ![Amazon ASG - Lifecycle Hooks](/Images/AmazonAsgLifecycleHooks.png)
+  ![Amazon ASG - Lifecycle Hooks](/Images/Compute/AmazonAsgLifecycleHooks.png)
 
 # 10. ASG -> SNS Notifications
 
@@ -150,7 +149,7 @@ TODO: DIAGRAM
   - EC2 Auto Scaling Instance Refresh Checkpoint Reached.
   - EC2 Auto Scaling Instance Refresh Started, Succeeded, Failed, Cancelled.
 
-![EventBridge Rule Integration](/Images/AmazonAsgEc2RuleLifecycleAction.png)
+![EventBridge Rule Integration](/Images/Compute/AmazonAsgEc2RuleLifecycleAction.png)
 
 # 12. Auto Scaling - Instance Refresh
 

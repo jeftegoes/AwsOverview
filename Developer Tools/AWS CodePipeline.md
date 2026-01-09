@@ -90,10 +90,7 @@
 
 # 8. Manual Approval Stage
 
-- CodePipeline
-  - CodeCommit -> `new commit` CodeBuild -> `trigger` > Manual Approval -> `deploy` -> CodeDeploy
-- **IMPORTANT! Owner is "AWS", Action is "Manual".**
-  TODO: DIAGRAM
+![AWSCodePipelineManualApprovalStage](/Images/Developer%20Tools/AWSCodePipelineManualApprovalStage.png)
 
 # 9. CloudFormation as a target
 

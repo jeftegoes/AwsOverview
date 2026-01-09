@@ -8,12 +8,13 @@
 - [4. Findings Automated Response](#4-findings-automated-response)
   - [4.1. Findings](#41-findings)
   - [4.2. Findings Types](#42-findings-types)
-- [5. Trusted and Threat IP Lists](#5-trusted-and-threat-ip-lists)
-- [6. CloudFormation](#6-cloudformation)
+- [5. Architectures](#5-architectures)
+- [6. Trusted and Threat IP Lists](#6-trusted-and-threat-ip-lists)
+- [7. CloudFormation](#7-cloudformation)
 
 # 1. Introduction
 
-- Intelligent Threat discovery to protect your AWS Account.
+- Intelligent Threat discovery to protect our AWS Account.
 - Uses Machine Learning algorithms, anomaly detection, 3rd party data.
 - One click to enable (30 days trial), no need to install software.
 - **Input data includes**
@@ -30,12 +31,12 @@
 
 # 2. Disable & Suspend
 
-- **Disabling the service will delete all remaining data**, including your findings and configurations before relinquishing the service permissions and resetting the service.
-- We can **stop** Amazon GuardDuty from analyzing your data sources at any time by choosing to **suspend** the service in the general settings. This will immediately stop the service from analyzing data, but does not delete your existing findings or configurations.
+- **Disabling the service will delete all remaining data**, including our findings and configurations before relinquishing the service permissions and resetting the service.
+- We can **stop** Amazon GuardDuty from analyzing our data sources at any time by choosing to **suspend** the service in the general settings. This will immediately stop the service from analyzing data, but does not delete our existing findings or configurations.
 
 # 3. Multi-Account Strategy
 
-- You can manage multiple accounts in GuardDuty.
+- We can manage multiple accounts in GuardDuty.
 - Associate the Member accounts with the Administrator account.
   - Through an AWS Organization.
   - Sending invitation through GuardDuty.
@@ -43,14 +44,16 @@
   - Add and remove member accounts.
   - Manage GuardDuty within the associated member accounts.
   - Manage findings, suppression rules, trusted IP lists, threat lists.
-- In an AWS Organization, you can specify a member account as the Organization's **delegated administrator for GuardDuty**.
+- In an AWS Organization, we can specify a member account as the Organization's **delegated administrator for GuardDuty**.
+  TODO: DIAGRAM
 
 # 4. Findings Automated Response
 
-- Findings are potential security issue for malicious events happening in your AWS account.
+- Findings are potential security issue for malicious events happening in our AWS account.
 - Automate response to security issues revealed by GuardDuty Findings using EventBridge.
 - Send alerts to SNS (email, Lambda, Slack, Chime...).
 - Events are published to both the administrator account and the member account that it is originated from.
+  TODO: DIAGRAM
 
 ## 4.1. Findings
 
@@ -62,7 +65,7 @@
   - **ThreatFamilyName:** Describes the potential malicious activity (e.g., NetworkPortUnusual).
   - **DetectionMechanism:** Method GuardDuty detecting the finding (e.g., Tcp, Udp).
   - **Artifact:** Describes a resource that is used in the malicious activity (e.g., DNS).
-- You can generate sample findings in GuardDuty to test your automations.
+- We can generate sample findings in GuardDuty to test our automations.
 
 ## 4.2. Findings Types
 
@@ -83,21 +86,27 @@
   - Policy:S3/AccountBlockPublicAccessDisabled
   - PenTest:S3/KaliLinux
 
-# 5. Trusted and Threat IP Lists
+# 5. Architectures
+
+TODO: DIAGRAM
+
+# 6. Trusted and Threat IP Lists
 
 - Works only for public IP addresses.
 - **Trusted IP List**
-  - List of IP addresses and CIDR ranges that you trust.
+  - List of IP addresses and CIDR ranges that we trust.
   - GuardDuty doesn't generate findings for these trusted lists.
 - **Threat IP List**
   - List of known malicious IP addresses and CIDR ranges.
   - GuardDuty generates findings based on these threat lists.
-  - Can be supplied by 3rd party threat intelligence or created custom for you.
+  - Can be supplied by 3rd party threat intelligence or created custom for us.
 - In a multi-account GuardDuty setup, only the GuardDuty administrator account can manage those lists.
 
-# 6. CloudFormation
+TODO: DIAGRAM
 
-- You can enable GuardDuty using a CloudFormation template.
+# 7. CloudFormation
+
+- We can enable GuardDuty using a CloudFormation template.
 - If GuardDuty is already enabled, the CloudFormation Stack deployment fails.
 - Use CloudFormation Custom Resouce (Lambda) to conditionally enable GuardDuty if it is not already enabled.
 - Deploy across all the Organization using a Stack Set.
