@@ -21,12 +21,17 @@
   - [7.2. Patch Manager Patch Baselines](#72-patch-manager-patch-baselines)
 - [8. SSM - Maintenance Windows](#8-ssm---maintenance-windows)
 - [9. Session Manager](#9-session-manager)
-- [10. SSM - Session Manager](#10-ssm---session-manager)
-- [11. Systems Manager - Default Host Management Configuration](#11-systems-manager---default-host-management-configuration)
-- [12. Hybrid Environments](#12-hybrid-environments)
-- [13. IoT Greengrass Instance Activation](#13-iot-greengrass-instance-activation)
-- [14. Systems Manager - Compliance](#14-systems-manager---compliance)
-- [15. Systems Manager - OpsCenter](#15-systems-manager---opscenter)
+  - [9.1. Permissions](#91-permissions)
+  - [9.2. SSH vs. SSM Session Manager](#92-ssh-vs-ssm-session-manager)
+- [10. Default Host Management Configuration](#10-default-host-management-configuration)
+- [11. Hybrid Environments](#11-hybrid-environments)
+- [12. IoT Greengrass Instance Activation](#12-iot-greengrass-instance-activation)
+- [13. Use Cases](#13-use-cases)
+  - [13.1. Reduce costs](#131-reduce-costs)
+  - [13.2. Build a golden AMI](#132-build-a-golden-ami)
+  - [13.3. Config Rule](#133-config-rule)
+- [14. Compliance](#14-compliance)
+- [15. OpsCenter](#15-opscenter)
 - [16. Quick Setup](#16-quick-setup)
   - [16.1. Supported Configuration Types Include](#161-supported-configuration-types-include)
 
@@ -129,8 +134,7 @@
   - Create custom workflows or use pre-defined workflows maintained by AWS.
   - Receive notifications about Automation tasks and workflows by using Amazon CloudWatch Events.
   - Monitor Automation progress and execution details by using the Amazon EC2 or the AWS Systems Manager console.
-
-![SSM - Automation](/Images/Management%20&%20Governance/AWSSystemsManagerAutomation.png)
+    ![SSM - Automation](/Images/Management%20&%20Governance/AWSSystemsManagerAutomation.png)
 
 ## 5.1. Automation Runbook
 
@@ -240,15 +244,19 @@ ww
 - Session log data can be sent to S3 or CloudWatch Logs.
 - CloudTrail can intercept `StartSession` events.
 
-# 10. SSM - Session Manager
+## 9.1. Permissions
 
-- IAM Permissions
+- **IAM Permissions**
   - Control which users/groups can access Session Manager and which instances.
-  - Use tags to restrict access to only specific EC2 instances
-  - Access SSM + write to S3 + write to CloudWatch
-- Optionally, we can restrict commands a user can run in a session
+  - Use tags to restrict access to only specific EC2 instances.
+  - Access SSM + write to S3 + write to CloudWatch.
+- Optionally, we can restrict commands a user can run in a session.
 
-# 11. Systems Manager - Default Host Management Configuration
+## 9.2. SSH vs. SSM Session Manager
+
+TODO: DIAGRAM
+
+# 10. Default Host Management Configuration
 
 - When enabled, it automatically configure your EC2 instances as managed instances **without the use of EC2 Instance Profile**.
 - **Instance Identity Role:** A type of IAM Role **with no permissions** beyond identifying the EC2 instance to AWS Services (e.g., Systems Manager).
@@ -257,7 +265,7 @@ ww
 - Automatically keeps the SSM Agent up to date.
 - Must be enabled per AWS Region.
 
-# 12. Hybrid Environments
+# 11. Hybrid Environments
 
 - We can setup Systems Manager to manage on-premises servers, IoT devices, edge devices, and virtual machines (e.g., VMs in other cloud providers).
 - **In Systems Manager Console**
@@ -265,7 +273,7 @@ ww
   - Hybrid managed nodes use the prefix **"mi-"**.
     ![AWS Systems Manager - Hybrid Environments](/Images/Management%20&%20Governance/AWSSystemsManagerHybridEnvironments.png)
 
-# 13. IoT Greengrass Instance Activation
+# 12. IoT Greengrass Instance Activation
 
 - Manage IoT Greengrass Core devices using SSM.
 - Install SSM Agent on Greengrass Core devices (registered as a managed node in SSM).
@@ -274,7 +282,21 @@ ww
 - Supports all SSM Capabilities (Patch Manager, Session Manager, Run Command...).
 - **Use cases:** Easily update and maintain OS and software updates across a fleet of Greengrass Core devices.
 
-# 14. Systems Manager - Compliance
+# 13. Use Cases
+
+## 13.1. Reduce costs
+
+TODO: DIAGRAM
+
+## 13.2. Build a golden AMI
+
+TODO: DIAGRAM
+
+## 13.3. Config Rule
+
+TODO: DIAGRAM
+
+# 14. Compliance
 
 - Scan your fleet of managed nodes for patch compliance and configuration inconsistencies.
 - Displays current data about:
@@ -284,7 +306,7 @@ ww
 - Can collect and aggregate data from multiple accounts and regions.
 - Can send compliance data to Security Hub.
 
-# 15. Systems Manager - OpsCenter
+# 15. OpsCenter
 
 - Allows we to view, investigate, and remediate issues in one place (no need to navigate across different AWS services).
 - Security issues (Security Hub), performance issues (DynamoDB throttle), failures (ASG failed launch instance)...

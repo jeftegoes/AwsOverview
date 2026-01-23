@@ -124,6 +124,7 @@
     - `BeforeAllowTraffic` - Use to run tasks before traffic is shifted to the deployed Lambda function version.
     - `AllowTrafic`
     - `AfterAllowTraffic` - Use to run tasks after all traffic is shifted to the deployed Lambda function version.
+    - TODO: DIAGRAM
   - ECS
     - `BeforeInstall`
     - `AfterInstall`

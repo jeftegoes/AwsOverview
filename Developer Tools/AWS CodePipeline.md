@@ -13,7 +13,7 @@
 - [9. CloudFormation as a target](#9-cloudformation-as-a-target)
 - [10. CloudFormation integration](#10-cloudformation-integration)
 - [11. Best practices](#11-best-practices)
-- [12. EventBridge](#12-eventbridge)
+- [12. CodePipeline \& EventBridge](#12-codepipeline--eventbridge)
 - [13. Invoke Action](#13-invoke-action)
 - [14. Multi Region (Cross-Region Actions)](#14-multi-region-cross-region-actions)
 - [15. Pipeline executions](#15-pipeline-executions)
@@ -143,14 +143,18 @@
   ]
   ```
 
-# 12. EventBridge
+# 12. CodePipeline & EventBridge
 
 - EventBridge - Detect and react to changes in execution states (e.g., intercept failures at certain stages).
+
+TODO: DIAGRAM
 
 # 13. Invoke Action
 
 - **Lambda:** Invokes a Lambda function within a Pipeline.
 - **Step Functions:** Starts a State Machine within a Pipeline.
+
+TODO: DIAGRAM
 
 # 14. Multi Region (Cross-Region Actions)
 

@@ -11,6 +11,7 @@
 - **Automated Security Assessments.**
 - **For EC2 instances**
   - Leveraging the [AWS System Manager (SSM)](/Management%20&%20Governance/AWS%20Systems%20Manager.md) agent.
+    > **IMPORTANT!** The **new Amazon Inspector** does **not require a dedicated Inspector agent**.
   - Analyze against **unintended network accessibility**.
   - Analyze the **running OS** against **known vulnerabilities**.
 - **For Containers push to Amazon ECR**

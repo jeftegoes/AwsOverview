@@ -9,6 +9,7 @@
   - [1.4. How CloudFormation Works](#14-how-cloudformation-works)
   - [1.5. Deploying CloudFormation templates](#15-deploying-cloudformation-templates)
   - [1.6. Building Blocks](#16-building-blocks)
+  - [1.7. Input Parameters](#17-input-parameters)
 - [2. YAML](#2-yaml)
   - [2.1. Template anatomy](#21-template-anatomy)
   - [2.2. Resources](#22-resources)
@@ -142,7 +143,7 @@
 
 - **Manual way**
   - Editing templates in the CloudFormation Designer.
-  - Using the console to input parameters, etc.
+  - Using the console to **input parameters**, etc.
 - **Automated way**
   - Editing templates in a YAML file.
   - Using the AWS CLI (Command Line Interface) to deploy the templates.
@@ -152,15 +153,20 @@
 
 - **Template's components**
   - `AWSTemplateFormatVersion`: Identifies the capabilities of the template "2010-09-09".
-  - Description: Comments about the template.
-  - Resources: Your AWS resources declared in the template.
-  - Parameters: The dynamic inputs for your template.
-  - Mappings: The static variables for your template.
-  - Outputs: References to what has been created.
-  - Conditionals: List of conditions to perform resource creation.
+  - **Description:** Comments about the template.
+  - **Resources:** Your AWS resources declared in the template.
+  - **Parameters:** The dynamic inputs for your template.
+  - **Mappings:** The static variables for your template.
+  - **Outputs:** References to what has been created.
+  - **Conditionals:** List of conditions to perform resource creation.
 - **Templates helpers**
   - References.
   - Functions.
+
+## 1.7. Input Parameters
+
+- Define **what data a pipeline action receives from a previous stage**.
+- They control how artifacts and metadata flow through the pipeline and ensure that each action has the information it needs to execute correctly.
 
 # 2. YAML
 

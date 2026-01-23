@@ -113,9 +113,9 @@
 
 - EC2 instance metrics have metrics "every 5 minutes".
 - With **Detailed Monitoring** (for a cost), we get data "every 1 minute".
-- Use **Detailed Monitoring** if you want to scale faster for your ASG!
+- Use **Detailed Monitoring** if we want to scale faster for our ASG!
 - The AWS Free Tier allows us to have 10 detailed monitoring metrics.
-- Note: EC2 Memory usage is by default not pushed (must be pushed from inside the instance as a custom metric).
+- **Note:** EC2 Memory usage is by default not pushed (must be pushed from inside the instance as a custom metric).
 
 # 5. CloudWatch Anomaly Detection
 

@@ -250,9 +250,9 @@
 # 17. Terraform details
 
 - If you plan to launch an Auto Scaling group of EC2 instances, you can configure the `AWS::AutoScaling::AutoScalingGroup` resource type reference in your CloudFormation template to define an Amazon EC2 Auto Scaling group with the specified name and attributes.
-- You can add an `UpdatePolicy` attribute to your Auto Scaling group to perform rolling updates (or replace the group) when a change has been made to the group.
+- You can add an `UpdatePolicy` attribute to your Auto Scaling group to perform rolling updates (or **replace** the group) when a change has been made to the group.
 - To specify how AWS CloudFormation handles replacement updates for an Auto Scaling group, use the `AutoScalingReplacingUpdate` policy.
-  - This policy enables you to specify whether AWS CloudFormation replaces an Auto Scaling group with a new one or replaces only the instances in the Auto Scaling group.
+  - This policy enables you to specify whether AWS CloudFormation **replaces** an Auto Scaling group with a new one or **replaces** only the instances in the Auto Scaling group.
     ```yaml
     UpdatePolicy:
       AutoScalingReplacingUpdate:

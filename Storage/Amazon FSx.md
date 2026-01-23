@@ -9,6 +9,10 @@
   - [4.1. Hot \& Cold Data Handling](#41-hot--cold-data-handling)
 - [5. FSx Lustre - File System Deployment Options](#5-fsx-lustre---file-system-deployment-options)
 - [6. Amazon FSx for NetApp ONTAP (block storage)](#6-amazon-fsx-for-netapp-ontap-block-storage)
+  - [6.1. NetApp SnapMirror](#61-netapp-snapmirror)
+    - [6.1.1. Replication Method](#611-replication-method)
+    - [6.1.2. Scheduling](#612-scheduling)
+    - [6.1.3. Key Benefit](#613-key-benefit)
 - [7. Amazon FSx for OpenZFS](#7-amazon-fsx-for-openzfs)
 - [8. Choosing an Amazon FSx File System](#8-choosing-an-amazon-fsx-file-system)
   - [8.1. Familiar File System](#81-familiar-file-system)
@@ -40,7 +44,7 @@
 - Microsoft Active Directory integration, ACLs, user quotas.
 - **Can be mounted on Linux EC2 instances.**
 - Supports **Microsoft's Distributed File System (DFS) Namespaces** (group files across multiple FS).
-- **Replication**: Uses **Distributed File System Replication (DFSR)** for multi-master folder synchronization across servers.
+- **Replication:** Uses **Distributed File System Replication (DFSR)** for multi-master folder synchronization across servers.
 - Scale up to 10s of GB/s, millions of IOPS, 100s PB of data.
 - **Storage Options**
   - **SSD:** Latency sensitive workloads (databases, media processing, data analytics, ...).
@@ -99,6 +103,28 @@
 - **Point-in-time instantaneous cloning (helpful for testing new workloads).**
   ![Amazon FSx for NetApp ONTAP](/Images/Storage/AmazonFSxNetAppONTAP.png)
 - Does **SUPPORT** Multi-AZ.
+
+## 6.1. NetApp SnapMirror
+
+- Replicates data between **FSx for ONTAP** instances in a primary and DR region.
+- Designed for **disaster recovery** scenarios.
+- Keeps data in the DR region **synchronized** with the primary region.
+- Ensures up-to-date replicas with low latency.
+
+### 6.1.1. Replication Method
+
+- Supports **incremental replication**.
+- Transfers only changed data blocks.
+- Optimized for network and storage efficiency.
+
+### 6.1.2. Scheduling
+
+- Allows **scheduled replication**.
+- Enables control over recovery point objectives (RPO).
+
+### 6.1.3. Key Benefit
+
+- Provides an efficient and reliable mechanism for **cross-region data protection**.
 
 # 7. Amazon FSx for OpenZFS
 
