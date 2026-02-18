@@ -92,7 +92,7 @@
 
 ## 8.1. Digest file
 
-- When we enable log file integrity validation, CloudTrail creates a hash for every log file that it delivers.
+- When we enable **log file integrity validation**, CloudTrail creates a hash for every log file that it delivers.
 - Every hour, CloudTrail also creates and delivers a file that references the log files for the last hour and contains a hash of each.
 - This file is called a **digest file**.
 - CloudTrail signs each digest file using the private key of a public and private key pair.

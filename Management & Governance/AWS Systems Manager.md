@@ -41,7 +41,7 @@
 - Another Hybrid AWS service.
 - Get operational insights about the state of your infrastructure.
 - Easily detect problems.
-- Most important features are:
+- **Most important features are**
   - Patching automation for enhanced compliance.
   - Run commands across an entire fleet of servers.
   - Store parameter configuration with the SSM Parameter Store.
@@ -125,12 +125,13 @@
 - Command Output can be shown in the Console, sent to S3 bucket or CloudWatch Logs.
 - Send notifications to SNS about command statues (In progress, Success, Failed...).
 - Can be invoked using EventBridge.
+  ![AWS Systems Manager - Run Command](/Images/Management%20&%20Governance/AWSSystemsManagerRunCommand.png)
 
 # 5. Automation
 
-- Simplifies common maintenance and deployment tasks of Amazon EC2 instances and other AWS resources.
+- Simplifies common maintenance and deployment tasks of Amazon EC2 instances and other **AWS resources**.
 - **Automation** enables we to do the following:
-  - Build Automation workflows to configure and manage instances and AWS resources.
+  - Build Automation workflows to configure and manage instances and **AWS resources**.
   - Create custom workflows or use pre-defined workflows maintained by AWS.
   - Receive notifications about Automation tasks and workflows by using Amazon CloudWatch Events.
   - Monitor Automation progress and execution details by using the Amazon EC2 or the AWS Systems Manager console.
@@ -182,8 +183,6 @@
 - /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 (public)
 
 ## 6.2. Parameters Policies (for advanced parameters)
-
-ww
 
 - Allow to assign a TTL to a parameter (expiration date) to force updating or deleting sensitive data such as passwords.
 - Can assign multiple policies at a time.
@@ -254,7 +253,10 @@ ww
 
 ## 9.2. SSH vs. SSM Session Manager
 
-TODO: DIAGRAM
+- **Connect using SSH**
+  ![AWS Systems Manager - SSH Connection](/Images/Management%20&%20Governance/AWSSystemsManagerSSH.png)
+- **Connect using SSM Session Manager**
+  ![AWS Systems Manager - SSM Session Manager](/Images/Management%20&%20Governance/AWSSystemsManagerSSMSessionManager.png)
 
 # 10. Default Host Management Configuration
 
@@ -286,15 +288,18 @@ TODO: DIAGRAM
 
 ## 13.1. Reduce costs
 
-TODO: DIAGRAM
+- Reduce Costs by automatically start and stop EC2 instances and RDS DB Instances.
+  ![AWS Systems Manager - Use Case - Start and Stop EC2 instances and RDS DB Instances](/Images/Management%20&%20Governance/AWSSystemsManagerUseCaseStartStopEc2Rds.png)
+- Reduce Costs by automatically downsize EC2 instances and RDS DB Instances.
+  ![AWS Systems Manager - Use Case - Downsize EC2 instances and RDS DB Instances](/Images/Management%20&%20Governance/AWSSystemsManagerUseCaseDownsizeEc2Rds.png)
 
 ## 13.2. Build a golden AMI
 
-TODO: DIAGRAM
+![AWS Systems Manager - Use Case - Build a golden AMI](/Images/Management%20&%20Governance/AWSSystemsManagerUseCaseBuildGoldenAMI.png)
 
 ## 13.3. Config Rule
 
-TODO: DIAGRAM
+![AWS Systems Manager - Use Case - Config Rule](/Images/Management%20&%20Governance/AWSSystemsManagerUseCaseConfigRule.png)
 
 # 14. Compliance
 

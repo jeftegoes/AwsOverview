@@ -4,8 +4,9 @@
 
 - [1. Introduction](#1-introduction)
 - [2. Service Catalog diagram](#2-service-catalog-diagram)
-- [3. Stack Set Constraints](#3-stack-set-constraints)
-- [4. Launch Constraints](#4-launch-constraints)
+- [3. AWS Service Catalog](#3-aws-service-catalog)
+- [4. Stack Set Constraints](#4-stack-set-constraints)
+- [5. Launch Constraints](#5-launch-constraints)
 
 # 1. Introduction
 
@@ -14,6 +15,10 @@
 - **Includes:** Virtual machines, databases, storage options, etc...
 
 # 2. Service Catalog diagram
+
+TODO: DIAGRAM
+
+# 3. AWS Service Catalog
 
 - Create and manage catalogs of IT services that are approved on AWS.
 - The "products" are CloudFormation templates.
@@ -26,14 +31,14 @@
 - Can give user access to launching products without requiring deep AWS knowledge.
 - Integrations with "self-service portals" such as ServiceNow.
 
-# 3. Stack Set Constraints
+# 4. Stack Set Constraints
 
-- Allows you to configure Product deployment options using CloudFormation StackSets.
-- **Accounts:** Identify AWS accounts where you want to create Products.
-- **Regions:** Identify AWS regions where you want to deploy to (with Order).
+- Allows we to configure Product deployment options using CloudFormation StackSets.
+- **Accounts:** Identify AWS accounts where we want to create Products.
+- **Regions:** Identify AWS regions where we want to deploy to (with Order).
 - **Permissions:** IAM StackSet Administrator Role to manage target AWS accounts.
 
-# 4. Launch Constraints
+# 5. Launch Constraints
 
 - IAM Role assigned to a Product which allows a user to launch, update, or terminate a product with minimal IAM permissions.
 - **Example:** End user has access only to Service Catalog, all other permissions required are attached to the Launch Constraint IAM Role.

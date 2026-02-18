@@ -144,7 +144,8 @@
 - Choose the % of traffic the canary channel receives.
 - Metrics & Logs are separate (for better monitoring).
 - Possibility to override stage variables for canary.
-- This is blue / green deployment with [AWS Lambda](AWS%20Lambda.md) and API Gateway.
+- This is blue / green deployment with [AWS Lambda](/Compute/AWS%20Lambda.md) and API Gateway.
+- TODO: IMPROVE
   ![API Gateway - Canary Deployment](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayCanaryDeployment.png)
 
 # 8. Integration Types (Methods)

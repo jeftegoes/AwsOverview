@@ -24,14 +24,15 @@
 
 # 3. Discovery and collecting
 
-- Application Discovery Service offers two ways of performing discovery and collecting data about your on-premises servers:
+- Application Discovery Service offers two ways of performing discovery and collecting data about your on-premises servers.
 
 ## 3.1. Agentless
 
 - **Agentless discovery** can be performed by deploying the **AWS Agentless Discovery Connector (OVA file)** through your VMware vCenter.
 - After the Discovery Connector is configured, it identifies virtual machines (VMs) and hosts associated with vCenter.
 - The Discovery Connector collects the following static configuration data: Server hostnames, IP addresses, MAC addresses, and disk resource allocations.
-  - Additionally, it collects the utilization data for each VM and computes average and peak utilization for metrics such as CPU, RAM, and Disk I/O. You can export a summary of the system performance information for all the VMs associated with a given VM host and perform a cost analysis of running them in AWS.
+  - Additionally, it collects the utilization data for each VM and computes average and peak utilization for metrics such as CPU, RAM, and Disk I/O.
+  - We can export a summary of the system performance information for all the VMs associated with a given VM host and perform a cost analysis of running them in AWS.
 
 ## 3.2. Agent-based
 

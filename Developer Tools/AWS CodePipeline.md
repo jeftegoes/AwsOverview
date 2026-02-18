@@ -146,8 +146,7 @@
 # 12. CodePipeline & EventBridge
 
 - EventBridge - Detect and react to changes in execution states (e.g., intercept failures at certain stages).
-
-TODO: DIAGRAM
+  ![AWS CodePipeline & EventBridge](/Images/Developer%20Tools/AWSCodePipelineEventBridge.png)
 
 # 13. Invoke Action
 
@@ -159,7 +158,7 @@ TODO: DIAGRAM
 # 14. Multi Region (Cross-Region Actions)
 
 - **Actions in your pipeline can be in different regions**
-  - **Example:** deploy a Lambda function through CloudFormation into multiple regions.
+  - **Example:** Deploy a Lambda function through CloudFormation into multiple regions.
 - **S3 Artifact Stores must be defined in each region where you have actions**
   - CodePipeline must have read/write access into every **artifact buckets**.
   - If you use the console default **artifact buckets** are configured, else you must create them.

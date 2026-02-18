@@ -585,7 +585,7 @@ TODO: DIAGRAM
 - **Security Groups:** Stateful, operate at the EC2 instance level.
 - **VPC Peering:** Connect two VPCs with non overlapping CIDR, non-transitive.
 - **VPC Endpoints:** Provide private access to AWS Services (S3, DynamoDB, CloudFormation, SSM) within a VPC.
-- **VPC Flow Logs:** Can be setup at the VPC / Subnet / ENI Level, for ACCEPT and REJECT traffic, helps identifying attacks, analyze using Athena or CloudWatch Logs Insights.
+- **VPC Flow Logs:** Can be setup at the VPC / Subnet / ENI Level, for `ACCEPT` and `REJECT` traffic, helps identifying attacks, analyze using Athena or CloudWatch Logs Insights.
 - **Site-to-Site VPN:** Setup a Customer Gateway on DC (Datacenter), a Virtual Private Gateway on VPC, and site-to-site VPN over public Internet.
 - **AWS VPN CloudHub:** Hub-and-spoke VPN model to connect your sites.
 - **Direct Connect:** Setup a Virtual Private Gateway on VPC, and establish a direct private connection to an AWS Direct Connect Location.

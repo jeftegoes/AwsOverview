@@ -430,6 +430,7 @@
   - Using MD5 and Etag.
     - ETag - represents a specific version of the object, ETag = MD5 (if SSE-S3).
 - **Other supported checksums:** SHA-1, SHA-256, CRC32, CRC32C.
+  TODO: DIAGRAM
 
 # 17. Baseline Performance
 

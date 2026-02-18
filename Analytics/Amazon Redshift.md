@@ -13,10 +13,10 @@
 
 - **Amazon Redshift is a fully managed, petabyte-scale data warehouse service in the cloud.**
 - Redshift is based on PostgreSQL, but it's not used for OLTP.
-- **It's OLAP - online analytical processing (analytics and data warehousing).**
+- **It's OLAP - Online Analytical Processing (analytics and data warehousing).**
 - Load data once every hour, not every second.
 - 10x better performance than other data warehouses, scale to PBs of data.
-- **Columnar** storage of data (instead of row based) & parallel query engine.
+- **Columnar** Storage of data (instead of row based) & parallel query engine.
 - **Two modes:** Provisioned cluster or Serverless cluster.
 - Has a SQL interface for performing the queries.
 - BI tools such as AWS Quicksight or Tableau integrate with it.
