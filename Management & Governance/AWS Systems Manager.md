@@ -8,8 +8,8 @@
   - [1.3. Systems Manager - SSM Session Manager](#13-systems-manager---ssm-session-manager)
 - [2. Systems Manager parameters - SSM parameters](#2-systems-manager-parameters---ssm-parameters)
   - [2.1. Policies](#21-policies)
-- [3. SSM - Documents](#3-ssm---documents)
-- [4. SSM - Run Command](#4-ssm---run-command)
+- [3. Documents](#3-documents)
+- [4. Run Command](#4-run-command)
 - [5. Automation](#5-automation)
   - [5.1. Automation Runbook](#51-automation-runbook)
   - [5.2. Automation Workflow](#52-automation-workflow)
@@ -108,14 +108,15 @@
   - `ExpirationNotification` - sends an event to Amazon EventBridge when the specified expiration time is reached.
   - `NoChangeNotification` - sends an event to Amazon EventBridge when a parameter has not been modified for a specified period of time.
 
-# 3. SSM - Documents
+# 3. Documents
 
 - Documents can be in JSON or YAML.
 - We define parameters.
 - We define actions.
 - Many documents already exist in AWS.
+  TODO: DIAGRAM
 
-# 4. SSM - Run Command
+# 4. Run Command
 
 - Execute a document (= script) or just run a command.
 - Run command across multiple instances (using resource groups).

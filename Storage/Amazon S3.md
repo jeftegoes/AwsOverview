@@ -864,21 +864,21 @@
 
 ## 36.1. Expedited
 
-- **Speed:** Typically available within **1–5 minutes** (for objects smaller than 250 MB).
+- **Speed:** Typically available within **1-5 minutes** (for objects smaller than 250 MB).
 - **Availability:** Supported for **S3 Glacier Flexible Retrieval** and **S3 Intelligent-Tiering Archive Access**.  
   Not available for **Deep Archive** tiers.
 - **Cost:** Premium pricing. You can optionally purchase **Provisioned Capacity** to ensure retrieval availability during high demand.
 
 ## 36.2. Standard
 
-- **Speed:** Usually completes in **3–5 hours** for Glacier Flexible Retrieval or Intelligent-Tiering Archive Access,  
+- **Speed:** Usually completes in **3-5 hours** for Glacier Flexible Retrieval or Intelligent-Tiering Archive Access,  
   and up to **12 hours** for Glacier Deep Archive or Intelligent-Tiering Deep Archive.
 - **Default Tier:** Used when no specific tier is specified.
 - **Cost:** Free when used with **Intelligent-Tiering**.
 
 ## 36.3. Bulk
 
-- **Speed:** Ideal for large-scale restores-typically **5–12 hours** for Glacier Flexible Retrieval or Intelligent-Tiering Archive Access, and up to **48 hours** for Glacier Deep Archive or Intelligent-Tiering Deep Archive.
+- **Speed:** Ideal for large-scale restores-typically **5-12 hours** for Glacier Flexible Retrieval or Intelligent-Tiering Archive Access, and up to **48 hours** for Glacier Deep Archive or Intelligent-Tiering Deep Archive.
 - **Cost:** The **lowest-cost option**; free when used with **Intelligent-Tiering**.
 
 ## 36.4. Comparison

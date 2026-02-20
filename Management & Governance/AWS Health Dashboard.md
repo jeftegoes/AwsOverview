@@ -8,6 +8,8 @@
 - [3. Status Checks](#3-status-checks)
 - [4. CW Metrics \& Recovery](#4-cw-metrics--recovery)
 - [5. Detecting Exposed Credentials](#5-detecting-exposed-credentials)
+- [6. AWS-initiated activities](#6-aws-initiated-activities)
+  - [6.1. Examples of AWS-Initiated Events](#61-examples-of-aws-initiated-events)
 
 # 1. Introduction
 
@@ -69,3 +71,18 @@
   - **Event source:** `aws.health`
   - **Event type:** `AWS_RISK_CREDENTIALS_EXPOSED`
     ![IAM Access Key Exposed](/Images/AWSHealthDashboardIAMAccessKeyExposed.png)
+
+# 6. AWS-initiated activities
+
+- When AWS performs actions that may affect your resources (AWS-initiated activities), the **AWS Health Dashboard** provides visibility, context, and automation capabilities to help you respond effectively.
+- Are events or actions started by AWS that may affect your account or resources.
+- They are not triggered by your users, automation, or API calls.
+
+## 6.1. Examples of AWS-Initiated Events
+
+- Scheduled maintenance on EC2 instances.
+- Hardware degradation warnings.
+- Service disruptions in a Region.
+- Security vulnerability notifications.
+- Retirement notices for instance types.
+- Required RDS or EBS maintenance.

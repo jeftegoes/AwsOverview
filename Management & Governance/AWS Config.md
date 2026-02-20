@@ -9,6 +9,9 @@
   - [3.2. Remediations](#32-remediations)
     - [3.2.1. Required Tags](#321-required-tags)
   - [3.3. Notifications](#33-notifications)
+  - [3.4. Evaluation Trigger Types](#34-evaluation-trigger-types)
+    - [3.4.1. Configuration Changes](#341-configuration-changes)
+    - [3.4.2. Periodic](#342-periodic)
 - [4. Configuration Recorder](#4-configuration-recorder)
 - [5. Aggregators](#5-aggregators)
 - [6. Conformance Pack](#6-conformance-pack)
@@ -76,6 +79,19 @@
 
 - Use [Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md) to trigger notifications when AWS resources are non-compliant.
 - Ability to send configuration changes and compliance state notifications to SNS (all events - use SNS Filtering or filter at client-side).
+
+## 3.4. Evaluation Trigger Types
+
+### 3.4.1. Configuration Changes
+
+- Triggered when a resource within the rule's scope changes configuration.
+- Evaluation runs after AWS Config records the configuration change.
+
+### 3.4.2. Periodic
+
+- Triggered at a defined time interval.
+- Runs regardless of configuration changes.
+- **Example:** Every 24 hours.
 
 # 4. Configuration Recorder
 

@@ -177,6 +177,7 @@ hooks:
 - `AllowTraffic` - During this deployment lifecycle event, internet traffic is allowed to access instances after a deployment.
   - **This event is reserved for the CodeDeploy agent and cannot be used to run scripts.**
 - `AfterAllowTraffic` - We can use this deployment lifecycle event to run tasks on instances after they are registered with a load balancer.
+- '`ApplicationStart`' - We typically use this deployment lifecycle event to restart services that were stopped during ApplicationStop.
 
 # 5. EC2/On-premises Platform
 
