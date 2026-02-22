@@ -1,0 +1,46 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.5 Chrome/138.0.7204.251 Electron/37.6.1 Safari/537.36" version="28.2.5">
+  <diagram name="Page-1" id="qh4ASqeEXP6lSVR8husd">
+    <mxGraphModel dx="1192" dy="1237" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="QEs6DX9mSdKDVEEUzviR-3" value="GitHub" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.github" vertex="1" parent="1">
+          <mxGeometry x="538" y="463" width="75" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="QEs6DX9mSdKDVEEUzviR-4" value="&lt;div&gt;Secrets&lt;/div&gt;&lt;div&gt;Manager&lt;/div&gt;" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.secrets_manager;" vertex="1" parent="1">
+          <mxGeometry x="535" y="616" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="QEs6DX9mSdKDVEEUzviR-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="QEs6DX9mSdKDVEEUzviR-5" target="QEs6DX9mSdKDVEEUzviR-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="357" y="654" />
+              <mxPoint x="528" y="654" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QEs6DX9mSdKDVEEUzviR-14" value="&lt;div&gt;2. Create Secret&lt;/div&gt;&lt;div&gt;&lt;b&gt;AWS Access Key&lt;/b&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="QEs6DX9mSdKDVEEUzviR-9">
+          <mxGeometry x="0.1539" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QEs6DX9mSdKDVEEUzviR-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="QEs6DX9mSdKDVEEUzviR-5" target="QEs6DX9mSdKDVEEUzviR-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QEs6DX9mSdKDVEEUzviR-12" value="&lt;div&gt;&amp;nbsp;1. scan a repository&amp;nbsp;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="QEs6DX9mSdKDVEEUzviR-11">
+          <mxGeometry x="0.1275" y="-1" relative="1" as="geometry">
+            <mxPoint x="5" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QEs6DX9mSdKDVEEUzviR-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=none;endFill=0;dashed=1;strokeWidth=2;" edge="1" parent="1" source="QEs6DX9mSdKDVEEUzviR-5" target="QEs6DX9mSdKDVEEUzviR-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QEs6DX9mSdKDVEEUzviR-5" value="&lt;div&gt;CodeGuru&lt;/div&gt;&lt;div&gt;Reviewer&lt;/div&gt;" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=middle;verticalAlign=middle;align=right;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.codeguru;labelPosition=left;spacingRight=5;" vertex="1" parent="1">
+          <mxGeometry x="318" y="538" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="QEs6DX9mSdKDVEEUzviR-15" value="&lt;div&gt;hardcoded secret&lt;/div&gt;&lt;div&gt;detected in&lt;/div&gt;&lt;div&gt;.travis.yml&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#b85450;fillColor=#f8cecc;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="238" y="406" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

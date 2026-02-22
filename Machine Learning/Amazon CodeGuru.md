@@ -16,8 +16,7 @@
 - **Provides two functionalities**
   - **CodeGuru Reviewer:** Automated code reviews for static code analysis (development).
   - **CodeGuru Profiler:** Visibility/recommendations about application performance during runtime (production).
-
-TODO: DIAGRAM
+    ![Amazon CodeGuru](/Images/Machine%20Learning/AmazonCodeGuru.png)
 
 # 2. Reviewer
 
@@ -46,19 +45,28 @@ TODO: DIAGRAM
 - Uses ML to identify hardcoded secrets embedded in your code (e.g., passwords, API keys, credentials, SSH keys...).
 - Besides scanning code, it scans configuration and documentation files.
 - **Suggests remediation to automatically protect your secrets with Secrets Manager.**
-  TODO: DIAGRAM
+  ![Amazon CodeGuru - Reviewer](/Images/Machine%20Learning/AmazonCodeGuruReviewer.png)
 
 ## 3.2. Function Decorator
 
 - Integrate and apply CodeGuru Profiler to Lambda functions either using:
   - Function Decorator `@with_lambda_profiler`
   - Add `codeguru_profiler_agent` dependency to your **Lambda function .zip** file or use **Lambda Layers**.
+
+  ```python
+    from codeguru_profiler_agent import with_lambda_profiler
+
+    @with_lambda_profiler(profiling_group_name="MyGroupName")
+    def handler_name(event, context):
+    return "Hello World"
+  ```
+
 - Enable Profiling in the Lambda function configuration.
 
 # 4. Agent Configuration
 
 - `MaxStackDepth` - the maximum depth of the stacks in the code that is represented in the profile.
-  - Example: if CodeGuru Profiler finds a method A, which calls method B, which calls method C, which calls method D, then the depth is 4.
+  - **Example:** If CodeGuru Profiler finds a method A, which calls method B, which calls method C, which calls method D, then the depth is 4.
   - If the MaxStackDepth is set to 2, then the profiler evaluates A and B.
 - `MemoryUsageLimitPercent` - The memory percentage used by the profiler.
 - `MinimumTimeForReportingInMilliseconds` - The minimum time between sending reports (milliseconds).
