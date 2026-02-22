@@ -1,4 +1,4 @@
-# AWS CI/CD - CodeCommit, CodePipeline, CodeBuild, CodeDeploy, CodeStar, CodeArtifact, CodeGuru, Cloud9 <!-- omit in toc -->
+# AWS CI/CD - CodeCommit, CodePipeline, CodeBuild, CodeDeploy, CodeStar, CodeArtifact, Cloud9 <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -15,14 +15,8 @@
   - [8.3. External Connection](#83-external-connection)
   - [8.4. Retention](#84-retention)
   - [8.5. Domains](#85-domains)
-- [9. Amazon CodeGuru](#9-amazon-codeguru)
-  - [9.1. Reviewer](#91-reviewer)
-  - [9.2. Profiler](#92-profiler)
-    - [9.2.1. Reviewer Secrets Detector](#921-reviewer-secrets-detector)
-    - [9.2.2. Ftunction decoractors](#922-ftunction-decoractors)
-  - [9.3. Agent Configuration](#93-agent-configuration)
-- [10. AWS Cloud9](#10-aws-cloud9)
-- [11. Sections erros](#11-sections-erros)
+- [9. AWS Cloud9](#9-aws-cloud9)
+- [10. Sections erros](#10-sections-erros)
 
 # 1. CICD in AWS
 
@@ -33,7 +27,6 @@
   - **AWS CodeDeploy:** Deploying the code to EC2 instances (not Elastic Beanstalk).
   - **AWS CodeStar:** Manage software development activities in one place.
   - **AWS CodeArtifact:** Store, publish, and share software packages.
-  - **AWS CodeGuru:** Automated code reviews using Machine Learning.
 
 # 2. Continuous Integration (CI)
 
@@ -130,61 +123,7 @@
   - Restricting which accounts have access to repositories in the domain.
   - Who can configure connections to public repositories to use as sources of packages.
 
-# 9. Amazon CodeGuru
-
-- **Amazon CodeGuru is a developer tool that provides intelligent recommendations to improve code quality and identify an application's most expensive lines of code.**
-- An ML-powered service for **automated code reviews** and **application performance recommendations**.
-- Provides two functionalities
-  - **CodeGuru Reviewer:** Automated code reviews for static code analysis (development).
-  - **CodeGuru Profiler:** Visibility/recommendations about application performance during runtime (production).
-
-## 9.1. Reviewer
-
-- Identify critical issues, security vulnerabilities, and hard-to-find bugs.
-- Example: common coding best practices, resource leaks, security detection, input validation.
-- Uses Machine Learning and automated reasoning.
-- Hard-learned lessons across millions of code reviews on 1000s of open-source and Amazon repositories.
-- Supports Java and Python.
-- Integrates with GitHub, Bitbucket, and AWS CodeCommit.
-
-## 9.2. Profiler
-
-- Helps understand the runtime behavior of your application.
-- Example: identify if your application is consuming excessive CPU capacity on a logging routine.
-- Features:
-  - Identify and remove code inefficiencies.
-  - Improve application performance (e.g., reduce CPU utilization).
-  - Decrease compute costs.
-  - Provides heap summary (identify which objects using up memory).
-  - Anomaly Detection.
-- Support applications running on AWS or on-premise.
-- Minimal overhead on application.
-
-### 9.2.1. Reviewer Secrets Detector
-
-- Uses ML to identify hardcoded secrets embedded in your code (e.g., passwords, API keys, credentials, SSH keys...).
-- Besides scanning code, it scans configuration and documentation files.
-- Suggests remediation to automatically protect your secrets with Secrets Manager.
-
-### 9.2.2. Ftunction decoractors
-
-- Integrate and apply CodeGuru Profiler to Lambda functions either using:
-  - Function Decorator `@with_lambda_profiler`
-  - Add codeguru_profiler_agent dependency to your **Lambda function .zip** file or use **Lambda Layers**.
-- Enable Profiling in the Lambda function configuration.
-
-## 9.3. Agent Configuration
-
-- `MaxStackDepth` - the maximum depth of the stacks in the code that is represented in the profile.
-  - Example: if CodeGuru Profiler finds a method A, which calls method B, which calls method C, which calls method D, then the depth is 4.
-  - If the MaxStackDepth is set to 2, then the profiler evaluates A and B.
-- `MemoryUsageLimitPercent` - The memory percentage used by the profiler.
-- `MinimumTimeForReportingInMilliseconds` - The minimum time between sending reports (milliseconds).
-- `ReportingIntervalInMilliseconds` - The reporting interval used to report profiles (milliseconds).
-- `SamplingIntervalInMilliseconds` - The sampling interval that is used to profile samples (milliseconds).
-  - Reduce to have a higher sampling rate.
-
-# 10. AWS Cloud9
+# 9. AWS Cloud9
 
 - Cloud-based Integrated Development Environment (IDE).
 - Code editor, debugger, terminal in a browser.
@@ -193,7 +132,7 @@
 - Share your development environment with your team (pair programming).
 - Fully integrated with AWS SAM & Lambda to easily build serverless applications.
 
-# 11. Sections erros
+# 10. Sections erros
 
 - `DownloadBundle` deployment lifecycle event will throw an error whenever:
   - The EC2 instance's IAM profile does not have permission to access the application code in the Amazon S3.

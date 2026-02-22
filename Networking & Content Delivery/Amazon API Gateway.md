@@ -145,7 +145,6 @@
 - Metrics & Logs are separate (for better monitoring).
 - Possibility to override stage variables for canary.
 - This is blue / green deployment with [AWS Lambda](/Compute/AWS%20Lambda.md) and API Gateway.
-- TODO: IMPROVE
   ![API Gateway - Canary Deployment](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayCanaryDeployment.png)
 
 # 8. Integration Types (Methods)
@@ -251,9 +250,7 @@
       {
         "Effect": "Allow",
         "Action": ["execute-api:InvalidateCache"],
-        "Resource": [
-          "arn:aws:execute-api:region:account-id:api-id/stage-name/GET/resource-path-specifier"
-        ]
+        "Resource": ["arn:aws:execute-api:region:account-id:api-id/stage-name/GET/resource-path-specifier"]
       }
     ]
   }

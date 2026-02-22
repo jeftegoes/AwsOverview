@@ -43,6 +43,6 @@ TODO: DIAGRAM
 - IAM Role assigned to a Product which allows a user to launch, update, or terminate a product with minimal IAM permissions.
 - **Example:** End user has access only to Service Catalog, all other permissions required are attached to the Launch Constraint IAM Role.
 - IAM Role must have the following permissions:
-  - CloudFormation (Full Access)
-  - AWS Services in the CloudFormation template
-  - S3 Bucket which contains the CloudFormation template (Read Access)
+  - CloudFormation (Full Access).
+  - AWS Services in the CloudFormation template.
+  - S3 Bucket which contains the CloudFormation template (Read Access).

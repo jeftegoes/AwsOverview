@@ -34,6 +34,7 @@
 - [15. OpsCenter](#15-opscenter)
 - [16. Quick Setup](#16-quick-setup)
   - [16.1. Supported Configuration Types Include](#161-supported-configuration-types-include)
+- [17. State Manager](#17-state-manager)
 
 # 1. Introduction
 
@@ -167,6 +168,8 @@
 - Security through IAM.
 - Notifications with Amazon EventBridge.
 - Integration with CloudFormation.
+
+TODO: DIAGRAM
 
 ## 6.1. Parameter Store Hierarchy
 
@@ -311,6 +314,7 @@
 - Can sync data to an S3 bucket using **Resource Data Sync**, and we can analyze using Athena and QuickSight.
 - Can collect and aggregate data from multiple accounts and regions.
 - Can send compliance data to Security Hub.
+  TODO: diagram
 
 # 15. OpsCenter
 
@@ -341,3 +345,8 @@
 - Resource Scheduler (auto start/stop EC2)
 - Distributor packages deployment
 - OpsCenter, DevOps Guru, Resource Explorer, Change Manager, etc.
+
+# 17. State Manager
+
+- **AWS Systems Manager State Manager** is a capability that helps you define and maintain a **desired configuration state** for your Amazon EC2 instances and on-premises servers.
+- It ensures that your instances remain compliant with a defined configuration over time.

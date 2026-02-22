@@ -1,4 +1,4 @@
-# AWS SAM - Serverless Application Model <!-- omit in toc -->
+# AWS SAM - AWS Serverless Application Model <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -43,48 +43,48 @@
     - `sam package`
     - `sam deploy`
 
-![SAM Deployment](/Images/AWSSAMDeployment.png)
+![SAM Deployment](/Images/Developer%20Tools/AWSSAMDeployment.png)
 
 ## 2.1. Example
 
 ```yaml
-  # SAM FILE
-  AWSTemplateFormatVersion: '2010-09-09'
-  Transform: 'AWS::Serverless-2016-10-31'
-  Description: A starter AWS Lambda function.
-  Resources:
-    helloworldpython3:
-      Type: 'AWS::Serverless::Function'
-      Properties:
-        Handler: app.lambda_handler
-        Runtime: python3.9
-        CodeUri: src/
-        Description: A starter AWS Lambda function.
-        MemorySize: 128
-        Timeout: 3
-        Environment:
-          Variables:
-            TABLE_NAME: !Ref Table
-            REGION_NAME: !Ref AWS::Region
-        Events:
-          HelloWorldSAMAPI:
-            Type: Api
-            Properties:
-              Path: /hello
-              Method: GET
-        Policies:
-          - DynamoDBCrudPolicy:
-              TableName: !Ref Table
+# SAM FILE
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: "AWS::Serverless-2016-10-31"
+Description: A starter AWS Lambda function.
+Resources:
+  helloworldpython3:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: app.lambda_handler
+      Runtime: python3.9
+      CodeUri: src/
+      Description: A starter AWS Lambda function.
+      MemorySize: 128
+      Timeout: 3
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Table
+          REGION_NAME: !Ref AWS::Region
+      Events:
+        HelloWorldSAMAPI:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: GET
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref Table
 
-    Table:
-      Type: AWS::Serverless::SimpleTable
-      Properties:
-        PrimaryKey:
-          Name: greeting
-          Type: String
-        ProvisionedThroughput:
-          ReadCapacityUnits: 2
-          WriteCapacityUnits: 2
+  Table:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: greeting
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 2
+        WriteCapacityUnits: 2
 ```
 
 # 3. CLI Debugging

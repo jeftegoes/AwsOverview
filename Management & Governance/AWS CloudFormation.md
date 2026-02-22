@@ -324,13 +324,11 @@
 - CloudFormation parameters already support certain AWS specific types.
 - SSM parameter types will be an addition to these types.
 - New parameter types introduced in CloudFormation are:
-
-- `AWS::SSM::Parameter::Name`
-- `AWS::SSM::Parameter::Value<String>`
-- `AWS::SSM::Parameter::Value<List<String>>`
-- `AWS::SSM::Parameter::Value<Any AWS type>`
-
-- Example:
+  - `AWS::SSM::Parameter::Name`
+  - `AWS::SSM::Parameter::Value<String>`
+  - `AWS::SSM::Parameter::Value<List<String>>`
+  - `AWS::SSM::Parameter::Value<Any AWS type>`
+- **Example**
 
   ```yaml
     aws ssm put-parameter --name myEC2TypeDev --type String --value "t2.small"
@@ -890,6 +888,7 @@
   - `secretsmanager` - For secret values stored in AWS Secrets Manager.
 - `{{resolve:service-name:reference-key}}`
 
+TODO: DIAGRAM
 ## 21.1. Dynamic Reference: ssm
 
 - Reference values stored in SSM Parameter Store of type `String` and `StringList`.
