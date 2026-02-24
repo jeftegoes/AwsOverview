@@ -4,6 +4,8 @@
 
 - [1. Multi Region Services](#1-multi-region-services)
 - [2. Multi Region with Route 53](#2-multi-region-with-route-53)
+  - [2.1. Others](#21-others)
+- [3. Complex Routing](#3-complex-routing)
 
 # 1. Multi Region Services
 
@@ -21,9 +23,17 @@
 # 2. Multi Region with Route 53
 
 - Health Check => automated DNS failovers:
-
-1. Health checks that monitor an endpoint (application, server, other AWS resource) Helpful to create a `/health` route.
-2. Health checks that monitor other health checks (calculated health checks).
-3. Health checks that monitor CloudWatch alarms (full control !!) - e.g. throttles of DynamoDB, custom metrics, etc.
-
+  1. Health checks that monitor an endpoint (application, server, other AWS resource) Helpful to create a `/health` route.
+  2. Health checks that monitor other health checks (calculated health checks).
+  3. Health checks that monitor CloudWatch alarms (full control !!) - e.g. throttles of DynamoDB, custom metrics, etc.
 - Health Checks are integrated with CW metrics.
+
+TODO: DIAGRAM
+
+## 2.1. Others
+
+TODO: DIAGRAM
+
+# 3. Complex Routing
+
+TODO: DIAGRAM

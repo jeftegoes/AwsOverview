@@ -3,10 +3,11 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. Service Catalog diagram](#2-service-catalog-diagram)
+- [2. AWS Service Catalog diagram](#2-aws-service-catalog-diagram)
 - [3. AWS Service Catalog](#3-aws-service-catalog)
 - [4. Stack Set Constraints](#4-stack-set-constraints)
 - [5. Launch Constraints](#5-launch-constraints)
+- [6. Continuous Delivery Pipeline (Syncing with GitHub)](#6-continuous-delivery-pipeline-syncing-with-github)
 
 # 1. Introduction
 
@@ -14,9 +15,9 @@
 - Some users just want a quick **self-service portal** to launch a set of **authorized products** pre-defined **by admins**.
 - **Includes:** Virtual machines, databases, storage options, etc...
 
-# 2. Service Catalog diagram
+# 2. AWS Service Catalog diagram
 
-TODO: DIAGRAM
+![AWS Service Catalog diagram](/Images/Management%20&%20Governance/AWSServiceCatalog.png)
 
 # 3. AWS Service Catalog
 
@@ -46,3 +47,7 @@ TODO: DIAGRAM
   - CloudFormation (Full Access).
   - AWS Services in the CloudFormation template.
   - S3 Bucket which contains the CloudFormation template (Read Access).
+
+# 6. Continuous Delivery Pipeline (Syncing with GitHub)
+
+![AWS Service Catalog - Continuous Delivery](/Images/Management%20&%20Governance/AWSServiceCatalogContinuousDelivery.png)

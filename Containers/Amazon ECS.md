@@ -13,6 +13,8 @@
   - [3.4. Data Volumes (EFS)](#34-data-volumes-efs)
   - [3.5. Service Auto Scaling](#35-service-auto-scaling)
     - [3.5.1. Auto Scaling EC2 Instances](#351-auto-scaling-ec2-instances)
+    - [3.5.2. Service CPU Usage Example](#352-service-cpu-usage-example)
+    - [3.5.3. ECS tasks invoked by Event Bridge](#353-ecs-tasks-invoked-by-event-bridge)
   - [3.6. Logging](#36-logging)
     - [3.6.1. Log Driver](#361-log-driver)
     - [3.6.2. Sidecar Container](#362-sidecar-container)
@@ -122,6 +124,14 @@
   - Used to automatically provision and scale the infrastructure for your ECS Tasks.
   - Capacity Provider paired with an Auto Scaling Group.
   - Add EC2 Instances when you're missing capacity (CPU, RAM...).
+
+### 3.5.2. Service CPU Usage Example
+
+TODO: DIAGRAM
+
+### 3.5.3. ECS tasks invoked by Event Bridge
+
+TODO: DIAGRAM
 
 ## 3.6. Logging
 

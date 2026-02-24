@@ -18,6 +18,7 @@
 - [14. Multi Region (Cross-Region Actions)](#14-multi-region-cross-region-actions)
 - [15. Pipeline executions](#15-pipeline-executions)
 - [16. Custom Actions (Job Worker)](#16-custom-actions-job-worker)
+- [17. API Gateway Integration](#17-api-gateway-integration)
 
 # 1. Introduction
 
@@ -186,3 +187,7 @@ TODO: DIAGRAM
   - A custom test action that configures and runs automated tests.
   - A custom invoke action that runs functions.
     ![Custom Actions](/Images/Developer%20Tools/AWSCodePipelineCustomJobWorker.png)
+
+# 17. API Gateway Integration
+
+![API Gateway Integration](/Images/Developer%20Tools/AWSCodePipelineApiGAtewayIntegration.png)

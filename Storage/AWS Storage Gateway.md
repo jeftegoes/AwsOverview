@@ -88,7 +88,7 @@
 
 ## 3.3. Tape Gateway
 
-- Some companies have backup processes using physical tapes (!).
+- Some companies have backup processes using physical tapes.
 - With Tape Gateway, companies use the same processes but, in the cloud.
 - Virtual Tape Library (VTL) backed by Amazon S3 and Glacier.
 - Back up data using existing tape-based processes (and iSCSI interface).
