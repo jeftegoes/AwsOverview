@@ -13,8 +13,10 @@
   - [3.4. Data Volumes (EFS)](#34-data-volumes-efs)
   - [3.5. Service Auto Scaling](#35-service-auto-scaling)
     - [3.5.1. Auto Scaling EC2 Instances](#351-auto-scaling-ec2-instances)
-    - [3.5.2. Service CPU Usage Example](#352-service-cpu-usage-example)
+    - [3.5.2. ECS Scaling - Service CPU Usage](#352-ecs-scaling---service-cpu-usage)
     - [3.5.3. ECS tasks invoked by Event Bridge](#353-ecs-tasks-invoked-by-event-bridge)
+    - [3.5.4. ECS tasks invoked by Event Bridge Schedule](#354-ecs-tasks-invoked-by-event-bridge-schedule)
+    - [3.5.5. ECS - SQS Queue](#355-ecs---sqs-queue)
   - [3.6. Logging](#36-logging)
     - [3.6.1. Log Driver](#361-log-driver)
     - [3.6.2. Sidecar Container](#362-sidecar-container)
@@ -125,11 +127,19 @@
   - Capacity Provider paired with an Auto Scaling Group.
   - Add EC2 Instances when you're missing capacity (CPU, RAM...).
 
-### 3.5.2. Service CPU Usage Example
+### 3.5.2. ECS Scaling - Service CPU Usage
+
+![ECS Scaling - Service CPU Usage](/Images/Containers/AmazonECSServiceCPUUsage.png)
+
+### 3.5.3. ECS tasks invoked by Event Bridge
 
 TODO: DIAGRAM
 
-### 3.5.3. ECS tasks invoked by Event Bridge
+### 3.5.4. ECS tasks invoked by Event Bridge Schedule
+
+TODO: DIAGRAM
+
+### 3.5.5. ECS - SQS Queue
 
 TODO: DIAGRAM
 
@@ -140,7 +150,7 @@ TODO: DIAGRAM
 - Containers can send application logs directly to CloudWatch Logs.
 - You need to turn on `awslogs` log driver (for Amazon CloudWatch Logs).
 - Configure `logConfiguration` parameters in your Task Definition.
-  ![Task Definition logConfiguration](/Images/AmazonECSAwsLogsLogDriver.png)
+  ![Task Definition logConfiguration](/Images/Containers/AmazonECSAwsLogsLogDriver.png)
 - **Fargate Launch Type**
   - Task Execution Role must have the required permissions.
   - Supports **awslogs, splunk, awsfirelens** log drivers.
@@ -149,7 +159,7 @@ TODO: DIAGRAM
   - Uses **CloudWatch Unified Agent & ECS Container Agent**.
   - Enable logging using `ECS_AVAILABLE_LOGGING_DRIVERS` in `/etc/ecs/ecs.config`
   - Container EC2 instances must have permissions.
-    ![awslogs driver](/Images/AmazonECSAwsLogsLogDriver.png)
+    ![awslogs driver](/Images/Containers/AmazonECSAwsLogsLogDriver.png)
   ```json
     "logConfiguration": {
       "logDriver": "awslog",
@@ -164,7 +174,7 @@ TODO: DIAGRAM
 ### 3.6.2. Sidecar Container
 
 - Using a sidecar container which is responsible for collecting logs from all other containers and files on the file system and send the logs to a log storage (e.g., CloudWatch Logs).
-  ![Sidecar Container](/Images/AmazonECSSidecarContainer.png)
+  ![Sidecar Container](/Images/Containers/AmazonECSSidecarContainer.png)
 
 ## 3.7. Rolling Updates
 
