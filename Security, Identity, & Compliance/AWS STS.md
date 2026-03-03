@@ -28,7 +28,8 @@
   - For example, the user might need access to resources **in another AWS account (cross account)**.
   - It is also useful as a means to temporarily gain privileged access-for example, to provide multi-factor authentication (MFA).
   - We must call this API using existing IAM user credentials.
-- `AssumeRoleWithSAML` - Return credentials for users logged with SAML.
+- `AssumeRoleWithSAML`
+  - Return credentials for users logged with SAML.
 - `AssumeRoleWithWebIdentity`
   - Return creds for users logged with an IdP (Facebook Login, Google Login, OIDC compatible...).
   - **AWS recommends against using this, and using Cognito Identity Pools instead.**

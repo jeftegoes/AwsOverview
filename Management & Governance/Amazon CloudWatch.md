@@ -238,8 +238,8 @@
   - Information about IP traffic going to and from network interfaces in your VPC.
 - Route 53 Access Logs => to CloudWatch Logs.
   - Log information about the queries that Route 53 receives.
-- S3 Access Logs => to S3.
-  - Server access logging provides detailed records for the requests that are made to a bucket.
+- **S3 Access Logs** => to S3.
+  - **Server access logging** provides detailed records for the requests that are made to a bucket.
 - CloudFront Access Logs => to S3.
   - Detailed information about every user request that CloudFront receives.
 

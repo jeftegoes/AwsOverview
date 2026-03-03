@@ -7,6 +7,7 @@
 - [3. Delete on Termination attribute](#3-delete-on-termination-attribute)
 - [4. Snapshots](#4-snapshots)
   - [4.1. Features](#41-features)
+  - [4.2. Amazon EventBridge Integration](#42-amazon-eventbridge-integration)
 - [5. EC2 Instance Store](#5-ec2-instance-store)
 - [6. EBS Volume Types](#6-ebs-volume-types)
   - [6.1. EBS Volume Types Use cases](#61-ebs-volume-types-use-cases)
@@ -59,8 +60,7 @@
 - Make a backup (snapshot) of your EBS volume at a point in time.
 - Not necessary to detach volume to do snapshot, **but recommended**.
 - Can copy snapshots across AZ or Region.
-
-![Amazon EC2 - EBS Snapshot diagram](/Images/Compute/AmazonEC2EBSSnapshotDiagram.png)
+  ![Amazon EC2 - EBS Snapshot diagram](/Images/Compute/AmazonEC2EBSSnapshotDiagram.png)
 
 ## 4.1. Features
 
@@ -72,6 +72,10 @@
   - Specify retention (from 1 day to 1 year).
 - **Fast Snapshot Restore (FSR)**
   - Force full initialization of snapshot to have no latency on the first use ($$$).
+
+## 4.2. Amazon EventBridge Integration
+
+- We can call the EBS Create Snapshot directly as a target from Amazon EventBridge.
 
 # 5. EC2 Instance Store
 

@@ -17,6 +17,7 @@
     - [3.5.3. ECS tasks invoked by Event Bridge](#353-ecs-tasks-invoked-by-event-bridge)
     - [3.5.4. ECS tasks invoked by Event Bridge Schedule](#354-ecs-tasks-invoked-by-event-bridge-schedule)
     - [3.5.5. ECS - SQS Queue](#355-ecs---sqs-queue)
+    - [3.5.6. ECS - Intercept Stopped Tasks using EventBridge](#356-ecs---intercept-stopped-tasks-using-eventbridge)
   - [3.6. Logging](#36-logging)
     - [3.6.1. Log Driver](#361-log-driver)
     - [3.6.2. Sidecar Container](#362-sidecar-container)
@@ -140,6 +141,10 @@ TODO: DIAGRAM
 TODO: DIAGRAM
 
 ### 3.5.5. ECS - SQS Queue
+
+![ECS - SQS Queue](/Images/Containers/AmazonECSSQSQueue.png)
+
+### 3.5.6. ECS - Intercept Stopped Tasks using EventBridge
 
 TODO: DIAGRAM
 

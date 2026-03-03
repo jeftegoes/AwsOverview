@@ -60,13 +60,13 @@
   - Anomalies appear in the CloudTrail console.
   - Event is sent to Amazon S3.
   - An EventBridge event is generated (for automation needs).
-    ![AWS CloudTrail Insights Events](/Images/Management%20&%20Governance/AWSCloudTrailInsights.png)
+    ![AWS CloudTrail - Insights Events](/Images/Management%20&%20Governance/AWSCloudTrailInsights.png)
 
 # 4. Events Retention
 
 - Events are stored for 90 days in CloudTrail.
 - To keep events beyond this period, log them to [Amazon S3](/Storage/Amazon%20S3.md) and use [Amazon Athena](/Analytics/Amazon%20Athena.md).
-  ![Events Retention](/Images/Management%20&%20Governance/AWSCloudTrailEventsRetention.png)
+  ![AWS CloudTrail - Events Retention](/Images/Management%20&%20Governance/AWSCloudTrailEventsRetention.png)
 
 # 5. DynamoDB information in CloudTrail
 
