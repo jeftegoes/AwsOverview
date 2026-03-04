@@ -470,6 +470,7 @@
 - Active-Active replication.
 - Applications can **READ** and **WRITE** to the table in any region.
 - Must enable DynamoDB Streams as a pre-requisite.
+  ![Amazon DynamoDB - Global Tables](/Images/Database/AmazonDynamoDBGlobalTables.png)
 
 # 15. Time To Live (TTL)
 

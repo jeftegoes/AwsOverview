@@ -18,7 +18,7 @@
   - [6.2. Parameters Policies (for advanced parameters)](#62-parameters-policies-for-advanced-parameters)
 - [7. Patch Manager](#7-patch-manager)
   - [7.1. Patch Baseline \& Patch Group](#71-patch-baseline--patch-group)
-  - [7.2. Patch Manager Patch Baselines](#72-patch-manager-patch-baselines)
+  - [7.2. Patch Manager - Patch Baselines](#72-patch-manager---patch-baselines)
 - [8. SSM - Maintenance Windows](#8-ssm---maintenance-windows)
 - [9. Session Manager](#9-session-manager)
   - [9.1. Permissions](#91-permissions)
@@ -211,12 +211,12 @@ TODO: DIAGRAM
   - By default, install only critical patches and patches related to security.
 - **Patch Group**
   - Associate a set of instances with a specific Patch Baseline.
-  - Example: create Patch Groups for different environments (dev, test, prod).
-  - Instances should be defined with the tag key Patch Group.
+  - **Example:** Create Patch Groups for different environments (dev, test, prod).
+  - Instances should be defined with the tag key **Patch Group**.
   - An instance can only be in one Patch Group.
   - Patch Group can be registered with only one Patch Baseline.
 
-## 7.2. Patch Manager Patch Baselines
+## 7.2. Patch Manager - Patch Baselines
 
 - **Pre-Defined Patch Baseline**
   - Managed by AWS for different Operating Systems (can't be modified).

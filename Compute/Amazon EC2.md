@@ -55,6 +55,8 @@
   - [22.2. Dedicated Instances](#222-dedicated-instances)
   - [22.3. Dedicated Hosts](#223-dedicated-hosts)
   - [22.4. How Tenancy Settings Work](#224-how-tenancy-settings-work)
+- [23. # 🛠️ EC2Rescue \& Systems Manager Automation – Summary](#23--️-ec2rescue--systems-manager-automation--summary)
+- [24. EC2Rescue](#24-ec2rescue)
 
 # 1. Introduction
 
@@ -606,3 +608,22 @@
 | default     | dedicated               | Dedicated                  |
 | dedicated   | shared (default)        | Dedicated                  |
 | dedicated   | dedicated               | Dedicated                  |
+
+# 23. # 🛠️ EC2Rescue & Systems Manager Automation – Summary
+
+---
+
+# 24. EC2Rescue
+
+- EC2Rescue helps diagnose and troubleshoot problems on:
+  - Amazon EC2 **Linux** instances
+  - Amazon EC2 **Windows Server** instances
+- We can run EC2Rescue:
+- **Manually**
+- **Automatically** using:
+  - Systems Manager Automation
+  - The `AWSSupport-ExecuteEC2Rescue` document.
+- This Automation document performs a combination of:
+  - Systems Manager actions
+  - AWS CloudFormation actions
+  - AWS Lambda functions

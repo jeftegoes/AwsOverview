@@ -10,6 +10,7 @@
 - [6. IAM Roles for Service Accounts (IRSA)](#6-iam-roles-for-service-accounts-irsa)
 - [7. Encrypting EKS Secrets with KMS](#7-encrypting-eks-secrets-with-kms)
 - [8. Kubernetes Cluster Autoscaler on EKS](#8-kubernetes-cluster-autoscaler-on-eks)
+- [9. EBS CSI driver](#9-ebs-csi-driver)
 
 # 1. Introduction
 
@@ -61,9 +62,10 @@
 
 - We can capture node, pod, and containers logs and send them to CloudWatch Logs.
 - Use **CloudWatch Agent** to send metrics to CloudWatch.
-- Use the Fluent Bit, or Fluentd log drivers to send logs to CloudWatch Logs.
+- Use the **Fluent Bit**, or **Fluentd** log drivers to send logs to CloudWatch Logs.
 - Container logs are stored on a Node directory /var/log/containers.
-- Use CloudWatch Container Insights to get a dashboarding monitoring solution for nodes, pods, tasks, and services.
+- Use **CloudWatch Container Insights** to get a dashboarding monitoring solution for nodes, pods, tasks, and services.
+  ![Amazon EKS - Nodes & Containers Logging](/Images/Containers/AmazonEKSNodesContainersLogging.png)
 
 # 6. IAM Roles for Service Accounts (IRSA)
 
@@ -100,3 +102,7 @@
   - Ensures elasticity and high availability.
   - Reduces costs by removing idle nodes.
   - Minimizes admin overhead while supporting real-time, variable workloads.
+
+# 9. EBS CSI driver
+
+![Amazon EKS - Container Storage Interface (CSI)](/Images/Containers/AmazonEKSContainerStorageInterface.png)

@@ -85,7 +85,7 @@
 
 2. Install the X-Ray daemon or enable X-Ray AWS Integration:
 
-- X-Ray daemon works as a low level UDP packet interceptor (Linux / Windows / Mac...).
+- X-Ray daemon works as a low level UDP (2000) packet interceptor (Linux / Windows / Mac...).
 - AWS Lambda / other AWS services already run the X-Ray daemon for you.
 - Each application must have the IAM rights to write data to X-Ray.
 
