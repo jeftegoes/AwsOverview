@@ -64,7 +64,7 @@
 
 ## 3.2. Remediations
 
-- Automate remediation of non-compliant resources using SSM Automation Documents.
+- Automate remediation of non-compliant resources using **AWS Systems Manager - Automation Documents**.
 - Use AWS-Managed Automation Documents or create custom Automation Documents.
   - **Tip:** We can create custom Automation Documents that invokes Lambda function.
 - We can set **Remediation Retries** if the resource is still non-compliant after auto-remediation.

@@ -24,15 +24,14 @@
   - [15.3. Instance Reuse Policy](#153-instance-reuse-policy)
 - [16. AWS Application Auto Scaling](#16-aws-application-auto-scaling)
   - [16.1. Integrated AWS Services](#161-integrated-aws-services)
-- [17. Terraform details](#17-terraform-details)
-- [18. ASG and EC2 Impaired status](#18-asg-and-ec2-impaired-status)
-- [19. EC2 Auto Scaling and ELB Health Checks](#19-ec2-auto-scaling-and-elb-health-checks)
-- [20. Scaling Based on Amazon SQS](#20-scaling-based-on-amazon-sqs)
-- [21. Health Check Grace Period](#21-health-check-grace-period)
-- [22. Health Check Replacement vs. AZ Rebalancing](#22-health-check-replacement-vs-az-rebalancing)
-  - [22.1. Health Check Replacement](#221-health-check-replacement)
-  - [22.2. Availability Zone (AZ) Rebalancing](#222-availability-zone-az-rebalancing)
-  - [22.3. Summary Table](#223-summary-table)
+- [17. ASG and EC2 Impaired status](#17-asg-and-ec2-impaired-status)
+- [18. EC2 Auto Scaling and ELB Health Checks](#18-ec2-auto-scaling-and-elb-health-checks)
+- [19. Scaling Based on Amazon SQS](#19-scaling-based-on-amazon-sqs)
+- [20. Health Check Grace Period](#20-health-check-grace-period)
+- [21. Health Check Replacement vs. AZ Rebalancing](#21-health-check-replacement-vs-az-rebalancing)
+  - [21.1. Health Check Replacement](#211-health-check-replacement)
+  - [21.2. Availability Zone (AZ) Rebalancing](#212-availability-zone-az-rebalancing)
+  - [21.3. Summary Table](#213-summary-table)
 
 # 1. Introduction
 
@@ -247,39 +246,21 @@
 - Spot Fleet - Requests
 - Custom Resources
 
-# 17. Terraform details
-
-- If you plan to launch an Auto Scaling group of EC2 instances, you can configure the `AWS::AutoScaling::AutoScalingGroup` resource type reference in your CloudFormation template to define an Amazon EC2 Auto Scaling group with the specified name and attributes.
-- You can add an `UpdatePolicy` attribute to your Auto Scaling group to perform rolling updates (or **replace** the group) when a change has been made to the group.
-- To specify how AWS CloudFormation handles replacement updates for an Auto Scaling group, use the `AutoScalingReplacingUpdate` policy.
-  - This policy enables you to specify whether AWS CloudFormation **replaces** an Auto Scaling group with a new one or **replaces** only the instances in the Auto Scaling group.
-    ```yaml
-    UpdatePolicy:
-      AutoScalingReplacingUpdate:
-        WillReplace: true
-    ```
-  - During replacement, AWS CloudFormation retains the old group until it finishes creating the new one.
-    1. If the update fails, AWS CloudFormation can roll back to the old Auto Scaling group and delete the new Auto Scaling group.
-    2. While AWS CloudFormation creates the new group, it doesn't detach or attach any instances.
-    3. After successfully creating the new Auto Scaling group, AWS CloudFormation deletes the old Auto Scaling group during the cleanup process.
-  - When you set the `WillReplace` parameter, remember to specify a matching CreationPolicy.
-    - If the minimum number of instances (specified by the `MinSuccessfulInstancesPercent` property) doesn't signal success within the Timeout period (specified in the `CreationPolicy` policy), the replacement update fails, and AWS CloudFormation rolls back to the old Auto Scaling group.
-
-# 18. ASG and EC2 Impaired status
+# 17. ASG and EC2 Impaired status
 
 - Amazon EC2 Auto Scaling does not immediately terminate instances with an **Impaired status**.
 - Instead, Amazon EC2 Auto Scaling waits a few minutes for the instance to recover.
 - Amazon EC2 Auto Scaling might also delay or not terminate instances that fail to report data for status checks.
 - This usually happens when there is insufficient data for the status check metrics in Amazon CloudWatch.
 
-# 19. EC2 Auto Scaling and ELB Health Checks
+# 18. EC2 Auto Scaling and ELB Health Checks
 
 - By default, **Amazon EC2 Auto Scaling uses EC2 health checks**, not ELB health checks.
 - This means it **won't terminate instances** that fail **ELB health checks** unless configured otherwise.
 - If an instance appears `OutOfService` in the ELB console but **Healthy** in the Auto Scaling console, check the group's **health check type**.
 - To ensure Auto Scaling responds to ELB failures, set the health check type to **ELB**.
 
-# 20. Scaling Based on Amazon SQS
+# 19. Scaling Based on Amazon SQS
 
 - Use **Amazon EC2 Auto Scaling** with a **target tracking policy** based on the SQS `ApproximateNumberOfMessages` metric.
 - Automatically adjusts the number of worker instances as queue depth changes.
@@ -288,15 +269,15 @@
 - Removes the need for manual intervention or fixed scaling schedules.  
   ![Scaling Based on Amazon SQS](/Images/Compute/AmazonEC2ASGScalingBasedSQS.png)
 
-# 21. Health Check Grace Period
+# 20. Health Check Grace Period
 
 - **Amazon EC2 Auto Scaling** waits for the **health check grace period** to expire before terminating an instance.
 - This applies even if the instance fails **EC2 status checks** or **ELB health checks**.
 - The grace period allows the instance time to **initialize and become healthy** before being evaluated for termination.
 
-# 22. Health Check Replacement vs. AZ Rebalancing
+# 21. Health Check Replacement vs. AZ Rebalancing
 
-## 22.1. Health Check Replacement
+## 21.1. Health Check Replacement
 
 - **Triggered by**: Detection of an unhealthy instance (via EC2 or ELB health checks).
 - **Sequence**:
@@ -305,7 +286,7 @@
 - **Impact**: May cause a temporary dip in capacity.
 - **Reason**: The instance is already unhealthy and likely not serving traffic.
 
-## 22.2. Availability Zone (AZ) Rebalancing
+## 21.2. Availability Zone (AZ) Rebalancing
 
 - **Triggered by**: Imbalance in instance distribution across AZs (e.g., due to manual changes or AZ configuration updates).
 - **Sequence**:
@@ -314,7 +295,7 @@
 - **Impact**: Maintains full capacity at all times.
 - **Reason**: To avoid degrading performance during rebalancing.
 
-## 22.3. Summary Table
+## 21.3. Summary Table
 
 | Feature                     | Health Check Replacement | AZ Rebalancing |
 | --------------------------- | ------------------------ | -------------- |

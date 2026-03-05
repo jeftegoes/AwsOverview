@@ -12,20 +12,23 @@
   - [4.3. List of lifecycle event hooks](#43-list-of-lifecycle-event-hooks)
 - [5. EC2/On-premises Platform](#5-ec2on-premises-platform)
   - [5.1. In-Place deployment](#51-in-place-deployment)
-  - [5.2. Blue / Green Deployment](#52-blue--green-deployment)
+  - [5.2. Blue / Green Deployments](#52-blue--green-deployments)
   - [5.3. CodeDeploy Agent](#53-codedeploy-agent)
 - [6. Lambda Platform](#6-lambda-platform)
 - [7. ECS Platform](#7-ecs-platform)
 - [8. Deployment to EC2](#8-deployment-to-ec2)
 - [9. In-place](#9-in-place)
   - [9.1. In-place Deployment Hooks](#91-in-place-deployment-hooks)
-- [10. Deploy to an ASG](#10-deploy-to-an-asg)
-- [11. Redeploy \& Rollbacks](#11-redeploy--rollbacks)
-- [12. Troubleshooting](#12-troubleshooting)
-  - [12.1. Scenario 1](#121-scenario-1)
-  - [12.2. Scenario 2](#122-scenario-2)
-  - [12.3. Scenario 3](#123-scenario-3)
-  - [12.4. Scenario 4](#124-scenario-4)
+- [10. EC2 Deployment Hooks](#10-ec2-deployment-hooks)
+- [11. Blue/Green Deployments](#11-bluegreen-deployments)
+  - [11.1. Blue/Green - Instance Termination](#111-bluegreen---instance-termination)
+- [12. Deploy to an ASG](#12-deploy-to-an-asg)
+- [13. Redeploy \& Rollbacks](#13-redeploy--rollbacks)
+- [14. Troubleshooting](#14-troubleshooting)
+  - [14.1. Scenario 1](#141-scenario-1)
+  - [14.2. Scenario 2](#142-scenario-2)
+  - [14.3. Scenario 3](#143-scenario-3)
+  - [14.4. Scenario 4](#144-scenario-4)
 
 # 1. Introduction
 
@@ -188,13 +191,14 @@ hooks:
   - `AllAtOnce` - Most downtime.
   - `HalfAtATime` - Reduced capacity by 50%.
   - `OneAtATime` - Slowest, lowest availability impact.
-  - `Custom` - Define your.
+  - `Custom` - Define your %.
 
 ## 5.1. In-Place deployment
 
-![Aws CodeDeploy In-Place Deployment](/Images/Developer%20Tools/AwsCodeDeployInPlaceDeployment.png)
+- Half At A Time.
+  ![Aws CodeDeploy In-Place Deployment](/Images/Developer%20Tools/AwsCodeDeployInPlaceDeployment.png)
 
-## 5.2. Blue / Green Deployment
+## 5.2. Blue / Green Deployments
 
 ![Aws CodeDeploy Blue/Green Deployment](/Images/Developer%20Tools/AwsCodeDeployBlueGreenDeployment.png)
 
@@ -240,13 +244,36 @@ hooks:
 # 9. In-place
 
 - Use EC2 Tags or ASG to identify instances you want to deploy to.
-- With a Load Balancer: traffic is stopped before instance is updated, and started again after the instance is updated.
+- **With a Load Balancer:** Traffic is stopped before instance is updated, and started again after the instance is updated.
 
 ## 9.1. In-place Deployment Hooks
 
 - Hooks - one or more scripts to be run by CodeDeploy on each EC2 instance.
 
-# 10. Deploy to an ASG
+# 10. EC2 Deployment Hooks
+
+TODO: DIAGRAMW
+
+# 11. Blue/Green Deployments
+
+- **Manually mode**
+  - Provision EC2 Instances for Blue and Green and identify by Tags.
+    ![Aws CodeDeploy - Blue/Green Manual Deployment](/Images/Developer%20Tools/AwsCodeDeployBlueGreenManualDeployment.png)
+- **Automatic mode**
+  - New ASG is provisioned by CodeDeploy (settings are copied).
+    ![Aws CodeDeploy - Blue/Green Automatic Deployment](/Images/Developer%20Tools/AwsCodeDeployBlueGreenAutomaticDeployment.png)
+- Using a Load Balancer is necessary for Blue/Green.
+
+## 11.1. Blue/Green - Instance Termination
+
+- `BlueInstanceTerminationOption` - Specify whether to terminate the original (Blue) EC2 instances after a successfully Blue-Green deployment.
+- `-action`
+  - `TERMINATE` - **Action Terminate:** Specify Wait Time, default 1 hour, max 2 days.
+  - `KEEP_ALIVE` - **Action Keep Alive:** Instances are kept running but deregistered from ELB and deployment group.
+    ![AWS CodeDeploy - Blue/Green Instance Termination](/Images/Developer%20Tools/AWSCodeDeployBlueGreenInstanceTermination.png)
+- `-terminationWaitTimeInMinutes` - The number of minutes to wait after a successful blue/green deployment before terminating instances from the original environment.
+
+# 12. Deploy to an ASG
 
 - **In-place Deployment**
   - Updates existing EC2 instances.
@@ -256,7 +283,7 @@ hooks:
   - Choose how long to keep the old EC2 instances (old ASG).
   - Must be using an ELB.
 
-# 11. Redeploy & Rollbacks
+# 13. Redeploy & Rollbacks
 
 - Rollback = Redeploy a previously deployed revision of your application.
 - **Deployments can be rolled back**
@@ -266,9 +293,9 @@ hooks:
 - **If a roll back happens, CodeDeploy redeploys the last known good revision as a new deployment (not a restored version).**
   ![AWS Code Deploy rollback configuration](/Images/Developer%20Tools/AWSCodeDeployRollback.png)
 
-# 12. Troubleshooting
+# 14. Troubleshooting
 
-## 12.1. Scenario 1
+## 14.1. Scenario 1
 
 - **Deployment Error: "InvalidSignatureException - Signature expired: [time] is now earlier than [time]"**
   - For CodeDeploy to perform its operations, it requires accurate time references.
@@ -276,7 +303,7 @@ hooks:
 - Check log files to understand deployment issues:
   - For Amazon Linux, Ubuntu, and RHEL log files stored at `/opt/codedeploy-agent/deployment-root/deployment- logs/codedeploy-agent-deployments.log`.
 
-## 12.2. Scenario 2
+## 14.2. Scenario 2
 
 - **When the Deployment or all Lifecycle Events are skipped (EC2/On- Premises)**, you get one of the following errors:
   - "The overall deployment failed because too many individual instances failed deployment".
@@ -290,14 +317,14 @@ hooks:
 
 ![Deployment failure](/Images/Developer%20Tools/AWSCodeDeployDeploymentFailure.png)
 
-## 12.3. Scenario 3
+## 14.3. Scenario 3
 
 - If a CodeDeploy deployment to ASG is underway and a scale-out event occurs, the new instances will be updated with the application revision that was most recently deployed (not the application revision that is currently being deployed).
 - ASG will have EC2 instances hosting different versions of the application.
 - By default, CodeDeploy automatically starts a follow-on deployment to update any outdated EC2 instances.
 
-## 12.4. Scenario 4
+## 14.4. Scenario 4
 
-- Issue: failed AllowTraffic lifecycle event in Blue/Green Deployments with no error reported in the Deployment Logs:
-- **Reason:** incorrectly configured health checks in ELB.
-- **Resolution:** review and correct any errors in ELB health checks configuration.
+- **Issue:** Failed AllowTraffic lifecycle event in Blue/Green Deployments with no error reported in the Deployment Logs:
+- **Reason:** Incorrectly configured health checks in ELB.
+- **Resolution:** Review and correct any errors in ELB health checks configuration.

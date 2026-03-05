@@ -79,6 +79,17 @@
   - [22.4. StackSets with AWS Organizations](#224-stacksets-with-aws-organizations)
   - [22.5. StackSet Drift Detection](#225-stackset-drift-detection)
 - [23. CloudFormation - Drift](#23-cloudformation---drift)
+- [24. Auto Scaling Group Update and Replacement Policies](#24-auto-scaling-group-update-and-replacement-policies)
+  - [24.1. UpdatePolicy Overview](#241-updatepolicy-overview)
+  - [24.2. AutoScalingRollingUpdate](#242-autoscalingrollingupdate)
+    - [24.2.1. Example Configuration](#2421-example-configuration)
+    - [24.2.2. Risks](#2422-risks)
+    - [24.2.3. Rolling Update Best Practices](#2423-rolling-update-best-practices)
+  - [24.3. AutoScalingReplacingUpdate](#243-autoscalingreplacingupdate)
+    - [24.3.1. How Replacement Works](#2431-how-replacement-works)
+    - [24.3.2. CreationPolicy Requirement](#2432-creationpolicy-requirement)
+  - [24.4. When to Use Each Policy](#244-when-to-use-each-policy)
+  - [24.5. Final Summary](#245-final-summary)
 
 # 1. Introduction Infrastructure as Code (IaC)
 
@@ -889,6 +900,7 @@
 - `{{resolve:service-name:reference-key}}`
 
 TODO: DIAGRAM
+
 ## 21.1. Dynamic Reference: ssm
 
 - Reference values stored in SSM Parameter Store of type `String` and `StringList`.
@@ -984,3 +996,129 @@ TODO: DIAGRAM
 - How do we know if our resources have drifted?
   - We can use CloudFormation Drift!
 - Detect drift on an entire stack or on individual resources within a stack.
+
+# 24. Auto Scaling Group Update and Replacement Policies
+
+- To launch an Auto Scaling group of EC2 instances, use the `AWS::AutoScaling::AutoScalingGroup` resource in your CloudFormation template.
+- This resource allows you to define:
+  - Group name
+  - Launch template or launch configuration
+  - Desired capacity
+  - Scaling policies
+  - Health check settings
+  - Networking configuration
+  - Other scaling attributes
+
+## 24.1. UpdatePolicy Overview
+
+- We can add an `UpdatePolicy` attribute to control how the Auto Scaling group behaves when the stack is updated.
+- There are two main strategies:
+  | Policy | Behavior | Risk Level |
+  | -------------------------- | -------------------------------------- | -------------------------------------------- |
+  | `AutoScalingRollingUpdate` | Replaces instances in batches | Medium (temporary reduced capacity possible) |
+  | `AutoScalingReplacingUpdate` | Replaces the entire Auto Scaling group | Lower risk with safer rollback |
+
+## 24.2. AutoScalingRollingUpdate
+
+- Keeps the same Auto Scaling group.
+- Replaces EC2 instances gradually in batches.
+- Uses configurable parameters to control update behavior.
+
+### 24.2.1. Example Configuration
+
+```json
+"UpdatePolicy": {
+  "AutoScalingRollingUpdate": {
+    "MaxBatchSize": Integer,
+    "MinInstancesInService": Integer,
+    "MinSuccessfulInstancesPercent": Integer,
+    "PauseTime": String,
+    "SuspendProcesses": [ List ],
+    "WaitOnResourceSignals": Boolean
+  }
+}
+```
+
+### 24.2.2. Risks
+
+- Temporary reduced capacity during update.
+- Potential performance degradation.
+- Possible stack rollback if configuration is incorrect.
+
+### 24.2.3. Rolling Update Best Practices
+
+1. Configure WaitOnResourceSignals and PauseTime
+   - Set WaitOnResourceSignals to false if you do not want CloudFormation to wait for instance success signals.
+   - If set to true:
+     - `PauseTime` acts as a timeout.
+     - CloudFormation waits for success signals.
+     - If no signal is received within the timeout, the update fails and the stack rolls back.
+2. Configure MinSuccessfulInstancesPercent
+   - Prevents full stack rollback if only a small number of instances fail.
+   - Important when replacing many instances.
+   - Helps improve resilience during rolling updates.
+3. Configure SuspendProcesses
+   - During a rolling update, suspend the following Auto Scaling processes:
+     - HealthCheck
+     - ReplaceUnhealthy
+     - AZRebalance
+     - AlarmNotification
+     - ScheduledActions
+   - If using Elastic Load Balancing, do not suspend:
+     - Launch
+     - Terminate
+     - AddToLoadBalancer
+   - These are required for proper rolling updates.
+   - Unexpected scaling actions during updates can cause failures due to inconsistent group state.
+
+## 24.3. AutoScalingReplacingUpdate
+
+- Replaces the entire Auto Scaling group.
+- Creates a new group before deleting the old one.
+- Provides safer rollback behavior.
+- Example Configuration:
+  ```yaml
+  UpdatePolicy:
+    AutoScalingReplacingUpdate:
+      WillReplace: true
+  ```
+
+### 24.3.1. How Replacement Works
+
+- When `WillReplace: true` is configured:
+  1. CloudFormation creates a new Auto Scaling group.
+  2. The old group remains active during creation.
+  3. If the update fails, CloudFormation rolls back to the old group and deletes the new one.
+  4. If successful, the old group is deleted during cleanup.
+  5. No instance detachment or attachment occurs during group creation.
+
+### 24.3.2. CreationPolicy Requirement
+
+- When using WillReplace: true, you must define a matching CreationPolicy.
+- CloudFormation waits for instance success signals based on:
+  - `MinSuccessfulInstancesPercent`
+  - `Timeout` defined in the CreationPolicy
+- If the required number of instances does not signal success within the timeout period:
+  - The replacement update fails.
+  - CloudFormation rolls back to the old Auto Scaling group.
+
+## 24.4. When to Use Each Policy
+
+- Use `AutoScalingRollingUpdate` When:
+  - You want controlled, batch-based instance replacement.
+  - Minor configuration changes are being made.
+  - Temporary capacity reduction is acceptable.
+- Use `AutoScalingReplacingUpdate` When:
+  - High availability is critical.
+  - You want a safer rollback mechanism.
+  - You prefer full group replacement instead of gradual updates.
+
+## 24.5. Final Summary
+
+|           Feature            | RollingUpdate |        ReplacingUpdate        |
+| :--------------------------: | :-----------: | :---------------------------: |
+| Replaces instances gradually |      Yes      |              No               |
+|    Replaces entire group     |      No       |              Yes              |
+|   Risk of reduced capacity   |      Yes      | No (old group remains active) |
+|   Requires CreationPolicy    |  Recommended  |           Required            |
+|   Safer rollback behavior    |   Moderate    |            Strong             |
