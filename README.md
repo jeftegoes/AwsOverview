@@ -659,8 +659,8 @@
 
 ### 13.11.1. ## AWS Root User Notifications Best Practice
 
-- Configure **root email aliases** → forward to a **centralized mailbox** monitored by admins.
-- Assign **alternate contacts** (billing, security, operations) → use **team distribution lists**.
+- Configure **root email aliases** -> forward to a **centralized mailbox** monitored by admins.
+- Assign **alternate contacts** (billing, security, operations) -> use **team distribution lists**.
 
 ### 13.11.2. Benefit
 

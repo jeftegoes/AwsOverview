@@ -20,8 +20,7 @@
   - CloudFront Distributions.
   - APIs on API Gateway.
 - Cannot use ACM with EC2 (can't be extracted).
-
-![AWS Certificate Manager](/Images/AWSCertificateManager.png)
+  ![AWS Certificate Manager](/Images/Security,%20Identity,%20&%20Compliance/AWSCertificateManager.png)
 
 # 2. Requesting Public Certificates
 

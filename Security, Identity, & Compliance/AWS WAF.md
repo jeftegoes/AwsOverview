@@ -18,8 +18,10 @@
 - Protects your web applications from common web exploits (Layer 7).
 - **Deploy on**
   - [Application Load Balancer](/Compute/AWS%20ELB.md).
-  - [API Gateway](/Networking%20&%20Content%20Delivery/AWS%20API%20Gateway.md).
-  - [CloudFront](/Networking%20&%20Content%20Delivery/AWS%20CloudFront.md).
+  - [API Gateway](/Networking%20&%20Content%20Delivery/Amazon%20API%20Gateway.md).
+    ![AWS WAF - API Gateway](/Images/Security,%20Identity,%20&%20Compliance/AWSWAFApiGateway.png)
+  - [CloudFront](/Networking%20&%20Content%20Delivery/Amazon%20CloudFront.md).
+    ![AWS WAF - CloudFront](/Images/Security,%20Identity,%20&%20Compliance/AWSWAFCloudFront.png)
   - AppSync GraphQL API.
   - Cognito User Pool.
 - **WAF is not for DDoS protection.**

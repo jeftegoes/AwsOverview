@@ -29,7 +29,10 @@
   - [7.1. Origin Groups](#71-origin-groups)
 - [8. Field Level Encryption](#8-field-level-encryption)
 - [9. Real Time Logs](#9-real-time-logs)
-- [10. HTTPS for communication between viewers and CloudFront](#10-https-for-communication-between-viewers-and-cloudfront)
+- [10. HTTPS Configuration](#10-https-configuration)
+  - [10.1. HTTPS Encryption with CloudFront](#101-https-encryption-with-cloudfront)
+  - [10.2. HTTPS Between Viewer and CloudFront](#102-https-between-viewer-and-cloudfront)
+  - [10.3. HTTPS Between CloudFront and the Origin](#103-https-between-cloudfront-and-the-origin)
 - [11. CloudFront and ACM Certificate Region Requirement](#11-cloudfront-and-acm-certificate-region-requirement)
 - [12. Origin Access Control (OAC)](#12-origin-access-control-oac)
 
@@ -162,7 +165,7 @@
   - **Cookies:** None - Whitelist - All.
   - **Query Strings:** None - Whitelist - All.
 - Ability to add CloudFront HTTP headers and Custom Headers to an origin request that were not included in the viewer request.
-- Create your own policy or use Predefined Managed Policies.
+- Create our own policy or use Predefined Managed Policies.
 
 ## 3.4. Cache invalidations
 
@@ -285,9 +288,40 @@
   - Sampling Rate - percentage of requests for which we want to receive.
   - Specific fields and specific Cache Behaviors (path patterns).
 
-# 10. HTTPS for communication between viewers and CloudFront
+# 10. HTTPS Configuration
 
-- Change the **Origin Protocol Policy** and **Viewer Protocol Policy**.
+## 10.1. HTTPS Encryption with CloudFront
+
+- Amazon CloudFront allows you to enforce **HTTPS encryption** for two communication paths:
+  1. **Viewer -> CloudFront**
+  2. **CloudFront -> Origin**
+- This ensures **end-to-end encrypted communication** between users, CloudFront, and the backend origin.
+
+## 10.2. HTTPS Between Viewer and CloudFront
+
+- To encrypt traffic between users and CloudFront, we can use:
+  - **AWS Certificate Manager (ACM) certificates**
+  - **Certificates issued by trusted Certificate Authorities (CAs)** such as:
+    - DigiCert.
+    - Comodo.
+    - Symantec.
+    - Other trusted third-party providers.
+  - We must also configure the **Viewer Protocol Policy** in CloudFront.
+  - **Recommended setting:** `HTTPS Only`
+    - This forces all users to access content using secure HTTPS connections.
+
+## 10.3. HTTPS Between CloudFront and the Origin
+
+- CloudFront can also use HTTPS when retrieving content from the origin server.
+- The certificate requirements depend on the **type of origin**.
+- If the Origin is an ELB (ALB or NLB)
+  - **We can use**
+    - ACM certificates
+    - Certificates from trusted third-party CAs
+- If the Origin is EC2 or another custom server
+  - **We must use**
+    - **Certificates issued by a trusted public CA**
+- ACM certificates cannot be used directly unless the origin is behind an ELB.
 
 # 11. CloudFront and ACM Certificate Region Requirement
 
