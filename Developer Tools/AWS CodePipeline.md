@@ -152,9 +152,9 @@
 # 13. Invoke Action
 
 - **Lambda:** Invokes a Lambda function within a Pipeline.
+  ![AWS CodePipeline - Lambda Function](/Images/Developer%20Tools/AWSCodePipelineLambdaFunction.png)
 - **Step Functions:** Starts a State Machine within a Pipeline.
-
-TODO: DIAGRAM
+  ![AWS CodePipeline - Step Functions](/Images/Developer%20Tools/AWSCodePipelineStepFunctions.png)
 
 # 14. Multi Region (Cross-Region Actions)
 

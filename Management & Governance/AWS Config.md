@@ -148,6 +148,6 @@
 
 # 9. Managed Rules
 
-- AWS Config provides **AWS managed rules**, which are predefined, customizable rules that AWS Config uses to evaluate whether our AWS resources comply with common best practices.
+- **AWS Config** provides **AWS managed rules**, which are predefined, customizable rules that AWS Config uses to evaluate whether our AWS resources comply with common best practices.
 - TODO: IMPROVE DIAGRAM, fix name of aws components
   ![AWS Managed Rules](/Images/Management%20&%20Governance/AWSConfigManagedRules.png)

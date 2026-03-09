@@ -50,6 +50,7 @@
 - **Instance Status Checks**
   - Monitors software/network configuration of your instance (invalid network configuration, exhausted memory...).
   - **Resolution:** Reboot the instance or change instance configuration.
+    TODO: DIAGRAM
 
 # 4. CW Metrics & Recovery
 
@@ -62,6 +63,7 @@
   - Send notifications using SNS
 - Option 2: **Auto Scaling Group**
   - Set min/max/desired 1 to recover an instance but won't keep the same private and elastic IP.
+    TODO: DIAGRAM
 
 # 5. Detecting Exposed Credentials
 

@@ -134,7 +134,7 @@
 
 ### 3.5.3. ECS tasks invoked by Event Bridge
 
-TODO: DIAGRAM
+![ECS tasks invoked by Event Bridge](/Images/Containers/AmazonECSTasksInvokedEventBridge.png)
 
 ### 3.5.4. ECS tasks invoked by Event Bridge Schedule
 

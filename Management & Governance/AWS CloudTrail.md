@@ -86,9 +86,9 @@
 
 - To determine whether a log file was modified, deleted, or unchanged after CloudTrail delivered it, we can use CloudTrail **Log File Integrity Validation**.
 - This feature is built using industry-standard algorithms: SHA-256 for hashing and SHA-256 with RSA for digital signing.
-- This makes it computationally infeasible to modify, delete or forge CloudTrail log files without detection. We can use the AWS CLI to validate the files in the location where CloudTrail delivered them.
-
-![Log file validation parameter](/Images/Management%20&%20Governance/AWSCloudTrailLogFileValidationParameter.png)
+- This makes it computationally infeasible to modify, delete or forge CloudTrail log files without detection.
+  - We can use the AWS CLI to validate the files in the location where CloudTrail delivered them.
+    ![Log file validation parameter](/Images/Management%20&%20Governance/AWSCloudTrailLogFileValidationParameter.png)
 
 ## 8.1. Digest file
 

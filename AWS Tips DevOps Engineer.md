@@ -30,5 +30,5 @@
 - **Subscription Filter:** Filter which logs are events delivered to your destination.
 - Get a real-time log events from CloudWatch Logs for processing and analysis.
 - Send to Kinesis Data Streams, Kinesis Data Firehose, or Lambda.
-  ![Amazon CloudWatch Logs Subscriptions](/Images/AmazonCloudWatchLogsSubscriptions.png)
-  ![Amazon CloudWatch Logs Subscriptions](/Images/AmazonCloudWatchSubscriptionFilters.png)
+  ![Amazon CloudWatch Logs Subscriptions](/Images/Management%20&%20Governance/AmazonCloudWatchLogsSubscriptions.png)
+  ![Amazon CloudWatch Logs Subscriptions](/Images/Management%20&%20Governance/AmazonCloudWatchSubscriptionFilters.png)

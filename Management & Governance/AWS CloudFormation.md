@@ -159,6 +159,7 @@
   - Editing templates in a YAML file.
   - Using the AWS CLI (Command Line Interface) to deploy the templates.
   - Recommended way when you fully want to automate your flow.
+    TODO: DIAGRAM
 
 ## 1.6. Building Blocks
 
@@ -834,7 +835,7 @@
   - Define custom provisioning logic for resources can that be outside of CloudFormation (on-premises resources, 3rd party resources...).
   - Have custom scripts run during create / update / delete through Lambda functions (running a Lambda function to empty an S3 bucket before being deleted).
 - Defined in the template using `AWS::CloudFormation::CustomResource` or `Custom::MyCustomResourceTypeName` **(recommended)**
-- Backed by a Lambda function (most common) or an SNS topic.
+- Backed by a Lambda (Lambda-backed) function (most common) or an SNS topic.
 
 ## 17.1. How to define a Custom Resource?
 
