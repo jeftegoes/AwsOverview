@@ -1,0 +1,47 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Page-1" id="Se1ckKquMsUyutCZBZ5d">
+    <mxGraphModel dx="1224" dy="1192" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="DbOYXOh3oyHJ5F7HtCSS-4" edge="1" parent="1" source="DbOYXOh3oyHJ5F7HtCSS-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="DbOYXOh3oyHJ5F7HtCSS-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DbOYXOh3oyHJ5F7HtCSS-8" connectable="0" parent="DbOYXOh3oyHJ5F7HtCSS-4" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&amp;nbsp;Stop &amp;amp; Start&amp;nbsp;" vertex="1">
+          <mxGeometry relative="1" x="-0.1534" y="2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DbOYXOh3oyHJ5F7HtCSS-1" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.user;" value="" vertex="1">
+          <mxGeometry height="78" width="78" x="220" y="439" as="geometry" />
+        </mxCell>
+        <mxCell id="DbOYXOh3oyHJ5F7HtCSS-2" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.traditional_server;" value="Host 1" vertex="1">
+          <mxGeometry height="152.33" width="87.88" x="436.44000000000005" y="372" as="geometry" />
+        </mxCell>
+        <mxCell id="DbOYXOh3oyHJ5F7HtCSS-7" edge="1" parent="1" source="DbOYXOh3oyHJ5F7HtCSS-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="DbOYXOh3oyHJ5F7HtCSS-6" value="migrate">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="478" />
+              <mxPoint x="630" y="720" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DbOYXOh3oyHJ5F7HtCSS-3" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.instance2;" value="" vertex="1">
+          <mxGeometry height="48" width="48" x="456.38" y="454" as="geometry" />
+        </mxCell>
+        <mxCell id="DbOYXOh3oyHJ5F7HtCSS-5" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.traditional_server;" value="Host 2" vertex="1">
+          <mxGeometry height="152.33" width="87.88" x="436.44000000000005" y="614" as="geometry" />
+        </mxCell>
+        <mxCell id="DbOYXOh3oyHJ5F7HtCSS-6" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.instance2;" value="" vertex="1">
+          <mxGeometry height="48" width="48" x="456.3799999999999" y="696" as="geometry" />
+        </mxCell>
+        <mxCell id="DbOYXOh3oyHJ5F7HtCSS-9" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1;fontColor=#FF0000;" value="&lt;div&gt;Hardware failure&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="110" x="425.38" y="334" as="geometry" />
+        </mxCell>
+        <mxCell id="DbOYXOh3oyHJ5F7HtCSS-10" parent="1" style="shape=mxgraph.mockup.markup.redX;fillColor=#ff0000;html=1;shadow=0;whiteSpace=wrap;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="80" width="80" x="440.38" y="374" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

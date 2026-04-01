@@ -50,7 +50,7 @@
 - **Instance Status Checks**
   - Monitors software/network configuration of your instance (invalid network configuration, exhausted memory...).
   - **Resolution:** Reboot the instance or change instance configuration.
-    TODO: DIAGRAM
+    ![AWS Health Dashboard - Status Checks](/Images/Management%20&%20Governance/AWSHealthDashboardStatusChecks.png)
 
 # 4. CW Metrics & Recovery
 
@@ -58,12 +58,13 @@
   - `StatusCheckFailed_System`
   - `StatusCheckFailed_Instance`
   - `StatusCheckFailed` (for both)
-- Option 1: **CloudWatch Alarm**
+- **Option 1:** CloudWatch Alarm
   - Recover EC2 instance with the same private/public IP, EIP, metadata, and Placement Group.
   - Send notifications using SNS
-- Option 2: **Auto Scaling Group**
+  - TODO: DIAGRAM
+- **Option 2:** Auto Scaling Group
   - Set min/max/desired 1 to recover an instance but won't keep the same private and elastic IP.
-    TODO: DIAGRAM
+    ![AWS Health Dashboard - Auto Scaling Group - Status Checks](/Images/Management%20&%20Governance/AWSHealthDashboardAutoScalingGroupStatusChecks.png)
 
 # 5. Detecting Exposed Credentials
 

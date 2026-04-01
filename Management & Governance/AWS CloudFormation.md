@@ -7,7 +7,7 @@
   - [1.2. Benefits of AWS CloudFormation](#12-benefits-of-aws-cloudformation)
   - [1.3. CloudFormation + Infrastructure Composer](#13-cloudformation--infrastructure-composer)
   - [1.4. How CloudFormation Works](#14-how-cloudformation-works)
-  - [1.5. Deploying CloudFormation templates](#15-deploying-cloudformation-templates)
+  - [1.5. Deploying CloudFormation Templates](#15-deploying-cloudformation-templates)
   - [1.6. Building Blocks](#16-building-blocks)
   - [1.7. Input Parameters](#17-input-parameters)
 - [2. YAML](#2-yaml)
@@ -150,16 +150,17 @@
 - Deleting a stack deletes every single artifact that was created by CloudFormation.
   - ![How CloudFormation Works](/Images/Management%20&%20Governance/AWSCloudformationDiagram.png)
 
-## 1.5. Deploying CloudFormation templates
+## 1.5. Deploying CloudFormation Templates
 
-- **Manual way**
+- **Manual Way**
   - Editing templates in the CloudFormation Designer.
   - Using the console to **input parameters**, etc.
-- **Automated way**
+    ![Deploying CloudFormation Templates - Manual Way](/Images/Management%20&%20Governance/AWSCloudFormationTemplatesManualWay.png)
+- **Automated Way**
   - Editing templates in a YAML file.
   - Using the AWS CLI (Command Line Interface) to deploy the templates.
   - Recommended way when you fully want to automate your flow.
-    TODO: DIAGRAM
+    ![Deploying CloudFormation Templates - Automated Way](/Images/Management%20&%20Governance/AWSCloudFormationTemplatesAutomatedWay.png)
 
 ## 1.6. Building Blocks
 
@@ -899,8 +900,7 @@
   - `ssm-secure` - For secure strings stored in SSM Parameter Store.
   - `secretsmanager` - For secret values stored in AWS Secrets Manager.
 - `{{resolve:service-name:reference-key}}`
-
-TODO: DIAGRAM
+  ![Dynamic References](/Images/Management%20&%20Governance/AWSCloudFormationDynamicReferences.png)
 
 ## 21.1. Dynamic Reference: ssm
 

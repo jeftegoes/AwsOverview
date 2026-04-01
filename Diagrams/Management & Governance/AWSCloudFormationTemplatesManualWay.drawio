@@ -1,0 +1,31 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Page-1" id="zJw2ZdtXQLMan3quT9EJ">
+    <mxGraphModel dx="1224" dy="1192" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="6xLDcEctPNuYEWTjvoaE-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#E7157B;fillColor=none;dashed=1;verticalAlign=bottom;fontStyle=1;fontSize=14;" value="&lt;div&gt;CloudFormation Console&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="260" width="401" x="225" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="6xLDcEctPNuYEWTjvoaE-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#E7157B;fillColor=none;dashed=1;" value="" vertex="1">
+          <mxGeometry height="140" width="190" x="235" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="6xLDcEctPNuYEWTjvoaE-2" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.stack;" value="Stack" vertex="1">
+          <mxGeometry height="76" width="78" x="535" y="522" as="geometry" />
+        </mxCell>
+        <mxCell id="6xLDcEctPNuYEWTjvoaE-3" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.management_console;" value="" vertex="1">
+          <mxGeometry height="78" width="78" x="386" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="6xLDcEctPNuYEWTjvoaE-4" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=middle;verticalAlign=middle;align=left;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.template;labelPosition=right;spacingLeft=5;" value="Template" vertex="1">
+          <mxGeometry height="78" width="65" x="235" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="6xLDcEctPNuYEWTjvoaE-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;Infrastructure&amp;nbsp;&lt;/div&gt;&lt;div&gt;Composer / Code&amp;nbsp;&lt;/div&gt;&lt;div&gt;Editor&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="100" x="280" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="6xLDcEctPNuYEWTjvoaE-9" edge="1" parent="1" source="6xLDcEctPNuYEWTjvoaE-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="6xLDcEctPNuYEWTjvoaE-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

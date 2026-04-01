@@ -251,7 +251,7 @@ hooks:
 
 # 10. EC2 Deployment Hooks
 
-TODO: DIAGRAMW
+TODO: DIAGRAM
 
 # 11. Blue/Green Deployments
 
