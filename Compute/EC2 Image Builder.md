@@ -19,23 +19,17 @@
 - Can be run on a schedule (weekly, whenever packages are updated, etc...).
 - Free service (only pay for the underlying resources).
 - **Can publish AMI to multiple regions and multiple accounts.**
-- **Steps**
-  1. EC2 Image Builder.
-     1. Create.
-  2. Builder EC2 Instance.
-     1. Create.
-  3. New AMI.
-  4. Test EC2 Instance.
-     TODO: DIAGRAM
+  ![Amazon EC2 - Image Builder](/Images/Compute/AmazonEC2ImageBuilder.png)
 
 # 2. CICD Architecture
 
-TODO: DIAGRAM
+![Amazon EC2 - Image Builder - CICD Architecture](/Images/Compute/AmazonEC2ImageBuilderCICDArchitecture.png)
 
 # 3. Sharing using RAM
 
-TODO: DIAGRAM
+- Use AWS RAM to share **Images**, **Recipes**, and **Components** across AWS accounts or through AWS Organization.
+  ![Amazon EC2 - Image Builder - Sharing Using RAM](/Images/Compute/AmazonEC2ImageBuilderSharingUsingRAM.png)
 
 # 4. Tracking Latest AMIs
 
-TODO: DIAGRAM
+![Amazon EC2 - Image Builder - Tracking Latest AMIs](/Images/Compute/AmazonEC2ImageBuilderTrackingLatestAMIs.png)

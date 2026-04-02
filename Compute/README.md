@@ -43,13 +43,13 @@
 
 ## 2.1. EC2 EBS Summary
 
-- EBS volumes:
+- **EBS volumes**
   - Network drives attached to one EC2 instance at a time.
   - Mapped to an Availability Zones.
   - Can use EBS Snapshots for backups / transferring EBS volumes across AZ.
-- AMI: create ready-to-use EC2 instances with our customizations.
-- EC2 Image Builder: automatically build, test and distribute AMIs.
-- EC2 Instance Store:
+- **AMI:** Create ready-to-use EC2 instances with our customizations.
+- **EC2 Image Builder:** Automatically build, test and distribute AMIs.
+- **EC2 Instance Store**
   - High performance hardware disk attached to our EC2 instance.
   - Lost if our instance is stopped / terminated.
 - EFS: network file system, can be attached to 100s of instances in a region.
