@@ -130,23 +130,23 @@
 
 ### 3.5.2. ECS Scaling - Service CPU Usage
 
-![ECS Scaling - Service CPU Usage](/Images/Containers/AmazonECSServiceCPUUsage.png)
+![Amazon ECS Scaling - Service CPU Usage](/Images/Containers/AmazonECSServiceCPUUsage.png)
 
 ### 3.5.3. ECS tasks invoked by Event Bridge
 
-![ECS tasks invoked by Event Bridge](/Images/Containers/AmazonECSTasksInvokedEventBridge.png)
+![Amazon ECS tasks invoked by Event Bridge](/Images/Containers/AmazonECSTasksInvokedEventBridge.png)
 
 ### 3.5.4. ECS tasks invoked by Event Bridge Schedule
 
-TODO: DIAGRAM
+![Amazon ECS - Tasks Invoked Event Bridge](/Images/Containers/AmazonECSEventBridgeSchedule.png)
 
 ### 3.5.5. ECS - SQS Queue
 
-![ECS - SQS Queue](/Images/Containers/AmazonECSSQSQueue.png)
+![Amazon ECS - SQS Queue](/Images/Containers/AmazonECSSQSQueue.png)
 
 ### 3.5.6. ECS - Intercept Stopped Tasks using EventBridge
 
-TODO: DIAGRAM
+![Amazon ECS - Intercept Stopped Tasks using EventBridge](/Images/Containers/AmazonECSInterceptStoppedTasksEventBridge.png)
 
 ## 3.6. Logging
 

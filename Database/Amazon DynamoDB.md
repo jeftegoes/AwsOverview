@@ -6,6 +6,7 @@
 - [2. NoSQL databases](#2-nosql-databases)
 - [3. Amazon DynamoDB](#3-amazon-dynamodb)
 - [4. Details](#4-details)
+  - [4.1. Table](#41-table)
 - [5. Primary Keys](#5-primary-keys)
 - [6. Read/Write Capacity Modes](#6-readwrite-capacity-modes)
   - [6.1. R/W Capacity Modes - Provisioned](#61-rw-capacity-modes---provisioned)
@@ -36,6 +37,7 @@
 - [11. Optimistic Locking](#11-optimistic-locking)
 - [12. Accelerator - DAX](#12-accelerator---dax)
   - [12.1. Use cases for DAX](#121-use-cases-for-dax)
+  - [12.2. DynamoDB Accelerator (DAX) vs. ElastiCache](#122-dynamodb-accelerator-dax-vs-elasticache)
 - [13. Stream Processing](#13-stream-processing)
   - [13.1. DynamoDB Streams](#131-dynamodb-streams)
   - [13.2. Kinesis Data Streams (newer)](#132-kinesis-data-streams-newer)
@@ -103,6 +105,10 @@
   - **Document Types:** List, Map.
   - **Set Types:** String Set, Number Set, Binary Set.t
 - Therefore, in DynamoDB you can rapidly evolve schemas.
+
+## 4.1. Table
+
+TODO: DIAGRAM
 
 # 5. Primary Keys
 
@@ -412,6 +418,8 @@
 - Multi-AZ (3 nodes minimum recommended for production).
 - Secure (Encryption at rest with KMS, VPC, IAM, CloudTrail, ...)
 
+TODO: DIAGRAM
+
 ## 12.1. Use cases for DAX
 
 - DAX is ideal for the following types of applications:
@@ -419,6 +427,10 @@
   - Applications that read a small number of items more frequently than others.
   - Applications that are read-intensive, but are also cost-sensitive.
   - Applications that require repeated reads against a large set of data.
+
+## 12.2. DynamoDB Accelerator (DAX) vs. ElastiCache
+
+TODO: DIAGRAM
 
 # 13. Stream Processing
 
@@ -449,6 +461,8 @@
 - Limited # of consumers.
 - Process using AWS Lambda Triggers, or DynamoDB Stream Kinesis adapter.
 - Near-real-time.
+
+TODO: DIAGRAM
 
 ## 13.2. Kinesis Data Streams (newer)
 

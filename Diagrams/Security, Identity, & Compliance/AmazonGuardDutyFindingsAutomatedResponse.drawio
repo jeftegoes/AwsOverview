@@ -1,0 +1,75 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Page-1" id="AYKzWwkS54iiMrfy--4R">
+    <mxGraphModel dx="1224" dy="1192" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Fe0lnTef2eBUGt43WEfx-1" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=middle;verticalAlign=middle;align=right;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.guardduty;labelPosition=left;spacingLeft=0;spacingRight=5;" value="GuardDuty" vertex="1">
+          <mxGeometry height="78" width="78" x="384" y="286" as="geometry" />
+        </mxCell>
+        <mxCell id="Fe0lnTef2eBUGt43WEfx-11" edge="1" parent="1" source="Fe0lnTef2eBUGt43WEfx-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="Fe0lnTef2eBUGt43WEfx-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fe0lnTef2eBUGt43WEfx-12" edge="1" parent="1" source="Fe0lnTef2eBUGt43WEfx-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="Fe0lnTef2eBUGt43WEfx-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="408" y="526" />
+              <mxPoint x="283" y="526" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fe0lnTef2eBUGt43WEfx-13" edge="1" parent="1" source="Fe0lnTef2eBUGt43WEfx-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="Fe0lnTef2eBUGt43WEfx-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="438" y="526" />
+              <mxPoint x="567" y="526" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fe0lnTef2eBUGt43WEfx-2" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=middle;verticalAlign=middle;align=right;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eventbridge;labelPosition=left;spacingRight=5;" value="EventBridge" vertex="1">
+          <mxGeometry height="78" width="78" x="384" y="426" as="geometry" />
+        </mxCell>
+        <mxCell id="Fe0lnTef2eBUGt43WEfx-15" edge="1" parent="1" source="Fe0lnTef2eBUGt43WEfx-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="Fe0lnTef2eBUGt43WEfx-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="423" y="690" />
+              <mxPoint x="361" y="690" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fe0lnTef2eBUGt43WEfx-16" edge="1" parent="1" source="Fe0lnTef2eBUGt43WEfx-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="Fe0lnTef2eBUGt43WEfx-9" value="&amp;nbsp;invoke&amp;nbsp;">
+          <mxGeometry relative="1" x="-0.4192" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="423" y="690" />
+              <mxPoint x="489" y="690" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fe0lnTef2eBUGt43WEfx-3" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=middle;verticalAlign=middle;align=right;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sns;labelPosition=left;spacingRight=5;" value="SNS" vertex="1">
+          <mxGeometry height="78" width="78" x="384" y="566" as="geometry" />
+        </mxCell>
+        <mxCell id="Fe0lnTef2eBUGt43WEfx-4" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sqs;" value="SQS" vertex="1">
+          <mxGeometry height="78" width="78" x="244" y="566" as="geometry" />
+        </mxCell>
+        <mxCell id="Fe0lnTef2eBUGt43WEfx-5" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" value="Lambda" vertex="1">
+          <mxGeometry height="78" width="78" x="528" y="566" as="geometry" />
+        </mxCell>
+        <mxCell id="Fe0lnTef2eBUGt43WEfx-8" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#000000;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.http_protocol;" value="&lt;div&gt;HTTP&lt;/div&gt;&lt;div&gt;(e.g. Slack)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="78" width="78" x="322" y="736" as="geometry" />
+        </mxCell>
+        <mxCell id="Fe0lnTef2eBUGt43WEfx-9" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.email_2;" value="Email" vertex="1">
+          <mxGeometry height="49" width="78" x="450" y="736" as="geometry" />
+        </mxCell>
+        <mxCell id="Fe0lnTef2eBUGt43WEfx-10" edge="1" parent="1" source="Fe0lnTef2eBUGt43WEfx-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="Fe0lnTef2eBUGt43WEfx-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fe0lnTef2eBUGt43WEfx-14" connectable="0" parent="Fe0lnTef2eBUGt43WEfx-10" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="finding" vertex="1">
+          <mxGeometry relative="1" x="-0.1613" y="2" as="geometry">
+            <mxPoint x="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

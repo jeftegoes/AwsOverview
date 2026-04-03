@@ -43,6 +43,10 @@
   - [19.1. Routing](#191-routing)
 - [20. Architecture](#20-architecture)
 - [21. JWT Authorizers](#21-jwt-authorizers)
+- [22. API Gateway REST API Key Features](#22-api-gateway-rest-api-key-features)
+  - [22.1. SDK Generation](#221-sdk-generation)
+  - [22.2. Event-Driven Operations](#222-event-driven-operations)
+  - [22.3. Integration Use Case](#223-integration-use-case)
 
 # 1. Introduction
 
@@ -439,3 +443,27 @@
   - Simplified architecture.
 - HTTP APIs are more **cost-effective** and **high-performance** than REST APIs.
 - Ideal for **modern serverless applications** needing JWT validation and claim-based access control.
+
+# 22. API Gateway REST API Key Features
+
+## 22.1. SDK Generation
+
+- Provides the **GetSdk API**
+- Allows automatic generation of client SDKs.
+- Simplifies integration for developers and partners.
+
+## 22.2. Event-Driven Operations
+
+- API actions (e.g., `UpdateStage`) generate **lifecycle events**.
+- **These events can be**
+  - Observed.
+  - Captured.
+  - Used to trigger automation.
+
+## 22.3. Integration Use Case
+
+- API is updated via CodePipeline.
+- `UpdateStage` event is emitted.
+- Event triggers automation (e.g., Lambda).
+- SDK is generated and uploaded to S3 automatically.
+  ![Amazon API Gateway - GetSDK](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayGetSDK.png)

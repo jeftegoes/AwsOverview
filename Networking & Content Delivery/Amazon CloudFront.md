@@ -35,6 +35,7 @@
   - [10.3. HTTPS Between CloudFront and the Origin](#103-https-between-cloudfront-and-the-origin)
 - [11. CloudFront and ACM Certificate Region Requirement](#11-cloudfront-and-acm-certificate-region-requirement)
 - [12. Origin Access Control (OAC)](#12-origin-access-control-oac)
+- [13. Response Headers Policies](#13-response-headers-policies)
 
 # 1. Introduction
 
@@ -43,7 +44,7 @@
 - Improves users experience.
 - 216 Point of Presence globally (edge locations).
 - **DDoS protection (because worldwide), integration with Shield, AWS Web Application Firewall.**
-- **IMPORTANT!** For **objects smaller than 1 GB** or total data sets under 1 GB, use **Amazon CloudFront's PUT/POST** commands for better performance.
+- > **IMPORTANT!** For **objects smaller than 1 GB** or total data sets under 1 GB, use **Amazon CloudFront's PUT/POST** commands for better performance.
   - **Otherwise**, use **S3 Transfer Acceleration (S3TA)** to achieve faster and more efficient transfers.
 
 ## 1.1. Origins
@@ -62,7 +63,7 @@
     ![Amazon CloudFront EC2 as an Origin](/Images/Networking%20&%20Content%20Delivery/AmazonCloudFrontEC2Origin.png)
   - S3 website (must first enable the bucket as a static S3 website).
   - Any HTTP backend we want.
-- **IMPORTANT!** CloudFront doesn't require the origin to be hosted on AWS-it can point to any publicly accessible HTTP/HTTPS server, including one running in your on-premise data center.
+- > **IMPORTANT!** CloudFront doesn't require the origin to be hosted on AWS-it can point to any publicly accessible HTTP/HTTPS server, including one running in your on-premise data center.
 
 ## 1.2. CloudFront at a high level
 
@@ -336,3 +337,11 @@
   - It **replaces** the older Origin Access Identity (OAI) method.
 - OAC supports **both read and write** operations.
 - It enables you to **restrict direct access** to the S3 bucket, ensuring only CloudFront can interact with it securely.
+
+# 13. Response Headers Policies
+
+- Amazon CloudFront supports **Response Headers Policies**, allowing you to add **HTTP security headers** to responses without writing code.
+- We can configure CloudFront to include headers such as:
+  - `X-Content-Type-Options`
+  - `X-Frame-Options`
+  - `X-XSS-Protection`

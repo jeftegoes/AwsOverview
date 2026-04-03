@@ -147,8 +147,7 @@
   - EC2 Instance Terminating, EC2 Instance Terminate Successful/Unsuccessful.
   - EC2 Auto Scaling Instance Refresh Checkpoint Reached.
   - EC2 Auto Scaling Instance Refresh Started, Succeeded, Failed, Cancelled.
-
-![EventBridge Rule Integration](/Images/Compute/AmazonAsgEc2RuleLifecycleAction.png)
+    ![EventBridge Rule Integration](/Images/Compute/AmazonAsgEc2RuleLifecycleAction.png)
 
 # 12. Auto Scaling - Instance Refresh
 

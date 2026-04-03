@@ -53,7 +53,7 @@
 - Automate response to security issues revealed by GuardDuty Findings using EventBridge.
 - Send alerts to SNS (email, Lambda, Slack, Chime...).
 - Events are published to both the administrator account and the member account that it is originated from.
-  TODO: DIAGRAM
+  ![Amazon GuardDuty - Findings Automated Response](/Images/Security,%20Identity,%20&%20Compliance/AmazonGuardDutyFindingsAutomatedResponse.png)
 
 ## 4.1. Findings
 

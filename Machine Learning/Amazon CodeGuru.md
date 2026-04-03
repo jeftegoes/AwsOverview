@@ -58,14 +58,19 @@
 
     @with_lambda_profiler(profiling_group_name="MyGroupName")
     def handler_name(event, context):
-    return "Hello World"
+      return "Hello World"
   ```
 
 - Enable Profiling in the Lambda function configuration.
+- **It automatically**
+  - Starts profiling when the Lambda function begins.
+  - Collects performance data during execution.
+  - Sends data to CodeGuru Profiler.
+  - Stops profiling when execution finishes.
 
 # 4. Agent Configuration
 
-- `MaxStackDepth` - the maximum depth of the stacks in the code that is represented in the profile.
+- `MaxStackDepth` - The maximum depth of the stacks in the code that is represented in the profile.
   - **Example:** If CodeGuru Profiler finds a method A, which calls method B, which calls method C, which calls method D, then the depth is 4.
   - If the MaxStackDepth is set to 2, then the profiler evaluates A and B.
 - `MemoryUsageLimitPercent` - The memory percentage used by the profiler.

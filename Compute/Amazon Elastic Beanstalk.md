@@ -306,6 +306,8 @@
   - **Managed Updates Status:** Started, failed.
   - **Environment Health Status.**
 
+TODO: DIAGRAM
+
 # 17. Custom Platform (Advanced)
 
 - **Custom Platforms are very advanced, they allow to define from scratch**

@@ -29,7 +29,7 @@
 - Works with **Elastic IP, EC2 instances, ALB, NLB, public or private**.
 - **Consistent Performance**
   - Intelligent routing to lowest latency and fast regional failover.
-  - **IMPORTANT!** No issue with client cache (because the IP doesn't change).
+  - > **IMPORTANT!** No issue with client cache (because the IP doesn't change).
   - Internal AWS network.
 - **Health Checks**
   - Global Accelerator performs a health check of your applications.

@@ -55,8 +55,7 @@
   - [22.2. Dedicated Instances](#222-dedicated-instances)
   - [22.3. Dedicated Hosts](#223-dedicated-hosts)
   - [22.4. How Tenancy Settings Work](#224-how-tenancy-settings-work)
-- [23. # 🛠️ EC2Rescue \& Systems Manager Automation – Summary](#23--️-ec2rescue--systems-manager-automation--summary)
-- [24. EC2Rescue](#24-ec2rescue)
+- [23. EC2Rescue](#23-ec2rescue)
 
 # 1. Introduction
 
@@ -573,8 +572,7 @@
   - **Operating system boot errors**
   - **Loss of network connectivity**
   - **Failure to respond to EC2 system pings**
-- **IMPORTANT!**
-  - A recovered instance **is identical to the original instance**, including the instance ID, private IP addresses, Elastic IP addresses, and all instance metadata.
+- > **IMPORTANT!** A recovered instance **is identical to the original instance**, including the instance ID, private IP addresses, Elastic IP addresses, and all instance metadata.
   - If your instance has a public IPv4 address, it retains the public IPv4 address after recovery.
 
 # 22. Amazon EC2 Tenancy Options
@@ -609,20 +607,16 @@
 | dedicated   | shared (default)        | Dedicated                  |
 | dedicated   | dedicated               | Dedicated                  |
 
-# 23. # 🛠️ EC2Rescue & Systems Manager Automation – Summary
-
----
-
-# 24. EC2Rescue
+# 23. EC2Rescue
 
 - EC2Rescue helps diagnose and troubleshoot problems on:
   - Amazon EC2 **Linux** instances
   - Amazon EC2 **Windows Server** instances
 - We can run EC2Rescue:
-- **Manually**
-- **Automatically** using:
-  - Systems Manager Automation
-  - The `AWSSupport-ExecuteEC2Rescue` document.
+  - **Manually**
+  - **Automatically** using:
+    - Systems Manager Automation
+    - The `AWSSupport-ExecuteEC2Rescue` document.
 - This Automation document performs a combination of:
   - Systems Manager actions
   - AWS CloudFormation actions
