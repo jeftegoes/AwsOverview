@@ -56,6 +56,7 @@
   - [22.3. Dedicated Hosts](#223-dedicated-hosts)
   - [22.4. How Tenancy Settings Work](#224-how-tenancy-settings-work)
 - [23. EC2Rescue](#23-ec2rescue)
+- [24. Oracle RAC Support on AWS](#24-oracle-rac-support-on-aws)
 
 # 1. Introduction
 
@@ -621,3 +622,12 @@
   - Systems Manager actions
   - AWS CloudFormation actions
   - AWS Lambda functions
+
+# 24. Oracle RAC Support on AWS
+
+- **Oracle Real Application Clusters (RAC)** is **not supported** on managed database services such as:
+  - Amazon RDS.
+  - Amazon Aurora.
+- To use Oracle RAC on AWS, we must:
+  - Deploy Oracle on **Amazon EC2 instances**.
+  - Manage the database yourself (self-managed).

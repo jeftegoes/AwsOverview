@@ -27,6 +27,7 @@
   - [7.7. Extra](#77-extra)
 - [8. Indexes](#8-indexes)
   - [8.1. Local Secondary Index (LSI)](#81-local-secondary-index-lsi)
+    - [8.1.1. Strongly consistent reads](#811-strongly-consistent-reads)
   - [8.2. Global Secondary Index (GSI)](#82-global-secondary-index-gsi)
   - [8.3. Indexes and Throttling](#83-indexes-and-throttling)
 - [9. PartiQL](#9-partiql)
@@ -327,6 +328,11 @@ TODO: DIAGRAM
 - When you query this index, you can choose **either eventual consistency or strong consistency**.
 - For each partition key value, the total size of all indexed items must be **10 GB** or less.
 - Queries or scans on this index consume read capacity units from the base table.
+
+### 8.1.1. Strongly consistent reads
+
+- Strongly consistent reads ensure that you always receive the **most up-to-date data**, including all successful prior writes.
+- > Strongly consistent reads guarantee **latest data accuracy**, but are limited to tables and **LSIs only**.
 
 ## 8.2. Global Secondary Index (GSI)
 

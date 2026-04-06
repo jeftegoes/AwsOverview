@@ -75,19 +75,16 @@
 # 6. How to enable it?
 
 1. Your code (Java, Python, Go, Node.js, .NET) must import the AWS X-Ray SDK:
-
-- Very little code modification needed.
-- The application SDK will then capture:
-  - Calls to AWS services.
-  - HTTP / HTTPS requests.
-  - Database Calls (MySQL, PostgreSQL, DynamoDB).
-  - Queue calls (SQS).
-
+   - Very little code modification needed.
+   - The application SDK will then capture:
+     - Calls to AWS services.
+     - HTTP / HTTPS requests.
+     - Database Calls (MySQL, PostgreSQL, DynamoDB).
+     - Queue calls (SQS).
 2. Install the X-Ray daemon or enable X-Ray AWS Integration:
-
-- X-Ray daemon works as a low level UDP (2000) packet interceptor (Linux / Windows / Mac...).
-- AWS Lambda / other AWS services already run the X-Ray daemon for you.
-- Each application must have the IAM rights to write data to X-Ray.
+   - X-Ray daemon works as a low level UDP (2000) packet interceptor (Linux / Windows / Mac...).
+   - AWS Lambda / other AWS services already run the X-Ray daemon for you.
+   - Each application must have the IAM rights to write data to X-Ray.
 
 # 7. X-Ray magic
 

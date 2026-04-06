@@ -202,7 +202,7 @@ TODO: DIAGRAM
 - Scan instances and generate patch compliance report (missing patches).
 - Patch compliance report can be sent to S3.
   - TODO: UPDATE DIAGRAM
-  ![Patch Manager](/Images/Management%20&%20Governance/AWSSystemsManagerPatchManager.png)
+    ![Patch Manager](/Images/Management%20&%20Governance/AWSSystemsManagerPatchManager.png)
 
 ## 7.1. Patch Baseline & Patch Group
 
@@ -320,7 +320,7 @@ TODO: DIAGRAM
 - Can sync data to an S3 bucket using **Resource Data Sync**, and we can analyze using Athena and QuickSight.
 - Can collect and aggregate data from multiple accounts and regions.
 - Can send compliance data to Security Hub.
-  TODO: diagram
+  ![AWS Systems Manager - Compliance](/Images/Management%20&%20Governance/AWSSystemsManagerComplience.png)
 
 # 16. OpsCenter
 

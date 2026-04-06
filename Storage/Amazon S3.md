@@ -427,10 +427,11 @@
 
 - S3 uses checksum to validate the integrity of uploaded objects.
   - Using MD5.
-  - Using MD5 and Etag.
-    - ETag - represents a specific version of the object, ETag = MD5 (if SSE-S3).
+    ![Amazon S3 - Object Integrity](/Images/Storage/AmazonS3ObjectIntegrity.png)
+  - Using MD5 and `eTag`.
+    - `eTag` - Represents a specific version of the object, eTag = MD5 (if SSE-S3).
+      ![Amazon S3 - Object Integrity eTag](/Images/Storage/AmazonS3ObjectIntegrityETag.png)
 - **Other supported checksums:** SHA-1, SHA-256, CRC32, CRC32C.
-  TODO: DIAGRAM
 
 # 17. Baseline Performance
 

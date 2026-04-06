@@ -1,0 +1,43 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Page-1" id="rpomv1cJNbwXlFeRYMO0">
+    <mxGraphModel dx="1224" dy="1192" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zW9quNyBLFtUJ8cnrTmr-4" edge="1" parent="1" source="zW9quNyBLFtUJ8cnrTmr-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="zW9quNyBLFtUJ8cnrTmr-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zW9quNyBLFtUJ8cnrTmr-1" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.user;" value="User" vertex="1">
+          <mxGeometry height="78" width="78" x="111" y="472" as="geometry" />
+        </mxCell>
+        <mxCell id="zW9quNyBLFtUJ8cnrTmr-2" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" value="&lt;div&gt;Amazon S3&lt;/div&gt;" vertex="1">
+          <mxGeometry height="78" width="78" x="461" y="472" as="geometry" />
+        </mxCell>
+        <mxCell id="zW9quNyBLFtUJ8cnrTmr-5" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=middle;verticalAlign=middle;align=left;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.document;labelPosition=right;spacingLeft=5;" value="upload" vertex="1">
+          <mxGeometry height="78" width="57" x="291" y="421" as="geometry" />
+        </mxCell>
+        <mxCell id="zW9quNyBLFtUJ8cnrTmr-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#0000CC;fontStyle=1" value="&lt;div&gt;User Calculated MD5&lt;/div&gt;" vertex="1">
+          <mxGeometry height="32" width="90" x="21" y="499" as="geometry" />
+        </mxCell>
+        <mxCell id="zW9quNyBLFtUJ8cnrTmr-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#0000CC;fontStyle=1" value="&lt;div&gt;Content-MD5: C9A5A6...&lt;/div&gt;" vertex="1">
+          <mxGeometry width="270" x="189" y="521" as="geometry" />
+        </mxCell>
+        <mxCell id="zW9quNyBLFtUJ8cnrTmr-8" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#ED7100;fontStyle=1" value="&lt;div&gt;S3 Calculated MD5&lt;/div&gt;&lt;div&gt;MD5: 7F9AD0...&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="110" x="445" y="442" as="geometry" />
+        </mxCell>
+        <mxCell id="zW9quNyBLFtUJ8cnrTmr-9" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;&lt;font style=&quot;color: rgb(0, 0, 204);&quot;&gt;User Calculated MD5&lt;/font&gt; = &lt;font style=&quot;color: rgb(237, 113, 0);&quot;&gt;S3 Calculated MD5&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="240" x="551" y="475" as="geometry" />
+        </mxCell>
+        <mxCell id="zW9quNyBLFtUJ8cnrTmr-10" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;&lt;font style=&quot;color: rgb(0, 0, 204);&quot;&gt;User Calculated MD5&lt;/font&gt; ≠ &lt;font style=&quot;color: rgb(237, 113, 0);&quot;&gt;S3 Calculated MD5&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="250" x="546" y="517" as="geometry" />
+        </mxCell>
+        <mxCell id="3tisSPPpTj6fc_9MU0_D-2" parent="1" style="shape=mxgraph.mockup.markup.redX;fillColor=#ff0000;html=1;shadow=0;whiteSpace=wrap;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="791" y="517" as="geometry" />
+        </mxCell>
+        <mxCell id="3tisSPPpTj6fc_9MU0_D-3" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;align=center;fillColor=#66CC00;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;shape=mxgraph.gcp2.check" value="" vertex="1">
+          <mxGeometry height="30" width="37.5" x="791" y="475" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

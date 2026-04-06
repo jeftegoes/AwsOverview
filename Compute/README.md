@@ -118,13 +118,13 @@
 ## 3.8. Multi-AZ in AWS
 
 - Services where Multi-AZ must be enabled manually:
-  - EFS, ELB, ASG, Beanstalk: assign AZ.
-  - RDS, ElastiCache: multi-AZ (synchronous standby DB for failovers).
-  - Aurora:
+  - **EFS, ELB, ASG, Beanstalk:** Assign AZ.
+  - **RDS, ElastiCache:** Multi-AZ (synchronous standby DB for failovers).
+  - **Aurora**
     - Data is stored automatically across multi-AZ.
     - Can have multi-AZ for the DB itself (same as RDS).
-  - OpenSearch (managed): multi master.
-  - Jenkins (self deployed): multi master.
+  - **OpenSearch (managed):** Multi master.
+  - **Jenkins (self deployed):** Multi master.
 - Service where Multi-AZ is implicitly there:
   - S3 (except OneZone-Infrequent Access).
   - DynamoDB.

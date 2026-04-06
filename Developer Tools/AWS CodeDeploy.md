@@ -14,6 +14,7 @@
   - [5.1. In-Place deployment](#51-in-place-deployment)
   - [5.2. Blue / Green Deployments](#52-blue--green-deployments)
   - [5.3. CodeDeploy Agent](#53-codedeploy-agent)
+  - [5.4. Registration Requirements](#54-registration-requirements)
 - [6. Lambda Platform](#6-lambda-platform)
 - [7. ECS Platform](#7-ecs-platform)
 - [8. Deployment to EC2](#8-deployment-to-ec2)
@@ -207,6 +208,13 @@ hooks:
 - It can be installed and updated automatically if you're using Systems Manager.
 - The EC2 Instances must have sufficient permissions to access Amazon S3 to get deployment bundles.
   ![AWS CodeDeploy Agent](/Images/Developer%20Tools/AWSCodeDeployAgent.png)
+
+## 5.4. Registration Requirements
+
+- To register an on-premises instance, you must use an **IAM identity** for authentication.
+- Supported Options:
+  - **IAM User ARN**
+  - **IAM Role ARN**
 
 # 6. Lambda Platform
 
