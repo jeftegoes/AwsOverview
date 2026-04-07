@@ -192,6 +192,9 @@ hooks:
   - `HalfAtATime` - Reduced capacity by 50%.
   - `OneAtATime` - Slowest, lowest availability impact.
   - `Custom` - Define your %.
+- **Use**
+  - `register-on-premises-instance` command.
+  - Temporary credentials from **AWS STS**.
 
 ## 5.1. In-Place deployment
 

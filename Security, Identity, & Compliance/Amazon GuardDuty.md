@@ -9,6 +9,8 @@
   - [4.1. Findings](#41-findings)
   - [4.2. Findings Types](#42-findings-types)
 - [5. Architectures](#5-architectures)
+  - [5.1. SSHBruteForce](#51-sshbruteforce)
+  - [5.2. Backdoor](#52-backdoor)
 - [6. Trusted and Threat IP Lists](#6-trusted-and-threat-ip-lists)
 - [7. CloudFormation](#7-cloudformation)
 
@@ -45,7 +47,7 @@
   - Manage GuardDuty within the associated member accounts.
   - Manage findings, suppression rules, trusted IP lists, threat lists.
 - In an AWS Organization, we can specify a member account as the Organization's **delegated administrator for GuardDuty**.
-  TODO: DIAGRAM
+  ![Amazon GuardDuty - Multi-Account Strategy](/Images/Security,%20Identity,%20&%20Compliance/AmazonGuardDutyMultiAccountStrategy.png)
 
 # 4. Findings Automated Response
 
@@ -88,7 +90,13 @@
 
 # 5. Architectures
 
-TODO: DIAGRAM
+## 5.1. SSHBruteForce
+
+![Amazon GuardDuty - Architectures - SSHBruteForce](/Images/Security,%20Identity,%20&%20Compliance/AmazonGuardDutyArchitecturesSSHBruteForce.png)
+
+## 5.2. Backdoor
+
+![Amazon GuardDuty - Architectures - SSHBruteForce](/Images/Security,%20Identity,%20&%20Compliance/AmazonGuardDutyArchitecturesSSHBruteForce.png)
 
 # 6. Trusted and Threat IP Lists
 

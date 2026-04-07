@@ -21,7 +21,7 @@
   - Service limits.
   - Operational Excellence.
 - Core Checks and recommendations - all customers.
-- Can enable weekly email notification from the console.
+- Can enable **weekly** email notification from the console.
 - Full Trusted Advisor - Available for **Business & Enterprise** support plans.
   - Ability to set CloudWatch alarms when reaching limits.
   - **Programmatic Access using AWS Support API.**
