@@ -52,15 +52,13 @@
 - Integrate and apply CodeGuru Profiler to Lambda functions either using:
   - Function Decorator `@with_lambda_profiler`
   - Add `codeguru_profiler_agent` dependency to your **Lambda function .zip** file or use **Lambda Layers**.
+    ```python
+      from codeguru_profiler_agent import with_lambda_profiler
 
-  ```python
-    from codeguru_profiler_agent import with_lambda_profiler
-
-    @with_lambda_profiler(profiling_group_name="MyGroupName")
-    def handler_name(event, context):
-      return "Hello World"
-  ```
-
+      @with_lambda_profiler(profiling_group_name="MyGroupName")
+      def handler_name(event, context):
+        return "Hello World"
+    ```
 - Enable Profiling in the Lambda function configuration.
 - **It automatically**
   - Starts profiling when the Lambda function begins.

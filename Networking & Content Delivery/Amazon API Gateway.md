@@ -159,7 +159,7 @@
 
 ## 8.2. HTTP / AWS (Lambda & AWS Services)
 
-- You must configure both the integration request and integration response.
+- You must **configure** both the integration **request** and integration **response**.
 - Setup data mapping using mapping templates for the request & response.
 - `HTTP` is commonly used in AWS Services like EC2.
 - **`AWS` is only used for Lambda custom integration**.

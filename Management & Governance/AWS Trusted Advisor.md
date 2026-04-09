@@ -6,8 +6,9 @@
   - [1.1. Checks examples](#11-checks-examples)
 - [2. Support Plans](#2-support-plans)
 - [3. Monitoring](#3-monitoring)
-- [4. Integrations](#4-integrations)
-  - [4.1. Targets](#41-targets)
+- [4. Service Quotas](#4-service-quotas)
+- [5. Integrations](#5-integrations)
+  - [5.1. Targets](#51-targets)
 
 # 1. Introduction
 
@@ -60,15 +61,19 @@
 
 # 3. Monitoring
 
-![Trusted Advisor - Monitoring](/Images/AWSTrustedAdvisorMonitoring.png)
+![AWS Trusted Advisor - Monitoring](/Images/Management%20&%20Governance/AWSTrustedAdvisorMonitoring.png)
 
-# 4. Integrations
+# 4. Service Quotas
+
+![AWS Trusted Advisor - Service Quotas](/Images/Management%20&%20Governance/AWSTrustedAdvisorQuotas.png)
+
+# 5. Integrations
 
 - We can use [Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md) to detect and react to changes in the status of Trusted Advisor checks.
 - Then, based on the rules that we create, EventBridge invokes one or more target actions when a check status changes to the value we specify in a rule.
 - Depending on the type of status change, we might want to send notifications, capture status information, take corrective action, initiate events, or take other actions.
 
-## 4.1. Targets
+## 5.1. Targets
 
 - We can select the following types of targets when using [Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md) as a part of our Trusted Advisor workflow:
   - AWS Lambda functions

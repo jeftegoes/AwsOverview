@@ -30,6 +30,8 @@
 - [15. Web Server vs Worker Environment](#15-web-server-vs-worker-environment)
 - [16. Notifications](#16-notifications)
 - [17. Custom Platform (Advanced)](#17-custom-platform-advanced)
+- [18. Configuration Precedence](#18-configuration-precedence)
+  - [18.1. Configuration Sources](#181-configuration-sources)
 
 # 1. Developer problems on AWS
 
@@ -321,3 +323,22 @@ TODO: DIAGRAM
 - **Custom Platform vs Custom Image (AMI)**
   - Custom Image is to tweak an existing Beanstalk Platform (Python, Node.js, Java...).
   - Custom Platform is to create an entirely new Beanstalk Platform.
+
+# 18. Configuration Precedence
+
+- AWS Elastic Beanstalk applies configuration values from multiple sources.
+- When the same setting is defined in different places, **a precedence order determines which value is used**.
+
+## 18.1. Configuration Sources
+
+- Highest --> Lowest Priority.
+  1. **Settings applied directly to the environment (API / Console / EB CLI)**
+     - Includes recommended values set by the **Elastic Beanstalk CLI**
+     - Example: instance type defined during environment creation
+  2. **Saved Configurations**
+     - Reusable environment configurations stored in Elastic Beanstalk
+  3. **Configuration Files (`.ebextensions`)**
+     - YAML/JSON files inside your application source bundle
+     - Used to define infrastructure and environment settings
+  4. **Default Values**
+     - Provided by Elastic Beanstalk if no other configuration is specified
