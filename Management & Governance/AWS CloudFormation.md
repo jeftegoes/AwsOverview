@@ -78,7 +78,8 @@
   - [22.3. StackSets Permission Models](#223-stacksets-permission-models)
   - [22.4. StackSets with AWS Organizations](#224-stacksets-with-aws-organizations)
   - [22.5. StackSet Drift Detection](#225-stackset-drift-detection)
-- [23. CloudFormation - Drift](#23-cloudformation---drift)
+- [23. Drift Detection](#23-drift-detection)
+  - [23.1. Notification with AWS Config Remediation Action](#231-notification-with-aws-config-remediation-action)
 - [24. Auto Scaling Group Update and Replacement Policies](#24-auto-scaling-group-update-and-replacement-policies)
   - [24.1. UpdatePolicy Overview](#241-updatepolicy-overview)
   - [24.2. AutoScalingRollingUpdate](#242-autoscalingrollingupdate)
@@ -990,13 +991,19 @@
 - Changes made through CloudFormation to a stack directly (not at the StackSet level), aren't considered drifted.
 - You can stop drift detection on a StackSet.
 
-# 23. CloudFormation - Drift
+# 23. Drift Detection
 
 - CloudFormation allows we to create infrastructure.
 - But it doesn't protect we against manual configuration changes.
 - How do we know if our resources have drifted?
   - We can use CloudFormation Drift!
 - Detect drift on an entire stack or on individual resources within a stack.
+
+TODO: DIAGRAM
+
+## 23.1. Notification with AWS Config Remediation Action
+
+![AWS CloudFormation - Drift Detection Aws Config Remediation](/Images/Management%20&%20Governance/AWSCloudFormationDriftDetectionAwsConfigRemediation.png)
 
 # 24. Auto Scaling Group Update and Replacement Policies
 

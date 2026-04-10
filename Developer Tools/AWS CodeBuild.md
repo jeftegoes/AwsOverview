@@ -21,6 +21,8 @@
 - [14. Test Reports](#14-test-reports)
 - [15. Security](#15-security)
   - [15.1. CodeBuild Service Role](#151-codebuild-service-role)
+- [16. BuildArtifacts API](#16-buildartifacts-api)
+  - [16.1. Common Use Cases](#161-common-use-cases)
 
 # 1. Introduction
 
@@ -210,3 +212,22 @@
   - Store logs in CloudWatch Logs.
 - In-transit and at-rest data encryption (cache, logs...).
 - Build output artifact encryption (requires access to KMS).
+
+# 16. BuildArtifacts API
+
+- The **BuildArtifacts API** in AWS CodeBuild provides information about the **artifacts generated during a build process**.
+- The API returns metadata about build artifacts, including:
+  - Artifact location (e.g., Amazon S3).
+  - Artifact name.
+  - Packaging type (ZIP, etc.).
+  - Namespace and path.
+  - **Checksum (e.g., SHA-256).**
+
+## 16.1. Common Use Cases
+
+1. **Artifact Validation**
+   - Compare checksums to ensure artifacts are identical across builds or pipelines.
+2. **Integrity Verification**
+   - Detect corruption or unintended changes in build outputs.
+3. **Automation in Pipelines**
+   - Used in Lambda functions or pipeline stages for validation before deployment.

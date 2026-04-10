@@ -168,6 +168,8 @@
   - AWS treats them separately in termination logic.
   - It prefers launch configurations (legacy method) when deciding termination under this policy.
 
+TODO: DIAGRAM
+
 ## 13.1. Different Termination Policies
 
 - `Default` - Terminates instances according to Default Termination Policy.

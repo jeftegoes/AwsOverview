@@ -4,13 +4,16 @@
 
 - [1. Introduction](#1-introduction)
 - [2. Recipe](#2-recipe)
-  - [2.1. Example](#21-example)
-- [3. CLI Debugging](#3-cli-debugging)
-- [4. Policy Templates](#4-policy-templates)
-- [5. SAM and CodeDeploy](#5-sam-and-codedeploy)
-- [6. Local Capabilities](#6-local-capabilities)
-- [7. Summary](#7-summary)
-- [8. Serverless Application Repository (SAR)](#8-serverless-application-repository-sar)
+- [3. SAM Deployment](#3-sam-deployment)
+  - [3.1. Example](#31-example)
+- [4. SAM Accelerate (sam sync)](#4-sam-accelerate-sam-sync)
+- [5. CLI Debugging](#5-cli-debugging)
+- [6. Policy Templates](#6-policy-templates)
+- [7. SAM and CodeDeploy](#7-sam-and-codedeploy)
+  - [7.1. Parameters](#71-parameters)
+- [8. Local Capabilities](#8-local-capabilities)
+- [9. Summary](#9-summary)
+- [10. Serverless Application Repository (SAR)](#10-serverless-application-repository-sar)
 
 # 1. Introduction
 
@@ -27,7 +30,7 @@
 
 - Transform Header indicates it's SAM template:
   - `Transform: 'AWS::Serverless-2016-10-31'`
-- Write Code
+- **Write Code**
   - `AWS::Serverless::Function` - For creating a Lambda function.
   - `AWS::Serverless::LayerVersion` - This resource type creates a Lambda layer version.
   - `AWS::Serverless::Api` - This resource type describes an API Gateway resource.
@@ -36,16 +39,20 @@
   - `AWS::Serverless::HttpApi`
   - `AWS::Serverless::Application` - To define a nested application in your serverless application.
 - Commands to package and deploy respectively:
-  - CloudFormation
+  - **CloudFormation**
     - `aws cloudformation package`
     - `aws cloudformation deploy`
-  - AWS SAM
+  - **AWS SAM**
     - `sam package`
     - `sam deploy`
+- Quickly sync local changes to AWS Lambda (SAM Accelerate): `sam sync --watch`.
 
-![SAM Deployment](/Images/Developer%20Tools/AWSSAMDeployment.png)
+# 3. SAM Deployment
 
-## 2.1. Example
+TODO UPDATE DIAGRAM
+![AWS SAM - Deployment](/Images/Developer%20Tools/AWSSAMDeployment.png)
+
+## 3.1. Example
 
 ```yaml
 # SAM FILE
@@ -87,7 +94,14 @@ Resources:
         WriteCapacityUnits: 2
 ```
 
-# 3. CLI Debugging
+# 4. SAM Accelerate (sam sync)
+
+- SAM Accelerate is a set of features to reduce latency while deploying resources to AWS.
+- `sam sync`
+  - Synchronizes your project declared in SAM templates to AWS.
+  - Synchronizes code changes to AWS without updating infrastructure (uses service APIs & bypass CloudFormation).
+
+# 5. CLI Debugging
 
 - Locally build, test, and debug your serverless applications that are defined using AWS SAM templates.
 - Provides a lambda-like execution environment locally.
@@ -95,7 +109,7 @@ Resources:
 - Supported IDEs: AWS Cloud9, Visual Studio Code, JetBrains, PyCharm, IntelliJ, ...
 - **AWS Toolkits:** IDE plugins which allows you to build, test, debug, deploy, and invoke Lambda functions built using AWS SAM.
 
-# 4. Policy Templates
+# 6. Policy Templates
 
 - List of templates to apply permissions to your Lambda Functions.
 - [Full list available here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html)
@@ -104,12 +118,17 @@ Resources:
   - `SQSPollerPolicy`: Allows to poll an SQS queue.
   - `DynamoDBCrudPolicy`: CRUD = create read update delete.
 
-# 5. SAM and CodeDeploy
+# 7. SAM and CodeDeploy
 
 - **SAM framework natively uses CodeDeploy to update Lambda functions.**
 - Traffic Shifting feature.
 - Pre and Post traffic hooks features to validate deployment (before the traffic shift starts and after it ends).
 - Easy & automated rollback using CloudWatch Alarms.
+
+TODO DIAGRAM
+
+## 7.1. Parameters
+
 - `AutoPublishAlias`
   - Detects when new code is being deployed.
   - Creates and publishes an updated version of that function with the latest code.
@@ -123,7 +142,7 @@ Resources:
 - `Hooks`
   - Pre and post traffic shifting Lambda functions to test your deployment.
 
-# 6. Local Capabilities
+# 8. Local Capabilities
 
 - **Locally start AWS Lambda**
   - `sam local start-lambda`
@@ -143,7 +162,7 @@ Resources:
   - Generate sample payloads for event sources
   - S3, API Gateway, SNS, Kinesis, DynamoDB...
 
-# 7. Summary
+# 9. Summary
 
 - SAM is built on CloudFormation.
 - SAM requires the Transform and Resources sections.
@@ -155,7 +174,7 @@ Resources:
 - SAM Policy templates for easy IAM policy definition.
 - SAM is integrated with CodeDeploy to do deploy to Lambda aliases.
 
-# 8. Serverless Application Repository (SAR)
+# 10. Serverless Application Repository (SAR)
 
 - **Allows you to share your Serverless applications packages using SAM with other AWS accounts**
 - Managed repository for serverless applications.
