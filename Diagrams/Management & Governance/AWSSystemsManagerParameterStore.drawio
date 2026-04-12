@@ -1,0 +1,64 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Page-1" id="tHR5WaKrWYjFraBR_I4C">
+    <mxGraphModel dx="1224" dy="1192" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="FXKXkTDXG7_j9hfSTCPE-1" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=middle;verticalAlign=middle;align=left;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.parameter_store;labelPosition=right;spacingLeft=5;" value="&lt;div&gt;SSM Parameter&amp;nbsp;&lt;/div&gt;&lt;div&gt;Store&lt;/div&gt;" vertex="1">
+          <mxGeometry height="78" width="75" x="484" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="FXKXkTDXG7_j9hfSTCPE-5" edge="1" parent="1" source="FXKXkTDXG7_j9hfSTCPE-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" target="FXKXkTDXG7_j9hfSTCPE-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FXKXkTDXG7_j9hfSTCPE-8" connectable="0" parent="FXKXkTDXG7_j9hfSTCPE-5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;div&gt;Decryption&lt;/div&gt;&lt;div&gt;Service&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.0436" y="1" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FXKXkTDXG7_j9hfSTCPE-2" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.key_management_service;" value="AWS KMS" vertex="1">
+          <mxGeometry height="78" width="78" x="482.5" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="FXKXkTDXG7_j9hfSTCPE-6" edge="1" parent="1" source="FXKXkTDXG7_j9hfSTCPE-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" target="FXKXkTDXG7_j9hfSTCPE-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FXKXkTDXG7_j9hfSTCPE-7" connectable="0" parent="FXKXkTDXG7_j9hfSTCPE-6" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;div&gt;&amp;nbsp;Check IAM&lt;/div&gt;&lt;div&gt;permissions&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.068" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FXKXkTDXG7_j9hfSTCPE-3" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.permissions;" value="" vertex="1">
+          <mxGeometry height="78" width="62" x="289" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="FXKXkTDXG7_j9hfSTCPE-9" edge="1" parent="1" source="FXKXkTDXG7_j9hfSTCPE-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" target="FXKXkTDXG7_j9hfSTCPE-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="499" y="450" />
+              <mxPoint x="499" y="450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FXKXkTDXG7_j9hfSTCPE-11" connectable="0" parent="FXKXkTDXG7_j9hfSTCPE-9" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;div&gt;Plaintext&amp;nbsp;&lt;/div&gt;&lt;div&gt;configuration&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.2129" y="-3" as="geometry">
+            <mxPoint x="-22" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FXKXkTDXG7_j9hfSTCPE-10" edge="1" parent="1" source="FXKXkTDXG7_j9hfSTCPE-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" target="FXKXkTDXG7_j9hfSTCPE-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="539" y="450" />
+              <mxPoint x="539" y="450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FXKXkTDXG7_j9hfSTCPE-12" connectable="0" parent="FXKXkTDXG7_j9hfSTCPE-10" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;div&gt;Encrypted&amp;nbsp;&lt;/div&gt;&lt;div&gt;configuration&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.1278" y="-1" as="geometry">
+            <mxPoint x="23" y="3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FXKXkTDXG7_j9hfSTCPE-4" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=middle;verticalAlign=middle;align=left;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.client;labelPosition=right;spacingLeft=5;" value="Applications" vertex="1">
+          <mxGeometry height="76" width="78" x="482.5" y="330" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

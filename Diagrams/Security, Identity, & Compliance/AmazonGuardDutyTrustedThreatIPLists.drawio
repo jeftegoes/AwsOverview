@@ -1,0 +1,91 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Page-1" id="lPWPcDnp-TZO7DV2ldL_">
+    <mxGraphModel dx="1224" dy="1192" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-1" parent="1" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_cloud_alt;strokeColor=#232F3E;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#232F3E;dashed=0;" value="AWS Cloud" vertex="1">
+          <mxGeometry height="241" width="438" x="206" y="381" as="geometry" />
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-2" parent="PQ0vwreQqoSi4gSNEXE5-1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.guardduty;" value="GuardDuty" vertex="1">
+          <mxGeometry height="78" width="78" x="20" y="41" as="geometry" />
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-3" parent="PQ0vwreQqoSi4gSNEXE5-1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.instance2;" value="EC2 Instance&lt;div&gt;&lt;b&gt;(Web Server)&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="48" width="48" x="195" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-8" parent="PQ0vwreQqoSi4gSNEXE5-1" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;fontSize=16;" value="" vertex="1">
+          <mxGeometry height="80" width="120" x="130" y="41" as="geometry" />
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-9" parent="PQ0vwreQqoSi4gSNEXE5-8" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=16;" value="" vertex="1">
+          <mxGeometry height="26" width="120" as="geometry" />
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-10" parent="PQ0vwreQqoSi4gSNEXE5-9" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=#82b366;overflow=hidden;fillColor=#d5e8d4;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=16;" value="Truster IP List" vertex="1">
+          <mxGeometry height="26" width="120" as="geometry">
+            <mxRectangle height="26" width="120" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-13" parent="PQ0vwreQqoSi4gSNEXE5-8" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=16;" value="" vertex="1">
+          <mxGeometry height="28" width="120" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-14" parent="PQ0vwreQqoSi4gSNEXE5-13" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=16;" value="192.0.2.0/24" vertex="1">
+          <mxGeometry height="28" width="120" as="geometry">
+            <mxRectangle height="28" width="120" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-17" parent="PQ0vwreQqoSi4gSNEXE5-8" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=16;" value="" vertex="1">
+          <mxGeometry height="26" width="120" y="54" as="geometry" />
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-18" parent="PQ0vwreQqoSi4gSNEXE5-17" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=16;" value="&lt;div&gt;198.51.100.1&lt;/div&gt;" vertex="1">
+          <mxGeometry height="26" width="120" as="geometry">
+            <mxRectangle height="26" width="120" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-21" parent="PQ0vwreQqoSi4gSNEXE5-1" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;fontSize=16;" value="" vertex="1">
+          <mxGeometry height="54" width="120" x="270" y="41" as="geometry" />
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-22" parent="PQ0vwreQqoSi4gSNEXE5-21" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=16;" value="" vertex="1">
+          <mxGeometry height="26" width="120" as="geometry" />
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-23" parent="PQ0vwreQqoSi4gSNEXE5-22" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=#b85450;overflow=hidden;fillColor=#f8cecc;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=16;" value="&lt;div&gt;Threat IP List&lt;/div&gt;" vertex="1">
+          <mxGeometry height="26" width="120" as="geometry">
+            <mxRectangle height="26" width="120" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-24" parent="PQ0vwreQqoSi4gSNEXE5-21" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=16;" value="" vertex="1">
+          <mxGeometry height="28" width="120" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-25" parent="PQ0vwreQqoSi4gSNEXE5-24" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=16;" value="&lt;div&gt;203.0.113.1&lt;/div&gt;" vertex="1">
+          <mxGeometry height="28" width="120" as="geometry">
+            <mxRectangle height="28" width="120" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-31" parent="PQ0vwreQqoSi4gSNEXE5-1" style="triangle;whiteSpace=wrap;html=1;direction=north;fontSize=30;fillColor=#f8cecc;strokeColor=#b85450;" value="!" vertex="1">
+          <mxGeometry height="30" width="40" x="39" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-32" parent="PQ0vwreQqoSi4gSNEXE5-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;generate&lt;/div&gt;&lt;div&gt;finding&lt;/div&gt;" vertex="1">
+          <mxGeometry height="32" width="60" x="29" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-29" edge="1" parent="1" source="PQ0vwreQqoSi4gSNEXE5-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" target="PQ0vwreQqoSi4gSNEXE5-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="336" y="558" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-4" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.user;" value="Developer&lt;div&gt;(&lt;b&gt;&lt;font style=&quot;color: rgb(0, 204, 0);&quot;&gt;IP: 192.0.2.123&lt;/font&gt;&lt;/b&gt;)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="78" width="78" x="296" y="642" as="geometry" />
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-30" edge="1" parent="1" source="PQ0vwreQqoSi4gSNEXE5-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;" target="PQ0vwreQqoSi4gSNEXE5-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="515" y="558" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PQ0vwreQqoSi4gSNEXE5-7" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.user;" value="&lt;div&gt;Hacker&lt;/div&gt;&lt;div&gt;(&lt;font style=&quot;color: rgb(255, 0, 0);&quot;&gt;IP: 203.0.113.1&lt;/font&gt;)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="78" width="78" x="476" y="642" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

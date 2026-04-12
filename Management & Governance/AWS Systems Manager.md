@@ -116,7 +116,20 @@
 - We define parameters.
 - We define actions.
 - Many documents already exist in AWS.
-  TODO: DIAGRAM
+  ![AWS Systems Manager - Documents](/Images/Management%20&%20Governance/AWSSystemsManagerDocuments.png)
+- **Example**
+  ```yaml
+  schemaVersion: "2.2"
+  description: State Manager Bootstrap Example
+  parameters: {}
+  mainSteps:
+    - action: aws:runShellScript
+      name: configureServer
+      inputs:
+        runCommand:
+          - sudo yum install -y httpd
+          - sudo yum --enablerepo=epel install -y clamav
+  ```
 
 # 4. Run Command
 
@@ -169,8 +182,7 @@
 - Security through IAM.
 - Notifications with Amazon EventBridge.
 - Integration with CloudFormation.
-
-TODO: DIAGRAM
+  ![AWS Systems Manager - Parameter Store](/Images/Management%20&%20Governance/AWSSystemsManagerParameterStore.png)
 
 ## 6.1. Parameter Store Hierarchy
 
@@ -247,11 +259,12 @@ TODO: DIAGRAM
 - Allows we to start a secure shell on your EC2 and on-premises servers.
 - Access through AWS Console, AWS CLI, or Session Manager SDK.
 - **Does not need SSH access, bastion hosts, or SSH keys.**
-- No port 22 needed (better security).
+  - No port 22 needed (better security).
 - Supports Linux, macOS, and Windows.
 - Log connections to your instances and executed commands.
 - Session log data can be sent to S3 or CloudWatch Logs.
 - CloudTrail can intercept `StartSession` events.
+  ![AWS Systems Manager - Session Manager](/Images/Management%20&%20Governance/AWSSystemsManagerSessionManager.png)
 
 ## 10.1. Permissions
 

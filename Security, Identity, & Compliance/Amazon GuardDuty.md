@@ -109,8 +109,7 @@
   - GuardDuty generates findings based on these threat lists.
   - Can be supplied by 3rd party threat intelligence or created custom for us.
 - In a multi-account GuardDuty setup, only the GuardDuty administrator account can manage those lists.
-
-TODO: DIAGRAM
+  ![Amazon GuardDuty - Trusted Threat IP Lists](/Images/Security,%20Identity,%20&%20Compliance/AmazonGuardDutyTrustedThreatIPLists.png)
 
 # 7. CloudFormation
 
