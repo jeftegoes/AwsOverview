@@ -91,8 +91,8 @@
 - Applied at the **OU - Organizational Unit** or **Account** level.
 - Does not apply to the Master Account.
 - SCP is applied to all the **Users and Roles** of the Account, including Root user.
-- The SCP does not affect service-linked roles.
-  - Service-linked roles enable other AWS services to integrate with AWS Organizations and can't be restricted by SCPs.
+- The SCP does not affect **service-linked roles**.
+  - **Service-linked roles** enable other AWS services to integrate with AWS Organizations and can't be restricted by SCPs.
 - SCP must have an explicit Allow (does not allow anything by default).
 - If a user or role has an IAM permission policy that grants access to an action that is either not allowed or explicitly denied by the applicable service control policy (SCP), the user or role can't perform that action.
 - **Use cases**

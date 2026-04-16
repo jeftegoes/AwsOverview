@@ -78,9 +78,9 @@
 ## 3.3. Notifications
 
 - Use [Amazon EventBridge](/Application%20Integration/Amazon%20EventBridge.md) to trigger notifications when AWS resources are non-compliant.
-  - TODO: DIAGRAM
+  ![AWS Config - Rules Notifications](/Images/Management%20&%20Governance/AWSConfigRulesNotifications.png)
 - Ability to send configuration changes and compliance state notifications to SNS (all events - use SNS Filtering or filter at client-side).
-  - TODO: DIAGRAM
+  ![AWS Config - Rules Admin Notification](/Images/Management%20&%20Governance/AWSConfigRulesAdminNotification.png)
 
 ## 3.4. Evaluation Trigger Types
 

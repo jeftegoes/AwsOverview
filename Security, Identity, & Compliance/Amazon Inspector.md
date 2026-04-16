@@ -3,7 +3,7 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. What does AWS Inspector evaluate?](#2-what-does-aws-inspector-evaluate)
+- [2. What does Amazon Inspector evaluate?](#2-what-does-amazon-inspector-evaluate)
 - [3. Systems Manager Integration](#3-systems-manager-integration)
 
 # 1. Introduction
@@ -23,7 +23,7 @@
 - Send findings to Amazon Event Bridge.
   ![Amazon Inspector Diagram](/Images/Security,%20Identity,%20&%20Compliance/AmazonInspectorDiagram.png)
 
-# 2. What does AWS Inspector evaluate?
+# 2. What does Amazon Inspector evaluate?
 
 - > **IMPORTANT! Only for EC2 instances, Container Images and Lambda functions.**
 - Continuous scanning of the infrastructure, only when needed.
