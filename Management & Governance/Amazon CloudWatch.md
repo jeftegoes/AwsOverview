@@ -298,6 +298,8 @@
 - AND and OR conditions.
 - Helpful to reduce "alarm noise" by creating complex composite alarms.
 
+TODO DIAGRAM
+
 ## 16.3. Evaluating an alarm
 
 - When we create an alarm, we specify three settings to enable CloudWatch to evaluate when to change the alarm state:
@@ -315,6 +317,8 @@
   - System status = check the underlying hardware.
   - Attached EBS status = check attached EBS volumes.
 - **Recovery:** Same Private, Public, Elastic IP, metadata, placement group.
+
+TODO DIAGRAM
 
 ## 16.5. CloudWatch Alarm: good to know
 

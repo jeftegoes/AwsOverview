@@ -128,7 +128,7 @@
     - `BeforeAllowTraffic` - Use to run tasks before traffic is shifted to the deployed Lambda function version.
     - `AllowTrafic`
     - `AfterAllowTraffic` - Use to run tasks after all traffic is shifted to the deployed Lambda function version.
-    - TODO: DIAGRAM
+      ![AWS CodeDeploy - Hook AppSpec - Lambda](/Images/Developer%20Tools/AWSCodeDeployHookAppSpecLambda.png)
     - https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html
   - ECS
     - `BeforeInstall`

@@ -1,3 +1,4 @@
+
 # Amazon EventBridge (Default event bus) <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->

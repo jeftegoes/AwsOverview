@@ -1,0 +1,37 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Page-1" id="jPuSayQFb0wyPlWlQKJQ">
+    <mxGraphModel dx="1224" dy="1226" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="RKK5Au6A0s8I6lDg-xta-8" edge="1" parent="1" source="RKK5Au6A0s8I6lDg-xta-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="RKK5Au6A0s8I6lDg-xta-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RKK5Au6A0s8I6lDg-xta-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Start" vertex="1">
+          <mxGeometry height="30" width="80" x="385" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="RKK5Au6A0s8I6lDg-xta-9" edge="1" parent="1" source="RKK5Au6A0s8I6lDg-xta-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="RKK5Au6A0s8I6lDg-xta-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RKK5Au6A0s8I6lDg-xta-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="BeforeAllowTraffic" vertex="1">
+          <mxGeometry height="30" width="150" x="350" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="RKK5Au6A0s8I6lDg-xta-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="End" vertex="1">
+          <mxGeometry height="30" width="80" x="385" y="695" as="geometry" />
+        </mxCell>
+        <mxCell id="RKK5Au6A0s8I6lDg-xta-10" edge="1" parent="1" source="RKK5Au6A0s8I6lDg-xta-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="RKK5Au6A0s8I6lDg-xta-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RKK5Au6A0s8I6lDg-xta-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="AllowTrafic" vertex="1">
+          <mxGeometry height="30" width="150" x="350" y="535" as="geometry" />
+        </mxCell>
+        <mxCell id="RKK5Au6A0s8I6lDg-xta-11" edge="1" parent="1" source="RKK5Au6A0s8I6lDg-xta-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="RKK5Au6A0s8I6lDg-xta-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RKK5Au6A0s8I6lDg-xta-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="AfterAllowTraffic" vertex="1">
+          <mxGeometry height="30" width="150" x="350" y="615" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -124,8 +124,7 @@ Resources:
 - Traffic Shifting feature.
 - Pre and Post traffic hooks features to validate deployment (before the traffic shift starts and after it ends).
 - Easy & automated rollback using CloudWatch Alarms.
-
-TODO DIAGRAM
+  ![SAM and CodeDeploy](/Images/Developer%20Tools/AWSSAMAndCodeDeploy.png)
 
 ## 7.1. Parameters
 
