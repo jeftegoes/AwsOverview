@@ -19,23 +19,23 @@
 - [7. Patch Manager](#7-patch-manager)
   - [7.1. Patch Baseline \& Patch Group](#71-patch-baseline--patch-group)
   - [7.2. Patch Manager - Patch Baselines](#72-patch-manager---patch-baselines)
-- [8. Patch Manager](#8-patch-manager)
-- [9. SSM - Maintenance Windows](#9-ssm---maintenance-windows)
-- [10. Session Manager](#10-session-manager)
-  - [10.1. Permissions](#101-permissions)
-  - [10.2. SSH vs. SSM Session Manager](#102-ssh-vs-ssm-session-manager)
-- [11. Default Host Management Configuration](#11-default-host-management-configuration)
-- [12. Hybrid Environments](#12-hybrid-environments)
-- [13. IoT Greengrass Instance Activation](#13-iot-greengrass-instance-activation)
-- [14. Use Cases](#14-use-cases)
-  - [14.1. Reduce costs](#141-reduce-costs)
-  - [14.2. Build a golden AMI](#142-build-a-golden-ami)
-  - [14.3. Config Rule](#143-config-rule)
-- [15. Compliance](#15-compliance)
-- [16. OpsCenter](#16-opscenter)
-- [17. Quick Setup](#17-quick-setup)
-  - [17.1. Supported Configuration Types Include](#171-supported-configuration-types-include)
-- [18. State Manager](#18-state-manager)
+  - [7.3. Diagram](#73-diagram)
+- [8. SSM - Maintenance Windows](#8-ssm---maintenance-windows)
+- [9. Session Manager](#9-session-manager)
+  - [9.1. Permissions](#91-permissions)
+  - [9.2. SSH vs. SSM Session Manager](#92-ssh-vs-ssm-session-manager)
+- [10. Default Host Management Configuration](#10-default-host-management-configuration)
+- [11. Hybrid Environments](#11-hybrid-environments)
+- [12. IoT Greengrass Instance Activation](#12-iot-greengrass-instance-activation)
+- [13. Use Cases](#13-use-cases)
+  - [13.1. Reduce costs](#131-reduce-costs)
+  - [13.2. Build a golden AMI](#132-build-a-golden-ami)
+  - [13.3. Config Rule](#133-config-rule)
+- [14. Compliance](#14-compliance)
+- [15. OpsCenter](#15-opscenter)
+- [16. Quick Setup](#16-quick-setup)
+  - [16.1. Supported Configuration Types Include](#161-supported-configuration-types-include)
+- [17. State Manager](#17-state-manager)
 
 # 1. Introduction
 
@@ -213,8 +213,6 @@
 - Patch on-demand or on a schedule using **Maintenance Windows**.
 - Scan instances and generate patch compliance report (missing patches).
 - Patch compliance report can be sent to S3.
-  - TODO: UPDATE DIAGRAM
-    ![Patch Manager](/Images/Management%20&%20Governance/AWSSystemsManagerPatchManager.png)
 
 ## 7.1. Patch Baseline & Patch Group
 
@@ -240,11 +238,12 @@
   - Operating System, allowed patches, rejected patches...
   - Ability to specify custom and alternative patch repositories.
 
-# 8. Patch Manager
+## 7.3. Diagram
 
-TODO: DIAGRAM
+- TODO: UPDATE DIAGRAM
+  ![Patch Manager](/Images/Management%20&%20Governance/AWSSystemsManagerPatchManager.png)
 
-# 9. SSM - Maintenance Windows
+# 8. SSM - Maintenance Windows
 
 - Defines a schedule for when to perform actions on your instances.
 - **Example:** OS patching, updating drivers, installing software...
@@ -254,7 +253,7 @@ TODO: DIAGRAM
   - Set of registered instances.
   - Set of registered tasks.
 
-# 10. Session Manager
+# 9. Session Manager
 
 - Allows we to start a secure shell on your EC2 and on-premises servers.
 - Access through AWS Console, AWS CLI, or Session Manager SDK.
@@ -266,7 +265,7 @@ TODO: DIAGRAM
 - CloudTrail can intercept `StartSession` events.
   ![AWS Systems Manager - Session Manager](/Images/Management%20&%20Governance/AWSSystemsManagerSessionManager.png)
 
-## 10.1. Permissions
+## 9.1. Permissions
 
 - **IAM Permissions**
   - Control which users/groups can access Session Manager and which instances.
@@ -274,14 +273,14 @@ TODO: DIAGRAM
   - Access SSM + write to S3 + write to CloudWatch.
 - Optionally, we can restrict commands a user can run in a session.
 
-## 10.2. SSH vs. SSM Session Manager
+## 9.2. SSH vs. SSM Session Manager
 
 - **Connect using SSH**
   ![AWS Systems Manager - SSH Connection](/Images/Management%20&%20Governance/AWSSystemsManagerSSH.png)
 - **Connect using SSM Session Manager**
   ![AWS Systems Manager - SSM Session Manager](/Images/Management%20&%20Governance/AWSSystemsManagerSSMSessionManager.png)
 
-# 11. Default Host Management Configuration
+# 10. Default Host Management Configuration
 
 - When enabled, it automatically configure your EC2 instances as managed instances **without the use of EC2 Instance Profile**.
 - **Instance Identity Role:** A type of IAM Role **with no permissions** beyond identifying the EC2 instance to AWS Services (e.g., Systems Manager).
@@ -290,7 +289,7 @@ TODO: DIAGRAM
 - Automatically keeps the SSM Agent up to date.
 - Must be enabled per AWS Region.
 
-# 12. Hybrid Environments
+# 11. Hybrid Environments
 
 - We can setup Systems Manager to manage on-premises servers, IoT devices, edge devices, and virtual machines (e.g., VMs in other cloud providers).
 - **In Systems Manager Console**
@@ -298,7 +297,7 @@ TODO: DIAGRAM
   - Hybrid managed nodes use the prefix **"mi-"**.
     ![AWS Systems Manager - Hybrid Environments](/Images/Management%20&%20Governance/AWSSystemsManagerHybridEnvironments.png)
 
-# 13. IoT Greengrass Instance Activation
+# 12. IoT Greengrass Instance Activation
 
 - Manage IoT Greengrass Core devices using SSM.
 - Install SSM Agent on Greengrass Core devices (registered as a managed node in SSM).
@@ -307,24 +306,24 @@ TODO: DIAGRAM
 - Supports all SSM Capabilities (Patch Manager, Session Manager, Run Command...).
 - **Use cases:** Easily update and maintain OS and software updates across a fleet of Greengrass Core devices.
 
-# 14. Use Cases
+# 13. Use Cases
 
-## 14.1. Reduce costs
+## 13.1. Reduce costs
 
 - Reduce Costs by automatically start and stop EC2 instances and RDS DB Instances.
   ![AWS Systems Manager - Use Case - Start and Stop EC2 instances and RDS DB Instances](/Images/Management%20&%20Governance/AWSSystemsManagerUseCaseStartStopEc2Rds.png)
 - Reduce Costs by automatically downsize EC2 instances and RDS DB Instances.
   ![AWS Systems Manager - Use Case - Downsize EC2 instances and RDS DB Instances](/Images/Management%20&%20Governance/AWSSystemsManagerUseCaseDownsizeEc2Rds.png)
 
-## 14.2. Build a golden AMI
+## 13.2. Build a golden AMI
 
 ![AWS Systems Manager - Use Case - Build a golden AMI](/Images/Management%20&%20Governance/AWSSystemsManagerUseCaseBuildGoldenAMI.png)
 
-## 14.3. Config Rule
+## 13.3. Config Rule
 
 ![AWS Systems Manager - Use Case - Config Rule](/Images/Management%20&%20Governance/AWSSystemsManagerUseCaseConfigRule.png)
 
-# 15. Compliance
+# 14. Compliance
 
 - Scan your fleet of managed nodes for patch compliance and configuration inconsistencies.
 - Displays current data about:
@@ -335,7 +334,7 @@ TODO: DIAGRAM
 - Can send compliance data to Security Hub.
   ![AWS Systems Manager - Compliance](/Images/Management%20&%20Governance/AWSSystemsManagerComplience.png)
 
-# 16. OpsCenter
+# 15. OpsCenter
 
 - Allows we to view, investigate, and remediate issues in one place (no need to navigate across different AWS services).
 - Security issues (Security Hub), performance issues (DynamoDB throttle), failures (ASG failed launch instance)...
@@ -346,7 +345,7 @@ TODO: DIAGRAM
   - Provides recommended Runbooks to resolve the issue.
 - Supports both EC2 instances and on-premises managed nodes.
 
-# 17. Quick Setup
+# 16. Quick Setup
 
 - **Quick Setup** is a tool in AWS Systems Manager that **automates best-practice configurations** for common features across single or multiple AWS accounts and Regions.
 - Default Host Management Configuration (part of Quick Setup).
@@ -355,7 +354,7 @@ TODO: DIAGRAM
   - **Drift remediation:** Periodically checks and corrects configuration drift.
   - **Multi-account & multi-region deployment:** Integrates with AWS Organizations and deploys via CloudFormation StackSets.
 
-## 17.1. Supported Configuration Types Include
+## 16.1. Supported Configuration Types Include
 
 - Host management (e.g., SSM & CloudWatch agents, inventory, patch scans)
 - Default Host Management for organizations
@@ -365,7 +364,7 @@ TODO: DIAGRAM
 - Distributor packages deployment
 - OpsCenter, DevOps Guru, Resource Explorer, Change Manager, etc.
 
-# 18. State Manager
+# 17. State Manager
 
 - **AWS Systems Manager State Manager** is a capability that helps you define and maintain a **desired configuration state** for your Amazon EC2 instances and on-premises servers.
 - It ensures that your instances remain compliant with a defined configuration over time.

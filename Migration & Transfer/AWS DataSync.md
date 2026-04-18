@@ -61,8 +61,6 @@
   - Hybrid workloads needing **local + cloud** access.
 - **Key Point:** Acts like a **bridge** between on-premises systems and AWS storage.
 
----
-
 ## 4.3. 🔑 Main Differences
 
 | Feature             | AWS DataSync                       | AWS Storage Gateway                    |

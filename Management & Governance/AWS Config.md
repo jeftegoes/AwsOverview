@@ -47,6 +47,7 @@
 # 3. Config Rules
 
 - Can use AWS managed config rules (over 75).
+  - https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html
 - Can make custom config rules (must be defined in AWS Lambda).
   - **Ex:** Evaluate if each EBS disk is of type `gp2`.
   - **Ex:** Evaluate if each EC2 instance is `t2.micro`.

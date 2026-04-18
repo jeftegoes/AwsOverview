@@ -710,8 +710,7 @@
 - **Note**
   - Cold starts in VPC have been dramatically reduced in Oct & Nov 2019.
   - https://aws.amazon.com/blogs/compute/announcing-improved-vpc-networking-for-aws-lambda-functions/
-
-![AWS Lambda Function Cold Start](/Images/Compute/AWSLambdaFunctionColdStart.png)
+  ![AWS Lambda Function Cold Start](/Images/Compute/AWSLambdaFunctionColdStart.png)
 
 ## 23.4. Reserved and Provisioned Concurrency
 

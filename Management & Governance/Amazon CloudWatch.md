@@ -297,8 +297,7 @@
 - **Composite Alarms are monitoring the states of multiple other alarms.**
 - AND and OR conditions.
 - Helpful to reduce "alarm noise" by creating complex composite alarms.
-
-TODO DIAGRAM
+  ![Evaluating an alarm](/Images/Management%20&%20Governance/CloudWatchEvaluatingAlarm.png)
 
 ## 16.3. Evaluating an alarm
 
@@ -318,7 +317,7 @@ TODO DIAGRAM
   - Attached EBS status = check attached EBS volumes.
 - **Recovery:** Same Private, Public, Elastic IP, metadata, placement group.
 
-TODO DIAGRAM
+  ![Evaluating an alarm](/Images/Management%20&%20Governance/AmazonCloudWatchAlarmsCompositeAlarms.png)
 
 ## 16.5. CloudWatch Alarm: good to know
 
