@@ -31,7 +31,8 @@
 - [21. Health Check Replacement vs. AZ Rebalancing](#21-health-check-replacement-vs-az-rebalancing)
   - [21.1. Health Check Replacement](#211-health-check-replacement)
   - [21.2. Availability Zone (AZ) Rebalancing](#212-availability-zone-az-rebalancing)
-  - [21.3. Summary Table](#213-summary-table)
+  - [21.3. Rebalancing and Temporary Over-Provisioning](#213-rebalancing-and-temporary-over-provisioning)
+  - [21.4. Summary Table](#214-summary-table)
 
 # 1. Introduction
 
@@ -167,8 +168,7 @@
 - **Note:** **Launch configuration** and **launch template** are different.
   - AWS treats them separately in termination logic.
   - It prefers launch configurations (legacy method) when deciding termination under this policy.
-
-TODO: DIAGRAM
+    ![Amazon ASG - Termination Policies](/Images/Compute/AmazonASGTerminationPolicies.png)
 
 ## 13.1. Different Termination Policies
 
@@ -296,7 +296,13 @@ TODO: DIAGRAM
 - **Impact**: Maintains full capacity at all times.
 - **Reason**: To avoid degrading performance during rebalancing.
 
-## 21.3. Summary Table
+## 21.3. Rebalancing and Temporary Over-Provisioning
+
+- Amazon EC2 - Auto Scaling can temporarily exceed the group's maximum capacity by:
+  - Up to 10%, or at least 1 instance (whichever is greater).
+- This happens during rebalancing activities.
+
+## 21.4. Summary Table
 
 | Feature                     | Health Check Replacement | AZ Rebalancing |
 | --------------------------- | ------------------------ | -------------- |

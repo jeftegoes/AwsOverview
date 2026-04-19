@@ -15,6 +15,8 @@
 - Commonly used with Amazon Quicksight for reporting/dashboards.
 - **Use cases:** Business intelligence / analytics / reporting, analyze & query VPC Flow Logs, ELB Logs, **CloudTrail trails**, etc...
 
+TODO DIAGRAM
+
 # 2. Performance Improvement
 
 - Use **columnar data** for cost-savings (less scan).

@@ -277,7 +277,7 @@
 
 - **Connect using SSH**
   ![AWS Systems Manager - SSH Connection](/Images/Management%20&%20Governance/AWSSystemsManagerSSH.png)
-- **Connect using SSM Session Manager**
+- **Connect using SSM Session Manager (AmazonSSMManagedInstanceCore)**
   ![AWS Systems Manager - SSM Session Manager](/Images/Management%20&%20Governance/AWSSystemsManagerSSMSessionManager.png)
 
 # 10. Default Host Management Configuration

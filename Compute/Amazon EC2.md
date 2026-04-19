@@ -178,7 +178,7 @@
 
 - Security Groups are the fundamental of network security in AWS.
 - They control how traffic is allowed into or out of our EC2 Instances.
-  ![Security Group diagram](/Images/SecurityGroupBasicDiagram.png)
+  ![Security Group diagram](/Images/Compute/AmazonEC2SecurityGroupBasicDiagram.png)
 - Security groups only contain **allow** rules.
 - Security groups rules can reference by IP or by security group.
 - Security groups are acting as a **firewall** on EC2 instances.
@@ -187,7 +187,7 @@
   - Authorised IP ranges - IPv4 and IPv6.
   - Control of inbound network (from other to the instance).
   - Control of outbound network (from the instance to other).
-    ![Security Group Deeper Dive Diagram](/Images/SecurityGroupDeeperDiveDiagram.png)
+    ![Security Group Deeper Dive Diagram](/Images/Compute/AmazonEC2SecurityGroupDeeperDiveDiagram.png)
 
 ## 5.1. Security Groups Good to know
 

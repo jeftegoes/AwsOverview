@@ -47,6 +47,7 @@
   - [6.1. StackSet Troubleshooting](#61-stackset-troubleshooting)
 - [7. ChangeSets](#7-changesets)
 - [8. DeletionPolicy Delete](#8-deletionpolicy-delete)
+  - [8.1. Use Case: Rename an AWS CloudFormation stack](#81-use-case-rename-an-aws-cloudformation-stack)
 - [9. Stack Policies](#9-stack-policies)
 - [10. Termination Protection](#10-termination-protection)
 - [11. User Data in EC2 for CloudFormation](#11-user-data-in-ec2-for-cloudformation)
@@ -686,7 +687,7 @@
 # 8. DeletionPolicy Delete
 
 - Control what happens when the CloudFormation template is deleted or when a resource is removed from a CloudFormation template.
-- Extra safety measure to preserve and backup resources
+- Extra safety measure to preserve and backup resources.
 - Default **DeletionPolicy = Delete**
   - Delete won't work on an S3 bucket if the bucket is not empty.
 - **DeletionPolicy = Retain**
@@ -698,6 +699,10 @@
   - **Examples of supported resources**
     - EBS Volume, ElastiCache Cluster, ElastiCache ReplicationGroup.
     - RDS DBInstance, RDS DBCluster, Redshift Cluster, Neptune DBCluster, DocumentDB DBCluster.
+
+## 8.1. Use Case: Rename an AWS CloudFormation stack
+
+![AWS CloudFormation - Rename an AWS CloudFormation stack](/Images/Management%20&%20Governance/AWSCloudFormationRenameAWSCloudFormationStack.png)
 
 # 9. Stack Policies
 
@@ -849,7 +854,7 @@
 - We can't delete a non-empty S3 bucket.
 - To delete a non-empty S3 bucket, we must first delete all the objects inside it.
 - We can use a custom resource to empty an S3 bucket before it gets deleted by CloudFormation.
-  - ![AWS CloudFormation Custom Resource Non-empty S3 bucket case](/Images/Management%20&%20Governance/AWSCloudFormationCustomResourceNonEmptyS3Bucket.png)
+  - ![AWS CloudFormation - Custom Resource Non-empty S3 bucket case](/Images/Management%20&%20Governance/AWSCloudFormationCustomResourceNonEmptyS3Bucket.png)
 
 ## 17.3. How does it work?
 

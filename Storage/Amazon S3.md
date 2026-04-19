@@ -66,6 +66,7 @@
 - [26. MFA Delete](#26-mfa-delete)
 - [27. Access Logs](#27-access-logs)
   - [27.1. Access Logs WARNING](#271-access-logs-warning)
+  - [27.2. Enable Server Access Logging](#272-enable-server-access-logging)
 - [28. Pre-Signed URLs](#28-pre-signed-urls)
 - [29. S3 Glacier Vault Lock](#29-s3-glacier-vault-lock)
 - [30. S3 Object Lock](#30-s3-object-lock)
@@ -743,6 +744,11 @@
 
 - Do not set your logging bucket to be the monitored bucket.
 - It will create a logging loop, and **your bucket will grow exponentially**.
+
+## 27.2. Enable Server Access Logging
+
+- To enable S3 server access logging:
+  - Configure a source bucket -> point to a log bucket -> grant permissions -> logs are delivered asynchronously.
 
 # 28. Pre-Signed URLs
 

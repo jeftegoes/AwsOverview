@@ -14,7 +14,7 @@
   - [7.1. Sources](#71-sources)
 - [8. Logs Insights](#8-logs-insights)
 - [9. Logs - S3 Export](#9-logs---s3-export)
-- [10. Subscription Filter](#10-subscription-filter)
+- [10. Subscriptions](#10-subscriptions)
   - [10.1. Scenario with HIDS](#101-scenario-with-hids)
   - [10.2. Cross-Account Subscription](#102-cross-account-subscription)
 - [11. CloudWatch Logs Aggregation Multi-Account \& Multi Region](#11-cloudwatch-logs-aggregation-multi-account--multi-region)
@@ -28,7 +28,7 @@
 - [16. CloudWatch Alarms](#16-cloudwatch-alarms)
   - [16.1. Alarm Targets](#161-alarm-targets)
   - [16.2. Composite Alarms](#162-composite-alarms)
-  - [16.3. Evaluating an alarm](#163-evaluating-an-alarm)
+  - [16.3. Evaluating an Alarm](#163-evaluating-an-alarm)
   - [16.4. EC2 Instance Recovery](#164-ec2-instance-recovery)
   - [16.5. CloudWatch Alarm: good to know](#165-cloudwatch-alarm-good-to-know)
 - [17. Synthetics Canary](#17-synthetics-canary)
@@ -173,7 +173,7 @@
 - The API call is `CreateExportTask`.
 - Not near-real time or real-time... use Logs Subscriptions instead.
 
-# 10. Subscription Filter
+# 10. Subscriptions
 
 - Get a real-time log events from CloudWatch Logs for processing and analysis.
 - Send to Kinesis Data Streams, Kinesis Data Firehose, or Lambda.
@@ -278,9 +278,9 @@
 - Alarms are used to trigger notifications for any metric.
 - Various options (sampling, %, max, min, etc...).
 - **Alarm States**
-  - OK
-  - INSUFFICIENT_DATA
-  - ALARM
+  - `OK`
+  - `INSUFFICIENT_DATA`
+  - `ALARM`
 - **Period**
   - Length of time in seconds to evaluate the metric.
   - **High-Resolution Custom Metrics:** 10 sec, 30 sec or multiples of 60 sec.
@@ -290,6 +290,7 @@
 - Stop, Terminate, Reboot, or Recover an EC2 Instance.
 - Trigger Auto Scaling Action.
 - Send notification to SNS (from which we can do pretty much anything).
+  ![Amazon CloudWatch - Alarm - Target](/Images/Management%20&%20Governance/AmazonCloudWatchAlarmTarget.png)
 
 ## 16.2. Composite Alarms
 
@@ -297,17 +298,16 @@
 - **Composite Alarms are monitoring the states of multiple other alarms.**
 - AND and OR conditions.
 - Helpful to reduce "alarm noise" by creating complex composite alarms.
-  ![Evaluating an alarm](/Images/Management%20&%20Governance/CloudWatchEvaluatingAlarm.png)
+  ![Amazon CloudWatch - Alarm - Composite Alarms](/Images/Management%20&%20Governance/AmazonCloudWatchAlarmsCompositeAlarms.png)
 
-## 16.3. Evaluating an alarm
+## 16.3. Evaluating an Alarm
 
-- When we create an alarm, we specify three settings to enable CloudWatch to evaluate when to change the alarm state:
+- When we create an Alarm, we specify three settings to enable CloudWatch to evaluate when to change the alarm state:
   - **Period:** Is the length of time to evaluate the metric or expression to create each individual data point for an alarm. It is expressed in seconds.
   - **Evaluation Periods:** Is the number of the most recent periods, or data points, to evaluate when determining alarm state.
   - **Datapoints to Alarm:** Is the number of data points within the Evaluation Periods that must be breaching to cause the alarm to go to the ALARM state.
     - The breaching data points don't have to be consecutive, but they must all be within the last number of data points equal to **Evaluation Period**.
-
-![Evaluating an alarm](/Images/Management%20&%20Governance/CloudWatchEvaluatingAlarm.png)
+      ![Evaluating an Alarm](/Images/Management%20&%20Governance/CloudWatchEvaluatingAlarm.png)
 
 ## 16.4. EC2 Instance Recovery
 
@@ -316,8 +316,7 @@
   - System status = check the underlying hardware.
   - Attached EBS status = check attached EBS volumes.
 - **Recovery:** Same Private, Public, Elastic IP, metadata, placement group.
-
-  ![Evaluating an alarm](/Images/Management%20&%20Governance/AmazonCloudWatchAlarmsCompositeAlarms.png)
+  ![Amazon CloudWatch - Alarm - EC2 Instance Recovery](/Images/Management%20&%20Governance/AmazonCloudWatchCompositeAlarm.png)
 
 ## 16.5. CloudWatch Alarm: good to know
 

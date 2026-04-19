@@ -20,7 +20,7 @@
 - [13. Validate Pull Requests](#13-validate-pull-requests)
 - [14. Test Reports](#14-test-reports)
 - [15. Security](#15-security)
-  - [15.1. CodeBuild Service Role](#151-codebuild-service-role)
+  - [15.1. Service Role](#151-service-role)
 - [16. BuildArtifacts API](#16-buildartifacts-api)
   - [16.1. Common Use Cases](#161-common-use-cases)
 
@@ -201,10 +201,10 @@
 - IAM for CodeBuild permissions, and VPC for network security.
 - AWS CloudTrail for API calls logging.
 
-## 15.1. CodeBuild Service Role
+## 15.1. Service Role
 
 - Allows CodeBuild to access AWS resources on your behalf (assign the required permissions).
-- **Use cases:**
+- **Use cases**
   - Download code from CodeCommit repository.
   - Fetch parameters from SSM Parameter Store.
   - Upload build artifacts to S3 bucket.

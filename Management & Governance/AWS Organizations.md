@@ -11,7 +11,8 @@
 - [5. Reserved Instances](#5-reserved-instances)
 - [6. Moving Accounts](#6-moving-accounts)
 - [7. Service Control Policies (SCP)](#7-service-control-policies-scp)
-- [8. Resource Policies \& aws:PrincipalOrgID](#8-resource-policies--awsprincipalorgid)
+- [8. SCP Hierarchy](#8-scp-hierarchy)
+- [9. Resource Policies \& aws:PrincipalOrgID](#9-resource-policies--awsprincipalorgid)
 
 # 1. Introduction
 
@@ -50,6 +51,8 @@
 - Automatically added to all new Member accounts created with AWS Organizations.
 - Must be created manually if you invite an existing Member account.
 
+TODO DIAGRAM
+
 # 3. Multi account strategies
 
 - **Create accounts per**
@@ -57,6 +60,10 @@
   - Cost center.
   - Dev / test / prod.
   - Based on **regulatory restrictions** (using SCP), for **better resource isolation** (ex: VPC), to have **separate per-account service limits**, isolated account for **logging**.
+- Multi Account vs. One Account Multi VPC.
+- Use tagging standards for billing purposes.
+- Enable CloudTrail on all accounts, send logs to central S3 account.
+- Send CloudWatch Logs to central logging account.
 - Strategy to create an account for security.
 
 # 4. Feature Modes
@@ -84,6 +91,8 @@
 2. Send an invite to the member account from the new AWS Organization.
 3. Accept the invite to the new Organization from the member account.
 
+TODO diagram
+
 # 7. Service Control Policies (SCP)
 
 - **Service control policies (SCPs) are a type of organization policy that you can use to manage permissions in your organization. An SCP spans all IAM users, groups, and roles, including the AWS account root user.**
@@ -99,6 +108,10 @@
   - Restrict access to certain services (for example: can't use EMR).
   - Enforce PCI compliance by explicitly disabling services.
 
-# 8. Resource Policies & aws:PrincipalOrgID
+# 8. SCP Hierarchy
+
+TODO diagram
+
+# 9. Resource Policies & aws:PrincipalOrgID
 
 - `aws:PrincipalOrgID` can be used in any resource policies to restrict access to accounts that are member of an AWS Organization.
