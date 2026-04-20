@@ -645,12 +645,12 @@
 # 4. Rollbacks
 
 - **Stack Creation Fails**
-  - Default: everything rolls back (gets deleted). We can look at the log.
+  - **Default:** Everything rolls back (gets deleted). We can look at the log.
   - Option to disable rollback and troubleshoot what happened.
 - **Stack Update Fails**
   - The stack automatically rolls back to the previous known working state.
   - Ability to see in the log what happened and error messages.
-- **IMPORTANT!** Fix resources manually then issue `ContinueUpdateRollback` API from Console.
+- > **IMPORTANT!** Fix resources manually then issue `ContinueUpdateRollback` API from Console.
   - Or from the CLI using `continue-update-rollback` API call.
 - CloudFormation to continue the stack rollback and can help resolve the `UPDATE_ROLLBACK_FAILED` state.
 
@@ -683,6 +683,7 @@
 - When you update a stack, you need to know what changes before it happens for greater confidence.
 - ChangeSets won't say if the update will be successful.
 - For Nested Stacks, you see the changes across all stacks.
+  ![AWS CloudFormation - ChangeSets](/Images/Management%20&%20Governance/AWSCloudFormationChangeSets.png)
 
 # 8. DeletionPolicy Delete
 
@@ -1003,6 +1004,7 @@
 - How do we know if our resources have drifted?
   - We can use CloudFormation Drift!
 - Detect drift on an entire stack or on individual resources within a stack.
+  > IMPORTANT: AWS CloudFormation **does not support** drift detection of custom resources.
 
 TODO: DIAGRAM
 

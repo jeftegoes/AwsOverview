@@ -78,7 +78,7 @@
   - Amazon Simple Storage Service (Amazon S3) bucket - 5 minutes interval.
     - Your bucket names for AWS WAF logging must start with `aws-waf-logs-` and can end with any suffix you want.
     - For example, `aws-waf-logs-DOC-EXAMPLE-BUCKET-SUFFIX`.
-  - Amazon Kinesis Data Firehose - limited by Firehose quotas.
+  - > **IMPORTANT!** Amazon Kinesis Data Firehose - limited by Firehose quotas.
   - **AWS WAF supports encryption with Amazon S3 buckets for key type Amazon S3 key (SSE-S3) and AWS Key Management Service (SSE-KMS) AWS KMS keys.**
   - **AWS WAF doesn't support encryption for AWS Key Management Service keys that are managed by AWS.**
     ![AWS WAF Integrations](/Images/Security,%20Identity,%20&%20Compliance/AWSWAFIntegrations.png)

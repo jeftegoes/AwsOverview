@@ -18,14 +18,14 @@
   - [10.1. Scenario with HIDS](#101-scenario-with-hids)
   - [10.2. Cross-Account Subscription](#102-cross-account-subscription)
 - [11. CloudWatch Logs Aggregation Multi-Account \& Multi Region](#11-cloudwatch-logs-aggregation-multi-account--multi-region)
-- [12. CloudWatch Logs - Metric Filter](#12-cloudwatch-logs---metric-filter)
+- [12. Metric Filter](#12-metric-filter)
 - [13. CloudWatch cross-account observability](#13-cloudwatch-cross-account-observability)
 - [14. All kind of Logs](#14-all-kind-of-logs)
   - [14.1. AWS Managed Logs](#141-aws-managed-logs)
 - [15. Logs for EC2](#15-logs-for-ec2)
   - [15.1. Logs Agent \& Unified Agent](#151-logs-agent--unified-agent)
     - [15.1.1. Unified Agent - Metrics](#1511-unified-agent---metrics)
-- [16. CloudWatch Alarms](#16-cloudwatch-alarms)
+- [16. Alarms](#16-alarms)
   - [16.1. Alarm Targets](#161-alarm-targets)
   - [16.2. Composite Alarms](#162-composite-alarms)
   - [16.3. Evaluating an Alarm](#163-evaluating-an-alarm)
@@ -195,7 +195,7 @@
 
 ![Logs Aggregation Multi-Account & Multi Region](/Images/Management%20&%20Governance/AmazonCloudWatchLogsAggregation.png)
 
-# 12. CloudWatch Logs - Metric Filter
+# 12. Metric Filter
 
 - CloudWatch Logs can use filter expressions.
   - For example, find a specific IP inside of a log.
@@ -273,7 +273,7 @@
   - **Swap Space:** (free, used, used %).
   - **Reminder:** Out-of-the box metrics for EC2 - disk, CPU, network (high level).
 
-# 16. CloudWatch Alarms
+# 16. Alarms
 
 - Alarms are used to trigger notifications for any metric.
 - Various options (sampling, %, max, min, etc...).

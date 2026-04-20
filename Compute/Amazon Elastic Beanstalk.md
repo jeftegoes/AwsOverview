@@ -307,8 +307,7 @@
   - **Other Resources Status:** ASG, ELB, EC2 Instance (created, deleted).
   - **Managed Updates Status:** Started, failed.
   - **Environment Health Status.**
-
-TODO: DIAGRAM
+    ![Amazon Elastic Beanstalk - Notifications](/Images/Compute/AmazonElasticBeanstalkNotifications.png)
 
 # 17. Custom Platform (Advanced)
 

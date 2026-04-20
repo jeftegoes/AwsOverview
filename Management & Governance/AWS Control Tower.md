@@ -32,6 +32,8 @@
 - Enables you to create pre-approved baselines and configuration options for AWS accounts in your organization (e.g., VPC default configuration, subnets, region...).
 - Uses AWS Service Catalog to provision new AWS accounts.
 
+TODO diagram
+
 # 3. Policy Violations
 
 ## 3.1. Guardrail
@@ -65,6 +67,8 @@
   - **IAM Identity Center:** Centrally manage user access to accounts and services.
   - **Guardrails:** Rules and policies to enforce security, compliance and best practices.
   - **AWS Config:** To monitor and assess your resources' compliance with Guardrails.
+
+TODO diagram
 
 # 5. Account Factory - Customization (AFC)
 

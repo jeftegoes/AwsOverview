@@ -1,4 +1,4 @@
-# Amazon Athena<!-- omit in toc -->
+# Amazon Athena <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -14,8 +14,7 @@
 - Pricing: $5.00 per TB of data scanned.
 - Commonly used with Amazon Quicksight for reporting/dashboards.
 - **Use cases:** Business intelligence / analytics / reporting, analyze & query VPC Flow Logs, ELB Logs, **CloudTrail trails**, etc...
-
-TODO DIAGRAM
+  ![Amazon Athena](/Images/Analytics/AmazonAthena.png)
 
 # 2. Performance Improvement
 

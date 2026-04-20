@@ -4,7 +4,7 @@
 
 - [1. Introduction](#1-introduction)
 - [2. High Availability and Read Scaling](#2-high-availability-and-read-scaling)
-- [3. Auto Scaling](#3-auto-scaling)
+- [3. Aurora Replicas (Reader) - Auto Scaling](#3-aurora-replicas-reader---auto-scaling)
 - [4. Endpoints](#4-endpoints)
   - [4.1. Custom Endpoints](#41-custom-endpoints)
 - [5. Global Aurora](#5-global-aurora)
@@ -53,9 +53,9 @@
 - Master + up to 15 Aurora Read Replicas serve reads.
 - **Support for Cross-Region Replication.**
 
-# 3. Auto Scaling
+# 3. Aurora Replicas (Reader) - Auto Scaling
 
-![Auto Scaling](/Images/Database/AmazonAuroraAutoScaling.png)
+![Amazon Aurora Replicas (Reader) - Auto Scaling](/Images/Database/AmazonAuroraAutoScaling.png)
 
 # 4. Endpoints
 
