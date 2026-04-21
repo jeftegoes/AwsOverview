@@ -143,10 +143,18 @@
 
 # 11. EventBridge Events
 
-- You can create Rules that match the following ASG events:
-  - EC2 Instance Launching, EC2 Instance Launch Successful/Unsuccessful.
-  - EC2 Instance Terminating, EC2 Instance Terminate Successful/Unsuccessful.
+- We can create Rules that match the following **ASG events**:
+  - **Launching**
+    - EC2 Instance Launching.
+    - EC2 Instance Launch Successful.
+    - EC2 Instance Launch Unsuccessful.
+  - **Terminating**
+    - EC2 Instance Terminating.
+    - EC2 Instance Terminate Successful.
+    - EC2 Instance Terminate Unsuccessful.
   - EC2 Auto Scaling Instance Refresh Checkpoint Reached.
+  - EC2 Instance-launch Lifecycle Action.
+  - EC2 Instance-terminate Lifecycle Action.
   - EC2 Auto Scaling Instance Refresh Started, Succeeded, Failed, Cancelled.
     ![EventBridge Rule Integration](/Images/Compute/AmazonAsgEc2RuleLifecycleAction.png)
 

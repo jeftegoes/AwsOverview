@@ -31,8 +31,7 @@
 - Automates account provisioning and deployments.
 - Enables you to create pre-approved baselines and configuration options for AWS accounts in your organization (e.g., VPC default configuration, subnets, region...).
 - Uses AWS Service Catalog to provision new AWS accounts.
-
-TODO diagram
+  ![AWS Control Tower - Account Factory](/Images/Management%20&%20Governance/AWSControlTowerAccountFactory.png)
 
 # 3. Policy Violations
 
