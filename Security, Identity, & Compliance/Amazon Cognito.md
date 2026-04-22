@@ -132,7 +132,7 @@
 
 - Configure a Client ID & Client Secret
 - Allow redirect from OIDC to your Application Load Balancer DNS name (AWS provided) and CNAME (DNS Alias of your app).
-  - Examples:
+  - **Examples**
     - https://DNS/oauth2/idpresponse
     - https://CNAME/oauth2/idpresponse
 

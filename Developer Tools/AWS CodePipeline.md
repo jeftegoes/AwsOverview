@@ -165,8 +165,7 @@
   - If you use the console default **artifact buckets** are configured, else you must create them.
 - CodePipeline handles the copying of input artifacts from one AWS Region to the other Regions when performing **cross-region actions**.
   - In your **cross-region actions**, only reference the name of the input artifacts.
-
-![AWS CodePipeline - Multi Region](/Images/Developer%20Tools/AWSCodePipelineMultiRegion.png)
+    ![AWS CodePipeline - Multi Region](/Images/Developer%20Tools/AWSCodePipelineMultiRegion.png)
 
 # 15. Pipeline executions
 

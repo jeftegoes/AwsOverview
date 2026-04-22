@@ -3,7 +3,7 @@
 # Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. Details](#2-details)
+- [2. CodeBuild](#2-codebuild)
 - [3. Supported Environments](#3-supported-environments)
 - [4. How it Works](#4-how-it-works)
 - [5. buildspec.yml](#5-buildspecyml)
@@ -33,8 +33,12 @@
 - Charged per minute for compute resources (time it takes to complete the builds).
 - Leverages Docker under the hood for reproducible builds.
 - Use prepackaged Docker images or create your own custom Docker image.
+- **Security**
+  - Integration with KMS for encryption of build artifacts.
+  - IAM for CodeBuild permissions, and VPC for network security.
+  - AWS CloudTrail for API calls logging.
 
-# 2. Details
+# 2. CodeBuild
 
 - **Source:** CodeCommit, S3, Bitbucket, GitHub.
 - **Build instructions:** Code file `buildspec.yml` or insert manually in Console.
@@ -58,7 +62,7 @@
 
 # 4. How it Works
 
-![CodeBuild Diagram](/Images/CodeBuildDiagram.png)
+![AWS CodeBuild - Diagram](/Images/CodeBuildDiagram.png)
 
 # 5. buildspec.yml
 
@@ -144,6 +148,8 @@
   - Security Group IDs.
 - Then your build can access resources in your VPC (e.g., RDS, ElastiCache, EC2, ALB, ...).
 - **Use cases:** Integration tests, data query, internal load balancers, ...
+
+TODO DIAGRAM
 
 # 8. Environment Variables
 

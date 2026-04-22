@@ -9,7 +9,8 @@
 - [5. Fine-grained Permissions and Assignments](#5-fine-grained-permissions-and-assignments)
 - [6. External IdPs](#6-external-idps)
 - [7. Attribute-Based Access Control (ABAC)](#7-attribute-based-access-control-abac)
-- [8. Multi-Factor Authentication (MFA)](#8-multi-factor-authentication-mfa)
+- [8. IAM Identity Center – Attribute-Based Access Control (ABAC)](#8-iam-identity-center--attribute-based-access-control-abac)
+- [9. Multi-Factor Authentication (MFA)](#9-multi-factor-authentication-mfa)
 
 # 1. Introduction
 
@@ -66,12 +67,20 @@ TODO: DIAGRAM
 
 - Fine-grained permissions based on users' attributes stored in IAM Identity Center Identity Store.
 - User attributes can be used in **IAM Identity Center Permission Sets** and **Resource-based Policies**.
-- Example: cost center, title, locale...
-- Use case: Define permissions once, then modify AWS access by changing the attributes.
+- **Example:** Cost center, title, locale...
+- **Use case:** Define permissions once, then modify AWS access by changing the attributes.
 - **User attributes are mapped from the IdP as key-value pairs.**
 
-# 8. Multi-Factor Authentication (MFA)
+TODO: DIAGRAM
+
+# 8. IAM Identity Center – Attribute-Based Access Control (ABAC)
+
+TODO: DIAGRAM
+
+# 9. Multi-Factor Authentication (MFA)
 
 - Supports Multi-Factor Authentication (MFA) with authentication modes:
   - **Every Time They Sign-in (Always-on).**
   - **Only When Their Sign-in Context Changes (Context-aware):** Analyzes user behavior (e.g., device, browser, location...).
+
+TODO: DIAGRAM

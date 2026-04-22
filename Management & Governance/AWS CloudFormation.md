@@ -67,7 +67,7 @@
   - [17.2. Use cases: Delete content from an S3 bucket](#172-use-cases-delete-content-from-an-s3-bucket)
   - [17.3. How does it work?](#173-how-does-it-work)
 - [18. Service Role](#18-service-role)
-- [19. CloudFormation Capabilities](#19-cloudformation-capabilities)
+- [19. Capabilities](#19-capabilities)
 - [20. SSM Parameter Type](#20-ssm-parameter-type)
 - [21. Dynamic References](#21-dynamic-references)
   - [21.1. Dynamic Reference: ssm](#211-dynamic-reference-ssm)
@@ -872,7 +872,7 @@
 - User must have `iam:PassRole` permissions.
   - ![Service Role](/Images/Management%20&%20Governance/AWSCloudFormationServiceRole.png)
 
-# 19. CloudFormation Capabilities
+# 19. Capabilities
 
 - `CAPABILITY_NAMED_IAM` and `CAPABILITY_IAM`.
   - Necessary to enable when you CloudFormation template is creating or updating IAM resources (IAM User, Role, Group, Policy, Access Keys, Instance Profile...).

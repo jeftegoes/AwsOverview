@@ -75,9 +75,10 @@
 - Python.
 - Ruby.
 - Packer Builder.
-- Single Container Docker.
-- Multi-container Docker.
-- Preconfigured Docker.
+- **Docker**
+  - Single Container Docker.
+  - Multi-container Docker.
+  - Preconfigured Docker.
 - If not supported, we can write our custom platform (advanced).
 
 # 4. Deployment options for updates
@@ -205,7 +206,7 @@
   - In the .ebextensions / directory in the root of source code.
   - YAML / JSON format.
   - **.config** extensions (example: logging.config).
-  - Able to modify some default settings using: option_settings.
+  - Able to modify some default settings using: `option_settings`.
   - Ability to add resources such as RDS, ElastiCache, DynamoDB, etc...
 - Resources managed by .ebextensions get deleted if the environment goes away.
 

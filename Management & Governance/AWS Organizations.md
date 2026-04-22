@@ -50,8 +50,7 @@
 - Could be assumed by IAM users in the Management account.
 - Automatically added to all new Member accounts created with AWS Organizations.
 - Must be created manually if you invite an existing Member account.
-
-TODO DIAGRAM
+  ![AWS Organizations - OrganizationAccountAccessRole](/Images/Management%20&%20Governance/AWSOrganizationsOrganizationAccountAccessRole.png)
 
 # 3. Multi account strategies
 
