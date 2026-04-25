@@ -316,6 +316,7 @@
   - System status = check the underlying hardware.
   - Attached EBS status = check attached EBS volumes.
 - **Recovery:** Same Private, Public, Elastic IP, metadata, placement group.
+- `StatusCheckFailed_System`
   ![Amazon CloudWatch - Alarm - EC2 Instance Recovery](/Images/Management%20&%20Governance/AmazonCloudWatchCompositeAlarm.png)
 
 ## 16.5. CloudWatch Alarm: good to know

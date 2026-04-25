@@ -9,8 +9,8 @@
 - [5. Fine-grained Permissions and Assignments](#5-fine-grained-permissions-and-assignments)
 - [6. External IdPs](#6-external-idps)
 - [7. Attribute-Based Access Control (ABAC)](#7-attribute-based-access-control-abac)
-- [8. IAM Identity Center – Attribute-Based Access Control (ABAC)](#8-iam-identity-center--attribute-based-access-control-abac)
-- [9. Multi-Factor Authentication (MFA)](#9-multi-factor-authentication-mfa)
+  - [7.1. PrincipalTag](#71-principaltag)
+- [8. Multi-Factor Authentication (MFA)](#8-multi-factor-authentication-mfa)
 
 # 1. Introduction
 
@@ -70,14 +70,14 @@ TODO: DIAGRAM
 - **Example:** Cost center, title, locale...
 - **Use case:** Define permissions once, then modify AWS access by changing the attributes.
 - **User attributes are mapped from the IdP as key-value pairs.**
-- TODO: DIAGRAM
+  ![AWS IAM Identity Center - Attribute Based Access Control (ABAC)](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMIdentityCenterAttributeBasedAccessControl.png)
 
-# 8. IAM Identity Center – Attribute-Based Access Control (ABAC)
+## 7.1. PrincipalTag
 
 - The `aws:PrincipalTag` condition key allows you to control access to AWS resources based on tags associated with the IAM principal (user or role).
-TODO: DIAGRAM
+  ![AWS IAM Identity Center - Attribute Based Access Control (ABAC) - PrincipalTag](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMIdentityCenterAttributeBasedAccessControlPrincipalTag.png)
 
-# 9. Multi-Factor Authentication (MFA)
+# 8. Multi-Factor Authentication (MFA)
 
 - Supports Multi-Factor Authentication (MFA) with authentication modes:
   - **Every Time They Sign-in (Always-on).**

@@ -15,6 +15,8 @@
 - [9. AWS Config Integration](#9-aws-config-integration)
 - [10. AWS Config Conformance Packs](#10-aws-config-conformance-packs)
 - [11. Account Factory for Terraform (AFT)](#11-account-factory-for-terraform-aft)
+  - [11.1. Diagram](#111-diagram)
+  - [11.2. Terraform](#112-terraform)
 
 # 1. Introduction
 
@@ -95,7 +97,9 @@ TODO diagram
 - GitOps-style customization framework created by AWS.
 - Helps you add customizations to your Landing Zone using your custom CloudFormation templates and SCPs.
 - Automatically deploy resources to new AWS accounts created using Account Factory.
-- Note: CfCT is different from AFC (Account Factory Customization; blueprint).
+- **Note:** CfCT is different from AFC (Account Factory Customization; blueprint).
+
+TODO diagram
 
 # 9. AWS Config Integration
 
@@ -119,5 +123,33 @@ TODO diagram
   - **Delete The AWS Default VPC:** Deletes the default VPCs in all AWS Regions.
 - Terraform module maintained by AWS.
 - Works with Terraform Open-source, Terraform Enterprise, and Terraform Cloud.
-> `aft_feature_enterprise_support = true`
-TODO diagram
+  > `aft_feature_enterprise_support = true`
+
+## 11.1. Diagram
+
+![AWS Control Tower - Account Factory Terraform](/Images/Management%20&%20Governance/AWSControlTowerAccountFactoryTerraform.png)
+
+## 11.2. Terraform
+
+```terraform
+module "aft" {
+  source = "git@github.com:aws-ia/terraform-aws-control_tower_account_factory.git"
+
+  # Required Parameters
+  ct_management_account_id    = "123412341234"
+  log_archive_account_id      = "234523452345"
+  audit_account_id            = "345634563456"
+  aft_management_account_id   = "456745674567"
+  ct_home_region              = "us-east-1"
+  tf_backend_secondary_region = "us-west-2"
+
+  # Optional Parameters
+  terraform_distribution = "oss"
+  vcs_provider           = "codecommit"
+
+  # Optional Feature Flags
+  aft_feature_delete_default_vpcs_enabled = false
+  aft_feature_cloudtrail_data_events      = false
+  aft_feature_enterprise_support          = true
+}
+```

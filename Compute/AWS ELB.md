@@ -72,9 +72,8 @@
 - ELB DualStack ensures compatibility between client and target IP versions.
   - IPv4 clients communicate with IPv4 targets, and IPv6 clients communicate with IPv6 targets.
   - If you only have IPv4 targets, the ELB automatically converts requests from IPv6 to IPv4.
-- Note: AZ must be added/enabled for instances to receive traffic.
-
-TODO DIAGRAM
+- **Note:** AZ must be added/enabled for instances to receive traffic.
+  ![Amazon EC2 - ELB - DualStack Networking](/Images/Compute/AmazonEC2ELBDualStackNetworking.png)
 
 ## 2.2. PrivateLink Integration
 

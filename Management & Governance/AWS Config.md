@@ -163,3 +163,4 @@
   - The default value is 90 days.
 - `ec2-instance-profile-attached`
   - This rule specifically checks if EC2 instances have an associated instance profile.
+- `restricted-ssh`

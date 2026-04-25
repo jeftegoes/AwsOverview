@@ -57,6 +57,7 @@
 - CloudWatch Metrics (1 minute interval)
   - `StatusCheckFailed_System`
   - `StatusCheckFailed_Instance`
+  - `StatusCheckFailed_AttachedEBS`
   - `StatusCheckFailed` (for both)
 - **Option 1:** CloudWatch Alarm
   - Recover EC2 instance with the same private/public IP, EIP, metadata, and Placement Group.

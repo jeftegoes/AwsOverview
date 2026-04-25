@@ -1,0 +1,84 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Page-1" id="rOWOEagGGStMXXHD0EpU">
+    <mxGraphModel dx="1224" dy="1226" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="vgnibWgplymiFkzrtNrI-1" parent="1" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc2;strokeColor=#8C4FFF;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#AAB7B8;dashed=0;" value="VPC" vertex="1">
+          <mxGeometry height="440" width="290" x="280" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-3" parent="vgnibWgplymiFkzrtNrI-1" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_security_group;grStroke=0;strokeColor=#7AA116;fillColor=#F2F6E8;verticalAlign=top;align=left;spacingLeft=30;fontColor=#248814;dashed=0;" value="Public subnet" vertex="1">
+          <mxGeometry height="130" width="130" x="10" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-8" parent="vgnibWgplymiFkzrtNrI-3" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;IPv4 (10.0.0.0/24)&lt;/div&gt;&lt;div&gt;IPv6 (2001:db8:...)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="130" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-2" parent="vgnibWgplymiFkzrtNrI-1" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_security_group;grStroke=0;strokeColor=#00A4A6;fillColor=#E6F6F7;verticalAlign=top;align=left;spacingLeft=30;fontColor=#147EBA;dashed=0;" value="Private subnet" vertex="1">
+          <mxGeometry height="140" width="130" x="10" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-5" parent="vgnibWgplymiFkzrtNrI-2" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.instance2;" value="" vertex="1">
+          <mxGeometry height="48" width="48" x="10" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-10" parent="vgnibWgplymiFkzrtNrI-2" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;IPv4 (10.0.2.0/24)&lt;/div&gt;&lt;div&gt;IPv6 (optional)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="120" x="5" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-11" parent="vgnibWgplymiFkzrtNrI-2" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.instance2;" value="" vertex="1">
+          <mxGeometry height="48" width="48" x="70" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-12" parent="vgnibWgplymiFkzrtNrI-1" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_security_group;grStroke=0;strokeColor=#00A4A6;fillColor=#E6F6F7;verticalAlign=top;align=left;spacingLeft=30;fontColor=#147EBA;dashed=0;" value="Private subnet" vertex="1">
+          <mxGeometry height="140" width="130" x="150" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-13" parent="vgnibWgplymiFkzrtNrI-12" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.instance2;" value="" vertex="1">
+          <mxGeometry height="48" width="48" x="10" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-14" parent="vgnibWgplymiFkzrtNrI-12" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;IPv4 (10.0.3.0/24)&lt;/div&gt;&lt;div&gt;IPv6 (optional)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="120" x="5" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-15" parent="vgnibWgplymiFkzrtNrI-12" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.instance2;" value="" vertex="1">
+          <mxGeometry height="48" width="48" x="70" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-16" parent="vgnibWgplymiFkzrtNrI-1" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_security_group;grStroke=0;strokeColor=#7AA116;fillColor=#F2F6E8;verticalAlign=top;align=left;spacingLeft=30;fontColor=#248814;dashed=0;" value="Public subnet" vertex="1">
+          <mxGeometry height="130" width="130" x="150" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-17" parent="vgnibWgplymiFkzrtNrI-16" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;IPv4 (10.0.1.0/24)&lt;/div&gt;&lt;div&gt;IPv6 (2001:db8:...)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="130" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-18" parent="vgnibWgplymiFkzrtNrI-16" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=20;fontStyle=1" value="IPv4" vertex="1">
+          <mxGeometry height="30" width="60" x="35" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-7" parent="vgnibWgplymiFkzrtNrI-1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=top;verticalAlign=bottom;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.application_load_balancer;labelPosition=center;" value="Internet-Facing ELB" vertex="1">
+          <mxGeometry height="50" width="50" x="120" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-19" parent="vgnibWgplymiFkzrtNrI-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=20;fontStyle=1" value="&lt;div&gt;IPv4/IPv6&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="120" x="180" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-20" parent="vgnibWgplymiFkzrtNrI-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;div&gt;IPv4 (10.0.0.0/16)&lt;/div&gt;&lt;div&gt;IPv6 (2001:db8:1234:1a00::/56)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="200" x="10" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-22" edge="1" parent="1" source="vgnibWgplymiFkzrtNrI-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#3333FF;strokeWidth=2;" target="vgnibWgplymiFkzrtNrI-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="531" y="575" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-4" parent="1" style="sketch=0;outlineConnect=0;fontColor=#3333FF;gradientColor=none;fillColor=#3333FF;strokeColor=none;dashed=0;verticalLabelPosition=top;verticalAlign=bottom;align=center;html=1;fontSize=16;fontStyle=1;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.user;labelPosition=center;" value="IPv4" vertex="1">
+          <mxGeometry height="78" width="78" x="492" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-23" edge="1" parent="1" source="vgnibWgplymiFkzrtNrI-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#ED7100;strokeWidth=2;" target="vgnibWgplymiFkzrtNrI-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="319" y="575" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-6" parent="1" style="sketch=0;outlineConnect=0;fontColor=#ED7100;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=top;verticalAlign=bottom;align=center;html=1;fontSize=16;fontStyle=1;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.user;labelPosition=center;" value="IPv6" vertex="1">
+          <mxGeometry height="78" width="78" x="280" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="vgnibWgplymiFkzrtNrI-21" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;&lt;font style=&quot;color: rgb(51, 51, 255); font-size: 17px;&quot;&gt;name-1234567890.region.elb.amazonaws.com&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(237, 113, 0); font-size: 17px;&quot;&gt;ipv6.name-1234567890.region.elb.amazonaws.com&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 17px;&quot;&gt;&lt;u style=&quot;&quot;&gt;dualstack&lt;/u&gt;.name-1234567890.region.elb.amazonaws.com&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="500" x="175" y="220" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
