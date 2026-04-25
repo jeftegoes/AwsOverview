@@ -20,8 +20,7 @@
 - It's an alternative to [AWS System Manager](AWS%20Systems%20Manager.md).
 - Only provision standard AWS resources:
   - EC2 Instances, Databases, Load Balancers, EBS volumes...
-
-![AWS OpsWorks](/Images/Management%20&%20Governance/AWSOpsWorksGeneralDiagram.png)
+    ![AWS OpsWorks](/Images/Management%20&%20Governance/AWSOpsWorksGeneralDiagram.png)
 
 # 2. Ohters details
 
@@ -37,8 +36,7 @@
 - Top-level OpsWorks entity.
 - Represents a set of instances and applications that you want to manage collectively.
 - E.g Web Server stack may contain a load balancer, server instances and database.
-
-![AWS OpsWorks Stacks](/Images/Management%20&%20Governance/AWSOpsWorksStacks.png)
+  ![AWS OpsWorks Stacks](/Images/Management%20&%20Governance/AWSOpsWorksStacks.png)
 
 ## 3.1. Stacks Lifecycle Events
 
@@ -92,9 +90,7 @@
 - Every instance has an AWS OpsWorks Stacks agent that communicates regularly with the service.
 - AWS OpsWorks Stacks uses that communication to monitor instance health.
 - If an agent does not communicate with the service for more than approximately five minutes, AWS OpsWorks Stacks considers the instance to have failed.
-
-![AutoHealing](/Images/Management%20&%20Governance/AWSOpsWorksAutoHealing.png)
-
+  ![AutoHealing](/Images/Management%20&%20Governance/AWSOpsWorksAutoHealing.png)
 - The `initiated_by` field is only populated when the instance is in the **requested**, **terminating**, or **stopping** states.
 - The `initiated_by` field can contain one of the following values.
   - `user` - A user requested the instance state change by using either the API or AWS Management Console.

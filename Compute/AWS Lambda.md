@@ -59,6 +59,7 @@
   - [21.1. Lambda Execution Context](#211-lambda-execution-context)
   - [21.2. Lambda Functions /tmp space](#212-lambda-functions-tmp-space)
 - [22. File Systems Mounting](#22-file-systems-mounting)
+  - [22.1. Clarifying](#221-clarifying)
 - [23. Lambda Concurrency and Throttling](#23-lambda-concurrency-and-throttling)
   - [23.1. Lambda Concurrency Issue](#231-lambda-concurrency-issue)
   - [23.2. Concurrency and Asynchronous Invocations](#232-concurrency-and-asynchronous-invocations)
@@ -674,7 +675,15 @@
 - Lambda functions can access EFS file systems if they are running in a VPC.
 - Configure Lambda to mount EFS file systems to local directory during initialization.
 - Must leverage EFS Access Points.
-- Limitations: watch out for the EFS connection limits (one function instance = one connection) and connection burst limits.
+- **Limitations:** Watch out for the EFS connection limits (one function instance = one connection) and connection burst limits.
+
+## 22.1. Clarifying
+
+- AWS Lambda can mount Amazon Elastic File System only when:
+  - They are in the same AWS account.
+  - And in the same VPC.
+- > Cross-Region EFS access is not supported.
+- > Cross-AZ is supported natively within the same VPC (EFS is regional).
 
 # 23. Lambda Concurrency and Throttling
 
@@ -710,7 +719,7 @@
 - **Note**
   - Cold starts in VPC have been dramatically reduced in Oct & Nov 2019.
   - https://aws.amazon.com/blogs/compute/announcing-improved-vpc-networking-for-aws-lambda-functions/
-  ![AWS Lambda Function Cold Start](/Images/Compute/AWSLambdaFunctionColdStart.png)
+    ![AWS Lambda Function Cold Start](/Images/Compute/AWSLambdaFunctionColdStart.png)
 
 ## 23.4. Reserved and Provisioned Concurrency
 
@@ -958,9 +967,9 @@ CMD ["app.lambdaHandler"]
 
 # 38. Ephemeral Storage
 
-- **Default:** 512 MB temporary storage per function instance.  
-- **Configurable:** Up to 10 GB.  
-- **Purpose:** For temporary data processing (e.g., file manipulation, caching).  
-- **Lifecycle:** Storage is **ephemeral**-wiped after function execution.  
-- **Use Cases:** Data processing, temporary file handling, in-memory caching.  
-- **Not Persistent:** For long-term storage, use S3, EFS, or DynamoDB instead.  
+- **Default:** 512 MB temporary storage per function instance.
+- **Configurable:** Up to 10 GB.
+- **Purpose:** For temporary data processing (e.g., file manipulation, caching).
+- **Lifecycle:** Storage is **ephemeral**-wiped after function execution.
+- **Use Cases:** Data processing, temporary file handling, in-memory caching.
+- **Not Persistent:** For long-term storage, use S3, EFS, or DynamoDB instead.

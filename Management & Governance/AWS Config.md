@@ -19,6 +19,7 @@
   - [7.1. Custom rules](#71-custom-rules)
 - [8. Organizational Rules vs. Conformance Packs](#8-organizational-rules-vs-conformance-packs)
 - [9. Managed Rules](#9-managed-rules)
+  - [9.1. Important rules](#91-important-rules)
 
 # 1. Introduction
 
@@ -153,3 +154,12 @@
 
 - **AWS Config** provides **AWS managed rules**, which are predefined, customizable rules that AWS Config uses to evaluate whether our AWS resources comply with common best practices.
   ![AWS Managed Rules](/Images/Management%20&%20Governance/AWSConfigManagedRules.png)
+
+## 9.1. Important rules
+
+- `access-keys-rotated`
+  - Checks if active IAM access keys are rotated (changed) within the number of days specified in maxAccessKeyAge.
+  - The rule is NON_COMPLIANT if access keys are not rotated within the specified time period.
+  - The default value is 90 days.
+- `ec2-instance-profile-attached`
+  - This rule specifically checks if EC2 instances have an associated instance profile.

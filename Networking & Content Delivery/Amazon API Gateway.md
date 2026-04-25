@@ -4,49 +4,50 @@
 
 - [1. Introduction](#1-introduction)
 - [2. Integrations High Level](#2-integrations-high-level)
-- [3. Endpoint Types](#3-endpoint-types)
-- [4. Security](#4-security)
-- [5. Deployment Stages](#5-deployment-stages)
-  - [5.1. API Gateway Stages v1 and v2 API breaking change](#51-api-gateway-stages-v1-and-v2-api-breaking-change)
-- [6. Stage Variables](#6-stage-variables)
-  - [6.1. Stage Variables and Lambda Aliases](#61-stage-variables-and-lambda-aliases)
-- [7. Canary Deployment](#7-canary-deployment)
-- [8. Integration Types (Methods)](#8-integration-types-methods)
-  - [8.1. MOCK](#81-mock)
-  - [8.2. HTTP / AWS (Lambda \& AWS Services)](#82-http--aws-lambda--aws-services)
-  - [8.3. AWS\_PROXY (Lambda Proxy)](#83-aws_proxy-lambda-proxy)
-  - [8.4. HTTP\_PROXY](#84-http_proxy)
-- [9. Mapping Templates (AWS and HTTP Integration)](#9-mapping-templates-aws-and-http-integration)
-  - [9.1. Mapping Example: JSON to XML with SOAP](#91-mapping-example-json-to-xml-with-soap)
-  - [9.2. Mapping Example: Query String parameters](#92-mapping-example-query-string-parameters)
-  - [9.3. Velocity Template Language (VTL)](#93-velocity-template-language-vtl)
-- [10. Open API spec](#10-open-api-spec)
-  - [10.1. Request Validation](#101-request-validation)
-  - [10.2. RequestValidation - OpenAPI](#102-requestvalidation---openapi)
-- [11. Caching API responses](#11-caching-api-responses)
-  - [11.1. Cache invalidations](#111-cache-invalidations)
-- [12. Usage Plans \& API Keys](#12-usage-plans--api-keys)
-  - [12.1. Correct Order for API keys](#121-correct-order-for-api-keys)
-- [13. Logging \& Tracing](#13-logging--tracing)
-  - [13.1. CloudWatch metrics](#131-cloudwatch-metrics)
-- [14. Throttling](#14-throttling)
-- [15. API Gateway - Errors](#15-api-gateway---errors)
-- [16. CORS](#16-cors)
-- [17. Security](#17-security)
-  - [17.1. IAM Permissions](#171-iam-permissions)
-    - [17.1.1. Resource Policies](#1711-resource-policies)
-  - [17.2. Cognito User Pools](#172-cognito-user-pools)
-  - [17.3. Lambda Authorizer (formerly Custom Authorizers)](#173-lambda-authorizer-formerly-custom-authorizers)
-  - [17.4. Summary](#174-summary)
-- [18. HTTP API vs REST API](#18-http-api-vs-rest-api)
-- [19. WebSocket API](#19-websocket-api)
-  - [19.1. Routing](#191-routing)
-- [20. Architecture](#20-architecture)
-- [21. JWT Authorizers](#21-jwt-authorizers)
-- [22. API Gateway REST API Key Features](#22-api-gateway-rest-api-key-features)
-  - [22.1. SDK Generation](#221-sdk-generation)
-  - [22.2. Event-Driven Operations](#222-event-driven-operations)
-  - [22.3. Integration Use Case](#223-integration-use-case)
+- [3. AWS Service Integration Kinesis Data Streams example](#3-aws-service-integration-kinesis-data-streams-example)
+- [4. Endpoint Types](#4-endpoint-types)
+- [5. Security](#5-security)
+- [6. Deployment Stages](#6-deployment-stages)
+  - [6.1. API Gateway Stages v1 and v2 API breaking change](#61-api-gateway-stages-v1-and-v2-api-breaking-change)
+- [7. Stage Variables](#7-stage-variables)
+  - [7.1. Stage Variables and Lambda Aliases](#71-stage-variables-and-lambda-aliases)
+- [8. Canary Deployment](#8-canary-deployment)
+- [9. Integration Types (Methods)](#9-integration-types-methods)
+  - [9.1. MOCK](#91-mock)
+  - [9.2. HTTP / AWS (Lambda \& AWS Services)](#92-http--aws-lambda--aws-services)
+  - [9.3. AWS\_PROXY (Lambda Proxy)](#93-aws_proxy-lambda-proxy)
+  - [9.4. HTTP\_PROXY](#94-http_proxy)
+- [10. Mapping Templates (AWS and HTTP Integration)](#10-mapping-templates-aws-and-http-integration)
+  - [10.1. Mapping Example: JSON to XML with SOAP](#101-mapping-example-json-to-xml-with-soap)
+  - [10.2. Mapping Example: Query String parameters](#102-mapping-example-query-string-parameters)
+  - [10.3. Velocity Template Language (VTL)](#103-velocity-template-language-vtl)
+- [11. Open API spec](#11-open-api-spec)
+  - [11.1. Request Validation](#111-request-validation)
+  - [11.2. RequestValidation - OpenAPI](#112-requestvalidation---openapi)
+- [12. Caching API responses](#12-caching-api-responses)
+  - [12.1. Cache invalidations](#121-cache-invalidations)
+- [13. Usage Plans \& API Keys](#13-usage-plans--api-keys)
+  - [13.1. Correct Order for API keys](#131-correct-order-for-api-keys)
+- [14. Logging \& Tracing](#14-logging--tracing)
+  - [14.1. CloudWatch metrics](#141-cloudwatch-metrics)
+- [15. Throttling](#15-throttling)
+- [16. API Gateway - Errors](#16-api-gateway---errors)
+- [17. CORS](#17-cors)
+- [18. Security](#18-security)
+  - [18.1. IAM Permissions](#181-iam-permissions)
+    - [18.1.1. Resource Policies](#1811-resource-policies)
+  - [18.2. Cognito User Pools](#182-cognito-user-pools)
+  - [18.3. Lambda Authorizer (formerly Custom Authorizers)](#183-lambda-authorizer-formerly-custom-authorizers)
+  - [18.4. Summary](#184-summary)
+- [19. HTTP API vs REST API](#19-http-api-vs-rest-api)
+- [20. WebSocket API](#20-websocket-api)
+  - [20.1. Routing](#201-routing)
+- [21. Architecture](#21-architecture)
+- [22. JWT Authorizers](#22-jwt-authorizers)
+- [23. API Gateway REST API Key Features](#23-api-gateway-rest-api-key-features)
+  - [23.1. SDK Generation](#231-sdk-generation)
+  - [23.2. Event-Driven Operations](#232-event-driven-operations)
+  - [23.3. Integration Use Case](#233-integration-use-case)
 
 # 1. Introduction
 
@@ -74,10 +75,14 @@
     - Why? Add rate limiting, caching, user authentications, API keys, etc...
 - **AWS Service**
   - Expose any AWS API through the API Gateway.
-  - Example: start an AWS Step Function workflow, post a message to SQS.
+  - **Example:** Start an AWS Step Function workflow, post a message to SQS.
     - Why? Add authentication, deploy publicly, rate control...
 
-# 3. Endpoint Types
+# 3. AWS Service Integration Kinesis Data Streams example
+
+TODO: diagram
+
+# 4. Endpoint Types
 
 - **Edge-Optimized (default)**
   - For global clients
@@ -90,7 +95,7 @@
   - Can only be accessed from your VPC using an interface VPC endpoint (ENI).
   - Use a resource policy to define access.
 
-# 4. Security
+# 5. Security
 
 - **User Authentication through**
   - IAM Roles (useful for internal applications).
@@ -102,7 +107,7 @@
   - If using Regional endpoint, the certificate must be in the API Gateway region.
   - Must setup `CNAME` or `A-alias` record in Route 53.
 
-# 5. Deployment Stages
+# 6. Deployment Stages
 
 - Making changes in the API Gateway does not mean they're effective.
 - You need to make a "deployment" for them to be in effect.
@@ -112,11 +117,11 @@
 - Each stage has its own configuration parameters.
 - Stages can be rolled back as a history of deployments is kept.
 
-## 5.1. API Gateway Stages v1 and v2 API breaking change
+## 6.1. API Gateway Stages v1 and v2 API breaking change
 
 ![API Gateway - API breaking change](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayAPIBreakingChange.png)
 
-# 6. Stage Variables
+# 7. Stage Variables
 
 - Stage variables are like environment variables for API Gateway.
 - Use them to change often changing configuration values.
@@ -135,14 +140,14 @@
   - A path - `http://example.com/${stageVariables.<variable_name>}/bar`
   - A query string - `http://example.com/foo?q=${stageVariables.<variable_name>}`
 
-## 6.1. Stage Variables and Lambda Aliases
+## 7.1. Stage Variables and Lambda Aliases
 
 - We create a stage variable to indicate the corresponding Lambda alias.
 - Our API gateway will automatically invoke the right Lambda function!
 
 ![API Gateway Stage Variables and Lambda Aliases](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayStageVariablesAndLambdaAliases.png)
 
-# 7. Canary Deployment
+# 8. Canary Deployment
 
 - Possibility to enable canary deployments for any stage (usually prod).
 - Choose the % of traffic the canary channel receives.
@@ -151,32 +156,32 @@
 - This is blue / green deployment with [AWS Lambda](/Compute/AWS%20Lambda.md) and API Gateway.
   ![API Gateway - Canary Deployment](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayCanaryDeployment.png)
 
-# 8. Integration Types (Methods)
+# 9. Integration Types (Methods)
 
-## 8.1. MOCK
+## 9.1. MOCK
 
 - API Gateway returns a response without sending the request to the backend.
 
-## 8.2. HTTP / AWS (Lambda & AWS Services)
+## 9.2. HTTP / AWS (Lambda & AWS Services)
 
 - You must **configure** both the integration **request** and integration **response**.
 - Setup data mapping using mapping templates for the request & response.
 - `HTTP` is commonly used in AWS Services like EC2.
 - **`AWS` is only used for Lambda custom integration**.
 
-## 8.3. AWS_PROXY (Lambda Proxy)
+## 9.3. AWS_PROXY (Lambda Proxy)
 
 - Incoming request from the client is the input to Lambda.
 - The function is responsible for the logic of request / response.
 - No mapping template, headers, query string parameters... are passed as arguments.
 
-## 8.4. HTTP_PROXY
+## 9.4. HTTP_PROXY
 
 - No mapping template.
 - The HTTP request is passed to the backend.
 - The HTTP response from the backend is forwarded by API Gateway.
 
-# 9. Mapping Templates (AWS and HTTP Integration)
+# 10. Mapping Templates (AWS and HTTP Integration)
 
 - Mapping templates can be used to modify request / responses.
 - Rename / Modify query string parameters.
@@ -185,7 +190,7 @@
 - Uses Velocity Template Language (VTL): for loop, if etc...
 - Filter output results (remove unnecessary data).
 
-## 9.1. Mapping Example: JSON to XML with SOAP
+## 10.1. Mapping Example: JSON to XML with SOAP
 
 - SOAP API are XML based, whereas REST API are JSON based.
 - In this case, API Gateway should:
@@ -194,14 +199,14 @@
   - Call SOAP service and receive XML response.
   - Transform XML response to desired format (like JSON), and respond to the user.
 
-## 9.2. Mapping Example: Query String parameters
+## 10.2. Mapping Example: Query String parameters
 
-## 9.3. Velocity Template Language (VTL)
+## 10.3. Velocity Template Language (VTL)
 
 - You should use VTL for data mapping and transformations rather than complex business logic.
 - There are exceptions but the drawbacks of using VTL for other use cases often outweigh the benefits.
 
-# 10. Open API spec
+# 11. Open API spec
 
 - Common way of defining REST APIs, using API definition as code.
 - Import existing OpenAPI 3.0 spec to API Gateway:
@@ -214,7 +219,7 @@
 - OpenAPI specs can be written in YAML or JSON.
 - Using OpenAPI we can generate SDK for our applications.
 
-## 10.1. Request Validation
+## 11.1. Request Validation
 
 - You can configure API Gateway to perform basic validation of an API request before proceeding with the integration request.
 - When the validation fails, API Gateway immediately fails the request.
@@ -224,11 +229,11 @@
   - The required request parameters in the URI, query string, and headers of an incoming request are included and non-blank.
   - The applicable request payload adheres to the configured JSON Schema request model of the method.
 
-## 10.2. RequestValidation - OpenAPI
+## 11.2. RequestValidation - OpenAPI
 
 - Setup request validation by importing OpenAPI definitions file.
 
-# 11. Caching API responses
+# 12. Caching API responses
 
 - Caching reduces the number of calls made to the backend.
 - Default **TTL** (time to live) is 300 seconds (min: 0s, max: 3600s).
@@ -238,7 +243,7 @@
 - Cache capacity between 0.5GB to 237GB.
 - Cache is expensive, makes sense in production, may not make sense in dev / test.
 
-## 11.1. Cache invalidations
+## 12.1. Cache invalidations
 
 - Able to flush the entire cache (invalidate it) immediately.
 - Clients can invalidate the cache with header: `Cache-Control: max-age=0` (with proper IAM authorization).
@@ -260,7 +265,7 @@
   }
   ```
 
-# 12. Usage Plans & API Keys
+# 13. Usage Plans & API Keys
 
 - If you want to make an API available as an offering ($) to your customers.
 - Usage Plan:
@@ -275,7 +280,7 @@
   - Throttling limits are applied to the API keys
   - Quotas limits is the overall number of maximum requests
 
-## 12.1. Correct Order for API keys
+## 13.1. Correct Order for API keys
 
 - To configure a usage plan:
 
@@ -286,7 +291,7 @@
 
 - Callers of the API must supply an assigned API key in the x-api-key header in requests to the API.
 
-# 13. Logging & Tracing
+# 14. Logging & Tracing
 
 - **CloudWatch Logs**
   - Enable CloudWatch logging at the Stage level (with Log Level).
@@ -296,7 +301,7 @@
   - Enable tracing to get extra information about requests in API Gateway.
   - X-Ray API Gateway + AWS Lambda gives you the full picture.
 
-## 13.1. CloudWatch metrics
+## 14.1. CloudWatch metrics
 
 - Metrics are by stage, Possibility to enable detailed metrics.
 - `CacheHitCount` - The number of requests served from the API cache in a given period.
@@ -307,7 +312,7 @@
   - The latency includes the integration latency and other API Gateway overhead.
 - **4XX Error** (client-side) & **5XX Error** (server-side).
 
-# 14. Throttling
+# 15. Throttling
 
 - **Account Limit**
   - API Gateway throttles requests at10000 rps across all API.
@@ -317,7 +322,7 @@
 - Or you can define **Usage Plans** to throttle per customer.
 - **Just like Lambda Concurrency, one API that is overloaded, if not limited, can cause the other APIs to be throttled.**
 
-# 15. API Gateway - Errors
+# 16. API Gateway - Errors
 
 - **4xx means Client errors**
   - **400:** Bad Request.
@@ -330,7 +335,7 @@
   - **503:** Service Unavailable Exception.
   - **504:** Integration Failure - ex Endpoint Request Timed-out Exception API Gateway requests time out after **29** second maximum.
 
-# 16. CORS
+# 17. CORS
 
 - CORS must be enabled when you receive API calls from another domain.
 - The OPTIONS pre-flight request must contain the following headers:
@@ -341,16 +346,16 @@
 
 ![API Gateway CORS](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayCORS.png)
 
-# 17. Security
+# 18. Security
 
-## 17.1. IAM Permissions
+## 18.1. IAM Permissions
 
 - Create an IAM policy authorization and attach to User / Role.
 - **Authentication = IAM** | _Authorization = IAM Policy_.
 - Good to provide access within AWS (EC2, Lambda, IAM users...).
 - Leverages "Sig v4" capability where IAM credential are in headers.
 
-### 17.1.1. Resource Policies
+### 18.1.1. Resource Policies
 
 - **API Gateway resource policies** allow IP-based access control using **IAM-style JSON policies**.
 - Use the `IpAddress` and `NotIpAddress` conditions to **allow only trusted IP ranges**.
@@ -364,14 +369,14 @@
   - **IP-based restrictions** (`IpAddress`, `NotIpAddress`)
   - **VPC Endpoint restrictions** (`aws:SourceVpce`)
 
-## 17.2. Cognito User Pools
+## 18.2. Cognito User Pools
 
 - Cognito fully manages user lifecycle, token expires automatically.
 - API gateway verifies identity automatically from AWS Cognito.
 - No custom implementation required.
 - **Authentication = Cognito User Pools** | _Authorization = API Gateway Methods_.
 
-## 17.3. Lambda Authorizer (formerly Custom Authorizers)
+## 18.3. Lambda Authorizer (formerly Custom Authorizers)
 
 - `Token-based` authorizer (bearer token) - ex JWT (JSON Web Token) or Oauth.
 - A `request parameter-based` Lambda authorizer (headers, query string, stage var).
@@ -380,7 +385,7 @@
 
 ![Lambda Authorizer Diagram](/Images/Networking%20&%20Content%20Delivery/AmazonAPIGatewayLambdaAuthorizer.png)
 
-## 17.4. Summary
+## 18.4. Summary
 
 - **IAM**
   - Great for users / roles already within your AWS account, + resource policy for cross account.
@@ -396,7 +401,7 @@
   - No need to write any custom code.
   - Must implement authorization in the backend.
 
-# 18. HTTP API vs REST API
+# 19. HTTP API vs REST API
 
 - **HTTP APIs**
   - low-latency, cost-effective AWS Lambda proxy, HTTP proxy APIs and private integration (no data mapping).
@@ -407,7 +412,7 @@
 
 [Full list here](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html)
 
-# 19. WebSocket API
+# 20. WebSocket API
 
 - What's WebSocket?
   - Two-way interactive communication between a user's browser and a server.
@@ -416,7 +421,7 @@
 - WebSocket APIs are often used in **real-time applications** such as chat applications, collaboration platforms, multiplayer games, and financial trading platforms.
 - Works with AWS Services (Lambda, DynamoDB) or HTTP endpoints.
 
-## 19.1. Routing
+## 20.1. Routing
 
 - Incoming JSON messages are routed to different backend.
 - If no routes => sent to $default.
@@ -425,14 +430,14 @@
 - The result is evaluated against the route keys available in your API Gateway.
 - The route is then connected to the backend you've setup through API Gateway.
 
-# 20. Architecture
+# 21. Architecture
 
 - Create a single interface for all the microservices in your company.
 - Use API endpoints with various resources.
 - Apply a simple domain name and SSL certificates.
 - Can apply forwarding and transformation rules at the API Gateway level.
 
-# 21. JWT Authorizers
+# 22. JWT Authorizers
 
 - **HTTP APIs** in Amazon API Gateway support **native JWT authorizers**.
 - Allows automatic validation of **JWT tokens** from OIDC-compliant providers (e.g., Auth0, Okta, Amazon Cognito).
@@ -444,15 +449,15 @@
 - HTTP APIs are more **cost-effective** and **high-performance** than REST APIs.
 - Ideal for **modern serverless applications** needing JWT validation and claim-based access control.
 
-# 22. API Gateway REST API Key Features
+# 23. API Gateway REST API Key Features
 
-## 22.1. SDK Generation
+## 23.1. SDK Generation
 
 - Provides the **GetSdk API**
 - Allows automatic generation of client SDKs.
 - Simplifies integration for developers and partners.
 
-## 22.2. Event-Driven Operations
+## 23.2. Event-Driven Operations
 
 - API actions (e.g., `UpdateStage`) generate **lifecycle events**.
 - **These events can be**
@@ -460,7 +465,7 @@
   - Captured.
   - Used to trigger automation.
 
-## 22.3. Integration Use Case
+## 23.3. Integration Use Case
 
 - API is updated via CodePipeline.
 - `UpdateStage` event is emitted.

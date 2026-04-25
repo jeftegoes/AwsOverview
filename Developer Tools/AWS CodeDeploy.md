@@ -255,6 +255,11 @@ hooks:
 
 - Use EC2 Tags or ASG to identify instances you want to deploy to.
 - **With a Load Balancer:** Traffic is stopped before instance is updated, and started again after the instance is updated.
+- **In-Place Deployment: EC2 Tags**
+  ![AWS CodeDeploy - In-Place Deployment: EC2 Tags](/Images/Developer%20Tools/AWSCodeDeployInPlaceDeploymentEC2Tags.png)
+- **In-Place Deployment: ASG**
+  - **Note:** CodeDeploy will automatically deploy to newly launched EC2 instances in the ASG.
+    ![AWS CodeDeploy - In-Place Deployment: ASG](/Images/Developer%20Tools/AWSCodeDeployInPlaceDeploymentASG.png)
 
 ## 9.1. In-place Deployment Hooks
 

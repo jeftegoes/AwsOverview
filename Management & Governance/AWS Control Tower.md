@@ -9,10 +9,12 @@
     - [3.1.1. Guardrails Levels](#311-guardrails-levels)
 - [4. Landing Zone](#4-landing-zone)
 - [5. Account Factory - Customization (AFC)](#5-account-factory---customization-afc)
-- [6. Customizations for AWS Control Tower (CfCT)](#6-customizations-for-aws-control-tower-cfct)
-- [7. AWS Config Integration](#7-aws-config-integration)
-- [8. AWS Config Conformance Packs](#8-aws-config-conformance-packs)
-- [9. Account Factory for Terraform (AFT)](#9-account-factory-for-terraform-aft)
+- [6. AWS Control Tower – Account Factory](#6-aws-control-tower--account-factory)
+- [7. Migrate an AWS Account to Control Tower](#7-migrate-an-aws-account-to-control-tower)
+- [8. Customizations for AWS Control Tower (CfCT)](#8-customizations-for-aws-control-tower-cfct)
+- [9. AWS Config Integration](#9-aws-config-integration)
+- [10. AWS Config Conformance Packs](#10-aws-config-conformance-packs)
+- [11. Account Factory for Terraform (AFT)](#11-account-factory-for-terraform-aft)
 
 # 1. Introduction
 
@@ -80,32 +82,42 @@ TODO diagram
 - **Only one blueprint can be deployed to the account**
 - You can react to new accounts created using EventBridge
 
-# 6. Customizations for AWS Control Tower (CfCT)
+# 6. AWS Control Tower – Account Factory
+
+TODO diagram
+
+# 7. Migrate an AWS Account to Control Tower
+
+TODO diagram
+
+# 8. Customizations for AWS Control Tower (CfCT)
 
 - GitOps-style customization framework created by AWS.
 - Helps you add customizations to your Landing Zone using your custom CloudFormation templates and SCPs.
 - Automatically deploy resources to new AWS accounts created using Account Factory.
 - Note: CfCT is different from AFC (Account Factory Customization; blueprint).
 
-# 7. AWS Config Integration
+# 9. AWS Config Integration
 
 - Control Tower uses AWS Config to **implement Detective Guardrails**.
 - Control Tower automatically enables AWS Config in enabled Regions.
 - AWS Config Configuration History and snapshots delivered to S3 bucket in a centralized Log Archive account.
 - Control Tower uses CloudFormation StackSets to create resources like Config Aggregator, CloudTrail, and centralized logging.
 
-# 8. AWS Config Conformance Packs
+# 10. AWS Config Conformance Packs
 
 - **Config Conformance Packs:** Enables you to create packages of Config Compliance Rules & Remediations for easy deployment at scale.
 - Deploy to individual AWS accounts or entire and AWS Organization.
 
-# 9. Account Factory for Terraform (AFT)
+# 11. Account Factory for Terraform (AFT)
 
 - Helps you provision and customize AWS accounts in Control Tower through Terraform using a deployment pipeline.
-- You create an account request Terraform file which triggers the AFT workflow for account provisioning.
+- You create an **account request Terraform file** which triggers the AFT workflow for account provisioning.
 - Offers built-in feature options (disabled by default)
   - **AWS CloudTrail Data Events:** Creates a Trail & enables CloudTrail Data Events.
   - **AWS Enterprise Support Plan:** Turns on the Enterprise Support Plan.
   - **Delete The AWS Default VPC:** Deletes the default VPCs in all AWS Regions.
 - Terraform module maintained by AWS.
 - Works with Terraform Open-source, Terraform Enterprise, and Terraform Cloud.
+> `aft_feature_enterprise_support = true`
+TODO diagram

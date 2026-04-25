@@ -132,7 +132,6 @@
 - EFS has a higher price point than EBS.
 - Can leverage EFS-IA for cost savings.
 - **Remember:** EFS vs EBS vs Instance Store.
-
   ![Amazon EFS Mount Target](/Images/Storage/AmazonEFSMountTarget.png)
 
 # 6. Amazon EFS Mount Targets

@@ -75,6 +75,7 @@
 
 # 6. Amazon EventBridge - Intercept API Calls
 
+TODO update diagram
 ![Intercept API Calls](/Images/AmazonEventBridgeInterceptAPICalls.png)
 
 # 7. Amazon EventBridge + CloudTrail

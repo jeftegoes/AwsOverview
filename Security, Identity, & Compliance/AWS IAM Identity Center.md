@@ -40,7 +40,7 @@
 
 - **Multi-Account Permissions**
   - Manage access across AWS accounts in your AWS Organization.
-  - Permission Sets - a collection of one or more IAM Policies assigned to users and groups to define AWS access.
+  - **Permission Sets:** A collection of one or more IAM Policies assigned to users and groups to define AWS access.
 - **Application Assignments**
   - SSO access to many SAML 2.0 business applications (Salesforce, Box, Microsoft 365...).
   - Provide required URLs, certificates, and metadata.
@@ -70,11 +70,11 @@ TODO: DIAGRAM
 - **Example:** Cost center, title, locale...
 - **Use case:** Define permissions once, then modify AWS access by changing the attributes.
 - **User attributes are mapped from the IdP as key-value pairs.**
-
-TODO: DIAGRAM
+- TODO: DIAGRAM
 
 # 8. IAM Identity Center – Attribute-Based Access Control (ABAC)
 
+- The `aws:PrincipalTag` condition key allows you to control access to AWS resources based on tags associated with the IAM principal (user or role).
 TODO: DIAGRAM
 
 # 9. Multi-Factor Authentication (MFA)

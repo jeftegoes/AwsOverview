@@ -19,6 +19,7 @@
 - [15. Pipeline executions](#15-pipeline-executions)
 - [16. Custom Actions (Job Worker)](#16-custom-actions-job-worker)
 - [17. API Gateway Integration](#17-api-gateway-integration)
+- [18. AWS CodPipeline \& Blue-Green Deployments to AWS Elastic Beanstalk](#18-aws-codpipeline--blue-green-deployments-to-aws-elastic-beanstalk)
 
 # 1. Introduction
 
@@ -190,3 +191,8 @@
 # 17. API Gateway Integration
 
 ![API Gateway Integration](/Images/Developer%20Tools/AWSCodePipelineApiGAtewayIntegration.png)
+
+# 18. AWS CodPipeline & Blue-Green Deployments to AWS Elastic Beanstalk
+
+TODO update diagram
+![AWS CodPipeline & Blue-Green Deployments to AWS Elastic Beanstalk](/Images/Developer%20Tools/blue-green-deployment-on-aws-architecture1.png)

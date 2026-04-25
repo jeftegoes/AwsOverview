@@ -5,6 +5,8 @@
 - [1. Introduction](#1-introduction)
 - [2. What does Amazon Inspector evaluate?](#2-what-does-amazon-inspector-evaluate)
 - [3. Systems Manager Integration](#3-systems-manager-integration)
+- [4. Amazon Inspector \& AMIs](#4-amazon-inspector--amis)
+  - [4.1. Diagram](#41-diagram)
 
 # 1. Introduction
 
@@ -39,3 +41,29 @@
   - Be an SSM Managed Instance (IAM Role or Default Host Management Config.).
   - Outbound 443 to Systems Manager endpoint.
     ![Systems Manager Integration](/Images/Security,%20Identity,%20&%20Compliance/AmazonInspectorSystemsManager.png)
+
+# 4. Amazon Inspector & AMIs
+
+- Regularly scan **golden AMIs** for vulnerabilities using an automated workflow.
+  1. **Scheduled Trigger**
+     - EventBridge runs **daily**.
+  2. **Start Step Functions**
+     - Orchestrates the entire process.
+  3. **Launch EC2 Instance**
+     - Created from the **golden AMI**.
+     - **Tagged**
+       ```text
+        CheckVulnerabilities = True
+       ```
+  4. **Run Security Assessment**
+     - Amazon Inspector runs a scan.
+     - Targets instances using the tag.
+     - **Uses rules like**
+       - CVEs (Common Vulnerabilities and Exposures).
+  5. **Terminate Instance**
+     - Instance is deleted after the scan
+
+## 4.1. Diagram
+
+TODO update diagram
+![Amazon Inspector & AMIs](/Images/Security,%20Identity,%20&%20Compliance/KW_1217_diagram.png)

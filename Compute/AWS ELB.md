@@ -70,9 +70,11 @@
 - Supports both ALB and NLB.
 - ALB and NLB can have mixed IPv4 and IPv6 targets in separate target groups.
 - ELB DualStack ensures compatibility between client and target IP versions.
-- IPv4 clients communicate with IPv4 targets, and IPv6 clients communicate with IPv6 targets.
-- If you only have IPv4 targets, the ELB automatically converts requests from IPv6 to IPv4.
+  - IPv4 clients communicate with IPv4 targets, and IPv6 clients communicate with IPv6 targets.
+  - If you only have IPv4 targets, the ELB automatically converts requests from IPv6 to IPv4.
 - Note: AZ must be added/enabled for instances to receive traffic.
+
+TODO DIAGRAM
 
 ## 2.2. PrivateLink Integration
 
