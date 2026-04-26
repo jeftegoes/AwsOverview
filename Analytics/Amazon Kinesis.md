@@ -111,6 +111,9 @@
   - Used to track the progress of Kinesis Consumers (tracks the read position).
   - `IteratorAgeMilliseconds` = 0, then records being read are completely caught up with the Stream.
   - `IteratorAgeMilliseconds` > 0 means we're not processing the records fast enough.
+- `MillisBehindLatest` (CloudWatch Metric)F
+  - Measures **consumer lag**.
+  - Indicates how far processing is behind the latest data.
 
 ### 2.4.2. Consumers Types
 

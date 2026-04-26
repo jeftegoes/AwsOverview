@@ -18,6 +18,12 @@
 - [6. Elastic Beanstalk Deployment Process](#6-elastic-beanstalk-deployment-process)
 - [7. Lifecycle Policy](#7-lifecycle-policy)
 - [8. Elastic Beanstalk Extensions (Customizations)](#8-elastic-beanstalk-extensions-customizations)
+  - [8.1. Structure](#81-structure)
+  - [8.2. Core Features](#82-core-features)
+    - [8.2.1. `option_settings`](#821-option_settings)
+    - [8.2.2. `commands`](#822-commands)
+    - [8.2.3. `container_commands`](#823-container_commands)
+  - [8.3. Advanced Options](#83-advanced-options)
 - [9. Under the Hood](#9-under-the-hood)
 - [10. Elastic Beanstalk Cloning](#10-elastic-beanstalk-cloning)
 - [11. Migration: Load Balancer](#11-migration-load-balancer)
@@ -209,6 +215,53 @@
   - Able to modify some default settings using: `option_settings`.
   - Ability to add resources such as RDS, ElastiCache, DynamoDB, etc...
 - Resources managed by .ebextensions get deleted if the environment goes away.
+
+## 8.1. Structure
+
+- **Folder:** `.ebextensions/`
+- **Files:** `.config`
+- **Format**
+  - YAML or JSON.
+- Included in application source bundle.
+
+## 8.2. Core Features
+
+### 8.2.1. `option_settings`
+
+- Modify environment configuration.
+- **Examples**
+  - Instance type
+  - Environment variables
+  - Scaling settings
+  - Platform-specific options
+
+### 8.2.2. `commands`
+
+- Run commands on EC2 instances
+- **Executed**
+  - **Before** app and web server setup
+  - Before application is extracted
+- **Use for**
+  - OS-level setup
+  - Installing system dependencies
+
+### 8.2.3. `container_commands`
+
+- Run commands related to application code
+- **Executed**
+  - **After** app extraction and server setup.
+  - **Before** deployment.
+- **Use for**
+  - App configuration.
+  - Database migrations.
+  - Build steps.
+
+## 8.3. Advanced Options
+
+- `leader_only`:
+  - Run command on only one instance.
+- `test` condition:
+  - Execute command conditionally.
 
 # 9. Under the Hood
 

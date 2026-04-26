@@ -103,7 +103,7 @@
 - **Predictive scaling:** Continuously forecast load and schedule scaling ahead.
   ![Predictive scaling](/Images/Compute/AmazonEC2ASGPredictiveScaling.png)
 - Uses **machine learning** to analyze historical traffic patterns.
-- **Forecasts demand** and schedules capacity ahead of time.
+- **Forecasts demand** and schedules capacity ahead of time.fassumero
 - Ideal for **daily and weekly workload trends**.
 - Reacts to **real-time traffic changes** (e.g., scale when CPU > 60%).
 - Ensures quick response to **unexpected spikes**.

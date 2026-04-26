@@ -40,6 +40,7 @@
   - **SSM Agent is running.**
   - Be an SSM Managed Instance (IAM Role or Default Host Management Config.).
   - Outbound 443 to Systems Manager endpoint.
+  - TODO UPDATE DIAGRAM
     ![Systems Manager Integration](/Images/Security,%20Identity,%20&%20Compliance/AmazonInspectorSystemsManager.png)
 
 # 4. Amazon Inspector & AMIs

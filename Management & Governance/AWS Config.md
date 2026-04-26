@@ -17,6 +17,8 @@
 - [6. Conformance Pack](#6-conformance-pack)
 - [7. Organizational Rules](#7-organizational-rules)
   - [7.1. Custom rules](#71-custom-rules)
+  - [7.2. Use case](#72-use-case)
+    - [7.2.1. AWS Keys are more than 90 days old](#721-aws-keys-are-more-than-90-days-old)
 - [8. Organizational Rules vs. Conformance Packs](#8-organizational-rules-vs-conformance-packs)
 - [9. Managed Rules](#9-managed-rules)
   - [9.1. Important rules](#91-important-rules)
@@ -140,6 +142,12 @@
 ## 7.1. Custom rules
 
 ![Custom rules](/Images/Management%20&%20Governance/AWSConfigCustomRules.png)
+
+## 7.2. Use case
+
+### 7.2.1. AWS Keys are more than 90 days old
+
+![AWS Config - AWS Keys are more than 90 days old](/Images/Management%20&%20Governance/AWSConfigCustomRuleKey90DaysOld.png)
 
 # 8. Organizational Rules vs. Conformance Packs
 

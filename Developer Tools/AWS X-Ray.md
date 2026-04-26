@@ -139,9 +139,9 @@
 
 - `PutTraceSegments` - Uploads segment documents to AWS X-Ray.
 - `PutTelemetryRecords` - Used by the AWS X-Ray daemon to upload telemetry
-  - SegmentsReceivedCount
-  - SegmentsRejectedCounts
-  - BackendConnectionErrors...
+  - `SegmentsReceivedCount`
+  - `SegmentsRejectedCounts`
+  - `BackendConnectionErrors`...
 - `GetSamplingRules` - Retrieve all sampling rules (to know what/when to send).
 - `GetSamplingTargets` and `GetSamplingStatisticSummaries` - Advanced.
 - The X-Ray daemon needs to have an IAM policy authorizing the correct API calls to function correctly.
@@ -190,4 +190,4 @@
   1. Create a Docker image that runs the X-Ray daemon.
   2. Upload it to a Docker image repository.
   3. Deploy it to your [Amazon ECS](AWS%20ECS.md) cluster.
-- You can use port mappings and network mode settings in your task definition file to allow your application to communicate with the daemon container.
+- We can use port mappings and network mode settings in your task definition file to allow your application to communicate with the daemon container.

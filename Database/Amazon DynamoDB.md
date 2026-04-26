@@ -150,6 +150,7 @@ TODO: DIAGRAM
 - **Read Capacity Units (RCU)** - throughput for reads.
 - **Write Capacity Units (WCU)** - throughput for writes.
 - Option to setup auto-scaling of throughput to meet demand.
+  - `WriteThrottleEvents`
 - Throughput can be exceeded temporarily using **"Burst Capacity"**.
 - If Burst Capacity has been consumed, you'll get a `ProvisionedThroughputExceededException`.
 - It's then advised to do an **exponential backoff** retry.

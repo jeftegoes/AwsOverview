@@ -92,6 +92,7 @@
     - [24.3.2. CreationPolicy Requirement](#2432-creationpolicy-requirement)
   - [24.4. When to Use Each Policy](#244-when-to-use-each-policy)
   - [24.5. Final Summary](#245-final-summary)
+- [25. TemplateURL](#25-templateurl)
 
 # 1. Introduction Infrastructure as Code (IaC)
 
@@ -815,7 +816,7 @@
   - When you need to pass export values to many stacks (VPC Id, etc...).
 - **Nested Stacks**
   - Helpful when components must be re-used.
-  - **Ex:** re-use how to properly configure an Application Load Balancer.
+  - **Ex:** Re-use how to properly configure an Application Load Balancer.
   - The nested stack only is important to the higher level stack (it's not shared).
 
 # 15. DependsOn
@@ -829,7 +830,7 @@
 
 - A stack goes into the `UPDATE_ROLLBACK_FAILED` state when CloudFormation can't roll back all changes during an update.
 - A resource can't return to its original state, causing the rollback to fail.
-- Example: Roll back to an old database instance that was deleted outside CloudFormation.
+- **Example:** Roll back to an old database instance that was deleted outside CloudFormation.
 - **Solutions**
   - Fix the errors manually outside of CloudFormation and then continue update rollback the stack.
   - Skip the resources that can't rollback successfully (CloudFormation will mark the failed resources as `UPDATE_COMPLETE`).
@@ -1137,3 +1138,9 @@ TODO: DIAGRAM
 |   Risk of reduced capacity   |      Yes      | No (old group remains active) |
 |   Requires CreationPolicy    |  Recommended  |           Required            |
 |   Safer rollback behavior    |   Moderate    |            Strong             |
+
+# 25. TemplateURL
+
+- The URL of a file that contains the template body.
+- The URL must point to a template (max size: 1 MB) that's located in an Amazon S3 bucket.
+- The location for an Amazon S3 bucket must start with `https://`.

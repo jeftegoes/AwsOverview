@@ -155,10 +155,18 @@ TODO DIAGRAM
 
 - **Default Environment Variables**
   - Defined and provided by AWS.
-  - AWS_DEFAULT_REGION, CODEBUILD_BUILD_ARN, CODEBUILD_BUILD_ID, CODEBUILD_BUILD_IMAGE...
+  - `AWS_DEFAULT_REGION`
+  - `CODEBUILD_BUILD_ARN`
+  - `CODEBUILD_BUILD_ID`
+  - `CODEBUILD_BUILD_IMAGE`
+  - `CODEBUILD_SOURCE_VERSION`
+    - represents the branch name of the code being tested for CodeCommit.
+  - ...
 - **Custom Environment Variables**
   - **Static:** Defined at build time (override using start-build API call).
   - **Dynamic:** Using SSM Parameter Store and Secrets Manager.
+
+TODO: DIAGRAM
 
 # 9. CloudFormation Integration
 

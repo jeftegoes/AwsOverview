@@ -26,7 +26,7 @@
 - It allows your instances to persist data, even after their termination.
 - **They can only be mounted to one instance at a time (at the CCP level).**
 - They are bound to a specific **availability zone (AZ)**.
-- Analogy: Think of them as a "network USB stick".
+- **Analogy:** Think of them as a "network USB stick".
 - **Free tier:** 30 GB of free EBS storage of type General Purpose (SSD) or Magnetic per month.
 - EBS **does not** support SMB protocol.
 
@@ -43,8 +43,7 @@
   - We can increase the capacity of the drive over time.
 - EBS volumes support live configuration changes while in production.
   - We can modify volume type, volume size, and IOPS capacity without service interruptions.
-
-![Amazon EC2 - EBS Volume diagram](/Images/Compute/AmazonEC2EBSVolumeDiagram.png)
+  ![Amazon EC2 - EBS Volume diagram](/Images/Compute/AmazonEC2EBSVolumeDiagram.png)
 
 # 3. Delete on Termination attribute
 

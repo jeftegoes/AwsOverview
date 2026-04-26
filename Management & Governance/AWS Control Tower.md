@@ -123,7 +123,7 @@ TODO diagram
   - **Delete The AWS Default VPC:** Deletes the default VPCs in all AWS Regions.
 - Terraform module maintained by AWS.
 - Works with Terraform Open-source, Terraform Enterprise, and Terraform Cloud.
-  > `aft_feature_enterprise_support = true`
+  > `aft_feature_enterprise_support = true` - Ensures that every new account created by AFT is automatically enrolled in Enterprise Support, enforcing consistent support coverage across your organization.
 
 ## 11.1. Diagram
 

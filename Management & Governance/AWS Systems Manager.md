@@ -20,7 +20,7 @@
   - [7.1. Patch Baseline \& Patch Group](#71-patch-baseline--patch-group)
   - [7.2. Patch Manager - Patch Baselines](#72-patch-manager---patch-baselines)
   - [7.3. Diagram](#73-diagram)
-- [8. SSM - Maintenance Windows](#8-ssm---maintenance-windows)
+- [8. Maintenance Windows](#8-maintenance-windows)
 - [9. Session Manager](#9-session-manager)
   - [9.1. Permissions](#91-permissions)
   - [9.2. SSH vs. SSM Session Manager](#92-ssh-vs-ssm-session-manager)
@@ -243,7 +243,7 @@
 - TODO: UPDATE DIAGRAM
   ![Patch Manager](/Images/Management%20&%20Governance/AWSSystemsManagerPatchManager.png)
 
-# 8. SSM - Maintenance Windows
+# 8. Maintenance Windows
 
 - Defines a schedule for when to perform actions on your instances.
 - **Example:** OS patching, updating drivers, installing software...

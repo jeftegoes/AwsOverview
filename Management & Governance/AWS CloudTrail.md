@@ -75,13 +75,15 @@
 
 # 6. Amazon EventBridge - Intercept API Calls
 
-TODO update diagram
+TODO update diagram and missing labels
 ![Intercept API Calls](/Images/AmazonEventBridgeInterceptAPICalls.png)
 
 # 7. Amazon EventBridge + CloudTrail
 
 - User -> `AssumeRole` -> `API Call logs` -> CloudTrail -> `event` -> EventBridge -> SNS
 - User -> `Edit SG Inbound Rules` -> EC2 -> `API Call logs` -> CloudTrail -> `event` -> EventBridge -> SNS
+
+TODO diagram
 
 # 8. Log file Integrity Validation
 
