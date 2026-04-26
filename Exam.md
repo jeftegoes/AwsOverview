@@ -32,3 +32,22 @@
 - **Passing score**: **750 / 1000** (scaled score)
 - **Approximate percentage needed**: ~75%
 - **Estimated correct answers required**: ~56-57 questions
+
+## 2.3. Topics
+
+- ECR – Scanning de vulnerabilidades
+- AWS Control Tower
+- SNS – Metrics (ApproximateNumberOfMessages & Variations)
+- AWS Organizations – SCP (Service Control Policies)
+- Amazon EKS
+- Amazon EventBridge
+- AWS CloudTrail
+- AWS OpsWorks (Chef & Puppet templates)
+- AWS Config
+- Amazon CloudFront (com AWS WAF) + API Gateway
+- Force access by CloudFront: https://pubudu.dev/posts/access-api-gw-rest-api-only-from-cloudfront/
+- CloudTrail disabled
+- One-at-a-Time deployments
+- AWS Fault Injection Simulator (AWS FIS)
+  - Reference: https://aws.amazon.com/blogs/architecture/chaos-testing-with-aws-fault-injection-simulator-and-aws-codepipeline/
+- AWS CodeArtifact
