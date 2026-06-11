@@ -9,7 +9,7 @@
   - [2.3. IT Terminology](#23-it-terminology)
   - [2.4. Problems with traditional IT approach](#24-problems-with-traditional-it-approach)
 - [3. What is Cloud Computing?](#3-what-is-cloud-computing)
-  - [3.1. You've been using some Cloud services](#31-youve-been-using-some-cloud-services)
+  - [3.1. We've been using some Cloud services](#31-weve-been-using-some-cloud-services)
   - [3.2. The Deployment Models of the Cloud](#32-the-deployment-models-of-the-cloud)
     - [3.2.1. Private Cloud](#321-private-cloud)
     - [3.2.2. Public Cloud](#322-public-cloud)
@@ -20,14 +20,16 @@
   - [3.6. Types of Cloud Computing](#36-types-of-cloud-computing)
   - [3.7. Example of Cloud Computing Types](#37-example-of-cloud-computing-types)
   - [3.8. Pricing of the Cloud - Quick Overview](#38-pricing-of-the-cloud---quick-overview)
-  - [3.9. AWS Global Infrastructure](#39-aws-global-infrastructure)
-  - [3.10. AWS Regions](#310-aws-regions)
-  - [3.11. How to choose an AWS Region?](#311-how-to-choose-an-aws-region)
-  - [3.12. AWS Availability Zones](#312-aws-availability-zones)
-  - [3.13. AWS Points of Presence (Edge Locations)](#313-aws-points-of-presence-edge-locations)
-  - [3.14. Tour of the AWS Console](#314-tour-of-the-aws-console)
-  - [3.15. Shared Responsibility Model diagram](#315-shared-responsibility-model-diagram)
-  - [3.16. AWS Acceptable Use Policy](#316-aws-acceptable-use-policy)
+  - [3.9. AWS Cloud History](#39-aws-cloud-history)
+  - [3.10. AWS Cloud Use Cases](#310-aws-cloud-use-cases)
+  - [3.11. AWS Global Infrastructure](#311-aws-global-infrastructure)
+  - [3.12. AWS Regions](#312-aws-regions)
+  - [3.13. How to choose an AWS Region?](#313-how-to-choose-an-aws-region)
+  - [3.14. AWS Availability Zones](#314-aws-availability-zones)
+  - [3.15. AWS Points of Presence (Edge Locations)](#315-aws-points-of-presence-edge-locations)
+  - [3.16. AWS Console](#316-aws-console)
+  - [3.17. Shared Responsibility Model diagram](#317-shared-responsibility-model-diagram)
+  - [3.18. AWS Acceptable Use Policy](#318-aws-acceptable-use-policy)
 - [4. IAM - Identity and Access Management and AWS CLI](#4-iam---identity-and-access-management-and-aws-cli)
   - [4.1. IAM - Summary](#41-iam---summary)
 - [5. Compute](#5-compute)
@@ -145,23 +147,22 @@
 
 ## 2.1. How websites work
 
-- Clients have IP addresses.
-- Servers have IP addresses.
+![How websites work](Images/HowWebsitesWork.png)
 
 ## 2.2. What is a server composed of?
 
-- Compute: CPU.
-- Memory: RAM.
-- Storage: Data.
-- Database: Store data in a structured way.
-- Network: Routers, switch, DNS server.
+- **Compute:** CPU.
+- **Memory:** RAM.
+- **Storage:** Data.
+- **Database:** Store data in a structured way.
+- **Network:** Routers, switch, DNS server.
 
 ## 2.3. IT Terminology
 
-- Network: cables, routers and servers connected with each other.
-- Router: A networking device that forwards data packets between computer
-  networks. They know where to send your packets on the internet!
-- Switch: Takes a packet and send it to the correct server / client on your network.
+- **Network:** Cables, routers and servers connected with each other.
+- **Router:** A networking device that forwards data packets between computer networks.
+  - They know where to send your packets on the internet!
+- **Switch:** Takes a packet and send it to the correct server / client on your network.
 
 ## 2.4. Problems with traditional IT approach
 
@@ -175,14 +176,14 @@
 
 # 3. What is Cloud Computing?
 
-- Cloud computing is the on-demand delivery of compute power, database storage, applications, and other IT resources.
-- Through a cloud services platform with pay-as-you-go pricing.
-- We can provision exactly the right type and size of computing resources you need.
-- We can access as many resources as you need, almost instantly.
-- Simple way to access servers, storage, databases and a set of application services.
+- Cloud computing is the **on-demand delivery** of compute power, database storage, applications, and other IT resources.
+- Through a cloud services platform with **pay-as-you-go pricing**.
+- We can provision **exactly the right type and size of computing** resources you need.
+- We can access as many resources as you need, **almost instantly**.
+- Simple way to access **servers, storage, databases** and a set of **application services**.
 - Amazon Web Services owns and maintains the network-connected hardware required for these application services, while you provision and use what you need via a web application.
 
-## 3.1. You've been using some Cloud services
+## 3.1. We've been using some Cloud services
 
 - **Gmail**
   - E-mail cloud service.
@@ -191,8 +192,8 @@
   - Cloud Storage Service.
   - Originally built on AWS.
 - **Netflix**
-  - Built on AWS
-  - Video on Demand
+  - Built on AWS.
+  - Video on Demand.
 
 ## 3.2. The Deployment Models of the Cloud
 
@@ -206,6 +207,7 @@
 ### 3.2.2. Public Cloud
 
 - Cloud resources owned and operated by a third-party cloud service provider delivered over the Internet.
+- Six Advantages of Cloud Computing.
 
 ### 3.2.3. Hybrid Cloud
 
@@ -230,16 +232,16 @@
 
 ## 3.4. Six Advantages of Cloud Computing
 
-- Trade capital expense (CAPEX) for operational expense (OPEX)
+- **Trade capital expense (CAPEX) for operational expense (OPEX)**
   - **Pay On-Demand:** Don't own hardware.
   - Reduced Total Cost of Ownership (TCO) & Operational Expense (OPEX).
-- Benefit from massive economies of scale
+- **Benefit from massive economies of scale**
   - Prices are reduced as AWS is more efficient due to large scale.
-- Stop guessing capacity
+- **Stop guessing capacity**
   - Scale based on actual measured usage.
 - Increase speed and agility.
 - Stop spending money running and maintaining data centers.
-- Go global in minutes: leverage the AWS global infrastructure.
+- **Go global in minutes:** Leverage the AWS global infrastructure.
 
 ## 3.5. Problems solved by the Cloud
 
@@ -252,42 +254,63 @@
 
 ## 3.6. Types of Cloud Computing
 
-- Infrastructure as a Service (IaaS)
+- **Infrastructure as a Service (IaaS)**
   - Provide building blocks for cloud IT.
   - Provides networking, computers, data storage space.
   - Highest level of flexibility.
   - Easy parallel with traditional on-premises IT.
-- Platform as a Service (PaaS)
+- **Platform as a Service (PaaS)**
   - Removes the need for your organization to manage the underlying infrastructure.
   - Focus on the deployment and management of your applications.
-- Software as a Service (SaaS)
+- **Software as a Service (SaaS)**
   - Completed product that is run and managed by the service provider.
 
 ## 3.7. Example of Cloud Computing Types
 
-- Infrastructure as a Service
-  - Amazon EC2 (on AWS)
-  - GCP, Azure, Rackspace, Digital Ocean, Linode
-- Platform as a Service:
-  - Elastic Beanstalk (on AWS)
-  - Heroku, Google App Engine (GCP), Windows Azure (Microsoft)
-- Software as a Service:
-  - Many AWS services (ex: Rekognition for Machine Learning)
-  - Google Apps (Gmail), Dropbox, Zoom
+- **Infrastructure as a Service**
+  - Amazon EC2 (on AWS).
+  - GCP, Azure, Rackspace, Digital Ocean, Linode.
+- **Platform as a Service**
+  - Elastic Beanstalk (on AWS).
+  - Heroku, Google App Engine (GCP), Windows Azure (Microsoft).
+- **Software as a Service**
+  - Many AWS services (ex: Rekognition for Machine Learning).
+  - Google Apps (Gmail), Dropbox, Zoom.
 
 ## 3.8. Pricing of the Cloud - Quick Overview
 
-- AWS has 3 pricing fundamentals, following the pay-as-you-go pricing
-  model
+- AWS has 3 pricing fundamentals, following the pay-as-you-go pricing model:
   - **Compute**
-    - Pay for compute time
+    - Pay for compute time.
   - **Storage**
-    - Pay for data stored in the Cloud
+    - Pay for data stored in the Cloud.
   - Data transfer **OUT** of the Cloud:
-    - Data transfer IN is free
-  - Solves the expensive issue of traditional IT
+    - Data transfer IN is free.
+  - Solves the expensive issue of traditional IT.
 
-## 3.9. AWS Global Infrastructure
+## 3.9. AWS Cloud History
+
+- **2002**
+  - Internally launched.
+- **2003**
+  - Amazon infrastructure is one of their core strength. Idea to market.
+- **2004**:
+  - Launched publicly with SQS.
+- **2006**
+  - Re-launched publicly with SQS, S3 & EC2.
+- **2007**
+  - Launched in Europe.
+
+## 3.10. AWS Cloud Use Cases
+
+- AWS enables you to build sophisticated, scalable applications.
+- Applicable to a diverse set of industries.
+- Use cases include.
+  - Enterprise IT, Backup & Storage, Big Data analytics.
+  - Website hosting, Mobile & Social Apps.
+  - Gaming.
+
+## 3.11. AWS Global Infrastructure
 
 - AWS Regions.
 - AWS Availability Zones.
@@ -295,64 +318,64 @@
 - AWS Edge Locations / Points of Presence.
 - https://infrastructure.aws/
 
-## 3.10. AWS Regions
+## 3.12. AWS Regions
 
 - AWS has Regions all around the world.
 - Names can be `us-east-1`, `eu-west-3`...
 - A region is a cluster of data centers.
 - Most AWS services are region-scoped.
 
-## 3.11. How to choose an AWS Region?
+## 3.13. How to choose an AWS Region?
 
-- **Compliance** with data governance and legal requirements: data never leaves a region without your explicit permission.
-- **Proximity** to customers: reduced latency.
-- **Available services** within a Region: new services and new features aren't available in every Region.
+- **Compliance** with data governance and legal requirements: Data never leaves a region without your explicit permission.
+- **Proximity** to customers: Reduced latency.
+- **Available services** within a Region: New services and new features aren't available in every Region.
 - **Pricing** pricing varies region to region and is transparent in the service pricing page.
-- **Capacity is unlimited in the cloud, you do not need to worry about it. The 4 points of considerations when choosing an AWS Region are: compliance with data governance and legal requirements, proximity to customers, available services and features within a Region, and pricing.**
+- **Capacity is unlimited in the cloud, you do not need to worry about it. The 4 points of considerations when choosing an AWS Region are: Compliance with data governance and legal requirements, proximity to customers, available services and features within a Region, and pricing.**
 
-## 3.12. AWS Availability Zones
+## 3.14. AWS Availability Zones
 
-- Each region has many availability zones (usually 3, min is 2, max is 6).
-- Example:
-  - ap-southeast-2a
-  - ap-southeast-2b
-  - ap-southeast-2c
-- Each availability zone (AZ) is one or more discrete data centers with redundant power, networking, and connectivity.
+- Each region has many Availability Zones (usually 3, min is 2, max is 6).
+- **Example**
+  - `ap-southeast-2a`
+  - `ap-southeast-2b`
+  - `ap-southeast-2c`
+- Each Availability Zone (AZ) is one or more discrete data centers with redundant power, networking, and connectivity.
 - They're separate from each other, so that they're isolated from disasters.
 - They're connected with high bandwidth, ultra-low latency networking.
 
-## 3.13. AWS Points of Presence (Edge Locations)
+## 3.15. AWS Points of Presence (Edge Locations)
 
-- Amazon has 216 Points of Presence (205 Edge Locations & 11 Regional Caches) in 84 cities across 42 countries.
+- Amazon has 400+ Points of Presence (400+ Edge Locations & 10+ Regional Caches) in 90+ cities across 40+ countries.
 - Content is delivered to end users with lower latency.
 
-## 3.14. Tour of the AWS Console
+## 3.16. AWS Console
 
-- AWS has Global Services:
-  - Identity and Access Management (IAM)
-  - Route 53 (DNS service)
-  - CloudFront (Content Delivery Network)
-  - WAF (Web Application Firewall)
-- Most AWS services are Region-scoped:
-  - Amazon EC2 (Infrastructure as a Service)
-  - Elastic Beanstalk (Platform as a Service)
-  - Lambda (Function as a Service)
-  - Rekognition (Software as a Service)
-- Region Table: https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services
+- **AWS has Global Services**
+  - Identity and Access Management (IAM).
+  - Route 53 (DNS service).
+  - CloudFront (Content Delivery Network).
+  - WAF (Web Application Firewall).
+- **Most AWS services are Region-scoped**
+  - Amazon EC2 (Infrastructure as a Service).
+  - Elastic Beanstalk (Platform as a Service).
+  - Lambda (Function as a Service).
+  - Rekognition (Software as a Service).
+- **Region Table:** https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services
 
-## 3.15. Shared Responsibility Model diagram
+## 3.17. Shared Responsibility Model diagram
 
-- AWS = RESPONSIBILITY FOR THE SECURITY OF THE CLOUD
-- CUSTOMER = RESPONSIBILITY FOR THE SECURITY IN THE CLOUD
+- AWS = RESPONSIBILITY FOR THE SECURITY **OF** THE CLOUD
+- CUSTOMER = RESPONSIBILITY FOR THE SECURITY **IN** THE CLOUD
 - https://aws.amazon.com/compliance/shared-responsibility-model/
 
-## 3.16. AWS Acceptable Use Policy
+## 3.18. AWS Acceptable Use Policy
 
 - https://aws.amazon.com/aup/
-- No Illegal, Harmful, or Offensive Use or Content
-- No Security Violations
-- No Network Abuse
-- No E-Mail or Other Message Abuse
+- No Illegal, Harmful, or Offensive Use or Content.
+- No Security Violations.
+- No Network Abuse.
+- No E-Mail or Other Message Abuse.
 
 # 4. IAM - Identity and Access Management and AWS CLI
 
