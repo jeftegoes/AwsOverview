@@ -33,10 +33,10 @@
 ## 3.1. Lexicon & SSML
 
 - Customize the pronunciation of words with Pronunciation lexicons.
-  - Stylized words: St3ph4ne => "Stephane".
-  - Acronyms: AWS => "Amazon Web Services".
+  - **Stylized words:** J3f73 => "Jefte".
+  - **Acronyms:** AWS => "Amazon Web Services".
 - Upload the lexicons and use them in the SynthesizeSpeech operation.
-- Generate speech from plain text or from documents marked up with **Speech Synthesis Markup Language (SSML)** - enables more customization.
+- Generate speech from plain text or from documents marked up with **Speech Synthesis Markup Language (SSML)** - Enables more customization.
   - Emphasizing specific words or phrases.
   - Using phonetic pronunciation.
   - Including breathing sounds, whispering.
@@ -67,7 +67,8 @@
 
 # 7. Amazon SageMaker
 
-[Amazon SageMaker](Amazon%20SageMaker.md)
+- **Amazon SageMaker is a fully managed service that provides every developer and data scientist with the ability to build, train, and deploy machine learning (ML) models quickly. SageMaker removes the heavy lifting from each step of the machine learning process to make it easier to develop high quality models.**
+  [Amazon SageMaker](Amazon%20SageMaker.md)
 
 # 8. Amazon Forecast
 

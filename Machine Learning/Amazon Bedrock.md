@@ -22,6 +22,22 @@
   - [7.4. Automated Model Evaluation](#74-automated-model-evaluation)
   - [7.5. Business Metrics to Evaluate a Model On](#75-business-metrics-to-evaluate-a-model-on)
 - [8. RAG \& Knowledge Base](#8-rag--knowledge-base)
+  - [8.1. RAG in Action](#81-rag-in-action)
+  - [8.2. RAG Vector Databases](#82-rag-vector-databases)
+  - [8.3. RAG Vector Databases by AWS](#83-rag-vector-databases-by-aws)
+  - [8.4. RAG Data Sources](#84-rag-data-sources)
+  - [8.5. Amazon Bedrock - RAG - Use Cases](#85-amazon-bedrock---rag---use-cases)
+- [9. GenAI Concepts](#9-genai-concepts)
+  - [9.1. Context Window](#91-context-window)
+  - [9.2. Embeddings](#92-embeddings)
+- [10. Guardrails](#10-guardrails)
+- [11. Agents](#11-agents)
+  - [11.1. Bedrock Agent Setup](#111-bedrock-agent-setup)
+  - [11.2. Agent - Diagram](#112-agent---diagram)
+  - [11.3. Amazon Bedrock \& CloudWatch](#113-amazon-bedrock--cloudwatch)
+- [12. Pricing](#12-pricing)
+- [13. Model Improvement Techniques Cost Order](#13-model-improvement-techniques-cost-order)
+- [14. Cost savings](#14-cost-savings)
 
 # 1. Introduction
 
@@ -204,3 +220,134 @@ TODO DIAGRAM
 - Allows a Foundation Model to reference a data source outside of its training data.
 - Bedrock takes care of creating Vector Embeddings in the database of your choice based on your data.
   TODO: DIAGRAM
+
+## 8.1. RAG in Action
+
+TODO: DIAGRAM
+
+## 8.2. RAG Vector Databases
+
+TODO: DIAGRAM
+
+## 8.3. RAG Vector Databases by AWS
+
+- Amazon OpenSearch Service (Serverless & Managed Cluster) search & analytics database real time similarity queries, store millions of vector embeddings scalable index management, and fast nearest neighbor (kNN) search capability.
+- Amazon Aurora PostgreSQL - relational database, proprietary on AWS.
+- Amazon Neptune Analytics - graph database that enables high performance graph analytics and graph-based RAG (GraphRAG) solutions.
+- Amazon S3 Vectors - cost-effective and durable storage with sub-second query performance.
+
+## 8.4. RAG Data Sources
+
+- Amazon S3.
+- Confluence.
+- Microsoft SharePoint.
+- Salesforce.
+- Web pages (your website, your social media feed, etc...).
+- More added over time...
+
+## 8.5. Amazon Bedrock - RAG - Use Cases
+
+- Customer Service Chatbot.
+  - Knowledge Base - products, features, specifications, troubleshooting guides, and FAQs.
+  - RAG application - chatbot that can answer customer queries.
+- Legal Research and Analysis
+  - Knowledge Base - laws, regulations, case precedents, legal opinions, and expert analysis.
+  - RAG Application - chatbot that can provide relevant information for specific legal queries.
+- Healthcare Question-Answering
+  - Knowledge base - diseases, treatments, clinical guidelines, research papers, patients...
+  - RAG application - chatbot that can answer complex medical queries
+
+# 9. GenAI Concepts
+
+- **Tokenization:** Conver ting raw text into a sequence of tokens.
+  - **Word-based tokenization:** Text is split into individual words.
+  - **Subword tokenization:** Some words can be split too (helpful for long words...)
+- **Can experiment at:** https://platform.openai.com/tokenizer
+
+## 9.1. Context Window
+
+- The number of tokens an LLM can consider when generating text.
+- The larger the context window, the more information and coherence.
+- Large context windows require more memory and processing power.
+- First factor to look at when considering a model.
+
+## 9.2. Embeddings
+
+- Create vectors (array of numerical values) out of text, images or audio
+- Vectors have a high dimensionality to capture many features for one input token, such as semantic meaning, syntactic role, sentiment.
+- Embedding models can power search applications.
+
+# 10. Guardrails
+
+- Control the interaction between users and Foundation Models (FMs).
+- Filter undesirable and harmful content.
+- Remove Personally Identifiable Information (PII).
+- Enhanced privacy.
+- Reduce hallucinations.
+- Ability to create multiple Guardrails and monitor and analyze user inputs that can violate the Guardrails.
+
+- TODO: DIAGRAM
+
+# 11. Agents
+
+- Manage and carry out various multi-step tasks related to infrastructure provisioning, application deployment, and operational activities.
+- **Task coordination:** Perform tasks in the correct order and ensure information is passed correctly between tasks.
+- Agents are configured to perform specific pre-defined action groups.
+- Integrate with other systems, services, databases and API to exchange data or initiate actions.
+- Leverage RAG to retrieve information when necessary.
+
+## 11.1. Bedrock Agent Setup
+
+- TODO: DIAGRAM
+
+## 11.2. Agent - Diagram
+
+- TODO: DIAGRAM
+
+## 11.3. Amazon Bedrock & CloudWatch
+
+- **Model Invocation Logging**
+  - Send logs of all invocations to Amazon CloudWatch and S3.
+  - Can include text, images and embeddings.
+  - Analyze further and build alerting thanks to CloudWatch Logs Insights.
+- **CloudWatch Metrics**
+  - Published metrics from Bedrock to CloudWatch.
+    - Including ContentFilteredCount, which helps to see if Guardrails are functioning.
+  - Can build CloudWatch Alarms on top of Metrics.
+
+# 12. Pricing
+
+- **On-Demand**
+  - Pay-as-you-go (no commitment).
+  - Text Models - charged for every input/output token processed.
+  - Embedding Models - charged for every input token processed.
+  - Image Models - charged for every image generated.
+  - Works with Base Models only.
+- **Batch**
+  - Multiple predictions at a time (output is a single file in Amazon S3).
+  - Can provide discounts of up to 50%.
+- **Provisioned Throughput**
+  - Purchase Model units for a certain time (1 month, 6 months...).
+  - Throughput - max. number of input/output tokens processed per minute.
+  - Works with Base, Fine-tuned, and Custom Models.
+
+# 13. Model Improvement Techniques Cost Order
+
+1. **Prompt Engineering $**
+   - No model training needed (no additional computation or fine-tuning)
+2. **Retrieval Augmented Generation (RAG) $$**
+   - Uses external knowledge (FM doesn't need to "know everything", less complex)
+   - No FM changes (no additional computation or fine-tuning)
+3. **Instruction-based Fine-tuning $$$**
+   - FM is fine-tuned with specific instructions (requires additional computation)
+4. **Domain Adaptation Fine-tuning $$$$**
+   - Model is trained on a domain-specific dataset (requires intensive computation).
+
+# 14. Cost savings
+
+- **On-Demand:** Great for unpredictable workloads, no long-term commitment.
+- **Batch:** Provides up to 50% discounts.
+- **Provisioned Throughput:** (usually) not a cost-saving measure, great to "reserve" capacity.
+- **Temperature, Top K, Top P:** No impact on pricing.
+- **Model size:** Usually a smaller model will be cheaper (varies based on providers).
+- **Number of Input and Output Tokens:** Main driver of cost.
