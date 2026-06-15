@@ -15,6 +15,7 @@
 - [10. Clarify](#10-clarify)
   - [10.1. Model Explainability](#101-model-explainability)
   - [10.2. Detect Bias (human)](#102-detect-bias-human)
+  - [10.3. Different kind of biases (definitions)](#103-different-kind-of-biases-definitions)
 - [11. Ground Truth](#11-ground-truth)
 - [12. ML Governance](#12-ml-governance)
   - [12.1. Model Dashboard](#121-model-dashboard)
@@ -139,6 +140,14 @@ TODO TABLE
 - Measure bias using statistical metrics
 - Specify input features and bias will be automatically detected
   https://noise.getoto.net/author/julien-simon/
+
+## 10.3. Different kind of biases (definitions)
+
+- **Sampling bias:** Sampling bias occurs when the training data does not represent the full population fairly, leading to a model that over-represents or disproportionately affects certain groups.
+- **Measurement bias:** Measurement bias occurs when the tools or measurements used in data collection are flawed or skewed.
+- Observer bias: Observer bias happens when the person collecting or interpreting the data has personal biases that affect the results.
+- **Confirmation bias:** Confirmation bias is when individuals interpret or favor information that confirms their preconceptions. This is more applicable to human decision-making rather than automated model outputs.
+- **Example:** An algorithm only flags people from specific ethnic groups, this is probably a sampling bias, and you need to perform data augmentation for imbalanced classes.
 
 # 11. Ground Truth
 
