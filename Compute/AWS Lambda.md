@@ -169,7 +169,7 @@
 
 # 7. Pricing
 
-- You can find overall pricing information [here](https://aws.amazon.com/lambda/pricing/).
+- We can find overall pricing information [here](https://aws.amazon.com/lambda/pricing/).
 - **Pay per calls**
   - First 1,000,000 requests are free.
   - $0.20 per 1 million requests thereafter ($0.0000002 per request).

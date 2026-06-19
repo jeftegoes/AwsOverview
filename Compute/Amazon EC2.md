@@ -78,8 +78,8 @@
   - Network-attached **(EBS & EFS)**.
   - Hardware **(EC2 Instance Store)**.
 - **Network card:** Speed of the card, Public IP address.
-- **Firewall rules: Security group.**
-- Bootstrap script (configure at first launch): EC2 User Data.
+- **Firewall rules:** Security group.
+- **Bootstrap script (configure at first launch):** EC2 User Data.
 
 # 3. User Data
 

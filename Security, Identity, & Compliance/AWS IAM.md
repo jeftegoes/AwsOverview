@@ -48,14 +48,13 @@
 - **Users** are people within your organization, and can be grouped.
 - **Groups** only contain users, not other groups.
 - Users don't have to belong to a group, and user can belong to multiple groups.
-
-![IAM - Users and groups](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMUsersAndGroups.png)
+  ![IAM - Users and groups](/Images/Security,%20Identity,%20&%20Compliance/AWSIAMUsersAndGroups.png)
 
 # 2. Permissions
 
 - **Users or Groups** can be assigned JSON documents called policies.
 - These policies define the **permissions** of the users.
-- In AWS we apply the **least privilege** principle: don't give more permissions than a user needs.
+- In AWS we apply the **least privilege** principle: Don't give more permissions than a user needs.
 
 # 3. Policies inheritance
 
@@ -68,10 +67,10 @@
 - **Consists of**
   - **Version:** Policy language version, always include "YYYY-MM-DD".
   - **Id:** An identifier for the policy (optional).
-  - **Statement:** one or more individual statements (required).
+  - **Statement:** One or more individual statements (required).
 - **Statements consists of**
-  - **Sid:** an identifier for the statement (optional).
-  - **Effect:** whether the statement allows or denies access (Allow, Deny).
+  - **Sid:** An identifier for the statement (optional).
+  - **Effect:** Whether the statement allows or denies access (Allow, Deny).
   - **Principal**
     - **Definition:** The entity that is allowed or denied access by the policy.
     - **Purpose:** Specifies "who" the policy applies to. This could be an IAM user, a role, an AWS service, or another AWS account.
@@ -206,11 +205,7 @@
     "Statement": [
       {
         "Effect": "Allow",
-        "Action": [
-          "ec2:StartInstances",
-          "ec2:StopInstances",
-          "ec2:RebootInstances"
-        ],
+        "Action": ["ec2:StartInstances", "ec2:StopInstances", "ec2:RebootInstances"],
         "Resource": "*",
         "Condition": {
           "Bool": {

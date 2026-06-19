@@ -38,6 +38,11 @@
 - [12. Pricing](#12-pricing)
 - [13. Model Improvement Techniques Cost Order](#13-model-improvement-techniques-cost-order)
 - [14. Cost savings](#14-cost-savings)
+- [15. Security](#15-security)
+  - [15.1. Bedrock must access an encrypted S3 bucket](#151-bedrock-must-access-an-encrypted-s3-bucket)
+  - [15.2. Deploy SageMaker Model in your VPC](#152-deploy-sagemaker-model-in-your-vpc)
+  - [15.3. Access Bedrock Model using an App in VPC](#153-access-bedrock-model-using-an-app-in-vpc)
+  - [15.4. Analyze Bedrock access with CloudTrail](#154-analyze-bedrock-access-with-cloudtrail)
 
 # 1. Introduction
 
@@ -351,3 +356,32 @@ TODO: DIAGRAM
 - **Temperature, Top K, Top P:** No impact on pricing.
 - **Model size:** Usually a smaller model will be cheaper (varies based on providers).
 - **Number of Input and Output Tokens:** Main driver of cost.
+
+# 15. Security
+
+- **IAM with Bedrock**
+  - Implement identity verification and resource-level access control.
+  - Define roles and permissions to access Bedrock resources (e.g., data scientists).
+- **GuardRails for Bedrock**
+  - Restrict specific topics in a GenAI application.
+  - Filter harmful content.
+  - Ensure compliance with safety policies by analyzing user inputs.
+- **CloudTrail with Bedrock:** Analyze API calls made to Amazon Bedrock.
+- **Config with Bedrock:** Look at configuration changes within Bedrock.
+- **PrivateLink with Bedrock:** Keep all API calls to Bedrock within the private VPC.
+
+## 15.1. Bedrock must access an encrypted S3 bucket
+
+TODO DIAGRAM
+
+## 15.2. Deploy SageMaker Model in your VPC
+
+TODO DIAGRAM
+
+## 15.3. Access Bedrock Model using an App in VPC
+
+TODO DIAGRAM
+
+## 15.4. Analyze Bedrock access with CloudTrail
+
+TODO DIAGRAM
