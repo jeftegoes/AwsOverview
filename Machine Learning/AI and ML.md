@@ -50,6 +50,13 @@
   - [18.4. Regressions Metrics](#184-regressions-metrics)
 - [19. Inferencing](#19-inferencing)
   - [19.1. Inferencing at the Edge](#191-inferencing-at-the-edge)
+- [20. Phases of Machine Learning Project](#20-phases-of-machine-learning-project)
+  - [20.1. Exploratory Data Analysis](#201-exploratory-data-analysis)
+  - [20.2. Phases of Machine Learning Project](#202-phases-of-machine-learning-project)
+- [21. Hyperparameter Tuning](#21-hyperparameter-tuning)
+  - [21.1. Important Hyperparameters](#211-important-hyperparameters)
+- [22. What to do if overfitting?](#22-what-to-do-if-overfitting)
+- [23. When is Machine Learning NOT appropriate?](#23-when-is-machine-learning-not-appropriate)
 
 # 1. What is Artificial Intelligence (AI)?
 
@@ -476,6 +483,8 @@ TODO DIAGRAM
   - Often used for data analysis.
   - Speed of the results is usually not a concern, and accuracy is.
 
+TODO DIAGRAM
+
 ## 19.1. Inferencing at the Edge
 
 - Edge devices are usually devices with less computing power that are close to where the data is generated, in places where internet connections can be limited.
@@ -487,4 +496,98 @@ TODO DIAGRAM
   - More powerful model.
   - Higher latency.
   - Must be online to be accessed.
-  
+
+# 20. Phases of Machine Learning Project
+
+TODO DIAGRAM
+
+- **Define business goals**
+  - Stakeholders define the value, budget and success criteria.
+  - Defining KPI (Key Performance Indicators) is critical.
+- **ML problem framing**
+  - Convert the business problem and into a machine learning problem.
+  - Determine if ML is appropriate.
+  - Data scientist, data engineers and ML architects and subject matter experts (SME) collaborate.
+- **Data processing**
+  - Convert the data into a usable format.
+  - Data collection and integration (make it centrally accessible).
+  - Data preprocessing and data visualization (understandable format).
+  - **Feature engineering:** Create, transform and extract variables from data.
+- **Model development**
+  - Model training, tuning, and evaluation.
+  - Iterative process.
+  - Additional feature engineering and tune model hyperparameters.
+
+## 20.1. Exploratory Data Analysis
+
+- Visualize the data with graphs
+- **Correlation Matrix**
+  - Look at correlations between variables (how "linked" they are).
+  - Helps you decide which features can be important in your model.
+
+## 20.2. Phases of Machine Learning Project
+
+- **Retrain**
+  - Look at data and features to improve the model.
+  - Adjust the model training hyperparameters.
+- **Deployment**
+  - If results are good, the model is deployed and ready to make inferences.
+  - Select a deployment model (real-time, serverless, asynchronous, batch, on-premises...).
+- **Monitoring**
+  - Deploy a system to check the desired level of performance.
+  - Early detection and mitigation.
+  - Debug issues and understand the model's behavior.
+- **Iterations**
+  - Model is continuously improved and refined as new data become available.
+  - Requirements may change.
+  - Iteration is important to keep the model accurate and relevant over time.
+
+# 21. Hyperparameter Tuning
+
+- **Hyperparameter**
+  - Settings that define the model structure and learning algorithm and process.
+  - Set before training begins.
+  - **Examples:** Learning rate, batch size, number of epochs, and regularization.
+- **Hyperparameter tuning**
+  - Finding the best hyperparameters values to optimize the model performance.
+  - Improves model accuracy, reduces overfitting, and enhances generalization.
+- **How to do it?**
+  - Grid search, random search.
+  - Using services such as SageMaker Automatic Model Tuning (AMT).
+
+## 21.1. Important Hyperparameters
+
+- **Learning rate**
+  - How large or small the steps are when updating the model's weights during training.
+  - High learning rate can lead to faster convergence but risks overshooting the optimal solution, while a low learning rate may result in more precise but slower convergence.
+- **Batch size**
+  - Number of training examples used to update the model weights in one iteration.
+  - Smaller batches can lead to more stable learning but require more time to compute, while larger batches are faster but may lead to less stable updates.
+- **Number of Epochs**
+  - Refers to how many times the model will iterate over the entire training dataset.
+  - Too few epochs can lead to underfitting, while too many may cause overfitting.
+- **Regularization**
+  - Adjusting the balance between simple and complex model.
+  - Increase regularization to reduce overfitting.
+
+# 22. What to do if overfitting?
+
+- Overfitting is when the model gives good predictions for training data but not for the new data.
+- **It occurs due to**
+  - Training data size is too small and does not represent all possible input values.
+  - The model trains too long on a single sample set of data.
+  - Model complexity is high and learns from the "noise" within the training data.
+- **How can you prevent overfitting?**
+  - Increase the training data size.
+  - Early stopping the training of the model.
+  - Data augmentation (to increase diversity in the dataset).
+  - Adjust hyperparameters (but you can't "add" them).
+  - Ensembling (combine multiple models to get accurate results).
+
+# 23. When is Machine Learning NOT appropriate?
+
+- Imagine a well-framed problem like this one:
+  - A deck contains five red cards, three blue cards, and two yellow cards. What is the probability of drawing a blue card?
+- For deterministic problems (the solution can be computed), it is better to write computer code that is adapted to the problem.
+- If we use Supervised Learning, Unsupervised Learning or Reinforcement Learning, we may have an "approximation" of the result.
+- Even though nowadays LLMs have reasoning capabilities, they are not perfect and therefore a "worse" solution.

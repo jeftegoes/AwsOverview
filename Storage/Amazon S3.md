@@ -110,7 +110,7 @@
 - S3 looks like a global service but buckets are created in a region.
 - **Naming**
   - **Shared Global Namespace:** Have a globally unique name (across all regions all accounts).
-  - **Account Regional Namespace:** Allows for “reuse” of the same bucket name across regions.
+  - **Account Regional Namespace:** Allows for "reuse" of the same bucket name across regions.
 - **Naming convention**
   - No uppercase, no underscore.
   - 3-63 characters long.

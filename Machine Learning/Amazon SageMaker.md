@@ -184,7 +184,7 @@ TODO TABLE
 
 - **Monitor the quality of your model in production:** Continuous or on-schedule.
 - **Alerts for deviations in the model quality:** Fix data & retrain model.
-- **Example:** Loan model starts giving loans to people who don’t have the correct credit score (drift).
+- **Example:** Loan model starts giving loans to people who don't have the correct credit score (drift).
 
 ## 12.3. Model Registry
 
