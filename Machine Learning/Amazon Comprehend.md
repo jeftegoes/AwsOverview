@@ -3,15 +3,17 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-  - [1.1. Use cases](#11-use-cases)
-    - [1.1.1. Find documents about a subject](#111-find-documents-about-a-subject)
-    - [1.1.2. Find out how customers feel about your products](#112-find-out-how-customers-feel-about-your-products)
-    - [1.1.3. Discover what matters to your customers](#113-discover-what-matters-to-your-customers)
-- [2. Medical](#2-medical)
+- [2. Custom Classification](#2-custom-classification)
+- [3. Named Entity Recognition (NER)](#3-named-entity-recognition-ner)
+- [4. Custom Entity Recognition](#4-custom-entity-recognition)
+- [5. Use cases](#5-use-cases)
+  - [5.1. Find documents about a subject](#51-find-documents-about-a-subject)
+  - [5.2. Find out how customers feel about our products](#52-find-out-how-customers-feel-about-our-products)
+  - [5.3. Discover what matters to our customers](#53-discover-what-matters-to-our-customers)
+- [6. Amazon Comprehend Medical](#6-amazon-comprehend-medical)
 
 # 1. Introduction
 
-- **Amazon Comprehend is a natural language processing (NLP) service that uses machine learning to find meaning and insights in text.**
 - For **Natural Language Processing - NLP**.
 - Fully managed and serverless service.
 - Uses machine learning to find insights and relationships in text:
@@ -24,25 +26,46 @@
   - Analyze customer interactions (emails) to find what leads to a positive or negative experience.
   - Create and groups articles by topics that Comprehend will uncover.
 
-## 1.1. Use cases
+# 2. Custom Classification
 
-### 1.1.1. Find documents about a subject
+- Organize documents into categories (classes) that we define.
+- **Example:** Categorize customer emails so that we can provide guidance based on the type of the customer request.
+- Supports different document types (text, PDF, Word, images...).
+- **Real-time Analysis:** Dingle document, synchronous.
+- **Async Analysis:** Multiple documents (batch), Asynchronous.
+  TODO DIAGRAM
+
+# 3. Named Entity Recognition (NER)
+
+- NER - Extracts predefined, general-purpose entities like people, places, organizations, dates, and other standard categories, **from text**.
+
+# 4. Custom Entity Recognition
+
+- Analyze text for specific terms and noun-based phrases.
+- Extract terms like policy numbers, or phrases that imply a customer escalation, anything specific to our business.
+- Train the model with custom data such as a list of the entities and documents that contain them.
+- Real-time or Async analysis.
+  TODO DIAGRAM
+
+# 5. Use cases
+
+## 5.1. Find documents about a subject
 
 - Find the documents about a particular subject using Amazon Comprehend topic modeling.
 - Scan a set of documents to determine the topics discussed, and to find the documents associated with each topic.
 - We can specify the number of topics that Amazon Comprehend should return from the document set.
 
-### 1.1.2. Find out how customers feel about your products
+## 5.2. Find out how customers feel about our products
 
-- If your company publishes a catalog, let Amazon Comprehend tell you what customers think of your products.
-- Send each customer comment to the DetectSentiment operation and it will tell you whether customers feel positive, negative, neutral, or mixed about a product.
+- If our company publishes a catalog, let Amazon Comprehend tell we what customers think of our products.
+- Send each customer comment to the DetectSentiment operation and it will tell we whether customers feel positive, negative, neutral, or mixed about a product.
 
-### 1.1.3. Discover what matters to your customers
+## 5.3. Discover what matters to our customers
 
-- Use Amazon Comprehend topic modeling to discover the topics that your customers are talking about on your forums and message boards, then use entity detection to determine the people, places, and things that they associate with the topic.
-- Use sentiment analysis to determine how your customers feel about a topic.
+- Use Amazon Comprehend topic modeling to discover the topics that our customers are talking about on our forums and message boards, then use entity detection to determine the people, places, and things that they associate with the topic.
+- Use sentiment analysis to determine how our customers feel about a topic.
 
-# 2. Medical
+# 6. Amazon Comprehend Medical
 
 - **Amazon Comprehend Medical** detects and returns useful information in unstructured clinical text:
   - Physician's notes.
@@ -50,4 +73,6 @@
   - Test results.
   - Case notes.
 - **Uses NLP to detect Protected Health Information (PHI)** - DetectPHI API.
-- Store your documents in Amazon S3, analyze real-time data with Kinesis Data Firehose, or use Amazon Transcribe to transcribe patient narratives into text that can be analyzed by Amazon Comprehend Medical.
+- Store your documents in Amazon S3.
+- Analyze real-time data with Kinesis Data Firehose.
+- Use Amazon Transcribe to transcribe patient narratives into text that can be analyzed by Amazon Comprehend Medical.

@@ -74,7 +74,7 @@
 - Operating System **(OS)**: Linux, Windows or Mac OS.
 - How much compute power & cores **(CPU)**.
 - How much random-access memory **(RAM)**.
-- How much storage space:
+- **How much storage space**
   - Network-attached **(EBS & EFS)**.
   - Hardware **(EC2 Instance Store)**.
 - **Network card:** Speed of the card, Public IP address.

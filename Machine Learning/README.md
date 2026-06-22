@@ -2,75 +2,66 @@
 
 ## Contents <!-- omit in toc -->
 
-- [1. Amazon Rekognition](#1-amazon-rekognition)
-- [2. Amazon Transcribe](#2-amazon-transcribe)
-- [3. Amazon Polly](#3-amazon-polly)
-  - [3.1. Lexicon \& SSML](#31-lexicon--ssml)
-- [4. Amazon Translate](#4-amazon-translate)
-- [5. Amazon Lex \& Connect](#5-amazon-lex--connect)
-- [6. Amazon Comprehend](#6-amazon-comprehend)
-- [7. Amazon SageMaker](#7-amazon-sagemaker)
-- [8. Amazon Forecast](#8-amazon-forecast)
-- [9. Amazon Kendra](#9-amazon-kendra)
-- [10. Amazon Personalize](#10-amazon-personalize)
-- [11. Amazon Textract](#11-amazon-textract)
-- [12. Summary](#12-summary)
+- [1. Why AWS AI Managed Services?](#1-why-aws-ai-managed-services)
+- [2. Amazon Rekognition](#2-amazon-rekognition)
+- [3. Amazon Transcribe](#3-amazon-transcribe)
+- [4. Amazon Polly](#4-amazon-polly)
+- [5. Amazon Translate](#5-amazon-translate)
+- [6. Amazon Lex \& Connect](#6-amazon-lex--connect)
+- [7. Amazon Comprehend](#7-amazon-comprehend)
+- [8. Amazon SageMaker](#8-amazon-sagemaker)
+- [9. Amazon Forecast](#9-amazon-forecast)
+- [10. Amazon Kendra](#10-amazon-kendra)
+- [11. Amazon Personalize](#11-amazon-personalize)
+- [12. Amazon Textract](#12-amazon-textract)
+- [13. Amazon's Hardware for AI](#13-amazons-hardware-for-ai)
+- [14. Summary](#14-summary)
 
-# 1. Amazon Rekognition
+# 1. Why AWS AI Managed Services?
 
-[Amazon Rekognition](Amazon%20Rekognition.md)
+- AWS AI Services are pre-trained ML services for our use case.
+- Responsiveness and Availability.
+- **Redundancy and Regional Coverage:** Deployed across multiple Availability Zones and AWS regions.
+- **Performance:** Specialized CPU and GPUs for specific use-cases for cost saving.
+- **Token-based pricing:** Pay for what we use.
+- **Provisioned throughput:** For predictable workloads, cost savings and predictable performance.
 
-# 2. Amazon Transcribe
+# 2. Amazon Rekognition
 
-[Amazon Transcribe](Amazon%20Transcribe.md)
+- **Amazon Rekognition makes it easy to add image and video analysis to our applications using proven, highly scalable, deep learning technology that requires no machine learning expertise to use.**
+  - [Amazon Rekognition](Amazon%20Rekognition.md)
 
-# 3. Amazon Polly
+# 3. Amazon Transcribe
+
+- **Amazon Transcribe is an AWS service that makes it easy for customers to convert speech-to-text.**
+  - [Amazon Transcribe](Amazon%20Transcribe.md)
+
+# 4. Amazon Polly
 
 - **Amazon Polly is a service that turns text into lifelike speech.**
-- Turn text into lifelike speech using deep learning.
-- Allowing you to create applications that talk.
+  - [Amazon Polly](Amazon%20Polly.md)
 
-## 3.1. Lexicon & SSML
-
-- Customize the pronunciation of words with Pronunciation lexicons.
-  - **Stylized words:** J3f73 => "Jefte".
-  - **Acronyms:** AWS => "Amazon Web Services".
-- Upload the lexicons and use them in the SynthesizeSpeech operation.
-- Generate speech from plain text or from documents marked up with **Speech Synthesis Markup Language (SSML)** - Enables more customization.
-  - Emphasizing specific words or phrases.
-  - Using phonetic pronunciation.
-  - Including breathing sounds, whispering.
-  - Using the Newscaster speaking style.
-
-# 4. Amazon Translate
+# 5. Amazon Translate
 
 - **Amazon Translate is a neural machine translation service that delivers fast, high-quality, and affordable language translation.**
-- Natural and accurate **language translation**.
-- Amazon Translate allows you to **localize content** - such as websites and applications - for **international users**, and to easily translate large volumes of text efficiently.
+  - [Amazon Translate](Amazon%20Translate.md)
 
-# 5. Amazon Lex & Connect
+# 6. Amazon Lex & Connect
 
-- **Amazon Lex is a service for building conversational interfaces into any application using voice and text. Lex provides the advanced deep learning functionalities of automatic speech recognition (ASR) for converting speech to text, and natural language understanding (NLU) to recognize the intent of the text, to enable you to build applications with highly engaging user experiences and lifelike conversational interactions.**
-- **Amazon Lex:** (same technology that powers Alexa).
-  - Automatic Speech Recognition (ASR) to convert speech to text.
-  - Natural Language Understanding to recognize the intent of text, callers.
-  - Helps build chatbots, call center bots.
-- **Amazon Connect is a self-service, cloud-based contact center service that makes it easy for any business to deliver better customer service at lower cost. It does not provide speech-to-text conversion or natural language understanding.**
-- **Amazon Connect:**
-  - Receive calls, create contact flows, cloud-based virtual contact center.
-  - Can integrate with other CRM systems or AWS.
-  - No upfront payments, 80% cheaper than traditional contact center solutions.
+- **Amazon Lex is a service for building conversational interfaces into any application using voice and text. Lex provides the advanced deep learning functionalities of automatic speech recognition (ASR) for converting speech to text, and natural language understanding (NLU) to recognize the intent of the text, to enable we to build applications with highly engaging user experiences and lifelike conversational interactions.**
+  - [Amazon Lex](Amazon%20Lex.md)
 
-# 6. Amazon Comprehend
+# 7. Amazon Comprehend
 
-[Amazon Comprehend](Amazon%20Comprehend.md)
+- **Amazon Comprehend is a natural language processing (NLP) service that uses machine learning to find meaning and insights in text.**
+  - [Amazon Comprehend](Amazon%20Comprehend.md)
 
-# 7. Amazon SageMaker
+# 8. Amazon SageMaker
 
 - **Amazon SageMaker is a fully managed service that provides every developer and data scientist with the ability to build, train, and deploy machine learning (ML) models quickly. SageMaker removes the heavy lifting from each step of the machine learning process to make it easier to develop high quality models.**
   [Amazon SageMaker](Amazon%20SageMaker.md)
 
-# 8. Amazon Forecast
+# 9. Amazon Forecast
 
 - Fully managed service that uses ML to deliver highly accurate forecasts.
 - **Example:** Predict the future sales of a raincoat.
@@ -78,37 +69,34 @@
 - Reduce forecasting time from months to hours.
 - **Use cases:** Product Demand Planning, Financial Planning, Resource Planning, ...
 
-# 9. Amazon Kendra
+# 10. Amazon Kendra
 
 - **Amazon Kendra is a highly accurate and easy to use enterprise search service that's powered by machine learning.**
-- Fully managed **document search service** powered by Machine Learning.
-- Extract answers from within a document (text, pdf, HTML, PowerPoint, MS Word, FAQs...).
-- Natural language search capabilities.
-- Learn from user interactions/feedback to promote preferred results **(Incremental Learning)**.
-- Ability to manually fine-tune search results (importance of data, freshness, custom, ...).
+  - [Amazon Kendra](Amazon%20Kendra.md)
 
-# 10. Amazon Personalize
+# 11. Amazon Personalize
 
 - **Amazon Personalize is a machine learning service that makes it easy for developers to create individualized recommendations for customers using their applications.**
-- Fully managed ML-service to build apps with real-time personalized recommendations.
-- **Example:** Personalized product recommendations/re-ranking, customized direct marketing.
-  - **Example:** User bought gardening tools, provide recommendations on the next one to buy.
-- Same technology used by Amazon.com.
-- Integrates into existing websites, applications, SMS, email marketing systems, ...
-- Implement in days, not months (you don't need to build, train, and deploy ML solutions).
-- **Use cases:** retail stores, media and entertainment...
+  - [Amazon Personalize](Amazon%20Personalize.md)
 
-# 11. Amazon Textract
+# 12. Amazon Textract
 
-- Automatically extracts text, handwriting, and data from any scanned documents using AI and ML.
-- Extract data from forms and tables.
-- Read and process any type of document (PDFs, images, ...).
-- **Use cases**
-  - Financial Services (e.g., invoices, financial reports).
-  - Healthcare (e.g., medical records, insurance claims).
-  - Public Sector (e.g., tax forms, ID documents, passports).
+[Amazon Textract](Amazon%20Textract.md)
 
-# 12. Summary
+# 13. Amazon's Hardware for AI
+
+- GPU-based EC2 Instances (P3, P4, P5..., G3...G6...)
+- **AWS Trainium**
+  - ML chip built to perform Deep Learning on 100B+ parameter models.
+  - Trn1 instance has for example 16 Trainium Accelerators.
+  - 50% cost reduction when training a model.
+- **AWS Inferentia**
+  - ML chip built to deliver inference at high performance and low cost.
+  - Inf1, Inf2 instances are powered by AWS Inferentia.
+  - Up to 4x throughput and 70% cost reduction.
+- Trn & Inf have the **lowest environmental footprint**.
+
+# 14. Summary
 
 - **Rekognition:** Face detection, labeling, celebrity recognition.
 - **Transcribe:** Audio to text (ex: subtitles).
