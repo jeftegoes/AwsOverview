@@ -137,7 +137,7 @@
 
 # 15. AWS Database Migration Service (DMS)
 
-- **AWS Database Migration Service helps you migrate databases to AWS quickly and securely. The source database remains fully operational during the migration, minimizing downtime to applications that rely on the database.** [AWS Database Migration Service](AWS%20Database%20Migration%20Service.md)
+- **AWS Database Migration Service Help us migrate databases to AWS quickly and securely. The source database remains fully operational during the migration, minimizing downtime to applications that rely on the database.** [AWS Database Migration Service](AWS%20Database%20Migration%20Service.md)
 
 # 16. Databases Summary in AWS
 

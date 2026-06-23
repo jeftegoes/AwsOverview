@@ -292,7 +292,7 @@
 
 - CLI tool to build, release, and operate production-ready containerized apps.
 - Run your apps on **AppRunner, ECS, and Fargate**.
-- Helps you focus on building apps rather than setting up infrastructure.
+- Helps us focus on building apps rather than setting up infrastructure.
 - Provisions all required infrastructure for containerized apps (ECS, VPC, ELB, ECR...).
 - Automated deployments with one command using CodePipeline.
 - Deploy to multiple environments.

@@ -75,7 +75,7 @@
 ## 4.3. Layer 3 Constructs (L3)
 
 - Can be called **Patterns**, which represents multiple related resources.
-- Helps you complete common tasks in AWS.
+- Helps us complete common tasks in AWS.
 - **Examples**
   - **aws-apigateway.LambdaRestApi** represents an API Gateway backed by a Lambda function.
   - **aws-ecs-patterns.ApplicationLoadBalancerFargateService** which represents an architecture that includes a Fargate cluster with Application Load Balancer.

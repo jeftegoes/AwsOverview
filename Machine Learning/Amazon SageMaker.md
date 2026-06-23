@@ -34,35 +34,34 @@
 
 - Fully managed service for developers / data scientists to build ML models.
 - Typically, difficult to do all the processes in one place + provision servers.
-- **Machine learning process (simplified):** Predicting your exam score.
-
-todo Diagram
+- **Machine learning process (simplified):** Predicting our exam score.
+  - [Amazon SageMaker](/Images/Machine%20Learning/AmazonSageMaker.png)
 
 # 2. End-to-End ML Service
 
 - Collect and prepare data.
 - Build and train machine learning models.
 - Deploy the models and monitor the performance of the predictions.
-  todo Diagram
+  - [Amazon SageMaker - End-to-End ML Service](/Images/Machine%20Learning/AmazonSageMakerEndToEndMlService.png)
 
 # 3. Built-in Algorithms (extract)
 
-- Supervised Algorithms.
+- **Supervised Algorithms**
   - Linear regressions and classifications.
   - KNN Algorithms (for classification).
-- Unsupervised Algorithms
-  - Principal Component Analysis (PCA) - reduce number of features
-  - K-means - find grouping within data
-  - Anomaly Detection
-- Textual Algorithms - NLP, summarization...
-- Image Processing - classification, detection...
+- **Unsupervised Algorithms**
+  - **Principal Component Analysis (PCA):** Reduce number of features.
+  - **K-means:** Find grouping within data.
+  - **Anomaly Detection.**
+- **Textual Algorithms:** NLP, summarization...
+- **Image Processing:** classification, detection...
 
 # 4. Automatic Model Tuning (AMT)
 
 - Define the **Objective Metric**.
 - AMT automatically chooses hyperparameter ranges, search strategy, maximum runtime of a tuning job, and early stop condition.
-- Saves you time and money.
-- Helps you not wasting money on suboptimal configurations.
+- Saves us time and money.
+- Helps us not wasting money on suboptimal configurations.
 
 # 5. Model Deployment & Inference
 
@@ -106,7 +105,7 @@ TODO TABLE
 - Features are inputs to ML models used during training and used for inference.
 - **Example**
   - **Music dataset:** Song ratings, listening duration, and listener demographics
-- Important to have high quality features across your datasets in your company for re-use.
+- Important to have high quality features across our datasets in our company for re-use.
 
 ## 9.1. Feature Store
 
@@ -119,8 +118,8 @@ TODO TABLE
 
 - Evaluate Foundation Models.
 - Evaluating human-factors such as friendliness or humor.
-- Leverage an AWS-managed team or bring your own employees.
-- Use built-in datasets or bring your own dataset.
+- Leverage an AWS-managed team or bring our own employees.
+- Use built-in datasets or bring our own dataset.
 - Built-in metrics and algorithms.
 - Part of **SageMaker Studio**.
 
@@ -136,7 +135,7 @@ TODO TABLE
 
 ## 10.2. Detect Bias (human)
 
-- Ability to detect and explain biases in your datasets and models
+- Ability to detect and explain biases in our datasets and models
 - Measure bias using statistical metrics
 - Specify input features and bias will be automatically detected
   https://noise.getoto.net/author/julien-simon/
@@ -147,7 +146,7 @@ TODO TABLE
 - **Measurement bias:** Measurement bias occurs when the tools or measurements used in data collection are flawed or skewed.
 - Observer bias: Observer bias happens when the person collecting or interpreting the data has personal biases that affect the results.
 - **Confirmation bias:** Confirmation bias is when individuals interpret or favor information that confirms their preconceptions. This is more applicable to human decision-making rather than automated model outputs.
-- **Example:** An algorithm only flags people from specific ethnic groups, this is probably a sampling bias, and you need to perform data augmentation for imbalanced classes.
+- **Example:** An algorithm only flags people from specific ethnic groups, this is probably a sampling bias, and we need to perform data augmentation for imbalanced classes.
 
 # 11. Ground Truth
 
@@ -156,9 +155,9 @@ TODO TABLE
   - Align model to human preferences.
   - Reinforcement learning where human feedback is included in the "reward" function.
 - Human feedback for ML.
-  - Creating or evaluating your models.
+  - Creating or evaluating our models.
   - Data generation or annotation (create labels).
-- **Reviewers:** Amazon Mechanical Turk workers, your employees, or third-party vendors.
+- **Reviewers:** Amazon Mechanical Turk workers, our employees, or third-party vendors.
 - **SageMaker Ground Truth Plus:** Label Data.
 
 # 12. ML Governance
@@ -175,10 +174,10 @@ TODO TABLE
 
 ## 12.1. Model Dashboard
 
-- Centralized portal where you can view, search, and explore all of your models.
+- Centralized portal where we can view, search, and explore all of your models.
 - **Example:** Track which models are deployed for inference.
 - Can be accessed from the SageMaker Console.
-- Helps you find models that violate thresholds you set for data quality, model quality, bias, explainability...
+- Helps us find models that violate thresholds you set for data quality, model quality, bias, explainability...
 
 ## 12.2. Model Monitor
 
@@ -197,7 +196,7 @@ TODO TABLE
 
 - SageMaker Pipeline - A workflow that automates the process of building, training, and deploying a ML model.
 - Continuous Integration and Continuous Delivery (CI/CD) service for Machine Learning.
-- Helps you easily build, train, test, and deploy 100s of models automatically.
+- Help us easily build, train, test, and deploy 100s of models automatically.
 - Iterate faster, reduce errors (no manual steps), repeatable mechanisms...
   https://aws.amazon.com/sagemaker/pipelines/
 - Pipelines composed of Steps and each Step performs a specific task (e.g., data preprocessing, model training...).

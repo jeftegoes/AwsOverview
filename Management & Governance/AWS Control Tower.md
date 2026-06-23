@@ -95,7 +95,7 @@ TODO diagram
 # 8. Customizations for AWS Control Tower (CfCT)
 
 - GitOps-style customization framework created by AWS.
-- Helps you add customizations to your Landing Zone using your custom CloudFormation templates and SCPs.
+- Helps us add customizations to your Landing Zone using your custom CloudFormation templates and SCPs.
 - Automatically deploy resources to new AWS accounts created using Account Factory.
 - **Note:** CfCT is different from AFC (Account Factory Customization; blueprint).
 
@@ -115,7 +115,7 @@ TODO diagram
 
 # 11. Account Factory for Terraform (AFT)
 
-- Helps you provision and customize AWS accounts in Control Tower through Terraform using a deployment pipeline.
+- Helps us provision and customize AWS accounts in Control Tower through Terraform using a deployment pipeline.
 - You create an **account request Terraform file** which triggers the AFT workflow for account provisioning.
 - Offers built-in feature options (disabled by default)
   - **AWS CloudTrail Data Events:** Creates a Trail & enables CloudTrail Data Events.

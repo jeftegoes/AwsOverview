@@ -10,7 +10,7 @@
 
 # 1. Introduction
 
-- **AWS Application Discovery Service** helps you plan your migration to the AWS cloud by collecting usage and configuration data about your on-premises servers.
+- **AWS Application Discovery Service** helps us plan your migration to the AWS cloud by collecting usage and configuration data about your on-premises servers.
 - Application Discovery Service is integrated with **AWS Migration Hub**, which simplifies your migration tracking.
 - After performing discovery, you can view the discovered servers, group them into applications, and then track the migration status of each application from the Migration Hub console.
 - The discovered data can be exported for analysis in Microsoft Excel or AWS analysis tools such as [Amazon Athena](/Analytics/Amazon%20Athena.md) and Amazon QuickSight.

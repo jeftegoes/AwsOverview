@@ -39,7 +39,7 @@
 
 # 1. Introduction
 
-- Helps we manage your **EC2 and On-Premises** systems at scale.
+- Helps us manage your **EC2 and On-Premises** systems at scale.
 - Another Hybrid AWS service.
 - Get operational insights about the state of your infrastructure.
 - Easily detect problems.
@@ -366,5 +366,5 @@
 
 # 17. State Manager
 
-- **AWS Systems Manager State Manager** is a capability that helps you define and maintain a **desired configuration state** for your Amazon EC2 instances and on-premises servers.
+- **AWS Systems Manager State Manager** is a capability that helps us define and maintain a **desired configuration state** for your Amazon EC2 instances and on-premises servers.
 - It ensures that your instances remain compliant with a defined configuration over time.

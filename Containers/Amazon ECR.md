@@ -21,7 +21,7 @@
 - Each Lifecycle Policy contains one or more rules.
 - All rules are evaluated at the same time, then applied based on priority.
 - Images are expired within 24 hours after they meet the criteria.
-- Helps we reduce unnecessary storage costs.
+- Helps us reduce unnecessary storage costs.
 
 # 3. Amazon ECR public
 

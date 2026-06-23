@@ -21,8 +21,8 @@
   - [12.3. Unstructured Data](#123-unstructured-data)
 - [13. ML Algorithms](#13-ml-algorithms)
   - [13.1. Supervised Learning](#131-supervised-learning)
-    - [13.1.1. Regression](#1311-regression)
-    - [13.1.2. Classification](#1312-classification)
+    - [13.1.1. Classification](#1311-classification)
+    - [13.1.2. Regression](#1312-regression)
     - [13.1.3. Training vs. Validation vs. Test Set](#1313-training-vs-validation-vs-test-set)
     - [13.1.4. Feature Engineering](#1314-feature-engineering)
       - [13.1.4.1. On Structured Data](#13141-on-structured-data)
@@ -211,17 +211,7 @@ TODO DIAGRAM
 - Learn a mapping function that can predict the output for new unseen input data.
 - **Needs labeled data:** Very powerful, but difficult to perform on millions of datapoints.
 
-### 13.1.1. Regression
-
-- Used to predict a numeric value based on input data.
-- The output variable is continuous, meaning it can take any value within a range.
-- Use cases: Used when the goal is to predict a quantity or a real value.
-- **Examples**
-  - Predicting House Prices - based on features like size, location, and number of bedrooms.
-  - Stock Price Prediction - predicting the future price of a stock based on historical data and other features.
-  - Weather Forecasting - predicting temperatures based on historical weather data.
-
-### 13.1.2. Classification
+### 13.1.1. Classification
 
 - Used to predict the categorical label of input data.
 - The output variable is discrete, which means it falls into a specific category or class.
@@ -232,29 +222,39 @@ TODO DIAGRAM
   - **Multi-label Classification:** Assign multiple labels to a movie, like "action" and "comedy.
 - **Key algorithm:** K-nearest neighbors (k-NN) model.
 
+### 13.1.2. Regression
+
+- Used to predict a numeric value based on input data.
+- The output variable is continuous, meaning it can take any value within a range.
+- **Use cases:** Used when the goal is to predict a quantity or a real value.
+- **Examples**
+  - **Predicting House Prices:** Based on features like size, location, and number of bedrooms.
+  - **Stock Price Prediction:** Predicting the future price of a stock based on historical data and other features.
+  - **Weather Forecasting:** Predicting temperatures based on historical weather data.
+
 ### 13.1.3. Training vs. Validation vs. Test Set
 
 - **Training Set**
   - Used to train the model.
-  - Percentage: Typically, 60-80% of the dataset.
-  - Example: 800 labeled images from a dataset of 1000 images.
+  - **Percentage:** Typically, 60-80% of the dataset.
+  - **Example:** 800 labeled images from a dataset of 1000 images.
 - **Validation Set**
   - Used to tune model parameters and validate performance.
-  - Percentage: Typically, 10-20% of the dataset.
-  - Example: 100 labeled images for hyperparameter tuning (tune the settings of the algorithm to make it more efficient).
+  - **Percentage:** Typically, 10-20% of the dataset.
+  - **Example:** 100 labeled images for hyperparameter tuning (tune the settings of the algorithm to make it more efficient).
 - **Test Set**
   - Used to evaluate the final model performance.
-  - Percentage: Typically, 10-20% of the dataset.
-  - Example: 100 labeled images to test the model's accuracy.
+  - **Percentage:** Typically, 10-20% of the dataset.
+  - **Example:** 100 labeled images to test the model's accuracy.
 
 ### 13.1.4. Feature Engineering
 
 - The process of using domain knowledge to select and transform raw data into meaningful features.
 - Helps enhancing the performance of machine learning models.
 - **Techniques**
-  - Feature Extraction - extracting useful information from raw data, such as deriving age from date of birth.
-  - Feature Selection - selecting a subset of relevant features, like choosing important predictors in a regression model.
-  - Feature Transformation - transforming data for better model performance, such as normalizing numerical data.
+  - **Feature Extraction:** Extracting useful information from raw data, such as deriving age from date of birth.
+  - **Feature Selection:** Selecting a subset of relevant features, like choosing important predictors in a regression model.
+  - **Feature Transformation:** Transforming data for better model performance, such as normalizing numerical data.
 - Particularly meaningful for Supervised Learning.
 
 #### 13.1.4.1. On Structured Data
@@ -319,9 +319,9 @@ TODO DIAGRAM
 
 ## 13.4. Self-Supervised Learning
 
-- Have a model generate pseudo labels for its own data without having humans label any data first.
-- Then, using the pseudo labels, solve problems traditionally solved by Supervised Learning.
-- Widely used in NLP (to create the BERT and GPT models for example) and in image recognition tasks.
+1. Have a model generate pseudo labels for its own data without having humans label any data first.
+2. Then, using the pseudo labels, solve problems traditionally solved by Supervised Learning.
+   - Widely used in NLP (to create the BERT and GPT models for example) and in image recognition tasks.
 
 ### 13.4.1. Intuitive example
 
@@ -523,7 +523,7 @@ TODO DIAGRAM
 - Visualize the data with graphs
 - **Correlation Matrix**
   - Look at correlations between variables (how "linked" they are).
-  - Helps you decide which features can be important in your model.
+  - Helps us decide which features can be important in your model.
 
 ## 20.2. Phases of Machine Learning Project
 

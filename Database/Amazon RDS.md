@@ -82,7 +82,7 @@
 
 # 4. Storage Auto Scaling
 
-- Helps we increase storage on our RDS DB instance dynamically.
+- Helps us increase storage on our RDS DB instance dynamically.
 - When RDS detects we are running out of free database storage, it scales automatically.
 - Avoid manually scaling our database storage.
 - We have to set **Maximum Storage Threshold** (maximum limit for DB storage).

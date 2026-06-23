@@ -44,7 +44,7 @@
 # 8. Amazon Inspector
 
 - **Amazon Inspector is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS.**
-- **It helps you test the network accessibility of your Amazon EC2 instances and the security state of your applications running on the instances.** [Amazon Inspector](Amazon%20Inspector.md)
+- **It Help us test the network accessibility of your Amazon EC2 instances and the security state of your applications running on the instances.** [Amazon Inspector](Amazon%20Inspector.md)
 
 # 9. AWS Directory Services
 
