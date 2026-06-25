@@ -18,9 +18,9 @@
 
 ## 2.1. Exam Time Management
 
-- **Total time**: 180 minutes ( + 30 minutes if ESL is applied)
-- **Total questions**: 75
-- **Time per question**:
+- **Total time:** 180 minutes ( + 30 minutes if ESL is applied)
+- **Total questions:** 75
+- **Time per question:**
   - ~2.4 minutes per question (180 ÷ 75)
   - ≈ **2 minutes 24 seconds** each
   - With ESL: ~2.8 minutes per question
@@ -35,10 +35,10 @@
 
 ## 2.3. Topics
 
-- ECR – Scanning de vulnerabilidades
+- ECR - Scanning de vulnerabilidades
 - AWS Control Tower
-- SNS – Metrics (ApproximateNumberOfMessages & Variations)
-- AWS Organizations – SCP (Service Control Policies)
+- SNS - Metrics (ApproximateNumberOfMessages & Variations)
+- AWS Organizations - SCP (Service Control Policies)
 - Amazon EKS
 - Amazon EventBridge
 - AWS CloudTrail
@@ -51,3 +51,13 @@
 - AWS Fault Injection Simulator (AWS FIS)
   - Reference: https://aws.amazon.com/blogs/architecture/chaos-testing-with-aws-fault-injection-simulator-and-aws-codepipeline/
 - AWS CodeArtifact
+
+# 3. AWS Certified AI Practitioner
+
+- **Total time:** 90 minutes ( + 30 minutes if ESL accommodations are applied)
+- **Total questions:** 65
+- **Time per question**
+  - ~1.38 minutes per question (90 ÷ 65).
+  - ≈ 1 minute 23 seconds each.
+  - With ESL: ~1.85 minutes per question.
+  - Round to ~1.5 minutes per question for easier pacing.

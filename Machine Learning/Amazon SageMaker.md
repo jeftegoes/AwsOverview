@@ -23,6 +23,8 @@
   - [12.3. Model Registry](#123-model-registry)
 - [13. Pipelines](#13-pipelines)
 - [14. JumpStart](#14-jumpstart)
+  - [14.1. ML Hub](#141-ml-hub)
+  - [14.2. ML Solutions](#142-ml-solutions)
 - [15. Canvas](#15-canvas)
   - [15.1. Ready-to-use models](#151-ready-to-use-models)
 - [16. MLFlow on Amazon SageMaker](#16-mlflow-on-amazon-sagemaker)
@@ -99,6 +101,7 @@ TODO TABLE
 - Single interface for data selection, cleansing, exploration, visualization, and processing.
 - SQL support.
 - Data Quality tool.
+- Offering 300+ pre-configured data transformations to prepare these different data modalities.
 
 # 9. What are ML Features?
 
@@ -135,10 +138,10 @@ TODO TABLE
 
 ## 10.2. Detect Bias (human)
 
-- Ability to detect and explain biases in our datasets and models
-- Measure bias using statistical metrics
-- Specify input features and bias will be automatically detected
-  https://noise.getoto.net/author/julien-simon/
+- Ability to **detect and explain** biases in our **datasets and models**.
+- Measure bias using statistical metrics.
+- Specify input features and bias will be automatically detected.
+  - https://noise.getoto.net/author/julien-simon/
 
 ## 10.3. Different kind of biases (definitions)
 
@@ -150,11 +153,11 @@ TODO TABLE
 
 # 11. Ground Truth
 
-- RLHF - Reinforcement Learning from Human Feedback.
+- RLHF - **R**einforcement **L**earning from **H**uman **F**eedback.
   - Model review, customization and evaluation.
   - Align model to human preferences.
   - Reinforcement learning where human feedback is included in the "reward" function.
-- Human feedback for ML.
+- **Human feedback for ML**
   - Creating or evaluating our models.
   - Data generation or annotation (create labels).
 - **Reviewers:** Amazon Mechanical Turk workers, our employees, or third-party vendors.
@@ -218,15 +221,21 @@ TODO TABLE
 - Models are deployed on SageMaker directly (full control of deployment options).
 - Pre-built ML solutions for demand forecasting, credit rate prediction, fraud detection and computer vision.
 
-TODO DIAGRAM
+## 14.1. ML Hub
+
+![alt](/Images/Machine%20Learning/AmazonSageMakerJumpStartMLHub.png)
+
+## 14.2. ML Solutions
+
+![alt](/Images/Machine%20Learning/AmazonSageMakerJumpStartMLSolutions.png)
 
 # 15. Canvas
 
 - Build ML models using a visual interface (no coding required).
-- Access to ready-to-use models from Bedrock or JumpStart.
-- Build your own custom model using AutoML powered by SageMaker Autopilot.
-- Part of SageMaker Studio.
-- Leverage Data Wrangler for data preparation.
+- Access to ready-to-use models from **Bedrock** or **JumpStart**.
+- Build your own custom model using **AutoML** powered by **SageMaker Autopilot**.
+- Part of **SageMaker Studio**.
+- Leverage **Data Wrangler** for data preparation.
 
 ## 15.1. Ready-to-use models
 
@@ -236,7 +245,7 @@ TODO DIAGRAM
 # 16. MLFlow on Amazon SageMaker
 
 - **MLFlow:** An open-source tool which helps ML teams manage the entire ML lifecycle.
-- MLFlow Tracking Servers.
+- **MLFlow Tracking Servers**
   - Used to track runs and experiments.
   - Launch on SageMaker with a few clicks.
 - Fully integrated with SageMaker (part of SageMaker Studio).

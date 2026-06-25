@@ -67,18 +67,18 @@
 
 # 3. Prompt Performance Optimization
 
-- System Prompts - How the model should behave and reply.
-- Temperature (0 to 1) - Creativity of the model's output.
+- **System Prompts:** How the model should behave and reply.
+- **Temperature (0 to 1):** Creativity of the model's output.
   - Low (ex: 0.2) - Outputs are more conservative, repetitive, focused on most likely response.
   - High (ex: 1.0) - Outputs are more diverse, creative, and unpredictable, maybe less coherent.
-- Top P (0 to 1)
+- **Top P (0 to 1)**
   - Low P (ex: 0.25) - Consider the 25% most likely words, will make a more coherent response.
   - High P (ex: 0.99) - Consider a broad range of possible words, possibly more creative and diverse output.
-- Top K - limits the number of probable words
+- **Top K:** Limits the number of probable words
   - Low K (ex: 10) - More coherent response, less probable words.
   - High K (ex: 500) - More probable words, more diverse and creative.
-- Length - Maximum length of the answer.
-- Stop Sequences - Tokens that signal the model to stop generating output.
+- **Length:** Maximum length of the answer.
+- **Stop Sequences:** Tokens that signal the model to stop generating output.
 
 ## 3.1. Prompt Latency
 

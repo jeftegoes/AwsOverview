@@ -12,7 +12,7 @@
 - [6. What is Generative AI (Gen-AI)?](#6-what-is-generative-ai-gen-ai)
 - [7. What is the Transformer Model? (LLM)](#7-what-is-the-transformer-model-llm)
 - [8. Diffusion Models (ex: Stable Diffusion)](#8-diffusion-models-ex-stable-diffusion)
-- [9. Multi-modal Models (ex: GPT-4o)](#9-multi-modal-models-ex-gpt-4o)
+- [9. Multimodal Models (ex: GPT-4o)](#9-multimodal-models-ex-gpt-4o)
 - [10. Humans are a mix of AI](#10-humans-are-a-mix-of-ai)
 - [11. ML Terms](#11-ml-terms)
 - [12. Training Data](#12-training-data)
@@ -51,8 +51,9 @@
 - [19. Inferencing](#19-inferencing)
   - [19.1. Inferencing at the Edge](#191-inferencing-at-the-edge)
 - [20. Phases of Machine Learning Project](#20-phases-of-machine-learning-project)
-  - [20.1. Exploratory Data Analysis](#201-exploratory-data-analysis)
-  - [20.2. Phases of Machine Learning Project](#202-phases-of-machine-learning-project)
+  - [20.1. Phase details](#201-phase-details)
+  - [20.2. Exploratory Data Analysis](#202-exploratory-data-analysis)
+  - [20.3. Phases of Machine Learning Project](#203-phases-of-machine-learning-project)
 - [21. Hyperparameter Tuning](#21-hyperparameter-tuning)
   - [21.1. Important Hyperparameters](#211-important-hyperparameters)
 - [22. What to do if overfitting?](#22-what-to-do-if-overfitting)
@@ -138,11 +139,12 @@
 
 TODO DIAGRAM
 
-# 9. Multi-modal Models (ex: GPT-4o)
+# 9. Multimodal Models (ex: GPT-4o)
 
 - Does NOT rely on a single type of input (text, or images, or audio only).
 - Does NOT create a single type of output.
-- Example: a multi-modal can take a mix of audio, image and text and output a mix of video, text for example.
+- **Example:** A multimodal can take a mix of audio, image and text and output a mix of video, text for example.
+  ![Multimodal Modelss](/Images/Machine%20Learning/MultimodalModels.png)
 
 # 10. Humans are a mix of AI
 
@@ -153,14 +155,15 @@ TODO DIAGRAM
 
 # 11. ML Terms
 
-- GPT (Generative Pre-trained Transformer) - generate human text or computer code based on input prompts.
-- BERT (Bidirectional Encoder Representations from Transformers) - similar intent to GPT, but reads the text in two directions.
-- RNN (Recurrent Neural Network) - meant for sequential data such as time-series or text, useful in speech recognition, time-series prediction.
-- ResNet (Residual Network) - Deep Convolutional Neural Network (CNN) used for image recognition tasks, object detection, facial recognition.
-- SVM (Support Vector Machine) - ML algorithm for classification and regression.
-- WaveNet - model to generate raw audio waveform, used in Speech Synthesis.
-- GAN (Generative Adversarial Network) - models used to generate synthetic data such as images, videos or sounds that resemble the training data. Helpful for data augmentation.
-- XGBoost (Extreme Gradient Boosting) - an implementation of gradient boosting.
+- **GPT (Generative Pre-trained Transformer):** Generate human text or computer code based on input prompts.
+- **BERT (Bidirectional Encoder Representations from Transformers):** Similar intent to GPT, but reads the text in two directions.
+- **RNN (Recurrent Neural Network):** meant for sequential data such as time-series or text, useful in speech recognition, time-series prediction.
+- **ResNet (Residual Network):** Deep Convolutional Neural Network (CNN) used for image recognition tasks, object detection, facial recognition.
+- **SVM (Support Vector Machine):** ML algorithm for classification and regression.
+- **WaveNet:** Model to generate raw audio waveform, used in Speech Synthesis.
+- **GAN (Generative Adversarial Network):** Models used to generate synthetic data such as images, videos or sounds that resemble the training data.
+  - Helpful for data augmentation.
+- **XGBoost (Extreme Gradient Boosting):** An implementation of gradient boosting.
 
 # 12. Training Data
 
@@ -319,9 +322,12 @@ TODO DIAGRAM
 
 ## 13.4. Self-Supervised Learning
 
-1. Have a model generate pseudo labels for its own data without having humans label any data first.
-2. Then, using the pseudo labels, solve problems traditionally solved by Supervised Learning.
-   - Widely used in NLP (to create the BERT and GPT models for example) and in image recognition tasks.
+- Self-supervised learning is a machine learning approach that applies unsupervised learning methods to tasks usually requiring supervised learning.
+- Instead of using labeled datasets for guidance, self-supervised models create implicit labels from unstructured data.
+- **Phases**
+  1. Have a model generate pseudo labels for its own data without having humans label any data first.
+  2. Then, using the pseudo labels, solve problems traditionally solved by Supervised Learning.
+     - Widely used in NLP (to create the BERT and GPT models for example) and in image recognition tasks.
 
 ### 13.4.1. Intuitive example
 
@@ -414,6 +420,9 @@ TODO DIAGRAM
   - Could be a problem of having a model too simple or poor data features.
 - **Balanced**
   - Neither overfitting or underfitting.
+- **Summary**
+  ![Overfitting vs Underfitting vs Balanced](/Images/Machine%20Learning/OverfittingUnderfittingBalanced.png)
+  - [Font](https://www.geeksforgeeks.org/machine-learning/underfitting-and-overfitting-in-machine-learning/)
 
 # 17. Bias and Variance
 
@@ -477,7 +486,7 @@ TODO DIAGRAM
 - **Real Time**
   - Computers have to make decisions quickly as data arrives.
   - Speed is preferred over perfect accuracy.
-  - Example: chatbots.
+  - **Example:** Chatbots.
 - **Batch**
   - Large amount of data that is analyzed all at once.
   - Often used for data analysis.
@@ -499,7 +508,9 @@ TODO DIAGRAM
 
 # 20. Phases of Machine Learning Project
 
-TODO DIAGRAM
+![Phases of Machine Learning Project](/Images/Machine%20Learning/PhasesMachineLearningProject.png)
+
+## 20.1. Phase details
 
 - **Define business goals**
   - Stakeholders define the value, budget and success criteria.
@@ -518,14 +529,14 @@ TODO DIAGRAM
   - Iterative process.
   - Additional feature engineering and tune model hyperparameters.
 
-## 20.1. Exploratory Data Analysis
+## 20.2. Exploratory Data Analysis
 
 - Visualize the data with graphs
 - **Correlation Matrix**
   - Look at correlations between variables (how "linked" they are).
   - Helps us decide which features can be important in your model.
 
-## 20.2. Phases of Machine Learning Project
+## 20.3. Phases of Machine Learning Project
 
 - **Retrain**
   - Look at data and features to improve the model.

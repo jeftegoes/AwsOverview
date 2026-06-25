@@ -22,7 +22,7 @@
   - [7.4. Automated Model Evaluation](#74-automated-model-evaluation)
   - [7.5. Business Metrics to Evaluate a Model On](#75-business-metrics-to-evaluate-a-model-on)
 - [8. RAG \& Knowledge Base](#8-rag--knowledge-base)
-  - [8.1. RAG in Action](#81-rag-in-action)
+  - [8.1. Knowledge Bases for Amazon Bedrock](#81-knowledge-bases-for-amazon-bedrock)
   - [8.2. RAG Vector Databases](#82-rag-vector-databases)
   - [8.3. RAG Vector Databases by AWS](#83-rag-vector-databases-by-aws)
   - [8.4. RAG Data Sources](#84-rag-data-sources)
@@ -224,22 +224,25 @@ TODO DIAGRAM
 - RAG = Retrieval-Augmented Generation.
 - Allows a Foundation Model to reference a data source outside of its training data.
 - Bedrock takes care of creating Vector Embeddings in the database of your choice based on your data.
-  TODO: DIAGRAM
+  [Amazon Bedrock - RAG & Knowledge Base](/Images/Machine%20Learning/AmazonBedrockRAGKnowledgeBase.png)
 
-## 8.1. RAG in Action
+## 8.1. Knowledge Bases for Amazon Bedrock
 
-TODO: DIAGRAM
+- With Knowledge Bases for Amazon Bedrock, you can give FMs and agents contextual information from your company's private data sources for RAG to deliver more relevant, accurate, and customized responses.
+- Knowledge Bases for Amazon Bedrock takes care of the entire ingestion workflow of converting your documents into embeddings (vector) and storing the embeddings in a specialized vector database.
+- Knowledge Bases for Amazon Bedrock supports popular databases for vector storage, including vector engine for Amazon OpenSearch Serverless, Pinecone, Redis Enterprise Cloud, Amazon Aurora (coming soon), and MongoDB (coming soon).
+- If we do not have an existing vector database, Amazon Bedrock creates an OpenSearch Serverless vector store for us.
 
 ## 8.2. RAG Vector Databases
 
-TODO: DIAGRAM
+![Amazon Bedrock - RAG Vector Databases](/Images/Machine%20Learning/AmazonBedrockRAGVectorDatabases.png)
 
 ## 8.3. RAG Vector Databases by AWS
 
-- Amazon OpenSearch Service (Serverless & Managed Cluster) search & analytics database real time similarity queries, store millions of vector embeddings scalable index management, and fast nearest neighbor (kNN) search capability.
-- Amazon Aurora PostgreSQL - relational database, proprietary on AWS.
-- Amazon Neptune Analytics - graph database that enables high performance graph analytics and graph-based RAG (GraphRAG) solutions.
-- Amazon S3 Vectors - cost-effective and durable storage with sub-second query performance.
+- **Amazon OpenSearch Service (Serverless & Managed Cluster):** Search & analytics database real time similarity queries, store millions of vector embeddings scalable index management, and fast nearest neighbor (kNN) search capability.
+- **Amazon Aurora PostgreSQL:** Relational database, proprietary on AWS.
+- **Amazon Neptune Analytics:** Graph database that enables high performance graph analytics and graph-based RAG (GraphRAG) solutions.
+- **Amazon S3 Vectors:** Cost-effective and durable storage with sub-second query performance.
 
 ## 8.4. RAG Data Sources
 
@@ -252,21 +255,21 @@ TODO: DIAGRAM
 
 ## 8.5. Amazon Bedrock - RAG - Use Cases
 
-- Customer Service Chatbot.
-  - Knowledge Base - products, features, specifications, troubleshooting guides, and FAQs.
-  - RAG application - chatbot that can answer customer queries.
-- Legal Research and Analysis
-  - Knowledge Base - laws, regulations, case precedents, legal opinions, and expert analysis.
-  - RAG Application - chatbot that can provide relevant information for specific legal queries.
-- Healthcare Question-Answering
-  - Knowledge base - diseases, treatments, clinical guidelines, research papers, patients...
-  - RAG application - chatbot that can answer complex medical queries
+- **Customer Service Chatbot**
+  - **Knowledge Base:** Products, features, specifications, troubleshooting guides, and FAQs.
+  - **RAG application:** Chatbot that can answer customer queries.
+- **Legal Research and Analysis**
+  - **Knowledge Base:** Laws, regulations, case precedents, legal opinions, and expert analysis.
+  - **RAG Application:** Chatbot that can provide relevant information for specific legal queries.
+- **Healthcare Question-Answering**
+  - **Knowledge base:** Diseases, treatments, clinical guidelines, research papers, patients...
+  - **RAG application:** Chatbot that can answer complex medical queries.
 
 # 9. GenAI Concepts
 
 - **Tokenization:** Conver ting raw text into a sequence of tokens.
   - **Word-based tokenization:** Text is split into individual words.
-  - **Subword tokenization:** Some words can be split too (helpful for long words...)
+  - **Subword tokenization:** Some words can be split too (helpful for long words...).
 - **Can experiment at:** https://platform.openai.com/tokenizer
 
 ## 9.1. Context Window
@@ -278,7 +281,7 @@ TODO: DIAGRAM
 
 ## 9.2. Embeddings
 
-- Create vectors (array of numerical values) out of text, images or audio
+- Create vectors (array of numerical values) out of text, images or audio.
 - Vectors have a high dimensionality to capture many features for one input token, such as semantic meaning, syntactic role, sentiment.
 - Embedding models can power search applications.
 
@@ -290,8 +293,7 @@ TODO: DIAGRAM
 - Enhanced privacy.
 - Reduce hallucinations.
 - Ability to create multiple Guardrails and monitor and analyze user inputs that can violate the Guardrails.
-
-- TODO: DIAGRAM
+  - ![Amazon Bedrock - Guardrails](/Images/Machine%20Learning/AmazonBedrockGuardrails.png)
 
 # 11. Agents
 
@@ -324,9 +326,9 @@ TODO: DIAGRAM
 
 - **On-Demand**
   - Pay-as-you-go (no commitment).
-  - Text Models - charged for every input/output token processed.
-  - Embedding Models - charged for every input token processed.
-  - Image Models - charged for every image generated.
+  - Text Models - Charged for every input/output token processed.
+  - Embedding Models - Charged for every input token processed.
+  - Image Models - Charged for every image generated.
   - Works with Base Models only.
 - **Batch**
   - Multiple predictions at a time (output is a single file in Amazon S3).

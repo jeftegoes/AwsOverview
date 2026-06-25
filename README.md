@@ -337,12 +337,13 @@
 
 - Each region has many Availability Zones (usually 3, min is 2, max is 6).
 - **Example**
-  - `ap-southeast-2a`
-  - `ap-southeast-2b`
-  - `ap-southeast-2c`
-- Each Availability Zone (AZ) is one or more discrete data centers with redundant power, networking, and connectivity.
+  - `sa-east-1a`
+  - `sa-east-1b`
+  - `sa-east-1c`
+- Each Availability Zone (AZ) is one or more **discrete data centers** with redundant power, networking, and connectivity.
 - They're separate from each other, so that they're isolated from disasters.
 - They're connected with high bandwidth, ultra-low latency networking.
+  ![AWS Availability Zones](/Images/AWSAvailabilityZones.png)
 
 ## 3.15. AWS Points of Presence (Edge Locations)
 

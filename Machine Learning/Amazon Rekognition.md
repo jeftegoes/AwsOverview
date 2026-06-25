@@ -5,7 +5,7 @@
 - [1. Introduction](#1-introduction)
 - [2. Custom Labels](#2-custom-labels)
 - [3. Content Moderation](#3-content-moderation)
-- [4. Content Moderation API – Diagram](#4-content-moderation-api--diagram)
+- [4. Content Moderation API - Diagram](#4-content-moderation-api---diagram)
 - [5. Kinesis Use Case](#5-kinesis-use-case)
 
 # 1. Introduction
@@ -26,7 +26,7 @@
 
 # 2. Custom Labels
 
-- **Examples:** Find our logo in social media posts, identify our products on stores shelves (National Football League – NFL – uses it to find their logo in pictures).
+- **Examples:** Find our logo in social media posts, identify our products on stores shelves (National Football League - NFL - uses it to find their logo in pictures).
 - **Label** our training images and upload them to Amazon Rekognition.
 - Only needs a few hundred images or less.
 - Amazon Rekognition creates a custom model on our images set.
@@ -46,7 +46,7 @@ TODO DIAGRAM
 
 TODO DIAGRAM
 
-# 4. Content Moderation API – Diagram
+# 4. Content Moderation API - Diagram
 
 TODO DIAGRAM
 

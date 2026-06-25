@@ -9,7 +9,7 @@
     - [3.1.1. Guardrails Levels](#311-guardrails-levels)
 - [4. Landing Zone](#4-landing-zone)
 - [5. Account Factory - Customization (AFC)](#5-account-factory---customization-afc)
-- [6. AWS Control Tower – Account Factory](#6-aws-control-tower--account-factory)
+- [6. AWS Control Tower - Account Factory](#6-aws-control-tower---account-factory)
 - [7. Migrate an AWS Account to Control Tower](#7-migrate-an-aws-account-to-control-tower)
 - [8. Customizations for AWS Control Tower (CfCT)](#8-customizations-for-aws-control-tower-cfct)
 - [9. AWS Config Integration](#9-aws-config-integration)
@@ -84,7 +84,7 @@ TODO diagram
 - **Only one blueprint can be deployed to the account**
 - You can react to new accounts created using EventBridge
 
-# 6. AWS Control Tower – Account Factory
+# 6. AWS Control Tower - Account Factory
 
 TODO diagram
 

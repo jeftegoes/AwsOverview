@@ -71,7 +71,7 @@
 
 - Transfer exabytes of data (1 EB = 1,000 PB = 1,000,000 TBs).
 - Each Snowmobile has 100 PB of capacity (use multiple in parallel).
-- High security: temperature controlled, GPS, 24/7 video surveillance.
+- **High security:** Temperature controlled, GPS, 24/7 video surveillance.
 - Better than Snowball if you transfer more than 10 PB.
 
 # 3. Snow Family - Usage Process
