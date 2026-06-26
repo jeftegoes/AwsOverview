@@ -14,8 +14,7 @@
 - Integrates into existing websites, applications, SMS, email marketing systems, ...
 - Implement in days, not months (we don't need to build, train, and deploy ML solutions).
 - **Use cases:** Retail stores, media and entertainment...
-
-TODO DIAGRAM
+  ![Amazon Personalize](/Images/Machine%20Learning/AmazonPersonalize.png)
 
 # 2. Recipes
 

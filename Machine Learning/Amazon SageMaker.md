@@ -162,6 +162,7 @@ TODO TABLE
   - Data generation or annotation (create labels).
 - **Reviewers:** Amazon Mechanical Turk workers, our employees, or third-party vendors.
 - **SageMaker Ground Truth Plus:** Label Data.
+  ![Amazon SageMaker - Ground Truth](/Images/Machine%20Learning/AmazonSageMakerGroundTruth.png)
 
 # 12. ML Governance
 

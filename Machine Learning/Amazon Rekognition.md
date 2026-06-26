@@ -21,8 +21,7 @@
   - Face Search and Verification.
   - Celebrity Recognition.
   - Pathing (ex: for sports game analysis).
-
-![Amazon Rekognition](/Images/Machine%20Learning/AmazonRekognition.png)
+    ![Amazon Rekognition](/Images/Machine%20Learning/AmazonRekognition.png)
 
 # 2. Custom Labels
 
@@ -31,8 +30,7 @@
 - Only needs a few hundred images or less.
 - Amazon Rekognition creates a custom model on our images set.
 - New subsequent images will be categorized the custom way we have defined.
-
-TODO DIAGRAM
+  ![Amazon Rekognition - Custom Labels](/Images/Machine%20Learning/AmazonRekognitionCustomLabels.png)
 
 # 3. Content Moderation
 

@@ -21,7 +21,7 @@
 - Based on our company's knowledge and data.
   - Answer questions, provide summaries, generate content, automate tasks.
   - Perform routine actions (e.g., submit time-off requests, send meeting invites).
-- **Built on Amazon Bedrock** (but we can't choose the underlying FM).
+- > **IMPORTANT!** Built on Amazon Bedrock (but we can't choose the underlying FM).
 - Data Connectors (fully managed RAG) - Connects to 40+ popular enterprise data sources.
   - Amazon S3, RDS, Aurora, WorkDocs...
   - Microsoft 365, Salesforce, GDrive, Gmail, Slack, Sharepoint...
@@ -34,7 +34,7 @@
 - Users can be authenticated through **IAM Identity Center (IAM)**.
 - Users receive responses generated only from the documents they have access to.
   - IAM Identity Center can be configured with external Identity Providers.
-  - IdP: Google Login, Microsoft Active Directory...
+  - **IdP:** Google Login, Microsoft Active Directory...
 
     todo: diagram
 

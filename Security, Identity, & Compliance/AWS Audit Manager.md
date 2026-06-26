@@ -8,7 +8,7 @@
 
 - Assess risk and compliance of your AWS workloads.
 - Continuously audit AWS services usage and prepare audits.
-- Prebuilt frameworks include:
+- **Prebuilt frameworks include**
   - CIS AWS Foundations Benchmark 1.2.0 & 1.3.0.
   - General Data Protection Regulation (GDPR).
   - Health Insurance Portability and Accountability Act (HIPAA).

@@ -15,6 +15,8 @@
   - [6.4. Distillation](#64-distillation)
   - [6.5. Fine-Tuning: Good to know](#65-fine-tuning-good-to-know)
   - [6.6. Fine-Tuning - Use cases](#66-fine-tuning---use-cases)
+  - [6.7. Continued Pre-training](#67-continued-pre-training)
+  - [6.8. Continued Pre-training vs Fine-tuning](#68-continued-pre-training-vs-fine-tuning)
 - [7. Automatic Evaluation](#7-automatic-evaluation)
   - [7.1. Note on Benchmark Datasets](#71-note-on-benchmark-datasets)
   - [7.2. Human Evaluation](#72-human-evaluation)
@@ -162,6 +164,27 @@ TODO: diagram
 - Training with exclusive data (e.g., your historical emails or messages, records from customer service interactions)
 - Targeted use cases (categorization, assessing accuracy).
 
+## 6.7. Continued Pre-training
+
+- Uses **unlabeled datasets**.
+- Enhances the model's understanding of a specific domain.
+- Updates model weights based on new knowledge.
+- **Ideal for**
+  - Internal company documents.
+  - Industry-specific terminology.
+  - Proprietary knowledge bases.
+- Can be repeated as new data becomes available.
+
+## 6.8. Continued Pre-training vs Fine-tuning
+
+| Continued Pre-training                                           | Fine-tuning                                                                              |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Uses **unlabeled data**                                          | Uses **labeled data**                                                                    |
+| Improves **domain knowledge**                                    | Improves **task-specific performance**                                                   |
+| Teaches the model new information and context                    | Teaches the model desired input-output behavior                                          |
+| Suitable for proprietary documents and industry-specific content | Suitable for classification, summarization, question answering, and other specific tasks |
+| Focuses on expanding what the model knows                        | Focuses on improving how the model responds                                              |
+
 # 7. Automatic Evaluation
 
 - Evaluate a model for quality control.
@@ -293,7 +316,7 @@ TODO DIAGRAM
 - Enhanced privacy.
 - Reduce hallucinations.
 - Ability to create multiple Guardrails and monitor and analyze user inputs that can violate the Guardrails.
-  - ![Amazon Bedrock - Guardrails](/Images/Machine%20Learning/AmazonBedrockGuardrails.png)
+  - ![Amazon Bedrock - Guardrails](/Images/Macfhine%20Learning/AmazonBedrockGuardrails.png)
 
 # 11. Agents
 
@@ -317,10 +340,12 @@ TODO DIAGRAM
   - Send logs of all invocations to Amazon CloudWatch and S3.
   - Can include text, images and embeddings.
   - Analyze further and build alerting thanks to CloudWatch Logs Insights.
+    ![Amazon Bedrock - Model Invocation Logging](/Images/Machine%20Learning/AmazonBedrockCloudWatchLogging.png)
 - **CloudWatch Metrics**
   - Published metrics from Bedrock to CloudWatch.
     - Including ContentFilteredCount, which helps to see if Guardrails are functioning.
   - Can build CloudWatch Alarms on top of Metrics.
+    ![Amazon Bedrock - CloudWatch Metrics](/Images/Machine%20Learning/AmazonBedrockCloudWatchMetrics.png)
 
 # 12. Pricing
 
