@@ -138,9 +138,9 @@
     - 10.0.0.2 - reserved by AWS for mapping to Amazon-provided DNS.
     - 10.0.0.3 - reserved by AWS for future use.
     - 10.0.0.255 - Network Broadcast Address. AWS does not support broadcast in a VPC, therefore the address is reserved.
-- **ATENTION:** If you need 29 IP addresses for EC2 instances:
-  - You can't choose a subnet of size /27 (32 IP addresses, 32 - 5 = 27 < 29).
-  - You need to choose a subnet of size /26 (64 IP addresses, 64 - 5 = 59 > 29).
+- **IMPORTANT!** If we need 29 IP addresses for EC2 instances:
+  - We can't choose a subnet of size /27 (32 IP addresses, 32 - 5 = 27 < 29).
+  - We need to choose a subnet of size /26 (64 IP addresses, 64 - 5 = 59 > 29).
 - **Example**
   ![Amazon VPC Subnets](/Images/Networking%20&%20Content%20Delivery/AmazonVPCSubnets.png)
 

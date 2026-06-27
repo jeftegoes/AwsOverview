@@ -251,8 +251,8 @@ TODO DIAGRAM
 
 ## 8.1. Knowledge Bases for Amazon Bedrock
 
-- With Knowledge Bases for Amazon Bedrock, you can give FMs and agents contextual information from your company's private data sources for RAG to deliver more relevant, accurate, and customized responses.
-- Knowledge Bases for Amazon Bedrock takes care of the entire ingestion workflow of converting your documents into embeddings (vector) and storing the embeddings in a specialized vector database.
+- With Knowledge Bases for Amazon Bedrock, you can give FMs and agents contextual information from our company's private data sources for RAG to deliver more relevant, accurate, and customized responses.
+- Knowledge Bases for Amazon Bedrock takes care of the entire ingestion workflow of converting our documents into embeddings (vector) and storing the embeddings in a specialized vector database.
 - Knowledge Bases for Amazon Bedrock supports popular databases for vector storage, including vector engine for Amazon OpenSearch Serverless, Pinecone, Redis Enterprise Cloud, Amazon Aurora (coming soon), and MongoDB (coming soon).
 - If we do not have an existing vector database, Amazon Bedrock creates an OpenSearch Serverless vector store for us.
 
@@ -300,13 +300,14 @@ TODO DIAGRAM
 - The number of tokens an LLM can consider when generating text.
 - The larger the context window, the more information and coherence.
 - Large context windows require more memory and processing power.
-- First factor to look at when considering a model.
+  > **IMPORTANT!:** First factor to look at when considering a model.
 
 ## 9.2. Embeddings
 
 - Create vectors (array of numerical values) out of text, images or audio.
 - Vectors have a high dimensionality to capture many features for one input token, such as semantic meaning, syntactic role, sentiment.
 - Embedding models can power search applications.
+  ![alt](/Images/Machine%20Learning/GenAIConceptsEmbeddings.png)
 
 # 10. Guardrails
 
@@ -320,7 +321,7 @@ TODO DIAGRAM
 
 # 11. Agents
 
-- Manage and carry out various multi-step tasks related to infrastructure provisioning, application deployment, and operational activities.
+- Manage and carry out **various multi-step tasks** related to infrastructure provisioning, application deployment, and operational activities.
 - **Task coordination:** Perform tasks in the correct order and ensure information is passed correctly between tasks.
 - Agents are configured to perform specific pre-defined action groups.
 - Integrate with other systems, services, databases and API to exchange data or initiate actions.
@@ -332,7 +333,7 @@ TODO DIAGRAM
 
 ## 11.2. Agent - Diagram
 
-- TODO: DIAGRAM
+![alt](/Images/Machine%20Learning/AmazonBedrockAgent.png)
 
 ## 11.3. Amazon Bedrock & CloudWatch
 

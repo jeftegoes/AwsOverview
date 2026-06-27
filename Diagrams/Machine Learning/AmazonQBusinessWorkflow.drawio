@@ -1,0 +1,49 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Page-1" id="EdgH3HJeHaBMgYrfClbx">
+    <mxGraphModel dx="1224" dy="1219" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="IUHIdaVCEssN_3njMWox-4" edge="1" parent="1" source="IUHIdaVCEssN_3njMWox-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="IUHIdaVCEssN_3njMWox-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IUHIdaVCEssN_3njMWox-2" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=top;verticalAlign=bottom;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.user;labelPosition=center;" value="User query to Amazon Q Business" vertex="1">
+          <mxGeometry height="78" width="78" x="386" y="393" as="geometry" />
+        </mxCell>
+        <mxCell id="IUHIdaVCEssN_3njMWox-8" edge="1" parent="1" source="IUHIdaVCEssN_3njMWox-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="IUHIdaVCEssN_3njMWox-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IUHIdaVCEssN_3njMWox-9" edge="1" parent="1" source="IUHIdaVCEssN_3njMWox-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="IUHIdaVCEssN_3njMWox-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IUHIdaVCEssN_3njMWox-10" edge="1" parent="1" source="IUHIdaVCEssN_3njMWox-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="IUHIdaVCEssN_3njMWox-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IUHIdaVCEssN_3njMWox-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="User request choice" vertex="1">
+          <mxGeometry height="60" width="120" x="365" y="522" as="geometry" />
+        </mxCell>
+        <mxCell id="d7TolC_9GoQiIeLAmK10-1" edge="1" parent="1" source="IUHIdaVCEssN_3njMWox-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="IUHIdaVCEssN_3njMWox-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IUHIdaVCEssN_3njMWox-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Large language model (LLM)" vertex="1">
+          <mxGeometry height="60" width="120" x="185" y="522" as="geometry" />
+        </mxCell>
+        <mxCell id="d7TolC_9GoQiIeLAmK10-2" edge="1" parent="1" source="IUHIdaVCEssN_3njMWox-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="IUHIdaVCEssN_3njMWox-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IUHIdaVCEssN_3njMWox-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Plugins" vertex="1">
+          <mxGeometry height="60" width="120" x="545" y="522" as="geometry" />
+        </mxCell>
+        <mxCell id="IUHIdaVCEssN_3njMWox-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;div&gt;&lt;b&gt;Default&lt;/b&gt;&lt;/div&gt;&lt;div&gt;Retrieval-Augmented Generation (RAG)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="365" y="633" as="geometry" />
+        </mxCell>
+        <mxCell id="IUHIdaVCEssN_3njMWox-11" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Query response&lt;div&gt;(LLM knowledge)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="90" x="200" y="618" as="geometry" />
+        </mxCell>
+        <mxCell id="IUHIdaVCEssN_3njMWox-12" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Successful plugin action" vertex="1">
+          <mxGeometry height="90" width="90" x="560" y="618" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
