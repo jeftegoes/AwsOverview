@@ -97,13 +97,14 @@
 - Present a task to the model without providing examples or explicit training for that specific task.
 - You fully rely on the model's general knowledge.
 - The larger and more capable the FM, the more likely you'll get good results.
-  DIAGRAM HERE
+  ![Prompt Engineering Techniques - Zero-Shot Prompting](/Images/Machine%20Learning/PromptEngineeringTechniquesZeroShotPrompting.png)
 
 ## 4.2. Few-Shots Prompting
 
 - Provide examples of a task to the model to guide its output.
 - We provide a "few shots" to the model to perform the task.
-- If you provide one example only, this is also called "one-shot" or "single-shot".
+- If we provide one example only, this is also called **"one-shot"** or **"single-shot"**.
+  ![Prompt Engineering Techniques - Few-Shots Prompting](/Images/Machine%20Learning/PromptEngineeringTechniquesFewShotsPrompting.png)
 
 ## 4.3. Chain of Thought Prompting
 
