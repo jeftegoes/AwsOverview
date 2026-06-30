@@ -102,6 +102,13 @@ TODO TABLE
 - SQL support.
 - Data Quality tool.
 - Offering 300+ pre-configured data transformations to prepare these different data modalities.
+- **Features**
+  - Import Data.
+  - Preview Data.
+  - Visualize Data.
+  - Transform Data.
+  - Quick Model.
+  - Export Data Flow.
 
 # 9. What are ML Features?
 
@@ -198,9 +205,9 @@ TODO TABLE
 
 # 13. Pipelines
 
-- SageMaker Pipeline - A workflow that automates the process of building, training, and deploying a ML model.
+- **SageMaker Pipeline:** A workflow that automates the process of building, training, and deploying a ML model.
 - Continuous Integration and Continuous Delivery (CI/CD) service for Machine Learning.
-- Help us easily build, train, test, and deploy 100s of models automatically.
+- Help us easily build, train, test, and deploy 100s of models **automatically**.
 - Iterate faster, reduce errors (no manual steps), repeatable mechanisms...
   https://aws.amazon.com/sagemaker/pipelines/
 - Pipelines composed of Steps and each Step performs a specific task (e.g., data preprocessing, model training...).
@@ -250,6 +257,7 @@ TODO TABLE
   - Used to track runs and experiments.
   - Launch on SageMaker with a few clicks.
 - Fully integrated with SageMaker (part of SageMaker Studio).
+  ![MLFlow on Amazon SageMaker](/Images/Machine%20Learning/MLFlowAmazonSageMaker.png)
 
 # 17. Summary
 

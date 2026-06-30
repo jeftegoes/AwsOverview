@@ -15,6 +15,7 @@
 - Implement in days, not months (we don't need to build, train, and deploy ML solutions).
 - **Use cases:** Retail stores, media and entertainment...
   ![Amazon Personalize](/Images/Machine%20Learning/AmazonPersonalize.png)
+- **While it can help improve customer experience by suggesting products or content based on historical data, it does not offer natural language processing or sentiment analysis capabilities.**
 
 # 2. Recipes
 

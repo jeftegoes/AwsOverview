@@ -10,7 +10,9 @@
 - [4. What is Deep Learning (DL)?](#4-what-is-deep-learning-dl)
 - [5. Neural Networks - How do they work?](#5-neural-networks---how-do-they-work)
 - [6. What is Generative AI (Gen-AI)?](#6-what-is-generative-ai-gen-ai)
-- [7. What is the Transformer Model? (LLM)](#7-what-is-the-transformer-model-llm)
+- [7. Transformer Models](#7-transformer-models)
+  - [7.1. What is the Transformer Model? (LLM)](#71-what-is-the-transformer-model-llm)
+  - [7.2. Key Concepts](#72-key-concepts)
 - [8. Diffusion Models (ex: Stable Diffusion)](#8-diffusion-models-ex-stable-diffusion)
 - [9. Multimodal Models (ex: GPT-4o)](#9-multimodal-models-ex-gpt-4o)
 - [10. Humans are a mix of AI](#10-humans-are-a-mix-of-ai)
@@ -52,12 +54,13 @@
   - [19.1. Inferencing at the Edge](#191-inferencing-at-the-edge)
 - [20. Phases of Machine Learning Project](#20-phases-of-machine-learning-project)
   - [20.1. Phase details](#201-phase-details)
-  - [20.2. Exploratory Data Analysis](#202-exploratory-data-analysis)
+  - [20.2. EDA - Exploratory Data Analysis](#202-eda---exploratory-data-analysis)
   - [20.3. Phases of Machine Learning Project](#203-phases-of-machine-learning-project)
 - [21. Hyperparameter Tuning](#21-hyperparameter-tuning)
   - [21.1. Important Hyperparameters](#211-important-hyperparameters)
 - [22. What to do if overfitting?](#22-what-to-do-if-overfitting)
 - [23. When is Machine Learning NOT appropriate?](#23-when-is-machine-learning-not-appropriate)
+- [24. Model inference vs Model evaluation](#24-model-inference-vs-model-evaluation)
 
 # 1. What is Artificial Intelligence (AI)?
 
@@ -124,8 +127,11 @@
 - Multi-purpose foundation models backed by neural networks.
 - They can be fine-tuned if necessary to better fit our use-cases.
 
-# 7. What is the Transformer Model? (LLM)
+# 7. Transformer Models
 
+## 7.1. What is the Transformer Model? (LLM)
+
+- It is a neural network architecture.
 - Able to process a sentence as a whole instead of word by word.
 - Faster and more efficient text processing (less training time).
 - It gives relative importance to specific words in a sentence (more coherent sentences).
@@ -134,6 +140,15 @@
   - Trained on vast amounts of text data from the internet, books, and other sources, and learn patterns and relationships between words and phrases.
   - **Example:** Google BERT, OpenAI ChatGPT.
   - (ChatGPT = Chat Generative Pretrained Transformer).
+    ![What is The Transformer Model](/Images/Machine%20Learning/WhatIsTheTransformerModel.png)
+
+## 7.2. Key Concepts
+
+- Uses **self-attention** to understand relationships between words.
+- Implements **contextual embeddings**, where a word's meaning depends on its context.
+- Captures long-range dependencies regardless of word position.
+- Uses **positional encoding** to preserve word order.
+- Follows an **encoder-decoder architecture** for processing and generating sequences.
 
 # 8. Diffusion Models (ex: Stable Diffusion)
 
@@ -157,7 +172,7 @@ TODO DIAGRAM
 
 - **GPT (Generative Pre-trained Transformer):** Generate human text or computer code based on input prompts.
 - **BERT (Bidirectional Encoder Representations from Transformers):** Similar intent to GPT, but reads the text in two directions.
-- **RNN (Recurrent Neural Network):** meant for sequential data such as time-series or text, useful in speech recognition, time-series prediction.
+- **RNN (Recurrent Neural Network):** Meant for sequential data such as time-series or text, useful in speech recognition, time-series prediction.
 - **ResNet (Residual Network):** Deep Convolutional Neural Network (CNN) used for image recognition tasks, object detection, facial recognition.
 - **SVM (Support Vector Machine):** ML algorithm for classification and regression.
 - **WaveNet:** Model to generate raw audio waveform, used in Speech Synthesis.
@@ -453,15 +468,16 @@ TODO DIAGRAM
 
 ## 18.2. Confusion Matrix
 
-TODO DIAGRAM
+![Confusion Matrix](/Images/Machine%20Learning/ConfusionMatrix_1.png)
 
 - Confusion Matrixes be multi-dimension too.
-- Best way to evaluate the performance model that does classifications
+- Best way to evaluate the **performance** model that does **classifications**.
 - **Metrics**
   - **Precision** - Best when false positives are costly.
   - **Recall** - Best when false negatives are costly.
   - **F1 Score** - Best when you want a balance between precision and recall, especially in imbalanced datasets.
   - **Accuracy** - Best for balanced datasets.
+    ![Confusion Matrix](/Images/Machine%20Learning/ConfusionMatrix_2.png)
 
 ## 18.3. AUC-ROC
 
@@ -529,9 +545,9 @@ TODO DIAGRAM
   - Iterative process.
   - Additional feature engineering and tune model hyperparameters.
 
-## 20.2. Exploratory Data Analysis
+## 20.2. EDA - Exploratory Data Analysis
 
-- Visualize the data with graphs
+- Visualize the data with graphs.
 - **Correlation Matrix**
   - Look at correlations between variables (how "linked" they are).
   - Helps us decide which features can be important in your model.
@@ -592,7 +608,7 @@ TODO DIAGRAM
   - Increase the training data size.
   - Early stopping the training of the model.
   - Data augmentation (to increase diversity in the dataset).
-  - Adjust hyperparameters (but you can't "add" them).
+  - **Adjust hyperparameters** (but you can't "add" them).
   - Ensembling (combine multiple models to get accurate results).
 
 # 23. When is Machine Learning NOT appropriate?
@@ -602,3 +618,8 @@ TODO DIAGRAM
 - For deterministic problems (the solution can be computed), it is better to write computer code that is adapted to the problem.
 - If we use Supervised Learning, Unsupervised Learning or Reinforcement Learning, we may have an "approximation" of the result.
 - Even though nowadays LLMs have reasoning capabilities, they are not perfect and therefore a "worse" solution.
+
+# 24. Model inference vs Model evaluation
+
+- Model inference is the process of a model generating an output (response) from a given input (prompt).
+- Model evaluation is the process of evaluating and comparing model outputs to determine the model that is best suited for a use case.
