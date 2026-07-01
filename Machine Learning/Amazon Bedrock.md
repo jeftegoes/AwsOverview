@@ -368,7 +368,7 @@ TODO DIAGRAM
 - Enhanced privacy.
 - Reduce hallucinations.
 - Ability to create multiple Guardrails and monitor and analyze user inputs that can violate the Guardrails.
-  - ![Amazon Bedrock - Guardrails](/Images/Macfhine%20Learning/AmazonBedrockGuardrails.png)
+  - ![Amazon Bedrock - Guardrails](/Images/Machine%20Learning/AmazonBedrockGuardrails.png)
 
 # 12. Agents
 

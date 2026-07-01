@@ -33,7 +33,7 @@
 - Supports different document types (text, PDF, Word, images...).
 - **Real-time Analysis:** Dingle document, synchronous.
 - **Async Analysis:** Multiple documents (batch), Asynchronous.
-  TODO DIAGRAM
+  ![Amazon Comprehend - Custom Classification](/Images/Machine%20Learning/AmazonComprehendCustomClassification.png)
 
 # 3. Named Entity Recognition (NER)
 
@@ -45,7 +45,7 @@
 - Extract terms like policy numbers, or phrases that imply a customer escalation, anything specific to our business.
 - Train the model with custom data such as a list of the entities and documents that contain them.
 - Real-time or Async analysis.
-  TODO DIAGRAM
+  ![Amazon Comprehend - Custom Entity Recognition](/Images/Machine%20Learning/AmazonComprehendCustomEntityRecognition.png)
 
 # 5. Use cases
 
@@ -73,6 +73,6 @@
   - Test results.
   - Case notes.
 - **Uses NLP to detect Protected Health Information (PHI)** - DetectPHI API.
-- Store your documents in Amazon S3.
+- Store our documents in Amazon S3.
 - Analyze real-time data with Kinesis Data Firehose.
 - Use Amazon Transcribe to transcribe patient narratives into text that can be analyzed by Amazon Comprehend Medical.

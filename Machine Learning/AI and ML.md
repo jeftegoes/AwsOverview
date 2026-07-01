@@ -36,6 +36,7 @@
   - [13.3. Semi-supervised Learning](#133-semi-supervised-learning)
   - [13.4. Self-Supervised Learning](#134-self-supervised-learning)
     - [13.4.1. Intuitive example](#1341-intuitive-example)
+  - [13.5. Transfer Learning](#135-transfer-learning)
 - [14. What is Reinforcement Learning (RL)?](#14-what-is-reinforcement-learning-rl)
   - [14.1. How Does Reinforcement Learning Work?](#141-how-does-reinforcement-learning-work)
   - [14.2. Reinforcement Learning in Action](#142-reinforcement-learning-in-action)
@@ -58,9 +59,10 @@
   - [20.3. Phases of Machine Learning Project](#203-phases-of-machine-learning-project)
 - [21. Hyperparameter Tuning](#21-hyperparameter-tuning)
   - [21.1. Important Hyperparameters](#211-important-hyperparameters)
-- [22. What to do if overfitting?](#22-what-to-do-if-overfitting)
-- [23. When is Machine Learning NOT appropriate?](#23-when-is-machine-learning-not-appropriate)
-- [24. Model inference vs Model evaluation](#24-model-inference-vs-model-evaluation)
+- [22. Data Augmentation](#22-data-augmentation)
+- [23. What to do if overfitting?](#23-what-to-do-if-overfitting)
+- [24. When is Machine Learning NOT appropriate?](#24-when-is-machine-learning-not-appropriate)
+- [25. Model inference vs Model evaluation](#25-model-inference-vs-model-evaluation)
 
 # 1. What is Artificial Intelligence (AI)?
 
@@ -354,6 +356,13 @@ TODO DIAGRAM
   - Predict any occluded part from all available parts.
 - After solving the pre-text tasks, we have a model trained that can solve our end goal: "downstream tasks".
 
+## 13.5. Transfer Learning
+
+- Reuses knowledge from a previously trained model for a related task.
+- Improves performance with less training data and fewer computational resources.
+- Adapts existing models using new data from similar domains.
+- Ideal when multiple models can benefit from shared knowledge.
+
 # 14. What is Reinforcement Learning (RL)?
 
 - A type of Machine Learning where an agent learns to make decisions by performing actions in an environment to maximize cumulative rewards
@@ -373,6 +382,7 @@ TODO DIAGRAM
   - The environment transitions to a new State and provides a Reward.
   - The Agent updates its Policy to improve future decisions.
 - **Goal:** Maximize cumulative reward over time.
+  ![How Does Reinforcement Learning Work?](/Images/Machine%20Learning/HowDoesReinforcementLearningWork.png)
 
 ## 14.2. Reinforcement Learning in Action
 
@@ -597,7 +607,14 @@ TODO DIAGRAM
   - Adjusting the balance between simple and complex model.
   - Increase regularization to reduce overfitting.
 
-# 22. What to do if overfitting?
+# 22. Data Augmentation
+
+- Generates new training data from existing data.
+- Increases representation of underrepresented groups.
+- Reduces dataset imbalance and model bias.
+- Improves fairness and generalization.
+
+# 23. What to do if overfitting?
 
 - Overfitting is when the model gives good predictions for training data but not for the new data.
 - **It occurs due to**
@@ -611,7 +628,7 @@ TODO DIAGRAM
   - **Adjust hyperparameters** (but you can't "add" them).
   - Ensembling (combine multiple models to get accurate results).
 
-# 23. When is Machine Learning NOT appropriate?
+# 24. When is Machine Learning NOT appropriate?
 
 - Imagine a well-framed problem like this one:
   - A deck contains five red cards, three blue cards, and two yellow cards. What is the probability of drawing a blue card?
@@ -619,7 +636,7 @@ TODO DIAGRAM
 - If we use Supervised Learning, Unsupervised Learning or Reinforcement Learning, we may have an "approximation" of the result.
 - Even though nowadays LLMs have reasoning capabilities, they are not perfect and therefore a "worse" solution.
 
-# 24. Model inference vs Model evaluation
+# 25. Model inference vs Model evaluation
 
 - Model inference is the process of a model generating an output (response) from a given input (prompt).
 - Model evaluation is the process of evaluating and comparing model outputs to determine the model that is best suited for a use case.

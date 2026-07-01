@@ -5,7 +5,7 @@
 - [1. Introduction](#1-introduction)
 - [2. Custom Labels](#2-custom-labels)
 - [3. Content Moderation](#3-content-moderation)
-- [4. Content Moderation API - Diagram](#4-content-moderation-api---diagram)
+- [4. Content Moderation API](#4-content-moderation-api)
 - [5. Kinesis Use Case](#5-kinesis-use-case)
 
 # 1. Introduction
@@ -41,12 +41,11 @@
 - **Custom Moderation Adaptors**
   - Extends Rekognition capabilities by providing our own labeled set of images.
   - Enhances the accuracy of Content Moderation or create a specific use case of Moderation.
+    ![Amazon Rekognition - Content Moderation](/Images/Machine%20Learning/AmazonRekognitionContentModeration.png)
 
-TODO DIAGRAM
+# 4. Content Moderation API
 
-# 4. Content Moderation API - Diagram
-
-TODO DIAGRAM
+![Amazon Rekognition - Content Moderation API](/Images/Machine%20Learning/AmazonRekognitionContentModerationAPI.png)
 
 # 5. Kinesis Use Case
 

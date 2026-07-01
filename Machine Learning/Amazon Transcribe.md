@@ -18,6 +18,7 @@
   - Transcribe customer service calls.
   - Automate closed captioning and subtitling.
   - Generate metadata for media assets to create a fully searchable archive.
+    ![Amazon Transcribe](/Images/Machine%20Learning/AmazonTranscribe.png)
 
 # 2. Improving Accuracy
 

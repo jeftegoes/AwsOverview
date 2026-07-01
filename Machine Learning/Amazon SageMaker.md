@@ -14,6 +14,9 @@
   - [9.1. Feature Store](#91-feature-store)
 - [10. Clarify](#10-clarify)
   - [10.1. Model Explainability](#101-model-explainability)
+    - [10.1.1. Shapley Values](#1011-shapley-values)
+    - [10.1.2. Partial Dependence Plot (PDP)](#1012-partial-dependence-plot-pdp)
+    - [10.1.3. Shapley Values vs. Partial Dependence Plots (PDP)](#1013-shapley-values-vs-partial-dependence-plots-pdp)
   - [10.2. Detect Bias (human)](#102-detect-bias-human)
   - [10.3. Different kind of biases (definitions)](#103-different-kind-of-biases-definitions)
 - [11. Ground Truth](#11-ground-truth)
@@ -143,6 +146,28 @@ TODO TABLE
   - "Why did the model predict a negative outcome such as a loan rejection for a given applicant?"
   - "Why did the model make an incorrect prediction?"
 
+### 10.1.1. Shapley Values
+
+- Explains **individual predictions**.
+- Quantifies each feature's contribution to a specific prediction.
+- Useful for understanding **why** the model made a particular decision.
+  - **Example:** Why was **Customer A**'s loan application rejected?
+
+### 10.1.2. Partial Dependence Plot (PDP)
+
+- Explains **model behavior** across the entire dataset.
+- Shows the relationship between a feature and the predicted outcome.
+- Useful for identifying overall trends.
+  - **Example:** How does **customer income** affect loan approval probability?
+
+### 10.1.3. Shapley Values vs. Partial Dependence Plots (PDP)
+
+| Shapley Values                                      | Partial Dependence Plot (PDP)                              |
+| --------------------------------------------------- | ---------------------------------------------------------- |
+| **Local explanation**                               | **Global explanation**                                     |
+| Explains a **single prediction**                    | Explains **overall model behavior**                        |
+| Shows each feature's contribution to one prediction | Shows how a feature affects predictions across the dataset |
+
 ## 10.2. Detect Bias (human)
 
 - Ability to **detect and explain** biases in our **datasets and models**.
@@ -152,10 +177,15 @@ TODO TABLE
 
 ## 10.3. Different kind of biases (definitions)
 
-- **Sampling bias:** Sampling bias occurs when the training data does not represent the full population fairly, leading to a model that over-represents or disproportionately affects certain groups.
-- **Measurement bias:** Measurement bias occurs when the tools or measurements used in data collection are flawed or skewed.
-- Observer bias: Observer bias happens when the person collecting or interpreting the data has personal biases that affect the results.
-- **Confirmation bias:** Confirmation bias is when individuals interpret or favor information that confirms their preconceptions. This is more applicable to human decision-making rather than automated model outputs.
+- **Sampling bias**
+  - Sampling bias occurs when the **training data** does not represent the full population fairly, leading to a model that over-represents or disproportionately affects certain groups.
+- **Measurement bias**
+  - Measurement bias occurs when the **tools** or measurements used in data collection are flawed or skewed.
+- **Observer bias**
+  - Observer bias happens when the **person** collecting or interpreting the data has personal biases that affect the results.
+- **Confirmation bias**
+  - Confirmation bias is when individuals interpret or favor information that confirms their preconceptions.
+  - This is more applicable to human decision-making rather than automated model outputs.
 - **Example:** An algorithm only flags people from specific ethnic groups, this is probably a sampling bias, and we need to perform data augmentation for imbalanced classes.
 
 # 11. Ground Truth
