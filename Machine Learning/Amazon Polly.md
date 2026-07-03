@@ -1,4 +1,4 @@
-# Amazon Poly <!-- omit in toc -->
+# Amazon Polly <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -9,6 +9,7 @@
 
 - Turn text into lifelike speech using deep learning.
 - Allowing we to create applications that talk.
+  ![Amazon Polly](/Images/Machine%20Learning/AmazonPolly.png)
 
 # 2. Advanced Features
 

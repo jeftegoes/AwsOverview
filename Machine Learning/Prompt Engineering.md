@@ -3,9 +3,9 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
+  - [1.1. Enhanced Prompt](#11-enhanced-prompt)
 - [2. Prompt Techniques](#2-prompt-techniques)
-  - [2.1. Enhanced Prompt](#21-enhanced-prompt)
-  - [2.2. Negative Prompting](#22-negative-prompting)
+  - [2.1. Negative Prompting](#21-negative-prompting)
 - [3. Prompt Performance Optimization](#3-prompt-performance-optimization)
   - [3.1. Prompt Latency](#31-prompt-latency)
 - [4. Prompt Engineering Techniques](#4-prompt-engineering-techniques)
@@ -26,29 +26,30 @@
     - Summarize what is AWS
 - Prompt gives little guidance and leaves a lot to the model's interpretation.
 - **Prompt Engineering** = developing, designing, and optimizing prompts to enhance the output of FMs for your needs.
-  - Improved Prompting technique consists of:
+  - **Improved Prompting technique consists of**
     - **Instructions** - A task for the model to do (description, how the model should perform).
     - **Context** - External information to guide the model.
     - **Input data** - The input for which you want a response.
     - **Output Indicator** - The output type or format.
 
+## 1.1. Enhanced Prompt
+
+- **Example**
+  - **Instructions**
+    - Write a concise summary that captures the main points of an article about learning AWS (Amazon Web Services). Ensure that the summary is clear and informative, focusing on key services relevant to beginners. Include details about general learning resources and career benefits associated with acquiring AWS skills.
+  - **Context**
+    - I am teaching a beginner's course on AWS.
+  - **Input Data**
+    - Here is the input text:
+      - Amazon Web Services (AWS) is a leading cloud platform providing a variety of services suitable for different business needs. Learning AWS involves getting familiar with essential services like EC2 for computing, S3 for storage, RDS for databases, Lambda for serverless computing, and Redshift for data warehousing. Beginners can start with free courses and basic tutorials available online. The platform also includes more complex services like Lambda for serverless computing and Redshift for data warehousing, which are suited for advanced users. The article emphasizes the value of understanding AWS for career advancement and the availability of numerous certifications to validate cloud skills.
+  - **Output Indicator**
+    - Provide a 2-3 sentence summary that captures the essence of the article.
+  - **Expected Output**
+    - AWS offers a range of essential cloud services such as EC2 for computing, S3 for storage, RDS for databases, Lambda for serverless computing, and Redshift for data warehousing, which are crucial for beginners to learn. Beginners can utilize free courses and basic tutorials to build their understanding of AWS. Acquiring AWS skills is valuable for career advancement, with certifications available to validate expertise in cloud computing.
+
 # 2. Prompt Techniques
 
-## 2.1. Enhanced Prompt
-
-- **Instructions**
-  - "Write a concise summary that captures the main points of an article about learning AWS (Amazon Web Services). Ensure that the summary is clear and informative, focusing on key services relevant to beginners. Include details about general learning resources and career benefits associated with acquiring AWS skills.
-- **Context**
-  - I am teaching a beginner's course on AWS.
-- **Input Data**
-  - Here is the input text:
-    - 'Amazon Web Services (AWS) is a leading cloud platform providing a variety of services suitable for different business needs. Learning AWS involves getting familiar with essential services like EC2 for computing, S3 for storage, RDS for databases, Lambda for serverless computing, and Redshift for data warehousing. Beginners can start with free courses and basic tutorials available online. The platform also includes more complex services like Lambda for serverless computing and Redshift for data warehousing, which are suited for advanced users. The article emphasizes the value of understanding AWS for career advancement and the availability of numerous certifications to validate cloud skills.'
-- **Output Indicator**
-  - Provide a 2-3 sentence summary that captures the essence of the article."
-- **Expected Output**
-  - "AWS offers a range of essential cloud services such as EC2 for computing, S3 for storage, RDS for databases, Lambda for serverless computing, and Redshift for data warehousing, which are crucial for beginners to learn. Beginners can utilize free courses and basic tutorials to build their understanding of AWS. Acquiring AWS skills is valuable for career advancement, with certifications available to validate expertise in cloud computing."
-
-## 2.2. Negative Prompting
+## 2.1. Negative Prompting
 
 - A technique where you explicitly instruct the model on what not to include or do in its response.
 - **Negative Prompting helps to**
@@ -57,12 +58,12 @@
   - **Enhance Clarity:** Prevents the use of complex terminology or detailed data, making the output clearer and more accessible
 - **Example**
   - **Instructions**
-    - "Write a concise summary that captures the main points of an article about learning AWS (Amazon Web Services). Ensure that the summary is clear and informative, focusing on key services relevant to beginners. Include details about general learning resources and career benefits associated with acquiring AWS skills. **Avoid discussing detailed technical configurations, specific AWS tutorials, or personal learning experiences.**
+    - Write a concise summary that captures the main points of an article about learning AWS (Amazon Web Services). Ensure that the summary is clear and informative, focusing on key services relevant to beginners. Include details about general learning resources and career benefits associated with acquiring AWS skills. **Avoid discussing detailed technical configurations, specific AWS tutorials, or personal learning experiences.**
   - **Context**
     - I am teaching a beginner's course on AWS.
   - **Input Data**
     - Here is the input text:
-      - 'Amazon Web Services (AWS) is a leading cloud platform providing a variety of services suitable for different business needs. Learning AWS involves getting familiar with essential services like EC2 for computing, S3 for storage, RDS for databases, Lambda for serverless computing, and Redshift for data warehousing. Beginners can start with free courses and basic tutorials available online. The platform also includes more complex services like Lambda for serverless computing and Redshift for data warehousing, which are suited for advanced users. The article emphasizes the value of understanding AWS for career advancement and the availability of numerous certifications to validate cloud skills.'
+      - Amazon Web Services (AWS) is a leading cloud platform providing a variety of services suitable for different business needs. Learning AWS involves getting familiar with essential services like EC2 for computing, S3 for storage, RDS for databases, Lambda for serverless computing, and Redshift for data warehousing. Beginners can start with free courses and basic tutorials available online. The platform also includes more complex services like Lambda for serverless computing and Redshift for data warehousing, which are suited for advanced users. The article emphasizes the value of understanding AWS for career advancement and the availability of numerous certifications to validate cloud skills.
   - **Output Indicator**
     - Provide a 2-3 sentence summary that captures the essence of the article. **Do not include technical terms, in-depth data analysis, or speculation.**"
 
@@ -113,6 +114,7 @@
 - Using a sentence like "Think step by step" helps.
 - Helpful when solving a problem as a human usually requires several steps.
 - Can be combined with Zero-Shot or Few-Shots Prompting.
+  ![Prompt Engineering Techniques - Chain of  Thought Prompting](/Images/Machine%20Learning/PromptEngineeringTechniquesChainThoughtPrompting.png)
 
 ## 4.4. Retrieval-Augmented Generation (RAG)
 

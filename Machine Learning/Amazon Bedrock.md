@@ -230,6 +230,7 @@ TODO: diagram
 
 | Continued Pre-training                                           | Fine-tuning                                                                              |
 | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Self-supervised                                                  | Supervised                                                                               |
 | Uses **unlabeled data**                                          | Uses **labeled data**                                                                    |
 | Improves **domain knowledge**                                    | Improves **task-specific performance**                                                   |
 | Teaches the model new information and context                    | Teaches the model desired input-output behavior                                          |

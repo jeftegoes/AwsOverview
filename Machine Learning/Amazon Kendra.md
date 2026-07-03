@@ -11,3 +11,4 @@
 - Natural language search capabilities.
 - Learn from user interactions/feedback to promote preferred results **(Incremental Learning)**.
 - Ability to manually fine-tune search results (importance of data, freshness, custom, ...).
+  ![Amazon Kendra](/Images/Machine%20Learning/AmazonKendra.png)

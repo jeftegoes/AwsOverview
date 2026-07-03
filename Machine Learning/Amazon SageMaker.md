@@ -54,6 +54,7 @@
 - **Supervised Algorithms**
   - Linear regressions and classifications.
   - KNN Algorithms (for classification).
+  - Logistic regression.
 - **Unsupervised Algorithms**
   - **Principal Component Analysis (PCA):** Reduce number of features.
   - **K-means:** Find grouping within data.
@@ -74,20 +75,29 @@
 - **Managed solution:** Reduced overhead.
 - **Real-time**
   - One prediction at a time.
+    ![Amazon SageMaker - Deployment Real-time](/Images/Machine%20Learning/AmazonSageMakerDeploymentRealtime.png)
 - **Serverless**
   - Idle period between traffic spikes.
   - Can tolerate more latency (cold starts).
+    ![Amazon SageMaker - Deployment Serverless](/Images/Machine%20Learning/AmazonSageMakerDeploymentServerless.png)
 - **Asynchronous**
-  - For large payload sizes up to 1GB
-  - Long processing times
-  - Near-real time latency requirements
-  - Request and responses are in Amazon S3
+  - For large payload sizes up to 1GB.
+  - Long processing times.
+  - Near-real time latency requirements.
+  - Request and responses are in Amazon S3.
+  - TODO DIAGRAM
 - **Batch**
-  - Prediction for an entire dataset (multiple predictions)
+  - Prediction for an entire dataset (multiple predictions).
+  - TODO DIAGRAM
 
 # 6. Model Deployment Comparison
 
-TODO TABLE
+| Inference Type         | Latency                         | Payload Size                                 | Processing Time | Use Case                                                                        |                                   |
+| ---------------------- | ------------------------------- | -------------------------------------------- | --------------- | ------------------------------------------------------------------------------- | --------------------------------- |
+| Real-time Inference    | Low (milliseconds to seconds)   | Up to 25 MB (one record)                     | Max 60 seconds  | Fast, near-instant predictions for web/mobile apps                              |                                   |
+| Serverless Inference   | Low (milliseconds to seconds)   | Up to 4 MB (one record)                      | Max 60 seconds  | Sporadic, short-term inference without infrastructure, can tolerate cold starts |                                   |
+| Asynchronous Inference | Medium to High "near real-time" | Up to 1 GB (one record)                      | Max 1 hour      | Large payloads and workloads requiring longer processing times                  | requiring longer processing times |
+| Batch Transform        | High (minutes to hours)         | Up to 100 MB per invocation (per mini batch) | Max 1 hour      | Bulk processing for large datasets Concurrent processing                        |                                   |
 
 # 7. SageMaker Studio
 

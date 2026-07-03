@@ -62,7 +62,7 @@
 - [22. Data Augmentation](#22-data-augmentation)
 - [23. What to do if overfitting?](#23-what-to-do-if-overfitting)
 - [24. When is Machine Learning NOT appropriate?](#24-when-is-machine-learning-not-appropriate)
-- [25. Model inference vs Model evaluation](#25-model-inference-vs-model-evaluation)
+- [25. Model evaluation vs Model inference](#25-model-evaluation-vs-model-inference)
 
 # 1. What is Artificial Intelligence (AI)?
 
@@ -314,7 +314,7 @@ TODO DIAGRAM
 
 ### 13.2.2. Association Rule Learning Technique
 
-- **Example:** Market Basket Analysis
+- **Example:** Market Basket Analysis.
   - **Scenario:** Supermarket wants to understand which products are frequently bought together.
   - **Data:** Transaction records from customer purchases.
   - **Goal:** Identify associations between products to optimize product placement and promotions.
@@ -636,7 +636,7 @@ TODO DIAGRAM
 - If we use Supervised Learning, Unsupervised Learning or Reinforcement Learning, we may have an "approximation" of the result.
 - Even though nowadays LLMs have reasoning capabilities, they are not perfect and therefore a "worse" solution.
 
-# 25. Model inference vs Model evaluation
+# 25. Model evaluation vs Model inference
 
-- Model inference is the process of a model generating an output (response) from a given input (prompt).
 - Model evaluation is the process of evaluating and comparing model outputs to determine the model that is best suited for a use case.
+- Model inference is the process of a model generating an output (response) from a given input (prompt).
