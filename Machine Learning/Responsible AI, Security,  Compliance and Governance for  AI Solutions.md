@@ -97,7 +97,7 @@
 
 # 6. Interpretability Trade-Offs
 
-- Interpretability
+- **Interpretability**
   - The degree to which a human can understand the cause of a decision.
   - Access into the system so that a human can interpret the model's output.
   - Answer "why and how".
@@ -105,7 +105,8 @@
 - **Explainability**
   - Understand the nature and behavior of the model.
   - Being able to look at inputs and outputs and explain without understanding exactly how the model came to the conclusion.
-- Explainability can sometimes be enough
+- Explainability can sometimes be enough.
+  ![Interpretability vs Explainability](/Images/Machine%20Learning/InterpretabilityExplainability.png)
 
 ## 6.1. High Interpretability - Decision Trees
 

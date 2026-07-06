@@ -3,7 +3,7 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. Amazon Augmented AI (A2I) vs. Amazon Mechanical Turk](#2-amazon-augmented-ai-a2i-vs-amazon-mechanical-turk)
+- [2. Amazon A2I vs. Amazon Mechanical Turk vs. Amazon SageMaker Ground Truth](#2-amazon-a2i-vs-amazon-mechanical-turk-vs-amazon-sagemaker-ground-truth)
 
 # 1. Introduction
 
@@ -14,12 +14,16 @@
 
 TODO DIAGRAM
 
-# 2. Amazon Augmented AI (A2I) vs. Amazon Mechanical Turk
+# 2. Amazon A2I vs. Amazon Mechanical Turk vs. Amazon SageMaker Ground Truth
 
-| Amazon Augmented AI (A2I)               | Amazon Mechanical Turk (MTurk)              |
-| --------------------------------------- | ------------------------------------------- |
-| Human review workflow service           | Crowdsourcing marketplace                   |
-| Adds **human review** to AI predictions | Provides **human workers** to perform tasks |
-| Integrates with AI/ML services          | Can be used independently of AI             |
-| Used when model confidence is low       | Used to label or process data               |
-| Automates routing to human reviewers    | Humans manually complete assigned tasks     |
+| Feature                             | Amazon Augmented AI (A2I)                     | Amazon Mechanical Turk (MTurk)                    | Amazon SageMaker Ground Truth                      |
+| ----------------------------------- | --------------------------------------------- | ------------------------------------------------- | -------------------------------------------------- |
+| **Primary Purpose**                 | Human review of AI predictions                | Crowdsourcing human workforce                     | Build labeled datasets for ML                      |
+| **Role in ML Lifecycle**            | **After deployment**                          | Before or during training                         | **Before training**                                |
+| **Human Involvement**               | Human reviewers                               | Human workers                                     | Human labelers (optional)                          |
+| **Main Function**                   | Reviews low-confidence predictions            | Performs Human Intelligence Tasks (HITs)          | Creates high-quality labeled data                  |
+| **Typical Use Cases**               | Compliance, quality assurance, fraud review   | Data labeling, surveys, transcription, moderation | Image, text, and video labeling for model training |
+| **Integrates with ML Services**     | ✅ Yes                                        | ❌ Not required                                   | ✅ Yes                                             |
+| **Can Use Mechanical Turk Workers** | ✅ Yes                                        | N/A                                               | ✅ Yes                                             |
+| **Supports Automation**             | Automatically routes predictions to reviewers | Manual task completion                            | Automatic labeling + human verification            |
+| **Example**                         | Review suspicious fraud transactions          | Label 100,000 images                              | Create a labeled dataset for image classification  |

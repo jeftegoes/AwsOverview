@@ -73,6 +73,7 @@
   - Problem solving.
   - Decision-making.
 - Umbrella-term for various techniques
+  ![Artificial Intelligence](/Images/Machine%20Learning/ArtificialIntelligence.png)
 
 ## 1.1. Use Cases
 
@@ -122,6 +123,7 @@
 - Nodes are "talking" to each other, by passing on (or not) data to the next layer.
 - The math and parameters tuning behind it is beyond the level of this course.
 - Neural networks may have billions of nodes.
+  ![Neural Networks - How do they work?](/Images/Machine%20Learning/NeuralNetworksHowDoTheyWork.png)
 
 # 6. What is Generative AI (Gen-AI)?
 
@@ -258,7 +260,7 @@ TODO DIAGRAM
   - Used to train the model.
   - **Percentage:** Typically, 60-80% of the dataset.
   - **Example:** 800 labeled images from a dataset of 1000 images.
-- **Validation Set**
+- **Validation Set (optional)**
   - Used to tune model parameters and validate performance.
   - **Percentage:** Typically, 10-20% of the dataset.
   - **Example:** 100 labeled images for hyperparameter tuning (tune the settings of the algorithm to make it more efficient).
@@ -266,33 +268,47 @@ TODO DIAGRAM
   - Used to evaluate the final model performance.
   - **Percentage:** Typically, 10-20% of the dataset.
   - **Example:** 100 labeled images to test the model's accuracy.
+    ![Training vs. Validation vs. Test Set](/Images/Machine%20Learning/TrainingValidationTestSet.png)
 
 ### 13.1.4. Feature Engineering
 
 - The process of using domain knowledge to select and transform raw data into meaningful features.
 - Helps enhancing the performance of machine learning models.
 - **Techniques**
-  - **Feature Extraction:** Extracting useful information from raw data, such as deriving age from date of birth.
   - **Feature Selection:** Selecting a subset of relevant features, like choosing important predictors in a regression model.
   - **Feature Transformation:** Transforming data for better model performance, such as normalizing numerical data.
-- Particularly meaningful for Supervised Learning.
+  - **Feature Creation:** Refers to the creation of new features from existing data to assist with better predictions.
+    - Examples of feature creation include one-hot-encoding, binning, splitting, and calculated features.
+  - **Feature Extraction:** Extracting useful information from raw data, such as deriving age from date of birth.
+- Particularly meaningful for **Supervised Learning**.
+- **Example**
+  - **Before** Feature Engineering.
+    | Customer_ID | Name | BirthDate | Purchase_Amount |
+    |-------------|-------|------------|-----------------|
+    | 1 | Alice | 15-05-1993 | $200 |
+    | 2 | Bob | 22-08-1978 | $300 |
+  - **After** Feature Engineering.
+    | Customer_ID | Name | BirthDate | Purchase_Amount |
+    |-------------|-------|-----------|-----------------|
+    | 1 | Alice | 30 | $200 |
+    | 2 | Bob | 45 | $300 |
 
 #### 13.1.4.1. On Structured Data
 
-- Structured Data (Tabular Data).
-- **Example:** Predicting house prices based on features like size, location, and number of rooms.
+- **Structured Data (Tabular Data)**
+  - **Example:** Predicting house prices based on features like size, location, and number of rooms.
 - **Feature Engineering Tasks**
-  - Feature Creation - deriving new features like "price per square foot".
-  - Feature Selection - identifying and retaining important features such as location or number of bedrooms.
-  - Feature Transformation - normalizing features to ensure they are on a similar scale, which helps algorithms like gradient descent converge faster.
+  - **Feature Creation:** Deriving new features like "price per square foot".
+  - **Feature Selection:** Identifying and retaining important features such as location or number of bedrooms.
+  - **Feature Transformation:** Normalizing features to ensure they are on a similar scale, which helps algorithms like gradient descent converge faster.
 
 #### 13.1.4.2. On Unstructured Data
 
-- Unstructured Data (Text, Images).
-- **Example:** Sentiment analysis of customer reviews
+- **Unstructured Data (Text, Images)**
+  - **Example:** Sentiment analysis of customer reviews
 - **Feature Engineering Tasks**
-  - Text Data - converting text into numerical features using techniques like TF-IDF or word embeddings.
-  - Image Data - extracting features such as edges or textures using techniques like convolutional neural networks (CNNs).
+  - **Text Data:** Converting text into numerical features using techniques like TF-IDF or word embeddings.
+  - **Image Data:** Extracting features such as edges or textures using techniques like convolutional neural networks (CNNs).
 
 ## 13.2. Unsupervised Learning
 

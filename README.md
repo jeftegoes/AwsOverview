@@ -232,15 +232,15 @@
 
 ## 3.4. Six Advantages of Cloud Computing
 
-- **Trade capital expense (CAPEX) for operational expense (OPEX)**
+- **Trade Capital Expense (CAPEX) for Variable Expense and operational expense (OPEX)**
   - **Pay On-Demand:** Don't own hardware.
   - Reduced Total Cost of Ownership (TCO) & Operational Expense (OPEX).
 - **Benefit from massive economies of scale**
   - Prices are reduced as AWS is more efficient due to large scale.
 - **Stop guessing capacity**
   - Scale based on actual measured usage.
-- Increase speed and agility.
-- Stop spending money running and maintaining data centers.
+- **Increase speed and agility.**
+- **Stop spending money running and maintaining data centers.**
 - **Go global in minutes:** Leverage the AWS global infrastructure.
 
 ## 3.5. Problems solved by the Cloud
