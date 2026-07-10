@@ -21,12 +21,13 @@
   - [7.6. Fine-Tuning - Use cases](#76-fine-tuning---use-cases)
   - [7.7. Continued Pre-training](#77-continued-pre-training)
   - [7.8. Continued Pre-training vs Fine-tuning](#78-continued-pre-training-vs-fine-tuning)
-- [8. Automatic Evaluation](#8-automatic-evaluation)
-  - [8.1. Note on Benchmark Datasets](#81-note-on-benchmark-datasets)
-  - [8.2. Human Evaluation](#82-human-evaluation)
-  - [8.3. Automated Metrics to Evaluate an FM](#83-automated-metrics-to-evaluate-an-fm)
-  - [8.4. Automated Model Evaluation](#84-automated-model-evaluation)
-  - [8.5. Business Metrics to Evaluate a Model On](#85-business-metrics-to-evaluate-a-model-on)
+- [8. Model Evaluation in Amazon Bedrock](#8-model-evaluation-in-amazon-bedrock)
+  - [8.1. Automatic Evaluation](#81-automatic-evaluation)
+  - [8.2. Note on Benchmark Datasets](#82-note-on-benchmark-datasets)
+  - [8.3. Human Evaluation](#83-human-evaluation)
+  - [8.4. Automated Metrics to Evaluate an FM](#84-automated-metrics-to-evaluate-an-fm)
+  - [8.5. Automated Model Evaluation](#85-automated-model-evaluation)
+  - [8.6. Business Metrics to Evaluate a Model On](#86-business-metrics-to-evaluate-a-model-on)
 - [9. RAG \& Knowledge Base](#9-rag--knowledge-base)
   - [9.1. Knowledge Bases for Amazon Bedrock](#91-knowledge-bases-for-amazon-bedrock)
   - [9.2. RAG Vector Databases](#92-rag-vector-databases)
@@ -49,6 +50,10 @@
   - [16.2. Deploy SageMaker Model in your VPC](#162-deploy-sagemaker-model-in-your-vpc)
   - [16.3. Access Bedrock Model using an App in VPC](#163-access-bedrock-model-using-an-app-in-vpc)
   - [16.4. Analyze Bedrock access with CloudTrail](#164-analyze-bedrock-access-with-cloudtrail)
+- [17. Response Length \& Penalties](#17-response-length--penalties)
+  - [17.1. Response Length](#171-response-length)
+  - [17.2. Penalties](#172-penalties)
+  - [17.3. Stop Sequences](#173-stop-sequences)
 
 # 1. What is Generative AI?
 
@@ -59,8 +64,7 @@
   - Audio.
   - Code.
   - Video...
-
-TODO DIAGRAM
+    ![What is Generative AI?](/Images/Machine%20Learning/WhatIsGenerativeAI.png)
 
 ## 1.1. Foundation Model
 
@@ -75,6 +79,7 @@ TODO DIAGRAM
   - Google.
   - Anthropic.
 - Some foundation models are open-source (free: Meta, Google BERT) and others under a commercial license (OpenAI, Anthropic, etc...).
+  ![Foundation Model](/Images/Machine%20Learning/FoundationModel.png)
 
 ## 1.2. Large Language Models (LLM)
 
@@ -136,26 +141,24 @@ TODO TABLE TABLE
 
 # 7. Fine-Tuning a Model
 
-- Adapt a copy of a foundation model with our own data.
-- Fine-tuning will change the weights of the base foundation model.
+- Adapt a **copy** of a foundation model with **our own data**.
+- Fine-tuning will change the **weights** of the base foundation model.
 - **Training data must**
-  - Adhere to a specific format.
-  - Be stored in Amazon S3.
+  - Adhere to a **specific format**.
+  - **Be stored in Amazon S3.**
 - **Note:** Not all models can be fine-tuned.
-
-TODO: diagram
+  ![Amazon Bedrock - Fine-Tuning a Model](/Images/Machine%20Learning/AmazonBedrockFineTuningModel.png)
 
 ## 7.1. Supervised Fine-Tuning
 
 - Improves the performance of a Model on specific tasks.
 - = further trained on a particular field or area of knowledge.
-- Supervised Fine-Tuning uses that are labeled examples output pairs.
+- Supervised Fine-Tuning uses **labeled examples** that are **input-output pairs**.
 - **Labeled data**
   ```json
   {
-      Labeled Data
-      "prompt": "Who is Jefté Goes?",
-      "completion": "Jefté Goes is an AWS Certified."
+    "prompt": "Who is Jefté Goes?",
+    "completion": "Jefté Goes is an AWS Certified."
   }
   ```
 
@@ -163,10 +166,10 @@ TODO: diagram
 
 - Improves our FM model using **feedback-based learning**.
 - We provide the input data (training data - prompts).
-- We define a Reward Function to evaluate responses (output) and judge which responses are good.
+- We define a **Reward Function** to evaluate responses (output) and judge which responses are good.
   - Objective tasks => use AWS Lambda (python code).
   - Subjective tasks => use another model to "judge" by providing evaluation instructions.
-- Model learns iteratively from reward functions output scores and will try to achieve high scores over time.
+- Model learns iteratively from **reward functions output scores** and will try to achieve high scores over time.
 
 ### 7.2.1. Example
 
@@ -237,7 +240,14 @@ TODO: diagram
 | Suitable for proprietary documents and industry-specific content | Suitable for classification, summarization, question answering, and other specific tasks |
 | Focuses on expanding what the model knows                        | Focuses on improving how the model responds                                              |
 
-# 8. Automatic Evaluation
+# 8. Model Evaluation in Amazon Bedrock
+
+- Compare multiple foundation models.
+- Choose the best model for your application.
+- Detect bias and fairness issues.
+- Optimize model performance before production.
+
+## 8.1. Automatic Evaluation
 
 - Evaluate a model for quality control.
 - **Built-in task types**
@@ -249,7 +259,7 @@ TODO: diagram
 - Scores are calculated automatically.
 - Model scores are calculated using various statistical methods (e.g. BERTScore, F1...).
 
-## 8.1. Note on Benchmark Datasets
+## 8.2. Note on Benchmark Datasets
 
 - Curated collections of data designed specifically at evaluating the performance of language models.
 - Wide range of topics, complexities, linguistic phenomena.
@@ -257,7 +267,7 @@ TODO: diagram
 - Some benchmarks datasets allow you to very quickly detect any kind of bias and potential discrimination against a group of people.
 - You can also create your own benchmark dataset that is specific to your business.
 
-## 8.2. Human Evaluation
+## 8.3. Human Evaluation
 
 - Choose a work team to evaluate.
   - Employees of your company.
@@ -266,7 +276,7 @@ TODO: diagram
   - Thumbs up/down, ranking...
 - Choose from Built-in task types (same as Automatic) or add a custom task.
 
-## 8.3. Automated Metrics to Evaluate an FM
+## 8.4. Automated Metrics to Evaluate an FM
 
 - **ROUGE:** Recall-Oriented Understudy for Gisting Evaluation
   - Evaluating automatic summarization and machine translation systems.
@@ -282,11 +292,11 @@ TODO: diagram
   - Capable of capturing more nuance between the texts.
 - **Perplexity:** How well the model predicts the next token (lower is better).
 
-## 8.4. Automated Model Evaluation
+## 8.5. Automated Model Evaluation
 
 TODO DIAGRAM
 
-## 8.5. Business Metrics to Evaluate a Model On
+## 8.6. Business Metrics to Evaluate a Model On
 
 - **User Satisfaction** - gather users' feedbacks and assess their satisfaction with the model responses (e.g., user satisfaction for an ecommerce platform).
 - **Average Revenue Per User (ARPU)** - average revenue per user attributed to the Gen-AI app (e.g., monitor ecommerce user base revenue).
@@ -465,3 +475,23 @@ TODO DIAGRAM
 ## 16.4. Analyze Bedrock access with CloudTrail
 
 TODO DIAGRAM
+
+# 17. Response Length & Penalties
+
+## 17.1. Response Length
+
+- Controls the size of the generated response.
+  - Set **minimum** or **maximum** number of tokens.
+  - Prevents responses from being too short or too long.
+
+## 17.2. Penalties
+
+- **Reduce undesirable output by penalizing**
+  - Long responses.
+  - Repeated tokens or phrases.
+  - Frequently used tokens.
+  - Specific token types.
+
+## 17.3. Stop Sequences
+
+- Define one or more character sequences that tell the model **when to stop generating text**.

@@ -53,7 +53,7 @@
 
 - A technique where you explicitly instruct the model on what not to include or do in its response.
 - **Negative Prompting helps to**
-  - **Avoid Unwanted Content**: Explicitly states what not to include, reducing the chances of irrelevant or inappropriate content
+  - **Avoid Unwanted Content:** Explicitly states what not to include, reducing the chances of irrelevant or inappropriate content
   - **Maintain Focus:** Helps the model stay on topic and not stray into areas that are not useful or desired
   - **Enhance Clarity:** Prevents the use of complex terminology or detailed data, making the output clearer and more accessible
 - **Example**

@@ -75,7 +75,7 @@
     - **Definition:** The entity that is allowed or denied access by the policy.
     - **Purpose:** Specifies "who" the policy applies to. This could be an IAM user, a role, an AWS service, or another AWS account.
     - **Example:** In an S3 bucket policy, the Principal field specifies which users or accounts can access the bucket.
-  - **Action**: List of actions this policy allows or denies.
+  - **Action:** List of actions this policy allows or denies.
   - **Resource**
     - **Definition:** The AWS resource to which the policy applies.
     - **Purpose:** Specifies what resource(s) the policy will affect. For example, an S3 bucket, an IAM user, an EC2 instance, or a Lambda function.

@@ -8,6 +8,10 @@
 - [3. What is Machine Learning (ML)?](#3-what-is-machine-learning-ml)
   - [3.1. AI != ML](#31-ai--ml)
 - [4. What is Deep Learning (DL)?](#4-what-is-deep-learning-dl)
+  - [4.1. Model Training in Deep Learning](#41-model-training-in-deep-learning)
+  - [4.2. How It Works](#42-how-it-works)
+  - [4.3. Key Concepts](#43-key-concepts)
+  - [4.4. Best Practices](#44-best-practices)
 - [5. Neural Networks - How do they work?](#5-neural-networks---how-do-they-work)
 - [6. What is Generative AI (Gen-AI)?](#6-what-is-generative-ai-gen-ai)
 - [7. Transformer Models](#7-transformer-models)
@@ -59,10 +63,16 @@
   - [20.3. Phases of Machine Learning Project](#203-phases-of-machine-learning-project)
 - [21. Hyperparameter Tuning](#21-hyperparameter-tuning)
   - [21.1. Important Hyperparameters](#211-important-hyperparameters)
-- [22. Data Augmentation](#22-data-augmentation)
-- [23. What to do if overfitting?](#23-what-to-do-if-overfitting)
-- [24. When is Machine Learning NOT appropriate?](#24-when-is-machine-learning-not-appropriate)
-- [25. Model evaluation vs Model inference](#25-model-evaluation-vs-model-inference)
+- [22. Model Parameters](#22-model-parameters)
+- [23. Data Augmentation](#23-data-augmentation)
+- [24. What to do if overfitting?](#24-what-to-do-if-overfitting)
+- [25. When is Machine Learning NOT appropriate?](#25-when-is-machine-learning-not-appropriate)
+- [26. Model evaluation vs Model inference](#26-model-evaluation-vs-model-inference)
+- [27. Rule-Based System](#27-rule-based-system)
+- [28. Deterministic vs. Probabilistic Models](#28-deterministic-vs-probabilistic-models)
+  - [28.1. Deterministic Models](#281-deterministic-models)
+  - [28.2. Probabilistic Models](#282-probabilistic-models)
+  - [28.3. Hybrid Models](#283-hybrid-models)
 
 # 1. What is Artificial Intelligence (AI)?
 
@@ -115,6 +125,33 @@
 - Large amount of input data.
 - Requires GPU (Graphical Processing Unit).
 
+## 4.1. Model Training in Deep Learning
+
+- Model training is the process of teaching a neural network to make accurate predictions by learning from large datasets.
+
+## 4.2. How It Works
+
+1. Initialize the neural network.
+2. Feed training data into the model.
+3. Calculate the prediction error (loss).
+4. Update weights and biases using **gradient descent** (or another optimizer).
+5. Repeat the process over multiple **epochs** until performance improves.
+
+## 4.3. Key Concepts
+
+- **Weights & Biases:** Parameters the model learns.
+- **Loss Function:** Measures prediction error.
+- **Gradient Descent:** Optimizes weights to minimize loss.
+- **Epoch:** One complete pass through the training dataset.
+- **Hyperparameter Tuning:** Adjusts settings (e.g., learning rate, batch size, epochs) to improve performance.
+
+## 4.4. Best Practices
+
+- Prepare and clean the data.
+- Use validation data to evaluate performance.
+- Tune hyperparameters.
+- Ensure the model generalizes well to unseen data.
+
 # 5. Neural Networks - How do they work?
 
 - Nodes (tiny units) are connected together.
@@ -130,6 +167,7 @@
 - Subset of Deep Learning.
 - Multi-purpose foundation models backed by neural networks.
 - They can be fine-tuned if necessary to better fit our use-cases.
+  ![Gen-AI](/Images/Machine%20Learning/GenAI.png)
 
 # 7. Transformer Models
 
@@ -139,7 +177,7 @@
 - Able to process a sentence as a whole instead of word by word.
 - Faster and more efficient text processing (less training time).
 - It gives relative importance to specific words in a sentence (more coherent sentences).
-- Transformer-based LLMs.
+- **Transformer-based LLMs**
   - Powerful models that can understand and generate human-like text.
   - Trained on vast amounts of text data from the internet, books, and other sources, and learn patterns and relationships between words and phrases.
   - **Example:** Google BERT, OpenAI ChatGPT.
@@ -349,9 +387,9 @@ TODO DIAGRAM
 ## 13.3. Semi-supervised Learning
 
 - Use a small amount of labeled data and a large amount of unlabeled data to train systems.
-- After that, the partially trained algorithm itself labels the unlabeled data.
-- This is called pseudo-labeling.
-- The model is then re-trained on the resulting data mix without being explicitly programmed.
+  - After that, the partially trained algorithm itself labels the unlabeled data.
+  - This is called pseudo-labeling.
+  - The model is then re-trained on the resulting data mix without being explicitly programmed.
 
 ## 13.4. Self-Supervised Learning
 
@@ -543,10 +581,12 @@ TODO DIAGRAM
   - Very low latency.
   - Low compute footprint.
   - Offline capability, local inference.
+    ![Small Language Model (SLM)](/Images/Machine%20Learning/InferencingEdgeSLM.png)
 - **Large Language Model (LLM)** on a remote server.
   - More powerful model.
   - Higher latency.
   - Must be online to be accessed.
+    ![Large Language Model (LLM)](/Images/Machine%20Learning/InferencingEdgeLLM.png)
 
 # 20. Phases of Machine Learning Project
 
@@ -599,7 +639,7 @@ TODO DIAGRAM
 
 - **Hyperparameter**
   - Settings that define the model structure and learning algorithm and process.
-  - Set before training begins.
+  - **Set before training begins.**
   - **Examples:** Learning rate, batch size, number of epochs, and regularization.
 - **Hyperparameter tuning**
   - Finding the best hyperparameters values to optimize the model performance.
@@ -623,14 +663,23 @@ TODO DIAGRAM
   - Adjusting the balance between simple and complex model.
   - Increase regularization to reduce overfitting.
 
-# 22. Data Augmentation
+# 22. Model Parameters
+
+- **Definition**
+  - Internal values learned during training that determine **how the model makes predictions**.
+  - Model parameters are values that define a model and its behavior in interpreting input and generating responses.
+- **Examples**
+  - Weights
+  - Biases
+
+# 23. Data Augmentation
 
 - Generates new training data from existing data.
 - Increases representation of underrepresented groups.
 - Reduces dataset imbalance and model bias.
 - Improves fairness and generalization.
 
-# 23. What to do if overfitting?
+# 24. What to do if overfitting?
 
 - Overfitting is when the model gives good predictions for training data but not for the new data.
 - **It occurs due to**
@@ -644,7 +693,7 @@ TODO DIAGRAM
   - **Adjust hyperparameters** (but you can't "add" them).
   - Ensembling (combine multiple models to get accurate results).
 
-# 24. When is Machine Learning NOT appropriate?
+# 25. When is Machine Learning NOT appropriate?
 
 - Imagine a well-framed problem like this one:
   - A deck contains five red cards, three blue cards, and two yellow cards. What is the probability of drawing a blue card?
@@ -652,7 +701,46 @@ TODO DIAGRAM
 - If we use Supervised Learning, Unsupervised Learning or Reinforcement Learning, we may have an "approximation" of the result.
 - Even though nowadays LLMs have reasoning capabilities, they are not perfect and therefore a "worse" solution.
 
-# 25. Model evaluation vs Model inference
+# 26. Model evaluation vs Model inference
 
 - Model evaluation is the process of evaluating and comparing model outputs to determine the model that is best suited for a use case.
 - Model inference is the process of a model generating an output (response) from a given input (prompt).
+
+# 27. Rule-Based System
+
+- A **Rule-Based System** makes decisions by following **predefined IF–THEN rules** created by humans.
+- It **does not learn** from data.
+- **Rule-Based System vs. Generative AI**
+  | Rule-Based System | Machine Learning |
+  | ---------------------- | ----------------------------- |
+  | Human writes the rules | Model learns from data |
+  | No training | Requires training |
+  | Fixed behavior | Improves with more data |
+  | Easy to explain | May be difficult to explain |
+  | Best for known logic | Best for discovering patterns |
+
+# 28. Deterministic vs. Probabilistic Models
+
+## 28.1. Deterministic Models
+
+- Always produce the **same output** for the same input.
+- Predictable and consistent.
+- No randomness in predictions.
+- **Example**
+  - Decision Trees
+
+## 28.2. Probabilistic Models
+
+- Predict a **probability or distribution** of possible outcomes.
+- Incorporate uncertainty into predictions.
+- Outputs may vary based on probabilities.
+- **Example**
+  - Bayesian Networks
+
+## 28.3. Hybrid Models
+
+- Combine deterministic and probabilistic behavior.
+- Often produce probabilities that are converted into deterministic predictions.
+- **Examples**
+  - Neural Networks
+  - Random Forests

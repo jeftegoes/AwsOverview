@@ -307,8 +307,8 @@
   - Meet **strict single-tenancy** and compliance requirements.
   - Independently **revoke and remove key material** from AWS KMS.
   - Perform **independent auditing/monitoring** beyond KMS and CloudTrail logs.
-- **Correct approach**:  
-  Use **AWS KMS** to create a key in a **custom key store** and store the non-extractable key material in **AWS CloudHSM**.
+- **Correct approach**  
+  - Use **AWS KMS** to create a key in a **custom key store** and store the non-extractable key material in **AWS CloudHSM**.
 
 # 6. CloudWatch Logs - Encryption
 

@@ -23,11 +23,16 @@
         </mxCell>
         <mxCell id="tVN3vnBWVfpQw0CPM8Ht-6" connectable="0" parent="tVN3vnBWVfpQw0CPM8Ht-5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&amp;nbsp;Authentication&amp;nbsp;" vertex="1">
           <mxGeometry relative="1" x="0.0625" y="3" as="geometry">
-            <mxPoint y="-3" as="offset" />
+            <mxPoint x="5" y="-3" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="tVN3vnBWVfpQw0CPM8Ht-11" edge="1" parent="1" source="tVN3vnBWVfpQw0CPM8Ht-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" target="tVN3vnBWVfpQw0CPM8Ht-10">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Bs4uxGpUZxR8Hud3O-NL-1" connectable="0" parent="tVN3vnBWVfpQw0CPM8Ht-11" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&amp;nbsp;Integration&amp;nbsp;" vertex="1">
+          <mxGeometry relative="1" x="-0.0566" as="geometry">
+            <mxPoint x="15" y="1" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="tVN3vnBWVfpQw0CPM8Ht-4" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.single_sign_on;" value="&lt;div&gt;IAM Identity Center&lt;/div&gt;" vertex="1">
           <mxGeometry height="78" width="78" x="537" y="320.5" as="geometry" />

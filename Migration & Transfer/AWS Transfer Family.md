@@ -42,6 +42,6 @@
 - **Security**
   - **IAM policies** + **POSIX user ID mappings** for per-user access control (similar to Linux permissions).
   - **Security group** restricts SFTP access to trusted IPs.
-- **Benefits**:
+- **Benefits**
   - Meets performance, security, and manageability requirements.
   - Fully **serverless architecture**.

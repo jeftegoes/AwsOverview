@@ -288,21 +288,21 @@
 
 ## 21.1. Health Check Replacement
 
-- **Triggered by**: Detection of an unhealthy instance (via EC2 or ELB health checks).
-- **Sequence**:
+- **Triggered by:** Detection of an unhealthy instance (via EC2 or ELB health checks).
+- **Sequence**
   1. Terminates the unhealthy instance.
   2. Launches a new instance to replace it.
-- **Impact**: May cause a temporary dip in capacity.
-- **Reason**: The instance is already unhealthy and likely not serving traffic.
+- **Impact:** May cause a temporary dip in capacity.
+- **Reason:** The instance is already unhealthy and likely not serving traffic.
 
 ## 21.2. Availability Zone (AZ) Rebalancing
 
-- **Triggered by**: Imbalance in instance distribution across AZs (e.g., due to manual changes or AZ configuration updates).
-- **Sequence**:
+- **Triggered by:** Imbalance in instance distribution across AZs (e.g., due to manual changes or AZ configuration updates).
+- **Sequence:**
   1. Launches a new instance in the underused AZ.
   2. Terminates an instance from the overloaded AZ.
-- **Impact**: Maintains full capacity at all times.
-- **Reason**: To avoid degrading performance during rebalancing.
+- **Impact:** Maintains full capacity at all times.
+- **Reason:** To avoid degrading performance during rebalancing.
 
 ## 21.3. Rebalancing and Temporary Over-Provisioning
 

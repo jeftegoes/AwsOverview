@@ -258,6 +258,38 @@
 - **SageMaker Model Cards:** Document your ML models in a centralized place.
 - Helpful to support audit activities.
 - AWS AI Service Cards are examples SageMaker Model card.
+- **Model card JSON schema sample file**
+  ```json
+    "intended_uses": {
+      "description": "Intended usage of model",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "purpose_of_model": {
+          "description": "Why the model was developed?",
+          "type": "string",
+          "maxLength": 2048
+        },
+        "intended_uses": {
+          "description": "intended use cases",
+          "type": "string",
+          "maxLength": 2048
+        },
+        "factors_affecting_model_efficiency": {
+          "type": "string",
+          "maxLength": 2048
+        },
+        "risk_rating": {
+          "description": "Risk rating for model card",
+          "$ref": "#/definitions/risk_rating"
+        },
+        "explanations_for_risk_rating": {
+          "type": "string",
+          "maxLength": 2048
+        }
+      }
+    }
+  ```
 
 # 13. Importance of Governance & Compliance
 
@@ -325,12 +357,12 @@
 
 ## 14.4. Data Management Concepts
 
-- **Data Lifecycles** - Collection, processing, storage, consumption, archival.
-- **Data Logging** - Tracking inputs, outputs, performance metrics, system events.
-- **Data Residency** - Where the data is processed and stored (regulations, privacy requirements, proximity of compute and data).
-- **Data Monitoring** - Data quality, identifying anomalies, data drift.
-- **Data Analysis** - Statistical analysis, data visualization, exploration.
-- **Data Retention** - Regulatory requirements, historical data for training, cost.
+- **Data Lifecycles:** Collection, processing, storage, consumption, archival.
+- **Data Logging:** Tracking inputs, outputs, performance metrics, system events.
+- **Data Residency:** Where the data is processed and stored (regulations, privacy requirements, proximity of compute and data).
+- **Data Monitoring:** Data quality, identifying anomalies, data drift.
+- **Data Analysis:** Statistical analysis, data visualization, exploration.
+- **Data Retention:** Regulatory requirements, historical data for training, cost.
 
 ## 14.5. Data Lineage
 

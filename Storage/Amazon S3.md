@@ -839,8 +839,8 @@
 
 # 33. S3 Sync Command
 
-- **Purpose**: Copies objects between Amazon S3 buckets using the **CopyObject** API.
-- **How it works**:
+- **Purpose:** Copies objects between Amazon S3 buckets using the **CopyObject** API.
+- **How it works**
   - Compares source and target buckets.
   - **Copies objects that**
     - Are **missing** in the target bucket.

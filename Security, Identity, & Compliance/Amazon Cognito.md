@@ -30,7 +30,7 @@
 - **Cognito Identity Pools (Federated Identity)**
   - Provide AWS credentials to users so they can access AWS resources directly.
   - Integrate with Cognito User Pools as an identity provider.
-- **Cognito vs IAM**: "hundreds of users", "mobile users", "authenticate with SAML".
+- **Cognito vs IAM:** "hundreds of users", "mobile users", "authenticate with SAML".
 
 # 2. Cognito sync store
 

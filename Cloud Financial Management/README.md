@@ -181,7 +181,7 @@ TODO: DIAGRAM
 - Use **SCP** (service control policies) to restrict account power.
 - Easily setup multiple accounts with best-practices with **AWS Control Tower**.
 - **Use Tags & Cost Allocation Tags** for easy management & billing.
-- **IAM guidelines**: MFA, least-privilege, password policy, password rotation.
+- **IAM guidelines:** MFA, least-privilege, password policy, password rotation.
 - **Config** to record all resources configurations & compliance over time.
 - **CloudFormation** to deploy stacks across accounts and regions.
 - **Trusted Advisor** to get insights, Support Plan adapted to your needs.

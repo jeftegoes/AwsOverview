@@ -294,7 +294,7 @@
   - Internally launched.
 - **2003**
   - Amazon infrastructure is one of their core strength. Idea to market.
-- **2004**:
+- **2004**
   - Launched publicly with SQS.
 - **2006**
   - Re-launched publicly with SQS, S3 & EC2.

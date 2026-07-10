@@ -541,7 +541,7 @@
   - **Alarms can**
     - Notify you of failures
     - **Automatically recover impaired instances**
-  - **Note**: Status checks are **built-in** and **cannot be disabled or deleted**.
+  - **Note:** Status checks are **built-in** and **cannot be disabled or deleted**.
 
 # 20. EC2 Instance States
 

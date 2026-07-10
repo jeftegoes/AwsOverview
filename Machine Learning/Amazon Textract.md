@@ -13,5 +13,4 @@
   - Financial Services (e.g., invoices, financial reports).
   - Healthcare (e.g., medical records, insurance claims).
   - Public Sector (e.g., tax forms, ID documents, passports).
-
-TODO DIAGRAM
+    ![Amazon Textract](/Images/Machine%20Learning/AmazonTextract.png)

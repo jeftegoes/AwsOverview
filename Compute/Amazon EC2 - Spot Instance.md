@@ -32,9 +32,9 @@
 
 # 3. How to terminate Spot Instances?
 
-- **Request types**:
-  - **One-time**: Not reopened after interruption.
-  - **Persistent**: Reopened after interruption, or after you manually restart a stopped instance.
+- **Request types**
+  - **One-time:** Not reopened after interruption.
+  - **Persistent:** Reopened after interruption, or after you manually restart a stopped instance.
     ![Amazon EC2 Spot Instance Request](/Images/Compute/AmazonEC2SpotInstanceRequest1.png)
     ![Amazon EC2 Spot Instance Request](/Images/Compute/AmazonEC2SpotInstanceRequest2.png)
 - We can only cancel Spot Instance requests that are open, active, or disabled.

@@ -216,8 +216,8 @@
 
 - Endpoints allow you to connect to AWS Services **using a private network** instead of the public www network.
 - This gives you enhanced security and lower latency to access AWS services.
-- **VPC Endpoint Gateway**: S3 and DynamoDB.
-- **VPC Endpoint Interface**: The rest.
+- **VPC Endpoint Gateway:** S3 and DynamoDB.
+- **VPC Endpoint Interface:** The rest.
 
 # 15. Elastic Beanstalk
 
