@@ -23,7 +23,7 @@
   - [7.8. Continued Pre-training vs Fine-tuning](#78-continued-pre-training-vs-fine-tuning)
 - [8. Model Evaluation in Amazon Bedrock](#8-model-evaluation-in-amazon-bedrock)
   - [8.1. Automatic Evaluation](#81-automatic-evaluation)
-  - [8.2. Note on Benchmark Datasets](#82-note-on-benchmark-datasets)
+  - [8.2. Benchmark Datasets](#82-benchmark-datasets)
   - [8.3. Human Evaluation](#83-human-evaluation)
   - [8.4. Automated Metrics to Evaluate an FM](#84-automated-metrics-to-evaluate-an-fm)
   - [8.5. Automated Model Evaluation](#85-automated-model-evaluation)
@@ -259,13 +259,15 @@ TODO TABLE TABLE
 - Scores are calculated automatically.
 - Model scores are calculated using various statistical methods (e.g. BERTScore, F1...).
 
-## 8.2. Note on Benchmark Datasets
+## 8.2. Benchmark Datasets
 
 - Curated collections of data designed specifically at evaluating the performance of language models.
 - Wide range of topics, complexities, linguistic phenomena.
 - **Helpful to measure:** Accuracy, speed and efficiency, scalability.
 - Some benchmarks datasets allow you to very quickly detect any kind of bias and potential discrimination against a group of people.
-- You can also create your own benchmark dataset that is specific to your business.
+- We can also create our own benchmark dataset that is specific to your business.
+
+TODO DIAGRAM
 
 ## 8.3. Human Evaluation
 
@@ -275,6 +277,8 @@ TODO TABLE TABLE
 - Define metrics and how to evaluate.
   - Thumbs up/down, ranking...
 - Choose from Built-in task types (same as Automatic) or add a custom task.
+
+TODO DIAGRAM
 
 ## 8.4. Automated Metrics to Evaluate an FM
 
@@ -291,6 +295,8 @@ TODO TABLE TABLE
   - Uses pre-trained BERT models (Bidirectional Encoder Representations from Transformers) to compare the contextualized embeddings of both texts and computes the cosine similarity between them.
   - Capable of capturing more nuance between the texts.
 - **Perplexity:** How well the model predicts the next token (lower is better).
+
+TODO DIAGRAM
 
 ## 8.5. Automated Model Evaluation
 
@@ -369,7 +375,7 @@ TODO DIAGRAM
 - Create vectors (array of numerical values) out of text, images or audio.
 - Vectors have a high dimensionality to capture many features for one input token, such as semantic meaning, syntactic role, sentiment.
 - Embedding models can power search applications.
-  ![alt](/Images/Machine%20Learning/GenAIConceptsEmbeddings.png)
+  ![Gen AI - Concepts Embeddings](/Images/Machine%20Learning/GenAIConceptsEmbeddings.png)
 
 # 11. Guardrails
 

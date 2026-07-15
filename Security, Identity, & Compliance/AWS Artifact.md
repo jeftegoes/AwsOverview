@@ -1,4 +1,4 @@
-# AWS Artifact <!-- omit in toc -->
+# AWS Artifact (not really a service) <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -8,10 +8,9 @@
 
 # 1. Introduction
 
-- **AWS Artifact is your go-to, central resource for compliance-related information that matters to you.**
 - Portal that provides customers with on-demand access to AWS compliance documentation and AWS agreements.
-- **Artifact Reports:** Allows you to download AWS security and compliance documents from third-party auditors, like AWS ISO certifications, Payment Card Industry (PCI), and System and Organization Control (SOC) reports.
-- **Artifact Agreements:** Allows you to review, accept, and track the status of AWS agreements such as the Business Associate Addendum (BAA) or the Health Insurance Portability and Accountability Act (HIPAA) for an individual account or in your organization.
+- **Artifact Reports:** Allows us to download AWS security and compliance documents from third-party auditors, like AWS ISO certifications, Payment Card Industry (PCI), and System and Organization Control (SOC) reports.
+- **Artifact Agreements:** Allows us to review, accept, and track the status of AWS agreements such as the Business Associate Addendum (BAA) or the Health Insurance Portability and Accountability Act (HIPAA) for an individual account or in our organization.
 - Can be used to **support internal audit or compliance**.
 
 # 2. Purpose
@@ -35,3 +34,4 @@
 - On-demand access to security compliance reports of Independent Software Vendors (ISVs).
 - ISV compliance reports will only be accessible to the AWS customers who have been granted access to AWS Marketplace Vendor Insights for a specific ISV.
 - Ability to receive notifications when new reports are available.
+  ![AWS Artifact - Third-Party Reports](/Images/Machine%20Learning/AWSArtifactThirdPartyReports.png)

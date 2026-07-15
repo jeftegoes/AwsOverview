@@ -8,7 +8,7 @@
 - [4. Automatic Model Tuning (AMT)](#4-automatic-model-tuning-amt)
 - [5. Model Deployment \& Inference](#5-model-deployment--inference)
 - [6. Model Deployment Comparison](#6-model-deployment-comparison)
-- [7. SageMaker Studio](#7-sagemaker-studio)
+- [7. Studio](#7-studio)
 - [8. Data Wrangler](#8-data-wrangler)
 - [9. What are ML Features?](#9-what-are-ml-features)
   - [9.1. Feature Store](#91-feature-store)
@@ -53,7 +53,7 @@
 
 - **Supervised Algorithms**
   - Linear regressions and classifications.
-  - KNN Algorithms (for classification).
+  - KNN (K-Nearest Neighbors) Algorithms (for classification).
   - Logistic regression.
 - **Unsupervised Algorithms**
   - **Principal Component Analysis (PCA):** Reduce number of features.
@@ -99,7 +99,7 @@
 | Asynchronous Inference | Medium to High "near real-time" | Up to 1 GB (one record)                      | Max 1 hour      | Large payloads and workloads requiring longer processing times                  | requiring longer processing times |
 | Batch Transform        | High (minutes to hours)         | Up to 100 MB per invocation (per mini batch) | Max 1 hour      | Bulk processing for large datasets Concurrent processing                        |                                   |
 
-# 7. SageMaker Studio
+# 7. Studio
 
 - End-to-end ML development from a unified interface.
 - Team collaboration.

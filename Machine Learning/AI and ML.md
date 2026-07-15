@@ -37,6 +37,7 @@
     - [13.2.1. Clustering Technique](#1321-clustering-technique)
     - [13.2.2. Association Rule Learning Technique](#1322-association-rule-learning-technique)
     - [13.2.3. Anomaly Detection Technique](#1323-anomaly-detection-technique)
+    - [13.2.4. Dimensionality Reduction](#1324-dimensionality-reduction)
   - [13.3. Semi-supervised Learning](#133-semi-supervised-learning)
   - [13.4. Self-Supervised Learning](#134-self-supervised-learning)
     - [13.4.1. Intuitive example](#1341-intuitive-example)
@@ -73,6 +74,9 @@
   - [28.1. Deterministic Models](#281-deterministic-models)
   - [28.2. Probabilistic Models](#282-probabilistic-models)
   - [28.3. Hybrid Models](#283-hybrid-models)
+- [29. CNN vs. RNN](#29-cnn-vs-rnn)
+  - [29.1. CNN (Convolutional Neural Network)](#291-cnn-convolutional-neural-network)
+  - [29.2. RNN (Recurrent Neural Network)](#292-rnn-recurrent-neural-network)
 
 # 1. What is Artificial Intelligence (AI)?
 
@@ -194,7 +198,9 @@
 
 # 8. Diffusion Models (ex: Stable Diffusion)
 
-TODO DIAGRAM
+- **Training:** Forward diffusion process.
+- **Generating:** Reverse diffusion process "a cat with a computer".
+  ![Diffusion Models](/Images/Machine%20Learning/DiffusionModels.png)
 
 # 9. Multimodal Models (ex: GPT-4o)
 
@@ -355,6 +361,7 @@ TODO DIAGRAM
 - Common techniques include Clustering, Association Rule Learning, and Anomaly Detection.
 - **Clustering use cases:** Customer segmentation, targeted marketing, recommender systems.
 - **Feature Engineering** can help improve the quality of the training.
+- **Dimensionality Reduction** is an **unsupervised learning** technique that reduces the number of features (dimensions) in a dataset while preserving the most important information.
 
 ### 13.2.1. Clustering Technique
 
@@ -373,7 +380,7 @@ TODO DIAGRAM
   - **Data:** Transaction records from customer purchases.
   - **Goal:** Identify associations between products to optimize product placement and promotions.
   - **Technique:** Apriori algorithm.
-- **Outcome: ** The supermarket can place associated products together to boost sales.
+- **Outcome:** The supermarket can place associated products together to boost sales.
 
 ### 13.2.3. Anomaly Detection Technique
 
@@ -383,6 +390,17 @@ TODO DIAGRAM
   - **Goal:** Identify transactions that deviate significantly from typical behavior.
   - **Technique:** Isolation Forest.
 - **Outcome:** The system flags potentially fraudulent transactions for further investigation.
+
+### 13.2.4. Dimensionality Reduction
+
+- **Example**
+  - **An image contains**
+    - Person.
+    - Sky.
+    - Trees.
+    - Buildings.
+    - Cars.
+- **Outcome:** Dimensionality reduction removes or minimizes unnecessary background features, allowing the model to focus on the **person**.
 
 ## 13.3. Semi-supervised Learning
 
@@ -421,12 +439,12 @@ TODO DIAGRAM
 
 - A type of Machine Learning where an agent learns to make decisions by performing actions in an environment to maximize cumulative rewards
 - **Key Concepts**
-  - **Agent** - The learner or decision-maker.
-  - **Environment** - The external system the agent interacts with.
-  - **Action** - The choices made by the agent.
-  - **Reward** - The feedback from the environment based on the agent's actions.
-  - **State** - The current situation of the environment.
-  - **Policy** - The strategy the agent uses to determine.
+  - **Agent:** The learner or decision-maker.
+  - **Environment:** The external system the agent interacts with.
+  - **Action:** The choices made by the agent.
+  - **Reward:** The feedback from the environment based on the agent's actions.
+  - **State:** The current situation of the environment.
+  - **Policy:** The strategy the agent uses to determine.
 
 ## 14.1. How Does Reinforcement Learning Work?
 
@@ -537,10 +555,10 @@ TODO DIAGRAM
 - Confusion Matrixes be multi-dimension too.
 - Best way to evaluate the **performance** model that does **classifications**.
 - **Metrics**
-  - **Precision** - Best when false positives are costly.
-  - **Recall** - Best when false negatives are costly.
-  - **F1 Score** - Best when you want a balance between precision and recall, especially in imbalanced datasets.
-  - **Accuracy** - Best for balanced datasets.
+  - **Precision:** Best when false positives are costly.
+  - **Recall:** Best when false negatives are costly.
+  - **F1 Score:** Best when you want a balance between precision and recall, especially in imbalanced datasets.
+  - **Accuracy:** Best for balanced datasets.
     ![Confusion Matrix](/Images/Machine%20Learning/ConfusionMatrix_2.png)
 
 ## 18.3. AUC-ROC
@@ -744,3 +762,36 @@ TODO DIAGRAM
 - **Examples**
   - Neural Networks
   - Random Forests
+
+# 29. CNN vs. RNN
+
+| CNN (Convolutional Neural Network)                | RNN (Recurrent Neural Network)           |
+| ------------------------------------------------- | ---------------------------------------- |
+| Processes **spatial data**                        | Processes **sequential data**            |
+| Best for **images**                               | Best for **time-series and sequences**   |
+| Learns spatial features (shapes, edges, textures) | Learns temporal dependencies and context |
+| Input order is not important                      | Input order is important                 |
+
+## 29.1. CNN (Convolutional Neural Network)
+
+- **Purpose**
+  - Analyze grid-like data, especially images.
+- **Common Use Cases**
+  - Image classification.
+  - Object detection.
+  - Face recognition.
+  - Medical image analysis.
+- **Example**
+  - Analyze a single photo to determine whether it contains a cat or a dog.
+
+## 29.2. RNN (Recurrent Neural Network)
+
+- **Purpose**
+  - Analyze sequential data where previous inputs influence future predictions.
+- **Common Use Cases**
+  - Video analysis.
+  - Speech recognition.
+  - Language translation.
+  - Time-series forecasting.
+- **Example**
+  - Analyze a video by processing each frame in sequence to recognize an action.

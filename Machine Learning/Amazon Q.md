@@ -6,6 +6,7 @@
   - [1.1. Amazon Q Business + IAM Identity Center](#11-amazon-q-business--iam-identity-center)
   - [1.2. Admin Controls](#12-admin-controls)
   - [1.3. Workflow](#13-workflow)
+  - [1.4. Response Modes](#14-response-modes)
 - [2. Amazon Q Apps (Q Business)](#2-amazon-q-apps-q-business)
 - [3. Amazon Q Developer](#3-amazon-q-developer)
 - [4. Amazon Q Developer](#4-amazon-q-developer)
@@ -42,7 +43,7 @@
 
 - Controls and customize responses to our organizational needs.
 - Admin controls == Guardrails.
-- Block specific words or topics.
+- Block specific words or topics (topic-specific).
 - Respond only with internal information (vs using external knowledge).
 - Global controls & topic-level controls (more granular rules).
   ![Amazon Q Business - Admin Controls](/Images/Machine%20Learning/AmazonQBusinessAdminControls.png)
@@ -50,6 +51,18 @@
 ## 1.3. Workflow
 
 ![Amazon Q Business - Workflow](/Images/Machine%20Learning/AmazonQBusinessWorkflow.png)
+
+## 1.4. Response Modes
+
+- Amazon Q Business can generate responses using:
+1. **Enterprise Data Only**
+   - Answers are based **only on your organization's data**.
+   - No model knowledge is used.
+   - Ideal for strict compliance and accuracy.
+2. **Model Knowledge + Enterprise Data**
+   - Uses enterprise data first.
+   - If no relevant information is found, the underlying **LLM (model knowledge)** can supplement the response.
+   - Provides more complete and flexible answers.
 
 # 2. Amazon Q Apps (Q Business)
 

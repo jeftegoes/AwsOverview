@@ -11,7 +11,8 @@
 - [7. Amazon GuardDuty](#7-amazon-guardduty)
 - [8. Amazon Inspector](#8-amazon-inspector)
 - [9. AWS Directory Services](#9-aws-directory-services)
-- [10. Summary](#10-summary)
+- [10. AWS Artifact](#10-aws-artifact)
+- [11. Summary](#11-summary)
 
 # 1. Amazon Cognito
 
@@ -50,17 +51,21 @@
 
 [AWS Directory Services](AWS%20Directory%20Services.md)
 
-# 10. Summary
+# 10. AWS Artifact
+
+- **AWS Artifact is our go-to, central resource for compliance-related information that matters to us.** [AWS Artifact](AWS%20Artifact.md)
+
+# 11. Summary
 
 - **IAM**
   - Identity and Access Management inside your AWS account.
   - For users that you trust and belong to your company.
   - **IAM Roles are sets of permissions making AWS service requests, which will be used by AWS services, but they do not provide temporary security credentials.**
-- Security Token Service (STS): temporary, limited-privileges credentials to access AWS resources.
-- Cognito: create a database of users for your mobile & web applications.
-- Directory Services: integrate Microsoft Active Directory in AWS.
-- Single Sign-On (SSO): one login for multiple AWS accounts & applications.
-- WAF: Firewall to filter incoming requests based on rules
-- KMS: Encryption keys managed by AWS
-- GuardDuty: Find malicious behavior with VPC, DNS & CloudTrail Logs
-- Inspector: For EC2 only, install agent and find vulnerabilities
+- **Security Token Service (STS):** temporary, limited-privileges credentials to access AWS resources.
+- **Cognito:** create a database of users for your mobile & web applications.
+- **Directory Services:** integrate Microsoft Active Directory in AWS.
+- **Single Sign-On (SSO):** one login for multiple AWS accounts & applications.
+- **WAF:** Firewall to filter incoming requests based on rules
+- **KMS:** Encryption keys managed by AWS
+- **GuardDuty:** Find malicious behavior with VPC, DNS & CloudTrail Logs
+- **Inspector:** For EC2 only, install agent and find vulnerabilities

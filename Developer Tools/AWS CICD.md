@@ -110,8 +110,8 @@
   - The package version is not present in any of the three repositories
   - The package version will be fetched from npmjs.com
   - When **Lodash 4.17.20** is fetched, it will be retained in:
-    - **Repository A** - the most-downstream repository
-    - **Repository C** - has the external connection to npmjs.com
+    - **Repository A:** The most-downstream repository
+    - **Repository C:** Has the external connection to npmjs.com
     - The Package version will not be retained in Repository B as that is an intermediate Repository
 
 ## 8.5. Domains

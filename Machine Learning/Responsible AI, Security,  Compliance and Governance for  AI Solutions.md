@@ -37,7 +37,7 @@
   - [15.2. Monitoring AI systems](#152-monitoring-ai-systems)
   - [15.3. AWS Shared Responsibility Model](#153-aws-shared-responsibility-model)
   - [15.4. Secure Data Engineering - Best Practices](#154-secure-data-engineering---best-practices)
-  - [15.5. Generative AI Security Scoping Matrix](#155-generative-ai-security-scoping-matrix)
+  - [15.5. Generative AI - Security Scoping Matrix](#155-generative-ai---security-scoping-matrix)
 - [16. MLOps](#16-mlops)
 
 # 1. Responsible AI & Security
@@ -451,10 +451,12 @@
   - Maintain data lineage and audit trails.
   - Monitor and test the data integrity controls to ensure effectiveness.
 
-## 15.5. Generative AI Security Scoping Matrix
+## 15.5. Generative AI - Security Scoping Matrix
 
+**Risk Management** is the process of identifying, assessing, and mitigating security risks associated with Generative AI applications.
 - Framework designed to identify and manage security risks associated with deploying GenAI applications.
 - Classify your apps in 5 defined GenAI scopes, from low to high ownership.
+  ![Generative AI - Security Scoping Matrix](/Images/Machine%20Learning/GenerativeAISecurityScopingMatrix.png)
 
 # 16. MLOps
 

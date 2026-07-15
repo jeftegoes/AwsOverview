@@ -220,18 +220,18 @@
 ## 3.10. Environment Variables
 
 - **Environment Variable**
-  - **Hardcoded:** - e.g., URLs.
-  - **SSM Parameter Store:** - Sensitive variables (e.g., API keys, shared configs).
-  - **AWS Secrets Manager:** - Sensitive variables (e.g., DB passwords).
+  - **Hardcoded:** E.g., URLs.
+  - **SSM Parameter Store:** Sensitive variables (e.g., API keys, shared configs).
+  - **AWS Secrets Manager:** Sensitive variables (e.g., DB passwords).
 - Environment Files (bulk) - Amazon S3.
 
 ## 3.11. Data Volumes (Bind Mounts)
 
 - Share data between multiple containers in the same Task Definition.
 - Works for both **EC2** and **Fargate** tasks.
-- **EC2 Tasks** - using EC2 instance storage:
+- **EC2 Tasks** - Using EC2 instance storage:
   - Data are tied to the lifecycle of the EC2 instance
-- **Fargate Tasks** - using ephemeral storage
+- **Fargate Tasks** - Using ephemeral storage:
   - Data are tied to the container(s) using them
   - 20 GiB - 200 GiB (default 20 GiB)
 - **Use cases**

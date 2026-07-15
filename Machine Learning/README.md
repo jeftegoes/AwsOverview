@@ -15,6 +15,7 @@
 - [11. Amazon Personalize](#11-amazon-personalize)
 - [12. Amazon Textract](#12-amazon-textract)
 - [13. Amazon's Hardware for AI](#13-amazons-hardware-for-ai)
+  - [13.1. AWS Inferentia vs. AWS Trainium](#131-aws-inferentia-vs-aws-trainium)
 - [14. Summary](#14-summary)
 
 # 1. Why AWS AI Managed Services?
@@ -88,13 +89,23 @@
 - GPU-based EC2 Instances (P3, P4, P5..., G3...G6...)
 - **AWS Trainium**
   - ML chip built to perform Deep Learning on 100B+ parameter models.
-  - Trn1 instance has for example 16 Trainium Accelerators.
+  - `Trn1` instance has for example 16 Trainium Accelerators.
   - 50% cost reduction when training a model.
 - **AWS Inferentia**
   - ML chip built to deliver inference at high performance and low cost.
-  - Inf1, Inf2 instances are powered by AWS Inferentia.
+  - `Inf1`, `Inf2` instances are powered by AWS Inferentia.
   - Up to 4x throughput and 70% cost reduction.
 - Trn & Inf have the **lowest environmental footprint**.
+
+## 13.1. AWS Inferentia vs. AWS Trainium
+
+| AWS Inferentia                               | AWS Trainium                                 |
+| -------------------------------------------- | -------------------------------------------- |
+| Optimized for **inference**                  | Optimized for **training**                   |
+| Runs trained models efficiently              | Trains deep learning models                  |
+| High throughput                              | High-performance training                    |
+| Lower inference cost                         | Lower training cost                          |
+| Used with **Amazon EC2 Inf1/Inf2** instances | Used with **Amazon EC2 Trn1/Trn2** instances |
 
 # 14. Summary
 
