@@ -7,6 +7,7 @@
 - [3. Toxicity Detection](#3-toxicity-detection)
 - [4. Amazon Transcribe and Amazon Athena](#4-amazon-transcribe-and-amazon-athena)
 - [5. Amazon Transcribe Medical](#5-amazon-transcribe-medical)
+- [6. Amazon Transcribe: Custom Language Model vs. Batch Transcription](#6-amazon-transcribe-custom-language-model-vs-batch-transcription)
 
 # 1. Introduction
 
@@ -54,3 +55,15 @@
 - **Use cases**
   - Voice applications that enable physicians to dictate medical notes.
   - Transcribe phone calls that report on drug safety and side effects.
+
+# 6. Amazon Transcribe: Custom Language Model vs. Batch Transcription
+
+| Feature                | Custom Language Model (CLM)    | Batch Transcription                   |
+| ---------------------- | ------------------------------ | ------------------------------------- |
+| **Purpose**            | Improve transcription accuracy | Transcribe audio files asynchronously |
+| **When to Use**        | Domain-specific vocabulary     | Large audio/video files               |
+| **Training Required?** | Yes                            | No                                    |
+| **Custom Vocabulary**  | Supported                      | Supported                             |
+| **Input**              | Training text + audio          | Audio or video files                  |
+| **Output**             | More accurate transcriptions   | Transcript of the media file          |
+| **Processing**         | Used during transcription      | Asynchronous (offline)                |

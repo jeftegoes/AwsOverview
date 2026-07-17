@@ -44,6 +44,7 @@
   - [12.3. Amazon Bedrock \& CloudWatch](#123-amazon-bedrock--cloudwatch)
 - [13. Pricing](#13-pricing)
 - [14. Model Improvement Techniques Cost Order](#14-model-improvement-techniques-cost-order)
+  - [14.1. Instruction-Based Fine-Tuning](#141-instruction-based-fine-tuning)
 - [15. Cost savings](#15-cost-savings)
 - [16. Security](#16-security)
   - [16.1. Bedrock must access an encrypted S3 bucket](#161-bedrock-must-access-an-encrypted-s3-bucket)
@@ -54,6 +55,8 @@
   - [17.1. Response Length](#171-response-length)
   - [17.2. Penalties](#172-penalties)
   - [17.3. Stop Sequences](#173-stop-sequences)
+- [18. Dynamic Prompt Engineering](#18-dynamic-prompt-engineering)
+- [19. Amazon Bedrock Playground](#19-amazon-bedrock-playground)
 
 # 1. What is Generative AI?
 
@@ -304,11 +307,11 @@ TODO DIAGRAM
 
 ## 8.6. Business Metrics to Evaluate a Model On
 
-- **User Satisfaction** - gather users' feedbacks and assess their satisfaction with the model responses (e.g., user satisfaction for an ecommerce platform).
-- **Average Revenue Per User (ARPU)** - average revenue per user attributed to the Gen-AI app (e.g., monitor ecommerce user base revenue).
-- **Cross-Domain Performance** - measure the model's ability to perform cross different domains tasks (e.g., monitor multi-domain ecommerce platform).
-- **Conversion Rate** - generate recommended desired outcomes such as purchases (e.g., optimizing ecommerce platform for higher conversion rate)
-- **Efficiency** - evaluate the model's efficiency in computation, resource utilization... (e.g., improve production line efficiency).
+- **User Satisfaction:** Gather users' feedbacks and assess their satisfaction with the model responses (e.g., user satisfaction for an ecommerce platform).
+- **Average Revenue Per User (ARPU):** Average revenue per user attributed to the Gen-AI app (e.g., monitor ecommerce user base revenue).
+- **Cross-Domain Performance:** Measure the model's ability to perform cross different domains tasks (e.g., monitor multi-domain ecommerce platform).
+- **Conversion Rate:** Generate recommended desired outcomes such as purchases (e.g., optimizing ecommerce platform for higher conversion rate)
+- **Efficiency:** Evaluate the model's efficiency in computation, resource utilization... (e.g., improve production line efficiency).
 
 # 9. RAG & Knowledge Base
 
@@ -420,9 +423,9 @@ TODO DIAGRAM
 
 - **On-Demand**
   - Pay-as-you-go (no commitment).
-  - Text Models - Charged for every input/output token processed.
-  - Embedding Models - Charged for every input token processed.
-  - Image Models - Charged for every image generated.
+  - **Text Models:** Charged for every input/output token processed.
+  - **Embedding Models:** Charged for every input token processed.
+  - **Image Models:** Charged for every image generated.
   - Works with Base Models only.
 - **Batch**
   - Multiple predictions at a time (output is a single file in Amazon S3).
@@ -435,14 +438,29 @@ TODO DIAGRAM
 # 14. Model Improvement Techniques Cost Order
 
 1. **Prompt Engineering $**
-   - No model training needed (no additional computation or fine-tuning)
+   - No model training needed (no additional computation or fine-tuning).
 2. **Retrieval Augmented Generation (RAG) $$**
-   - Uses external knowledge (FM doesn't need to "know everything", less complex)
-   - No FM changes (no additional computation or fine-tuning)
+   - Uses external knowledge (FM doesn't need to "know everything", less complex).
+   - No FM changes (no additional computation or fine-tuning).
 3. **Instruction-based Fine-tuning $$$**
-   - FM is fine-tuned with specific instructions (requires additional computation)
+   - FM is fine-tuned with specific instructions (requires additional computation).
 4. **Domain Adaptation Fine-tuning $$$$**
    - Model is trained on a domain-specific dataset (requires intensive computation).
+
+## 14.1. Instruction-Based Fine-Tuning
+
+- **Instruction-Based Fine-Tuning** is a model customization technique that trains a **pre-trained Foundation Model (FM)** using **labeled prompt–response pairs** written as instructions.
+- Unlike prompt engineering, this process **modifies the model's weights**.
+- **Training Data Format**
+  ```text
+  Instruction (Prompt)  ->  Expected Response
+  ```
+- **Example**
+  - **Prompt**
+    > Translate the following sentence to French:
+    > "Hello, how are you?"
+  - **Response**
+    > Bonjour, comment allez-vous ?
 
 # 15. Cost savings
 
@@ -501,3 +519,24 @@ TODO DIAGRAM
 ## 17.3. Stop Sequences
 
 - Define one or more character sequences that tell the model **when to stop generating text**.
+
+# 18. Dynamic Prompt Engineering
+
+- **Dynamic Prompt Engineering** customizes the input prompt sent to a Large Language Model (LLM) based on user context, without changing the model itself.
+- **Example**
+  | User | Dynamic Prompt |
+  |------|----------------|
+  | Child | "Respond using simple, friendly language." |
+  | Teen | "Respond in an engaging way with relatable examples." |
+  | Adult | "Provide a concise and informative response." |
+  | Senior | "Provide a clear, respectful response with detailed explanations." |
+
+# 19. Amazon Bedrock Playground
+
+- **Amazon Bedrock Playground** is an interactive environment for **testing, comparing, and refining prompts and model parameters** before integrating Foundation Models into an application.
+- **Key Features**
+  - Interactive prompt testing.
+  - Real-time parameter adjustment (e.g., temperature, Top P, Top K).
+  - Immediate response preview.
+  - Compare Foundation Models.
+  - Experiment without writing application code.

@@ -23,7 +23,7 @@ TODO DIAGRAM
 | **Human Involvement**               | Human reviewers                               | Human workers                                     | Human labelers (optional)                          |
 | **Main Function**                   | Reviews low-confidence predictions            | Performs Human Intelligence Tasks (HITs)          | Creates high-quality labeled data                  |
 | **Typical Use Cases**               | Compliance, quality assurance, fraud review   | Data labeling, surveys, transcription, moderation | Image, text, and video labeling for model training |
-| **Integrates with ML Services**     | ✅ Yes                                        | ❌ Not required                                   | ✅ Yes                                             |
-| **Can Use Mechanical Turk Workers** | ✅ Yes                                        | N/A                                               | ✅ Yes                                             |
+| **Integrates with ML Services**     | Yes                                           | Not required                                      | Yes                                                |
+| **Can Use Mechanical Turk Workers** | Yes                                           | N/A                                               | Yes                                                |
 | **Supports Automation**             | Automatically routes predictions to reviewers | Manual task completion                            | Automatic labeling + human verification            |
 | **Example**                         | Review suspicious fraud transactions          | Label 100,000 images                              | Create a labeled dataset for image classification  |

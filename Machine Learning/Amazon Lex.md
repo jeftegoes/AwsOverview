@@ -4,6 +4,7 @@
 
 - [1. Introduction](#1-introduction)
 - [2. Chatbot](#2-chatbot)
+  - [2.1. Session Attributes](#21-session-attributes)
 
 # 1. Introduction
 
@@ -20,3 +21,7 @@
 - Integration with AWS Lambda, Connect, Comprehend, Kendra.
 - The bot automatically understands the user intent to invoke the correct Lambda function to "fulfill the intent".
 - The bot will ask for "Slots" (input parameters) if necessary.
+
+## 2.1. Session Attributes
+
+- **Session attributes** are **key-value pairs** that store contextual information during a conversation, allowing an Amazon Lex chatbot to maintain context across multiple interactions.

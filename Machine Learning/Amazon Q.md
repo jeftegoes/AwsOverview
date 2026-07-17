@@ -55,14 +55,14 @@
 ## 1.4. Response Modes
 
 - Amazon Q Business can generate responses using:
-1. **Enterprise Data Only**
-   - Answers are based **only on your organization's data**.
-   - No model knowledge is used.
-   - Ideal for strict compliance and accuracy.
-2. **Model Knowledge + Enterprise Data**
-   - Uses enterprise data first.
-   - If no relevant information is found, the underlying **LLM (model knowledge)** can supplement the response.
-   - Provides more complete and flexible answers.
+  1. **Enterprise Data Only**
+     - Answers are based **only on your organization's data**.
+     - No model knowledge is used.
+     - Ideal for strict compliance and accuracy.
+  2. **Model Knowledge + Enterprise Data**
+     - Uses enterprise data first.
+     - If no relevant information is found, the underlying **LLM (model knowledge)** can supplement the response.
+     - Provides more complete and flexible answers.
 
 # 2. Amazon Q Apps (Q Business)
 

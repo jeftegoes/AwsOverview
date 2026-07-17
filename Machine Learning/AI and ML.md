@@ -20,63 +20,66 @@
 - [8. Diffusion Models (ex: Stable Diffusion)](#8-diffusion-models-ex-stable-diffusion)
 - [9. Multimodal Models (ex: GPT-4o)](#9-multimodal-models-ex-gpt-4o)
 - [10. Humans are a mix of AI](#10-humans-are-a-mix-of-ai)
-- [11. ML Terms](#11-ml-terms)
-- [12. Training Data](#12-training-data)
-  - [12.1. Labeled vs. Unlabeled Data](#121-labeled-vs-unlabeled-data)
-  - [12.2. Structured Data](#122-structured-data)
-  - [12.3. Unstructured Data](#123-unstructured-data)
-- [13. ML Algorithms](#13-ml-algorithms)
-  - [13.1. Supervised Learning](#131-supervised-learning)
-    - [13.1.1. Classification](#1311-classification)
-    - [13.1.2. Regression](#1312-regression)
-    - [13.1.3. Training vs. Validation vs. Test Set](#1313-training-vs-validation-vs-test-set)
-    - [13.1.4. Feature Engineering](#1314-feature-engineering)
-      - [13.1.4.1. On Structured Data](#13141-on-structured-data)
-      - [13.1.4.2. On Unstructured Data](#13142-on-unstructured-data)
-  - [13.2. Unsupervised Learning](#132-unsupervised-learning)
-    - [13.2.1. Clustering Technique](#1321-clustering-technique)
-    - [13.2.2. Association Rule Learning Technique](#1322-association-rule-learning-technique)
-    - [13.2.3. Anomaly Detection Technique](#1323-anomaly-detection-technique)
-    - [13.2.4. Dimensionality Reduction](#1324-dimensionality-reduction)
-  - [13.3. Semi-supervised Learning](#133-semi-supervised-learning)
-  - [13.4. Self-Supervised Learning](#134-self-supervised-learning)
-    - [13.4.1. Intuitive example](#1341-intuitive-example)
-  - [13.5. Transfer Learning](#135-transfer-learning)
-- [14. What is Reinforcement Learning (RL)?](#14-what-is-reinforcement-learning-rl)
-  - [14.1. How Does Reinforcement Learning Work?](#141-how-does-reinforcement-learning-work)
-  - [14.2. Reinforcement Learning in Action](#142-reinforcement-learning-in-action)
-  - [14.3. Applications of Reinforcement Learning](#143-applications-of-reinforcement-learning)
-- [15. What is RLHF?](#15-what-is-rlhf)
-  - [15.1. How does RLHF work?](#151-how-does-rlhf-work)
-  - [15.2. RLHF Process](#152-rlhf-process)
-- [16. Model Fit](#16-model-fit)
-- [17. Bias and Variance](#17-bias-and-variance)
-- [18. Model Evaluation Metrics](#18-model-evaluation-metrics)
-  - [18.1. Binary Classification](#181-binary-classification)
-  - [18.2. Confusion Matrix](#182-confusion-matrix)
-  - [18.3. AUC-ROC](#183-auc-roc)
-  - [18.4. Regressions Metrics](#184-regressions-metrics)
-- [19. Inferencing](#19-inferencing)
-  - [19.1. Inferencing at the Edge](#191-inferencing-at-the-edge)
-- [20. Phases of Machine Learning Project](#20-phases-of-machine-learning-project)
-  - [20.1. Phase details](#201-phase-details)
-  - [20.2. EDA - Exploratory Data Analysis](#202-eda---exploratory-data-analysis)
-  - [20.3. Phases of Machine Learning Project](#203-phases-of-machine-learning-project)
-- [21. Hyperparameter Tuning](#21-hyperparameter-tuning)
-  - [21.1. Important Hyperparameters](#211-important-hyperparameters)
-- [22. Model Parameters](#22-model-parameters)
-- [23. Data Augmentation](#23-data-augmentation)
-- [24. What to do if overfitting?](#24-what-to-do-if-overfitting)
-- [25. When is Machine Learning NOT appropriate?](#25-when-is-machine-learning-not-appropriate)
-- [26. Model evaluation vs Model inference](#26-model-evaluation-vs-model-inference)
-- [27. Rule-Based System](#27-rule-based-system)
-- [28. Deterministic vs. Probabilistic Models](#28-deterministic-vs-probabilistic-models)
-  - [28.1. Deterministic Models](#281-deterministic-models)
-  - [28.2. Probabilistic Models](#282-probabilistic-models)
-  - [28.3. Hybrid Models](#283-hybrid-models)
-- [29. CNN vs. RNN](#29-cnn-vs-rnn)
-  - [29.1. CNN (Convolutional Neural Network)](#291-cnn-convolutional-neural-network)
-  - [29.2. RNN (Recurrent Neural Network)](#292-rnn-recurrent-neural-network)
+- [11. Generative Adversarial Network (GAN)](#11-generative-adversarial-network-gan)
+  - [11.1. How It Works](#111-how-it-works)
+- [12. ML Terms](#12-ml-terms)
+- [13. Training Data](#13-training-data)
+  - [13.1. Labeled vs. Unlabeled Data](#131-labeled-vs-unlabeled-data)
+  - [13.2. Structured Data](#132-structured-data)
+  - [13.3. Unstructured Data](#133-unstructured-data)
+- [14. Pre-trained Model](#14-pre-trained-model)
+- [15. ML Algorithms](#15-ml-algorithms)
+  - [15.1. Supervised Learning](#151-supervised-learning)
+    - [15.1.1. Classification](#1511-classification)
+    - [15.1.2. Regression](#1512-regression)
+    - [15.1.3. Training vs. Validation vs. Test Set](#1513-training-vs-validation-vs-test-set)
+    - [15.1.4. Feature Engineering](#1514-feature-engineering)
+      - [15.1.4.1. On Structured Data](#15141-on-structured-data)
+      - [15.1.4.2. On Unstructured Data](#15142-on-unstructured-data)
+  - [15.2. Unsupervised Learning](#152-unsupervised-learning)
+    - [15.2.1. Clustering Technique](#1521-clustering-technique)
+    - [15.2.2. Association Rule Learning Technique](#1522-association-rule-learning-technique)
+    - [15.2.3. Anomaly Detection Technique](#1523-anomaly-detection-technique)
+    - [15.2.4. Dimensionality Reduction](#1524-dimensionality-reduction)
+  - [15.3. Semi-supervised Learning](#153-semi-supervised-learning)
+  - [15.4. Self-Supervised Learning](#154-self-supervised-learning)
+    - [15.4.1. Intuitive example](#1541-intuitive-example)
+  - [15.5. Transfer Learning](#155-transfer-learning)
+- [16. What is Reinforcement Learning (RL)?](#16-what-is-reinforcement-learning-rl)
+  - [16.1. How Does Reinforcement Learning Work?](#161-how-does-reinforcement-learning-work)
+  - [16.2. Reinforcement Learning in Action](#162-reinforcement-learning-in-action)
+  - [16.3. Applications of Reinforcement Learning](#163-applications-of-reinforcement-learning)
+- [17. What is RLHF?](#17-what-is-rlhf)
+  - [17.1. How does RLHF work?](#171-how-does-rlhf-work)
+  - [17.2. RLHF Process](#172-rlhf-process)
+- [18. Model Fit](#18-model-fit)
+- [19. Bias and Variance](#19-bias-and-variance)
+- [20. Model Evaluation Metrics](#20-model-evaluation-metrics)
+  - [20.1. Binary Classification](#201-binary-classification)
+  - [20.2. Confusion Matrix](#202-confusion-matrix)
+  - [20.3. AUC-ROC](#203-auc-roc)
+  - [20.4. Regressions Metrics](#204-regressions-metrics)
+- [21. Inferencing](#21-inferencing)
+  - [21.1. Inferencing at the Edge](#211-inferencing-at-the-edge)
+- [22. Phases of Machine Learning Project](#22-phases-of-machine-learning-project)
+  - [22.1. Phase details](#221-phase-details)
+  - [22.2. EDA - Exploratory Data Analysis](#222-eda---exploratory-data-analysis)
+  - [22.3. Phases of Machine Learning Project](#223-phases-of-machine-learning-project)
+- [23. Hyperparameter Tuning](#23-hyperparameter-tuning)
+  - [23.1. Important Hyperparameters](#231-important-hyperparameters)
+- [24. Model Parameters](#24-model-parameters)
+- [25. Data Augmentation](#25-data-augmentation)
+- [26. What to do if overfitting?](#26-what-to-do-if-overfitting)
+- [27. When is Machine Learning NOT appropriate?](#27-when-is-machine-learning-not-appropriate)
+- [28. Model evaluation vs Model inference](#28-model-evaluation-vs-model-inference)
+- [29. Rule-Based System](#29-rule-based-system)
+- [30. Deterministic vs. Probabilistic Models](#30-deterministic-vs-probabilistic-models)
+  - [30.1. Deterministic Models](#301-deterministic-models)
+  - [30.2. Probabilistic Models](#302-probabilistic-models)
+  - [30.3. Hybrid Models](#303-hybrid-models)
+- [31. CNN vs. RNN](#31-cnn-vs-rnn)
+  - [31.1. CNN (Convolutional Neural Network)](#311-cnn-convolutional-neural-network)
+  - [31.2. RNN (Recurrent Neural Network)](#312-rnn-recurrent-neural-network)
 
 # 1. What is Artificial Intelligence (AI)?
 
@@ -216,7 +219,18 @@
 - Sometimes we haven't seen something before, but we have "learned" a lot of similar concepts, so we can make a decision (Deep Learning).
 - Sometimes, we get creative, and based on what we've learned, we can generate content: Gen AI.
 
-# 11. ML Terms
+# 11. Generative Adversarial Network (GAN)
+
+- A **Generative Adversarial Network (GAN)** is a deep learning model that generates **realistic synthetic data** while preserving the statistical characteristics of the original dataset.
+
+## 11.1. How It Works
+
+- A GAN consists of two neural networks:
+  - **Generator** – Creates synthetic data.
+  - **Discriminator** – Determines whether the data is real or synthetic.
+- These networks compete against each other, improving the quality of the generated data over time.
+
+# 12. ML Terms
 
 - **GPT (Generative Pre-trained Transformer):** Generate human text or computer code based on input prompts.
 - **BERT (Bidirectional Encoder Representations from Transformers):** Similar intent to GPT, but reads the text in two directions.
@@ -228,7 +242,7 @@
   - Helpful for data augmentation.
 - **XGBoost (Extreme Gradient Boosting):** An implementation of gradient boosting.
 
-# 12. Training Data
+# 13. Training Data
 
 - To train our model we must have good data.
 - Garbage in => Garbage out.
@@ -237,7 +251,7 @@
 - Labeled vs. Unlabeled Data.
 - Structured vs. Unstructured Data.
 
-## 12.1. Labeled vs. Unlabeled Data
+## 13.1. Labeled vs. Unlabeled Data
 
 - **Labeled Data**
   - Data includes both input features and corresponding output labels
@@ -248,7 +262,7 @@
   - **Example:** A collection of images without any associated labels.
   - **Use case:** **Unsupervised Learning**, where the model tries to find patterns or structures in the data.
 
-## 12.2. Structured Data
+## 13.2. Structured Data
 
 - Data is organized in a structured format, often in rows and columns (like Excel).
 - **Tabular Data**
@@ -260,7 +274,7 @@
   - **Example:** Stock prices recorded daily over a year.
     TODO: example
 
-## 12.3. Unstructured Data
+## 13.3. Unstructured Data
 
 - Data that doesn't follow a specific structure and is often text-heavy or multimedia content.
 - **Text Data**
@@ -270,25 +284,30 @@
   - Data in the form of images, which can vary widely in format and content.
   - Example: Images used for object recognition tasks.
 
-# 13. ML Algorithms
+# 14. Pre-trained Model
 
-## 13.1. Supervised Learning
+- A **pre-trained model** is a model that has already been trained on a **large, general-purpose dataset** to learn broad patterns and features.
+  - Instead of starting from scratch, it can be **fine-tuned** for a specific task using a smaller, task-specific dataset.
+
+# 15. ML Algorithms
+
+## 15.1. Supervised Learning
 
 - Learn a mapping function that can predict the output for new unseen input data.
 - **Needs labeled data:** Very powerful, but difficult to perform on millions of datapoints.
 
-### 13.1.1. Classification
+### 15.1.1. Classification
 
 - Used to predict the categorical label of input data.
 - The output variable is discrete, which means it falls into a specific category or class.
 - **Use cases:** Scenarios where decisions or predictions need to be made between distinct categories (fraud, image classification, customer retention, diagnostics).
 - **Examples**
   - **Binary Classification:** Classify emails as "spam" or "not spam".
-  - **Multiclass Classification:** Classify animals in a zoo as "mammal," "bird," "reptile".
+  - **Multi-class Classification:** Classify animals in a zoo as "mammal," "bird," "reptile".
   - **Multi-label Classification:** Assign multiple labels to a movie, like "action" and "comedy.
-- **Key algorithm:** K-nearest neighbors (k-NN) model.
+- **Key algorithm:** K-nearest neighbors (kNN) model.
 
-### 13.1.2. Regression
+### 15.1.2. Regression
 
 - Used to predict a numeric value based on input data.
 - The output variable is continuous, meaning it can take any value within a range.
@@ -298,7 +317,7 @@
   - **Stock Price Prediction:** Predicting the future price of a stock based on historical data and other features.
   - **Weather Forecasting:** Predicting temperatures based on historical weather data.
 
-### 13.1.3. Training vs. Validation vs. Test Set
+### 15.1.3. Training vs. Validation vs. Test Set
 
 - **Training Set**
   - Used to train the model.
@@ -314,7 +333,7 @@
   - **Example:** 100 labeled images to test the model's accuracy.
     ![Training vs. Validation vs. Test Set](/Images/Machine%20Learning/TrainingValidationTestSet.png)
 
-### 13.1.4. Feature Engineering
+### 15.1.4. Feature Engineering
 
 - The process of using domain knowledge to select and transform raw data into meaningful features.
 - Helps enhancing the performance of machine learning models.
@@ -337,7 +356,7 @@
     | 1 | Alice | 30 | $200 |
     | 2 | Bob | 45 | $300 |
 
-#### 13.1.4.1. On Structured Data
+#### 15.1.4.1. On Structured Data
 
 - **Structured Data (Tabular Data)**
   - **Example:** Predicting house prices based on features like size, location, and number of rooms.
@@ -346,7 +365,7 @@
   - **Feature Selection:** Identifying and retaining important features such as location or number of bedrooms.
   - **Feature Transformation:** Normalizing features to ensure they are on a similar scale, which helps algorithms like gradient descent converge faster.
 
-#### 13.1.4.2. On Unstructured Data
+#### 15.1.4.2. On Unstructured Data
 
 - **Unstructured Data (Text, Images)**
   - **Example:** Sentiment analysis of customer reviews
@@ -354,7 +373,7 @@
   - **Text Data:** Converting text into numerical features using techniques like TF-IDF or word embeddings.
   - **Image Data:** Extracting features such as edges or textures using techniques like convolutional neural networks (CNNs).
 
-## 13.2. Unsupervised Learning
+## 15.2. Unsupervised Learning
 
 - The goal is to discover inherent patterns, structures, or relationships within the input data.
 - The machine must uncover and create the groups itself, but humans still put labels on the output groups.
@@ -363,7 +382,7 @@
 - **Feature Engineering** can help improve the quality of the training.
 - **Dimensionality Reduction** is an **unsupervised learning** technique that reduces the number of features (dimensions) in a dataset while preserving the most important information.
 
-### 13.2.1. Clustering Technique
+### 15.2.1. Clustering Technique
 
 - Used to group similar data points together into clusters based on their features.
 - **Example:** Customer Segmentation
@@ -373,7 +392,7 @@
   - **Technique:** K-means Clustering.
 - **Outcome:** The company can target each segment with tailored marketing strategies.
 
-### 13.2.2. Association Rule Learning Technique
+### 15.2.2. Association Rule Learning Technique
 
 - **Example:** Market Basket Analysis.
   - **Scenario:** Supermarket wants to understand which products are frequently bought together.
@@ -382,7 +401,7 @@
   - **Technique:** Apriori algorithm.
 - **Outcome:** The supermarket can place associated products together to boost sales.
 
-### 13.2.3. Anomaly Detection Technique
+### 15.2.3. Anomaly Detection Technique
 
 - **Example:** Fraud Detection.
   - **Scenario:** Detect fraudulent credit card transactions.
@@ -391,7 +410,7 @@
   - **Technique:** Isolation Forest.
 - **Outcome:** The system flags potentially fraudulent transactions for further investigation.
 
-### 13.2.4. Dimensionality Reduction
+### 15.2.4. Dimensionality Reduction
 
 - **Example**
   - **An image contains**
@@ -402,14 +421,14 @@
     - Cars.
 - **Outcome:** Dimensionality reduction removes or minimizes unnecessary background features, allowing the model to focus on the **person**.
 
-## 13.3. Semi-supervised Learning
+## 15.3. Semi-supervised Learning
 
 - Use a small amount of labeled data and a large amount of unlabeled data to train systems.
   - After that, the partially trained algorithm itself labels the unlabeled data.
   - This is called pseudo-labeling.
   - The model is then re-trained on the resulting data mix without being explicitly programmed.
 
-## 13.4. Self-Supervised Learning
+## 15.4. Self-Supervised Learning
 
 - Self-supervised learning is a machine learning approach that applies unsupervised learning methods to tasks usually requiring supervised learning.
 - Instead of using labeled datasets for guidance, self-supervised models create implicit labels from unstructured data.
@@ -418,7 +437,7 @@
   2. Then, using the pseudo labels, solve problems traditionally solved by Supervised Learning.
      - Widely used in NLP (to create the BERT and GPT models for example) and in image recognition tasks.
 
-### 13.4.1. Intuitive example
+### 15.4.1. Intuitive example
 
 - Create "pre-text tasks" to have the model solve simple tasks and learn patterns in the dataset.
 - Pretext tasks are not "useful" as such, but will teach our model to create a "representation" of our dataset.
@@ -428,14 +447,15 @@
   - Predict any occluded part from all available parts.
 - After solving the pre-text tasks, we have a model trained that can solve our end goal: "downstream tasks".
 
-## 13.5. Transfer Learning
+## 15.5. Transfer Learning
 
+- **Transfer Learning** is the process of adapting a **pre-trained model** to perform a **new but related task** by training it on a new dataset.
 - Reuses knowledge from a previously trained model for a related task.
 - Improves performance with less training data and fewer computational resources.
 - Adapts existing models using new data from similar domains.
 - Ideal when multiple models can benefit from shared knowledge.
 
-# 14. What is Reinforcement Learning (RL)?
+# 16. What is Reinforcement Learning (RL)?
 
 - A type of Machine Learning where an agent learns to make decisions by performing actions in an environment to maximize cumulative rewards
 - **Key Concepts**
@@ -446,7 +466,7 @@
   - **State:** The current situation of the environment.
   - **Policy:** The strategy the agent uses to determine.
 
-## 14.1. How Does Reinforcement Learning Work?
+## 16.1. How Does Reinforcement Learning Work?
 
 - **Learning Process**
   - The Agent observes the current State of the Environment.
@@ -456,7 +476,7 @@
 - **Goal:** Maximize cumulative reward over time.
   ![How Does Reinforcement Learning Work?](/Images/Machine%20Learning/HowDoesReinforcementLearningWork.png)
 
-## 14.2. Reinforcement Learning in Action
+## 16.2. Reinforcement Learning in Action
 
 - **Scenario:** Training a robot to navigate a maze.
 - **Steps:** Robot (Agent) observes its position (State).
@@ -465,7 +485,7 @@
   - Updates its Policy based on the Reward and new position.
 - **Outcome:** The robot learns to navigate the maze efficiently over time.
 
-## 14.3. Applications of Reinforcement Learning
+## 16.3. Applications of Reinforcement Learning
 
 - Gaming - teaching AI to play complex games (e.g., Chess, Go).
 - Robotics - navigating and manipulating objects in dynamic environments.
@@ -473,7 +493,7 @@
 - Healthcare - optimizing treatment plans.
 - Autonomous Vehicles - path planning and decision-making.
 
-# 15. What is RLHF?
+# 17. What is RLHF?
 
 - RLHF = Reinforcement Learning from Human Feedback.
 - Use human feedback to help ML models to self-learn more efficiently.
@@ -485,7 +505,7 @@
 - RLHF significantly enhances the model performance.
 - **Example:** Grading text translations from "technically correct" to "human".
 
-## 15.1. How does RLHF work?
+## 17.1. How does RLHF work?
 
 - **Example:** Internal company knowledge chatbot
 - **Data collection**
@@ -502,11 +522,11 @@
   - Use the reward model as a reward function for RL.
   - This part can be fully automated.
 
-## 15.2. RLHF Process
+## 17.2. RLHF Process
 
 - https://aws.amazon.com/what-is/reinforcement-learning-from-human-feedback/
 
-# 16. Model Fit
+# 18. Model Fit
 
 - In case your model has poor performance, you need to look at its fit.
 - **Overfitting**
@@ -521,7 +541,7 @@
   ![Overfitting vs Underfitting vs Balanced](/Images/Machine%20Learning/OverfittingUnderfittingBalanced.png)
   - [Font](https://www.geeksforgeeks.org/machine-learning/underfitting-and-overfitting-in-machine-learning/)
 
-# 17. Bias and Variance
+# 19. Bias and Variance
 
 - **Bias**
   - Difference or error between predicted and actual value.
@@ -542,13 +562,13 @@
   - Feature selection (less, more important features).
   - Split into training and test data sets multiple times.
 
-# 18. Model Evaluation Metrics
+# 20. Model Evaluation Metrics
 
-## 18.1. Binary Classification
+## 20.1. Binary Classification
 
 TODO DIAGRAM
 
-## 18.2. Confusion Matrix
+## 20.2. Confusion Matrix
 
 ![Confusion Matrix](/Images/Machine%20Learning/ConfusionMatrix_1.png)
 
@@ -561,7 +581,7 @@ TODO DIAGRAM
   - **Accuracy:** Best for balanced datasets.
     ![Confusion Matrix](/Images/Machine%20Learning/ConfusionMatrix_2.png)
 
-## 18.3. AUC-ROC
+## 20.3. AUC-ROC
 
 - Area under the curve-receiver operator curve.
 - Value from 0 to 1 (perfect model).
@@ -569,7 +589,7 @@ TODO DIAGRAM
 - AUC-ROC shows what the curve for true positive compared to false positive looks like at various thresholds, with multiple confusion matrixes.
 - You compare them to one another to find out the threshold you need for your business use case.
 
-## 18.4. Regressions Metrics
+## 20.4. Regressions Metrics
 
 - MAE, MAPE, RMSE, R² (R Squared) are used for evaluating models that predict a continuous value (i.e., regressions).
 - **Example:** Imagine you're trying to predict how well students do on a test based on how many hours they study.
@@ -578,7 +598,7 @@ TODO DIAGRAM
 - R² (R Squared) - measures the variance.
   - If R² is 0.8, this means that 80% of the changes in test scores can be explained by how much students studied, and the remaining 20% is due to other factors like natural ability or luck.
 
-# 19. Inferencing
+# 21. Inferencing
 
 - Inferencing is when a model is making prediction on new data.
 - **Real Time**
@@ -592,7 +612,7 @@ TODO DIAGRAM
 
 TODO DIAGRAM
 
-## 19.1. Inferencing at the Edge
+## 21.1. Inferencing at the Edge
 
 - Edge devices are usually devices with less computing power that are close to where the data is generated, in places where internet connections can be limited.
 - **Small Language Model (SLM)** on the edge device.
@@ -606,11 +626,11 @@ TODO DIAGRAM
   - Must be online to be accessed.
     ![Large Language Model (LLM)](/Images/Machine%20Learning/InferencingEdgeLLM.png)
 
-# 20. Phases of Machine Learning Project
+# 22. Phases of Machine Learning Project
 
 ![Phases of Machine Learning Project](/Images/Machine%20Learning/PhasesMachineLearningProject.png)
 
-## 20.1. Phase details
+## 22.1. Phase details
 
 - **Define business goals**
   - Stakeholders define the value, budget and success criteria.
@@ -629,14 +649,14 @@ TODO DIAGRAM
   - Iterative process.
   - Additional feature engineering and tune model hyperparameters.
 
-## 20.2. EDA - Exploratory Data Analysis
+## 22.2. EDA - Exploratory Data Analysis
 
 - Visualize the data with graphs.
 - **Correlation Matrix**
   - Look at correlations between variables (how "linked" they are).
   - Helps us decide which features can be important in your model.
 
-## 20.3. Phases of Machine Learning Project
+## 22.3. Phases of Machine Learning Project
 
 - **Retrain**
   - Look at data and features to improve the model.
@@ -653,7 +673,7 @@ TODO DIAGRAM
   - Requirements may change.
   - Iteration is important to keep the model accurate and relevant over time.
 
-# 21. Hyperparameter Tuning
+# 23. Hyperparameter Tuning
 
 - **Hyperparameter**
   - Settings that define the model structure and learning algorithm and process.
@@ -666,7 +686,7 @@ TODO DIAGRAM
   - Grid search, random search.
   - Using services such as SageMaker Automatic Model Tuning (AMT).
 
-## 21.1. Important Hyperparameters
+## 23.1. Important Hyperparameters
 
 - **Learning rate**
   - How large or small the steps are when updating the model's weights during training.
@@ -681,7 +701,7 @@ TODO DIAGRAM
   - Adjusting the balance between simple and complex model.
   - Increase regularization to reduce overfitting.
 
-# 22. Model Parameters
+# 24. Model Parameters
 
 - **Definition**
   - Internal values learned during training that determine **how the model makes predictions**.
@@ -690,14 +710,14 @@ TODO DIAGRAM
   - Weights
   - Biases
 
-# 23. Data Augmentation
+# 25. Data Augmentation
 
 - Generates new training data from existing data.
 - Increases representation of underrepresented groups.
 - Reduces dataset imbalance and model bias.
 - Improves fairness and generalization.
 
-# 24. What to do if overfitting?
+# 26. What to do if overfitting?
 
 - Overfitting is when the model gives good predictions for training data but not for the new data.
 - **It occurs due to**
@@ -711,7 +731,7 @@ TODO DIAGRAM
   - **Adjust hyperparameters** (but you can't "add" them).
   - Ensembling (combine multiple models to get accurate results).
 
-# 25. When is Machine Learning NOT appropriate?
+# 27. When is Machine Learning NOT appropriate?
 
 - Imagine a well-framed problem like this one:
   - A deck contains five red cards, three blue cards, and two yellow cards. What is the probability of drawing a blue card?
@@ -719,12 +739,12 @@ TODO DIAGRAM
 - If we use Supervised Learning, Unsupervised Learning or Reinforcement Learning, we may have an "approximation" of the result.
 - Even though nowadays LLMs have reasoning capabilities, they are not perfect and therefore a "worse" solution.
 
-# 26. Model evaluation vs Model inference
+# 28. Model evaluation vs Model inference
 
 - Model evaluation is the process of evaluating and comparing model outputs to determine the model that is best suited for a use case.
 - Model inference is the process of a model generating an output (response) from a given input (prompt).
 
-# 27. Rule-Based System
+# 29. Rule-Based System
 
 - A **Rule-Based System** makes decisions by following **predefined IF–THEN rules** created by humans.
 - It **does not learn** from data.
@@ -737,9 +757,9 @@ TODO DIAGRAM
   | Easy to explain | May be difficult to explain |
   | Best for known logic | Best for discovering patterns |
 
-# 28. Deterministic vs. Probabilistic Models
+# 30. Deterministic vs. Probabilistic Models
 
-## 28.1. Deterministic Models
+## 30.1. Deterministic Models
 
 - Always produce the **same output** for the same input.
 - Predictable and consistent.
@@ -747,7 +767,7 @@ TODO DIAGRAM
 - **Example**
   - Decision Trees
 
-## 28.2. Probabilistic Models
+## 30.2. Probabilistic Models
 
 - Predict a **probability or distribution** of possible outcomes.
 - Incorporate uncertainty into predictions.
@@ -755,7 +775,7 @@ TODO DIAGRAM
 - **Example**
   - Bayesian Networks
 
-## 28.3. Hybrid Models
+## 30.3. Hybrid Models
 
 - Combine deterministic and probabilistic behavior.
 - Often produce probabilities that are converted into deterministic predictions.
@@ -763,7 +783,7 @@ TODO DIAGRAM
   - Neural Networks
   - Random Forests
 
-# 29. CNN vs. RNN
+# 31. CNN vs. RNN
 
 | CNN (Convolutional Neural Network)                | RNN (Recurrent Neural Network)           |
 | ------------------------------------------------- | ---------------------------------------- |
@@ -772,7 +792,7 @@ TODO DIAGRAM
 | Learns spatial features (shapes, edges, textures) | Learns temporal dependencies and context |
 | Input order is not important                      | Input order is important                 |
 
-## 29.1. CNN (Convolutional Neural Network)
+## 31.1. CNN (Convolutional Neural Network)
 
 - **Purpose**
   - Analyze grid-like data, especially images.
@@ -784,7 +804,7 @@ TODO DIAGRAM
 - **Example**
   - Analyze a single photo to determine whether it contains a cat or a dog.
 
-## 29.2. RNN (Recurrent Neural Network)
+## 31.2. RNN (Recurrent Neural Network)
 
 - **Purpose**
   - Analyze sequential data where previous inputs influence future predictions.
