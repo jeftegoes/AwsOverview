@@ -3,6 +3,9 @@
 ## Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
+- [2. Automated Data Discovery and Classification](#2-automated-data-discovery-and-classification)
+- [3. Monitoring and Detection](#3-monitoring-and-detection)
+- [4. Security and Compliance](#4-security-and-compliance)
 
 # 1. Introduction
 
@@ -10,7 +13,7 @@
 - Macie helps identify and alert you to **sensitive data, such as personally identifiable information (PII)**.
   ![Amazon Macie](/Images/Security,%20Identity,%20&%20Compliance/AmazonMacie.png)
 
-# 2. Data Discovery and Classification
+# 2. Automated Data Discovery and Classification
 
 - Automatically identifies sensitive data such as:
   - Personally Identifiable Information (PII).

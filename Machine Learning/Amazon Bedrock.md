@@ -45,6 +45,7 @@
 - [13. Pricing](#13-pricing)
 - [14. Model Improvement Techniques Cost Order](#14-model-improvement-techniques-cost-order)
   - [14.1. Instruction-Based Fine-Tuning](#141-instruction-based-fine-tuning)
+  - [14.2. Domain Adaptation](#142-domain-adaptation)
 - [15. Cost savings](#15-cost-savings)
 - [16. Security](#16-security)
   - [16.1. Bedrock must access an encrypted S3 bucket](#161-bedrock-must-access-an-encrypted-s3-bucket)
@@ -461,6 +462,10 @@ TODO DIAGRAM
     > "Hello, how are you?"
   - **Response**
     > Bonjour, comment allez-vous ?
+
+## 14.2. Domain Adaptation
+
+- **Domain Adaptation** is a machine learning technique that adapts a model trained on one **source domain** to perform well on a **different but related target domain**.
 
 # 15. Cost savings
 

@@ -7,6 +7,8 @@
 - [3. Content Moderation](#3-content-moderation)
 - [4. Content Moderation API](#4-content-moderation-api)
 - [5. Kinesis Use Case](#5-kinesis-use-case)
+- [6. Amazon Rekognition Features](#6-amazon-rekognition-features)
+- [7. Amazon Rekognition Face Indexing](#7-amazon-rekognition-face-indexing)
 
 # 1. Introduction
 
@@ -50,3 +52,16 @@
 # 5. Kinesis Use Case
 
 ![Kinesis Use Case](/Images/Machine%20Learning/AmazonRekognitionKinesisUseCase.png)
+
+# 6. Amazon Rekognition Features
+
+| Feature                   | Purpose                                                                        | Example Use Case                                                      |
+| ------------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
+| **Object Detection**      | Detects and locates objects within an image by returning their bounding boxes. | Detect empty shelves, vehicles, packages, or products.                |
+| **Label Detection**       | Identifies objects, scenes, activities, and concepts in an image.              | Recognize shelves, products, groceries, furniture, or outdoor scenes. |
+| **Face Recognition**      | Identifies or verifies known faces by comparing them with a face collection.   | Employee authentication, access control, customer identification.     |
+| **Celebrity Recognition** | Identifies well-known public figures in images or videos.                      | Media analysis, entertainment, content indexing.                      |
+
+# 7. Amazon Rekognition Face Indexing
+
+- **Face Indexing** is an Amazon Rekognition feature that **detects, extracts, and stores facial features** in a face collection, enabling fast and accurate face searches and matching.

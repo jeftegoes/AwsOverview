@@ -19,7 +19,7 @@
 
 # 1. Amazon Q Business
 
-- Fully managed Gen-AI assistant for our employees.
+- Fully managed (infrastructure) Gen-AI assistant for our employees.
 - Based on our company's knowledge and data.
   - Answer questions, provide summaries, generate content, automate tasks.
   - Perform routine actions (e.g., submit time-off requests, send meeting invites).
@@ -43,7 +43,8 @@
 
 - Controls and customize responses to our organizational needs.
 - Admin controls == Guardrails.
-- Block specific words or topics (topic-specific).
+- **Topic Blocking**
+  - Block specific words or topics (topic-specific).
 - Respond only with internal information (vs using external knowledge).
 - Global controls & topic-level controls (more granular rules).
   ![Amazon Q Business - Admin Controls](/Images/Machine%20Learning/AmazonQBusinessAdminControls.png)
@@ -69,6 +70,8 @@
 - Create Gen AI-powered apps without coding by using natural language.
 - Leverages our company's internal data.
 - Possibility to leverage plugins (Jira, etc...).
+
+TODO DIAGRAM
 
 # 3. Amazon Q Developer
 

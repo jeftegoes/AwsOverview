@@ -65,21 +65,24 @@
   - [22.1. Phase details](#221-phase-details)
   - [22.2. EDA - Exploratory Data Analysis](#222-eda---exploratory-data-analysis)
   - [22.3. Phases of Machine Learning Project](#223-phases-of-machine-learning-project)
-- [23. Hyperparameter Tuning](#23-hyperparameter-tuning)
-  - [23.1. Important Hyperparameters](#231-important-hyperparameters)
-- [24. Model Parameters](#24-model-parameters)
-- [25. Data Augmentation](#25-data-augmentation)
-- [26. What to do if overfitting?](#26-what-to-do-if-overfitting)
-- [27. When is Machine Learning NOT appropriate?](#27-when-is-machine-learning-not-appropriate)
-- [28. Model evaluation vs Model inference](#28-model-evaluation-vs-model-inference)
-- [29. Rule-Based System](#29-rule-based-system)
-- [30. Deterministic vs. Probabilistic Models](#30-deterministic-vs-probabilistic-models)
-  - [30.1. Deterministic Models](#301-deterministic-models)
-  - [30.2. Probabilistic Models](#302-probabilistic-models)
-  - [30.3. Hybrid Models](#303-hybrid-models)
-- [31. CNN vs. RNN](#31-cnn-vs-rnn)
-  - [31.1. CNN (Convolutional Neural Network)](#311-cnn-convolutional-neural-network)
-  - [31.2. RNN (Recurrent Neural Network)](#312-rnn-recurrent-neural-network)
+- [23. Data Preprocessing Steps](#23-data-preprocessing-steps)
+- [24. Hyperparameter Tuning](#24-hyperparameter-tuning)
+  - [24.1. Important Hyperparameters](#241-important-hyperparameters)
+- [25. Model Parameters](#25-model-parameters)
+- [26. Data Augmentation](#26-data-augmentation)
+- [27. What to do if overfitting?](#27-what-to-do-if-overfitting)
+- [28. Early Stopping](#28-early-stopping)
+- [29. When is Machine Learning NOT appropriate?](#29-when-is-machine-learning-not-appropriate)
+- [30. Model evaluation vs Model inference](#30-model-evaluation-vs-model-inference)
+- [31. Rule-Based System](#31-rule-based-system)
+- [32. Deterministic vs. Probabilistic Models](#32-deterministic-vs-probabilistic-models)
+  - [32.1. Deterministic Models](#321-deterministic-models)
+  - [32.2. Probabilistic Models](#322-probabilistic-models)
+  - [32.3. Hybrid Models](#323-hybrid-models)
+- [33. CNN vs. RNN](#33-cnn-vs-rnn)
+  - [33.1. CNN (Convolutional Neural Network)](#331-cnn-convolutional-neural-network)
+  - [33.2. RNN (Recurrent Neural Network)](#332-rnn-recurrent-neural-network)
+- [34. Cross-Verification](#34-cross-verification)
 
 # 1. What is Artificial Intelligence (AI)?
 
@@ -673,7 +676,22 @@ TODO DIAGRAM
   - Requirements may change.
   - Iteration is important to keep the model accurate and relevant over time.
 
-# 23. Hyperparameter Tuning
+# 23. Data Preprocessing Steps
+
+| Step                            | Purpose                                                              | Example                                   |
+| ------------------------------- | -------------------------------------------------------------------- | ----------------------------------------- |
+| **1. Data Collection**          | Gather data from various sources                                     | Databases, APIs, sensors                  |
+| **2. Data Cleaning**            | Handle missing values, outliers, duplicates, and inconsistencies     | Replace NULL values, remove duplicates    |
+| **3. Data Integration**         | Combine data from multiple sources                                   | Merge customer and sales datasets         |
+| **4. Data Transformation**      | Convert data into a suitable format                                  | Normalize, standardize, encode categories |
+| **5. Feature Engineering**      | Create new features from existing data                               | Age -> Age Group                          |
+| **6. Feature Selection**        | Select the most relevant features                                    | Remove irrelevant columns                 |
+| **7. Dimensionality Reduction** | Reduce the number of features while preserving important information | PCA                                       |
+| **8. Data Splitting**           | Divide data into training, validation, and test sets                 | 80/10/10 split                            |
+| **9. Data Augmentation**        | Generate additional training samples                                 | Rotate or flip images                     |
+| **10. Data Labeling**           | Assign labels to training data (supervised learning)                 | Spam / Not Spam                           |
+
+# 24. Hyperparameter Tuning
 
 - **Hyperparameter**
   - Settings that define the model structure and learning algorithm and process.
@@ -686,7 +704,7 @@ TODO DIAGRAM
   - Grid search, random search.
   - Using services such as SageMaker Automatic Model Tuning (AMT).
 
-## 23.1. Important Hyperparameters
+## 24.1. Important Hyperparameters
 
 - **Learning rate**
   - How large or small the steps are when updating the model's weights during training.
@@ -698,10 +716,11 @@ TODO DIAGRAM
   - Refers to how many times the model will iterate over the entire training dataset.
   - Too few epochs can lead to underfitting, while too many may cause overfitting.
 - **Regularization**
-  - Adjusting the balance between simple and complex model.
-  - Increase regularization to reduce overfitting.
+  - Is a machine learning technique that **reduces overfitting** by adding a penalty to the model's loss function, discouraging overly complex models with extreme parameter values.
+    - Adjusting the balance between simple and complex model.
+    - Increase regularization to reduce overfitting.
 
-# 24. Model Parameters
+# 25. Model Parameters
 
 - **Definition**
   - Internal values learned during training that determine **how the model makes predictions**.
@@ -710,14 +729,14 @@ TODO DIAGRAM
   - Weights
   - Biases
 
-# 25. Data Augmentation
+# 26. Data Augmentation
 
 - Generates new training data from existing data.
 - Increases representation of underrepresented groups.
 - Reduces dataset imbalance and model bias.
 - Improves fairness and generalization.
 
-# 26. What to do if overfitting?
+# 27. What to do if overfitting?
 
 - Overfitting is when the model gives good predictions for training data but not for the new data.
 - **It occurs due to**
@@ -731,7 +750,15 @@ TODO DIAGRAM
   - **Adjust hyperparameters** (but you can't "add" them).
   - Ensembling (combine multiple models to get accurate results).
 
-# 27. When is Machine Learning NOT appropriate?
+# 28. Early Stopping
+
+- **Early Stopping** is a **regularization technique** that automatically stops model training when the performance on the **validation dataset** no longer improves.
+- **How It Works**
+  1. Train the model over multiple epochs.
+  2. Monitor the validation loss or validation accuracy.
+  3. Stop training when performance stops improving for a specified number of epochs (patience).
+
+# 29. When is Machine Learning NOT appropriate?
 
 - Imagine a well-framed problem like this one:
   - A deck contains five red cards, three blue cards, and two yellow cards. What is the probability of drawing a blue card?
@@ -739,12 +766,12 @@ TODO DIAGRAM
 - If we use Supervised Learning, Unsupervised Learning or Reinforcement Learning, we may have an "approximation" of the result.
 - Even though nowadays LLMs have reasoning capabilities, they are not perfect and therefore a "worse" solution.
 
-# 28. Model evaluation vs Model inference
+# 30. Model evaluation vs Model inference
 
 - Model evaluation is the process of evaluating and comparing model outputs to determine the model that is best suited for a use case.
 - Model inference is the process of a model generating an output (response) from a given input (prompt).
 
-# 29. Rule-Based System
+# 31. Rule-Based System
 
 - A **Rule-Based System** makes decisions by following **predefined IF–THEN rules** created by humans.
 - It **does not learn** from data.
@@ -757,9 +784,9 @@ TODO DIAGRAM
   | Easy to explain | May be difficult to explain |
   | Best for known logic | Best for discovering patterns |
 
-# 30. Deterministic vs. Probabilistic Models
+# 32. Deterministic vs. Probabilistic Models
 
-## 30.1. Deterministic Models
+## 32.1. Deterministic Models
 
 - Always produce the **same output** for the same input.
 - Predictable and consistent.
@@ -767,7 +794,7 @@ TODO DIAGRAM
 - **Example**
   - Decision Trees
 
-## 30.2. Probabilistic Models
+## 32.2. Probabilistic Models
 
 - Predict a **probability or distribution** of possible outcomes.
 - Incorporate uncertainty into predictions.
@@ -775,7 +802,7 @@ TODO DIAGRAM
 - **Example**
   - Bayesian Networks
 
-## 30.3. Hybrid Models
+## 32.3. Hybrid Models
 
 - Combine deterministic and probabilistic behavior.
 - Often produce probabilities that are converted into deterministic predictions.
@@ -783,7 +810,7 @@ TODO DIAGRAM
   - Neural Networks
   - Random Forests
 
-# 31. CNN vs. RNN
+# 33. CNN vs. RNN
 
 | CNN (Convolutional Neural Network)                | RNN (Recurrent Neural Network)           |
 | ------------------------------------------------- | ---------------------------------------- |
@@ -792,7 +819,7 @@ TODO DIAGRAM
 | Learns spatial features (shapes, edges, textures) | Learns temporal dependencies and context |
 | Input order is not important                      | Input order is important                 |
 
-## 31.1. CNN (Convolutional Neural Network)
+## 33.1. CNN (Convolutional Neural Network)
 
 - **Purpose**
   - Analyze grid-like data, especially images.
@@ -804,7 +831,7 @@ TODO DIAGRAM
 - **Example**
   - Analyze a single photo to determine whether it contains a cat or a dog.
 
-## 31.2. RNN (Recurrent Neural Network)
+## 33.2. RNN (Recurrent Neural Network)
 
 - **Purpose**
   - Analyze sequential data where previous inputs influence future predictions.
@@ -815,3 +842,12 @@ TODO DIAGRAM
   - Time-series forecasting.
 - **Example**
   - Analyze a video by processing each frame in sequence to recognize an action.
+
+# 34. Cross-Verification
+
+- **Cross-verification** is the process of **validating AI-generated outputs by comparing them with other trusted sources, models, or methods** to ensure accuracy, consistency, and reliability.
+- **Purpose**
+  - Verify AI responses.
+  - Detect errors or hallucinations.
+  - Improve confidence in results.
+  - Support high-stakes decision-making.

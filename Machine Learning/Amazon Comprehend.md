@@ -11,6 +11,8 @@
   - [5.2. Find out how customers feel about our products](#52-find-out-how-customers-feel-about-our-products)
   - [5.3. Discover what matters to our customers](#53-discover-what-matters-to-our-customers)
 - [6. Amazon Comprehend Medical](#6-amazon-comprehend-medical)
+- [7. Amazon Comprehend NLP Features](#7-amazon-comprehend-nlp-features)
+- [8. Amazon Comprehend Batch Processing](#8-amazon-comprehend-batch-processing)
 
 # 1. Introduction
 
@@ -76,3 +78,21 @@
 - Store our documents in Amazon S3.
 - Analyze real-time data with Kinesis Data Firehose.
 - Use Amazon Transcribe to transcribe patient narratives into text that can be analyzed by Amazon Comprehend Medical.
+
+# 7. Amazon Comprehend NLP Features
+
+| Feature                  | Purpose                                                                           | Example                                                                                                     |
+| ------------------------ | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Entity Recognition**   | Identifies named entities in text (people, organizations, locations, dates, etc.) | "John works at AWS in Seattle." -> **John (Person), AWS (Organization), Seattle (Location)**                |
+| **Keyphrase Extraction** | Extracts the most important words or phrases from text                            | "Amazon Bedrock simplifies Generative AI development." -> **Amazon Bedrock**, **Generative AI development** |
+| **Sentiment Analysis**   | Detects the emotional tone of text                                                | **Positive**, **Negative**, **Neutral**, or **Mixed**                                                       |
+| **Text Classification**  | Categorizes documents into predefined labels                                      | Support ticket -> **Claims**, **Billing Issues**, **Technical Support**                                     |
+
+# 8. Amazon Comprehend Batch Processing
+
+- **Batch Processing** in Amazon Comprehend analyzes **large collections of documents stored in Amazon S3** asynchronously, making it ideal for bulk NLP tasks.
+- **Purpose**
+  - Analyze large document collections.
+  - Process data asynchronously.
+  - Scale automatically.
+  - Reduce manual effort.

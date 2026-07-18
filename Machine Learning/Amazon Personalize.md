@@ -4,6 +4,7 @@
 
 - [1. Introduction](#1-introduction)
 - [2. Recipes](#2-recipes)
+- [3. Exploration Weight](#3-exploration-weight)
 
 # 1. Introduction
 
@@ -35,3 +36,7 @@
   - Getting user segments (`USER_SEGMENTATION` recipes).
     - Item-Affinity.
 - **NOTE:** Recipes and personalize are for recommendations.
+
+# 3. Exploration Weight
+
+- **Exploration Weight** is a configuration in **Amazon Personalize** that balances **personalized recommendations** with the discovery of **new or less-interacted items**.
