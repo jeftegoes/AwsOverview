@@ -105,7 +105,7 @@
 
 - We usually interact with the LLM by giving a prompt.
 - Then, the model will leverage all the existing content it has learned from to generate new content.
-- Non-deterministic: the generated text may be different for every user that uses the same prompt.
+- **Non-deterministic:** The generated text may be different for every user that uses the same prompt.
 - The LLM generates a list of potential words alongside probabilities.
 - An algorithm selects a word from that list.
 

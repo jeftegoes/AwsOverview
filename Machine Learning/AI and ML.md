@@ -229,8 +229,8 @@
 ## 11.1. How It Works
 
 - A GAN consists of two neural networks:
-  - **Generator** – Creates synthetic data.
-  - **Discriminator** – Determines whether the data is real or synthetic.
+  - **Generator:** Creates synthetic data.
+  - **Discriminator:** Determines whether the data is real or synthetic.
 - These networks compete against each other, improving the quality of the generated data over time.
 
 # 12. ML Terms
@@ -244,6 +244,8 @@
 - **GAN (Generative Adversarial Network):** Models used to generate synthetic data such as images, videos or sounds that resemble the training data.
   - Helpful for data augmentation.
 - **XGBoost (Extreme Gradient Boosting):** An implementation of gradient boosting.
+- **Variational Autoencoder (VAE):** A VAE learns a **compressed probabilistic representation (latent space)** of the training data.
+  - It then samples from this latent space to generate new data.
 
 # 13. Training Data
 

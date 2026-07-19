@@ -4,6 +4,7 @@
 
 - [1. Introduction](#1-introduction)
 - [2. Machine Learning-Based Ranking](#2-machine-learning-based-ranking)
+- [3. Search Analytics](#3-search-analytics)
 
 # 1. Introduction
 
@@ -22,3 +23,12 @@
   - Understand user intent.
   - Deliver the most useful results first.
   - Enhance the search experience.
+
+# 3. Search Analytics
+
+- **Search Analytics** is an Amazon Kendra feature that provides **insights into how users interact with search results**, helping organizations understand search behavior and improve the search experience.
+- **Purpose**
+  - Monitor user search behavior.
+  - Analyze search performance.
+  - Improve search relevance.
+  - Identify popular and ineffective queries.

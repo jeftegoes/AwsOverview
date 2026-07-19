@@ -39,6 +39,7 @@
   - [15.4. Secure Data Engineering - Best Practices](#154-secure-data-engineering---best-practices)
   - [15.5. Generative AI - Security Scoping Matrix](#155-generative-ai---security-scoping-matrix)
 - [16. MLOps](#16-mlops)
+- [17. Data Virtualization](#17-data-virtualization)
 
 # 1. Responsible AI & Security
 
@@ -454,6 +455,7 @@
 ## 15.5. Generative AI - Security Scoping Matrix
 
 **Risk Management** is the process of identifying, assessing, and mitigating security risks associated with Generative AI applications.
+
 - Framework designed to identify and manage security risks associated with deploying GenAI applications.
 - Classify your apps in 5 defined GenAI scopes, from low to high ownership.
   ![Generative AI - Security Scoping Matrix](/Images/Machine%20Learning/GenerativeAISecurityScopingMatrix.png)
@@ -469,3 +471,13 @@
   - **Continuous Delivery:** Of model in productions.
   - Continuous Retraining.
   - Continuous Monitoring.
+
+# 17. Data Virtualization
+
+- **Data Virtualization** is a data integration approach that allows users and applications to **access and query data from multiple sources without creating physical copies**.
+- **Purpose**
+  - Provide a unified view of data.
+  - Eliminate data duplication.
+  - Reduce storage costs.
+  - Keep data current and consistent.
+  - Preserve data ownership.
