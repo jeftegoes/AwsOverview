@@ -21,6 +21,7 @@
   - [7.6. Fine-Tuning - Use cases](#76-fine-tuning---use-cases)
   - [7.7. Continued Pre-training](#77-continued-pre-training)
   - [7.8. Continued Pre-training vs Fine-tuning](#78-continued-pre-training-vs-fine-tuning)
+  - [7.9. Instruction Tuning](#79-instruction-tuning)
 - [8. Model Evaluation in Amazon Bedrock](#8-model-evaluation-in-amazon-bedrock)
   - [8.1. Automatic Evaluation](#81-automatic-evaluation)
   - [8.2. Benchmark Datasets](#82-benchmark-datasets)
@@ -57,7 +58,9 @@
   - [17.2. Penalties](#172-penalties)
   - [17.3. Stop Sequences](#173-stop-sequences)
 - [18. Dynamic Prompt Engineering](#18-dynamic-prompt-engineering)
-- [19. Amazon Bedrock Playground](#19-amazon-bedrock-playground)
+- [19. Playground](#19-playground)
+- [20. Serverless Environment](#20-serverless-environment)
+- [21. Inference Types](#21-inference-types)
 
 # 1. What is Generative AI?
 
@@ -244,6 +247,15 @@ TODO TABLE TABLE
 | Suitable for proprietary documents and industry-specific content | Suitable for classification, summarization, question answering, and other specific tasks |
 | Focuses on expanding what the model knows                        | Focuses on improving how the model responds                                              |
 
+## 7.9. Instruction Tuning
+
+- **Instruction Tuning** is a fine-tuning technique that trains a **pre-trained foundation model** on **instruction-response pairs**, enabling it to better understand and follow natural language instructions.
+- **Purpose**
+  - Improve instruction-following ability.
+  - Enhance task accuracy.
+  - Increase zero-shot and few-shot performance.
+  - Adapt the model to a wide variety of tasks.
+
 # 8. Model Evaluation in Amazon Bedrock
 
 - Compare multiple foundation models.
@@ -310,7 +322,7 @@ TODO DIAGRAM
 
 - **User Satisfaction:** Gather users' feedbacks and assess their satisfaction with the model responses (e.g., user satisfaction for an ecommerce platform).
 - **Average Revenue Per User (ARPU):** Average revenue per user attributed to the Gen-AI app (e.g., monitor ecommerce user base revenue).
-- **Cross-Domain Performance:** Measure the model's ability to perform cross different domains tasks (e.g., monitor multi-domain ecommerce platform).
+- **Cross-Domain Performance:** Measure the model's ability to perform cross different domains tasks (e.g., monitor multi-domain ecommerce platform, healthcare, finance and entertainment).
 - **Conversion Rate:** Generate recommended desired outcomes such as purchases (e.g., optimizing ecommerce platform for higher conversion rate)
 - **Efficiency:** Evaluate the model's efficiency in computation, resource utilization... (e.g., improve production line efficiency).
 
@@ -395,7 +407,8 @@ TODO DIAGRAM
 
 - Manage and carry out **various multi-step tasks** related to infrastructure provisioning, application deployment, and operational activities.
 - **Task coordination:** Perform tasks in the correct order and ensure information is passed correctly between tasks.
-- Agents are configured to perform specific pre-defined action groups.
+- Agents are configured to perform specific pre-defined **action groups**.
+  - Including making **API calls** or **invoking Lambda functions** to carry out these tasks.
 - Integrate with other systems, services, databases and API to exchange data or initiate actions.
 - Leverage RAG to retrieve information when necessary.
 
@@ -536,7 +549,7 @@ TODO DIAGRAM
   | Adult | "Provide a concise and informative response." |
   | Senior | "Provide a clear, respectful response with detailed explanations." |
 
-# 19. Amazon Bedrock Playground
+# 19. Playground
 
 - **Amazon Bedrock Playground** is an interactive environment for **testing, comparing, and refining prompts and model parameters** before integrating Foundation Models into an application.
 - **Key Features**
@@ -545,3 +558,20 @@ TODO DIAGRAM
   - Immediate response preview.
   - Compare Foundation Models.
   - Experiment without writing application code.
+
+# 20. Serverless Environment
+
+- **Amazon Bedrock** is a **serverless service** that provides access to multiple **foundation models (FMs)** through a unified API, eliminating the need to provision or manage infrastructure.
+- **Purpose**
+  - Access multiple foundation models.
+  - Eliminate infrastructure management.
+  - Automatically scale based on demand.
+  - Accelerate generative AI application development.
+
+# 21. Inference Types
+
+| Inference Type                      | Description                                                               | Best For                                                                     |
+| ----------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **On-Demand (Real-Time) Inference** | Processes requests immediately and returns a response synchronously.      | Chatbots, virtual assistants, real-time applications                         |
+| **Batch Inference**                 | Processes multiple requests asynchronously in bulk.                       | Large datasets, offline processing, cost optimization                        |
+| **Provisioned Throughput**          | Reserves dedicated model capacity for predictable, high-volume workloads. | Production applications with consistent traffic and low-latency requirements |

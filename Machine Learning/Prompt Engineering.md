@@ -106,6 +106,7 @@
 - Provide examples of a task to the model to guide its output.
 - We provide a "few shots" to the model to perform the task.
 - If we provide one example only, this is also called **"one-shot"** or **"single-shot"**.
+- Allows the model to learn from labeled data without updating model weights.
   ![Prompt Engineering Techniques - Few-Shots Prompting](/Images/Machine%20Learning/PromptEngineeringTechniquesFewShotsPrompting.png)
 
 ## 4.3. Chain of Thought Prompting

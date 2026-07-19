@@ -12,6 +12,7 @@
   - [5.3. Discover what matters to our customers](#53-discover-what-matters-to-our-customers)
 - [6. Amazon Comprehend Medical](#6-amazon-comprehend-medical)
 - [7. Amazon Comprehend NLP Features](#7-amazon-comprehend-nlp-features)
+  - [7.1. Custom Features](#71-custom-features)
 - [8. Amazon Comprehend Batch Processing](#8-amazon-comprehend-batch-processing)
 
 # 1. Introduction
@@ -87,6 +88,13 @@
 | **Keyphrase Extraction** | Extracts the most important words or phrases from text                            | "Amazon Bedrock simplifies Generative AI development." -> **Amazon Bedrock**, **Generative AI development** |
 | **Sentiment Analysis**   | Detects the emotional tone of text                                                | **Positive**, **Negative**, **Neutral**, or **Mixed**                                                       |
 | **Text Classification**  | Categorizes documents into predefined labels                                      | Support ticket -> **Claims**, **Billing Issues**, **Technical Support**                                     |
+
+## 7.1. Custom Features
+
+| Feature                       | Purpose                                                             |
+| ----------------------------- | ------------------------------------------------------------------- |
+| **Custom Classification**     | Train a custom model to classify documents into your own categories |
+| **Custom Entity Recognition** | Train a custom model to recognize domain-specific entities          |
 
 # 8. Amazon Comprehend Batch Processing
 
